@@ -1,0 +1,98 @@
+Стислий результат попереднього P0-аудиту
+
+Результат доступний. Нижче — лише вже встановлені факти станом на 7 листопада 2026 року, близько 08:17 UTC. Повторних перевірок і змін не виконував.
+
+1. Git і source manifest
+
+Branch: main
+Full HEAD: 45d77e22e68816e5695aa4b7d2a62bfc57e8176d
+Status: порожній git status --porcelain=v1 --untracked-files=normal; ignored-файли це не охоплює.
+SHA-256 маніфесту 142 перевірених web/backend source/config-файлів:
+
+0fcef7b6d415ee61ba4f4c89074ca9b0f54e4759e7511a7c9b3677bd573db704
+
+Маніфест складається з відсортованих записів sha256 + два пробіли + path + LF, обчислених із workspace bytes. Це не fingerprint усього репозиторію або production. Не включено native Android/iOS, медіа, сирі дані, subscriber JSON і відомий secret-bearing server/telegram-bot.ts.
+
+2. Deployment / revision
+
+Підтверджено метаданими:
+published, public, autoscale;
+primary domain: power-ukraine.net;
+successful current-build flag: true;
+найновіший build в отриманій історії:  
+  9f7e9359-5129-4dea-a595-25f6b1db9d1e;
+його статус success, provider cloud_run;
+створено 2026-06-22T12:55:55.090Z.
+
+Unknown: deployed Git SHA, незалежно підтверджений serving revision ID, окремий deployment resource ID і diff production ↔ workspace. Найновіший успішний build не був прирівняний до доведеного serving revision.
+
+3. DB binding і агрегати
+
+Код використовує DATABASE_URL для основної БД і session store. Метадані dev/prod підтвердили наявність runtime-managed DB env-імен та секретів, без читання їхніх значень.
+
+Не доведено: що connection target запущеного Node deployment — саме керована production-БД, доступна SQL-інструменту. Deployment metadata не надали DB resource binding.
+
+Наведені нижче результати точно позначені як керовані Replit DB targets, а не незалежно доведена БД live-процесу:
+
+| Таблиця | Development | Production |
+|---|---:|---:|
+| users | 0 | 10 |
+| sessions | 0 | 4 |
+| user_settings | 0 | 10 |
+| telegram_subscribers | 2 | 9 |
+| linked_accounts | 0 | 10 |
+| user_locations | 0 | 15 |
+| power_reports | 13 342 | 15 699 |
+| weekly_digests | 0 | 5 |
+| compare_shares | 1 | 4 |
+
+Seed classification:
+dev: 13 342 seed-named reports, інших — 0;
+prod: 15 649 seed-named reports, інших — 50;
+ці 50 не верифіковані як реальні.
+
+Production integrity aggregates:
+duplicate location-address groups — 1;
+settings Telegram-link conflicts — 1;
+duplicate digest user/week groups — 1;
+решта виконаних orphan/conflict перевірок — 0.
+Dev: усі виконані integrity checks — 0.
+
+Production saved locations: Вінниця — 7, Київ — 2, Одеса — 3, Харків — 3. Окрема operator-колонка відсутня, тому ОСР coverage із БД не встановлено.
+
+Це окремі SELECT-запити, не спільний transactional snapshot.
+
+4. Live Telegram identity
+
+Попередньо виконані лише read-only getMe, getWebhookInfo, getChatMenuButton, getMyCommands.
+
+Bot ID: 8577497098
+Username: PowerUkraineBot
+Режим: webhook налаштований
+Webhook host: power-ukraine.net
+Path окремо: /api/telegram-webhook
+Pending updates: 0
+Allowed updates: message, callback_query
+Menu: web_app, host power-ukraine.net
+Commands: start, schedule, settings, help
+
+Це identity доступного токена. Тотожність його значення production secret не порівнювалася. Pending=0 не доводить успішної обробки повідомлень.
+
+5. Головні source risks
+
+Усе нижче підтверджено для workspace source; присутність у serving build — unknown.
+
+| Ризик | Доказ |
+|---|---|
+| Харків читає ті самі YASNO 25/902, що Київ; emergency також київський | scraper-kharkiv.ts:3–5,115; emergency-alerts.ts:267–268 |
+| Невідомий upstream status стає online | scraper.ts:102–114 |
+| Telegram detect/subscriber/sync-address handlers без обов’язкової ownership/auth перевірки | routes.ts:1629–1679 |
+| Mini App HMAC перевіряється, але freshness initData — ні | routes.ts:2115–2167 |
+| JSON-відповіді API та webhook text логуються | index.ts:50–69; routes.ts:1603–1605 |
+| PNG cache key не включає адресу, хоча генератор її отримує | telegram-bot.ts:2128–2136 |
+| Dialog/login/link state у пам’яті; autoscale не забезпечує спільного стану | telegram-bot.ts:133–161,4893–4994 |
+| Webhook ACK перед async processing; notif key записується до send | routes.ts:1601–1606; telegram-bot.ts:4546–4555 |
+| Webhook secret заданий літералом | telegram-bot.ts:4711–4715; значення не наведено |
+| Startup запускає auto-seed; дайджест містить випадкові показники | routes.ts:2678–2694; routes-digest.ts:47–79 |
+
+Фактичні витоки, replay, втрата або дублювання повідомлень не перевірялися й не стверджуються.

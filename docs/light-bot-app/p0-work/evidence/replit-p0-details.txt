@@ -1,0 +1,145 @@
+Доповнення до того самого read-only P0
+
+Нижче — лише раніше зібрані результати. Нових команд, перевірок або змін не виконував. Посилання path:line стосуються перевіреного workspace, не доведеної serving revision.
+
+1. Runtime, package/lockfile та startup graph
+
+Зафіксовано:
+workspace Node v20.20.0, npm 10.8.2;
+.replit:1: Node 20, Python 3.11, PostgreSQL 16;
+package.json: name rest-express, type module, engines відсутній;
+package-lock.json: lockfileVersion 3;
+Python lockfile — uv.lock.
+
+Locked dependencies: React 19.2.3, Vite 7.3.5, Express 5.2.1, TypeScript 5.6.3, pg 8.18.0, Drizzle 0.39.3, canvas 3.2.1, Zustand 5.0.11. Це lockfile, а не перевірені production-installed versions.
+
+Entry/build:
+client/index.html:59 → client/src/main.tsx;
+development: NODE_ENV=development tsx server/index.ts;
+build: tsx script/build.ts;
+production: node ./dist/index.cjs — .replit:24–28;
+build створює dist/public і dist/index.cjs, фіксує backend NODE_ENV=production — script/build.ts.
+
+Порядок запуску за кодом:
+
+імпорти
+  └─ DB Pool із DATABASE_URL                       server/db.ts:7–14
+setupAuth → registerAuthRoutes → registerRoutes    server/index.ts:77–79
+  ├─ початкові street fetch                        server/routes.ts:1229–1232
+  └─ async auto-seed IIFE                          server/routes.ts:2678–2694
+static/Vite setup                                 server/index.ts:97–102
+HTTP listen → startTelegramBot                    server/index.ts:108–118
+  ├─ loadSubscribers
+  ├─ reconcileSubscribersWithUserSettings
+  ├─ migrateAllBotSubscribersToLocations           telegram-bot.ts:4819–4822
+  ├─ development guard → return                   telegram-bot.ts:4824–4826
+  └─ production:
+      setWebhook → commands/descriptions/menu
+      → initSubscriberHashes → scheduler 30 с     telegram-bot.ts:4837–4889
+
+Важлива межа порядку: auto-seed запущений асинхронною IIFE; завершення seed до HTTP listen/reconciliation не гарантоване. Реєстрація частини Telegram metadata також асинхронна.
+
+Safe isolated probe без правок:
+Можливий окремий metadata-процес, який не імпортує застосунок. Саме так виконано дозволені Telegram GET.
+Не встановлено безпечного способу запуску всього застосунку без side effects. NODE_ENV=development недостатньо: seed і reconciliation розташовані до відповідних обмежень.
+Запуск із read-only DB credentials може блокувати записи помилками, але не робить startup нешкідливим: мережеві запити та інші startup effects залишаються.
+
+2. Source schema та всі виконані integrity aggregates
+
+Прочитано shared/models/*; production defaults/constraints/indexes перевірено через системні каталоги.
+
+| Таблиця | PK/FK/index | Defaults |
+|---|---|---|
+| users | PK id; UNIQUE email | UUID, created/updated now |
+| sessions | PK sid; index expire | sid/sess/expire без defaults |
+| linked_accounts | PK id; FK user→users CASCADE; UNIQUE INDEX provider+provider_id | UUID, created now |
+| user_settings | PK/FK user→users CASCADE | Вінниця, queue, порожні адресні рядки, JSON []/{}, notifications false, 30/15, quiet false/23/7, briefing false/7, min-duration 0, theme elegant |
+| telegram_subscribers | PK chat_id; без user FK | Вінниця, queue, enabled false, 30/15, quiet false/23/7, briefing false/7, min-duration 0, порожні tracking keys |
+| user_locations | serial PK; user FK CASCADE; index user; UNIQUE INDEX share_id | Вінниця, queue, primary false, order 0, notify/telegram true, 30/15, порожні tracking keys |
+| power_reports | serial PK; index city+queue+reported_at; index user; без user/chat FK | source web, reported_at now |
+| weekly_digests | serial PK; user FK CASCADE; неунікальний user+week index | числові 0, location JSON [], created now |
+| compare_shares | serial PK; UNIQUE share_id | created now; expiry без default |
+
+Докази: auth.ts:6–25, linked-accounts.ts:5–14, user-settings.ts:4–28, telegram-subscribers.ts:3–27, user-locations.ts:5–27, power-reports.ts:4–15, weekly-digest.ts:5–21, compare-shares.ts:3–8 у shared/models/.
+
+Усі конкретні виконані integrity checks:
+
+| Перевірка | Managed dev | Managed prod |
+|---|---:|---:|
+| Settings без users | 0 | 0 |
+| Locations без users | 0 | 0 |
+| Linked accounts без users | 0 | 0 |
+| Digests без users | 0 | 0 |
+| Subscribers із непорожнім user_id без users | 0 | 0 |
+| Non-seed reports із непорожнім user_id без users | 0 | 0 |
+| Дублікати provider+provider_id | 0 | 0 |
+| Користувачі з кількома primary locations | 0 | 0 |
+| Користувачі з locations, але без primary | 0 | 0 |
+| Дублікати location-address groups | 0 | 1 |
+| Settings Telegram-link conflicts | 0 | 1 |
+| Subscriber Telegram-link conflicts | 0 | 0 |
+| Дублікати digest user+week | 0 | 1 |
+
+Точні визначення conflicts:
+Location duplicate: однакові user_id, city, street, house_number, street непорожня, група має понад один запис.
+Settings conflict: telegram_chat_id збігається з linked_accounts.provider_id для Telegram, але user_id різні.
+Subscriber conflict: аналогічне порівняння subscriber chat identity і Telegram linked identity.
+Digest duplicate: однакові user_id, week_start.
+
+Ненульові значення — кількості груп/рядків за предикатом, не персональні дані. Duplicate location не обов’язково порушує бізнес-правило.
+
+Seed classification: dev 13 342 seed / 0 інших, prod 15 649 seed / 50 інших. «Інші» не доведені як real. Запити не утворювали одного transactional snapshot.
+
+3. Legacy coverage: код окремо від збережених локацій
+
+| Гілка / заявлений ОСР | Schedule / address / emergency |
+|---|---|
+| Вінниця — Вінницяобленерго | GitHub vn-progr, резерв olnet93, Vinnytsiaoblenerho.json — scraper.ts:1–3,58–99; адресні local JSON — routes.ts:204–248,1518–1592; emergency загальний статус VOE news — voe-status.ts:1,54–129 |
+| Київ — DTEK Київські електромережі через YASNO | YASNO planned-outages 25/902 — scraper-kyiv.ts:3–5,114; address streets/houses/group — 183–244; notifications regionId=25 — emergency-alerts.ts:221 |
+| Харків — UI Харківобленерго | Насправді той самий YASNO 25/902, із перетворенням черг — scraper-kharkiv.ts:3–5,38–44,115; local address/enterprise JSON — routes.ts:259–291,1401–1487; emergency викликає Kyiv — emergency-alerts.ts:267–268 |
+| Одеса — DTEK Одеські електромережі | DTEK Cloudflare proxy, вибір odeska-oblast — scraper-odesa.ts:3–4,105–153; DTEK OEM shutdowns/ajax — routes.ts:864–982; emergency flag proxy — emergency-alerts.ts:183–209 |
+
+Допоміжні модулі: Bezsvitla Вінницької області (scraper-voe.ts:3) і Svitlo proxy (scraper-svitlo.ts:3); активне використання основними routes/bot не підтверджене. OSM/Nominatim/Overpass забезпечують географічні підказки, не доказ групи ОСР.
+
+Saved-location aggregates, managed production: Вінниця 7, Київ 2, Одеса 3, Харків 3; у всіх непорожня street. Address lookup mode: відповідно 6/2/3/3. Dev locations — 0.
+
+Інші регіони: у перевірених головних API-гілках не встановлені. Не доведено, що ці чотири гілки — весь історичний scope: Git-історія та весь native/documentation scope не досліджувалися. ОСР-назви не доводять незалежність upstream; особливо для Харкова.
+
+4. Виключені filenames і виконані перевірки
+
+З маніфесту вилучено відомі sensitive або неперевірені data/source-файли:
+
+server/telegram-bot.ts
+server/data/telegram-subscribers.json
+server/data/house-queues-new.json
+server/data/house-queues.json
+server/data/kharkiv-enterprises.json
+server/data/kharkiv-house-queues.json
+server/data/kharkiv-street-queues.json
+server/data/street-full-names.json
+server/data/street-queues-new.json
+server/data/street-queues.json
+server/scrape_voe.py
+test_voe.cjs
+test_voe.js
+
+Не всі вони доведено містять персональні дані: частину вилучено консервативно як raw data/example source. attached_assets/ також виключено; повний пофайловий список тут не відтворюю.
+
+У межах цього P0 виконано: Git metadata, SHA-256, runtime version reads, static source/config reads, deployment metadata, secret-existence metadata, SQL schema/aggregates, чотири дозволені Telegram GET.
+
+Не виконувалися: build, typecheck, unit/integration/E2E tests, server startup/restart, HTTP probes застосунку, upstream schedule/address probes, export, seed/migrations, scheduler, Telegram mutations, polling/getUpdates. Наявність workflow running не означає його запуск аудитом.
+
+5. Чим закрити deployed revision і live-process→DB binding
+
+Уже використані supported read-only методи:
+getDeploymentInfo();
+listDeploymentBuilds({limit:3});
+getDeploymentBuild({buildId,skipLogs:true}).
+
+Вони дали build metadata, але не deployed Git SHA та не DB binding.
+
+Deployed Git revision: blocked на наявному доказовому наборі. Відомий read-only build-detail метод може читати build logs, але там лише потенційно може бути provenance; наявність Git SHA у логах не встановлена. Називати це гарантованим probe не можна.
+
+Live-process→DB binding: blocked. Серед уже встановлених інструментів немає підтвердженого supported read-only доступу до identity фактичного DB connection запущеного процесу або deployment→DB resource mapping. SQL environment:"production" визначає managed target інструмента, не доводить connection target Node.
+
+Для закриття потрібні вже наявні, авторитетні provenance/binding metadata або безпечна діагностика самого serving process. Їх наявність не підтверджена; звичайний запуск застосунку чи довільний GET не є доведено безпечним замінником.

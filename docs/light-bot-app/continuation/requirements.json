@@ -1,0 +1,1315 @@
+{
+  "schema_version": "lba-product-requirements/1",
+  "revision": "1.1",
+  "project_id": "g-p-6aee37634784819189b085127be2946b",
+  "purpose": "Canonical detailed extension of accepted LBA-01–LBA-11; not a second approval ledger",
+  "parent_passport_revision": "1.0",
+  "entry_skill_version": "1.0.0",
+  "originating_blocks": {
+    "U1": "Джерела графіків/API",
+    "U2": "Автозаповнення адрес/перейменування/прив’язка",
+    "U3": "Старі користувачі/міграція/візуальне повідомлення",
+    "U4": "Повний рушій/логіка/мова/спілкування бота",
+    "U5": "Веб/Mini App:дизайн і повноцінний функціонал",
+    "U6": "Персональні красиві сучасні інформативні графіки",
+    "CROSS": "Технічні, експлуатаційні та процесні вимоги паспорта"
+  },
+  "source_completeness": "All currently recoverable requirements represented; raw original message unavailable, mandatory gap D-ORIGINAL-TEXT remains open; never claim exhaustive verbatim recovery",
+  "requirements": [
+    {
+      "id": "DATA-01",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-09"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Порівняти універсальні API та прямі джерела ОСР",
+      "acceptance": "Є порівняння охоплення, актуальності, адресності, прав, вартості й супроводу; вибір обґрунтований, старий parser не приймається за замовчуванням.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-02",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-09"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Безплатні основне та резервне джерела",
+      "acceptance": "Доступ коштує 0 для primary і fallback; платні API, proxy та платний резерв не використовуються.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-03",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-10"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Підтверджене покриття мінімум чотирьох міст",
+      "acceptance": "Київ, Вінниця, Одеса, Харків та увесь доказовий legacy присутні у coverage matrix; перший реліз не зараховується за один ОСР.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-04",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-10"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Усі можливі додаткові території з підтвердженими даними",
+      "acceptance": "Матриця містить перевірені ОСР/території й причини обмеження решти; розширення не обмежено початковими чотирма містами.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-05",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Розділити графік і адресну прив’язку",
+      "acceptance": "Окремі verdict catalog/schedule/address/integration з датою, scope та provenance; назва ОСР або наявність JSON не є підтвердженою адресою.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-06",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Свіжість, повнота, походження і деградація",
+      "acceptance": "Відрізняються published/no-planned/possible/emergency/not-published/stale/unavailable/conflict; пустий, missing, unknown enum і помилка не стають online.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "audit_observation": {
+        "text": "Невідомий status→online підтверджений у workspace; новий адаптер не реалізовано.",
+        "source": "docs/light-bot-app/p0-work/evidence/replit-p0-summary.txt",
+        "implementation_status_unchanged": true
+      }
+    },
+    {
+      "id": "DATA-07",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Стійкий метод отримання даних",
+      "acceptance": "Перевагу мають підтримані структуровані дані; кожний вимушений parser має raw fixtures, drift detection і stop/fallback; нестійкий парсинг не маскується під універсальний API.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-08",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-09"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Дозволені публічні джерела та канали ОСР",
+      "acceptance": "Оцінено JSON/HTML/PDF/офіційні канали, права й ліміти; однаковий upstream дзеркала не рахується незалежним підтвердженням.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "DATA-09",
+      "block": "U1",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Предметний допуск даних",
+      "acceptance": "Стартовий метод паспорта:20 різних репрезентативних адрес/ОСР або вичерпний менший вузький scope, ≥48 год спостереженої звірки; є негативні fixtures і журнал ревізій.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "basis": "accepted_passport_verification_method_not_verbatim_user"
+    },
+    {
+      "id": "ADDR-01",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Повне адресне автодоповнення",
+      "acceptance": "Пошук населений пункт→вулиця→точний будинок працює на дозволеному індексі; повні назви показані без небезпечного auto-select.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-02",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Історичні назви й перейменування",
+      "acceptance": "Стара й нова назви повертають той самий стабільний address ID/будинок і не створюють дубль підписки.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-03",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Точний номер, літера, корпус та кілька вводів",
+      "acceptance": "12,12 А,12/1,12-1,12 корпус 1 не зливаються; для кількох вводів є доказові варіанти/підтвердження.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-04",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Неоднозначні назви й географія",
+      "acceptance": "Однойменні вулиці/міста/райони розрізняються; fuzzy match дає кандидата, не активну прив’язку.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-05",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03",
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "data",
+      "title": "Зв’язок адреси саме з її графіком і сповіщеннями",
+      "acceptance": "Binding містить ОСР, namespace, building/connection/group, revision і чинність; stale/ambiguous не отримує помилковий персональний push.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-06",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03",
+        "LBA-10"
+      ],
+      "must": true,
+      "due_stage": "P1",
+      "owner": "data",
+      "title": "Київ та зміни моделі ОСР",
+      "acceptance": "Поточна модель Києва перевірена на будинку; історична черга лише історія; область та інші ОСР мають окремий namespace.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "ADDR-07",
+      "block": "U2",
+      "parent_requirement_ids": [
+        "LBA-03",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Зручне підтвердження й виправлення адреси",
+      "acceptance": "Є назад/скасування/чернетка/джерело/уточнення; старі адреси збережені при повторній перевірці; ручна черга чесно позначена.",
+      "source_ids": [
+        "SRC-BRIEF",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-01",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-04"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Повернути всі підтверджені старі акаунти",
+      "acceptance": "Кожний legacy запис має mapping або контрольований виняток; звіряються акаунти окремо, не лише counts.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-02",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-04"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Зберегти всі налаштування та адреси",
+      "acceptance": "Адреси, мітки, основна/порядок, quiet hours, reminders, briefing, min-duration, opt-outs, pause/block збережені за фактичною схемою.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-03",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-04",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Сумісний повторний вхід і linking",
+      "acceptance": "Збережено issuer/subject/Telegram identity; Replit OIDC users мають сумісний вхід або доказове linking; email/username не зливають акаунти.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-04",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-04"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Дублікати й конфлікти без втрати власника",
+      "acceptance": "Ненульові managed DB predicates класифіковані; немає auto-delete/merge; exceptions мають причину й наступну дію.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "audit_observation": {
+        "text": "Managed prod:1location duplicate group,1settings Telegram-link conflict,1digest duplicate group; класифікація не виконана.",
+        "source": "docs/light-bot-app/p0-work/evidence/replit-p0-summary.txt",
+        "implementation_status_unchanged": true
+      }
+    },
+    {
+      "id": "PROFILE-05",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-04",
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Повторне перенесення, backup і rollback",
+      "acceptance": "Два dry-run того самого snapshot і версії ідентичні; перевірено restore, ownership та повернення післярелізної дельти.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-06",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P5",
+      "owner": "release",
+      "title": "Візуально повідомити старих користувачів про оновлення",
+      "acceptance": "Є текст що змінилося/що з адресами/що робити + фактичні картки/скриншоти нового UI на синтетичних даних; варіант для непідтверджених адрес.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "PROFILE-07",
+      "block": "U3",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-08",
+        "LBA-11"
+      ],
+      "must": true,
+      "due_stage": "P5",
+      "owner": "release",
+      "title": "Керована кампанія й збереження чинного каналу",
+      "acceptance": "Чинний бот/домен збережені; campaign once-per-release/user, reachability, pilot та точний grant; історичні зміни імпорту не розсилаються.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-01",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P0-R",
+      "owner": "chatbot",
+      "title": "Повний аудит алгоритмів і повідомлень старого бота",
+      "acceptance": "Інвентар усіх команд, callbacks, станів, умов, шаблонів, редагування/видалення, login/link/menu/deep links; для кожного mapped keep/rebuild/decision.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-02",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "chatbot",
+      "title": "Сучасний рушій станів і переходів",
+      "acceptance": "Версійована FSM covers усі старі/нові сценарії; state переживає restart; templates відокремлені від логіки.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-03",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Повсякденні команди й керування адресами",
+      "acceptance": "Працюють start/schedule/settings/help, додавання/мітка/основна/порядок/пауза/видалення, повернення до чернетки й навігація.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-04",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Усі налаштування сповіщень",
+      "acceptance": "Реалізована прийнята політика new plan/change/cancel/emergency/reminders/briefing/quiet hours; збережені legacy preferences.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-05",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Подвійні кліки, прострочені кнопки й відновлення",
+      "acceptance": "Double confirm створює один запис; stale/foreign callback не змінює профіль; актуальна картка відновлюється після видалення.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-06",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Стійка доставка та невідомий результат send",
+      "acceptance": "Durable inbox/outbox, атомарна подія, один sender; restart,429, timeout/outcome_unknown і повтори перевірені предметно.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "audit_observation": {
+        "text": "ACK/state/notif-key патерни підтверджені; новий delivery engine не реалізовано.",
+        "source": "docs/light-bot-app/p0-work/evidence/replit-p0-summary.txt",
+        "implementation_status_unchanged": true
+      }
+    },
+    {
+      "id": "BOT-07",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Скасування, пауза, блокування й гонки",
+      "acceptance": "Перед send звіряються eligibility/ownership; пауза/видалення скасовує ще не відправлене; межа already-in-flight визначена.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "BOT-08",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-05"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Правильна семантика зміни графіка",
+      "acceptance": "A→A без alert;A→B→A дві зміни; зміна provenance без плану не створює schedule alert; історія доступна.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "LANG-01",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "chatbot",
+      "title": "Сучасна природна мова спілкування",
+      "acceptance": "Є зразки реальних діалогів і повідомлень:зрозуміло, доречно, без механічних технічних фраз; конкретний тон підлягає огляду власника.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "LANG-02",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "chatbot",
+      "title": "Повний каталог текстів, кнопок і станів",
+      "acceptance": "Copy deck covers onboarding, start, адреси, налаштування, графіки, зміни, помилки, відмови, міграцію, empty/loading/stale/offline; немає пропущених FSM-станів.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "LANG-03",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "chatbot",
+      "title": "Явна мовна й стилістична політика",
+      "acceptance": "Базова українська з БРИФу збережена; ти/ви, emoji, гумор, термінологія та потреба інших мов вирішуються перед copy approval; невідоме не стає вигаданим owner decision.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-LANGUAGE"
+      ],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "LANG-04",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Узгоджені й правдиві формулювання",
+      "acceptance": "Текст відповідає статусу даних, даті й точним інтервалам; не змішує план із фактом живлення; без зайвих персональних полів/stack traces.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "LANG-05",
+      "block": "U4",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "qa",
+      "title": "Перевірка діалогів у контексті",
+      "acceptance": "Українські символи, довгі назви, відмова, повтор, перезапуск і текстовий fallback оглянуті в реальних сценаріях та на цільових пристроях.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-01",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P0-R",
+      "owner": "app",
+      "title": "Повний аудит чинного вебу й Mini App",
+      "acceptance": "Інвентар routes/screens/features:Dashboard, Settings, share/compare, timer, timeline, local addresses, PWA/Capacitor; preserve/rebuild/decision з причинами.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-02",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "app",
+      "title": "Оновлений цілісний дизайн застосунку",
+      "acceptance": "До остаточного UI є видимі макети/інтерактивні екрани, компоненти, типографіка, кольори, іконки, теми, навігація і стани; напрям прийнятий власником.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-VISUAL"
+      ],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "APP-03",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Повноцінний корисний продукт",
+      "acceptance": "Реалізовані Мій графік/Мої адреси/Що змінилося/Сповіщення/Як читати графік; екрани дають дію і результат, не фіктивні дані чи заглушки.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-04",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-04",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Єдиний профіль на всіх поверхнях",
+      "acceptance": "Адреса/налаштування, змінені в боті, доступні у вебі й Mini App; одна source revision; власники даних не змішуються.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-05",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Два повноцінні способи запуску й входу",
+      "acceptance": "Браузерний вхід і Mini App initData підпис/freshness/anti-replay/target bot/object auth перевірені; сумісність старого входу визначена.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-06",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Mobile UX і Telegram контекст",
+      "acceptance": "Тема Telegram, safe area, Back, адаптивність, loading/empty/error/offline, повернення після слабкого зв’язку працюють у реальній навігації.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-07",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-06",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "qa",
+      "title": "Доступність і точність реалізованого вигляду",
+      "acceptance": "Перевірені вузький екран, масштабування, світла/темна тема, контраст/читабельність, українська; оглянуті actual screenshots і дії.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "APP-08",
+      "block": "U5",
+      "parent_requirement_ids": [
+        "LBA-04",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Сумісність legacy URL і додаткових функцій",
+      "acceptance": "Старі start/callback/share URL, share/compare, local-only addresses та оболонки мають compatibility verdict; вилучення функції потребує адресного рішення.",
+      "source_ids": [
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-LEGACY-FEATURES"
+      ]
+    },
+    {
+      "id": "CHART-01",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "app",
+      "title": "Красивий сучасний дуже інформативний дизайн графіків",
+      "acceptance": "Є actual зразки для вебу/Telegram; погоджена композиція і візуальна ієрархія; технічний запуск не закриває естетичне приймання.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-VISUAL"
+      ],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "CHART-02",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "app",
+      "title": "Повна сім’я персональних карток",
+      "acceptance": "Показані повний графік, поточний плановий стан, наступна подія, нова публікація, зміна, перенесення, скасування й emergency.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "acceptance_evidence_type": "actual_samples_and_owner_visual_or_language_review; structural checks insufficient"
+    },
+    {
+      "id": "CHART-03",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Зміст і читабельність картки",
+      "acceptance": "Мітка адреси, локальна дата, точні інтервали, наступна подія, було/стало, легенда, джерело й час оновлення видимі без пояснення автора.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-04",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Одна модель для HTML/SVG/PNG/тексту",
+      "acceptance": "ScheduleView одного revision дає ті самі хвилини, дату, scope і статус у всіх форматах; golden comparison це підтверджує.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-05",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Точна часова семантика",
+      "acceptance": "Півгодини, точні хвилини, [start, end),24:00, північ, DST23/25h, повний/неповний день не округляються й не домислюються.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-06",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Візуально відрізняти всі стани",
+      "acceptance": "Published, possible, emergency, waiting, stale, unavailable, conflict і needs-confirmation мають відмінні зрозумілі підписи/позначення; колір не є єдиним сигналом.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-07",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "app",
+      "title": "Персональність без витоку даних",
+      "acceptance": "Повна приватна адреса за замовчуванням у профілі; кеш/публічні artifacts не переносять адресу між користувачами.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-08",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "chatbot",
+      "title": "Повний текстовий резерв і слабкий зв’язок",
+      "acceptance": "При відмові PNG є всі точні інтервали, дата, статус, джерело; інформація не зводиться до урізаного підпису.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "CHART-09",
+      "block": "U6",
+      "parent_requirement_ids": [
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "qa",
+      "title": "Перевірка actual renderer на пристроях",
+      "acceptance": "Картки web/Telegram Android/iOS у світлій/темній темі й вузькому екрані не обрізають час, легенду/джерело/зміну; visual+semantic review окремі.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-01",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01"
+      ],
+      "must": true,
+      "due_stage": "P0-R",
+      "owner": "director",
+      "title": "Точний source і безпечна робоча копія",
+      "acceptance": "Origin/branch/HEAD/status, санітизований source bytes snapshot, повний manifest і exclusions; secret-bearing bot file збережений у redacted копії.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-02",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P0-R",
+      "owner": "build",
+      "title": "Безпечний ізольований запуск",
+      "acceptance": "Startup graph прочитаний; seed/reconcile/webhook/send/schedulers та credentials ізольовані до запуску; synthetic DB/network; build/start не торкаються production.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "audit_observation": {
+        "text": "Startup graph підтверджений;safe isolated product startup не виконувався.",
+        "source": "docs/light-bot-app/p0-work/evidence/replit-p0-summary.txt",
+        "implementation_status_unchanged": true
+      }
+    },
+    {
+      "id": "TECH-03",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-04"
+      ],
+      "must": true,
+      "due_stage": "P0-R",
+      "owner": "director",
+      "title": "Serving provenance і DB binding",
+      "acceptance": "Для приймання потрібні докази serving artifact↔source та live process→DB mapping. Blocker/owner/next probe дозволяють закрити аудиторський closeout, але TECH-03 залишається pending/blocked до доказу; publication metadata не підміняє mapping.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "audit_observation": {
+        "text": "Metadata/build logs прочитані;serving SHA/DB binding залишилися unknown.",
+        "source": "docs/light-bot-app/p0-work/evidence/replit-p0-summary.txt",
+        "implementation_status_unchanged": true
+      }
+    },
+    {
+      "id": "TECH-04",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "director",
+      "title": "Свобода технологій і обґрунтований repair/replace",
+      "acceptance": "Не обмежуватися старим кодом; дозволені різні мови/стек. Порівняти reuse/часткову/повну заміну за якістю, строками, вартістю міграції; обраний стек обґрунтовано.",
+      "source_ids": [
+        "SRC-ORIGINAL-RECONSTRUCTED",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-05",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "build",
+      "title": "Ремонт підтверджених security/privacy патернів",
+      "acceptance": "Auth/ownership, initData freshness, логування, секрети, кеш, state/send/startup мають regression proof на synthetic data; serving applicability відділена.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-06",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P3",
+      "owner": "build",
+      "title": "Відтворювані CI/build/staging",
+      "acceptance": "Locks і окрема synthetic конфігурація; meaningful tests, contract checks, CI; baseline environment failures зафіксовані окремо.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-07",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-04",
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P4",
+      "owner": "migration",
+      "title": "Класифікувати synthetic і unknown дані",
+      "acceptance": "Seed reports/random digests не стають історією реальних спостережень; exports захищені та мають provenance.",
+      "source_ids": [
+        "SRC-PASSPORT",
+        "SRC-BRIEF"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "TECH-08",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P5",
+      "owner": "release",
+      "title": "Переключення та відкат чинного сервісу",
+      "acceptance": "Один sender, старі writers fenced, tail delta, pending updates, DNS/TLS, bot/menu, health; rollback зберігає нові записи.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-OPERATIONS"
+      ]
+    },
+    {
+      "id": "TECH-09",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-02",
+        "LBA-08",
+        "LBA-10"
+      ],
+      "must": true,
+      "due_stage": "P6",
+      "owner": "operations",
+      "title": "Супровід та розвиток",
+      "acceptance": "Freshness/drift/error/queue/delivery metrics, runbooks, нові ОСР і re-certification; background job існує лише після actual runtime setup.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-01",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-08",
+        "LBA-11"
+      ],
+      "must": true,
+      "due_stage": "INTAKE",
+      "owner": "director",
+      "title": "Одне основне середовище Codex",
+      "acceptance": "Прийняті Work proofs і дозволи, п’ять локальних installation reports збережені; далі стан/рішення/код/QA у чинному проєкті; Work не обов’язковий маршрут.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-02",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-01",
+        "LBA-11"
+      ],
+      "must": true,
+      "due_stage": "INTAKE",
+      "owner": "director",
+      "title": "Розділити відомі факти, припущення й рішення",
+      "acceptance": "Дослівні цитати, переказ original request, passport requirements та запропоновані acceptance methods мають різне provenance; жодної вигаданої повноти.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-03",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "director",
+      "title": "Видимі результати й предметне приймання",
+      "acceptance": "Макети, картки, діалоги й implementation показуються власнику; code/integration/device/visual-language/owner acceptance окремі.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS",
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-04",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-11"
+      ],
+      "must": true,
+      "due_stage": "INTAKE",
+      "owner": "director",
+      "title": "Права та scope переходять без повторної загальної згоди",
+      "acceptance": "Чинне read-only P0 доручення перенесене точно; дозволи на передачу документів окремо від product writes/export/deploy/webhook/send.",
+      "source_ids": [
+        "SRC-PASSPORT"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-05",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-08",
+        "LBA-11"
+      ],
+      "must": true,
+      "due_stage": "INTAKE",
+      "owner": "director",
+      "title": "Усі вимоги залишаються обов’язковими після ранніх етапів",
+      "acceptance": "Усі U1–U6 і CROSS видимі у кожному closeout:due/status/evidence/blocker; technical/slice pass не закриває майбутні must; scope drop лише за рішенням власника.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": []
+    },
+    {
+      "id": "GOV-06",
+      "block": "CROSS",
+      "parent_requirement_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "must": true,
+      "due_stage": "P2",
+      "owner": "director",
+      "title": "Закрити прогалину первинного тексту",
+      "acceptance": "До остаточного design/copy approval відновити первинний текст або отримати явну звірку власником конкретного повного переліку нюансів. До цього gap відкритий і не стає done/not-applicable.",
+      "source_ids": [
+        "SRC-OWNER-COMPLETENESS"
+      ],
+      "implementation_status": "required_pending",
+      "evidence": [],
+      "decision_ids": [
+        "D-ORIGINAL-TEXT"
+      ]
+    }
+  ]
+}

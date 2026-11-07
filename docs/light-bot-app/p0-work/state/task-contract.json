@@ -1,0 +1,63 @@
+{
+  "schema_version": "lba-audit-task/1",
+  "task_id": "LBA-P0-001",
+  "project_id": "g-p-6aee37634784819189b085127be2946b",
+  "owner": "/root",
+  "scope": "P0 read-only audit and prepare next stage",
+  "assigned_requirements": [
+    "LBA-01",
+    "LBA-04",
+    "LBA-05",
+    "LBA-06",
+    "LBA-08",
+    "LBA-10",
+    "LBA-11"
+  ],
+  "exact_targets": {
+    "github_repository": "alex-hohaizel/light-bot-app",
+    "github_agent_commit": "f19cf19c2dad177cc059157b9ded4443637ebefc",
+    "github_main_commit": "cc7f2f410b2d7b0e8457110ee5af70293b49beff",
+    "replit_app_id": "6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+    "replit_workspace_commit": "45d77e22e68816e5695aa4b7d2a62bfc57e8176d"
+  },
+  "local_owned_paths": [
+    "docs/light-bot-app/",
+    "evidence/",
+    "inputs/"
+  ],
+  "allowed_effects": "Write audit artifacts only; source/services/config/DB remain read-only",
+  "inputs": [
+    "inputs/LIGHT_BOT_APP_AGENT_PASSPORT_v1.0_UA.md",
+    "inputs/LIGHT_BOT_APP_BRIEF_v0.1_UA.md",
+    "inputs/LIGHT_BOT_APP_BLUEPRINT_v1.0.json",
+    "inputs/LIGHT_BOT_APP_DEPTH_v1.0.json",
+    "evidence/connected-observations.json",
+    "evidence/replit-p0-summary.txt",
+    "evidence/replit-p0-details.txt",
+    "evidence/replit-build-provenance-probe.txt",
+    "evidence/replit-source-subset.sha256"
+  ],
+  "outputs": [
+    "docs/light-bot-app/LIGHT_BOT_APP_P0_AUDIT_v1.0_UA.md",
+    "docs/light-bot-app/checkpoint.json",
+    "docs/light-bot-app/knowledge-index.md",
+    "docs/light-bot-app/verification.json",
+    "MANIFEST.sha256"
+  ],
+  "consumers": [
+    "owner",
+    "P0-R director",
+    "later P1 data lead",
+    "existing LIGHT BOT APP [CODEX] after source intake"
+  ],
+  "acceptance": "Every due P0 claim has scoped evidence or blocker/owner/next probe; exact sources/hashes and no inferred runtime pass; next stage is reviewable",
+  "stop": [
+    "identity/revision mismatch",
+    "unexpected mutation",
+    "sensitive values or raw personal rows",
+    "unknown external effect before repetition",
+    "unsafe startup side effects"
+  ],
+  "result": "Read-only audit of available surfaces completed; P0 acceptance gate remains blocked",
+  "independent_reviewer": "/root/p0_acceptance"
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "lba-handoff-verification/1",
+  "checked_at": "2026-11-07T10:02:52.480302+00:00",
+  "checks": {
+    "unique_requirement_ids": 68,
+    "all_must": true,
+    "all_user_blocks": true,
+    "all_parent_LBA_ids": true,
+    "all_fields_and_sources_present": true,
+    "app_requirements": 8,
+    "language_requirements": 5,
+    "chart_requirements": 9,
+    "strict_provenance_acceptance": true,
+    "root_paths_correct": true,
+    "json_parse": true,
+    "targeted_secret_pattern_matches": 0,
+    "owned_paths_only": true,
+    "checkpoint_consistency": {
+      "record_validation": "passed",
+      "external_verification": "not_performed",
+      "errors": [],
+      "checkpoint": {
+        "task_id": "LBA-CODEX-CONTINUATION-001",
+        "phase": "P0",
+        "status": "blocked",
+        "recorded_resume_ready": false
+      }
+    }
+  },
+  "independent_reviews": [
+    "design_language_requirements",
+    "p0_acceptance"
+  ],
+  "limits": [
+    "No product source bytes or runtime/build tests",
+    "Original verbatim completeness pending",
+    "No owner acceptance of created design/copy",
+    "No proof of local Codex receipt/run yet"
+  ]
+}
