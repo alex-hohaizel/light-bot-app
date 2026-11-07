@@ -1,0 +1,461 @@
+{
+  "schema_version": "1.0.0",
+  "is_template": true,
+  "purpose": "Exact agent-facing forms. EXAMPLE/null/empty fields are not facts, evidence, authority or complete blueprint. The agent interprets natural language; this runtime only records and validates typed local data.",
+  "session_namespace": ".agent-foundry/state.json",
+  "purposes": "Use distinct SESSION roots for factory design case and target project. init --purpose factory|project is immutable; never overwrite prior state or other canonical registries.",
+  "commands": [
+    "init",
+    "blueprint",
+    "check",
+    "approve",
+    "build-gate",
+    "context",
+    "lesson",
+    "artifact",
+    "test",
+    "evidence",
+    "execution",
+    "requirement",
+    "decision",
+    "task",
+    "readiness",
+    "start",
+    "complete",
+    "phase-check",
+    "bundle-check",
+    "intake",
+    "pause",
+    "resume",
+    "capability",
+    "grant",
+    "action",
+    "dispatch",
+    "receipt",
+    "refresh"
+  ],
+  "blueprint_fields": {
+    "skill": {
+      "name": "target-agent",
+      "purpose": "EXAMPLE concrete competence",
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "phase_ids": [
+        "PHASE-1"
+      ]
+    },
+    "capability": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "CAP-1",
+      "intent": "EXAMPLE preserved intent",
+      "priority": "must",
+      "emphasis": true,
+      "applicability": "applicable",
+      "rationale": null,
+      "acceptance": "EXAMPLE discriminating acceptance",
+      "owner": "ROLE-1",
+      "phase_ids": [
+        "PHASE-1"
+      ],
+      "component_ids": [
+        "COMP-1"
+      ],
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "test_ids": [
+        "TEST-1"
+      ],
+      "depends_on": []
+    },
+    "phase": {
+      "id": "PHASE-1",
+      "name": "EXAMPLE derived phase",
+      "acceptance": "EXAMPLE phase acceptance",
+      "handoff": "EXAMPLE exact input/output and return",
+      "return_route": "EXAMPLE scoped repair route",
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "depends_on": []
+    },
+    "role": {
+      "id": "ROLE-1",
+      "competence": "EXAMPLE actual expertise",
+      "responsibility": "EXAMPLE artifact ownership"
+    },
+    "component": {
+      "id": "COMP-1",
+      "kind": "skill",
+      "purpose": "EXAMPLE concrete implementation component",
+      "owner": "ROLE-1",
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "phase_ids": [
+        "PHASE-1"
+      ]
+    },
+    "artifact": {
+      "id": "ART-1",
+      "path": "skills/target-agent/SKILL.md",
+      "kind": "instruction",
+      "phase_id": "PHASE-1",
+      "owner": "ROLE-1",
+      "acceptance": "EXAMPLE complete behavior contract",
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "immutable": false
+    },
+    "test": {
+      "id": "TEST-1",
+      "method": "EXAMPLE actually executable evaluation",
+      "negative_case": "EXAMPLE strongest meaningful failure",
+      "due_phase": "PHASE-1",
+      "independent": true,
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "artifact_ids": [
+        "ART-1"
+      ]
+    },
+    "question": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "QUESTION-1",
+      "question": "EXAMPLE material uncertainty",
+      "explanation": "EXAMPLE why answer changes the result",
+      "status": "pending",
+      "blocking": true,
+      "options": [
+        "EXAMPLE feasible option A",
+        "EXAMPLE feasible option B"
+      ],
+      "recommendation": "EXAMPLE reasoned choice",
+      "answer": null,
+      "due_phase": "PHASE-1"
+    },
+    "input_source": {
+      "path": "inputs/reference.json",
+      "sha256": "EXAMPLE actual 64-character lowercase SHA256",
+      "source": "EXAMPLE current origin"
+    },
+    "continuity": "Every named continuity field in blueprint.template.json needs a concrete nonempty policy; true flags or an overall score cannot replace requirements.",
+    "discovery_topic": {
+      "topic_id": "EXAMPLE catalog topic ID",
+      "applicability": "applicable",
+      "rationale": "EXAMPLE subject-specific reason",
+      "source": "EXAMPLE actual source",
+      "current_question_ids": [],
+      "current_status": "resolved",
+      "owner": "EXAMPLE responsible role",
+      "due_gate": "before-construction",
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "CAP-1"
+      ]
+    }
+  },
+  "records": {
+    "approval": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "actor": "user",
+      "scope": "EXAMPLE exact reviewed scope"
+    },
+    "amendment": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "actor": "user",
+      "scope": "EXAMPLE exact reviewed scope",
+      "from_sha256": "EXAMPLE prior exact hash",
+      "to_sha256": "EXAMPLE new exact hash",
+      "changed_ids": [
+        "CAP-1"
+      ]
+    },
+    "canonical_authority_extension": {
+      "canonical_authority": {
+        "path": "inputs/authority.json",
+        "sha256": "EXAMPLE actual source hash",
+        "record_id": "AUTH-1"
+      }
+    },
+    "canonical_authority_document": {
+      "schema_version": "foundry-authority/1",
+      "items": [
+        {
+          "id": "AUTH-1",
+          "actor": "user",
+          "decision": "approve",
+          "scope": "EXAMPLE exact scope",
+          "subject_sha256": "EXAMPLE exact blueprint/effect/execution subject hash"
+        }
+      ]
+    },
+    "lesson": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "LESSON-1",
+      "text": "EXAMPLE project-specific observation",
+      "scope": "EXAMPLE exact project scope",
+      "confidence": "observed",
+      "material": false,
+      "impact_ids": [
+        "CAP-1"
+      ],
+      "phase_ids": [],
+      "impact_reason": "EXAMPLE actual affected decision or proof"
+    },
+    "artifact": {
+      "id": "ART-1",
+      "path": "deliverable/skills/target-agent/SKILL.md",
+      "bundle_path": "skills/target-agent/SKILL.md",
+      "phase_id": "PHASE-1",
+      "kind": "instruction",
+      "author_ids": [
+        "actual-author"
+      ],
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "immutable": false
+    },
+    "evidence": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "EV-1",
+      "test_id": "TEST-1",
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "proof_path": "evidence/review.json",
+      "observer": "actual-independent-reviewer",
+      "status": "pass",
+      "environment": "EXAMPLE actual environment",
+      "method": "EXAMPLE actually performed steps",
+      "observed_at": "EXAMPLE actual timestamp"
+    },
+    "execution": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "actor": "user",
+      "scope": "EXAMPLE exact reviewed scope",
+      "id": "EXEC-1",
+      "blueprint_sha256": "EXAMPLE approved blueprint hash",
+      "phase_ids": [
+        "PHASE-1"
+      ],
+      "prerequisite_evidence": {}
+    },
+    "requirement": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "REQ-1",
+      "intent": "EXAMPLE current product requirement",
+      "scope": "EXAMPLE exact task scope",
+      "phase_id": "PHASE-1",
+      "owner": "actual-worker",
+      "priority": "must",
+      "acceptance": "EXAMPLE individual closure condition",
+      "status": "pending",
+      "artifact_ids": [],
+      "evidence_ids": [],
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "emphasis": false,
+      "blocks_work": false,
+      "blocks_task_ids": []
+    },
+    "project_test": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "PROJECT-TEST-1",
+      "phase_id": "PHASE-1",
+      "capability_ids": [
+        "CAP-1"
+      ],
+      "artifact_ids": [
+        "PRODUCT-ART-1"
+      ],
+      "method": "EXAMPLE product-specific test",
+      "negative_case": "EXAMPLE contrary result",
+      "independent": true,
+      "scope": "EXAMPLE exact task scope"
+    },
+    "task": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "TASK-1",
+      "phase_id": "PHASE-1",
+      "scope": "EXAMPLE exact task scope",
+      "goal": "EXAMPLE bounded work and stop",
+      "owner": "actual-worker",
+      "execution_id": "EXEC-1",
+      "depends_on": [],
+      "requirement_ids": [
+        "REQ-1"
+      ],
+      "fulfills_requirements": [
+        "REQ-1"
+      ],
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "test_ids": [
+        "TEST-1"
+      ],
+      "independent_review_required": true
+    },
+    "pause_now": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "reason": "EXAMPLE requested pause",
+      "boundary": "now"
+    },
+    "pause_after_task": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "reason": "EXAMPLE requested milestone",
+      "boundary": "after_task",
+      "task_id": "TASK-1"
+    },
+    "pause_after_artifact": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "reason": "EXAMPLE requested preview",
+      "boundary": "after_artifact",
+      "artifact_id": "ART-1"
+    },
+    "pause_after_phase": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "reason": "EXAMPLE requested phase",
+      "boundary": "after_phase",
+      "phase_id": "PHASE-1",
+      "scope": "EXAMPLE exact task scope",
+      "execution_id": "EXEC-1"
+    },
+    "capability": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "TOOL-1",
+      "environment": "EXAMPLE actual host/service/account",
+      "scope": "EXAMPLE exact allowed operation",
+      "verified_at": "EXAMPLE actual timestamp",
+      "available": false,
+      "effect_types": [
+        "EXAMPLE actually supported effect type"
+      ]
+    },
+    "grant": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "actor": "user",
+      "scope": "EXAMPLE exact reviewed scope",
+      "id": "GRANT-1",
+      "type": "EXAMPLE concrete effect kind",
+      "capability_id": "TOOL-1",
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "parameters": {
+        "target": "EXAMPLE exact external target"
+      },
+      "decision": "approve",
+      "action_id": "ACTION-1",
+      "idempotency_key": "EXAMPLE stable single-effect identity"
+    },
+    "action": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "id": "ACTION-1",
+      "grant_id": "GRANT-1",
+      "idempotency_key": "EXAMPLE stable single-effect identity",
+      "task_id": "TASK-1",
+      "type": "EXAMPLE concrete effect kind",
+      "scope": "EXAMPLE exact reviewed scope",
+      "capability_id": "TOOL-1",
+      "artifact_ids": [
+        "ART-1"
+      ],
+      "parameters": {
+        "target": "EXAMPLE exact external target"
+      }
+    },
+    "receipt": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "provider_ref": "EXAMPLE actual provider operation/object ID",
+      "proof_path": "evidence/provider-receipt.json",
+      "reconciled": false
+    },
+    "intake": {
+      "id": "original-input",
+      "rights": "EXAMPLE actual rights/provenance declaration",
+      "source": "EXAMPLE exact origin"
+    },
+    "suite_review": {
+      "source": "EXAMPLE exact current source reference",
+      "verbatim": "EXAMPLE exact original words",
+      "review": "EXAMPLE actually performed compatibility review",
+      "impact_ids": [],
+      "material": false
+    },
+    "project_decision": {
+      "id": "QUESTION-1",
+      "source": "EXAMPLE actual question origin",
+      "verbatim": "EXAMPLE exact question source",
+      "question": "EXAMPLE concrete material question",
+      "options": [
+        "EXAMPLE option A",
+        "EXAMPLE option B"
+      ],
+      "scope": "EXAMPLE exact task scope",
+      "phase_ids": [
+        "PHASE-1"
+      ],
+      "task_ids": [],
+      "material": true,
+      "status": "pending"
+    },
+    "project_decision_confirmation_extension": {
+      "status": "confirmed",
+      "answer": "EXAMPLE exact listed option",
+      "confirms_sha256": "EXAMPLE digest of id/question/options/scope/phase_ids/task_ids/material",
+      "authority": {
+        "source": "EXAMPLE actual user reply reference",
+        "verbatim": "EXAMPLE exact user words",
+        "actor": "user",
+        "scope": "EXAMPLE same decision scope",
+        "choice": "EXAMPLE same listed answer"
+      }
+    }
+  },
+  "rules": [
+    "Blueprint approval authorizes target construction only, not target execution or an external effect. Record distinct scopes from the same actual user reply only when that reply explicitly covers them; do not re-ask valid authorization.",
+    "Blueprint user must/emphasis changes require exact old/new hash and changed-ID amendment authority. Historical originals remain in blueprint_history. Product must changes similarly pin prior/new definition hash and scope requirement:ID.",
+    "Canonical authority binding supports only foundry-authority/1. Denied/revoked/changed source is blocked. Unsupported authority formats are rejected; prepare a current record from actual authority, without adapters or reinterpretation. Hashes do not authenticate a human.",
+    "Task readiness enforces current execution scope, current musts, phase prerequisites, dependencies, knowledge, sources, suite and pauses. Pending requirements may be fulfilled by the task; every declared requirement closes individually before completion.",
+    "Evidence binds exact current artifacts/proof/test definitions. Independent tests reject self-observation. A file/hash/declared observer is not proof of actual professional, device, media or provider quality.",
+    "Bundle-check uses exact approved skill set, expected unpacked artifact paths and every current blueprint test pass. The final ZIP/self-checksum must not be defined as a required artifact inside itself.",
+    "Register external grants for exactly one action_id/idempotency_key. Dispatch writes pending before host tool use and executes nothing. Unknown outcomes require actual read-only reconciliation proof, not retry.",
+    "Pause now or after exact artifact/task/phase blocks new work gates; safe receipt/evidence/checkpoint recording remains possible. Resume never replays completed work or effects.",
+    "Intake accepts separate source directories/ZIPs, rejects links/traversal/case collisions/special files, max10000 files and256MiB decompressed per intake. Use separately verified bounded chunks or pinned external storage for larger inputs.",
+    "Runtime Python3.9+ uses POSIX locking on Linux/macOS; actual host/tool/device/account support must be verified. No command invokes an LLM, background service, imported executable or external action.",
+    "Every catalog topic has source-linked applicability/rationale/current status/owner/due coverage; current construction unknowns block approval. Future product decisions are resolved in separate project decision records at their due phase, without reapproving unchanged agent capabilities.",
+    "Independent tasks may fulfill separate pending musts in parallel. Explicit required inputs/blocks_work/blocks_task_ids and due material decisions gate dependent starts; every current phase must/emphasis and due test closes at phase-check.",
+    "A previously bound canonical authority cannot be dropped or redirected in a sidecar update. Update/reconcile its current canonical source or perform an explicit separately reviewed migration; do not reinterpret a denial.",
+    "Capability availability alone does not authorize an effect: effect_types and exact capability scope must cover the proposed grant. Previous typed record revisions are retained in record_history.",
+    "Current source protocol and command contract are described by foundry.py --help and the runtime interface shipped with the delivery. Use distinct factory/project session roots; do not reinitialize an existing ledger."
+  ]
+}

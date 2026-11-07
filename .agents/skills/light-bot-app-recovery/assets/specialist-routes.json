@@ -1,0 +1,86 @@
+{
+  "schema_version": "foundry-specialist-routes/1",
+  "lookup": "Resolve the stable frontmatter name in the current host; display version is not part of identity. These are known typed component routes, not a whitelist. Discover future specialists from current-host metadata and actual sources before creating an engine. The catalog does not prove availability or execution.",
+  "routes": [
+    {
+      "kind": "agent_skill",
+      "selector": "design-specialist-skills",
+      "work_mention": "@design-specialist-skills",
+      "codex_mention": "$design-specialist-skills",
+      "activation": "Author or materially restructure approved specialized skill contracts; Foundry keeps product intent, authority and integration ownership.",
+      "supported_stage_selectors": [
+        "design-specialist-skills"
+      ]
+    },
+    {
+      "kind": "app",
+      "selector": "app-atelier-director",
+      "work_mention": "@app-atelier-director",
+      "codex_mention": "$app-atelier-director",
+      "activation": "The selected product plan includes an application component; route only its bounded approved scope.",
+      "supported_stage_selectors": [
+        "app-atelier-director",
+        "app-atelier-research",
+        "app-atelier-concepts",
+        "app-atelier-specification",
+        "app-atelier-experience",
+        "app-atelier-build",
+        "app-atelier-support",
+        "app-atelier-qa",
+        "app-atelier-release",
+        "app-atelier-growth",
+        "app-atelier-operations"
+      ]
+    },
+    {
+      "kind": "chatbot",
+      "selector": "chatbot-atelier-director",
+      "work_mention": "@chatbot-atelier-director",
+      "codex_mention": "$chatbot-atelier-director",
+      "activation": "The selected product plan includes a conversational bot; establish channels, audience and platform constraints before adapter choice.",
+      "supported_stage_selectors": [
+        "chatbot-atelier-director",
+        "chatbot-atelier-research",
+        "chatbot-atelier-specification",
+        "chatbot-atelier-conversation",
+        "chatbot-atelier-knowledge",
+        "chatbot-atelier-integrations",
+        "chatbot-atelier-media",
+        "chatbot-atelier-build",
+        "chatbot-atelier-qa",
+        "chatbot-atelier-release",
+        "chatbot-atelier-operations"
+      ]
+    }
+  ],
+  "handoff_schema": "atelier-component-handoff/1",
+  "current_protocols": {
+    "factory_state": "1.0.0",
+    "factory_blueprint": "1.0.0",
+    "domain_depth": "foundry-depth/2"
+  },
+  "activity_grants": {
+    "planning": [
+      "planning_only",
+      "construction_only",
+      "component_execution"
+    ],
+    "skill_construction": [
+      "construction_only"
+    ],
+    "product_execution": [
+      "component_execution"
+    ]
+  },
+  "invocation_receipt_required_fields": [
+    "id",
+    "path",
+    "sha256",
+    "claim",
+    "actor",
+    "method",
+    "scope",
+    "component_id",
+    "requirement_ids"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "atelier-component-handoff/1",
+  "is_template": true,
+  "product_id": "",
+  "component_id": "",
+  "component_kind": "app",
+  "status": "draft",
+  "parent_intent_ref": "",
+  "authority_ref": "",
+  "parent_requirement_ids": [],
+  "owned_requirement_ids": [],
+  "scope": {
+    "goal": "",
+    "included": [],
+    "excluded": [],
+    "stop": ""
+  },
+  "consumer": "",
+  "permissions": {
+    "source_ref": "",
+    "grant": "planning_only",
+    "allowed_effects": []
+  },
+  "budget": {
+    "cap": "",
+    "stop": ""
+  },
+  "decisions": [],
+  "environment_capabilities": [],
+  "inputs": [],
+  "shared_contract_refs": [],
+  "related_components": [],
+  "invocation": {
+    "selector": "app-atelier-director",
+    "environment": "work",
+    "availability": "unknown",
+    "status": "planned",
+    "resolution": null,
+    "receipt_refs": [],
+    "activity": "planning"
+  },
+  "fallback": null,
+  "deliverables": [],
+  "acceptance": [],
+  "evidence": [],
+  "actual_jobs": [],
+  "open_questions": [],
+  "checkpoint": {
+    "completed": [],
+    "pending": [],
+    "unknown_outcomes": []
+  },
+  "next_action": "",
+  "return_condition": "",
+  "return_to": {
+    "selector": "",
+    "component_id": ""
+  },
+  "orchestrator_chain": [],
+  "selected_channels": [],
+  "proposed_channels": [],
+  "platform_adapter_contract_refs": []
+}

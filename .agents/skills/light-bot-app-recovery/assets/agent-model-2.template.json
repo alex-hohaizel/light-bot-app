@@ -1,0 +1,25 @@
+{
+  "schema_version": "foundry-depth/2",
+  "is_template": true,
+  "toolkit_version": "2.3.0",
+  "maturity": "M0",
+  "subject": {
+    "blueprint_id": null,
+    "blueprint_revision": null,
+    "blueprint_sha256": null,
+    "authority_source": null
+  },
+  "requirements": [],
+  "systems": [],
+  "rules": [],
+  "state_fields": [],
+  "capabilities": [],
+  "operations": [],
+  "recipes": [],
+  "artifacts": [],
+  "evidence": [],
+  "modules": [],
+  "assemblies": [],
+  "_instructions": "Instantiate from current actual sources. Templates, hashes, role names, declared receipts and filled JSON never create evidence or authority. Keep the depth model linked by digest to current blueprint; do not edit history or auto-promote previous evidence. See references/domain-model-2.md, production-recipes-2.md and depth-evaluation-2.md. Run check_foundry_depth.py MODEL --root PACKAGE; use --ready only for exact M2 deliverables with appropriate passing witnesses. Ready binding: use --ready --session SESSION when --root is not the initialized Foundry session; actual current blueprint/approval binding is required.",
+  "current_runtime_schema": "1.0.0"
+}

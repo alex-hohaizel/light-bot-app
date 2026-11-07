@@ -1,0 +1,36 @@
+{
+  "schema_version": "depth/2",
+  "project_id": "REPLACE_WITH_PROJECT_ID",
+  "revision": "1",
+  "maturity": "draft",
+  "scope": "Replace with bounded intended outcome; no readiness claimed",
+  "consumer": "Named receiving role",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "source": "Actual user request or primary source locator",
+      "owner": "Assigned owner",
+      "applicability": "pending",
+      "due": "design",
+      "acceptance": "Observable positive criterion",
+      "negative_case": "Failure that must be detected",
+      "contract_ids": [],
+      "evidence_ids": [],
+      "required_evidence_kinds": [
+        "source"
+      ]
+    }
+  ],
+  "systems": [],
+  "contracts": [],
+  "operations": [],
+  "capabilities": [],
+  "recipes": [],
+  "attempts": [],
+  "transformations": [],
+  "assemblies": [],
+  "evidence": [],
+  "handoff": {
+    "status": "pending"
+  }
+}

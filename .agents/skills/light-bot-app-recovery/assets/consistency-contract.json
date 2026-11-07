@@ -1,0 +1,8 @@
+{
+  "schema_version": "skill.consistency/1",
+  "container_kind": "project",
+  "current_checker": "lba_audit.py",
+  "root_required_flags": [],
+  "canonical_stage": null,
+  "history_documents": []
+}

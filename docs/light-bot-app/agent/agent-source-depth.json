@@ -1,0 +1,543 @@
+{
+  "schema_version": "depth/2",
+  "project_id": "lba-recovery-agent-build",
+  "revision": "1",
+  "maturity": "design",
+  "scope": "approved agent creation and verification, product outcomes pending",
+  "consumer": "owner and future recovery executor",
+  "requirements": [
+    {
+      "id": "LBA-01",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-01",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-01",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-01"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-02",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-02",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-02",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-02"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-03",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-03",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-03",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-03"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-04",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-04",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-04",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-04"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-05",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-05",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-05",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-05"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-06",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-06",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-06",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-06"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-07",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-07",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-07",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-07"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-08",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-08",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-08",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-08"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-09",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-09",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-09",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-09"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-10",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-10",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-10",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-10"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    },
+    {
+      "id": "LBA-11",
+      "source": "approved LIGHT_BOT_APP_BLUEPRINT_v1.0.json / LBA-11",
+      "owner": "director",
+      "applicability": "required",
+      "due": "design",
+      "acceptance": "Створена навичка описує чинний предметний метод, outputs та due evidence для LBA-11",
+      "negative_case": "Пропущене правило або видавання майбутнього product proof за завершений",
+      "contract_ids": [
+        "CONTRACT-LBA-11"
+      ],
+      "evidence_ids": [
+        "EV-LOCAL",
+        "EV-QA"
+      ],
+      "required_evidence_kinds": [
+        "local",
+        "independent"
+      ]
+    }
+  ],
+  "systems": [],
+  "contracts": [
+    {
+      "id": "CONTRACT-LBA-01",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-01"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-01 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-01"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-02",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-02"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-02 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-02"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-03",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-03"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-03 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-03"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-04",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-04"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-04 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-04"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-05",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-05"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-05 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-05"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-06",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-06"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-06 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-06"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-07",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-07"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-07 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-07"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-08",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-08"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-08 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-08"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-09",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-09"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-09 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-09"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-10",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-10"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-10 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-10"
+      ],
+      "operation_ids": []
+    },
+    {
+      "id": "CONTRACT-LBA-11",
+      "owner": "director",
+      "consumer": "installed recovery skill",
+      "inputs": [
+        "approved passport",
+        "actual source snapshot"
+      ],
+      "outputs": [
+        "bounded workflow for LBA-11"
+      ],
+      "rule": "SKILL.md and references/workflow.md preserve LBA-11 with domain/migration/operations rules",
+      "failure": "Missing must blocks corresponding result",
+      "acceptance": "Package review and local source validation passed for this creation scope",
+      "requirement_ids": [
+        "LBA-11"
+      ],
+      "operation_ids": []
+    }
+  ],
+  "operations": [],
+  "capabilities": [],
+  "recipes": [],
+  "attempts": [],
+  "transformations": [],
+  "assemblies": [],
+  "evidence": [
+    {
+      "id": "EV-LOCAL",
+      "kind": "local",
+      "actor": "/root",
+      "scope": "agent source completeness and tested helpers only",
+      "environment": "executor-local",
+      "observed_at": "2026-11-07",
+      "verdict": "pass",
+      "status": "current",
+      "method": "source snapshot, synthetic checks and scoped review",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "files": [
+        {
+          "path": "qa-evidence.md",
+          "sha256": "1feabeac023f539efe9a3368f1d93e33a8de6a2096bc4f9e1eba18766d3f47b2"
+        }
+      ],
+      "inputs": [
+        {
+          "path": "skills/light-bot-app-recovery/SKILL.md",
+          "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+        },
+        {
+          "path": "skills/light-bot-app-recovery/references/workflow.md",
+          "sha256": "8f314f08c0728983d0b7c8c3f46c599366e4f19ea090d340c7cfc46c6925b73e"
+        },
+        {
+          "path": "skill-files.sha256",
+          "sha256": "a67df09af5c54ec14faa83d41a72850b8fb9ac4786a58444969f89c04e15fed2"
+        }
+      ]
+    },
+    {
+      "id": "EV-QA",
+      "kind": "independent",
+      "actor": "/root/package_qa",
+      "scope": "agent source completeness and tested helpers only",
+      "environment": "executor-local",
+      "observed_at": "2026-11-07",
+      "verdict": "pass",
+      "status": "current",
+      "method": "source snapshot, synthetic checks and scoped review",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "files": [
+        {
+          "path": "qa-evidence.md",
+          "sha256": "1feabeac023f539efe9a3368f1d93e33a8de6a2096bc4f9e1eba18766d3f47b2"
+        }
+      ],
+      "inputs": [
+        {
+          "path": "skills/light-bot-app-recovery/SKILL.md",
+          "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+        },
+        {
+          "path": "skills/light-bot-app-recovery/references/workflow.md",
+          "sha256": "8f314f08c0728983d0b7c8c3f46c599366e4f19ea090d340c7cfc46c6925b73e"
+        },
+        {
+          "path": "skill-files.sha256",
+          "sha256": "a67df09af5c54ec14faa83d41a72850b8fb9ac4786a58444969f89c04e15fed2"
+        }
+      ],
+      "author_actor": "/root",
+      "reviewer_actor": "/root/package_qa"
+    }
+  ],
+  "handoff": {
+    "status": "prepared"
+  }
+}

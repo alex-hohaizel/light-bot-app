@@ -1,0 +1,64 @@
+{
+  "schema_version": "briefing/1",
+  "mode": "brief",
+  "family": "choose_actual_family",
+  "stage": "choose_current_stage",
+  "goal": "Заповнити точною метою з фактичного доручення",
+  "authority_refs": [],
+  "baseline": {
+    "source": {
+      "facts": [],
+      "unknowns": [],
+      "inputs": []
+    },
+    "accepted_intent": {
+      "facts": [],
+      "unknowns": [],
+      "inputs": []
+    },
+    "evidence": {
+      "facts": [],
+      "unknowns": [],
+      "inputs": []
+    },
+    "runtime": {
+      "facts": [],
+      "unknowns": [],
+      "inputs": []
+    },
+    "continuation": {
+      "facts": [],
+      "unknowns": [],
+      "inputs": []
+    }
+  },
+  "topics": [],
+  "execution_spec": {
+    "revision": "1",
+    "outcomes": [],
+    "steps": [],
+    "resources": [],
+    "limits": {},
+    "milestones": [],
+    "stop": {},
+    "delegation": {
+      "status": "proposed",
+      "source_ref": null,
+      "owner_decisions": [
+        "goal",
+        "material_product_choice",
+        "material_change",
+        "stage_result"
+      ],
+      "routine_work": "autonomous only inside actual accepted scope",
+      "external_effects": "existing exact authority or pending; template grants nothing"
+    },
+    "next_route": {}
+  },
+  "approval": null,
+  "pause": {
+    "active": false
+  },
+  "script_binding": null,
+  "closeout": null
+}

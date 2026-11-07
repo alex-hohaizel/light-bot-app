@@ -1,0 +1,52 @@
+{
+  "name": "light-bot-app-recovery",
+  "version": "1.0.0",
+  "purpose": "Відновлення і розвиток чинного вебу, Telegram Mini App та бота графіків відключень",
+  "hosts": [
+    "work",
+    "codex"
+  ],
+  "inputs": [
+    "accepted project intent and scope",
+    "source revision",
+    "checkpoint",
+    "operator and address evidence"
+  ],
+  "outputs": [
+    "scoped artifacts",
+    "verification results",
+    "handoff and checkpoint"
+  ],
+  "limits": [
+    "free primary and backup APIs",
+    "separate effect authorization",
+    "external specialists resolved per host"
+  ],
+  "phases": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6"
+  ],
+  "capability_ids": [
+    "LBA-01",
+    "LBA-02",
+    "LBA-03",
+    "LBA-04",
+    "LBA-05",
+    "LBA-06",
+    "LBA-07",
+    "LBA-08",
+    "LBA-09",
+    "LBA-10",
+    "LBA-11"
+  ],
+  "routes": {
+    "app": "app-atelier-director",
+    "chatbot": "chatbot-atelier-director"
+  },
+  "state_location": "project-owned records"
+}

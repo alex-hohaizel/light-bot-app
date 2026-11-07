@@ -1,0 +1,4 @@
+interface:
+  display_name: "Світло · Відновлення і розвиток"
+  short_description: "Відновлення бота, графіків і профілів користувачів"
+  default_prompt: "Використай $light-bot-app-recovery для відновлення LIGHT BOT APP з чинної контрольної точки."

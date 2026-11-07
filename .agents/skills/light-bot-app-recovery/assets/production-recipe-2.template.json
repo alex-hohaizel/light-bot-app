@@ -1,0 +1,26 @@
+{
+  "schema_version": "foundry-recipe/2",
+  "is_template": true,
+  "id": null,
+  "requirement_ids": [],
+  "operation_ids": [],
+  "owner": null,
+  "competence": null,
+  "input_ids": [],
+  "input_sha256": {},
+  "consumer_id": null,
+  "steps": [],
+  "output_ids": [],
+  "editable_masters": [],
+  "transformations": [],
+  "validators": [],
+  "allowed_effect_scope": null,
+  "budgets": {
+    "time": null,
+    "cost": null,
+    "attempts": null
+  },
+  "repair_policy": null,
+  "stop": null,
+  "_instructions": "Bind exact argv arrays/API fields/numbered GUI procedure against an observed capability. Material parameter consumption requires its own check; do not store secret values. Every new attempt changes a named hypothesis or reconciles the prior unknown operation."
+}

@@ -1,0 +1,1651 @@
+{
+  "schema_version": "1.0.0",
+  "is_template": false,
+  "id": "lba-recovery-agent",
+  "revision": 1,
+  "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+  "verbatim": "Мені потрібен повноцінний агент для відновлення проекту, котрий був створений раніше у replit.",
+  "goal": "Один директор відновлення LIGHT BOT APP у Work і Codex, який координує відновлення до перевіреного результату і супроводу.",
+  "scope": "Створити та перевірити один агент light-bot-app-recovery за паспортом v1.0. Проєктна місія: відновити веб, Mini App і наявний Telegram-бот, зберегти профілі, повернути Київ, Вінницю, Одесу, Харків та інші фактичні legacy території, перевірені в P0, і додати всі підтверджені регіони без платних API. Операційні фази продукту й зовнішні ефекти мають окрему authority.",
+  "non_goals": [
+    "Платні API, включно з платним fallback.",
+    "Непідтверджене активне покриття.",
+    "Неавторизовані production deploy, DB write, webhook, секрети та розсилки.",
+    "Новий продукт чи інший Telegram-бот як стартова ціль.",
+    "Окрема постійна навичка на кожний регіон."
+  ],
+  "entry_skill": "light-bot-app-recovery",
+  "skills": [
+    {
+      "name": "light-bot-app-recovery",
+      "purpose": "Один entry, координація відновлення і супровід.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "phase_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "LBA-01",
+      "intent": "Відновлення Replit і контроль P0",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити наявний продукт",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "director",
+      "acceptance": "Відтворюваний ізольований запуск, exact source і карта Replit→GitHub→Mac.",
+      "applicability": "applicable",
+      "depends_on": [],
+      "phase_ids": [
+        "P0"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-MIGRATION",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SKILL",
+        "A-RECOVERY"
+      ],
+      "test_ids": [
+        "T-A-SKILL",
+        "T-A-RECOVERY"
+      ]
+    },
+    {
+      "id": "LBA-02",
+      "intent": "Реєстр графіків ОСР і provenance",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Підключити надійні графіки",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "data",
+      "acceptance": "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-01",
+        "LBA-09"
+      ],
+      "phase_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-DATA",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SOURCES",
+        "A-CONTRACTS",
+        "A-SLICE",
+        "A-BUILD",
+        "A-QA",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-SOURCES",
+        "T-A-CONTRACTS",
+        "T-A-SLICE",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-03",
+      "intent": "Підтверджений адресний або груповий маршрут",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Точно зіставити адреси",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "data",
+      "acceptance": "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-02"
+      ],
+      "phase_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-DATA",
+        "C-APP",
+        "C-BOT",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SOURCES",
+        "A-CONTRACTS",
+        "A-SLICE",
+        "A-BUILD",
+        "A-QA",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-SOURCES",
+        "T-A-CONTRACTS",
+        "T-A-SLICE",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-04",
+      "intent": "Безпечна контрольована міграція профілів",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити профілі",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "legacy",
+      "acceptance": "Dry-run із per-record reconciliation, ідемпотентним повтором і перевіреним rollback.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-01",
+        "LBA-03"
+      ],
+      "phase_ids": [
+        "P0",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-MIGRATION",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-RECOVERY",
+        "A-BUILD",
+        "A-DRYRUN",
+        "A-QA",
+        "A-ROLLOUT"
+      ],
+      "test_ids": [
+        "T-A-RECOVERY",
+        "T-A-BUILD",
+        "T-A-DRYRUN",
+        "T-A-QA",
+        "T-A-ROLLOUT"
+      ]
+    },
+    {
+      "id": "LBA-05",
+      "intent": "Існуючий Telegram-бот і керована доставка",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Зробити керованого бота",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "chatbot",
+      "acceptance": "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-03"
+      ],
+      "phase_ids": [
+        "P0",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-BOT",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-RECOVERY",
+        "A-CONTRACTS",
+        "A-BOT-HANDOFF",
+        "A-SLICE",
+        "A-BUILD",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-RECOVERY",
+        "T-A-CONTRACTS",
+        "T-A-BOT-HANDOFF",
+        "T-A-SLICE",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-06",
+      "intent": "Єдина модель даних і валідний вхід обох веб-поверхонь",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити веб і Mini App",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "app",
+      "acceptance": "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-03"
+      ],
+      "phase_ids": [
+        "P0",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-APP",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-RECOVERY",
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-SLICE",
+        "A-BUILD",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-RECOVERY",
+        "T-A-CONTRACTS",
+        "T-A-APP-HANDOFF",
+        "T-A-SLICE",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-07",
+      "intent": "Спільний ScheduleView і безпечна доступна картка",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Зробити інформативний графік",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "app",
+      "acceptance": "HTML/SVG/PNG/текст мають однакові інтервали, час, легенду, дату й freshness.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-02",
+        "LBA-05",
+        "LBA-06"
+      ],
+      "phase_ids": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-DATA",
+        "C-APP",
+        "C-BOT",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-BOT-HANDOFF",
+        "A-SLICE",
+        "A-BUILD",
+        "A-QA"
+      ],
+      "test_ids": [
+        "T-A-CONTRACTS",
+        "T-A-APP-HANDOFF",
+        "T-A-BOT-HANDOFF",
+        "T-A-SLICE",
+        "T-A-BUILD",
+        "T-A-QA"
+      ]
+    },
+    {
+      "id": "LBA-08",
+      "intent": "Work↔Codex, CI, rollout і супровід",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Забезпечити наступний реліз і супровід",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "director",
+      "acceptance": "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-10"
+      ],
+      "phase_ids": [
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-MIGRATION",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-BUILD",
+        "A-DRYRUN",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-BUILD",
+        "T-A-DRYRUN",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-09",
+      "intent": "Лише безплатні джерела й API",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Без платных апі",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "data",
+      "acceptance": "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви.",
+      "applicability": "applicable",
+      "depends_on": [],
+      "phase_ids": [
+        "P1",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-DATA",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SOURCES",
+        "A-BUILD",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-SOURCES",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-10",
+      "intent": "Чотири початкові міста і всі підтверджені додаткові регіони",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Регіони як мінімум ті, що вже є, якщо можливо, то додати всі можливі, для котрих можна підтвердити релевантність данних на сьогодні",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "data",
+      "acceptance": "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму.",
+      "applicability": "applicable",
+      "depends_on": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09"
+      ],
+      "phase_ids": [
+        "P1",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-DATA",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SOURCES",
+        "A-BUILD",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-SOURCES",
+        "T-A-BUILD",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    },
+    {
+      "id": "LBA-11",
+      "intent": "Окремо власницький доступ, технічна можливість і право на дію",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Доступ до бота і всі інші доступи в мене є",
+      "priority": "must",
+      "emphasis": true,
+      "owner": "director",
+      "acceptance": "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією.",
+      "applicability": "applicable",
+      "depends_on": [],
+      "phase_ids": [
+        "P0",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "component_ids": [
+        "C-DIRECTOR",
+        "C-MIGRATION",
+        "C-QA"
+      ],
+      "artifact_ids": [
+        "A-SKILL",
+        "A-RECOVERY",
+        "A-DRYRUN",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "test_ids": [
+        "T-A-SKILL",
+        "T-A-RECOVERY",
+        "T-A-DRYRUN",
+        "T-A-QA",
+        "T-A-ROLLOUT",
+        "T-A-OPERATIONS"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "name": "Вхідний стан і P0 ризики",
+      "depends_on": [],
+      "capability_ids": [
+        "LBA-01",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-11"
+      ],
+      "acceptance": "Authoritative source, зв’язок production із БД, пріоритет ризиків і safe staging prerequisites.",
+      "handoff": "Work read-only → чинний Codex checkout після source-only handoff.",
+      "return_route": "Checkpoint з hashes, gaps, exact commit та планом P0.",
+      "artifact_ids": [
+        "A-SKILL",
+        "A-RECOVERY"
+      ]
+    },
+    {
+      "id": "P1",
+      "name": "Джерела, адреси і регіони",
+      "depends_on": [
+        "P0"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "acceptance": "Матриця всіх територій та ОСР, dated evidence, free/terms, негативні fixtures.",
+      "handoff": "Work досліджує; Codex повторює дозволені probes.",
+      "return_route": "Реєстр із verified_address, verified_group, candidate або unavailable на рівні ОСР/території.",
+      "artifact_ids": [
+        "A-SOURCES"
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Спільні контракти і ризиковий зріз",
+      "depends_on": [
+        "P1"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "acceptance": "Один шлях адреса→прив’язка→нова ревізія→однакові бот, веб та Mini App.",
+      "handoff": "Окремі scoped handoff для App та ChatBot з одним shared contract.",
+      "return_route": "Доказ positive/negative slice або точний failed predicate.",
+      "artifact_ids": [
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-BOT-HANDOFF",
+        "A-SLICE"
+      ]
+    },
+    {
+      "id": "P3",
+      "name": "Ізольована реалізація компонентів",
+      "depends_on": [
+        "P2"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "acceptance": "Відтворюваний build, адаптери, модель, безпечний імпорт, доставка й рендер.",
+      "handoff": "Codex ізольовані гілки/paths; інтегратор серіалізує зміни shared contracts.",
+      "return_route": "Commit/PR, fixtures, machine test outputs і gaps.",
+      "artifact_ids": [
+        "A-BUILD"
+      ]
+    },
+    {
+      "id": "P4",
+      "name": "Staging, dry-run, незалежне QA",
+      "depends_on": [
+        "P3"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "acceptance": "Unit/integration/device/human окремо; dry-run, rollback і вердикт кожного core регіону.",
+      "handoff": "Окремо дозволений backup за точним scope, ізольовані fixtures, staging-бот і пристрої.",
+      "return_route": "QA, restore proof, blockers і release candidate exact SHA.",
+      "artifact_ids": [
+        "A-DRYRUN",
+        "A-QA"
+      ]
+    },
+    {
+      "id": "P5",
+      "name": "Окремо дозволений rollout",
+      "depends_on": [
+        "P4"
+      ],
+      "capability_ids": [
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "acceptance": "Точний scope/grant/target, health/read-back/rollback; непідтверджений coverage не активовано.",
+      "handoff": "Окрема згода на точний deploy, webhook, production DB write чи розсилку.",
+      "return_route": "Receipt, reconciliation, observation і checkpoint.",
+      "artifact_ids": [
+        "A-ROLLOUT"
+      ]
+    },
+    {
+      "id": "P6",
+      "name": "Супровід і розширення",
+      "depends_on": [
+        "P5"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "acceptance": "Freshness, drift, відновлення, актуалізація операторів і розширення з однаковим порогом.",
+      "handoff": "Реєстр переоцінюється за runbook; scheduler має власний фактичний стан і право.",
+      "return_route": "Вердикт, effect receipt, rollback/restore evidence.",
+      "artifact_ids": [
+        "A-OPERATIONS"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "director",
+      "competence": "Директор відновлення",
+      "responsibility": "Веде вимоги, інтеграцію, журнал, межі, приймання й передачу."
+    },
+    {
+      "id": "data",
+      "competence": "Лід джерел і адрес",
+      "responsibility": "Верифікує операторів, дані, каталог адрес, fixtures і покриття."
+    },
+    {
+      "id": "legacy",
+      "competence": "Лід міграції та безпеки",
+      "responsibility": "Веде source/production зв'язок, P0, dry-run, ризики та відновлення."
+    },
+    {
+      "id": "app",
+      "competence": "App Atelier",
+      "responsibility": "Власник вебу і Mini App, реалізує два входи на спільних контрактах."
+    },
+    {
+      "id": "chatbot",
+      "competence": "ChatBot Atelier",
+      "responsibility": "Власник Telegram-сценаріїв, інтеграції бота і доставки."
+    },
+    {
+      "id": "qa",
+      "competence": "Незалежний reviewer",
+      "responsibility": "Перевіряє артефакти інших авторів; повертає докази з exact commit і fixtures."
+    }
+  ],
+  "components": [
+    {
+      "id": "C-DIRECTOR",
+      "kind": "director",
+      "owner": "director",
+      "purpose": "Одна точка входу і власник інтеграції.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "phase_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    },
+    {
+      "id": "C-DATA",
+      "kind": "data",
+      "owner": "data",
+      "purpose": "ОСР, регіони, графіки, адресний каталог, адаптери й режим релізу.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-07",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "phase_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    },
+    {
+      "id": "C-MIGRATION",
+      "kind": "migration",
+      "owner": "legacy",
+      "purpose": "Legacy, P0, staging migration/rollback і звірка зовнішніх змін.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-04",
+        "LBA-08",
+        "LBA-11"
+      ],
+      "phase_ids": [
+        "P0",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    },
+    {
+      "id": "C-APP",
+      "kind": "app",
+      "owner": "app",
+      "purpose": "Web і Telegram Mini App на спільних контрактах.",
+      "capability_ids": [
+        "LBA-03",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "phase_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "specialist_route": {
+        "selector": "app-atelier-director",
+        "handoff_artifact_id": "A-APP-HANDOFF",
+        "shared_contract_artifact_ids": [
+          "A-CONTRACTS"
+        ]
+      }
+    },
+    {
+      "id": "C-BOT",
+      "kind": "chatbot",
+      "owner": "chatbot",
+      "purpose": "Наявна Telegram identity, UX, callbacks, outbox і доставка.",
+      "capability_ids": [
+        "LBA-03",
+        "LBA-05",
+        "LBA-07"
+      ],
+      "phase_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "specialist_route": {
+        "selector": "chatbot-atelier-director",
+        "handoff_artifact_id": "A-BOT-HANDOFF",
+        "shared_contract_artifact_ids": [
+          "A-CONTRACTS"
+        ]
+      }
+    },
+    {
+      "id": "C-QA",
+      "kind": "review",
+      "owner": "qa",
+      "purpose": "Незалежне приймання за exact evidence.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "phase_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "A-SKILL",
+      "path": "skills/light-bot-app-recovery/SKILL.md",
+      "phase_id": "P0",
+      "owner": "director",
+      "kind": "skill",
+      "acceptance": "Один entry з routing, scopes, checkpoints і межами повноважень, після build approval.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "A-RECOVERY",
+      "path": "docs/light-bot-app/legacy-inventory.md",
+      "phase_id": "P0",
+      "owner": "legacy",
+      "kind": "inventory",
+      "acceptance": "Exact source/commit, P0, зв’язок deployment і DB, права, відкриті прогалини.",
+      "capability_ids": [
+        "LBA-01",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "A-SOURCES",
+      "path": "docs/light-bot-app/source-registry.json",
+      "phase_id": "P1",
+      "owner": "data",
+      "kind": "registry",
+      "acceptance": "ОСР, зона, джерело, спостереження, дата дії, умови, свіжість і доказ типу прив’язки.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09",
+        "LBA-10"
+      ]
+    },
+    {
+      "id": "A-CONTRACTS",
+      "path": "docs/light-bot-app/shared-contracts.json",
+      "phase_id": "P2",
+      "owner": "director",
+      "kind": "shared_contract",
+      "acceptance": "Контракти ScheduleRevision, AddressBinding, ідентичності, auth, event і view.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "A-APP-HANDOFF",
+      "path": "docs/light-bot-app/app-handoff.json",
+      "phase_id": "P2",
+      "owner": "app",
+      "kind": "component_handoff",
+      "acceptance": "Межі App, schema IDs, exact proof і return binding.",
+      "capability_ids": [
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "A-BOT-HANDOFF",
+      "path": "docs/light-bot-app/chatbot-handoff.json",
+      "phase_id": "P2",
+      "owner": "chatbot",
+      "kind": "component_handoff",
+      "acceptance": "Межі ChatBot, schema IDs, exact proof і return binding.",
+      "capability_ids": [
+        "LBA-05",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "A-SLICE",
+      "path": "docs/light-bot-app/slice-evidence.md",
+      "phase_id": "P2",
+      "owner": "qa",
+      "kind": "evidence",
+      "acceptance": "Сценарій зрізу, ревізія, positive/negative results.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "A-BUILD",
+      "path": "docs/light-bot-app/integration-checkpoint.md",
+      "phase_id": "P3",
+      "owner": "director",
+      "kind": "checkpoint",
+      "acceptance": "Exact commit, paths, build, tests і відтворювані fixtures.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10"
+      ]
+    },
+    {
+      "id": "A-DRYRUN",
+      "path": "docs/light-bot-app/migration-dry-run.md",
+      "phase_id": "P4",
+      "owner": "legacy",
+      "kind": "report",
+      "acceptance": "Деперсоналізована per-record звірка, винятки, replay та rollback.",
+      "capability_ids": [
+        "LBA-04",
+        "LBA-08",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "A-QA",
+      "path": "docs/light-bot-app/release-qa.md",
+      "phase_id": "P4",
+      "owner": "qa",
+      "kind": "evidence",
+      "acceptance": "Незалежні source/CI/staging/device/owner verdicts та blockers.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "A-ROLLOUT",
+      "path": "docs/light-bot-app/release-runbook.md",
+      "phase_id": "P5",
+      "owner": "director",
+      "kind": "runbook",
+      "acceptance": "Точний grant, pre/post, stop, rollback, dedupe, reconciliation.",
+      "capability_ids": [
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "A-OPERATIONS",
+      "path": "docs/light-bot-app/support-runbook.md",
+      "phase_id": "P6",
+      "owner": "director",
+      "kind": "runbook",
+      "acceptance": "Freshness, circuit breaker, source re-certification та межі моніторингу.",
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-A-SKILL",
+      "method": "Один entry з routing, scopes, checkpoints і межами повноважень, після build approval.",
+      "negative_case": "Невідомий runtime чи production-зв'язок блокує залежну міграцію; окремі поверхні мають окремі докази. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P0",
+      "independent": true,
+      "artifact_ids": [
+        "A-SKILL"
+      ],
+      "capability_ids": [
+        "LBA-01",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "T-A-RECOVERY",
+      "method": "Exact source/commit, P0, зв’язок deployment і DB, права, відкриті прогалини.",
+      "negative_case": "Невідомий runtime чи production-зв'язок блокує залежну міграцію; окремі поверхні мають окремі докази. Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P0",
+      "independent": true,
+      "artifact_ids": [
+        "A-RECOVERY"
+      ],
+      "capability_ids": [
+        "LBA-01",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "T-A-SOURCES",
+      "method": "ОСР, зона, джерело, спостереження, дата дії, умови, свіжість і доказ типу прив’язки.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Trial або неперевірена безплатність не отримує допуск. Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск.",
+      "due_phase": "P1",
+      "independent": true,
+      "artifact_ids": [
+        "A-SOURCES"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09",
+        "LBA-10"
+      ]
+    },
+    {
+      "id": "T-A-CONTRACTS",
+      "method": "Контракти ScheduleRevision, AddressBinding, ідентичності, auth, event і view.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси.",
+      "due_phase": "P2",
+      "independent": true,
+      "artifact_ids": [
+        "A-CONTRACTS"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "T-A-APP-HANDOFF",
+      "method": "Межі App, schema IDs, exact proof і return binding.",
+      "negative_case": "Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси.",
+      "due_phase": "P2",
+      "independent": true,
+      "artifact_ids": [
+        "A-APP-HANDOFF"
+      ],
+      "capability_ids": [
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "T-A-BOT-HANDOFF",
+      "method": "Межі ChatBot, schema IDs, exact proof і return binding.",
+      "negative_case": "Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси.",
+      "due_phase": "P2",
+      "independent": true,
+      "artifact_ids": [
+        "A-BOT-HANDOFF"
+      ],
+      "capability_ids": [
+        "LBA-05",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "T-A-SLICE",
+      "method": "Сценарій зрізу, ревізія, positive/negative results.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси.",
+      "due_phase": "P2",
+      "independent": false,
+      "artifact_ids": [
+        "A-SLICE"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "id": "T-A-BUILD",
+      "method": "Exact commit, paths, build, tests і відтворювані fixtures.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси. Провал QA, невідомий попередній ефект або брак production-grant закриває rollout. Trial або неперевірена безплатність не отримує допуск. Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск.",
+      "due_phase": "P3",
+      "independent": true,
+      "artifact_ids": [
+        "A-BUILD"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10"
+      ]
+    },
+    {
+      "id": "T-A-DRYRUN",
+      "method": "Деперсоналізована per-record звірка, винятки, replay та rollback.",
+      "negative_case": "Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз. Провал QA, невідомий попередній ефект або брак production-grant закриває rollout. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P4",
+      "independent": true,
+      "artifact_ids": [
+        "A-DRYRUN"
+      ],
+      "capability_ids": [
+        "LBA-04",
+        "LBA-08",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "T-A-QA",
+      "method": "Незалежні source/CI/staging/device/owner verdicts та blockers.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси. Провал QA, невідомий попередній ефект або брак production-grant закриває rollout. Trial або неперевірена безплатність не отримує допуск. Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P4",
+      "independent": false,
+      "artifact_ids": [
+        "A-QA"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "T-A-ROLLOUT",
+      "method": "Точний grant, pre/post, stop, rollback, dedupe, reconciliation.",
+      "negative_case": "Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Провал QA, невідомий попередній ефект або брак production-grant закриває rollout. Trial або неперевірена безплатність не отримує допуск. Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P5",
+      "independent": true,
+      "artifact_ids": [
+        "A-ROLLOUT"
+      ],
+      "capability_ids": [
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    },
+    {
+      "id": "T-A-OPERATIONS",
+      "method": "Freshness, circuit breaker, source re-certification та межі моніторингу.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push. Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік. Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push. Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються. Провал QA, невідомий попередній ефект або брак production-grant закриває rollout. Trial або неперевірена безплатність не отримує допуск. Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск. Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_phase": "P6",
+      "independent": true,
+      "artifact_ids": [
+        "A-OPERATIONS"
+      ],
+      "capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-COVERAGE",
+      "question": "Які регіони?",
+      "explanation": "Нижня межа й правило розширення.",
+      "status": "resolved",
+      "blocking": false,
+      "answer": "Старі чотири міста та всі доступні підтверджені регіони.",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Регіони як мінімум ті, що вже є, якщо можливо, то додати всі можливі, для котрих можна підтвердити релевантність данних на сьогодні"
+    },
+    {
+      "id": "Q-FREE",
+      "question": "Чи припустимі платні API?",
+      "explanation": "Обмеження runtime.",
+      "status": "resolved",
+      "blocking": false,
+      "answer": "Лише безплатні джерела/API.",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Без платных апі"
+    },
+    {
+      "id": "Q-ACCESS",
+      "question": "Чи є доступ до бота та інших поверхонь?",
+      "explanation": "Факт доступу власника.",
+      "status": "resolved",
+      "blocking": false,
+      "answer": "Власник має доступи.",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Доступ до бота і всі інші доступи в мене є"
+    },
+    {
+      "id": "Q-STACK",
+      "question": "Який стек і цільове середовище після аудиту?",
+      "explanation": "Підтвердити source, P0, підтримуваність та інфраструктуру.",
+      "status": "deferred",
+      "blocking": false,
+      "due_phase": "P3"
+    },
+    {
+      "id": "Q-ROLLOUT",
+      "question": "Які параметри контрольованого rollout?",
+      "explanation": "Послідовність, точна група, вікно та права залежно від доказів.",
+      "status": "deferred",
+      "blocking": false,
+      "due_phase": "P5"
+    }
+  ],
+  "input_sources": [
+    {
+      "path": "LIGHT_BOT_APP_BRIEF_v0.1_UA.md",
+      "sha256": "a24f33323c8e9144d37f9a9797dd0d61ba8c3f6a47189e29a28fa12fac9d9b7c",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal"
+    }
+  ],
+  "continuity": {
+    "requirements": "Один versioned LBA registry, intent→contract→artifact→test.",
+    "knowledge": "Structured/lexical retrieval із журналом і датованими source verdicts.",
+    "decisions": "Три confirmed власницькі умови; P3 stack і P5 rollout мають due gates.",
+    "dependencies": "Exact branch/commit, source snapshots, schemas, evidence і scope.",
+    "evidence": "Записи з датою, джерелом, методом, exact commit і мінімумом PII.",
+    "pauses": "Checkpoint pause/stop; перед resume звірити unknown effects.",
+    "approvals": "Construction, execution, effects і людське приймання окремі.",
+    "handoffs": "Work ↔ чинний LIGHT BOT APP [CODEX]; exact SHA, accepted scope, source-only, launch/return checks.",
+    "maintenance": "Freshness, drift, incident, restore, rollback, release read-back.",
+    "honesty": "Prepared, checked, built, installed, executed, deployed і observed відокремлені."
+  },
+  "discovery_catalog_sha256": "05d057e71c7bc7202fa67796798ed67606af95c65a4d21788b064852c5d6f80f",
+  "discovery_coverage": [
+    {
+      "topic_id": "DISC-GOAL",
+      "applicability": "applicable",
+      "rationale": "Відновити чинний продукт і спільний шлях.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-01",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08"
+      ]
+    },
+    {
+      "topic_id": "DISC-SCOPE",
+      "applicability": "applicable",
+      "rationale": "Чотири міста, підтверджені додаткові регіони, лише free API.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [
+        "Q-COVERAGE",
+        "Q-FREE"
+      ],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-05",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-ACTORS",
+      "applicability": "applicable",
+      "rationale": "Власник, інтегратор, data/legacy, App, ChatBot, reviewer, користувач.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [
+        "Q-ACCESS"
+      ],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-DOMAIN",
+      "applicability": "applicable",
+      "rationale": "ОСР, регіон, адреса, черга, версія графіка, профіль і доставка.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-10"
+      ]
+    },
+    {
+      "topic_id": "DISC-SCENARIOS",
+      "applicability": "applicable",
+      "rationale": "Success, неоднозначність, drift, повтори, rollback.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08"
+      ]
+    },
+    {
+      "topic_id": "DISC-INTERACTIONS",
+      "applicability": "applicable",
+      "rationale": "Спільні schedule, auth, identity, event і view contracts.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "topic_id": "DISC-EXPERIENCE",
+      "applicability": "applicable",
+      "rationale": "Українські сценарії, адреси, налаштування і пояснення статусів.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "topic_id": "DISC-EXPRESSION",
+      "applicability": "applicable",
+      "rationale": "Узгоджений графік, версія, джерело і стан.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "topic_id": "DISC-ACCESSIBILITY",
+      "applicability": "applicable",
+      "rationale": "Мобільні клієнти, контраст і текстовий еквівалент.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ]
+    },
+    {
+      "topic_id": "DISC-IDENTITY",
+      "applicability": "applicable",
+      "rationale": "Існуючий @PowerUkraineBot, legacy paths, приватність, атрибуція.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-05",
+        "LBA-06",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-DATA",
+      "applicability": "applicable",
+      "rationale": "Versioned data, address binding, restore та evidence з мінімумом PII.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-07",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-TECHNICAL",
+      "applicability": "applicable",
+      "rationale": "Work/Codex; стек і runtime після аудиту.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "deferred",
+      "owner": "director",
+      "due_gate": "P3",
+      "current_question_ids": [],
+      "deferred_product_decisions": [
+        "Q-STACK"
+      ],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-01",
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-RELIABILITY",
+      "applicability": "applicable",
+      "rationale": "Fail closed, freshness, idempotency, safe retry, P0, rollback.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08"
+      ]
+    },
+    {
+      "topic_id": "DISC-RESOURCES",
+      "applicability": "applicable",
+      "rationale": "Безплатні API, інші можливі витрати та службові обмеження за рішенням.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-08",
+        "LBA-09",
+        "LBA-10"
+      ]
+    },
+    {
+      "topic_id": "DISC-VALUE",
+      "applicability": "not_applicable",
+      "rationale": "Монетизація, продаж і growth поза поточним відновленням.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": []
+    },
+    {
+      "topic_id": "DISC-DELIVERY",
+      "applicability": "applicable",
+      "rationale": "Установка агента, Work/Codex передача та окремий реліз продукту.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "deferred",
+      "owner": "director",
+      "due_gate": "P5",
+      "current_question_ids": [],
+      "deferred_product_decisions": [
+        "Q-ROLLOUT"
+      ],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-01",
+        "LBA-08",
+        "LBA-11"
+      ]
+    },
+    {
+      "topic_id": "DISC-SUPPORT",
+      "applicability": "applicable",
+      "rationale": "Метрики, актуальність, інцидент, зупинка і відновлення.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-02",
+        "LBA-08",
+        "LBA-10"
+      ]
+    },
+    {
+      "topic_id": "DISC-ACCEPTANCE",
+      "applicability": "applicable",
+      "rationale": "Окремі source/code/integration/device/human/release докази і exact approval.",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal; LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "current_status": "resolved",
+      "owner": "director",
+      "due_gate": "passport",
+      "current_question_ids": [],
+      "deferred_product_decisions": [],
+      "evidence_ids": [],
+      "affected_capability_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ]
+    }
+  ],
+  "human_passport": "LIGHT_BOT_APP_AGENT_PASSPORT_v1.0_UA.md",
+  "maturity": "M1",
+  "approval_status": "pending"
+}
