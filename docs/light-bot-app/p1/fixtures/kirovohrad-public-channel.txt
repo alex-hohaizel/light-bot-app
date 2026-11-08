@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Світло Кропивницький місто – Telegram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible"
+     content="IE=edge" />
+    <meta name="MobileOptimized" content="176" />
+    <meta name="HandheldFriendly" content="True" />
+    
+<meta property="og:title" content="Світло Кропивницький місто">
+<meta property="og:image" content="https://cdn4.telesco.pe/file/Aqhrbp1qr6d4046C57q1euR6DaOEqv-dgGgj22vvyylETlPdEtdi0QL5RpSjYmo-p4xY1rkjIPacoU97Lri-HiQw8fTqhCRhjqeF9h3XtaVJv0IuJcG485EGBdBUHeQiuLACsYpdvD9OV0dDjnkhX5FBmGM-MMXkcTQzoqbIwVKH9UWgGKJZgQUOFTH9dfOp-RfNLpw7mu2tIrZUWLqVEe91jg3bhJC68-wYP3PYS8xg4eaROaU90dyFoDHzPsjcyv1teBM9JvcZVVyrHg4vRxum7brMC5ScepMSwAxoUD2OmFoKlEoTTGBJ8eTDrvwBfGPGUGYR4gp2ULBUW__dvQ.jpg">
+<meta property="og:site_name" content="Telegram">
+<meta property="og:description" content="">
+
+<meta property="twitter:title" content="Світло Кропивницький місто">
+<meta property="twitter:image" content="https://cdn4.telesco.pe/file/Aqhrbp1qr6d4046C57q1euR6DaOEqv-dgGgj22vvyylETlPdEtdi0QL5RpSjYmo-p4xY1rkjIPacoU97Lri-HiQw8fTqhCRhjqeF9h3XtaVJv0IuJcG485EGBdBUHeQiuLACsYpdvD9OV0dDjnkhX5FBmGM-MMXkcTQzoqbIwVKH9UWgGKJZgQUOFTH9dfOp-RfNLpw7mu2tIrZUWLqVEe91jg3bhJC68-wYP3PYS8xg4eaROaU90dyFoDHzPsjcyv1teBM9JvcZVVyrHg4vRxum7brMC5ScepMSwAxoUD2OmFoKlEoTTGBJ8eTDrvwBfGPGUGYR4gp2ULBUW__dvQ.jpg">
+<meta property="twitter:site" content="@Telegram">
+
+<meta property="al:ios:app_store_id" content="686449807">
+<meta property="al:ios:app_name" content="Telegram Messenger">
+<meta property="al:ios:url" content="tg://resolve?domain=SvitloKropyvnytskyiMisto">
+
+<meta property="al:android:url" content="tg://resolve?domain=SvitloKropyvnytskyiMisto">
+<meta property="al:android:app_name" content="Telegram">
+<meta property="al:android:package" content="org.telegram.messenger">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Telegram">
+<meta name="twitter:description" content="
+">
+
+    <link rel="prev" href="/s/SvitloKropyvnytskyiMisto?before=1741">
+<link rel="canonical" href="/s/SvitloKropyvnytskyiMisto?before=1761">
+
+    <script>window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement&&document.documentElement.classList&&document.documentElement.classList.add('theme_dark');</script>
+    <link rel="icon" type="image/svg+xml" href="//telegram.org/img/website_icon.svg?4">
+<link rel="apple-touch-icon" sizes="180x180" href="//telegram.org/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//telegram.org/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="//telegram.org/img/favicon-16x16.png">
+<link rel="alternate icon" href="//telegram.org/img/favicon.ico" type="image/x-icon" />
+    <link href="//telegram.org/css/font-roboto.css?1" rel="stylesheet" type="text/css">
+    <link href="//telegram.org/css/widget-frame.css?75" rel="stylesheet" media="screen">
+    <link href="//telegram.org/css/telegram-web.css?39" rel="stylesheet" media="screen">
+    <script>TBaseUrl='/';</script>
+    <style>        .user-color-12 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3391d4 0px, #3391d4 5px, #7dd3f0 5px, #7dd3f0 10px);
+          --user-accent-color: #3391d4;
+          --user-background: #3391d41f;
+        }        .user-color-10 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #27a910 0px, #27a910 5px, #a7dc57 5px, #a7dc57 10px);
+          --user-accent-color: #27a910;
+          --user-background: #27a9101f;
+        }        .user-color-8 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #e0802b 0px, #e0802b 5px, #fac534 5px, #fac534 10px);
+          --user-accent-color: #e0802b;
+          --user-background: #e0802b1f;
+        }        .user-color-7 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #e15052 0px, #e15052 5px, #f9ae63 5px, #f9ae63 10px);
+          --user-accent-color: #e15052;
+          --user-background: #e150521f;
+        }        .user-color-9 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #a05ff3 0px, #a05ff3 5px, #f48fff 5px, #f48fff 10px);
+          --user-accent-color: #a05ff3;
+          --user-background: #a05ff31f;
+        }        .user-color-11 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #27acce 0px, #27acce 5px, #82e8d6 5px, #82e8d6 10px);
+          --user-accent-color: #27acce;
+          --user-background: #27acce1f;
+        }        .user-color-13 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #dd4371 0px, #dd4371 5px, #ffbe9f 5px, #ffbe9f 10px);
+          --user-accent-color: #dd4371;
+          --user-background: #dd43711f;
+        }        .user-color-14 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #247bed 0px, #247bed 5px, #f04856 5px, #f04856 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #247bed;
+          --user-background: #247bed1f;
+        }        .user-color-15 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #d67722 0px, #d67722 5px, #1ea011 5px, #1ea011 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #d67722;
+          --user-background: #d677221f;
+        }        .user-color-16 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #179e42 0px, #179e42 5px, #e84a3f 5px, #e84a3f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #179e42;
+          --user-background: #179e421f;
+        }        .user-color-17 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #2894af 0px, #2894af 5px, #6fc456 5px, #6fc456 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #2894af;
+          --user-background: #2894af1f;
+        }        .user-color-18 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #0c9ab3 0px, #0c9ab3 5px, #ffad95 5px, #ffad95 10px, #ffe6b5 10px, #ffe6b5 15px);
+          --user-accent-color: #0c9ab3;
+          --user-background: #0c9ab31f;
+        }        .user-color-19 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #7757d6 0px, #7757d6 5px, #f79610 5px, #f79610 10px, #ffde8e 10px, #ffde8e 15px);
+          --user-accent-color: #7757d6;
+          --user-background: #7757d61f;
+        }        .user-color-20 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #1585cf 0px, #1585cf 5px, #f2ab1d 5px, #f2ab1d 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #1585cf;
+          --user-background: #1585cf1f;
+        }        body.dark .user-color-12, html.theme_dark .user-color-12 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #52bfff 0px, #52bfff 5px, #0b5494 5px, #0b5494 10px);
+          --user-accent-color: #52bfff;
+          --user-background: #52bfff1f;
+        }        body.dark .user-color-10, html.theme_dark .user-color-10 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #a7eb6e 0px, #a7eb6e 5px, #167e2d 5px, #167e2d 10px);
+          --user-accent-color: #a7eb6e;
+          --user-background: #a7eb6e1f;
+        }        body.dark .user-color-8, html.theme_dark .user-color-8 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ecb04e 0px, #ecb04e 5px, #c35714 5px, #c35714 10px);
+          --user-accent-color: #ecb04e;
+          --user-background: #ecb04e1f;
+        }        body.dark .user-color-7, html.theme_dark .user-color-7 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff9380 0px, #ff9380 5px, #992f37 5px, #992f37 10px);
+          --user-accent-color: #ff9380;
+          --user-background: #ff93801f;
+        }        body.dark .user-color-9, html.theme_dark .user-color-9 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #c697ff 0px, #c697ff 5px, #5e31c8 5px, #5e31c8 10px);
+          --user-accent-color: #c697ff;
+          --user-background: #c697ff1f;
+        }        body.dark .user-color-11, html.theme_dark .user-color-11 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #40d8d0 0px, #40d8d0 5px, #045c7f 5px, #045c7f 10px);
+          --user-accent-color: #40d8d0;
+          --user-background: #40d8d01f;
+        }        body.dark .user-color-13, html.theme_dark .user-color-13 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff86a6 0px, #ff86a6 5px, #8e366e 5px, #8e366e 10px);
+          --user-accent-color: #ff86a6;
+          --user-background: #ff86a61f;
+        }        body.dark .user-color-14, html.theme_dark .user-color-14 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3fa2fe 0px, #3fa2fe 5px, #e5424f 5px, #e5424f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #3fa2fe;
+          --user-background: #3fa2fe1f;
+        }        body.dark .user-color-15, html.theme_dark .user-color-15 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff905e 0px, #ff905e 5px, #32a527 5px, #32a527 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #ff905e;
+          --user-background: #ff905e1f;
+        }        body.dark .user-color-16, html.theme_dark .user-color-16 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #66d364 0px, #66d364 5px, #d5444f 5px, #d5444f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #66d364;
+          --user-background: #66d3641f;
+        }        body.dark .user-color-17, html.theme_dark .user-color-17 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #22bce2 0px, #22bce2 5px, #3da240 5px, #3da240 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #22bce2;
+          --user-background: #22bce21f;
+        }        body.dark .user-color-18, html.theme_dark .user-color-18 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #22bce2 0px, #22bce2 5px, #ff9778 5px, #ff9778 10px, #ffda6b 10px, #ffda6b 15px);
+          --user-accent-color: #22bce2;
+          --user-background: #22bce21f;
+        }        body.dark .user-color-19, html.theme_dark .user-color-19 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #9791ff 0px, #9791ff 5px, #f2731d 5px, #f2731d 10px, #ffdb59 10px, #ffdb59 15px);
+          --user-accent-color: #9791ff;
+          --user-background: #9791ff1f;
+        }        body.dark .user-color-20, html.theme_dark .user-color-20 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3da6eb 0px, #3da6eb 5px, #eea51d 5px, #eea51d 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #3da6eb;
+          --user-background: #3da6eb1f;
+        }.user-color-6, .user-color-4, .user-color-2, .user-color-0, .user-color-1, .user-color-3, .user-color-5,   .user-color-default {
+    --user-accent-color: var(--accent-color);
+    --user-accent-background: var(--accent-background);
+    --user-line-gradient: linear-gradient(45deg, var(--accent-color), var(--accent-color));
+  }</style>
+  </head>
+  <body class="widget_frame_base tgme_webpreview emoji_image thin_box_shadow tme_mode no_transitions">
+    <div class="tgme_background_wrap">
+      <canvas id="tgme_background" class="tgme_background" width="50" height="50" data-colors="dbddbb,6ba587,d5d88d,88b884"></canvas>
+      <div class="tgme_background_pattern"></div>
+    </div>
+    <header class="tgme_header search_collapsed">
+  <div class="tgme_container">
+    <div class="tgme_header_search">
+      <form class="tgme_header_search_form" action="/s/SvitloKropyvnytskyiMisto">
+        <svg class="tgme_header_search_form_icon" width="20" height="20" viewBox="0 0 20 20"><g fill="none" stroke="#7D7F81" stroke-width="1.4"><circle cx="9" cy="9" r="6"></circle><path d="M13.5,13.5 L17,17" stroke-linecap="round"></path></g></svg>
+        <input class="tgme_header_search_form_input js-header_search" placeholder="Search" name="q" autocomplete="off" value="" />
+        <a href="/s/SvitloKropyvnytskyiMisto" class="tgme_header_search_form_clear"><svg class="tgme_action_button_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><g class="icon_body" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-width="1.5"><path d="M6 14l8-8m0 8L6 6" stroke-dasharray="0,11.314" stroke-dashoffset="5.657"/><path d="M26 14l8-8m0 8l-8-8" stroke-dasharray="0.371,10.943" stroke-dashoffset="5.842"/><path d="M46 14l8-8m0 8l-8-8" stroke-dasharray="1.982,9.332" stroke-dashoffset="6.647756"/><path d="M66 14l8-8m0 8l-8-8" stroke-dasharray="5.173,6.14" stroke-dashoffset="8.243"/><path d="M86 14l8-8m0 8l-8-8" stroke-dasharray="7.866,3.448" stroke-dashoffset="9.59"/><path d="M106 14l8-8m0 8l-8-8" stroke-dasharray="9.471,1.843" stroke-dashoffset="10.392"/><path d="M126 14l8-8m0 8l-8-8" stroke-dasharray="10.417,0.896" stroke-dashoffset="10.866"/><path d="M146 14l8-8m0 8l-8-8" stroke-dasharray="10.961,0.353" stroke-dashoffset="11.137"/><path d="M166 14l8-8m0 8l-8-8" stroke-dasharray="11.234,0.08" stroke-dashoffset="11.274"/><path d="M186 14l8-8m0 8l-8-8"/></g></svg></a>
+      </form>
+    </div>
+    <div class="tgme_header_right_column">
+      <section class="tgme_right_column">
+        <div class="tgme_channel_info">
+          <div class="tgme_channel_info_header">
+            <i class="tgme_page_photo_image bgcolor1" data-content="См"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i>
+            <div class="tgme_channel_info_header_title_wrap">
+              <div class="tgme_channel_info_header_title"><span dir="auto">Світло Кропивницький місто</span></div>
+              <div class="tgme_channel_info_header_labels"></div>
+            </div>
+            <div class="tgme_channel_info_header_username"><a href="https://t.me/SvitloKropyvnytskyiMisto">@SvitloKropyvnytskyiMisto</a></div>
+          </div>
+          <div class="tgme_channel_info_counters"><div class="tgme_channel_info_counter"><span class="counter_value">89.9K</span> <span class="counter_type">subscribers</span></div><div class="tgme_channel_info_counter"><span class="counter_value">782</span> <span class="counter_type">photos</span></div><div class="tgme_channel_info_counter"><span class="counter_value">8</span> <span class="counter_type">videos</span></div><div class="tgme_channel_info_counter"><span class="counter_value">243</span> <span class="counter_type">links</span></div></div>
+          
+          <a class="tgme_channel_download_telegram" href="//telegram.org/dl?tme=ce7e7e3b00ff08b01f_14134605459936938865">
+            <svg class="tgme_channel_download_telegram_icon" width="21px" height="18px" viewBox="0 0 21 18"><g fill="none"><path fill="#ffffff" d="M0.554,7.092 L19.117,0.078 C19.737,-0.156 20.429,0.156 20.663,0.776 C20.745,0.994 20.763,1.23 20.713,1.457 L17.513,16.059 C17.351,16.799 16.62,17.268 15.88,17.105 C15.696,17.065 15.523,16.987 15.37,16.877 L8.997,12.271 C8.614,11.994 8.527,11.458 8.805,11.074 C8.835,11.033 8.869,10.994 8.905,10.958 L15.458,4.661 C15.594,4.53 15.598,4.313 15.467,4.176 C15.354,4.059 15.174,4.037 15.036,4.125 L6.104,9.795 C5.575,10.131 4.922,10.207 4.329,10.002 L0.577,8.704 C0.13,8.55 -0.107,8.061 0.047,7.614 C0.131,7.374 0.316,7.182 0.554,7.092 Z"></path></g></svg>Download Telegram
+          </a>
+          <div class="tgme_footer">
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/faq">About</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/blog">Blog</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/apps">Apps</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//core.telegram.org/">Platform</a></h5>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="tgme_header_info">
+      <a class="tgme_channel_join_telegram" href="//telegram.org/dl?tme=ce7e7e3b00ff08b01f_14134605459936938865">
+        <svg class="tgme_channel_join_telegram_icon" width="19px" height="16px" viewBox="0 0 19 16"><g fill="none"><path fill="#ffffff" d="M0.465,6.638 L17.511,0.073 C18.078,-0.145 18.714,0.137 18.932,0.704 C19.009,0.903 19.026,1.121 18.981,1.33 L16.042,15.001 C15.896,15.679 15.228,16.111 14.549,15.965 C14.375,15.928 14.211,15.854 14.068,15.748 L8.223,11.443 C7.874,11.185 7.799,10.694 8.057,10.345 C8.082,10.311 8.109,10.279 8.139,10.249 L14.191,4.322 C14.315,4.201 14.317,4.002 14.195,3.878 C14.091,3.771 13.926,3.753 13.8,3.834 L5.602,9.138 C5.112,9.456 4.502,9.528 3.952,9.333 L0.486,8.112 C0.077,7.967 -0.138,7.519 0.007,7.11 C0.083,6.893 0.25,6.721 0.465,6.638 Z"></path></g></svg>Join
+      </a>
+      <a class="tgme_header_link" href="https://t.me/SvitloKropyvnytskyiMisto">
+        <i class="tgme_page_photo_image bgcolor1" data-content="См"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i>
+        <div class="tgme_header_title_wrap">
+          <div class="tgme_header_title"><span dir="auto">Світло Кропивницький місто</span></div>
+          <div class="tgme_header_labels"></div>
+        </div>
+        <div class="tgme_header_counter">89.9K subscribers</div>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="tgme_main" data-url="/SvitloKropyvnytskyiMisto">
+  <div class="tgme_container">
+    <section class="tgme_channel_history js-message_history">
+      <div class="tgme_widget_message_centered js-messages_more_wrap"><a href="/s/SvitloKropyvnytskyiMisto?before=1741" class="tme_messages_more js-messages_more" data-before="1741"></a></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1741" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0MSwidCI6MTc5NDA1NjM2MSwiaCI6IjE0NzcwNDc1MTI4OTcwNWRlNCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427390043149508824 1263662717_460005592" href="https://t.me/SvitloKropyvnytskyiMisto/1741" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/F2vGz_vASOG0FReKoa_lvBdVA7ejXfG11Yoq5ojMm2KtIDGaZ9WmpIiEeBEbPqokJ03ghyf5jMA5zOlFfV_bUiDUY3_0QjEf49EvRf6u72_6pbZHv9xvRyAYKYYT2copRL0E5jQxBa-HrRlTmQdO0kRbgiqyZwI3y-xzRtb5Qt-AFTm7Z8bgxxIrNMxJisAv22YKYtyU7oSht-MTF0PB0Z4e3fNJW2UKtOHeJ8cPRn8aTErTxdpilv2hZCUaoLqejRcLvBQ_-_5cCg3pjaMp9xiYxXjxrAlinqL9JMnOFlIZEjTBOWuivEsk17xU25N-B7o8s8ntPNork8AfwGdOSw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 17:18  03.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 03.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 07:00-08:00, 10:00-12:00, 14:00-16:00<br/>Черга 1.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 2.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 2.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 3.1: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 3.2: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 4.1: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 4.2: 08:00-10:00, 12:00-14:00, 15:00-18:00, 20:00-22:00<br/>Черга 5.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 5.2: 08:00-10:00, 12:00-14:00, 16:00-17:30, 20:00-22:00<br/>Черга 6.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 6.2: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>265</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>154</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>89</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>2</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">65.5K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1741"><time datetime="2026-11-03T15:18:40+00:00" class="time">15:18</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1742" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0MiwidCI6MTc5NDA1NjM2MSwiaCI6ImU5M2E1NDA5MTQxZjlmMGI1MiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427390043149508890 1263662717_460005658" href="https://t.me/SvitloKropyvnytskyiMisto/1742" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/B8XFrWGhwk-qmLIynkTYyavKUIHwuT1qRNjO3R7zbLhoeFDS39rj9z5aENyFrcT3itnUt6kB1xaI8ioxKj-WpjULhfc_urb0apHJGMWLM4TykSOOyXlmSrE7stjKgfVbcS9V2vM9eEFTmhl3rdH2u3xwqX6Q8hendXFzdAkU_Ar1jlyZg2JEm6TuFANY0h9xWvej1kIB1VuOY68TaV0BgOXcuOMNiZE_qJaMuCtn7XxN85NIIs7nBctLySKvKfpdbaT0Cx8pIx7VgwWYKZrv7sE03TpZ60E437dKV1EezkjVDByARw_9srEKsvJ32jKmHv97P5R7zWDQZ0LWjQ_6dQ.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 17:57  03.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 03.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 07:00-08:00, 10:00-12:00, 14:00-16:00<br/>Черга 1.2: 07:00-08:00, 10:00-12:00, 14:00-16:00<br/>Черга 2.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 2.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 3.1: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 3.2: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 4.1: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 4.2: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 5.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 5.2: 08:00-10:00, 12:00-14:00, 16:00-17:30, 20:00-22:00<br/>Черга 6.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 6.2: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>161</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>99</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>8</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>3</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>1</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">61.7K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1742"><time datetime="2026-11-03T15:57:08+00:00" class="time">15:57</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1743" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0MywidCI6MTc5NDA1NjM2MSwiaCI6Ijc4YmM5MWE5NjAwYjY5MjMyZiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427390043149508891 1263662717_460005659" href="https://t.me/SvitloKropyvnytskyiMisto/1743" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/oQvb8ofEr37Dn92cHTDc906QkTZ_juUDuD4v38WD0CU7VDZIdW1YPttcoFnyxM6rK_C6zYQ8QsaDbxhgXq3nTEiE6-FdixRC1KdkFKe9Z7r_HmCq93CSy-zoW288EI3FWSADrA7gZjrpoTM1uSbZ-m8P-CMWwpJQMD18IEW7VMrNYu6GMFth9SjIzN8Mg-sjoXQcc04DzUAfAO4ESa5jM7INhXS_T2HGwcRRmXHeXy8No4iqxYQON0sBCtw56WYZXQYiI5MhCx-0KnuXGmgArSNiwQd-JXlLgwzkgb0GNzp4ZqccPViG2I9KJsD8Aca8ErpzKON6NbwtWvnluNs0HQ.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 17:58  03.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 03.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 22:00-24:00<br/>Черга 1.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 22:00-24:00<br/>Черга 2.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00, 22:00-24:00<br/>Черга 2.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00, 22:00-24:00<br/>Черга 3.1: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 3.2: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 4.1: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 4.2: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 5.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 5.2: 08:00-10:00, 12:00-14:00, 16:00-17:30, 20:00-22:00<br/>Черга 6.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 6.2: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>422</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>136</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>26</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>9</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">61.8K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1743"><time datetime="2026-11-03T15:58:32+00:00" class="time">15:58</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1744" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0NCwidCI6MTc5NDA1NjM2MSwiaCI6IjJmZTMzY2I1Yjg5M2ZmNzc4OCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427390043149508924 1263662717_460005692" href="https://t.me/SvitloKropyvnytskyiMisto/1744" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/IV7qM8c5cfgU9wpz-6nSYLpBKjd6ZjjC40U4HnVQnSFdt8SGcpBdqsgAwVS0WRO3JQsjB9_uyrtuXtnkl571ChYRNNPslA2aVVy5NF03hSLy9q6ntjdJkqpiqSm1fkLJqGSmvvsQJY6SskWok9ecbHfK4rJgrOKfEGco7NZ4xSzjJe3dOPo9nYA3pOB86zrVm9nXBCq-AOHmj6ij38ThMwGMFyZ4FxugpsNir7yLuwBXqr5CJwaVUrnyG4rsIX272fGwKzrVCOJqJV1S1ZqNxaeFa53q2dCOyhz8vdP1lp9-xtKwwuXI3FSM0LAkgzyNh0gT6A5xsL0CzyG0OdJohQ.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 18:33  03.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 03.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 22:00-24:00<br/>Черга 1.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 22:00-24:00<br/>Черга 2.1: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 2.2: 07:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00, 22:00-24:00<br/>Черга 3.1: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-18:30<br/>Черга 3.2: 06:00-08:00, 10:00-12:00, 14:00-16:00, 18:00-20:00<br/>Черга 4.1: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 4.2: 08:00-10:00, 12:00-14:00, 15:00-18:00<br/>Черга 5.1: 08:00-10:00, 12:00-14:00, 16:00-18:00<br/>Черга 5.2: 08:00-10:00, 12:00-14:00, 16:00-17:30, 20:00-22:00<br/>Черга 6.1: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00<br/>Черга 6.2: 08:00-10:00, 12:00-14:00, 16:00-18:00, 20:00-22:00</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>446</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>300</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>50</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>24</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">67.6K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1744"><time datetime="2026-11-03T16:33:47+00:00" class="time">16:33</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1745" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0NSwidCI6MTc5NDA1NjM2MSwiaCI6IjY2NjBiZjdlMzVjNzhhODhkNiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427275797019435303 1263636117_460005671" href="https://t.me/SvitloKropyvnytskyiMisto/1745" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/ue4hzMqhG5Hv0cJsy2LQkBPcFCexUzfdqSltOps-YppciwLh_9iPNfTwrsoFIg0g-ufwNX5IGnALt9xfm4eCNhLnOZWfPCOjegRioioTobAKh4biko18SaNHi6_WzC2nYN5_nQ-FfSOTYJh68s3Z0Z_3RSvXHc1Bz9cIJBCm_t7vvSy1iObb5NEIcsspxqH_MD4qne3Ij4C6Vucc5nMzEvrgGAm0_ySyoV1_6ri2qryrJPzLtzlcy2njgBqLW7UNyAuzY4VO5Bf3xXzNVrN8WJbTmFYDx4n8p_OWype259SH1WvLLcfL_YGWjQV5xlHZ-RnLngQ-25EmRAFv4N6r5w.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 21:53  03.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 04.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 1.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.1: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20<br/>Черга 4.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 00-02, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>828</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>391</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>61</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>59</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>37</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">79.4K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1745"><time datetime="2026-11-03T19:53:47+00:00" class="time">19:53</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1746" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0NiwidCI6MTc5NDA1NjM2MSwiaCI6IjVlOGU3YzFlNGUzMzY3NTRmNSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427275797019435303 1263636117_460005671" href="https://t.me/SvitloKropyvnytskyiMisto/1746" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/YG4mt1n1b8skifCFDOqF8quZCh7la0VKZhG460HFU249vkwqtBcA9bmGoiANWipFKSSn4we9yciAsHWdqaRyTuFvI_lkQcHAL-vgGncT4bgx-yN2VOsaj3LPo69P2RUkeIEJZso0b4RicZRX1xMNzZdmuMkpkDd08VR4iJHra9Zo5Yxo9MUSlanXSuA3mNdfIl_ZwELlnMByVQiNFBH-OlejSd15aOZ46uPl_IgkRQGjnQ22IoNxF0FPmY6WnYR_BMVgIK-ai-5BDlH6E5IyVkJFe1ysDbQymOOqWeGBBHRcVTImeoJcw2pWtwdkJ8Yob1s_f_tFABovL7_Vg8Euow.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 09:32  04.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 04.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 1.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.1: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20<br/>Черга 4.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 00-02, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>581</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>224</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>42</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>32</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>24</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>2</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>1</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">69.7K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1746"><time datetime="2026-11-04T07:32:20+00:00" class="time">07:32</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1747" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0NywidCI6MTc5NDA1NjM2MSwiaCI6ImFhNDk4MmQwZmM5M2E4M2JhMCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5429186365976420426 1264080956_460005450" href="https://t.me/SvitloKropyvnytskyiMisto/1747" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/R7ycVVY3fXJRAk3vL_wDd7zWcKlyIWorDs03TXNEE9noO7Ni-l3Z5Hc3KhFwIMVOts6z4G5nCYZLln8LzCsZ81MfC0hp68L32cpruKIde480zO4wxspQHpivR0A45aEtvdo-rXFCHU6oCsQ-FNvShvxRNM9czw4bjAchyT9X18y_WqLHkcdUWHmF1DTcaxfVxx3M7UKrJcu9rn3nbtb_AOYcFT-yS4uPeyaCZF5ifIrKKlGsNJlOJuj6I95ULRyk_QLfaAyWNeJYPEzi-EDQ6bsDmB9NsCQq_msBYOV3PMyKbZPpgWPZD9BSyqsi6693ZtNBeDDNXROcfIcCCkn8iA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:23.875%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><b>Попередній прогноз з застосування ГПВ, ГОП на четвер 05 листопада 2026 року.</b><br/><b>&nbsp;</b><br/>За розпорядженням НЕК &quot;Укренерго&quot; <b>05.11.2026 з 00:00 до 24:00</b> будуть діяти наступні графіки:<br/>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ГОП в повному обсязі (п’ять черг) юридичні споживачі;<br/>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ГПВ згідно з заданими обсягами.<br/>&nbsp;<br/>Увага&#33; Можливе коригування, в тому числі скасування, обсягів примусового зменшення відбору електричної енергії та потужності для забезпечення операційної безпеки.<br/>Отримати оперативну інформацію щодо виключень або змін у графіках можна на сайті Кіровоградобленерго – <a href="https://kiroe.com.ua/" target="_blank" rel="noopener">https://kiroe.com.ua/</a> та на телеграм-каналах ПрАТ Кіровоградобленерго - <a href="https://kiroe.com.ua/news/telegram-kanali" target="_blank" rel="noopener">https://kiroe.com.ua/news/telegram-kanali</a></div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>409</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>260</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>34</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>33</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>28</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>8</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>4</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">67.1K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1747"><time datetime="2026-11-04T07:35:27+00:00" class="time">07:35</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1748" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0OCwidCI6MTc5NDA1NjM2MSwiaCI6IjI4NDAxZGQ4ZTMyMTM3ZDY5NiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<div class="tgme_widget_message_text js-message_text" dir="auto">В 19:45 04.11.2026 отримано розпорядження диспетчера НЕК &quot;Укренерго&quot; застосувати Графіки обмеження потужності (ГОП) в обсязі 1, 2, 3, 4, 5 черг, з 00:00 05.11.2026&nbsp;року по 23:59 05.11.2026р., у зв’язку з&nbsp;дефіцитом потужності в енергосистемі України.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>812</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>149</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>108</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>76</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>40</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>21</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">64.2K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1748"><time datetime="2026-11-04T17:47:44+00:00" class="time">17:47</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1749" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc0OSwidCI6MTc5NDA1NjM2MSwiaCI6ImQzZWE1MmM4MDI3ZDU4NTY0NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431893642776880463 1264711293_460006735" href="https://t.me/SvitloKropyvnytskyiMisto/1749" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/QCHH_Cwn_kkU_li87EVT6eb7RxfPTo3AK0gN4VT5xg7i-darUxmxnB7IyqDKXRJLOzO87b5H1BohQEXnWw2XkwgQLt-xg5t1zkUPunEsPgbYYpBWw7OYbG5UeweVimhbiaZsWh4Lo2Yxm1JkdU_0j4s7MUVj1JrYBiTmS_r6iL3QthEZZg8dfwctXv7KJt4y9fAUqfcmIWE7lP4EbCCOsgiJ-SM_boS4d92J4Hn2vqVtTN9lBTjF_HZJufdO-d760StVqLyq6W0td87dUaC3iTF5ame9Zjk3KE-q66m74mdYcwqlhCUoDb-K5SLp6bliIjfZ0c4IGuomJI0k5NFD4A.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 21:06  04.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 04.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 1.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.1: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20<br/>Черга 4.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-21<br/>Черга 6.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 00-02, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>239</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>128</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>25</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>17</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>3</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>2</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>1</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">61.4K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1749"><time datetime="2026-11-04T19:06:15+00:00" class="time">19:06</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1750" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1MCwidCI6MTc5NDA1NjM2MSwiaCI6IjYwNjljMTg2ZTQ2NTk5YTI4OCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431893642776880511 1264711293_460006783" href="https://t.me/SvitloKropyvnytskyiMisto/1750" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/eBJi0iGHotvlWupYqKdXKpNe4HKCXuXPPzlnXkc-vZ3NABjmvF8zJSWTweFA7zKQ8eEf-BB6nAQJHFVfwhBULKG54EL2f1OppltV5Zu-D2cFOZLu-qGyA5j3cDOQZhQcxwfLlmSziW8q6ju6Gq1g-dC9jhB7LuRzI-AndnWNvj-D8eJCXSaOcO7IeWU6UakKerTKB54xp5bliTtsosM7shGmJz89R2wbWf1WdnMTMJkSBqZxQO3Vc5Hyh2tkKI8HoNmG5BK7WZtr01jIQhNdKJ03YUNjVFiEpgmtLQykd37knMt4xtCjtofSC3uo7P51B17E2ebYQYWWhuLFMreHqg.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">05.11.2026 - Графік погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 05.11.2026 буде діяти наступний графік погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22<br/><br/><br/>ПрАТ &quot;Кіровоградобленерго&quot; вкотре нагадує щодо необхідності раціонального споживання електроенергії.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>461</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>166</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>63</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>24</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>19</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>13</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">60.1K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1750"><time datetime="2026-11-04T19:32:02+00:00" class="time">19:32</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1751" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1MSwidCI6MTc5NDA1NjM2MSwiaCI6IjkyOWE5YjI0NjdkNzA1MGQ1NiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431893642776880511 1264711293_460006783" href="https://t.me/SvitloKropyvnytskyiMisto/1751" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/MGflUooT3Oh6zwVWip6hCvPKJN1V2WTKlTQzS5jMsFZoeuVSgp9YweCWQ4nh_XK-WWDqiZLQHmk1SgBxDC3hIAjRvUWdnDc9xit7g0wcNRQT9yTQpGymEG1ogIgR2Lv0I5eCBvBRvT2PDfi_bHh3xOQHvye-zMjW9rKuRYrRCzRb5JJegp1077qO7i_DmXwjudtTuLG81tJQ3b6DO_T3p-ZrRxcZZI1xEMHOyXE-miVutkdd3KT2zzY-4N7lK4hqzGhT3M8qCoHtMLWN9q7vWFCUZVBYozu9_Wwvmx1CY8pyzNJ-2KHBL1lRhQFgJhWLQdszOBwUqrQo1DmgSuHkJA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 22:13  04.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 05.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>445</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>195</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>55</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>42</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>15</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">60K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1751"><time datetime="2026-11-04T20:13:44+00:00" class="time">20:13</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1752" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1MiwidCI6MTc5NDA1NjM2MSwiaCI6IjQ1YzU3NjJjMDVlY2RiZjk1NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578533911272536 1264637926_460004440" href="https://t.me/SvitloKropyvnytskyiMisto/1752" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/KtdDBJwBQYvItYbrvVF_nxfELDANBuqW9H32MPmRMx26Zq8XcrMMCiWNw-CzwwDcEN5mPRJT2CzqjOr_pdz5RF5uhXzUFvF0tEA3VCy_w7NVgtX_3TuwQL5f-f0jPr8z6AovDeX-cFEWxOx33xpeo6V2jQNu-qN7IAtIMe_SjzKigj2V6H4_yZkQFy4bIg-9UTsHLfbwlpO2-2KaGXIMPay5i1gttkxMq5PgZa3a4OEZhE6D6kAd8zhKpHfEwq0lb1hY_mK9RxiDMf3ZcsMU_FbxZ2aPmsKFy9gzDtmJLfZAjRoNzDjwZuDpHDmmuDVdeZ7NZBzIPtDiu7bg_p9shw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Зміни на 08:56  05.11.2026 до графіка погодинних відключень<br/><br/>За розпорядженням НЕК &quot;Укренерго&quot; 05.11.2026 внесено зміни до графіка погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>321</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>109</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>19</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>8</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>3</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">59.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1752"><time datetime="2026-11-05T06:56:36+00:00" class="time">06:56</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1753" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1MywidCI6MTc5NDA1NjM2MSwiaCI6IjNiMTNmNzQ0YTBjYzgwNGFlMCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578533911272620 1264637926_460004524" href="https://t.me/SvitloKropyvnytskyiMisto/1753" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/YpewsEP53-Z7X0KufGj0rC4Aw5xz8mJzL2H_iaj8exMToBnzylgpZV6LrvypbevewHMNUSTEN5hJEatLzfI16MK6my-R_kqR49Czm8EwqV15TDIEGPHWmIe1MLlc6zzrXIvp_LGTZPENg7-yx-cRXMFGSmDQRuX61ER8RSrXx-u5MIWHXqo85W_ep_1sI7LzD4IoU4eOxcBD-5jAbAkE499KBQKW_Hfeiwa6bJuMikgALcBiZuftsNMZEdwdWwPD-zO14gEroGHddrBOOtTKlG1m0OsTKtamWaZ6cIktZD7p20fwqW1bHre-35hHJJS6sL8UTIuUQYekYhVjDhXdPw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">На 05.11.2026 за розпорядженням НЕК &quot;Укренерго&quot; внесено зміни до графіка погодинних відключень (ГПВ) станом на 09:55  05.11.2026:<br/><br/>Черга 1.1: 02-04, 06-08, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 13-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 13-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>378</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>177</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>40</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>22</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>11</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>10</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>2</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>1</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">60.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1753"><time datetime="2026-11-05T07:55:19+00:00" class="time">07:55</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1754" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1NCwidCI6MTc5NDA1NjM2MSwiaCI6ImMzMDdlZTcwNTVhOGExODg2ZSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578533911272968 1264637926_460004872" href="https://t.me/SvitloKropyvnytskyiMisto/1754" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/gF0M7JHgeNW1uzE0MQTObCt3PueuR3XxnJsKe8t75ajmqhJKlWjbMPz80PJuT7kxNaFsklNObmJim8pDB9egbUEAj-5c-lLzaxAtn43cF1Z0r_qyOp5PP3mf4672ajHfcnrBUU3tM4BC6-OUFD8GSRpalvCfVoPTr0sICL5HuFADr9NYW47JS9JSw-DWjsuWOHFbLa8gcZhRe_YRnJFN1PF2ojOMHPAuNGQO1Jyj0lZxTk-GL7VBxl2qelYK2xc99cED8WX8Qgx7hEbPw9TnUpdapgxh6ESw02u-6v8ycysX8xSQdpTZ84oa9LtFaWtK79HqLpHRpKgclDUqSJc5TA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">На <b>05.11.2026</b> за розпорядженням НЕК &quot;Укренерго&quot; внесено зміни до графіка погодинних відключень (ГПВ) станом на 13:35  05.11.2026:<br/><br/>Черга 1.1: 02-04, 06-08, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 15-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 15-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>479</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>257</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>35</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>32</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>18</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>15</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>4</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">63.1K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1754"><time datetime="2026-11-05T11:35:35+00:00" class="time">11:35</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1755" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1NSwidCI6MTc5NDA1NjM2MSwiaCI6ImRlODJhMGZhMDQyMjAxNzg1MiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578533911273749 1264637926_460005653" href="https://t.me/SvitloKropyvnytskyiMisto/1755" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/eB9scuEDNmPf3sBX_UNlIL6zngoSpgpcMudAc5Dr3fcEitedfNkvtQTPZ-gJy_2K4EJySe3PjwcQMDoJ13qC0oDvOa6_ehKwmoRsUdUkgDkpmvrr73iUg5IqZ_PL8KkJWnM9uBTLOgDOV_vyTOGByx7wBShuzT9K97ueQtXDsdw141zNxxelS0ipl1CdeC73hPJTfYGwRxCk4Q0HoXhpGhv82RcKZCZ4HhFbtq-fnuU4fPL94rhjM1WbQwM5mcpHMnfV6_odYVam9RwIxEdg0-s9Ere8r-gmRYp6sBf6LOCFJhPnoMsW53KV1yT8KmtUB1949Nm_CZ1CNkgENIFPRw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">На <b>05.11.2026</b> за розпорядженням НЕК &quot;Укренерго&quot; внесено зміни до графіка погодинних відключень (ГПВ) станом на 21:27  05.11.2026:<br/><br/>Черга 1.1: 02-04, 06-08, 14-16, 18-20<br/>Черга 1.2: 02-04, 06-08, 14-16, 18-20<br/>Черга 2.1: 06-08, 10-12, 15-16, 18-20, 22-24<br/>Черга 2.2: 06-08, 10-12, 15-16, 18-20, 22-24<br/>Черга 3.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 04-06, 08-10, 16-18, 20-22<br/>Черга 4.2: 00-02, 04-06, 08-10, 16-18, 20-22<br/>Черга 5.1: 00-02, 08-10, 12-14, 16-18, 20-21:30<br/>Черга 5.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>268</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>120</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>30</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>21</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>4</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">61.8K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1755"><time datetime="2026-11-05T19:28:03+00:00" class="time">19:28</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1756" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1NiwidCI6MTc5NDA1NjM2MSwiaCI6ImUxNDRmODBkMzdiMjljZGU0NyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578533911273778 1264637926_460005682" href="https://t.me/SvitloKropyvnytskyiMisto/1756" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/bZvG3akHYPjrYXYp5XVTeLI2aMRADm-hLE4E6QeEEREjwpg_3CFKMsMnP_9YcxcZ355va7CkZLL4OE5WO8r9WratKzTXXCXtKZimkhGqtGaNbHh6on-QC1CucQIVf82iipMyaqXZNnHz38CrCZUlFJ5SE3OPvupEgyF9ySLazqnn_YEWCyWSARNMq-zy2lodoZ1LNyO6ZHsJjMCCakQgX1u9CKHiIKNEvaeQh6wuaxgewDyMpf7caWMN65VNK4FgPNWG8OeOjvwz7gwV66azi-HrWK8aEUS8g6Db55zJ3DUEl1BKe7nQa_AyXI8TwCJ_FXN-s40Xe5eFjDMhB_T63w.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><b>06.11.2026</b> за розпорядженням НЕК &quot;Укренерго&quot; буде діяти наступний графік погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 1.2: 02-04, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.1: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 2.2: 02-04, 06-08, 10-12, 14-16, 18-20<br/>Черга 3.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 00-02, 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>875</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>409</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>73</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>66</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>36</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>19</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>3</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">66.7K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1756"><time datetime="2026-11-05T19:52:56+00:00" class="time">19:52</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1757" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1NywidCI6MTc5NDA1NjM2MSwiaCI6IjI2MGIzZmVlNzY0OWIzMmQ5NyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5438656717324491371 1266285944_460003947" href="https://t.me/SvitloKropyvnytskyiMisto/1757" style="width:604px;background-image:url('https://cdn4.telesco.pe/file/qSeDrrKRLzp6F7T00-1tcj9cwcCMIahZMmb1r4KhYCYacTkxLT8cz0BdP0p38OFVjN-QsbRBwDjyPq8DDn_djQiPHbmoSfVnfr1l9yyWxOTfhxdu1nniXZxMsaRR80Qfb5ZMB5FN3hKkTsjMYpKOABpmUDr2Reh4vVRGPsKTEVceX2QDjkrfP3OgUY9C2cHVMTDhcoUaCll6cnHXEaAQbEWvJkCeoPKTsa1ymU9Z3DHVL_Snuf_pOrjtkdgCVIBCpJy_IXtmYWio3iXJg1BMrhlipDftrL1vU91qW8J_f-SiqO-j6ec6gKe4eodiO4wcJ1ZtBg4UO8_Tkgjocl7vQw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:132.45033112583%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><b>07.11.2026</b> за розпорядженням НЕК &quot;Укренерго&quot; буде діяти наступний графік погодинних відключень (ГПВ):<br/><br/>Черга 1.1: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 1.2: 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 2.1: 02-04, 10-12, 14-16, 18-20<br/>Черга 2.2: 02-04, 10-12, 14-16, 18-20<br/>Черга 3.1: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 3.2: 02-04, 06-08, 10-12, 14-16, 18-20, 22-24<br/>Черга 4.1: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 4.2: 00-02, 08-10, 12-14, 16-18, 20-22<br/>Черга 5.1: 00-02, 04-06, 09-10, 12-14, 16-18, 20-22<br/>Черга 5.2: 00-02, 04-06, 09-10, 12-14, 16-18, 20-22<br/>Черга 6.1: 04-06, 08-10, 12-14, 16-18, 20-22<br/>Черга 6.2: 04-06, 08-10, 12-14, 16-18, 20-22</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>566</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>316</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>40</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>33</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>30</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>8</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98B1.png')"><b>😱</b></i>7</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918F.png')"><b>👏</b></i>5</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">59.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1757"><time datetime="2026-11-06T18:38:13+00:00" class="time">18:38</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1758" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1OCwidCI6MTc5NDA1NjM2MSwiaCI6IjZhZjZlOTA5NDViODUyOTI4NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<div class="tgme_widget_message_text js-message_text" dir="auto">В 06:10 застосовано СГАВ 1, 2 чергу</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>198</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>74</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>55</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>46</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>16</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>3</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">50.8K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1758"><time datetime="2026-11-07T04:43:29+00:00" class="time">04:43</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1759" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc1OSwidCI6MTc5NDA1NjM2MSwiaCI6ImNjNWE0MjhhY2ZjYmEyNjRmZiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<div class="tgme_widget_message_text js-message_text" dir="auto">В 06:10 застосовано СГАВ 1, 2 чергу</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>153</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>47</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>42</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>15</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B0.png')"><b>🥰</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">48.8K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1759"><time datetime="2026-11-07T05:14:38+00:00" class="time">05:14</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="SvitloKropyvnytskyiMisto/1760" data-view="eyJjIjotMTMzODA1MTg5OCwicCI6MTc2MCwidCI6MTc5NDA1NjM2MSwiaCI6ImI3MTc4YTVhMjJiYWFjMjFmYyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/SvitloKropyvnytskyiMisto"><i class="tgme_widget_message_user_photo bgcolor1" data-content="С"><img src="https://cdn4.telesco.pe/file/si2ZH4CRg3lC5F9Q05dCStY2jPQwLDc004-FpaQl7tvzfZH8uGWwIJVSyjQ9anRJjeWVq6ZUv9eFYSBP6M8ZhNNq_1ZqOucSYZiSRYa3sMdo8LjAL2qUVaVfNZjPEkofm4hG5Y6nAwPbu36g41YBSndPGLBvCtTL-0J3yka5K11CtFsYkPkdCjgeLn8PP6m1SEkFHc7BJYzMC7VUxK9ppjvFzfe7NKO-hONoBtUIDzo3v-uXf_NYuFYvFPnw47UdJAuZkrPLSBJixXJrR60ql_gQ3brglftTmXgR8ZFzbhVjyc3_elVqYKAW-J55IUCs_V8nl_Ec5Jp-0bzSqy0UKA.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/SvitloKropyvnytskyiMisto"><span dir="auto">Світло Кропивницький місто</span></a></div>
+
+
+<div class="tgme_widget_message_text js-message_text" dir="auto">В 07:21 скасовано СГАВ 1, 2 чергу</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>341</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>85</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94A5.png')"><b>🔥</b></i>58</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9881.png')"><b>😁</b></i>47</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>28</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i>24</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AF.png')"><b>🤯</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F8E89.png')"><b>🎉</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>4</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">48.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/SvitloKropyvnytskyiMisto/1760"><time datetime="2026-11-07T05:22:38+00:00" class="time">05:22</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div>
+    </section>
+  </div>
+</main>
+    <script src="//telegram.org/js/jquery.min.js"></script>
+    <script src="//telegram.org/js/jquery-ui.min.js"></script>
+    <script src="//telegram.org/js/tgwallpaper.min.js?3"></script>
+<script src="//telegram.org/js/tgsticker.js?32"></script>
+
+    <script src="//telegram.org/js/widget-frame.js?68"></script>
+    <script src="//telegram.org/js/telegram-web.js?14"></script>
+    <script>TWeb.init();
+</script>
+    
+  </body>
+</html>
+<!-- page generated in 63.62ms -->

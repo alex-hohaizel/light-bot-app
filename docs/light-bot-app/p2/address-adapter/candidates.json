@@ -1,0 +1,1098 @@
+{
+  "kind": "lba-offline-yasno-address-candidates/1",
+  "actor": "/root/public_address_probe",
+  "executed_at_utc": "2026-11-07T14:19:52.743Z",
+  "capture_evaluation_clock": "2026-11-07T14:05:00Z",
+  "clock_meaning": "Historical fixture evaluation, not current binding/source admission; maximumCaptureAgeMs600000 is an explicit test policy, not an accepted production SLA.",
+  "count": 12,
+  "certified_addresses": 0,
+  "notifications_enabled": false,
+  "cases": [
+    {
+      "case_id": "kyiv-revutskogo-12a-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30823",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "12",
+          "letter": "А",
+          "literal": "12А"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30823",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:d62433b9bb8d707a7fedbc5123b2c18c2aae02c88404c0b9b38d1f052da412ae",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30823",
+        "revision": "d62433b9bb8d707a7fedbc5123b2c18c2aae02c88404c0b9b38d1f052da412ae",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30823,
+        "providerHouseLiteral": "12А",
+        "providerAddressId": "yasno:25/902:street:736:house:30823",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:01:29.230701+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:01:13.699045+00:00",
+            "rawSha256": "9c1a3a573303657d3fa5c229a93f9a97e1e8b42653756fbace4201244d77740d"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30823",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30823&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:01:29.230701+00:00",
+            "rawSha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-12slash1-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30822",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "12/1",
+          "literal": "12/1"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30822",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:cc214f29005d94d809de38048de81de22407f94c64a7340c393935f9aa29f273",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30822",
+        "revision": "cc214f29005d94d809de38048de81de22407f94c64a7340c393935f9aa29f273",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30822,
+        "providerHouseLiteral": "12/1",
+        "providerAddressId": "yasno:25/902:street:736:house:30822",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:02:49.803584+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:01:13.699045+00:00",
+            "rawSha256": "9c1a3a573303657d3fa5c229a93f9a97e1e8b42653756fbace4201244d77740d"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30822",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30822&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:49.803584+00:00",
+            "rawSha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-house1-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30816",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "1",
+          "literal": "1"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30816",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:e7c8abb71b7e2f0999a0148f5d7da85865b3efd48b9af8c95d8bd6bebf757d24",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30816",
+        "revision": "e7c8abb71b7e2f0999a0148f5d7da85865b3efd48b9af8c95d8bd6bebf757d24",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30816,
+        "providerHouseLiteral": "1",
+        "providerAddressId": "yasno:25/902:street:736:house:30816",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:03:39.770782+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30816",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30816&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:03:39.770782+00:00",
+            "rawSha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-2v-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30856",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "2",
+          "letter": "В",
+          "literal": "2В"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30856",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "57.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:e17f891c5bf35284c7893be49c64c11aeb0ba97daacf47cb4deb6d9bea81f4e5",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30856",
+        "revision": "e17f891c5bf35284c7893be49c64c11aeb0ba97daacf47cb4deb6d9bea81f4e5",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30856,
+        "providerHouseLiteral": "2В",
+        "providerAddressId": "yasno:25/902:street:736:house:30856",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:18.432489+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30856",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30856&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:04:18.432489+00:00",
+            "rawSha256": "5489ef03f406128dfa2ee4ddf42c2da49a87a35ea53849d1d6534d55b692643c"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-2h-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30857",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "2",
+          "letter": "Г",
+          "literal": "2Г"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30857",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:3f74f0504685dfe2acc2278a9cdb4020628fbd440d79063eb9d00a04087dbb97",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30857",
+        "revision": "3f74f0504685dfe2acc2278a9cdb4020628fbd440d79063eb9d00a04087dbb97",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30857,
+        "providerHouseLiteral": "2Г",
+        "providerAddressId": "yasno:25/902:street:736:house:30857",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:21.613783+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30857",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30857&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:04:21.613783+00:00",
+            "rawSha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-4a-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30887",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "4",
+          "letter": "А",
+          "literal": "4А"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30887",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:85101be71c0c7909040d5290b3619a1f0233c33bfe45095c666d53b151e31bf3",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30887",
+        "revision": "85101be71c0c7909040d5290b3619a1f0233c33bfe45095c666d53b151e31bf3",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30887,
+        "providerHouseLiteral": "4А",
+        "providerAddressId": "yasno:25/902:street:736:house:30887",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:24.770151+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30887",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30887&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:04:24.770151+00:00",
+            "rawSha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-5slash7-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30889",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "5/7",
+          "literal": "5/7"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30889",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:d01d32565c98282a680520d1023d298b4b81a1e70993180a3a339c5c524d3957",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30889",
+        "revision": "d01d32565c98282a680520d1023d298b4b81a1e70993180a3a339c5c524d3957",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30889,
+        "providerHouseLiteral": "5/7",
+        "providerAddressId": "yasno:25/902:street:736:house:30889",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:28.039795+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30889",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30889&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:04:28.039795+00:00",
+            "rawSha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-6slash8-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:736:house:30901",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "вул. Ревуцького",
+        "house": {
+          "number": "6/8",
+          "literal": "6/8"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:736:house:30901",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "46.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:61a303050367645c81cd0f3ad583d45cfe15d886bf71679d100016d94e4b47ea",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30901",
+        "revision": "61a303050367645c81cd0f3ad583d45cfe15d886bf71679d100016d94e4b47ea",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 736,
+        "providerStreetValue": "вул. Ревуцького",
+        "streetTypeLiteral": "вул.",
+        "providerHouseId": 30901,
+        "providerHouseLiteral": "6/8",
+        "providerAddressId": "yasno:25/902:street:736:house:30901",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:31.572453+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE&regionId=25",
+            "observedAt": "2026-11-07T14:01:02.762811+00:00",
+            "rawSha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:02:53.674106+00:00",
+            "rawSha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30901",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=30901&regionId=25&streetId=736",
+            "observedAt": "2026-11-07T14:04:31.572453+00:00",
+            "rawSha256": "1c9a86fb269b561141d926f6ca64037a73629dc9041614f9457a0a568c57eef7"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-12-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:1211:house:48783",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "просп. Берестейський",
+        "house": {
+          "number": "12",
+          "literal": "12"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:1211:house:48783",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "20.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:90db18e688042f92d287e022dc962551654c215977627f0b1d36683a58f316f5",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48783",
+        "revision": "90db18e688042f92d287e022dc962551654c215977627f0b1d36683a58f316f5",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 1211,
+        "providerStreetValue": "просп. Берестейський",
+        "streetTypeLiteral": "просп.",
+        "providerHouseId": 48783,
+        "providerHouseLiteral": "12",
+        "providerAddressId": "yasno:25/902:street:1211:house:48783",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:36.196234+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9&regionId=25",
+            "observedAt": "2026-11-07T14:03:20.104053+00:00",
+            "rawSha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=1211&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:03:36.981240+00:00",
+            "rawSha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48783",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=48783&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:04:36.196234+00:00",
+            "rawSha256": "4c2678438defbb8433a19af41632bbc61fe38d6833832094eeb3835d4b3a1962"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-121a-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:1211:house:48785",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "просп. Берестейський",
+        "house": {
+          "number": "121",
+          "letter": "А",
+          "literal": "121А"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:1211:house:48785",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "6.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:817751c617e58286528698e6f75e4932906307b2f104092b37ba1a22830ce8d0",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48785",
+        "revision": "817751c617e58286528698e6f75e4932906307b2f104092b37ba1a22830ce8d0",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 1211,
+        "providerStreetValue": "просп. Берестейський",
+        "streetTypeLiteral": "просп.",
+        "providerHouseId": 48785,
+        "providerHouseLiteral": "121А",
+        "providerAddressId": "yasno:25/902:street:1211:house:48785",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:39.590962+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9&regionId=25",
+            "observedAt": "2026-11-07T14:03:20.104053+00:00",
+            "rawSha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=1211&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:03:36.981240+00:00",
+            "rawSha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48785",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=48785&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:04:39.590962+00:00",
+            "rawSha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-121b-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:1211:house:48784",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "просп. Берестейський",
+        "house": {
+          "number": "121",
+          "letter": "Б",
+          "literal": "121Б"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:1211:house:48784",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "6.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:f53bcf5a3a5be0d09efafff646df9bb112c8c8a668d2f25272535747cf07c0cd",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48784",
+        "revision": "f53bcf5a3a5be0d09efafff646df9bb112c8c8a668d2f25272535747cf07c0cd",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 1211,
+        "providerStreetValue": "просп. Берестейський",
+        "streetTypeLiteral": "просп.",
+        "providerHouseId": 48784,
+        "providerHouseLiteral": "121Б",
+        "providerAddressId": "yasno:25/902:street:1211:house:48784",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:42.710533+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9&regionId=25",
+            "observedAt": "2026-11-07T14:03:20.104053+00:00",
+            "rawSha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=1211&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:03:36.981240+00:00",
+            "rawSha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48784",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=48784&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:04:42.710533+00:00",
+            "rawSha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-128slash2-group",
+      "kind": "yasno-address-candidate/1",
+      "address": {
+        "id": "provisional:yasno:25/902:street:1211:house:48792",
+        "label": "Публічний адресний зразок",
+        "territoryId": "source:yasno:25/902",
+        "locality": "Київ",
+        "street": "просп. Берестейський",
+        "house": {
+          "number": "128/2",
+          "literal": "128/2"
+        },
+        "aliases": []
+      },
+      "binding": {
+        "addressId": "provisional:yasno:25/902:street:1211:house:48792",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "18.1",
+        "kind": "operator_group",
+        "revisionId": "yasno-address-candidate:635aee294714e27306e897f4dba480ec4dfa6c8106fddf70350d2d6ca18d28e6",
+        "status": "needs_confirmation",
+        "verifiedAt": null,
+        "effectiveFrom": null,
+        "effectiveUntil": null
+      },
+      "source": {
+        "id": "yasno-public-address-v2",
+        "name": "YASNO · публічний адресний candidate",
+        "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48792",
+        "revision": "635aee294714e27306e897f4dba480ec4dfa6c8106fddf70350d2d6ca18d28e6",
+        "accessCost": 0,
+        "verifiedLevel": "catalog"
+      },
+      "proof": {
+        "verdict": "source_reported_binding_candidate",
+        "scope": {
+          "operatorId": "dtek-kem",
+          "namespace": "yasno:25/902",
+          "regionId": 25,
+          "dsoId": 902
+        },
+        "providerStreetId": 1211,
+        "providerStreetValue": "просп. Берестейський",
+        "streetTypeLiteral": "просп.",
+        "providerHouseId": 48792,
+        "providerHouseLiteral": "128/2",
+        "providerAddressId": "yasno:25/902:street:1211:house:48792",
+        "canonicalMunicipalAddressId": null,
+        "katottg": null,
+        "connectionId": null,
+        "catalogCompleteness": "unknown",
+        "aliasesVerified": false,
+        "providerEffectiveRevision": null,
+        "validFrom": null,
+        "validUntil": null,
+        "clientRevisionMeaning": "hash of exact selected provider scope and group response; not provider validity",
+        "observedAt": "2026-11-07T14:04:46.279501+00:00",
+        "captures": [
+          {
+            "operation": "streets",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9&regionId=25",
+            "observedAt": "2026-11-07T14:03:20.104053+00:00",
+            "rawSha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323"
+          },
+          {
+            "operation": "houses",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=1211&query=12",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?dsoId=902&query=12&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:03:36.981240+00:00",
+            "rawSha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7"
+          },
+          {
+            "operation": "group",
+            "sourceId": "yasno-public-address-v2",
+            "requestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48792",
+            "canonicalRequestUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?dsoId=902&houseId=48792&regionId=25&streetId=1211",
+            "observedAt": "2026-11-07T14:04:46.279501+00:00",
+            "rawSha256": "82ff088f97f7cf2eacb46f9dc8de57738c617426c9d8e05a3a987223790147e8"
+          }
+        ],
+        "rightsForSystematicReuse": "unknown",
+        "independentlyConfirmed": false,
+        "deliveryEligible": false
+      }
+    }
+  ]
+}

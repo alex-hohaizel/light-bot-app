@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Головна — КолиСвітло — графіки відключень електроенергії</title>
+  <meta name="description" content="КолиСвітло — актуальні графіки відключень електроенергії по всіх регіонах України. Дізнайтесь, коли буде світло: розклади від обленерго оновлюються автоматично щогодини.">
+  <meta name="keywords" content="графік відключень, коли світло, відключення електроенергії, розклад відключень, обленерго, Україна, blackout, графік погодинних відключень, ГПВ">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="КолиСвітло — графіки відключень електроенергії по всій Україні">
+  <meta property="og:description" content="КолиСвітло — актуальні графіки відключень електроенергії по всіх регіонах України. Дізнайтесь, коли буде світло: розклади від обленерго оновлюються автоматично щогодини.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:site_name" content="КолиСвітло">
+  <meta property="og:url" content="https://kolysvitlo.com/">
+  <meta property="og:image" content="https://kolysvitlo.com/static/favicon.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="КолиСвітло — графіки відключень електроенергії по всій Україні">
+  <meta name="twitter:description" content="КолиСвітло — актуальні графіки відключень електроенергії по всіх регіонах України. Дізнайтесь, коли буде світло: розклади від обленерго оновлюються автоматично щогодини.">
+  <link rel="canonical" href="https://kolysvitlo.com/">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"КолиСвітло","alternateName":"Коли Світло?","url":"https://kolysvitlo.com/","inLanguage":"uk-UA","description":"Актуальні графіки погодинних відключень електроенергії по всіх регіонах України."},{"@context":"https://schema.org","@type":"Organization","name":"КолиСвітло","url":"https://kolysvitlo.com/","logo":"https://kolysvitlo.com/static/favicon.svg"}]</script>
+  <script>
+    // Theme before first paint.  A saved manual choice ('light' / 'dark') always
+    // wins; otherwise ('auto') the theme follows the sun in Kyiv: dark from
+    // sunset to sunrise.  Sun times are computed in UTC for the date, so winter
+    // and summer time need no special handling.
+    window.ksTheme = (function () {
+      var KEY = 'ks:theme', LAT = 50.45, LON = 30.52, R = Math.PI / 180;
+      function sunUtcHours(date, rising) {
+        var start = Date.UTC(date.getUTCFullYear(), 0, 0);
+        var n = Math.floor((date.getTime() - start) / 864e5);
+        var lngHour = LON / 15;
+        var t = n + ((rising ? 6 : 18) - lngHour) / 24;
+        var M = 0.9856 * t - 3.289;
+        var L = (M + 1.916 * Math.sin(M * R) + 0.020 * Math.sin(2 * M * R) + 282.634 + 360) % 360;
+        var RA = (Math.atan(0.91764 * Math.tan(L * R)) / R + 360) % 360;
+        RA = (RA + (Math.floor(L / 90) - Math.floor(RA / 90)) * 90) / 15;
+        var sinDec = 0.39782 * Math.sin(L * R), cosDec = Math.cos(Math.asin(sinDec));
+        var cosH = (Math.cos(90.833 * R) - sinDec * Math.sin(LAT * R)) / (cosDec * Math.cos(LAT * R));
+        var H = (rising ? 360 - Math.acos(cosH) / R : Math.acos(cosH) / R) / 15;
+        return ((H + RA - 0.06571 * t - 6.622 - lngHour) % 24 + 24) % 24;
+      }
+      function autoTheme(now) {
+        now = now || new Date();
+        var h = now.getUTCHours() + now.getUTCMinutes() / 60;
+        var rise = sunUtcHours(now, true), set = sunUtcHours(now, false);
+        return h >= rise && h < set ? 'light' : 'dark';
+      }
+      function mode() {
+        var m = null;
+        try { m = localStorage.getItem(KEY); } catch (e) {}
+        return m === 'light' || m === 'dark' ? m : 'auto';
+      }
+      function apply() {
+        var m = mode();
+        var el = document.documentElement;
+        el.setAttribute('data-theme', m === 'auto' ? autoTheme() : m);
+        el.setAttribute('data-theme-mode', m);
+      }
+      function cycle() {
+        var next = { auto: 'light', light: 'dark', dark: 'auto' }[mode()];
+        try { if (next === 'auto') localStorage.removeItem(KEY); else localStorage.setItem(KEY, next); } catch (e) {}
+        apply();
+      }
+      apply();
+      setInterval(function () { if (mode() === 'auto') apply(); }, 5 * 60 * 1000);
+      return { cycle: cycle, autoTheme: autoTheme };
+    })();
+  </script>
+  <link href="/static/css/daisyui.min.css" rel="stylesheet">
+  <style>
+    /* Schedule colours: "no power" must stand out by lightness, not hue. */
+    :root { --ks-off:#1e293b; --ks-off-text:#ffffff; --ks-now:#f59e0b; --ks-maybe-line:#64748b; --ks-strip-maybe:#94a3b8; }
+    :root { --ks-track:oklch(var(--b2)); --ks-grid:oklch(var(--b3)); }
+    [data-theme="dark"] { --ks-off:oklch(76% 0.02 260); --ks-off-text:#0b0f16; --ks-now:#fbbf24; --ks-maybe-line:#94a3b8; --ks-strip-maybe:#64748b;
+      /* Three clearly separated levels: page < card < schedule track */
+      --b2:13% 0.012 256; --b1:21% 0.016 256; --b3:30% 0.016 256; --bc:86% 0.02 264;
+      --ks-track:oklch(31% 0.018 256); --ks-grid:oklch(38% 0.02 256); }
+    .ks-theme-btn svg { display:none; }
+    /* Phones: the wordmark overlapped the theme button and "Увійти" (360 px) */
+    @media (max-width: 420px) { .ks-logo-text { display:none; } }
+    [data-theme-mode="auto"] .ks-theme-btn .ks-auto,
+    [data-theme-mode="light"] .ks-theme-btn .ks-sun,
+    [data-theme-mode="dark"] .ks-theme-btn .ks-moon { display:inline; }
+  </style>
+  <script src="/static/js/tailwind.js"></script>
+  <script src="/static/js/htmx.min.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+  <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar-start">
+      <a href="/" class="btn btn-ghost text-xl font-bold text-primary px-2" aria-label="КолиСвітло — головна">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span class="ks-logo-text">КолиСвітло</span>
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1 gap-1">
+        <li><a href="/" class="font-medium">Головна</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end gap-2">
+      <button type="button" class="btn btn-ghost btn-square ks-theme-btn" id="ks-theme" aria-label="Тема: авто / світла / темна" title="Тема: авто (за сонцем) → світла → темна">
+        <svg class="ks-auto h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="2"/><path d="M12 4a8 8 0 010 16z" fill="currentColor"/></svg>
+        <svg class="ks-sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="ks-moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+      <a href="https://t.me/koly_svitlo_bot" target="_blank" rel="noopener" class="btn btn-sm btn-outline gap-1" aria-label="Telegram-бот КолиСвітло" title="Сповіщення про відключення в Telegram">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2l-4.7-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg>
+        <span class="hidden sm:inline">Бот</span>
+      </a>
+      <a href="/login" class="btn btn-ghost btn-sm">Увійти</a>
+      <a href="/register" class="btn btn-primary btn-sm">Реєстрація</a>
+    </div>
+  </div>
+
+  <main class="flex-1 container mx-auto px-4 py-4 md:py-8 max-w-7xl">
+    <header class="mb-5">
+  <h1 class="text-2xl md:text-3xl font-extrabold leading-tight">Графіки відключень світла</h1>
+  <p class="text-sm text-base-content/60 mt-1">Усі регіони України · дані від обленерго оновлюються кожні 10 хвилин</p>
+</header>
+
+<section class="ks-tg mb-6" aria-label="Telegram-бот">
+  <div>
+    <p class="font-bold text-base">Сповіщення в Telegram</p>
+    <p class="text-sm text-base-content/70" id="ks-tg-text">Бот напише, щойно графік для вашої черги зміниться. Безкоштовно, без реєстрації.</p>
+  </div>
+  <a href="https://t.me/koly_svitlo_bot" data-bot="https://t.me/koly_svitlo_bot" id="ks-tg-link" target="_blank" rel="noopener" class="btn btn-primary">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2l-4.7-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg>
+    Відкрити бота
+  </a>
+</section>
+
+<style>
+  .ks-card.ks-out { border:2px solid var(--ks-off); }
+  .ks-st { font-size:12px; font-weight:700; padding:3px 10px; border-radius:999px; white-space:nowrap; line-height:1.3; }
+  .ks-st-out { background:var(--ks-off); color:var(--ks-off-text); }
+  .ks-st-ok { background:oklch(var(--b2)); color:oklch(var(--bc)/.8); border:1px solid oklch(var(--b3)); }
+  .ks-st-nd { color:oklch(var(--bc)/.6); border:1.5px dashed oklch(var(--bc)/.35); }
+  .ks-strip { display:flex; gap:2px; margin-top:10px; }
+  .ks-strip i { flex:1; height:8px; border-radius:2px; background:var(--ks-track); }
+  .ks-strip i.off { background:var(--ks-off); }
+  .ks-strip i.maybe { background:var(--ks-strip-maybe); }
+  .ks-my { display:flex; flex-direction:column; gap:2px; }
+  .ks-my b { font-weight:800; }
+  .ks-my .ks-my-off { font-weight:700; }
+  .ks-strip i.now { outline:2px solid var(--ks-now); outline-offset:1px; }
+  .ks-tg { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:16px; border-radius:16px; background:oklch(var(--b1)); border:2px solid oklch(var(--p)); }
+  .ks-tg .btn { flex:none; }
+  @media (max-width:480px) { .ks-tg .btn { width:100%; } }
+  .ks-mytl { margin-top:8px; }
+  .ks-mytl .ks-ticks { position:relative; height:14px; font-size:11px; color:oklch(var(--bc)/.55); font-variant-numeric:tabular-nums; }
+  .ks-mytl .ks-ticks span { position:absolute; transform:translateX(-50%); }
+  .ks-mytl .ks-ticks span:first-child { transform:none; }
+  .ks-mytl .ks-ticks span:last-child { transform:translateX(-100%); }
+  .ks-mytl .ks-tr { position:relative; height:16px; border-radius:5px; background:var(--ks-track); }
+  .ks-mytl .ks-tr i { position:absolute; top:2px; bottom:2px; border-radius:3px; background:var(--ks-off); }
+  .ks-mytl .ks-tr i.mb { background:repeating-linear-gradient(45deg, var(--ks-off) 0 2px, transparent 2px 5px); border:1px solid var(--ks-maybe-line); }
+  .ks-mytl .ks-tr .past { position:absolute; left:0; top:0; bottom:0; background:oklch(var(--b1) / .6); border-radius:5px 0 0 5px; }
+  .ks-mytl .ks-tr .now { position:absolute; top:-3px; bottom:-3px; width:3px; margin-left:-1.5px; background:var(--ks-now); border-radius:2px; }
+</style>
+<section class="mb-10">
+  <h2 class="text-2xl font-bold mb-6">Регіони</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <a href="/schedule/voe_vinnytsia" data-region="voe_vinnytsia" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000011110000000011110000000000000000000022220000&quot;,&quot;1.2&quot;:&quot;000011110000000011110000000000000000000022220000&quot;,&quot;2.1&quot;:&quot;000011110000000011110000000000110000222222220000&quot;,&quot;2.2&quot;:&quot;000011110000000011110000000000110000222222220000&quot;,&quot;3.1&quot;:&quot;000000002222000000000000000000002222000000002222&quot;,&quot;3.2&quot;:&quot;000000002222000000000000000000002222000000002222&quot;,&quot;4.1&quot;:&quot;000000002222000000000000000000002222000022222222&quot;,&quot;4.2&quot;:&quot;000000002222000000000000000000002222000022222222&quot;,&quot;5.1&quot;:&quot;111100000000111100000000000000002222222200000000&quot;,&quot;5.2&quot;:&quot;111100000000111100000000000000002222222200000000&quot;,&quot;6.1&quot;:&quot;111100000000111100000000000000000000222200000000&quot;,&quot;6.2&quot;:&quot;111100000000111100000000000000000000222200000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Вінницька область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз світло є · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 14:49
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/dtek_dnipro" data-region="dtek_dnipro" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000111111110000000000000111111111111111000000&quot;,&quot;1.2&quot;:&quot;000000111111110000000000000111111111111111000000&quot;,&quot;2.1&quot;:&quot;000000111111110000111000000111111110000000000000&quot;,&quot;2.2&quot;:&quot;000000111111110000111000000111111110000000000000&quot;,&quot;3.1&quot;:&quot;000000000000011111111111111100000011111111000000&quot;,&quot;3.2&quot;:&quot;000000000000011111111111111100000011111111000000&quot;,&quot;4.1&quot;:&quot;000000000000011111111000000000000011111111110000&quot;,&quot;4.2&quot;:&quot;000000000000011111111000000000000011111111110000&quot;,&quot;5.1&quot;:&quot;111111100000000000001111111111111110000001111111&quot;,&quot;5.2&quot;:&quot;111111100000000000001111111111111110000001111111&quot;,&quot;6.1&quot;:&quot;111111100000000000001111111100000000000001111111&quot;,&quot;6.2&quot;:&quot;111111100000000000001111111100000000000001111111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Дніпропетровська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 6 груп · далі о 17:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 5 лист., 21:44
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/cek_dnipro" data-region="cek_dnipro" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111110000000000000011111000000000111111111110000&quot;,&quot;1.2&quot;:&quot;111110000000000000011111000000000111111111110000&quot;,&quot;2.1&quot;:&quot;111110000000000011111111110000000000000011111111&quot;,&quot;2.2&quot;:&quot;111110000000000011111111110000000000000011111111&quot;,&quot;3.1&quot;:&quot;000001111111000000011111111111111000000000000000&quot;,&quot;3.2&quot;:&quot;000001111111000000011111111111111000000000000000&quot;,&quot;4.1&quot;:&quot;000001111111000000000000001111111000000011111111&quot;,&quot;4.2&quot;:&quot;000001111111000000000000001111111000000011111111&quot;,&quot;5.1&quot;:&quot;000000000000111111100000001111111111111100000000&quot;,&quot;5.2&quot;:&quot;000000000000111111100000001111111111111100000000&quot;,&quot;6.1&quot;:&quot;000000000000111111100000000000000111111100000000&quot;,&quot;6.2&quot;:&quot;000000000000111111100000000000000111111100000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Дніпропетровська область (ЦЕК)</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 6 груп · далі о 16:30
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 07:34
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/ztoe_zhytomyr" data-region="ztoe_zhytomyr" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111100000000111111100000111111110000111111110000&quot;,&quot;1.2&quot;:&quot;111100000000111111110000111111110000111111110000&quot;,&quot;2.1&quot;:&quot;000000000000111100000011111100001111111100001111&quot;,&quot;2.2&quot;:&quot;111100000000111100001111111100001111111100001111&quot;,&quot;3.1&quot;:&quot;000000000000000011111111000011111111000011111111&quot;,&quot;3.2&quot;:&quot;000011111111000011111111000011111111000011111111&quot;,&quot;4.1&quot;:&quot;111100000000111100001111111100001111111100001111&quot;,&quot;4.2&quot;:&quot;111100000000111100001111111100001111111100001111&quot;,&quot;5.1&quot;:&quot;000011111111000011111111000011111111000011110000&quot;,&quot;5.2&quot;:&quot;000011111111000011111111000011111111000011110000&quot;,&quot;6.1&quot;:&quot;000011111111000011110000111111110000111111110000&quot;,&quot;6.2&quot;:&quot;000011111111000011110000111111110000111111110000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Житомирська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 16:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 12:00
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/zoe_zaporizhzhia" data-region="zoe_zaporizhzhia" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111100000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;111111111100000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000111111111100000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000001111111111000000000000&quot;,&quot;3.1&quot;:&quot;111100000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000111111111100000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;100000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;100000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;111111111100000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000001111111111000000000000&quot;,&quot;6.1&quot;:&quot;000000000111111111100000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000111111111100000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Запорізька область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 2.2, 5.2
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 00:00
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/dtek_kyiv_oblast" data-region="dtek_kyiv_oblast" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;22:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111000000111111111111111000000111111111111111000&quot;,&quot;1.2&quot;:&quot;111000000111111111100111000000111111111111111000&quot;,&quot;2.1&quot;:&quot;111000000111111111111111000000111111111111111000&quot;,&quot;2.2&quot;:&quot;111000000111111111111111000000111111111111111000&quot;,&quot;3.1&quot;:&quot;111111111100000011111111111111100000011111111111&quot;,&quot;3.2&quot;:&quot;111111111100000011111111111111100000011111111111&quot;,&quot;4.1&quot;:&quot;111111111100000011111111111111100000011111111111&quot;,&quot;4.2&quot;:&quot;111111111100000011111111111111100000011111111111&quot;,&quot;5.1&quot;:&quot;001111111111111110000001111111111111110000001111&quot;,&quot;5.2&quot;:&quot;001111111111111110000001111111111111110000001111&quot;,&quot;6.1&quot;:&quot;001111111111111110000001111111111111110000001111&quot;,&quot;6.2&quot;:&quot;001111111111111110000001111111111111110000001111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Київська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 10:51
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/kiroe" data-region="kiroe" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000111100001111000011110000111100001111&quot;,&quot;1.2&quot;:&quot;000000000000111100001111000011110000111100001111&quot;,&quot;2.1&quot;:&quot;000011110000000000001111000011110000111100000000&quot;,&quot;2.2&quot;:&quot;000011110000000000001111000011110000111100000000&quot;,&quot;3.1&quot;:&quot;000011110000111100001111000011110000111100001111&quot;,&quot;3.2&quot;:&quot;000011110000111100001111000011110000111100001111&quot;,&quot;4.1&quot;:&quot;111100000000000011110000111100001111000011110000&quot;,&quot;4.2&quot;:&quot;111100000000000011110000111100001111000011110000&quot;,&quot;5.1&quot;:&quot;111100001111000000110000111100001111000011110000&quot;,&quot;5.2&quot;:&quot;111100001111000000110000111100001111000011110000&quot;,&quot;6.1&quot;:&quot;000000001111000011110000111100001111000011110000&quot;,&quot;6.2&quot;:&quot;000000001111000011110000111100001111000011110000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Кіровоградська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 6 груп · далі о 16:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 00:08
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/mykolaiv_oblenergo" data-region="mykolaiv_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000111110000000000000000000110000000000000000&quot;,&quot;1.2&quot;:&quot;000000111110000000000000000000000011111000000000&quot;,&quot;2.1&quot;:&quot;000000111110000000000000000000000000000001111100&quot;,&quot;2.2&quot;:&quot;000000111110000000000000000000000011111000000000&quot;,&quot;3.1&quot;:&quot;000000000000011111000000000000000000000001111100&quot;,&quot;3.2&quot;:&quot;000000000000011111000000000000000011111000000000&quot;,&quot;4.1&quot;:&quot;111100000000000000000000000000000000000001111100&quot;,&quot;4.2&quot;:&quot;111100000000000000000000000000110000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000011111111110000&quot;,&quot;5.2&quot;:&quot;000000000000011111000000000000000011111111110000&quot;,&quot;6.1&quot;:&quot;111100000000000000000000000000000000000001111100&quot;,&quot;6.2&quot;:&quot;111100000000011111000000000000000011111000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Миколаївська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз світло є · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 14:38
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/dtek_odesa" data-region="dtek_odesa" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;22:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000011111111000000000000001111111111111000&quot;,&quot;1.2&quot;:&quot;000000000011111111000000000000001111111111111000&quot;,&quot;2.1&quot;:&quot;000000000011111110000000000000001111111000000000&quot;,&quot;2.2&quot;:&quot;000000000011111110000000000000001111111000000000&quot;,&quot;3.1&quot;:&quot;111100000000000001110000000000000000001111111000&quot;,&quot;3.2&quot;:&quot;111100000000000001110000000000000000001111111000&quot;,&quot;4.1&quot;:&quot;111100000000000000110000000000000000001111111000&quot;,&quot;4.2&quot;:&quot;111100000000000000110000000000000000001111111000&quot;,&quot;5.1&quot;:&quot;000111111110000000000000000000111111111000001111&quot;,&quot;5.2&quot;:&quot;000111111110000000000000000000111111111000001111&quot;,&quot;6.1&quot;:&quot;000111111110000000000000000000000000000000001111&quot;,&quot;6.2&quot;:&quot;000111111110000000000000000000000000000000001111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Одеська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз світло є · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 14:41
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/poe_poltava" data-region="poe_poltava" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;19:30&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:30&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;maybe&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:30&quot;,&quot;next&quot;:&quot;17:30&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111111200000001111112000001111111120001111112000&quot;,&quot;1.2&quot;:&quot;011111112000000011111200000111111112000111111200&quot;,&quot;2.1&quot;:&quot;001111111200000011111111200011111111200011111120&quot;,&quot;2.2&quot;:&quot;000111111120000001111111120001111111120001111112&quot;,&quot;3.1&quot;:&quot;000011111112000000111111112000111111112000111111&quot;,&quot;3.2&quot;:&quot;000000111111120000011111111200011111111200011111&quot;,&quot;4.1&quot;:&quot;000000001111112000001111111120001111111120001111&quot;,&quot;4.2&quot;:&quot;200000000111111112000111111112000111111112000111&quot;,&quot;5.1&quot;:&quot;120000000011111111200001111111200011111111200011&quot;,&quot;5.2&quot;:&quot;112000000001111111120001111111120001111111120001&quot;,&quot;6.1&quot;:&quot;111200000000111111112000111111112000111111112000&quot;,&quot;6.2&quot;:&quot;111120000000011111112000011111111200011111112000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Полтавська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 10:29
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/soe_sumy" data-region="soe_sumy" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111100000000000011110000111111110000111111110000&quot;,&quot;1.2&quot;:&quot;000000000000000000001111111100001111111100001111&quot;,&quot;2.1&quot;:&quot;000000000000000011111111000011111111000011111111&quot;,&quot;2.2&quot;:&quot;000000000000111111110000111111110000111111110000&quot;,&quot;3.1&quot;:&quot;000000001111111100001111111100001111111100000000&quot;,&quot;3.2&quot;:&quot;000011111111000011111111000011111111000011110000&quot;,&quot;4.1&quot;:&quot;111111110000111111110000111111110000111111110000&quot;,&quot;4.2&quot;:&quot;111100001111111100001111111100001111111100001111&quot;,&quot;5.1&quot;:&quot;000011111111000011111111000011111111000011111111&quot;,&quot;5.2&quot;:&quot;111111110000111111110000111111110000111111110000&quot;,&quot;6.1&quot;:&quot;111100001111111100000111111100001111111100001111&quot;,&quot;6.2&quot;:&quot;000011110000000011110111000011111111000011111111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Сумська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 16:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 10:29
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/kharkov_oblenergo" data-region="kharkov_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:30&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:30&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:30&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;21:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;21:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;21:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:30&quot;,&quot;next&quot;:&quot;21:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000011111001111111000000011111111111111000000&quot;,&quot;1.2&quot;:&quot;000000000000001111111000000011111111111111000000&quot;,&quot;2.1&quot;:&quot;000000000000111111111000000011111111111111000000&quot;,&quot;2.2&quot;:&quot;000000000000111111111000000011111111111111000000&quot;,&quot;3.1&quot;:&quot;111111100000001111111111111100000001111111111111&quot;,&quot;3.2&quot;:&quot;111111100000001111111111111100000001111111111111&quot;,&quot;4.1&quot;:&quot;111111100000000000000000000000000001111111111111&quot;,&quot;4.2&quot;:&quot;111111100000000000000000000000000001111111111111&quot;,&quot;5.1&quot;:&quot;111111111111110000000111111111111110000000110000&quot;,&quot;5.2&quot;:&quot;000000011111110000000111111111111110000000110000&quot;,&quot;6.1&quot;:&quot;000000011111110000000111111111111110000000111111&quot;,&quot;6.2&quot;:&quot;000000011111110000000111111111111110000000111111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Харківська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 17:30
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 6 лист., 19:59
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/cherkasy_oblenergo" data-region="cherkasy_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:00&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:00&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000111111111000011111111000011111111000011&quot;,&quot;1.2&quot;:&quot;001111110001111111110000111111110000111111110000&quot;,&quot;2.1&quot;:&quot;001111111000111111000011111111000011111111000011&quot;,&quot;2.2&quot;:&quot;000011110001111111110000111111110000111111110000&quot;,&quot;3.1&quot;:&quot;001111111110001111111100001111111100001111111100&quot;,&quot;3.2&quot;:&quot;000011111111000011111111000011111111000011110000&quot;,&quot;4.1&quot;:&quot;000000111110001111111100001111111100001111110000&quot;,&quot;4.2&quot;:&quot;000000111111000011111111000011111111000011111111&quot;,&quot;5.1&quot;:&quot;000000111111000000111111110000111111110000111111&quot;,&quot;5.2&quot;:&quot;000000001111110000001111111100001111111100001100&quot;,&quot;6.1&quot;:&quot;000000001111000000111111110000111111110000111111&quot;,&quot;6.2&quot;:&quot;000000111111110000001111111100001111111100001111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Черкаська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 02:59
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/chernivtsi_oblenergo" data-region="chernivtsi_oblenergo" data-groups="{&quot;1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;3&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;4&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;5&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;6&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;7&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;8&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;9&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;10&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:00&quot;},&quot;11&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;18:00&quot;},&quot;12&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;18:00&quot;}}" data-halves="{&quot;1&quot;:&quot;011112000000011112000000000000000011112000111120&quot;,&quot;2&quot;:&quot;011112000000011112000000000000000011112000111120&quot;,&quot;3&quot;:&quot;112000000011112000000000000000001111200011112000&quot;,&quot;4&quot;:&quot;000001111200000001112000000000000000111120000011&quot;,&quot;5&quot;:&quot;000001111200000001112000000000000000111120000011&quot;,&quot;6&quot;:&quot;112000000011112000000000000000111120001111200000&quot;,&quot;7&quot;:&quot;120000000111120000000000000000111120001111200000&quot;,&quot;8&quot;:&quot;120000000111120000000000000000001111200011112000&quot;,&quot;9&quot;:&quot;000000111120000000012000000000001111200011112000&quot;,&quot;10&quot;:&quot;000000111120000000012000000000001111200011112000&quot;,&quot;11&quot;:&quot;001111200000001111120000000000000000111120001111&quot;,&quot;12&quot;:&quot;001111200000001111120000000000000000111120001111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Чернівецька область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз світло є · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 14:30
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/chernihiv_oblenergo" data-region="chernihiv_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;20:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000001111111111111100000001111111111111100000000&quot;,&quot;1.2&quot;:&quot;000001111111111111100000001111111111111100000000&quot;,&quot;2.1&quot;:&quot;000000000000000000011111111111111000000011111111&quot;,&quot;2.2&quot;:&quot;000000000000000000011111111111111000000011111111&quot;,&quot;3.1&quot;:&quot;000000000000000000000000001111111111111100000001&quot;,&quot;3.2&quot;:&quot;000000000000000000000000001111111111111100000001&quot;,&quot;4.1&quot;:&quot;000000000000111111111111110000000111111111111110&quot;,&quot;4.2&quot;:&quot;000000000000111111111111110000000111111111111110&quot;,&quot;5.1&quot;:&quot;000000000000000011111111110000000111111111110000&quot;,&quot;5.2&quot;:&quot;000000000000000011111111110000000111111111110000&quot;,&quot;6.1&quot;:&quot;000000000000000000011111111111111000000011111111&quot;,&quot;6.2&quot;:&quot;000000000000000000011111111111111000000011111111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Чернігівська область</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 8 груп · далі о 16:30
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 6 лист., 20:52
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/dtek_kyiv" data-region="dtek_kyiv" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;21:30&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:30&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:30&quot;,&quot;next&quot;:&quot;23:00&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;22:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;7.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;23:00&quot;},&quot;8.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;9.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;10.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;11.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;12.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;13.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;14.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;15.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;21:30&quot;},&quot;16.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:30&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;17.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:30&quot;,&quot;next&quot;:&quot;23:00&quot;},&quot;18.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;22:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;19.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;23:00&quot;},&quot;20.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;21.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;22.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;23.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;24.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;25.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;26.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;27.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;21:30&quot;},&quot;28.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:30&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;29.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:30&quot;,&quot;next&quot;:&quot;23:00&quot;},&quot;30.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;22:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;31.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;23:00&quot;},&quot;32.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;33.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;34.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;35.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;36.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;37.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;38.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;39.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;21:30&quot;},&quot;40.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:30&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;41.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:30&quot;,&quot;next&quot;:&quot;23:00&quot;},&quot;42.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;22:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;43.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;23:00&quot;},&quot;44.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;45.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;46.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;47.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;48.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;},&quot;49.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;18:30&quot;,&quot;next&quot;:&quot;20:00&quot;},&quot;50.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;19:00&quot;,&quot;next&quot;:&quot;20:30&quot;},&quot;51.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:00&quot;,&quot;next&quot;:&quot;21:30&quot;},&quot;52.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;20:30&quot;,&quot;next&quot;:&quot;22:00&quot;},&quot;53.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;21:30&quot;,&quot;next&quot;:&quot;23:00&quot;},&quot;54.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;22:00&quot;,&quot;next&quot;:&quot;23:30&quot;},&quot;55.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;23:00&quot;},&quot;56.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;15:00&quot;},&quot;57.1&quot;:{&quot;now&quot;:&quot;on&quot;,&quot;next&quot;:&quot;16:30&quot;},&quot;58.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;15:00&quot;,&quot;next&quot;:&quot;17:00&quot;},&quot;59.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;16:30&quot;,&quot;next&quot;:&quot;18:30&quot;},&quot;60.1&quot;:{&quot;now&quot;:&quot;off&quot;,&quot;until&quot;:&quot;17:00&quot;,&quot;next&quot;:&quot;19:00&quot;}}" data-halves="{&quot;1.1&quot;:&quot;111111111111110000011111111111111111100011111111&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;111111111111111000000111111111111111110001111111&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;001111111111111110000001111111111111111100011111&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000111111111111111100000111111111111111110001111&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000001111111111111111000000111111111111111100011&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;110000111111111111111110000111111111111111110001&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;7.1&quot;:&quot;111000001111111111111111000001111111111111111100&quot;,&quot;8.1&quot;:&quot;111110000011111111111111111000111111111111111110&quot;,&quot;9.1&quot;:&quot;111111000001111111111111111110000111111111111111&quot;,&quot;10.1&quot;:&quot;111111110000001111111111111111000011111111111111&quot;,&quot;11.1&quot;:&quot;111111111100000111111111111111111000011111111111&quot;,&quot;12.1&quot;:&quot;111111111110000001111111111111111100001111111111&quot;,&quot;13.1&quot;:&quot;111111111111110000011111111111111111100011111111&quot;,&quot;14.1&quot;:&quot;111111111111111000000111111111111111110001111111&quot;,&quot;15.1&quot;:&quot;001111111111111110000001111111111111111100011111&quot;,&quot;16.1&quot;:&quot;000111111111111111100000111111111111111110001111&quot;,&quot;17.1&quot;:&quot;000001111111111111111000000111111111111111100011&quot;,&quot;18.1&quot;:&quot;110000111111111111111110000111111111111111110001&quot;,&quot;19.1&quot;:&quot;111000001111111111111111000001111111111111111100&quot;,&quot;20.1&quot;:&quot;111110000011111111111111111000111111111111111110&quot;,&quot;21.1&quot;:&quot;111111000001111111111111111110000111111111111111&quot;,&quot;22.1&quot;:&quot;111111110000001111111111111111000011111111111111&quot;,&quot;23.1&quot;:&quot;111111111100000111111111111111111000011111111111&quot;,&quot;24.1&quot;:&quot;111111111110000001111111111111111100001111111111&quot;,&quot;25.1&quot;:&quot;111111111111110000011111111111111111100011111111&quot;,&quot;26.1&quot;:&quot;111111111111111000000111111111111111110001111111&quot;,&quot;27.1&quot;:&quot;001111111111111110000001111111111111111100011111&quot;,&quot;28.1&quot;:&quot;000111111111111111100000111111111111111110001111&quot;,&quot;29.1&quot;:&quot;000001111111111111111000000111111111111111100011&quot;,&quot;30.1&quot;:&quot;110000111111111111111110000111111111111111110001&quot;,&quot;31.1&quot;:&quot;111000001111111111111111000001111111111111111100&quot;,&quot;32.1&quot;:&quot;111110000011111111111111111000111111111111111110&quot;,&quot;33.1&quot;:&quot;111111000001111111111111111110000111111111111111&quot;,&quot;34.1&quot;:&quot;111111110000001111111111111111000011111111111111&quot;,&quot;35.1&quot;:&quot;111111111100000111111111111111111000011111111111&quot;,&quot;36.1&quot;:&quot;111111111110000001111111111111111100001111111111&quot;,&quot;37.1&quot;:&quot;111111111111110000011111111111111111100011111111&quot;,&quot;38.1&quot;:&quot;111111111111111000000111111111111111110001111111&quot;,&quot;39.1&quot;:&quot;001111111111111110000001111111111111111100011111&quot;,&quot;40.1&quot;:&quot;000111111111111111100000111111111111111110001111&quot;,&quot;41.1&quot;:&quot;000001111111111111111000000111111111111111100011&quot;,&quot;42.1&quot;:&quot;110000111111111111111110000111111111111111110001&quot;,&quot;43.1&quot;:&quot;111000001111111111111111000001111111111111111100&quot;,&quot;44.1&quot;:&quot;111110000011111111111111111000111111111111111110&quot;,&quot;45.1&quot;:&quot;111111000001111111111111111110000111111111111111&quot;,&quot;46.1&quot;:&quot;111111110000001111111111111111000011111111111111&quot;,&quot;47.1&quot;:&quot;111111111100000111111111111111111000011111111111&quot;,&quot;48.1&quot;:&quot;111111111110000001111111111111111100001111111111&quot;,&quot;49.1&quot;:&quot;111111111111110000011111111111111111100011111111&quot;,&quot;50.1&quot;:&quot;111111111111111000000111111111111111110001111111&quot;,&quot;51.1&quot;:&quot;001111111111111110000001111111111111111100011111&quot;,&quot;52.1&quot;:&quot;000111111111111111111111111111111111111110001111&quot;,&quot;53.1&quot;:&quot;000001111111111111111111000111111111111111100011&quot;,&quot;54.1&quot;:&quot;110000111111111111111111000111111111111111110001&quot;,&quot;55.1&quot;:&quot;111000001111111111111111000001111111111111111100&quot;,&quot;56.1&quot;:&quot;111110000011111111111111111000111111111111111110&quot;,&quot;57.1&quot;:&quot;111111000001111111111111111110000111111111111111&quot;,&quot;58.1&quot;:&quot;111111110000001111111111111111000011111111111111&quot;,&quot;59.1&quot;:&quot;111111111100000111111111111111111000011111111111&quot;,&quot;60.1&quot;:&quot;111111111110000001111111111111111100001111111111&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow ks-out">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">м. Київ</h3>
+            <span class="ks-st ks-st-out shrink-0">⚡ Є відключення</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">
+          Зараз без світла: 50 груп · далі о 15:00
+        </p>
+                <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 7 лист., 13:45
+           · перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/prykarpattia_oblenergo" data-region="prykarpattia_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Івано-Франківська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/voe_volyn" data-region="voe_volyn" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Волинська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/dtek_donetsk" data-region="dtek_donetsk" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Донецька область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Графік не публікується</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">⚠ ДТЕК не публікує графік черг</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/zakarpattia_oblenergo" data-region="zakarpattia_oblenergo" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Закарпатська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/loe_lviv" data-region="loe_lviv" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Львівська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/roe_rivne" data-region="roe_rivne" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Рівненська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/toe_ternopil" data-region="toe_ternopil" data-groups="{&quot;1.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;1.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;2.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;3.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;4.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;5.2&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.1&quot;:{&quot;now&quot;:&quot;on&quot;},&quot;6.2&quot;:{&quot;now&quot;:&quot;on&quot;}}" data-halves="{&quot;1.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;1.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;2.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;3.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;4.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;5.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.1&quot;:&quot;000000000000000000000000000000000000000000000000&quot;,&quot;6.2&quot;:&quot;000000000000000000000000000000000000000000000000&quot;}" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Тернопільська область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Не підтверджено</span>
+        </div>
+        <p class="text-sm font-semibold mt-1">Графік від обленерго не опубліковано</p>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          
+          перевірено 7 лист., 14:49
+        </p>
+      </div>
+    </a>
+    <a href="/schedule/hoe_khmelnytsky" data-region="hoe_khmelnytsky" class="card ks-card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+      <div class="card-body p-5">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title text-base leading-snug">Хмельницька область</h3>
+            <span class="ks-st ks-st-nd shrink-0">Графік не оновлювався</span>
+        </div>
+        <div class="ks-my text-sm mt-1" hidden></div>
+        <div class="ks-mytl" hidden aria-hidden="true"></div>
+        <p class="text-xs text-base-content/50 mt-2">
+          Графік від 6 лист., 00:05
+           · перевірено 6 лист., 23:58
+        </p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<script>
+(function () {
+  var grid = document.querySelector('[data-region]') && document.querySelector('[data-region]').parentElement;
+  if (!grid) return;
+  var mine = [];
+  document.querySelectorAll('[data-region]').forEach(function (card) {
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem('ks:groups:' + card.dataset.region) || 'null'); } catch (e) {}
+    if (!saved || !Array.isArray(saved.groups) || !saved.groups.length) return;
+    var st = {};
+    try { st = JSON.parse(card.dataset.groups || '{}'); } catch (e) {}
+    var box = card.querySelector('.ks-my');
+    var lines = saved.groups.map(function (g) {
+      var s = st[g];
+      var text;
+      if (!s) text = 'немає даних';
+      else if (s.now === 'off') text = 'без світла' + (s.until ? ' до ' + s.until : '');
+      else if (s.now === 'maybe') text = 'можливе відключення' + (s.until ? ' до ' + s.until : '');
+      else if (s.next) text = 'світло є · вимкнуть о ' + s.next;
+      else if (s.tomorrow) text = 'до кінця дня світло є · завтра з ' + s.tomorrow;
+      else text = 'до кінця дня світло є';
+      var cls = s && s.now === 'off' ? ' class="ks-my-off"' : '';
+      return '<span' + cls + '>★ <b>' + g + '</b> — ' + text + '</span>';
+    });
+    box.innerHTML = lines.join('');
+    box.hidden = false;
+    // the strip of MY queue (not the worst of all queues), with hour marks
+    var halves = {};
+    try { halves = JSON.parse(card.dataset.halves || '{}'); } catch (e) {}
+    var h = halves[saved.groups[0]];
+    if (h) {
+      var tl = card.querySelector('.ks-mytl'), bars = '', i = 0;
+      while (i < 48) {
+        var v = h.charAt(i); if (v === '0') { i++; continue; }
+        var j = i; while (j < 48 && h.charAt(j) === v) j++;
+        bars += '<i class="' + (v === '2' ? 'mb' : '') + '" style="left:' + (i / 48 * 100) + '%;width:' + ((j - i) / 48 * 100) + '%"></i>';
+        i = j;
+      }
+      var p = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', minute: '2-digit', hour12: false }).split(':');
+      var pct = ((+p[0] % 24) * 60 + (+p[1])) / 1440 * 100;
+      tl.innerHTML = '<div class="ks-ticks"><span style="left:0">0</span><span style="left:25%">6</span><span style="left:50%">12</span><span style="left:75%">18</span><span style="left:100%">24</span></div>' +
+        '<div class="ks-tr">' + bars + '<span class="past" style="width:' + pct + '%"></span><span class="now" style="left:' + pct + '%"></span></div>';
+      tl.hidden = false;
+    }
+    mine.push(card);
+  });
+  // Regions with my groups first, keeping their relative order.
+  mine.slice().reverse().forEach(function (card) { grid.insertBefore(card, grid.firstChild); });
+  // Bot banner: subscribe straight to my first queue (bot: /start q-<region>-<queue>).
+  var tg = document.getElementById('ks-tg-link');
+  if (tg && mine.length) {
+    var card = mine[0], g = JSON.parse(localStorage.getItem('ks:groups:' + card.dataset.region)).groups[0];
+    tg.href = tg.dataset.bot + '?start=q-' + card.dataset.region + '-' + String(g).replace('.', '_');
+    tg.lastChild.textContent = ' Сповіщення для черги ' + g;
+    document.getElementById('ks-tg-text').textContent = 'Бот напише, щойно графік черги ' + g + ' (' + card.querySelector('h3').textContent.trim() + ') зміниться. Безкоштовно, без реєстрації.';
+  }
+})();
+</script>
+<section class="mb-4">
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-xl mb-2">REST API</h2>
+      <p class="text-base-content/70 mb-4">Доступ до даних через REST API для розробників. Потрібен API-ключ: безкоштовний — для себе (одна черга, 100 запитів на добу), цілі регіони й більше запитів — на тарифах API Basic і Pro.</p>
+      <div class="mockup-code text-sm mb-4">
+        <pre data-prefix="$"><code>GET /api/v1/regions</code></pre>
+        <pre data-prefix="$"><code>GET /api/v1/regions/:regionId/schedule</code></pre>
+        <pre data-prefix="$"><code>GET /api/v1/regions/:regionId/schedule/:groupId</code></pre>
+      </div>
+      <div class="card-actions">
+        <a href="/register" class="btn btn-primary btn-sm">Отримати безкоштовний ключ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer footer-center bg-base-100 text-base-content border-t border-base-300 p-6 mt-8">
+    <aside>
+      <p class="text-sm"><a href="https://t.me/koly_svitlo_bot" target="_blank" rel="noopener" class="link font-medium">Telegram-бот КолиСвітло</a> — сповіщення про зміни графіка для вашої черги</p>
+      <p class="text-sm text-base-content/60">
+        &copy; 2026 КолиСвітло — Графіки відключень електроенергії по всій Україні
+      </p>
+      <p class="text-xs"><a href="/privacy" class="link text-base-content/60">Політика конфіденційності</a> · <a href="/terms" class="link text-base-content/60">Умови користування</a></p>
+    </aside>
+  </footer>
+
+  <script>
+    document.getElementById('ks-theme').addEventListener('click', function () { window.ksTheme.cycle(); });
+  </script>
+</body>
+</html>

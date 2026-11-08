@@ -1,0 +1,114 @@
+{
+  "actor": "/root/public_address_probe",
+  "recorded_at_utc": "2026-11-07T14:08:55.848561+00:00",
+  "files": [
+    {
+      "path": "docs/light-bot-app/p1/address-probes/FINDINGS_UA.md",
+      "sha256": "cce8dd23a614a5b603ff90870c84e08d2b61cd4f083faded07efa319900d323e"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/binding-candidates.json",
+      "sha256": "c076cc1d3f1b67cef291898eff7189ffa1640608cbe19b2fa0545889f6b8572d"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/derive_offline_cases.mjs",
+      "sha256": "6d9fadb53f32e50a8be99a0e96eb820f75a4d432fbb5d6540b5315a6bc62434b"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/inputs.json",
+      "sha256": "d8f65f79ef6a633a32842734c7725bf5f3262cc34779a26ded7bcab6c9f64698"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-12-group.json",
+      "sha256": "4c2678438defbb8433a19af41632bbc61fe38d6833832094eeb3835d4b3a1962"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-121a-group.json",
+      "sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-121b-group.json",
+      "sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-128slash2-group.json",
+      "sha256": "82ff088f97f7cf2eacb46f9dc8de57738c617426c9d8e05a3a987223790147e8"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-avenue-houses-12.json",
+      "sha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-street.json",
+      "sha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-old-peremohy-street.json",
+      "sha256": "c6a14b3236441fd753418d9d2e08d9923307ae925af6439ea916f628d8b8504f"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-12a-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-12slash1-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-2h-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-2v-group.json",
+      "sha256": "5489ef03f406128dfa2ee4ddf42c2da49a87a35ea53849d1d6534d55b692643c"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-4a-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-5slash7-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-6slash8-group.json",
+      "sha256": "1c9a86fb269b561141d926f6ca64037a73629dc9041614f9457a0a568c57eef7"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-all-houses.json",
+      "sha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-house1-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-houses-12.json",
+      "sha256": "9c1a3a573303657d3fa5c229a93f9a97e1e8b42653756fbace4201244d77740d"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-street.json",
+      "sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/local-evidence-check.json",
+      "sha256": "578d98569eb69edc203a2a9b4cc3ab2c510c6754113f7a48b7d0f1efb2918196"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/observations.json",
+      "sha256": "c4d4848e943416e35b81ec5bdba85159b3a416337a76d9fe4e8d2e16186f8982"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/offline-contract-cases.json",
+      "sha256": "70544b586df20d564386aa3d67b2e2e1da29db376d993f1b0f19fb3936bb4c98"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/probe_public_address.py",
+      "sha256": "b5ee5c10ece5b744b4cb25a8c8dc73529f402b14292ea3dcccce794fde7d71cd"
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/receipt.json",
+      "sha256": "fab03811e0f1db56cb2c6e86cececad0378ac5643275e626add1ad81f98de60b"
+    }
+  ]
+}

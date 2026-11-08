@@ -1,0 +1,2992 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <link rel="canonical" href="https://sies.gov.ua/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/grafiki-vidklyuchen-elektropostachannya-operatoriv-sistemi-rozpodilu"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+    <meta charset="utf-8">
+    <title>Графіки відключень електропостачання операторів систем розподілу | Державна інспекція енергетичного нагляду України </title>
+    <!--meta info-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, maximum-scale=2.0">
+    <meta name="author" content="Kitsoft">
+    <meta name="description" content="">
+    <meta name="title" content="Графіки відключень електропостачання операторів систем розподілу">
+    <meta name="keywords" content=""/>
+    <!-- meta info-->
+    
+<meta property="og:url" content="https://sies.gov.ua/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/grafiki-vidklyuchen-elektropostachannya-operatoriv-sistemi-rozpodilu"/>
+<meta property="og:title" content="Держенергонагляд - Графіки відключень електропостачання операторів систем розподілу"/>
+<meta property="og:description" content=""/>
+<meta property="og:image" content="https://sies.gov.ua/storage/app/sites/4/sies-site-logo.png">
+
+<meta property="og:image:width" content="520" />
+<meta property="og:image:height" content="315" />    <meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://sies.gov.ua/themes/odv/assets/images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-57x57.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="60x60" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-60x60.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="72x72" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-72x72.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="76x76" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-76x76.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="114x114" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-114x114.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="120x120" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-120x120.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="144x144" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-144x144.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="152x152" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-152x152.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="apple-touch-icon" sizes="180x180" href="https://sies.gov.ua/themes/odv/assets/images/favicon/apple-icon-180x180.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="192x192" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-192x192.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="144x144" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-144x144.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="96x96" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-96x96.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="72x72" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-72x72.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="48x48" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-48x48.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="36x36" href="https://sies.gov.ua/themes/odv/assets/images/favicon/android-icon-36x36.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sies.gov.ua/themes/odv/assets/images/favicon/favicon-32x32.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="96x96" href="https://sies.gov.ua/themes/odv/assets/images/favicon/favicon-96x96.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sies.gov.ua/themes/odv/assets/images/favicon/favicon-16x16.png"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+<link rel="manifest" href="https://sies.gov.ua/themes/odv/assets/images/favicon/manifest.json"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+        <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+    <link href="https://sies.gov.ua/themes/odv/assets/vendor/dflip/css/dflip.min.css" rel="stylesheet" type="text/css" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+    <link rel="stylesheet" type="text/css" href="https://sies.gov.ua/combine/a87a0b4c319ad2c5116acf7479fdfedd-1792765002"/ nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+
+        		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141941573-1" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs"></script>
+		<script nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+            gtag('config', 'UA-141941573-1', {
+				cookie_flags: 'max-age=7200;secure;samesite=none'
+			});
+		</script>
+    
+    <script nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+window.multiLang = {
+    allPages: {
+        postsName: `Новини`,
+        eventsName: `Події`,
+        mediagalleriesName: `Медіагалереї`,
+        meetingsText: `Засідання`,
+        servicesText: `Послуги`,
+        pagesText: `Сторінки`,
+        moreByThemeText: `Більше за темою`,
+        foundResultText: `Знайдено`,
+        notFoundText: `Нічого не знайдено`,
+        notFoundTextVehicles: `Не знайдено жодного транспортного засобу, спробуйте ще раз або перевірте правильність введених даних`,
+        notFoundTextTerrorists: `Не знайдено жодного терориста, спробуйте ще раз або перевірте правильність введених даних`,
+        notFoundTextDisappeared: `Не знайдено жодного зниклого громадянина, спробуйте ще раз або перевірте правильність введених даних`,
+        notFoundTextDisappearedOOS: `Не знайдено жодної зниклої особи, спробуйте ще раз або перевірте правильність введених даних`,
+        loadMoreText: `Завантажуємо ще`,
+        loadMoreHintText: `Прокрутіть, щоб завантажити ще`,
+        exeptionText: `Щось пішло не так`,
+        shortRequest: `Закороткий пошуковий запит`,
+        periodText: `За період`,
+        authorNameText: `Автор`,
+        docName: `від`,
+        chosenCategoryText: `Розпорядження`,
+        requestSearchText: `Ви шукали`,
+        changeVisionText: `Налаштування доступності`,
+        changeVisionNormalText: `Стандартна версія`,
+        chooseDateText: `Виберіть дату`,
+        validateFormFile: `Прикріпіть файл`,
+        yearText: `року`,
+        chosenNothingWasFound: `За вашим пошуковим запитом нічого не знайдено: `,
+        noNewEvents: `Поки що, запланованих подій на майбутнє більше немає`,
+        noNewEventsDescription: `Завітайте пізніше, можливо, наші менеджери як раз працюють над додаванням нових подій.`,
+        eventsAreCompleted: `Події завершено`,
+        singleEventAreCompleted: `завершено`,
+        choicesLoading: `Завантажуємо...`,
+        choicesNoResults: `Нічого не знайдено`,
+        choicesNoChoices: `Вибору немає`,
+        noSiteKeyForReCaptcha: `Відсутній параметр для reCaptcha, відправка форми неможлива`,
+        noContent: `Інформація відсутня`,
+        totalItemsText: `Всього`,
+        downloadFile: `Завантажити`,
+        viewFile: `Переглянути`,
+        verifSingleElText: `перевірка`,
+        verifTwoElText: `перевірки`,
+        verifManyText: `перевірок`,
+        document: `Документ`,
+        hoursAgo: `година тому|години тому|годин тому`,
+        documentsText: `документ|документи|документів`,
+        documentNum: `Реєстраційний номер`,
+        documentDate: `Дата створення, надходження документа`,
+        docType: `Назва, вид документа`,
+        documentName: `Джерело інформації (автор, відповідальний підрозділ)`,
+        documentExcerpt: `Галузь, ключові слова`,
+        zoomInText: `Збільшити масштаб`,
+        zoomOutText: `Зменшити масштаб`,
+        fullscreenText: `Повний екран`,
+        mapText: `Інтерактивна мапа`,
+        loadingText: `Завантажуємо...`,
+        noChoicesText: `Вибору немає`,
+        downloadOriginalImage: `Завантажити оригінальне зображення`,
+        closeEsc: `Закрити (ESC)`,
+        slideTitle: `Слайд`,
+        slideFrom: `з`
+    },
+    search: {
+        personsText: `Персони`,
+        newsText: `Новини`,
+        actsText: `НПА`,
+        eventsText: `Анонси`,
+        pagesText: `Сторінки`,
+        mediagalleriesText: `Медіагалереї`,
+        ariaMaterialTypeFilter: `Відфільтрувати за типом матеріалу`,
+        materials: `матеріал|матеріали|матеріалів`,
+        materialNotFound: `За вашим запитом не знайдено матеріалів`,
+        materialFounded: `За вашим запитом знайдено`,
+        materialsText: `матеріалів`,
+        leftSidebarText: `За типом матеріалу`,
+        requestPeriodTextFrom: `з`,
+        requestPeriodTextTo: ` по`,
+        requestFoundedText: `Знайдено`,
+        requestTypeDoc: `документи`,
+        itemsAmountString_1: `матеріал`,
+        itemsAmountString_2: `матеріала`,
+        bySearchKey: `за запитом`,
+        searchMessage: `Заповніть поле ( мінімум 3 символи )`,
+    },
+    coordination: {
+        notFoundText: "Нічого не знайдено",
+        exeptionText: "Щось пішло не так",
+        allEvents: "Події за весь період",
+    },
+    timeLine: {
+        allTypesname: `Усі типи`,
+        projectsName: `Проекти`,
+        actsName: `Документи`,
+        pagesName: `Сторінка`,
+        eventComplete: `Подія завершена`,
+        firstPeriodLoadInterval: `З - по`,
+        toTest: `До`,
+        fromTest: `Дата з`,
+        todayText: `Сьогодні`,
+        weekText: `За останній тиждень`,
+        monthText: `За останній місяць`,
+        errMsgDay: `День початку має бути меншим`,
+        errMsgMounth: `Місяць початку має бути меншим`,
+        errMsgYear: `Рік початку має бути меншим`,
+    },
+    all: {
+        changeVisionText: "Людям із порушенням зору",
+        changeVisionNormalText: "Стандартна версія"
+    }
+}
+// console.log(window.multiLang);
+
+</script>
+</head>
+<body>
+    <a href="#mainContent" tabindex="0" class="link-skip">
+        Перейти до основного вмісту
+        <span class="link-skip-icon" aria-hidden="true"></span>
+    </a>
+    
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="header" id="layout-header">
+                            
+<!-- Nav -->
+<div class="header-bg">
+    <div class="row justify-content-between">
+
+        <!-- ================================================================== -->
+        <!-- 1. МОБІЛЬНА ВЕРСІЯ (Повністю ізольована, без перевірок довжини)    -->
+        <!-- ================================================================== -->
+        <div class="d-block d-lg-none navbar-fixed-top" data-spy="affix" data-offset-top="157">
+            <div class="menu-for-small-devices d-block d-lg-none" id="menuSm">
+                <div class="header-top">
+                    <button class="header-menu-close closeMenuSm" aria-label="Закрити меню навігації"></button>
+                    <div class="ml-auto">
+                                                </div>
+                </div>
+                <div class="menu-sm-wrap-for-scroll">
+                    <div class="menu-container">
+                        <nav class="menu" aria-label="Головне меню">
+                        <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Про нас
+        </a>
+        <div class="submenu">
+            <div id="submenu-1">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Про нас
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/misiya-ta-strategiya"
+                       class="submenu_child d-block"
+                       >
+                    Місія та стратегія
+                    </a>
+                                                                                <a href="/persons"
+                       class="submenu_child d-block"
+                       >
+                    Керівництво
+                    </a>
+                                                                                                                        <a href="/struktura"
+                       class="submenu_child d-block"
+                       >
+                    Структура
+                    </a>
+                                                                                <a href="/pravove-zabezpechennya"
+                       class="submenu_child d-block"
+                       >
+                    Правові засади діяльності
+                    </a>
+                                                                                                                        <a href="/profspilkova-diialnist"
+                       class="submenu_child d-block"
+                       >
+                    Профспілкова діяльність
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/misiya-ta-strategiya"
+                       class="submenu_child d-block"
+                       >
+                    Місія та стратегія
+                    </a>
+                                                                                <a href="/persons"
+                       class="submenu_child d-block"
+                       >
+                    Керівництво
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/struktura"
+                       class="submenu_child d-block"
+                       >
+                    Структура
+                    </a>
+                                                                                <a href="/pravove-zabezpechennya"
+                       class="submenu_child d-block"
+                       >
+                    Правові засади діяльності
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/profspilkova-diialnist"
+                       class="submenu_child d-block"
+                       >
+                    Профспілкова діяльність
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Діяльність
+        </a>
+        <div class="submenu">
+            <div id="submenu-2">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Діяльність
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/zakonodavstvo"
+                       class="submenu_child d-block"
+                       >
+                    Законодавство
+                    </a>
+                                                                                <a href="https://sies.gov.ua/regulyatorna-diyalnist?v=6565ef0c1e990"
+                       class="submenu_child d-block"
+                       >
+                    Регуляторна діяльність
+                    </a>
+                                                                                <a href="/elektroenergetika"
+                       class="submenu_child d-block"
+                       >
+                    Електроенергетика
+                    </a>
+                                                                                <a href="/teplopostachannya"
+                       class="submenu_child d-block"
+                       >
+                    Теплопостачання
+                    </a>
+                                                                                <a href="/rynok-pryrodnoho-hazu"
+                       class="submenu_child d-block"
+                       >
+                    Ринок природного газу
+                    </a>
+                                                                                <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh"
+                       class="submenu_child d-block"
+                       >
+                    Експлуатація електричних станцій та мереж
+                    </a>
+                                                                                <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu"
+                       class="submenu_child d-block"
+                       >
+                    Організація здійснення державного нагляду (контролю)
+                    </a>
+                                                                                                                        <a href="/plani-ta-zviti"
+                       class="submenu_child d-block"
+                       >
+                    Плани та звіти
+                    </a>
+                                                                                <a href="/mizhnarodne-spivrobitnytstvo"
+                       class="submenu_child d-block"
+                       >
+                    Міжнародне співробітництво
+                    </a>
+                                                                                <a href="/infohrafika"
+                       class="submenu_child d-block"
+                       >
+                    Інфографіка
+                    </a>
+                                                                                <a href="/zapobigannya-ta-protidiya-korupciyi"
+                       class="submenu_child d-block"
+                       >
+                    Запобігання та протидія корупції
+                    </a>
+                                                                                <a href="/ochishchennya-vladi"
+                       class="submenu_child d-block"
+                       >
+                    Очищення влади
+                    </a>
+                                                                                <a href="/vakansiyi"
+                       class="submenu_child d-block"
+                       >
+                    Вакансії
+                    </a>
+                                                                                <a href="/perelik-napriamiv-tem-dlia-pidvyshchennia-kvalifikatsii"
+                       class="submenu_child d-block"
+                       >
+                    Розвиток персоналу
+                    </a>
+                                                                                                                        <a href="/vnutrishnij-audit"
+                       class="submenu_child d-block"
+                       >
+                    Внутрішній аудит
+                    </a>
+                                                                                <a href="/derzhavni-zakupivli"
+                       class="submenu_child d-block"
+                       >
+                    Публічні закупівлі
+                    </a>
+                                                                                <a href="/cifrovizaciya-ta-kiberbezpeka"
+                       class="submenu_child d-block"
+                       >
+                    Цифровізація та кібербезпека
+                    </a>
+                                                                                <a href="/kolegiya"
+                       class="submenu_child d-block"
+                       >
+                    Колегія
+                    </a>
+                                                                                <a href="/bezbariernist"
+                       class="submenu_child d-block"
+                       >
+                    Безбар&#039;єрність
+                    </a>
+                                                                                <a href="/gender"
+                       class="submenu_child d-block"
+                       >
+                    Ґендерна рівність
+                    </a>
+                                                                                <a href="/enerhoefektyvnist"
+                       class="submenu_child d-block"
+                       >
+                    Енергоефективність
+                    </a>
+                                                                                <a href="/vseukrayinskij-tizhden-prava"
+                       class="submenu_child d-block"
+                       >
+                    Безоплатна правова допомога
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/zakonodavstvo"
+                       class="submenu_child d-block"
+                       >
+                    Законодавство
+                    </a>
+                                                                                <a href="https://sies.gov.ua/regulyatorna-diyalnist?v=6565ef0c1e990"
+                       class="submenu_child d-block"
+                       >
+                    Регуляторна діяльність
+                    </a>
+                                                                                <a href="/elektroenergetika"
+                       class="submenu_child d-block"
+                       >
+                    Електроенергетика
+                    </a>
+                                                                                <a href="/teplopostachannya"
+                       class="submenu_child d-block"
+                       >
+                    Теплопостачання
+                    </a>
+                                                                                <a href="/rynok-pryrodnoho-hazu"
+                       class="submenu_child d-block"
+                       >
+                    Ринок природного газу
+                    </a>
+                                                                                <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh"
+                       class="submenu_child d-block"
+                       >
+                    Експлуатація електричних станцій та мереж
+                    </a>
+                                                                                <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu"
+                       class="submenu_child d-block"
+                       >
+                    Організація здійснення державного нагляду (контролю)
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/plani-ta-zviti"
+                       class="submenu_child d-block"
+                       >
+                    Плани та звіти
+                    </a>
+                                                                                <a href="/mizhnarodne-spivrobitnytstvo"
+                       class="submenu_child d-block"
+                       >
+                    Міжнародне співробітництво
+                    </a>
+                                                                                <a href="/infohrafika"
+                       class="submenu_child d-block"
+                       >
+                    Інфографіка
+                    </a>
+                                                                                <a href="/zapobigannya-ta-protidiya-korupciyi"
+                       class="submenu_child d-block"
+                       >
+                    Запобігання та протидія корупції
+                    </a>
+                                                                                <a href="/ochishchennya-vladi"
+                       class="submenu_child d-block"
+                       >
+                    Очищення влади
+                    </a>
+                                                                                <a href="/vakansiyi"
+                       class="submenu_child d-block"
+                       >
+                    Вакансії
+                    </a>
+                                                                                <a href="/perelik-napriamiv-tem-dlia-pidvyshchennia-kvalifikatsii"
+                       class="submenu_child d-block"
+                       >
+                    Розвиток персоналу
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/vnutrishnij-audit"
+                       class="submenu_child d-block"
+                       >
+                    Внутрішній аудит
+                    </a>
+                                                                                <a href="/derzhavni-zakupivli"
+                       class="submenu_child d-block"
+                       >
+                    Публічні закупівлі
+                    </a>
+                                                                                <a href="/cifrovizaciya-ta-kiberbezpeka"
+                       class="submenu_child d-block"
+                       >
+                    Цифровізація та кібербезпека
+                    </a>
+                                                                                <a href="/kolegiya"
+                       class="submenu_child d-block"
+                       >
+                    Колегія
+                    </a>
+                                                                                <a href="/bezbariernist"
+                       class="submenu_child d-block"
+                       >
+                    Безбар&#039;єрність
+                    </a>
+                                                                                <a href="/gender"
+                       class="submenu_child d-block"
+                       >
+                    Ґендерна рівність
+                    </a>
+                                                                                <a href="/enerhoefektyvnist"
+                       class="submenu_child d-block"
+                       >
+                    Енергоефективність
+                    </a>
+                                                                                <a href="/vseukrayinskij-tizhden-prava"
+                       class="submenu_child d-block"
+                       >
+                    Безоплатна правова допомога
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Для громадськості
+        </a>
+        <div class="submenu">
+            <div id="submenu-3">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Для громадськості
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/dostup-do-publichnoyi-informaciyi"
+                       class="submenu_child d-block"
+                       >
+                    Доступ до публічної інформації
+                    </a>
+                                                                                <a href="/vidkriti-dani"
+                       class="submenu_child d-block"
+                       >
+                    Відкриті дані
+                    </a>
+                                                                                                                        <a href="/zvernennya-gromadyan"
+                       class="submenu_child d-block"
+                       >
+                    Звернення громадян
+                    </a>
+                                                                                <a href="/do-vidoma-gromadskosti"
+                       class="submenu_child d-block"
+                       >
+                    До відома громадськості
+                    </a>
+                                                                                                                        <a href="https://sies.gov.ua/konsultacii-z-gromadskistu"
+                       class="submenu_child d-block"
+                       >
+                    Консультації з громадськістю
+                    </a>
+                                                                                <a href="elektronne-zvernennya"
+                       class="submenu_child d-block"
+                       >
+                    Електронне звернення
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/dostup-do-publichnoyi-informaciyi"
+                       class="submenu_child d-block"
+                       >
+                    Доступ до публічної інформації
+                    </a>
+                                                                                <a href="/vidkriti-dani"
+                       class="submenu_child d-block"
+                       >
+                    Відкриті дані
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/zvernennya-gromadyan"
+                       class="submenu_child d-block"
+                       >
+                    Звернення громадян
+                    </a>
+                                                                                <a href="/do-vidoma-gromadskosti"
+                       class="submenu_child d-block"
+                       >
+                    До відома громадськості
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="https://sies.gov.ua/konsultacii-z-gromadskistu"
+                       class="submenu_child d-block"
+                       >
+                    Консультації з громадськістю
+                    </a>
+                                                                                <a href="elektronne-zvernennya"
+                       class="submenu_child d-block"
+                       >
+                    Електронне звернення
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                    <a class="js-menu-link" href="/yedine-vikno"
+                                          >Єдине вікно</a>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Розподілена генерація
+        </a>
+        <div class="submenu">
+            <div id="submenu-5">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Розподілена генерація
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/z-pytan-pryiednannia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    З питань приєднання
+                    </a>
+                                                                                                                        <a href="/yedine-vikno"
+                       class="submenu_child d-block"
+                       >
+                    Подати скаргу
+                    </a>
+                                                                                                                        <a href="/zahalna-informatsiia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    Загальна інформація
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/z-pytan-pryiednannia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    З питань приєднання
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/yedine-vikno"
+                       class="submenu_child d-block"
+                       >
+                    Подати скаргу
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/zahalna-informatsiia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    Загальна інформація
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                    <a class="js-menu-link" href="/kontakti"
+                                          >Контакти</a>
+            </nav>                    </div>
+
+                    <div class="header-services">
+                                                
+                        
+                        <div class="header-services-item">
+                            
+    <div class="socials" aria-label="Соціальні мережі">
+                                                                        <a href="http://facebook.com/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Facebook (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-facebook-square">
+            </a>
+                                                                        <a href="https://t.me/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Telegram (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-telegram">
+            </a>
+            </div>
+                        </div>
+                        <div class="header-services-item">
+                            
+                        </div>
+                        <div class="mt-5">
+                            <button class="main-logo"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#govModal"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="icon"></span>
+                                <span class="main-logo_text">
+                                <span>gov.ua</span>
+                                    <span class="light">Державні сайти України</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-top">
+                <button class="header-menu-icon" id="shomMenuSm" aria-label="Показати меню навігації">
+                    <span class="visually-hidden">Menu</span>
+                </button>
+                <button class="header-search-btn js-search-toggle" aria-haspopup="true" aria-expanded="false">
+                    Пошук
+                </button>
+            </div>
+        </div>
+
+        <!-- Мобільний заголовок та герб (Завжди стандартний, відображається 1 раз) -->
+        <div class="col-12 d-block d-lg-none text-center">
+            <a href="/" class="main-title" aria-label="На головну сторінку">
+                <div class="icon"
+                                        style="background-image: url('https://sies.gov.ua/storage/app/sites/4/trizub.png')"
+                    >
+                </div>
+                                    <div class="main-title-text">Державна інспекція енергетичного нагляду України</div>
+                                <div class="light">
+                    
+                </div>
+            </a>
+        </div>
+            <!-- ДЕСКТОП: ОРИГІНАЛЬНА СТРУКТУРА ДЛЯ КОРОТКОГО ТАЙТЛУ -->
+            <div class="col-md-3 d-none d-lg-block">
+                <button class="main-logo"
+                        data-bs-toggle="modal"
+                        data-bs-target="#govModal"
+                        aria-haspopup="true">
+                    <span class="icon"></span>
+                    <span class="main-logo_text">
+                        <span>GOV.UA</span>
+                        <span class="light">Державні сайти України</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="col-md-3 d-none d-lg-flex" style="width: fit-content">
+                <div class="ml-auto d-flex flex-column align-items-end" role="navigation" aria-label="Налаштування мови та доступності">
+                    
+                        
+                    
+                                    </div>
+            </div>
+
+            <!-- Додано d-none d-lg-block, щоб цей блок ховався на мобільних і не дублювався -->
+            <div class="col-md-12 d-none d-lg-block text-center">
+                <a href="/" class="main-title" aria-label="На головну сторінку">
+                    <div class="icon"
+                                                style="background-image: url('https://sies.gov.ua/storage/app/sites/4/trizub.png')"
+                        >
+                    </div>
+                                            <div class="main-title-text">Державна інспекція енергетичного нагляду України</div>
+                                        <div class="light">
+                        
+                    </div>
+                </a>
+            </div>
+
+        <!-- ================================================================== -->
+        <!-- 3. ГОЛОВНЕ МЕНЮ НАВІГАЦІЇ (Спільне для всіх)                       -->
+        <!-- ================================================================== -->
+        <div class="col-md-12">
+            <div class="menu-container mt-2">
+                <div class="d-none d-lg-block">
+                    <div id="menuDesktop" class="menu-desktop row">
+                        <div class="menu-desktop-wrap">
+                                        <nav class="menu" aria-label="Головне меню">
+                        <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Про нас
+        </a>
+        <div class="submenu">
+            <div id="submenu-1">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Про нас
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/misiya-ta-strategiya"
+                       class="submenu_child d-block"
+                       >
+                    Місія та стратегія
+                    </a>
+                                                                                <a href="/persons"
+                       class="submenu_child d-block"
+                       >
+                    Керівництво
+                    </a>
+                                                                                                                        <a href="/struktura"
+                       class="submenu_child d-block"
+                       >
+                    Структура
+                    </a>
+                                                                                <a href="/pravove-zabezpechennya"
+                       class="submenu_child d-block"
+                       >
+                    Правові засади діяльності
+                    </a>
+                                                                                                                        <a href="/profspilkova-diialnist"
+                       class="submenu_child d-block"
+                       >
+                    Профспілкова діяльність
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/misiya-ta-strategiya"
+                       class="submenu_child d-block"
+                       >
+                    Місія та стратегія
+                    </a>
+                                                                                <a href="/persons"
+                       class="submenu_child d-block"
+                       >
+                    Керівництво
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/struktura"
+                       class="submenu_child d-block"
+                       >
+                    Структура
+                    </a>
+                                                                                <a href="/pravove-zabezpechennya"
+                       class="submenu_child d-block"
+                       >
+                    Правові засади діяльності
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/profspilkova-diialnist"
+                       class="submenu_child d-block"
+                       >
+                    Профспілкова діяльність
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Діяльність
+        </a>
+        <div class="submenu">
+            <div id="submenu-2">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Діяльність
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/zakonodavstvo"
+                       class="submenu_child d-block"
+                       >
+                    Законодавство
+                    </a>
+                                                                                <a href="https://sies.gov.ua/regulyatorna-diyalnist?v=6565ef0c1e990"
+                       class="submenu_child d-block"
+                       >
+                    Регуляторна діяльність
+                    </a>
+                                                                                <a href="/elektroenergetika"
+                       class="submenu_child d-block"
+                       >
+                    Електроенергетика
+                    </a>
+                                                                                <a href="/teplopostachannya"
+                       class="submenu_child d-block"
+                       >
+                    Теплопостачання
+                    </a>
+                                                                                <a href="/rynok-pryrodnoho-hazu"
+                       class="submenu_child d-block"
+                       >
+                    Ринок природного газу
+                    </a>
+                                                                                <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh"
+                       class="submenu_child d-block"
+                       >
+                    Експлуатація електричних станцій та мереж
+                    </a>
+                                                                                <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu"
+                       class="submenu_child d-block"
+                       >
+                    Організація здійснення державного нагляду (контролю)
+                    </a>
+                                                                                                                        <a href="/plani-ta-zviti"
+                       class="submenu_child d-block"
+                       >
+                    Плани та звіти
+                    </a>
+                                                                                <a href="/mizhnarodne-spivrobitnytstvo"
+                       class="submenu_child d-block"
+                       >
+                    Міжнародне співробітництво
+                    </a>
+                                                                                <a href="/infohrafika"
+                       class="submenu_child d-block"
+                       >
+                    Інфографіка
+                    </a>
+                                                                                <a href="/zapobigannya-ta-protidiya-korupciyi"
+                       class="submenu_child d-block"
+                       >
+                    Запобігання та протидія корупції
+                    </a>
+                                                                                <a href="/ochishchennya-vladi"
+                       class="submenu_child d-block"
+                       >
+                    Очищення влади
+                    </a>
+                                                                                <a href="/vakansiyi"
+                       class="submenu_child d-block"
+                       >
+                    Вакансії
+                    </a>
+                                                                                <a href="/perelik-napriamiv-tem-dlia-pidvyshchennia-kvalifikatsii"
+                       class="submenu_child d-block"
+                       >
+                    Розвиток персоналу
+                    </a>
+                                                                                                                        <a href="/vnutrishnij-audit"
+                       class="submenu_child d-block"
+                       >
+                    Внутрішній аудит
+                    </a>
+                                                                                <a href="/derzhavni-zakupivli"
+                       class="submenu_child d-block"
+                       >
+                    Публічні закупівлі
+                    </a>
+                                                                                <a href="/cifrovizaciya-ta-kiberbezpeka"
+                       class="submenu_child d-block"
+                       >
+                    Цифровізація та кібербезпека
+                    </a>
+                                                                                <a href="/kolegiya"
+                       class="submenu_child d-block"
+                       >
+                    Колегія
+                    </a>
+                                                                                <a href="/bezbariernist"
+                       class="submenu_child d-block"
+                       >
+                    Безбар&#039;єрність
+                    </a>
+                                                                                <a href="/gender"
+                       class="submenu_child d-block"
+                       >
+                    Ґендерна рівність
+                    </a>
+                                                                                <a href="/enerhoefektyvnist"
+                       class="submenu_child d-block"
+                       >
+                    Енергоефективність
+                    </a>
+                                                                                <a href="/vseukrayinskij-tizhden-prava"
+                       class="submenu_child d-block"
+                       >
+                    Безоплатна правова допомога
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/zakonodavstvo"
+                       class="submenu_child d-block"
+                       >
+                    Законодавство
+                    </a>
+                                                                                <a href="https://sies.gov.ua/regulyatorna-diyalnist?v=6565ef0c1e990"
+                       class="submenu_child d-block"
+                       >
+                    Регуляторна діяльність
+                    </a>
+                                                                                <a href="/elektroenergetika"
+                       class="submenu_child d-block"
+                       >
+                    Електроенергетика
+                    </a>
+                                                                                <a href="/teplopostachannya"
+                       class="submenu_child d-block"
+                       >
+                    Теплопостачання
+                    </a>
+                                                                                <a href="/rynok-pryrodnoho-hazu"
+                       class="submenu_child d-block"
+                       >
+                    Ринок природного газу
+                    </a>
+                                                                                <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh"
+                       class="submenu_child d-block"
+                       >
+                    Експлуатація електричних станцій та мереж
+                    </a>
+                                                                                <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu"
+                       class="submenu_child d-block"
+                       >
+                    Організація здійснення державного нагляду (контролю)
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/plani-ta-zviti"
+                       class="submenu_child d-block"
+                       >
+                    Плани та звіти
+                    </a>
+                                                                                <a href="/mizhnarodne-spivrobitnytstvo"
+                       class="submenu_child d-block"
+                       >
+                    Міжнародне співробітництво
+                    </a>
+                                                                                <a href="/infohrafika"
+                       class="submenu_child d-block"
+                       >
+                    Інфографіка
+                    </a>
+                                                                                <a href="/zapobigannya-ta-protidiya-korupciyi"
+                       class="submenu_child d-block"
+                       >
+                    Запобігання та протидія корупції
+                    </a>
+                                                                                <a href="/ochishchennya-vladi"
+                       class="submenu_child d-block"
+                       >
+                    Очищення влади
+                    </a>
+                                                                                <a href="/vakansiyi"
+                       class="submenu_child d-block"
+                       >
+                    Вакансії
+                    </a>
+                                                                                <a href="/perelik-napriamiv-tem-dlia-pidvyshchennia-kvalifikatsii"
+                       class="submenu_child d-block"
+                       >
+                    Розвиток персоналу
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/vnutrishnij-audit"
+                       class="submenu_child d-block"
+                       >
+                    Внутрішній аудит
+                    </a>
+                                                                                <a href="/derzhavni-zakupivli"
+                       class="submenu_child d-block"
+                       >
+                    Публічні закупівлі
+                    </a>
+                                                                                <a href="/cifrovizaciya-ta-kiberbezpeka"
+                       class="submenu_child d-block"
+                       >
+                    Цифровізація та кібербезпека
+                    </a>
+                                                                                <a href="/kolegiya"
+                       class="submenu_child d-block"
+                       >
+                    Колегія
+                    </a>
+                                                                                <a href="/bezbariernist"
+                       class="submenu_child d-block"
+                       >
+                    Безбар&#039;єрність
+                    </a>
+                                                                                <a href="/gender"
+                       class="submenu_child d-block"
+                       >
+                    Ґендерна рівність
+                    </a>
+                                                                                <a href="/enerhoefektyvnist"
+                       class="submenu_child d-block"
+                       >
+                    Енергоефективність
+                    </a>
+                                                                                <a href="/vseukrayinskij-tizhden-prava"
+                       class="submenu_child d-block"
+                       >
+                    Безоплатна правова допомога
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Для громадськості
+        </a>
+        <div class="submenu">
+            <div id="submenu-3">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Для громадськості
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/dostup-do-publichnoyi-informaciyi"
+                       class="submenu_child d-block"
+                       >
+                    Доступ до публічної інформації
+                    </a>
+                                                                                <a href="/vidkriti-dani"
+                       class="submenu_child d-block"
+                       >
+                    Відкриті дані
+                    </a>
+                                                                                                                        <a href="/zvernennya-gromadyan"
+                       class="submenu_child d-block"
+                       >
+                    Звернення громадян
+                    </a>
+                                                                                <a href="/do-vidoma-gromadskosti"
+                       class="submenu_child d-block"
+                       >
+                    До відома громадськості
+                    </a>
+                                                                                                                        <a href="https://sies.gov.ua/konsultacii-z-gromadskistu"
+                       class="submenu_child d-block"
+                       >
+                    Консультації з громадськістю
+                    </a>
+                                                                                <a href="elektronne-zvernennya"
+                       class="submenu_child d-block"
+                       >
+                    Електронне звернення
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/dostup-do-publichnoyi-informaciyi"
+                       class="submenu_child d-block"
+                       >
+                    Доступ до публічної інформації
+                    </a>
+                                                                                <a href="/vidkriti-dani"
+                       class="submenu_child d-block"
+                       >
+                    Відкриті дані
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/zvernennya-gromadyan"
+                       class="submenu_child d-block"
+                       >
+                    Звернення громадян
+                    </a>
+                                                                                <a href="/do-vidoma-gromadskosti"
+                       class="submenu_child d-block"
+                       >
+                    До відома громадськості
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="https://sies.gov.ua/konsultacii-z-gromadskistu"
+                       class="submenu_child d-block"
+                       >
+                    Консультації з громадськістю
+                    </a>
+                                                                                <a href="elektronne-zvernennya"
+                       class="submenu_child d-block"
+                       >
+                    Електронне звернення
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                    <a class="js-menu-link" href="/yedine-vikno"
+                                          >Єдине вікно</a>
+                                <a href="javascript:void(0);"
+           class="js-menu-link showSubmenu"
+            role="button" aria-haspopup="true" aria-expanded="false"         >
+            Розподілена генерація
+        </a>
+        <div class="submenu">
+            <div id="submenu-5">
+                <div class="header-top d-flex d-lg-none">
+                    <div class="title backMenu" role="button" tabindex="0" aria-label="Закрити підменю">
+                        Розподілена генерація
+                    </div>
+                    <div class="header-menu-close closeMenuSm" role="button" tabindex="0" aria-label="Закрити меню навігації"></div>
+                </div>
+                <div class="submenu-container d-block d-lg-none">
+                                                                                <a href="/z-pytan-pryiednannia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    З питань приєднання
+                    </a>
+                                                                                                                        <a href="/yedine-vikno"
+                       class="submenu_child d-block"
+                       >
+                    Подати скаргу
+                    </a>
+                                                                                                                        <a href="/zahalna-informatsiia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    Загальна інформація
+                    </a>
+                                                                            </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                                <div class="col-md-4">
+                                                            <a href="/z-pytan-pryiednannia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    З питань приєднання
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/yedine-vikno"
+                       class="submenu_child d-block"
+                       >
+                    Подати скаргу
+                    </a>
+                                                        </div>
+                                <div class="col-md-4">
+                                                            <a href="/zahalna-informatsiia-rozpodilena-generacia"
+                       class="submenu_child d-block"
+                       >
+                    Загальна інформація
+                    </a>
+                                                        </div>
+                            </div>
+        </div>
+                                    <a class="js-menu-link" href="/kontakti"
+                                          >Контакти</a>
+            </nav>                                <button aria-expanded="false" type="button" class="show_more d-none" id="show_more" aria-label="Показати більше пунктів меню"></button>
+                        </div>
+                        <nav class="socials-search-wrap ml-auto d-none d-lg-flex">
+                            <span class="mr-15">
+</span>
+                            
+    <div class="socials" aria-label="Соціальні мережі">
+                                                                        <a href="http://facebook.com/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Facebook (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-facebook-square">
+            </a>
+                                                                        <a href="https://t.me/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Telegram (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-telegram">
+            </a>
+            </div>
+                            <button class="header-search-btn js-search-toggle" aria-haspopup="true" aria-expanded="false">
+                                Пошук
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+                
+<div class="search-form" id="searchFormWrap">
+    <div class="d-flex px-3">
+        <button class="header-menu-close ml-auto closeMenuSm" aria-label="Закрити форму пошуку" id="closeSearch"></button>
+    </div>
+
+    <div class="nav btns-wrap" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-search-portal-tab" data-bs-toggle="tab" data-bs-target="#nav-search-portal" type="button" role="tab" aria-controls="nav-search-portal" aria-selected="true">
+            Шукати на порталі
+        </button>
+        <span class="or">або</span>
+        <button class="nav-link" id="nav-search-npa-tab" data-bs-toggle="tab" data-bs-target="#nav-search-npa" type="button" role="tab" aria-controls="nav-search-npa" aria-selected="false">
+            серед нормативно-правових актів
+        </button>
+    </div>
+    <div class="tab-content px-4 px-xxs-mobile-0" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-search-portal" role="tabpanel" aria-labelledby="nav-search-portal-tab">
+            <form id="searchPortalForm"
+                  action="/searchresult"
+                  method="GET"
+                  class="row align-items-end mb-3 pb-3 mb-lg-0 pb-lg-0">
+
+                <div class="col-md-9">
+                    <label for="searchKeyWord">Ключові слова</label>
+                    <input class="input" name="key" id="searchKeyWord" placeholder="Введіть ключові слова у назві або тексті" type="text"/>
+                    <div class="suggestions_container" id="suggestionsContainer"></div>
+                </div>
+                <div class="col-md-3 mt-3 mt-md-0">
+                    <button id="searchPortalFormSubmit" type="submit" class="wcag-btn wcag-btn-search w-100">Знайти</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="nav-search-npa" role="tabpanel" aria-labelledby="nav-search-npa-tab">
+            <form id="searchNPAForm"
+                  action="/npasearch"
+                  method="GET"
+                  class="row align-items-end search-form-portal mb-5 pb-5 mb-lg-0 pb-lg-0">
+                <div class="col-md-4 mb-30">
+                    <label class="mb-2" id="selectCategoryLabel">Тип документа</label>
+                    <select class="choices js-choice_single" name="category" id="select_category">
+                        <option value="">Тип документа не обрано</option>
+                                                <option value="7">Указ</option>
+                                                <option value="8">Закон України</option>
+                                                <option value="21">Постанова КМУ</option>
+                                                <option value="63">Наказ Міненерго</option>
+                                            </select>
+                </div>
+
+                <div class="col-md-4 mb-30">
+                    <label class="mb-2" id="selectTagLabel">Тема</label>
+                    <select class="choices js-choice_single" name="tags" id="select_tag">
+                        <option value="">Тему документа не обрано</option>
+                                            </select>
+                </div>
+
+                <div class="col-sm-6 col-lg-2 mb-30">
+                    <div class="accessible-datepicker">
+                        <label class="accessible-datepicker-label mb-2" for="npaDateFrom">
+                             Дата прийняття з
+                            <span class="visually-hidden">Введіть дату у форматі</span>
+                        </label>
+                        <div class="accessible-datepicker-group">
+                            <input type="text"
+                                   class="accessible-datepicker-input"
+                                   placeholder="дд/мм/рррр"
+                                   id="npaDateFrom"
+                                   name="from"
+                                   autocomplete="off"
+                            >
+                            <button type="button"
+                                    class="accessible-datepicker-icon"
+                                    aria-label="Оберіть дату">
+                            </button>
+                        </div>
+                        <div class="accessible-datepicker-dialog accessible-datepicker-dialog-days d-none js-set-aria-labelledby"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть дату"
+>
+    <div class="accessible-datepicker-dialog-header">
+        <button type="button"
+                class="prev-year"
+                aria-label="Попередній рік">
+        </button>
+        <button type="button"
+                class="prev-month"
+                aria-label="Попередній місяць">
+        </button>
+        <span class="visually-hidden month-year-label" aria-live="polite"></span>
+        <button type="button" class="month"></button>
+        <button type="button" class="year"></button>
+        <button type="button"
+                class="next-month"
+                aria-label="Наступний місяць">
+        </button>
+        <button type="button"
+                class="next-year"
+                aria-label="Наступний рік">
+        </button>
+    </div>
+    <div>
+        <table class="dates js-datepicker-table" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" abbr="понеділок">
+                    Пн
+                </th>
+                <th scope="col" abbr="вівторок">
+                    Вт
+                </th>
+                <th scope="col" abbr="середа">
+                    Ср
+                </th>
+                <th scope="col" abbr="четвер">
+                    Чт
+                </th>
+                <th scope="col" abbr="п'ятниця">
+                    Пт
+                </th>
+                <th scope="col" abbr="субота">
+                    Сб
+                </th>
+                <th scope="col" abbr="неділя">
+                    Нд
+                </th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="accessible-datepicker-dialog accessible-datepicker-dialog-months d-none"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть місяць"
+>
+    <div class="table-wrap">
+        <table class="months js-datepicker-table">
+            <tbody><tr></tr></tbody>
+        </table>
+    </div>
+</div>
+<div class="accessible-datepicker-dialog accessible-datepicker-dialog-years d-none"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть рік"
+>
+    <div class="table-wrap d-flex align-items-center">
+        <span role="button" tabindex="0" class="accessible-datepicker-dialog-arrow arrow-prev" aria-label="Попередні роки"></span>
+        <table class="years js-datepicker-table">
+            <tbody><tr></tr></tbody>
+        </table>
+        <span role="button" tabindex="0" class="accessible-datepicker-dialog-arrow arrow-next" aria-label="Наступні роки"></span>
+    </div>
+</div>                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mb-30">
+                    <div class="accessible-datepicker accessible-datepicker-right">
+                        <label class="accessible-datepicker-label mb-2" for="npaDateTo">
+                            Дата по
+                            <span class="visually-hidden">Введіть дату у форматі</span>
+                        </label>
+                        <div class="accessible-datepicker-group">
+                            <input type="text"
+                                   class="accessible-datepicker-input"
+                                   placeholder="дд/мм/рррр"
+                                   id="npaDateTo"
+                                   name="to"
+                                   autocomplete="off"
+                            >
+                            <button type="button"
+                                    class="accessible-datepicker-icon"
+                                    aria-label="Оберіть дату">
+                            </button>
+                        </div>
+                        <div class="accessible-datepicker-dialog accessible-datepicker-dialog-days d-none js-set-aria-labelledby"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть дату"
+>
+    <div class="accessible-datepicker-dialog-header">
+        <button type="button"
+                class="prev-year"
+                aria-label="Попередній рік">
+        </button>
+        <button type="button"
+                class="prev-month"
+                aria-label="Попередній місяць">
+        </button>
+        <span class="visually-hidden month-year-label" aria-live="polite"></span>
+        <button type="button" class="month"></button>
+        <button type="button" class="year"></button>
+        <button type="button"
+                class="next-month"
+                aria-label="Наступний місяць">
+        </button>
+        <button type="button"
+                class="next-year"
+                aria-label="Наступний рік">
+        </button>
+    </div>
+    <div>
+        <table class="dates js-datepicker-table" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" abbr="понеділок">
+                    Пн
+                </th>
+                <th scope="col" abbr="вівторок">
+                    Вт
+                </th>
+                <th scope="col" abbr="середа">
+                    Ср
+                </th>
+                <th scope="col" abbr="четвер">
+                    Чт
+                </th>
+                <th scope="col" abbr="п'ятниця">
+                    Пт
+                </th>
+                <th scope="col" abbr="субота">
+                    Сб
+                </th>
+                <th scope="col" abbr="неділя">
+                    Нд
+                </th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="accessible-datepicker-dialog accessible-datepicker-dialog-months d-none"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть місяць"
+>
+    <div class="table-wrap">
+        <table class="months js-datepicker-table">
+            <tbody><tr></tr></tbody>
+        </table>
+    </div>
+</div>
+<div class="accessible-datepicker-dialog accessible-datepicker-dialog-years d-none"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Оберіть рік"
+>
+    <div class="table-wrap d-flex align-items-center">
+        <span role="button" tabindex="0" class="accessible-datepicker-dialog-arrow arrow-prev" aria-label="Попередні роки"></span>
+        <table class="years js-datepicker-table">
+            <tbody><tr></tr></tbody>
+        </table>
+        <span role="button" tabindex="0" class="accessible-datepicker-dialog-arrow arrow-next" aria-label="Наступні роки"></span>
+    </div>
+</div>                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label class="mb-2" for="npaKey"> Ключові слова у назві або тексті</label>
+                    <input class="input" name="key" type="text" placeholder="Введіть ключові слова у назві або тексті" id="npaKey"/>
+                </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label class="mb-2" for="npaNo"> Номер</label>
+                    <input class="input" name="num" type="text" id="npaNo" placeholder="Введіть номер"/>
+                </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <button id="searchNPAFormSubmit" type="submit" class="wcag-btn wcag-btn-search w-100">Знайти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>            </div>
+        </div>
+
+    </div>
+
+    <!-- Модалка державних сайтів -->
+    <div class="modal gov" id="govModal" tabindex="-1" aria-label="Модальне вікно державних сайтів України">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content gov-ua">
+                <button class="icon-close" data-bs-dismiss="modal" aria-label="Закрити діалог"></button>
+                <ul class="outer-links">
+                    <li><a href="http://www.president.gov.ua/" target="_blank">Президент України</a></li>
+                    <li><a href="http://rada.gov.ua/" target="_blank">Верховна Рада України</a></li>
+                </ul>
+                <ul class="outer-links">
+                    <li><a href="http://www.ccu.gov.ua/" target="_blank">Конституційний Суд України</a></li>
+                    <li><a href="http://www.rnbo.gov.ua/" target="_blank">Рада національної безпеки і оборони України</a></li>
+                </ul>
+                <ul class="outer-links">
+                    <li><a href="https://www.kmu.gov.ua/catalog/" target="_blank">Органи виконавчої влади</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>                    </header>
+        <!-- Content -->
+        <section id="layout-content">
+            <div id="mainContent"></div>
+            
+
+<nav class="main-breadcrumbs" aria-label="Хлібні крихти">
+    
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/"><span>Головна</span></a>
+        </li>
+                                    <li class="breadcrumb-item">
+                    <a href="/zvernennya-gromadyan" target=_self>Звернення громадян</a>
+                </li>
+                                                <li class="breadcrumb-item">
+                    <a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya" target=_self>Найбільш запитувана інформація</a>
+                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                    Графіки відключень електропостачання операторів систем розподілу
+                </li>
+                        </ol>
+</nav>
+
+<div class="gov-container">
+    <div class="page_title">
+        <h1 class="heading-1" id="pageTitle">Графіки відключень електропостачання операторів систем розподілу</h1>
+            </div>
+            <div class="anounce__main"></div>
+    
+    <div class="row justify-content-center">
+                    <div class="col-md-9">
+                <div class="news__item--inner mb-40">
+                    <div class="editor-content">
+                        <table border="1" cellpadding="0" cellspacing="0" style="margin-right: calc(40%); width: 60%;" width="0"><tbody><tr><td width="28"><p>№</p></td><td width="145"><p align="center">ОСР</p></td><td width="510"><p align="center">Посилання</p></td></tr><tr><td width="28"><p>1</p></td><td valign="bottom" width="145"><p>АТ «Вінницяобленерго»</p></td><td width="510"><p><u><a href="https://www.voe.com.ua/disconnection/detailed" target="_blank">https://www.voe.com.ua/disconnection/detailed</a></u></p></td></tr><tr><td width="28"><p>2</p></td><td valign="bottom" width="145"><p>ПрАТ «Волиньобленерго»</p></td><td width="510"><p><u><a href="https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/#gsc.tab=0" target="_blank">https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/#gsc.tab=0</a></u></p></td></tr><tr><td width="28"><p>3</p></td><td valign="bottom" width="145"><p>АТ «ДТЕК Дніпровські електромережі»</p></td><td width="510"><p><u><a href="https://www.dtek-dnem.com.ua/ua/shutdowns" target="_blank">https://www.dtek-dnem.com.ua/ua/shutdowns</a></u></p></td></tr><tr><td width="28"><p>4</p></td><td valign="bottom" width="145"><p>АТ «ДТЕК Донецькі електромережі»</p></td><td width="510"><p><u><a href="https://www.dtek-dem.com.ua/ua/shutdowns" target="_blank">https://www.dtek-dem.com.ua/ua/shutdowns</a></u></p></td></tr><tr><td width="28"><p>5</p></td><td valign="bottom" width="145"><p>АТ «Житомиробленерго»</p></td><td width="510"><p><a href="https://www.ztoe.com.ua/unhooking-search.php">https://www.ztoe.com.ua/unhooking-search.php</a></p></td></tr><tr><td width="28"><p>6</p></td><td valign="bottom" width="145"><p>ПрАТ «Закарпаттяобленерго»</p></td><td width="510"><p><a href="https://zakarpat.energy/customers/break-in-electricity-supply/schedule/">https://zakarpat.energy/customers/break-in-electricity-supply/schedule/</a></p></td></tr><tr><td width="28"><p>7</p></td><td valign="bottom" width="145"><p>ПАТ «Запоріжжяобленерго»</p></td><td width="510"><p><u><a href="https://www.zoe.com.ua/%d0%b3%d1%80%d0%b0%d1%84%d1%96%d0%ba%d0%b8-%d0%bf%d0%be%d0%b3%d0%be%d0%b4%d0%b8%d0%bd%d0%bd%d0%b8%d1%85-%d1%81%d1%82%d0%b0%d0%b1%d1%96%d0%bb%d1%96%d0%b7%d0%b0%d1%86%d1%96%d0%b9%d0%bd%d0%b8%d1%85/" target="_blank">https://www.zoe.com.ua/%d0%b3%d1%80%d0%b0%d1%84%d1%96%d0%ba%d0%b8-%d0%bf%d0%be%d0%b3%d0%be%d0%b4%d0%b8%d0%bd%d0%bd%d0%b8%d1%85-%d1%81%d1%82%d0%b0%d0%b1%d1%96%d0%bb%d1%96%d0%b7%d0%b0%d1%86%d1%96%d0%b9%d0%bd%d0%b8%d1%85/</a></u></p></td></tr><tr><td width="28"><p>8</p></td><td valign="bottom" width="145"><p>ПрАТ «ДТЕК Київські електромережі»</p></td><td width="510"><p><u><a href="https://www.dtek-kem.com.ua/ua/shutdowns" target="_blank">https://www.dtek-kem.com.ua/ua/shutdowns</a></u></p></td></tr><tr><td width="28"><p>9</p></td><td valign="bottom" width="145"><p>ПрАТ «ДТЕК Київські регіональні електромережі»</p></td><td width="510"><p><u><a href="https://www.dtek-krem.com.ua/ua/shutdowns?subdivision=-1&amp;status=-1&amp;disconnect-from=-1&amp;shutdown-to=-1" target="_blank">https://www.dtek-krem.com.ua/ua/shutdowns?subdivision=-1&amp;status=-1&amp;disconnect-from=-1&amp;shutdown-to=-1</a></u></p></td></tr><tr><td width="28"><p>10</p></td><td valign="bottom" width="145"><p>ПрАТ «Кіровоградобленерго»</p></td><td width="510"><p><a href="https://kiroe.com.ua/electricity-blackout">https://kiroe.com.ua/electricity-blackout</a></p></td></tr><tr><td width="28"><p>11</p></td><td valign="bottom" width="145"><p>ПрАТ «Львівобленерго»</p></td><td width="510"><p><u><a href="https://poweroff.loe.lviv.ua/" target="_blank">https://poweroff.loe.lviv.ua/</a></u></p></td></tr><tr><td width="28"><p>12</p></td><td valign="bottom" width="145"><p>АТ «Миколаївобленерго»</p></td><td width="510"><p><a href="https://off.energy.mk.ua/">https://off.energy.mk.ua/</a></p></td></tr><tr><td width="28"><p>13</p></td><td valign="bottom" width="145"><p>АТ «ДТЕК Одеські електромережі»</p></td><td width="510"><p><u><a href="https://www.dtek-oem.com.ua/ua/shutdowns" target="_blank">https://www.dtek-oem.com.ua/ua/shutdowns</a></u></p></td></tr><tr><td width="28"><p>14</p></td><td valign="bottom" width="145"><p>АТ «Полтаваобленерго»</p></td><td width="510"><p><a href="https://www.poe.pl.ua/disconnection/hrafik-pohodynnoho-vidkliuchennia-elektroenerhii/">https://www.poe.pl.ua/disconnection/hrafik-pohodynnoho-vidkliuchennia-elektroenerhii/</a></p></td></tr><tr><td width="28"><p>15</p></td><td valign="bottom" width="145"><p>АТ «Прикарпаттяобленерго»</p></td><td valign="bottom" width="510"><p><a href="https://oe.if.ua/uk/emergency_shutdowns">https://oe.if.ua/uk/emergency_shutdowns</a></p></td></tr><tr><td width="28"><p>16</p></td><td valign="bottom" width="145"><p>АТ «Сумиобленерго»</p></td><td width="510"><p><a href="https://www.soe.com.ua/spozhivacham/vidklyuchennya">https://www.soe.com.ua/spozhivacham/vidklyuchennya</a></p></td></tr><tr><td width="28"><p>17</p></td><td valign="bottom" width="145"><p>ПрАТ «Рівнеобленерго»</p></td><td width="510"><p><u><a href="https://www.roe.vsei.ua/disconnections" target="_blank">https://www.roe.vsei.ua/disconnections</a></u></p></td></tr><tr><td width="28"><p>18</p></td><td valign="bottom" width="145"><p>ВАТ «Тернопільобленерго»</p></td><td width="510"><p><u><a href="https://www.toe.com.ua/" target="_blank">https://www.toe.com.ua/</a></u></p></td></tr><tr><td width="28"><p>19</p></td><td valign="bottom" width="145"><p>АТ «Харківобленерго»</p></td><td width="510"><p><u><a href="https://www.oblenergo.kharkov.ua/getinfoingao" target="_blank">https://www.oblenergo.kharkov.ua/getinfoingao#</a></u></p></td></tr><tr><td width="28"><p>20</p></td><td valign="bottom" width="145"><p>АТ «Херсонобленерго»</p></td><td width="510"><p><a href="https://ksoe.com.ua/">https://ksoe.com.ua/</a></p></td></tr><tr><td width="28"><p>21</p></td><td valign="bottom" width="145"><p>АТ «Хмельницькобленерго»</p></td><td width="510"><p><u><a href="https://hoe.com.ua/page/informatsija-vidkljuchennja" target="_blank">https://hoe.com.ua/page/informatsija-vidkljuchennja</a></u></p></td></tr><tr><td width="28"><p>22</p></td><td valign="bottom" width="145"><p>ПАТ «Черкасиобленерго»</p></td><td width="510"><p><a href="https://cherkasyoblenergo.com/off">https://cherkasyoblenergo.com/off</a></p></td></tr><tr><td width="28"><p>23</p></td><td valign="bottom" width="145"><p>АТ «Чернівціобленерго»</p></td><td width="510"><p><u><a href="http://oblenergo.cv.ua/shutdowns/" target="_blank">http://oblenergo.cv.ua/shutdowns/</a></u></p></td></tr><tr><td width="28"><p>24</p></td><td valign="bottom" width="145"><p>АТ «Чернігівобленерго»</p></td><td width="510"><p><u><a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank">https://chernihivoblenergo.com.ua/blackouts</a></u></p></td></tr><tr><td width="28"><p>26</p></td><td valign="bottom" width="145"><p>ПрАТ «ДТЕК ПЕМ-Енерговугілля»</p></td><td width="510"><p><u><a href="https://www.dtek-pem.com.ua/ua/shutdowns-schedule" target="_blank">https://www.dtek-pem.com.ua/ua/shutdowns-schedule</a></u></p></td></tr><tr><td width="28"><p>27</p></td><td valign="bottom" width="145"><p>ТОВ «ДТЕК Високовольтні мережі»</p></td><td width="510"><p><u><a href="https://www.dtek-vvm.com.ua/ua/shutdowns-schedule" target="_blank">https://www.dtek-vvm.com.ua/ua/shutdowns-schedule</a></u></p></td></tr><tr><td width="28"><p>28</p></td><td valign="bottom" width="145"><p>ПрАТ "ПЕЕМ" ЦЕК"</p></td><td width="510"><p><u><a href="https://cek.dp.ua/index.php/cpojivaham/vidkliuchennia.html" target="_blank">https://cek.dp.ua/index.php/cpojivaham/vidkliuchennia.html</a></u></p></td></tr><tr><td width="28"><p>29</p></td><td valign="bottom" width="145"><p>ТОВ "Нафтогаз Тепло"</p></td><td width="510"><p><u><a href="https://www.naftogazteplo.com.ua/?page_id=4582" target="_blank">https://www.naftogazteplo.com.ua/?page_id=4582</a></u></p></td></tr><tr><td width="28"><p>30</p></td><td valign="bottom" width="145"><p>АТ "Укрзалізниця"</p></td><td width="510"><p><u><a href="https://uz.gov.ua/about/activity/electropostachannia/electro_consumers/temporary_shutdown/" target="_blank">https://uz.gov.ua/about/activity/electropostachannia/electro_consumers/temporary_shutdown/</a></u></p></td></tr><tr><td width="28"><p>31</p></td><td valign="bottom" width="145"><p>ДПЕМ ПрАТ "Атомсервіс"</p></td><td valign="bottom" width="510"><p><a href="https://info.dpem.mk.ua/off_graf.html">https://info.dpem.mk.ua/off_graf.html</a></p></td></tr></tbody></table>
+                    </div>
+                    <div class="btn_action-wrap mt-3 mb-3">
+    
+        <button class="btn btn_action facebook customShare" data-type="facebook"
+            aria-label="Поділитись на Facebook">Поділитися</button>
+    <button class="btn btn_action linkedin customShare" data-type="linkedin"
+            aria-label="Поділитись в LinkedIn">Linkedin</button>
+    <button class="btn btn_action twitter customShare" data-type="twitter"
+            aria-label="Поділитись в Twitter">Твітнути</button>
+    <button class="btn btn_action print_page btn-print" id="printBtn">Надрукувати</button>
+</div>                </div>
+            </div>
+            </div>
+
+    </div>
+
+
+
+        </section>
+        <!-- Footer -->
+        <footer class="footer" id="layout-footer">
+            
+<div class="footer_top row justify-content-md-between">
+    <div class="col-12">
+
+        <h2>
+    <button class="site-map_btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSitemap" aria-expanded="false" aria-controls="collapseSitemap">Мапа порталу</button>
+</h2>
+
+<div class="row collapse" id="collapseSitemap">
+        <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/struktura">Структура апарату Державної інспекції енергетичного нагляду України</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/zapobigannya-ta-protidiya-korupciyi">Запобігання та протидія корупції</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/zapobigannya-ta-protidiya-korupciyi/normativno-pravova-baza">
+                                <span>Нормативно-правова база</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa">
+                                <span>Плани роботи та заходів, спрямованих на запобігання корупції. Антикорупційна програма</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/ocinka-korupcijnih-rizikiv-u-diyalnosti-derzhenergonaglyadu">Оцінка корупційних ризиків у діяльності Держенергонагляду</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/antikorupcijna-programa-derzhenergonaglyadu-na-2020-2022-roki">Антикорупційна програма Держенергонагляду на 2020-2022 роки</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/antykoruptsiina-prohrama-derzhenerhonahliadu-na-2023-2025-roky-head">Антикорупційна програма Держенергонагляду на 2023-2025 роки</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/plany-roboty-zakhodiv-ta-zvity-pro-ikh-vykonannia-za-2019-2024-roky">Плани роботи, заходів та звіти про їх виконання за 2019-2025 роки</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/plan-roboty-viddilu-z-pytan-zapobihannia-ta-vyiavlennia-koruptsii-derzhenerhonahliadu-na-2026-rik">План роботи Відділу з питань запобігання та виявлення корупції Держенергонагляду на 2026 рік</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/plani-roboti-ta-zahodiv-spryamovanih-na-zapobigannya-korupciyi-antikorupcijna-programa/antykoruptsiina-prohrama-derzhenerhonahliadu-na-2026-2028-roky">Антикорупційна програма Держенергонагляду на 2026-2028 роки</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi">
+                                <span>Співпраця з викривачами корупції</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/zakonodavstvo-dlia-vykryvachiv-koruptsii-v-ukraini">Законодавство для викривачів корупції в Україні</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/rozyasnennya-nazk-vikrivacham-korupciyi">Роз&#039;яснення НАЗК викривачам корупції</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/garantiyi-derzhavnogo-zahistu-vikrivachiv">Гарантії державного захисту викривачів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/metodichni-rekomendaciyi-shchodo-organizaciyi-roboti-iz-povidomlennyami-pro-korupciyu-vnesenimi-vikrivachami">Рекомендації  щодо здійснення повідомлення про можливі факти корупційних правопорушень та інших порушень Закону України «Про запобігання корупції» викривачами Держенергонагляду</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/specialno-upovnovazheni-subyekti-u-sferi-protidiyi-korupciyi">Спеціально уповноважені суб’єкти у сфері протидії корупції</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/povidomiti-pro-korupcijne-pravoporushennya">Повідомити про корупційне правопорушення</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/rekomendaciyi-shchodo-organizaciyi-roboti-z-povidomlennyam-pro-mozhlivi-fakti-korupcijnih-pravoporushen-vnesenimi-vikrivachami-u-derzhenergonaglyadi">Рекомендації щодо організації роботи з повідомленнями про можливі факти корупційних правопорушень, внесеними викривачами у Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/rekomendaciyi-shchodo-vprovadzhennya-derzhenergonaglyadom-mehanizmiv-zaohochennya-vikrivachiv-ta-formuvannya-kulturi-povidomlennya-pro-mozhlivi-fakti-korupcijnih-pravoporushen">Рекомендації щодо впровадження Держенергонаглядом механізмів заохочення викривачів та формування культури повідомлення про можливі факти корупційних правопорушень</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/shchodo-uporyadkuvannya-okremih-pitan-zahistu-vikrivachiv">Щодо упорядкування окремих питань захисту викривачів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/vidminnosti-mizh-zaiavnykom-ta-vykryvachem-koruptsiinykh-pravoporushen">Відмінності між заявником та викривачем корупційних правопорушень</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/derzhenerhonahliad-pidkliucheno-do-iedynoho-portalu-povidomlen-vykryvachiv">Держенергонагляд підключено до Єдиного порталу повідомлень викривачів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/roziasnennia-nazk-shchodo-roboty-iedynoho-portalu-povidomlen-vykryvachiv">Роз’яснення НАЗК щодо роботи Єдиного порталу повідомлень викривачів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/onovleni-rekomendatsii-shchodo-zdiisnennia-povidomlennia-pro-mozhlyvi-fakty-koruptsiinykh-pravoporushen-ta-inshykh-porushen-zakonu-ukrainy-pro-zapobihannia-koruptsii-vykryvachamy-derzhenerhonahliadu">Оновлені рекомендації щодо здійснення повідомлення про можливі факти корупційних правопорушень та інших порушень Закону України «Про запобігання корупції» викривачами Держенергонагляду</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/onovleni-rekomendatsii-shchodo-orhanizatsii-roboty-z-povidomlenniamy-pro-mozhlyvi-fakty-koruptsiinykh-pravoporushen-vnesenymy-vykryvachamy-u-derzhenerhonahliadi">Оновлені рекомендації щодо організації роботи з повідомленнями про можливі факти корупційних правопорушень, внесеними викривачами у Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/onovleni-rekomendatsii-shchodo-vprovadzhennia-derzhenerhonahliadom-mekhanizmiv-zaokhochennia-vykryvachiv-ta-formuvannia-kultury-povidomlennia-pro-mozhlyvi-fakty-koruptsiinykh-pravoporushen">Оновлені рекомендації щодо впровадження Держенергонаглядом механізмів заохочення викривачів та формування культури повідомлення про можливі факти корупційних правопорушень</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/vneseno-zminy-u-dodatok-5-do-rekomendatsii-shchodo-vprovadzhennia-derzhenerhonahliadom-mekhanizmiv-zaokhochennia-vykryvachiv-ta-formuvannia-kultury-povidomlennia-pro-mozhlyvi-fakty-koruptsiinykh-pravoporushen">Внесено зміни у додаток 5 до Рекомендацій щодо впровадження Держенергонаглядом механізмів заохочення викривачів та формування культури повідомлення про можливі факти корупційних правопорушень</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/rozrobleno-posibnyk-heroi-poruch-haid-dlia-vykryvachiv-koruptsii">Розроблено посібник «Герої поруч: гайд для викривачів корупції»</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/pamiatka-nazk-pro-shcho-mozhna-povidomyty">Пам’ятка НАЗК про що можна повідомити</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/spivpracya-z-vikrivachami-korupciyi/prezentovano-elektronnyi-haid-povidomlennia-pro-koruptsiiu">Презентовано електронний гайд «Повідомлення про корупцію»</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali">
+                                <span>Інформаційно аналітична та звітна інформація</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/pamyatka-deklarantu">ПАМ’ЯТКА ДЕКЛАРАНТУ!</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/informaciya-shchodo-chat-botu-derzhsluzhbovec-taras">Інформація щодо чат-боту “Держслужбовець Тарас”</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/derzhavni-instituciyi-v-antikorupcijnij-sferi-v-ukrayini">Державні інституції в антикорупційній сфері в Україні</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/rozyasnennya-shchodo-zastosuvannya-norm-antikorupcijnogo-zakonodavstva">Роз’яснення щодо застосування норм антикорупційного законодавства</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/zvit-kerivnictva-derzhenergonaglyadu-shchodo-progresu-v-realizaciyi-antikorupcijnih-iniciativ-do-mizhnarodnogo-dnya-borotbi-z-korupciyeyu">Звіти керівництва Держенергонагляду щодо прогресу в реалізації антикорупційних ініціатив до Міжнародного дня боротьби з корупцією</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/informaciya-pro-viddil-z-pitan-zapobigannya-ta-viyavlennya-korupciyi-derzhenergonaglyadu">Інформація про Відділ з питань запобігання та виявлення корупції Держенергонагляду</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/informacijno-analitichni-materiali/navchalni-onlajn-kursi-z-pitan-zapobigannya-korupciyi">Навчальні онлайн курси з питань запобігання корупції</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi">
+                                <span>Антикорупційні повідомлення Держенергонагляду</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/stvoreno-yedinij-derzhavnij-reyestr-osib-yaki-vchinili-korupcijni-abo-povyazani-z-korupciyeyu-pravoporushennya">Створено Єдиний державний реєстр осіб, які вчинили корупційні або пов’язані з корупцією правопорушення</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/termini-viznacheni-zakonom-ukrayini-pro-zapobigannya-korupciyi">Терміни, визначені Законом України «Про запобігання корупції»</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/vidminnosti-mizh-zayavnikom-ta-vikrivachem-korupcijnih-pravoporushen">Відмінності між заявником та викривачем корупційних правопорушень</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/perelik-osib-upovnovazhenih-na-zdijsnennya-komunikacij-z-antikorupcijnih-pitan-v-derzhenergonaglyadi">Перелік осіб, уповноважених на здійснення комунікацій з антикорупційних питань в Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/vprovadzheno-rekomendaciyi-shchodo-organizaciyi-zahodiv-iz-vregulyuvannya-konfliktu-interesiv-u-derzhenergonaglyadi">Впроваджено рекомендації щодо організації заходів із врегулювання конфлікту інтересів у Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/shchodo-portalu-prihovani-interesi">Щодо порталу «Приховані інтереси»</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/rozrobleno-rekomendaciyi-z-dotrimannya-etichnoyi-povedinki-pracivnikami-aparatu-derzhenergonaglyadu-ta-teritorialnih-organiv">Розроблено Рекомендації з дотримання етичної поведінки працівниками апарату Держенергонагляду та територіальних органів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/v-ukrayini-posileno-pokarannya-dlya-kolaborantiv">В Україні посилено покарання для колаборантів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/verhovna-rada-uhvalila-antikorupcijnu-strategiyu-na-20212025-roki">Верховна Рада ухвалила Антикорупційну стратегію на 2021–2025 роки</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/utvoreno-komisiiu-z-pytan-otsinky-vartosti-vyrishennia-pytannia-shchodo-mozhlyvosti-vykorystannia-mistsia-ta-stroku-zberihannia-darunkiv">Утворено Комісію з питань оцінки вартості, вирішення питання  щодо можливості використання, місця та строку зберігання дарунків</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/rozrobleno-zakhody-iz-zapobihannia-ta-vrehuliuvannia-konfliktu-interesiv-v-chastyni-obmezhennia-spilnoi-roboty-blyzkykh-osib">Розроблено заходи із запобігання та врегулювання конфлікту інтересів в частині обмеження спільної роботи близьких осіб</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/onovleno-metodichni-rekomendaciyi-nazk-pro-konflikt-interesiv">Оновлено Методичні рекомендації НАЗК про конфлікт інтересів. Новий сервіс від НАЗК: тест на виявлення конфлікту інтересів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/oholoshennia-shchodo-formuvannia-skladu-robochoi-hrupy-z-otsiniuvannia-koruptsiinykh-ryzykiv-u-diialnosti-derzhavnoi-inspektsii-enerhetychnoho-nahliadu-ukrainy">Оголошення щодо формування складу Робочої групи з оцінювання корупційних ризиків у діяльності Державної інспекції енергетичного нагляду України</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/anketuvannia-dlia-predstavnykiv-zovnishnikh-zainteresovanykh-storin">Анкетування для представників зовнішніх заінтересованих сторін</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/v-reiestri-deklaratsii-onovleno-funktsiiu-dani-dlia-deklaratsii">В Реєстрі декларацій оновлено функцію «Дані для декларації»</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/rozrobleno-polozhennia-pro-provedennia-instruktazhiv-z-pytan-dotrymannia-antykoruptsiinoho-zakonodavstva-v-derzhenerhonahliadi">Розроблено Положення про проведення інструктажів з питань дотримання антикорупційного законодавства в Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/zatverdzheno-poriadok-orhanizatsii-zakhodiv-kontroliu-za-dotrymanniam-antykoruptsiinoho-zakonodavstva-v-derzhenerhonahliadi">Затверджено Порядок організації заходів контролю за дотриманням антикорупційного законодавства в Держенергонагляді</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/rozrobleno-posibnyk-heroi-poruch-haid-dlia-vykryvachiv-koruptsii">Розроблено посібник «Герої поруч: гайд для викривачів корупції»</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/onovleno-rekomendatsii-z-dotrymannia-etychnoi-povedinky-pratsivnykamy-aparatu-derzhenerhonahliadu-ta-terytorialnykh-orhaniv">Оновлено Рекомендації з дотримання етичної поведінки працівниками апарату Держенергонагляду та територіальних органів</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/oholoshennia-shchodo-onovlennia-skladu-robochoi-hrupy-z-otsiniuvannia-koruptsiinykh-ryzykiv-u-diialnosti-derzhavnoi-inspektsii-enerhetychnoho-nahliadu-ukrainy">Оголошення щодо оновлення складу Робочої групи з оцінювання корупційних ризиків у діяльності Державної інспекції енергетичного нагляду України</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/anketuvannia-dlia-predstavnykiv-zovnishnikh-zainteresovanykh-storin_">Анкетування для представників зовнішніх заінтересованих сторін</a></li>
+                                                                <li><a href="/zapobigannya-ta-protidiya-korupciyi/antikorupcijni-povidomlennya-inspekciyi/analitychnyi-zvit-koruptsiia-v-ukraini-2025-pohliad-ta-otsinky-ekspertiv">Аналітичний звіт «Корупція в Україні 2025: погляд та оцінки експертів»</a></li>
+                                                            </ul>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/">Головна</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/pravove-zabezpechennya">Правові засади діяльності</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/derzhavni-zakupivli">Публічні закупівлі</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/plani-pidgotovki-npa">Плани підготовки нормативно-правових актів</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/regulyatorna-diyalnist">Регуляторна діяльність</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/dostup-do-publichnoyi-informaciyi">Доступ до публічної інформації</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv">
+                                <span>Довідки про стан розгляду запитів</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv/dovidki-pro-stan-rozglyadu-zapitiv-u-2019-roci">Довідки про стан розгляду запитів у 2019-2022 роках</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv/dovidky-pro-stan-rozghliadu-zapytiv-u-2023-rotsi">Довідки про стан розгляду запитів у 2023 році</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv/dovidky-pro-stan-rozghliadu-zapytiv-u-2024-rotsi">Довідки про стан розгляду запитів у 2024 році</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv/dovidky-pro-stan-rozghliadu-zapytiv-u-2025-rotsi">Довідки про стан розгляду запитів у 2025 році</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/dovidki-pro-stan-rozglyadu-zapitiv/dovidky-pro-stan-rozghliadu-zapytiv-u-2026-rotsi">Довідки про стан розгляду запитів у 2026 році</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/dostup-do-publichnoyi-informaciyi/nakaz-derzhenergonaglyadu-vid-17022020-20-pro-zatverdzhennya-pereliku-vidomostej-shcho-stanovlyat-sluzhbovu-informaciyu-u-derzhavnij-inspekciyi-energetichnogo-naglyadu-ukrayini">
+                                <span>Перелік відомостей, що становлять службову інформацію у Держенергонагляді</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/dostup-do-publichnoyi-informaciyi/najbilsh-zapituvana-informaciya">
+                                <span>Найбільш запитувана інформація</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/dostup-do-publichnoyi-informaciyi/poryadok-zabezpechennya-dostupu-do-publichnoyi-informaciyi-u-derzhenergonaglyadi">
+                                <span>Порядок забезпечення доступу до публічної інформації у Держенергонагляді</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform">
+                                <span>Система обліку публічної інформації</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2021-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2021 рік</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2022-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2022 рік</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2023-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2023 рік</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2024-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2024 рік</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2025-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2025 рік</a></li>
+                                                                <li><a href="/dostup-do-publichnoyi-informaciyi/sistema-obliku-publichnoyi-inform/elektronna-baza-danykh-shcho-mistyt-informatsiiu-pro-dokumenty-iaki-perebuvaiut-u-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy-za-2026-rik">Електронна база даних, що містить інформацію про документи, які перебувають у Державній інспекції енергетичного нагляду України за 2026 рік</a></li>
+                                                            </ul>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/elektronne-zvernennya">Електронне звернення</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/zvernennya-gromadyan">Звернення громадян</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen">
+                                <span>Довідки про стан розгляду звернень</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen/dovidki-pro-stan-rozglyadu-zapitiv-u-2019-roci">Довідки про стан розгляду звернень громадян у 2019-2022 роках</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen/dovidky-pro-stan-rozghliadu-zvernen-hromadian-u-2023-rotsi">Довідки про стан розгляду звернень громадян у 2023 році</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen/dovidky-pro-stan-rozghliadu-zvernen-hromadian-u-2024-rotsi">Довідки про стан розгляду звернень громадян у 2024 році</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen/dovidky-pro-stan-rozghliadu-zvernen-hromadian-u-2025-rotsi">Довідки про стан розгляду звернень громадян у 2025 році</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadiv-zvernen/dovidky-pro-stan-rozghliadu-zvernen-u-2026-rotsi">Довідки про стан розгляду звернень у 2026 році</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya">
+                                <span>Найбільш запитувана інформація</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/pro-mozhlyvi-prychyny-vidsutnosti-elektropostachannia-ta-alhorytm-dii-spozhyvachiv">Про можливі причини відсутності електропостачання та алгоритм дій споживачів</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/shcho-take-cherhy-vidkliuchen">Що таке черги відключень?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/hrafiky-vidkliuchen-elektroenerhii-prychyny-vvedennia-umovy-skladannia-zastosuvannia-ta-dii_">Графіки відключень електроенергії: причини введення, умови складання, застосування та дії</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/grafiki-vidklyuchen-elektropostachannya-operatoriv-sistemi-rozpodilu">Графіки відключень електропостачання операторів систем розподілу</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/indyvidualni-alternatyvni-dzherela-enerhii-dlia-meshkantsiv-bahatokvartyrnykh-budynkiv">Індивідуальні альтернативні джерела енергії для мешканців багатоквартирних будинків</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/bezpechne-vykorystannia-dzherel-bezperebiinoho-zhyvlennia-ta-ustanovok-zberihannia-enerhii-u-pobuti">Безпечне використання джерел безперебійного живлення та установок зберігання енергії у побуті</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/chomu-perevantazhennya-elektromerezhi-nebezpechne">Чому перевантаження електромережі небезпечне?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/yak-ubezpechiti-elektromerezhi-vlasnogo-budinku-vid-perenavantazhennya">Як убезпечити електромережі власного будинку від перенавантаження?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/zahishchenij-spozhivach-shcho-potribno-znati">«Захищений споживач»: що потрібно знати?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/neyakisne-elektropostachannya-najchastisha-prichina-zvernen-do-derzhenergonaglyadu">Неякісне електропостачання – найчастіша причина звернень до Держенергонагляду</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/vstanovlennya-bud-yakogo-elektrichnogo-obladnannya-maye-vidpovidati-proyektnomu-rishennyu-derzhenergonaglyad">Встановлення будь-якого електричного обладнання має відповідати проєктному рішенню, – Держенергонагляд</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/shcho-robiti-yakshcho-zgoriv-elektrolichilnik-rekomendaciyi-derzhenergonaglyadu">Що робити, якщо згорів електролічильник: рекомендації Держенергонагляду</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/vipadki-pripinennya-rozpodilu-elektrichnoyi-energiyi">Випадки припинення розподілу електричної енергії</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/rozyasnennya-shchodo-standartiv-yakosti-nadannya-poslug-osr-ta-elektropostachalnikom">Роз’яснення щодо стандартів якості надання послуг ОСР та електропостачальником</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/avarijne-rozvantazhennya-dlya-chogo-i-koli-zastosovuyetsya">Аварійне розвантаження: для чого і коли застосовується</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/pripinennya-elektropostachannya-spozhivachiv-umovi-ta-poryadok">Припинення електропостачання споживачів: умови та порядок</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/osnovni-pravila-oshchadlivogo-vikoristannya-elektroenergiyi">Основні правила ощадливого використання електроенергії</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/avtonomni-elektrostanciyi-vimogi-ta-ekspluataciya">Автономні електростанції: вимоги та експлуатація</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/povnovazhennya-derzhenergonaglyadu-u-galuzi-teplopostachannya-inform">Повноваження Держенергонагляду у галузі теплопостачання</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/rozyasnennya-shchodo-zvernen-gromadyan-inform">Роз’яснення щодо звернень громадян з питань, не пов’язаних з діяльністю Держенергонагляду у галузі теплопостачання</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/poryadok-dij-spozhivacha-zhitlovo-komunalnih-poslug-inform">Порядок дій споживача житлово-комунальних послуг в разі ненадання, надання не в повному обсязі або неналежної якості житлово-комунальних послуг</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/informatsiina-pamiatka-dlia-meshkantsiv-bahatokvartyrnykh-budynkiv">Інформаційна пам&#039;ятка для мешканців багатоквартирних будинків</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/yak-pravylno-pidiednaty-elektrostantsiiu-henerator-do-budivli">Як правильно під&#039;єднати електростанцію (генератор) до будівлі</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/zaminit-plavki-zapobizhnyky-na-avtomatychni-vymykachi">Замініть плавкі запобіжники на автоматичні вимикачі</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/koly-potribna-zamina-elektrychnoi-provodky-v-kvartyri">Коли потрібна заміна електричної проводки в квартирі?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/syhnalizator-kontroliu-kontsentratsii-hazu-vstanovlennia-oboviazkove">Сигналізатор контролю концентрацій газу: встановлення обов’язкове !</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/proiekt-elektropostachannia-kvartyry-vazhlyvyi-etap-iakym-ne-mozhna-nekhtuvaty">Проєкт електропостачання квартири: важливий етап, яким не можна нехтувати</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/osoblyvosti-pidkliuchennia-elektropryladiv-velykoi-potuzhnosti">Особливості підключення електроприладів великої потужності</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/teplovidbyvnyi-ekran-ekonomiia-tepla-ta-zatyshok-u-vashomu-domi">Тепловідбивний екран: економія тепла та затишок у вашому домі</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/chomu-potuzhnist-transformatoriv-i-heneratoriv-vkazuiut-u-kva-a-ne-v-kvt">Чому потужність трансформаторів і генераторів вказують у кВА, а не в кВт?</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/vstanovlennia-obsluhovuvannia-ta-remont-hazovoho-obladnannia-zdiisniuietsia-vykliuchno-fakhivtsiamy">Встановлення, обслуговування та ремонт газового обладнання здійснюється виключно фахівцями</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/najbilsh-zapituvana-informaciya/bezpechna-ekspluatatsiia-hazovoho-obladnannia-vazhlyvo-dotrymuvatysia-proiektnykh-rishen">Безпечна експлуатація газового обладнання: важливо дотримуватися проєктних рішень</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/grafik-provedennya-telefonnoyi-garyachoyi-liniyi-u-derzhenergonaglyadi">
+                                <span>Графік проведення телефонної «гарячої лінії» у Держенергонагляді</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/poryadok-provedennya-telefonnoyi-garyachoyi-liniyi-u-derzhavnij-inspekciyi-energetichnogo-naglyadu-ukrayini">
+                                <span>Порядок проведення телефонної &quot;гарячої лінії&quot; у Державній інспекції енергетичного нагляду України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/grafik-osobistogo-prijomu-gromadyan-u-derzhavnij-inspekciyi-energetichnogo-naglyadu-ukrayini">
+                                <span>Графік особистого прийому громадян у Державній інспекції енергетичного нагляду України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/poryadok-rozglyadu-zvernen-ta-organizaciyi-osobistogo-prijomu-gromadyan-u-derzhavnij-inspekciyi-energetichnogo-naglyadu-ukrayini">
+                                <span>Порядок розгляду звернень та організації особистого прийому громадян у Державній інспекції енергетичного нагляду України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh">
+                                <span>Довідки про стан розгляду скарг щодо приєднання до електричних мереж</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh/dovidky-pro-stan-rozghliadu-skarh-shchodo-pryiednannia-do-elektrychnykh-merezh-za-2021-2022-roky">Довідки про стан розгляду скарг щодо приєднання до електричних мереж за 2021-2022 роки</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh/dovidky-pro-stan-rozghliadu-skarh-shchodo-pryiednannia-do-elektrychnykh-merezh-za-2023-rik">Довідки про стан розгляду скарг щодо приєднання до електричних мереж за 2023 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh/dovidky-pro-stan-rozghliadu-skarh-shchodo-pryiednannia-do-elektrychnykh-merezh-za-2024-rik">Довідки про стан розгляду скарг щодо приєднання до електричних мереж за 2024 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh/dovidky-pro-stan-rozghliadu-skarh-shchodo-pryiednannia-do-elektrychnykh-merezh-za-2025-rik">Довідки про стан розгляду скарг щодо приєднання до електричних мереж за 2025 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/dovidki-pro-stan-rozglyadu-skarg-shchodo-priyednannya-do-elektrichnih-merezh/dovidky-pro-stan-rozghliadu-skarh-shchodo-pryiednannia-do-elektrychnykh-merezh-za-2026-rik">Довідки про стан розгляду скарг щодо приєднання до електричних мереж за 2026 рік</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-rynku-pryrodnoho-hazu">
+                                <span>Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань ринку природного газу</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-rynku-pryrodnoho-hazu/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-rynku-pryrodnoho-hazu-za-2025-rik">Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань ринку природного газу за 2025 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-rynku-pryrodnoho-hazu/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-rynku-pryrodnoho-hazu-za-2026-rik">Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань ринку природного газу за 2026 рік</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia">
+                                <span>Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань теплопостачання</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia/analitychnyi-zvit-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-subiektiv-vidnosyn-u-sferi-teplopostachannia-zapytiv-na-publichnu-informatsiiu-zapytiv-ta-zvernen-narodnykh-deputativ-ukrainy-ta-deputativ-mistsevykh-rad-za-2023-rik">Аналітичний звіт щодо розгляду Держенергонаглядом звернень суб’єктів відносин  у сфері теплопостачання, запитів на публічну інформацію, запитів  та звернень народних депутатів України та депутатів місцевих рад за 2023 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia/analitychnyi-zvit-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia-za-2024-rik">Аналітичний звіт щодо розгляду Держенергонаглядом звернень і запитів  з питань теплопостачання за 2024 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia-za-2025-rik">Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань теплопостачання за 2025 рік</a></li>
+                                                                <li><a href="/zvernennya-gromadyan/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia/analitychni-zvity-shchodo-rozghliadu-derzhenerhonahliadom-zvernen-i-zapytiv-z-pytan-teplopostachannia-za-2026-rik">Аналітичні звіти щодо розгляду Держенергонаглядом звернень і запитів з питань теплопостачання за 2026 рік</a></li>
+                                                            </ul>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/plani-perevirok">Плани перевірок</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/vakansiyi">Вакансії</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/vakansiyi/konkurs">
+                                <span>Конкурс</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/vakansiyi/konkurs/ogoloshennya-pro-provedennya-konkursiv-u-2019-roci">Оголошення про проведення конкурсів у 2019 році</a></li>
+                                                                <li><a href="/vakansiyi/konkurs/ogoloshennya-pro-provedennya-konkursiv-u-2020-roci">Оголошення про проведення конкурсів у 2020 році</a></li>
+                                                                <li><a href="/vakansiyi/konkurs/ogoloshennya-pro-provedennya-konkursiv-u-2021-roci">Оголошення про проведення конкурсів у 2021 році</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/vakansiyi/rezultati-konkursu">
+                                <span>Результати конкурсу</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/vakansiyi/rezultati-konkursu/rezultati-konkursiv-u-2019-roci">Результати конкурсів у 2019 році</a></li>
+                                                                <li><a href="/vakansiyi/rezultati-konkursu/rezultati-konkursiv-u-2020-roci">Результати конкурсів у 2020 році</a></li>
+                                                                <li><a href="/vakansiyi/rezultati-konkursu/rezultati-konkursiv-u-2021-roci">Результати конкурсів у 2021 році</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/vakansiyi/zrazki-dokumentiv">
+                                <span>Зразки документів</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/vakansiyi/stazhuvannya">
+                                <span>Стажування</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/vakansiyi/rezerv-pratsivnykiv-derzhavnykh-orhaniv-dlia-roboty-na-deokupovanykh-terytoriiakh-ukrainy">
+                                <span>Резерв працівників державних органів для роботи на деокупованих територіях України</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochishchennya-vladi">Oчищення влади</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochyshchennia-vlady-u-2023-rotsi">Oчищення влади у 2023 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochishchennya-vladi-2020">Oчищення влади у 2020 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochishchennya-vladi-2019">Очищення влади у 2019 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/misiya-ta-strategiya">Місія та стратегія</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/zakonodavstvo">Законодавство</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/zakonodavstvo/ukazi-prezidenta-ukrayini">
+                                <span>Укази Президента України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/zakoni-ukrayini">
+                                <span>Закони України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/akty-kabinetu-ministriv-ukrainy">
+                                <span>Акти Кабінету Міністрів України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/nakazi-minenergovugillya">
+                                <span>Накази Міністерства енергетики України</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/nakazi-derzhenergonaglyadu">
+                                <span>Накази Державної інспекції енергетичного нагляду України</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/zakonodavstvo/nakazi-derzhenergonaglyadu/nakaz-vid-19052021-111-pro-organizaciyu-nadannya-bezoplatnoyi-pervinnoyi-pravovoyi-dopomogi-v-derzhavnij-inspekciyi-energetichnogo-naglyadu-ukrayini">Наказ від 19.05.2021 №111 &quot;Про організацію надання безоплатної первинної правової допомоги в Державній інспекції енергетичного нагляду України&quot;</a></li>
+                                                                <li><a href="/zakonodavstvo/nakazi-derzhenergonaglyadu/nakaz-vid-02032022-39-pro-skasuvannya-zahodiv-derzhavnogo-naglyadu-kontrolyu-shchodo-dotrimannya-subyektami-gospodaryuvannya-vimog-zakonodavstva-u-sferah-elektroenergetiki-ta-teplopostachannya">Наказ від 02.03.2022 №39 &quot;Про скасування заходів  державного нагляду (контролю)  щодо дотримання суб&#039;єктами  господарювання вимог законодавства у сферах електроенергетики та теплопостачання&quot;</a></li>
+                                                                <li><a href="/zakonodavstvo/nakazi-derzhenergonaglyadu/nakaz-vid-04032024-25-pro-pochatok-zdiisnennia-derzhavnoiu-inspektsiieiu-enerhetychnoho-nahliadu-ukrainy-povnovazhen-i-funktsii-z-realizatsii-derzhavnoi-polityky-u-sferi-nahliadu-kontroliu-na-rynku-pryrodnoho-hazu">Наказ від 04.03.2024 №25 &quot;Про початок здійснення Державною інспекцією енергетичного нагляду України повноважень і функцій з реалізації державної політики у сфері нагляду (контролю) на ринку природного газу&quot;</a></li>
+                                                                <li><a href="/zakonodavstvo/nakazi-derzhenergonaglyadu/derzhenerhonahliad-bezposeredno-ne-provodyt-tekhnichne-rozsliduvannia-a-bere-uchast-u-provedenni-tekhnichnoho-rozsliduvannia-obstavyn-ta-prychyn-vynyknennia-avarii-poviazanykh-z-vykorystanniam-pryrodnoho-hazu-v-pobuti">УВАГА! Держенергонагляд БЕЗПОСЕРЕДНЬО НЕ ПРОВОДИТЬ технічне розслідування, а бере участь у проведенні технічного розслідування обставин та причин виникнення аварій, пов’язаних з використанням природного газу в побуті</a></li>
+                                                                <li><a href="/zakonodavstvo/nakazi-derzhenergonaglyadu/nakaz-derzhenerhonahliadu-vid-24062026-130-pro-zatverdzhennia-pereliku-pytan-shchodo-vstanovlennia-obgruntovanosti-zakhodiv-proiektu-investytsiinoi-prohramy-operatora-systemy-rozpodilu-ta-pereliku-kryteriiv-priorytezatsii-zakhodiv-proiektu-investytsiinoi-prohramy-operatora-systemy-rozpodilu">Наказ Держенергонагляду від  24.06.2026 №130 &quot;Про затвердження Переліку питань щодо встановлення обґрунтованості заходів  проєкту інвестиційної програми оператора системи розподілу та Переліку  критеріїв пріоритезації заходів проєкту інвестиційної програми оператора  системи розподілу&quot;</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/postanovi-nacionalnoyi-komisiyi-shcho-zdijsnyuye-regulyuvannya-u-sferah-energetiki-ta-komunalnih-poslug">
+                                <span>Постанови Національної комісії, що здійснює державне регулювання у сферах енергетики та комунальних послуг</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/zakonodavstvo/inshi-dokumenti">
+                                <span>Інші документи</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/teplopostachannya">Теплопостачання</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/teplopostachannya/povnovazhennya-derzhenergonaglyadu-u-galuzi-teplopostachannya">
+                                <span>Повноваження Держенергонагляду у галузі теплопостачання</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/teplopostachannya/rozyasnennya-shchodo-zvernen-gromadyan-z-pitan-ne-povyazanih-z-diyalnistyu-derzhenergonaglyadu-u-galuzi-teplopostachannya">
+                                <span>Роз’яснення щодо звернень громадян з питань, не пов’язаних з діяльністю Держенергонагляду у галузі теплопостачання</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/teplopostachannya/poryadok-dij-spozhivacha-zhitlovo-komunalnih-poslug-v-razi-nenadannya-nadannya-ne-v-povnomu-obsyazi-abo-nenalezhnoyi-yakosti-zhitlovo-komunalnih-poslug">
+                                <span>Порядок дій споживача житлово-комунальних послуг в разі ненадання, надання не в повному обсязі або неналежної якості житлово-комунальних послуг</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-dlya-podannya-elektronnih-zvernen-gromadyan-do-derzhavnoyi-inspekciyi-energetichnogo-naglyadu-ukrayini">Форма для подання електронних звернень громадян до Державної інспекції енергетичного нагляду України</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-dlya-podannya-zapitu-na-publichnu-informaciyu">Форма для подання запиту на публічну інформацію</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/povidomiti-pro-korupcijne-pravoporushennya">Повідомити про корупційне правопорушення</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh">Експлуатація електричних станцій та мереж</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/ekspluataciya-elektrichnih-stancij-ta-merezh/ekspluataciya-elektromerezh-maye-vidbuvatis-za-nalezhnih-umov">
+                                <span>Експлуатація електромереж має відбуватись за належних умов</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/vnutrishnij-audit">Внутрішній аудит</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/kontakti">Контакти</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/vseukrayinskij-tizhden-prava">Безоплатна правнича допомога</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-dlya-podannya-zayavki-rinok">Форма для подання скарги</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/plani-ta-zviti">Плани та звіти</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/plani-ta-zviti/richnyi-plan-zdiisnennia-zakhodiv-derzhavnoho-nahliadu-kontroliu-derzhavnoi-inspektsii-enerhetychnoho-nahliadu-ukrainy-na-2026-rik_">
+                                <span>Річний план здійснення заходів державного нагляду (контролю) Державної інспекції енергетичного нагляду України на 2026 рік</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/yedine-vikno">Електронний сервіс подання скарг</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/yedine-vikno/pidsumki-rozglyadu-skarg-u-2020-roci">
+                                <span>Підсумки розгляду скарг у 2020 році</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/yedine-vikno/rozglyad-skarg-z-priyednannya-do-elektromerezh">
+                                <span>Розгляд скарг з приєднання  до електромереж</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/do-vidoma-gromadskosti">До відома громадськості</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/do-vidoma-gromadskosti/elektronni-konsultaciyi-shchodo-obgovorennya-proyektu-antikorupcijnoyi-programi-derzhenregonaglyadu-na-2020-2022-roki">
+                                <span>Електронні консультації щодо обговорення проєкту Антикорупційної програми Держенрегонагляду на 2020-2022 роки</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/do-vidoma-gromadskosti/publichne-obhovorennia-proiektu-antykoruptsiinoi-prohramy-derzhenerhonahliadu-na-2023-2025-roky">
+                                <span>Публічне обговорення проєкту Антикорупційної програми Держенергонагляду на 2023-2025 роки</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/do-vidoma-gromadskosti/povidomlennia-pro-provedennia-publichnoho-obhovorennia-proiektu-antykoruptsiinoi-prohramy-derzhenerhonahliadu-na-2026-2028-roky">
+                                <span>Повідомлення про проведення публічного обговорення проєкту Антикорупційної програми Держенергонагляду на 2026-2028 роки</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/do-vidoma-gromadskosti/povidomlennia-pro-provedennia-publichnoho-obhovorennia-proiektu-zmin-antykoruptsiinoi-prohramy-derzhenerhonahliadu-na-2026-2028-roky">
+                                <span>Повідомлення про проведення публічного обговорення проєкту змін до Антикорупційної програми Держенергонагляду на 2026-2028 роки</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-dlya-povidomlennya-pro-korupciyu">Форма для повідомлення про корупцію</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu">Організація здійснення державного нагляду (контролю)</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/perelik-normativno-pravovih-aktiv-dotrimannya-vimog-yakih-pereviryayetsya-pid-chas-zdijsnennya-zahodiv-derzhavnogo-naglyadu-kontrolyu">
+                                <span>Перелік нормативно-правових актів, дотримання вимог яких перевіряється під час здійснення заходів державного нагляду (контролю)</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/kriteriyi-za-yakimi-ocinyuyetsya-stupin-riziku-vid-provadzhennya-gospodarskoyi-diyalnosti-ta-viznachayetsya-periodichnist-provedennya-planovih-zahodiv-derzhavnogo-naglyadu-kontrolyu">
+                                <span>Критерії, за якими оцінюється ступінь ризику від провадження  господарської діяльності та визначається періодичність проведення планових  заходів державного нагляду (контролю)</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/unifikovana-forma-akta-z-perelikami-pitan">
+                                <span>Уніфікована форма акта з переліками питань</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/vidomosti-pro-zdijsneni-zahodi-derzhavnogo-naglyadu-kontrolyu">
+                                <span>Відомості про здійснені заходи державного нагляду (контролю)</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/subiekty-hospodariuvannia-mozhut-zavchasno-samostiino-otsinyty-hotovnist-elektrychnykh-merezh-ta-ustanovok-do-roboty">
+                                <span>Суб’єкти господарювання можуть завчасно самостійно оцінити готовність електричних мереж та установок до роботи</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/organizaciya-zdijsnennya-derzhavnogo-kontrolyu-naglyadu/samootsiniuvannia-tekhnichnoho-stanu-teplovykh-hospodarstv-osnova-pidhotovky-do-opaliuvalnoho-periodu">
+                                <span>Самооцінювання технічного стану теплових господарств – основа підготовки до опалювального періоду</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/zagalni-konsultaciyi-shchodo-zdijsnennya-derzhavnogo-naglyadu-kontrolyu">Загальні консультації щодо здійснення державного нагляду  (контролю)</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/formi-pereliku-pitan-dlya-zdijsnennya-zahodu-derzhavnogo-naglyadu-kontrolyu-u-vidpovidnij-sferi-derzhavnogo-naglyadu-kontrolyu">Форми переліку питань для здійснення заходу державного нагляду  (контролю) у відповідній сфері державного нагляду (контролю)</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/inshi-formi-dokumentiv">Інші форми документів</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/vidkriti-dani">Відкриті дані</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/cifrovizaciya-ta-kiberbezpeka">Цифровізація та кібербезпека</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/kolegiya">Колегія</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/informacijna-dovidka-do-zasidannya-kolegiyi-28-zhovtnya-2021-roku">Інформаційна довідка до засідання колегії 28 жовтня 2021 року</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/konsultacii-z-gromadskistu">Консультації з громадськістю</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/konsultacii-z-gromadskistu/oriyentovni-plani-provedennya-konsultacij-z-gromadskistyu">
+                                <span>Річні орієнтовні плани проведення консультацій з громадськістю</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/konsultacii-z-gromadskistu/elektronni-konsultaciyi">
+                                <span>Електронні консультації з громадськістю</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/konsultacii-z-gromadskistu/elektronni-konsultaciyi/povidomlennya-pro-oprilyudnennya-proyetiv-regulyatornih-aktiv">Повідомлення про оприлюднення проєктів регуляторних актів</a></li>
+                                                                <li><a href="/konsultacii-z-gromadskistu/elektronni-konsultaciyi/zvity-pro-hromadske-obhovorennia">Звіти про громадське обговорення</a></li>
+                                                                <li><a href="/konsultacii-z-gromadskistu/elektronni-konsultaciyi/zviti-pro-vidstezhennya-rezultativnosti-regulyatornih-aktiv">Звіти про відстеження результативності регуляторних актів</a></li>
+                                                                <li><a href="/konsultacii-z-gromadskistu/elektronni-konsultaciyi/arkhiv">Архів</a></li>
+                                                            </ul>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochishchennya-vladi-u-2021-roci">Oчищення влади у 2021 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/storinka-tymchasovo-ne-pratsiuie-provodiatsia-tekhnichni-roboty-vybachte-za-tymchasovi-nezruchnosti">Сторінка тимчасово не працює. Проводяться технічні роботи. Вибачте за тимчасові незручності.</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-tymchasovo-ne-pratsiuie-cherez-vykonannia-tekhnichnykh-robit-vybachte-za-nezruchnosti-zvernutysia-do-derzhenerhonahliadu-mozhlyvo-cherez-ofitsiini-elektronni-adresy">Форма тимчасово не працює через виконання технічних робіт. Вибачте за незручності. Звернутися до Держенергонагляду можливо через офіційні електронні адреси.</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/gender">Ґендерна рівність</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/gender/gendernij-audit-2022">
+                                <span>Ґендерний аудит у Держенергонагляді в 2022 році</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/gender/vibirkovij-perelik-normativno-pravovih-aktiv">
+                                <span>Вибірковий перелік нормативно-правових актів, що регулюють паритетне становище жінок і чоловіків та рівність їх прав та можливостей</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/forma-dlya-podannya-zapitu-shchodo-gendernoyi-rivnosti">Форма для звернення до уповноваженої особи (координатора)  Держенергонагляду з питань забезпечення рівних прав та можливостей жінок і чоловіків, запобігання та протидії насильству за ознакою статі</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/profspilkova-diialnist">Профспілкова діяльність</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochyshchennia-vlady-u-2022-rotsi">Oчищення влади у 2022 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/perelik-napriamiv-tem-dlia-pidvyshchennia-kvalifikatsii">Перелік напрямів (тем) для підвищення кваліфікації державних службовців</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/infohrafika">Інфографіка</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/infohrafika/infografika-2021">
+                                <span>Інфографіка за 2021 рік</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/infohrafika/infografika-2022">
+                                <span>Інфографіка за 2022 рік</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/z-pytan-pryiednannia-rozpodilena-generacia">З питань приєднання</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/zahalna-informatsiia-rozpodilena-generacia">Загальна інформація</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/povidomlennia-pro-obrobku-personalnykh-danykh">Повідомлення про обробку персональних даних</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/rynok-pryrodnoho-hazu">Ринок природного газу</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/rynok-pryrodnoho-hazu/informatsiia-pro-vydachu-vidmovu-ta-anuliuvannia-vysnovkiv-vidpovidnosti">
+                                <span>Інформація про видачу, відмову та анулювання висновків відповідності</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/mizhnarodne-spivrobitnytstvo">Міжнародне співробітництво</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/mizhnarodne-spivrobitnytstvo/yevropeiska-intehratsiia">
+                                <span>Європейська інтеграція</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/mizhnarodne-spivrobitnytstvo/yevropeiska-intehratsiia/normatyvno-pravovi-akty-ievropeiskoho-soiuzu">Нормативно-правові акти Європейського Союзу</a></li>
+                                                            </ul>
+                                                    </li>
+                                            <li>
+                            <a href="/mizhnarodne-spivrobitnytstvo/yevroatlantychna-intehratsiia">
+                                <span>Євроатлантична інтеграція</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/mizhnarodne-spivrobitnytstvo/mizhnarodna-tekhnichna-dopomoha">
+                                <span>Міжнародна технічна допомога</span>
+                            </a>
+                                                        <ul class="site-map_list">
+                                                                <li><a href="/mizhnarodne-spivrobitnytstvo/mizhnarodna-tekhnichna-dopomoha/informatsiia-pro-otrymane-maino-obladnannia-prohramne-zabezpechennia-u-ramkakh-mizhnarodnoi-tekhnichnoi-dopomohy">Інформація про отримане майно (обладнання, програмне забезпечення) у рамках міжнародної технічної допомоги</a></li>
+                                                            </ul>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochyshchennia-vlady-u-2024-rotsi">Oчищення влади у 2024 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/ochyshchennia-vlady-u-2025-rotsi">Oчищення влади у 2025 році</a>
+                </h3>
+            </div>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/bezbariernist">Безбар&#039;єрність</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/bezbariernist/normatyvna-baza-bezbarernist">
+                                <span>Нормативна база</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/bezbariernist/informatsiia-pro-stan-vykonannia-planu-zakhodiv-na-20252026-roky-z-realizatsii-natsionalnoi-stratehii-iz-stvorennia-bezbariernoho-prostoru-v-ukraini-na-period-do-2030-roku">
+                                <span>Інформація про стан виконання плану заходів на 2025–2026 роки з реалізації Національної стратегії із створення безбар’єрного простору в Україні на період до 2030 року</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/bezbariernist/derzhenerhonahliad-zaproshuie-doluchytysia-do-spilnoty-ambasadoriv-bezbariernosti">
+                                <span>Держенергонагляд запрошує долучитися до спільноти амбасадорів безбар’єрності</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="site-map_item">
+            <div class="title">
+                <h3>
+                    <a href="/enerhoefektyvnist">Енергоефективність</a>
+                </h3>
+            </div>
+                            <ul class="site-map_list">
+                                            <li>
+                            <a href="/enerhoefektyvnist/nakaz-derzhenerhonahliadu-vid-05082026-169-deiaki-pytannia-funktsionuvannia-systemy-enerhetychnoho-menedzhmentu-v-derzhavnii-inspektsii-enerhetychnoho-nahliadu-ukrainy">
+                                <span>Наказ Держенергонагляду від 05.08.2026 №169 «Деякі питання функціонування системи енергетичного менеджменту в Державній інспекції енергетичного нагляду України»</span>
+                            </a>
+                                                    </li>
+                                            <li>
+                            <a href="/enerhoefektyvnist/plan-diialnosti-systemy-enerhetychnoho-menedzhmentu-ta-deklaratsiia-enerhetychnoi-polityky-derzhavnoi-inspektsii-enerhetychnoho-nahliadu-ukrainy-na-2026-2028-roky">
+                                <span>План діяльності системи енергетичного менеджменту та Декларація енергетичної політики Державної інспекції енергетичного нагляду України на 2026-2028 роки</span>
+                            </a>
+                                                    </li>
+                                    </ul>
+                    </div>
+    </div>
+</div>
+    </div>
+
+            
+        <div class="col-md-6 col-lg-5">
+            <div class="item first">
+
+                                    <img src="https://sies.gov.ua/storage/app/sites/4/trizub.png" alt="" class="footer_logo lowvision_image_filter">
+                
+                <div class="first_inner">
+                    <div class="headline">Державна інспекція енергетичного нагляду України</div>
+                    <div class="description">
+
+                                                    04112, м. Київ, вул. Дорогожицька, 11/8
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    
+            <div class="col-md-6 col-lg-2">
+                <div class="item">
+                    <div class="headline">
+                        Телефони
+                    </div>
+                    <div class="description">
+
+                                                     +38 (073) 957-20-28 (внутрішній 503)
+                        
+                    </div>
+                </div>
+            </div>
+
+                    
+            <div class="col-md-6 col-lg-3">
+                <div class="item">
+                    <div class="headline">
+                        Електронна пошта
+                    </div>
+                    <div class="description">
+
+                                                    <a href="mailto:bureau@sies.gov.ua
+
+">bureau@sies.gov.ua
+
+</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+<div class="footer_bottom">
+    <div class="row">
+        <div class="col-lg-8 col-xl-6">
+            
+                            <div class="about-portal_wrap">
+                    <div class="about-portal beta" ></div>
+                    <div class="footer_text">
+                        Портал працює в тестовому режимі. Якщо ви маєте зауваження або пропозиції, будь ласка, напишіть нам:
+                        <a href="mailto:support@kmu.gov.ua">support@kmu.gov.ua</a>
+                    </div>
+                </div>
+                    </div>
+         <div class="col-lg-4 col-xl-6 d-flex">
+             <div class="footer_socials">
+                     
+                 <nav class="socials-dark-theme mt-4" aria-label="Соціальні мережі">
+                     
+    <div class="socials" aria-label="Соціальні мережі">
+                                                                        <a href="http://facebook.com/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Facebook (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-facebook-square">
+            </a>
+                                                                        <a href="https://t.me/siesgovua"
+               target="_blank"
+               aria-label="Сторінка у Telegram (відкриває нове вікно)"
+               rel="nofollow noopener noreferrer"
+               class="socials-link socials-link-telegram">
+            </a>
+            </div>
+                 </nav>
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-xl-6">
+            <div class="about-portal_wrap">
+                <div class="about-portal cc"></div>
+                <div class="footer_text">
+                     Весь контент доступний за ліцензією 
+                    <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.uk">Creative Commons Attribution 4.0 International license</a>, якщо не зазначено інше 
+                </div>
+            </div>
+        </div>
+        <div class="log-lg-4 col-xl-6">
+            <div class="dev-company">
+                <a href="https://kitsoft.ua/ua/"
+                   target="_blank" rel="nofollow"
+                   aria-label="Перейти на сайт розробника Kitsoft (відкриється у новомі вікні)"
+                   class="dev-company_link"></a>
+                <span> розробник порталу</span>
+            </div>
+        </div>
+    </div>
+</div>        </footer>
+        
+                <a href="javascript:void(0);" aria-label="Кнопка переходу на початок сторінки" class="scrollToTop"
+               id="scrollToTopBtn"></a>
+    </div>
+
+    <div class="browser_container">
+    <!--  HEADER  -->
+    <div class="browser_header">
+        <div class="browser_header-version">
+            <div class="browser_header-title">Outdated Browser</div>
+            <div class="browser_header-text">Для комфортної роботи в Мережі потрібен сучасний браузер. Тут можна знайти останні версії.</div>
+        </div>
+        <div class="browser_header-version-m">
+            <div class="browser_header-title">Outdated Browser</div>
+            <div class="browser_header-text">Цей сайт призначений для комп'ютерів, але <br>ви можете вільно користуватися ним.</div>
+        </div>
+    </div>
+    <section class="browser_list">
+        <!-- BROWSER - Chrome -->
+        <div class="browser browser-chrome">
+            <div class="browser_statistic">
+                <div class="browser_statistic-big">67.15%</div>
+                <div class="browser_statistic-small">людей використовує<br>цей браузер</div>
+            </div>
+            <div class="browser-center">
+                <div class="browser-logo chrome"></div>
+                <div class="browser-name">Google Chrome</div>
+                <div class="browser_load">
+                    <a href="https://www.google.com/chrome/browser/desktop" target="_blank" class="browser_load-link chrome">Завантажити</a>
+                </div>
+            </div>
+            <div class="browser_available">
+                <div class="browser_available-title">
+                    Доступно для
+                </div>
+                <ul class="browser_os">
+                    <li class="browser_os-item windows">
+                        <span>Windows</span>
+                    </li>
+                    <li class="browser_os-item mac">
+                        <span>Mac OS</span>
+                    </li>
+                    <li class="browser_os-item linux">
+                        <span>Linux</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- BROWSER - Firefox -->
+        <div class="browser browser-firefox">
+            <div class="browser_statistic">
+                <div class="browser_statistic-big">9.6%</div>
+                <div class="browser_statistic-small">людей використовує<br>цей браузер</div>
+            </div>
+            <div class="browser-center">
+                <div class="browser-logo firefox"></div>
+                <div class="browser-name">Mozilla Firefox</div>
+                <div class="browser_load">
+                    <a href="https://www.mozilla.org/firefox/new/" target="_blank" class="browser_load-link firefox">Завантажити</a>
+                </div>
+            </div>
+            <div class="browser_available">
+                <div class="browser_available-title">
+                    Доступно для
+                </div>
+                <ul class="browser_os">
+                    <li class="browser_os-item windows">
+                        <span>Windows</span>
+                    </li>
+                    <li class="browser_os-item mac">
+                        <span>Mac OS</span>
+                    </li>
+                    <li class="browser_os-item linux">
+                        <span>Linux</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- BROWSER - Internet Explorer -->
+        <div class="browser browser-edge">
+            <div class="browser_statistic">
+                <div class="browser_statistic-big">4.5%</div>
+                <div class="browser_statistic-small">людей використовує<br>цей браузер</div>
+            </div>
+            <div class="browser-center">
+                <div class="browser-logo edge"></div>
+                <div class="browser-name">Microsoft Edge</div>
+                <div class="browser_load">
+                    <a href="https://www.microsoft.com/edge" target="_blank" class="browser_load-link edge">Завантажити</a>
+                </div>
+            </div>
+            <div class="browser_available">
+                <div class="browser_available-title">
+                    Доступно для
+                </div>
+                <ul class="browser_os">
+                    <li class="browser_os-item windows">
+                        <span>Windows</span>
+                    </li>
+                    <li class="browser_os-item mac">
+                        <span>Mac OS</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+                <!-- BROWSER - Opera -->
+        <div class="browser browser-opera">
+            <div class="browser_statistic">
+                <div class="browser_statistic-big">3.15%</div>
+                <div class="browser_statistic-small">людей використовує<br>цей браузер</div>
+            </div>
+            <div class="browser-center">
+                <div class="browser-logo opera"></div>
+                <div class="browser-name">Opera</div>
+                <div class="browser_load">
+                    <a href="https://www.opera.com/computer" target="_blank" class="browser_load-link opera">Завантажити</a>
+                </div>
+            </div>
+            <div class="browser_available">
+                <div class="browser_available-title">
+                    Доступно для
+                </div>
+                <ul class="browser_os">
+                    <li class="browser_os-item windows">
+                        <span>Windows</span>
+                    </li>
+                    <li class="browser_os-item mac">
+                        <span>Mac OS</span>
+                    </li>
+                    <li class="browser_os-item linux">
+                        <span>Linux</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<script nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+(function() {
+    var IE10 = ( window.navigator.userAgent.indexOf('MSIE') > -1 ? true : false );
+    var IE11 = ( window.navigator.userAgent.indexOf("Trident") > -1 ? true : false );
+    if ( IE10 || IE11 ) {
+        var items = document.querySelectorAll('.browser');
+        if (items.length) {
+            for (var i = 0; i < items.length; i++) {
+                items[i].addEventListener('mouseenter', function(e) {
+                    var target = e.target;
+                    target.className.indexOf('browser-expanded') > -1 ? '' : target.classList.add('browser-expanded');
+                });
+                items[i].addEventListener('mouseleave', function(e) {
+                    var target = e.target;
+                    target.className.indexOf('browser-expanded') > -1 ? target.classList.remove('browser-expanded') : '';
+                });
+            }
+        }
+    }
+})();
+</script>
+    <script type="text/javascript" src="https://sies.gov.ua/combine/a84201ed48eb757de357c97cd72c5eec-1792765002" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+    </script>
+
+    <script type="text/javascript" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+        (function() {
+            if (typeof Promise !== 'undefined' && !Promise.allSettled) {
+                Promise.allSettled = function(promises) {
+                    return Promise.all(
+                        Array.from(promises).map(function(p) {
+                            return Promise.resolve(p).then(
+                                function(value) { return { status: 'fulfilled', value: value }; },
+                                function(reason) { return { status: 'rejected', reason: reason }; }
+                            );
+                        })
+                    );
+                };
+            }
+        })();
+    </script>
+
+    <script type="text/javascript" src="https://sies.gov.ua/themes/odv/assets/vendor/dflip/js/dflip.min.js" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs"></script>
+
+    <script async nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs">
+		var Hostname = window.location.hostname;
+		console.log(Hostname);
+		if ( Hostname && (Hostname === 'new.mepr.gov.ua') || (Hostname === 'mepr.gov.kitsoft.kiev.ua')) {
+			(function(d, s, id, companyId) {
+				var js, sjs = d.getElementsByTagName(s)[0];
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://widget-cz.ukc.gov.ua/connect/loader.js";
+				js.setAttribute('data-company-id', companyId);
+				sjs.parentNode.insertBefore(js, sjs);
+			})(document, "script", "sender-connect", "i716322559");
+
+			(function (d, options) {
+				var js = d.createElement('script');
+				js.type = "text/javascript";
+				js.src = "https://interpreter.getbw.me/api/widget/init.js?api_key=" + options.apiKey;
+				js.onload = function () {
+					window.SLInterpreter.init(options);
+				};
+				d.body.appendChild(js);
+			})(document, {
+				apiKey: 'e51cc397c065c52db4c2f7137183c14e08ab9bdc',
+				fullScreen: true,
+				canToggleMic: true,
+			});
+		}
+    </script>
+    <script src="https://sies.gov.ua/plugins/kitsoft/pages/assets/js/ajax.js?v=2.2.47" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs"></script>
+<script src="https://sies.gov.ua/plugins/kitsoft/pages/assets/js/csrf_token.js?v=2.2.47" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs"></script>
+<script type="text/javascript" src="https://sies.gov.ua/combine/5af743ce8f6601c5881c0bdb92051fe5-1792765002" nonce="Rum37huclKTbtHhpXzXZwj8Br90XUQCs"></script>    
+    </body>
+</html>
