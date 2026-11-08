@@ -10,6 +10,7 @@ import { productionRuntimePolicy } from "./runtime-policy";
 import { BUILD_SOURCE_SHA256 } from "./release/build-identity";
 import { registerLiveProductRoutes } from "./production/product-routes";
 import { createProductAuthentication } from "./production/product-auth";
+import { legacyProductionRouteFence } from "./production/legacy-route-fence";
 import { assertIsolatedRuntimeReady, assertLocalRequestHeaders, isIsolatedMode } from "./isolated-guard";
 
 const isolated = isIsolatedMode();
@@ -88,6 +89,7 @@ app.use((req, res, next) => {
   }
   await setupAuth(app);
   registerAuthRoutes(app);
+  if (!isolated && process.env.NODE_ENV==='production') app.use(legacyProductionRouteFence());
   await registerRoutes(httpServer, app);
   if (!isolated && process.env.NODE_ENV==='production' && BUILD_SOURCE_SHA256) {
     const policy=productionRuntimePolicy();
@@ -95,8 +97,8 @@ app.use((req, res, next) => {
       releaseId:BUILD_SOURCE_SHA256,mode:policy.productProfileMode,
       authenticate:createProductAuthentication({verifyMobile:verifyMobileToken,authenticateSession:isAuthenticated}),
       read:async principal=>{
-        const [{pool},{readLegacyLiveProfile}]=await Promise.all([import('./db'),import('./production/profile-reader')]);
-        return readLegacyLiveProfile(pool,principal);
+        const [{pool},{readOwnedLegacyProfile}]=await Promise.all([import('./db'),import('./production/legacy-identity-links')]);
+        return readOwnedLegacyProfile(pool,principal);
       },
     });
     app.get('/api/health/release',(_req,res)=>{
@@ -107,10 +109,13 @@ app.use((req, res, next) => {
   }
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    const suppliedStatus = err.status || err.statusCode;
+    const status = Number.isInteger(suppliedStatus) && suppliedStatus >= 400 && suppliedStatus <= 599 ? suppliedStatus : 500;
+    const production = !isolated && process.env.NODE_ENV === 'production';
+    const message = production ? 'Не вдалося виконати запит. Спробуйте пізніше.' : err.message || 'Internal Server Error';
 
-    console.error("Internal Server Error:", err);
+    if (production) console.error('[API] Request failed', { status });
+    else console.error('Internal Server Error:', err);
 
     if (res.headersSent) {
       return next(err);
@@ -142,7 +147,7 @@ app.use((req, res, next) => {
     },
     () => {
       log(`serving on port ${port}`);
-      if (!isolated) startTelegramBot().catch(e => console.error('[TG Bot] Failed to start:', e.message));
+      if (!isolated) startTelegramBot().catch(() => console.error('[TG Bot] Failed to start'));
     },
   );
 })().catch(async () => {

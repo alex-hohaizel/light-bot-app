@@ -32,11 +32,13 @@ export function generateMobileToken(userId: string, firstName?: string): string 
 export function verifyMobileToken(token: string): MobileTokenPayload | null {
   try {
     const decoded = jwt.verify(token, JWT_SECRET, {
+      algorithms: ['HS256'],
       issuer: TOKEN_ISSUER,
       audience: TOKEN_AUDIENCE,
       clockTolerance: 30,
     }) as MobileTokenPayload;
-    if (decoded.type !== 'mobile') return null;
+    if (!decoded || typeof decoded !== 'object' || decoded.type !== 'mobile' || typeof decoded.sub !== 'string' ||
+      !decoded.sub.trim() || decoded.sub.length > 255 || /[\u0000-\u001f\u007f]/.test(decoded.sub)) return null;
     return decoded;
   } catch {
     return null;
@@ -73,12 +75,9 @@ export function isMobileAuth(req: Request, res: Response, next: NextFunction) {
 }
 
 export function isAuthenticatedMobileOrSession(req: Request, res: Response, next: NextFunction) {
-  if ((req as any).user) {
-    return next();
-  }
-
   const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith('Bearer ')) {
+  if (authHeader !== undefined) {
+    if (typeof authHeader !== 'string' || !authHeader.startsWith('Bearer ')) return res.status(401).json({ error: 'Invalid token' });
     const token = authHeader.slice(7);
     const payload = verifyMobileToken(token);
     if (payload) {
@@ -93,6 +92,12 @@ export function isAuthenticatedMobileOrSession(req: Request, res: Response, next
     }
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
+
+  const user=(req as any).user;
+  if (typeof req.isAuthenticated === 'function' && req.isAuthenticated() === true &&
+    Number.isSafeInteger(user?.expires_at) && user.expires_at >= Math.floor(Date.now()/1000) &&
+    typeof user?.claims?.sub === 'string' && user.claims.sub.trim() && user.claims.sub.length <= 255 &&
+    !/[\u0000-\u001f\u007f]/.test(user.claims.sub)) return next();
 
   return res.status(401).json({ error: 'Authentication required' });
 }

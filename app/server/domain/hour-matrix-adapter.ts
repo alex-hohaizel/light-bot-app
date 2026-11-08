@@ -8,6 +8,7 @@ const SOURCES = {
   'voe:vn-progr': { operatorId: 'vinnytsia-oe', sourceId: 'voe-mirror-vn-progr', regionId: 'vinnytsia', targetNamespace: 'voe:vinnytsia' },
   'voe:olnet93': { operatorId: 'vinnytsia-oe', sourceId: 'voe-mirror-olnet93', regionId: 'vinnytsia', targetNamespace: 'voe:vinnytsia' },
   'dtek:oem': { operatorId: 'dtek-oem', sourceId: 'dtek-oem-official', regionId: null, targetNamespace: 'dtek:oem' },
+  'dtek:oem-mirror': { operatorId: 'dtek-oem', sourceId: 'mirror-odesa', regionId: 'odesa', targetNamespace: 'dtek:oem' },
 } as const;
 export interface HourMatrixContext {
   /** Parser/source profile; returned target namespace is stable across equivalent VOE mirrors. */
@@ -80,6 +81,7 @@ function midnightFromSeconds(value: unknown): string {
 export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext): ScheduleView {
   const config = SOURCES[context.namespace];
   if (!config || config.operatorId !== context.operatorId || config.sourceId !== context.source.id) throw new Error('OPERATOR_NAMESPACE_MISMATCH');
+  const oem = config.operatorId === 'dtek-oem';
   if (typeof rawBody !== 'string' || Buffer.byteLength(rawBody, 'utf8') > 2_000_000) throw new Error('RAW_BODY_INVALID');
   const rawHash = hash(rawBody);
   if (context.source.revision !== rawHash) throw new Error('RAW_SOURCE_HASH_MISMATCH');
@@ -106,10 +108,10 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
   if (Object.keys(day).length !== queueIds.length || queueIds.some(id => !Object.hasOwn(day, id))) throw new Error('INCOMPLETE_OR_UNKNOWN_QUEUE_TABLE');
   for (const group of Object.values(day)) {
     if (!record(group) || Object.keys(group).length !== 24 || Array.from({ length: 24 }, (_, i) => String(i + 1)).some(key => !Object.hasOwn(group, key))) throw new Error('INCOMPLETE_OR_UNKNOWN_HOUR_KEYS');
-    const allowed = context.namespace === 'dtek:oem' ? Object.keys(OEM_LEGEND) : ['yes', 'no'];
+    const allowed = oem ? Object.keys(OEM_LEGEND) : ['yes', 'no'];
     if (Object.values(group).some(value => typeof value !== 'string' || !allowed.includes(value))) throw new Error('UNKNOWN_PROVIDER_HOUR_ENUM');
   }
-  if (context.namespace === 'dtek:oem') {
+  if (oem) {
     const legend = preset.time_type, zones = preset.time_zone;
     if (!record(legend) || Object.keys(legend).length !== Object.keys(OEM_LEGEND).length ||
         Object.entries(OEM_LEGEND).some(([code, label]) => legend[code] !== label)) throw new Error('UNKNOWN_OEM_LEGEND');
@@ -135,7 +137,7 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
     if (code === 'yes') continue;
     if (code === 'no') { append(a, a + 60, 'planned_outage'); continue; }
     // VOE's captured schema proves only yes/no. Its adapter does not borrow OEM's legend.
-    if (context.namespace !== 'dtek:oem') throw new Error('UNKNOWN_VOE_HOUR_ENUM');
+    if (!oem) throw new Error('UNKNOWN_VOE_HOUR_ENUM');
     switch (code) {
       case 'maybe': append(a, a + 60, 'possible_outage'); break;
       case 'first': append(a, a + 30, 'planned_outage'); break;
@@ -150,7 +152,7 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
   // These observed formats have no independent published flag per day. An
   // entirely all-yes matrix (actual VOE tomorrow) can be an unpublished default.
   const anyPublishedOutage = Object.values(day).some(group => record(group) && Object.values(group).some(code =>
-    code === 'no' || (context.namespace === 'dtek:oem' && ['maybe', 'first', 'second', 'mfirst', 'msecond'].includes(String(code)))));
+    code === 'no' || (oem && ['maybe', 'first', 'second', 'mfirst', 'msecond'].includes(String(code)))));
   const unconfirmedEmpty = !intervals.length && !anyPublishedOutage;
   const view: ScheduleView = {
     contractVersion: 'lba-product/1', revisionId: `hour-matrix:${hash(JSON.stringify({ rawHash, namespace: context.namespace, target: context.targetId, date: context.serviceDate }))}`,

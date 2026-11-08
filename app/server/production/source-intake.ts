@@ -28,6 +28,7 @@ export const SOURCE_PROFILES: readonly SourceProfile[] = Object.freeze([
   { sourceId: 'voe-mirror-vn-progr', name: 'Вінниця · громадське дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:vn-progr', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Unofficial mirror; reuse/rate and primary comparison pending.' },
   { sourceId: 'voe-mirror-olnet93', name: 'Вінниця · резервне дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:olnet93', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/olnet93/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Observed obsolete 2025 payload; not a current fallback. Reuse/rate pending.' },
   { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: 'Robots disallows automation. No repeated scraping or challenge bypass.', automationBlocked: true },
+  { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: 'Current public payload and repository license observed8Nov; ongoing admission, independent fallback and exact binding remain separate.' },
   { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Single dated plan verified; systematic reuse/rate and exact binding pending.' },
 ].map(profile => Object.freeze(profile)) as SourceProfile[]);
 
@@ -253,7 +254,7 @@ export function createSourceIntake(options: {
         if (days.length !== 1) return fail('SOURCE_SCHEMA_REJECTED');
         view = normalizeYasnoRaw(raw.raw, days[0], { ...context, namespace: profile.parserNamespace as 'yasno:25/902' | 'yasno:3/301' | 'yasno:3/303' });
       } else if (profile.parser === 'hour_matrix') {
-        view = normalizeHourMatrix(raw.raw, { ...context, namespace: profile.parserNamespace as 'voe:vn-progr' | 'voe:olnet93' | 'dtek:oem' });
+        view = normalizeHourMatrix(raw.raw, { ...context, namespace: profile.parserNamespace as 'voe:vn-progr' | 'voe:olnet93' | 'dtek:oem' | 'dtek:oem-mirror' });
       } else view = normalizeKharkivRss(raw.raw, { ...context, operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss' });
       if (!view.publishedAt || view.operatorId !== request.operatorId || view.namespace !== request.namespace || view.targetId !== request.targetId ||
           view.serviceDate !== request.serviceDate || view.source.revision !== raw.rawSha256) return fail('SOURCE_SCHEMA_REJECTED');

@@ -1,0 +1,97 @@
+{
+  "actor": "/root/v7_local_tools",
+  "actualPostgreSQL": true,
+  "actualHttp": false,
+  "syntheticOnly": true,
+  "target": {
+    "database": "lba_test_telegram_inbox",
+    "port": 55439,
+    "listen": "127.0.0.1"
+  },
+  "tests": [
+    {
+      "name": "invalid signature and invalid native bytes reject before any pool connection even without schema",
+      "status": "pass"
+    },
+    {
+      "name": "schema is never auto-created; missing/disabled/legacy/wrong epoch control fails closed",
+      "status": "pass"
+    },
+    {
+      "name": "actual durable message is minimized and canonical reordered replay returns the same committed receipt",
+      "status": "pass"
+    },
+    {
+      "name": "two actual concurrent receivers and a new process instance create one unique bot/update record",
+      "status": "pass"
+    },
+    {
+      "name": "unsupported event variants are durably ignored with private_input NULL and no unnecessary PII",
+      "status": "pass"
+    },
+    {
+      "name": "callback sender bot/actor and exact native UTF-8 callback bytes are validated before DB",
+      "status": "pass"
+    },
+    {
+      "name": "ACK remains unavailable while actual COMMIT is held; other connections cannot see uncommitted ingress",
+      "status": "pass"
+    },
+    {
+      "name": "exact recovery waits for an in-flight accept then sees its commit; RR override negative control misses it",
+      "status": "pass"
+    },
+    {
+      "name": "saved and not-saved ambiguous COMMIT return no ACK and recover/retry exactly once",
+      "status": "pass"
+    },
+    {
+      "name": "failure after actual insert rolls back ingress and returns no ACK; corrupt private work never passes recovery",
+      "status": "pass"
+    },
+    {
+      "name": "epoch rollover never auto-reassigns or acknowledges old durable work; fresh current-epoch input works",
+      "status": "pass"
+    },
+    {
+      "name": "ingress never touches canonical profile/domain/outbox tables, provider API, or legacy writers",
+      "status": "pass"
+    }
+  ],
+  "driverSha256": "8d8bd987dea38cb1bc5a4ff3e23c0e2d7026981ede1626a987dafd761675e2ba",
+  "controlSchemaSha256": "2f38c616fd7269ba9a1ed7d11ef88ed425d126d5a263edb548b1183173eb8371",
+  "sourceBefore": [
+    {
+      "path": "app/server/production/telegram-inbox.ts",
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-inbox.test.ts",
+      "sha256": "a4817401a406c4b024e510186ba05cf8e89475d17944bfa42e653e62c5f9964b"
+    },
+    {
+      "path": "tools/local-runtime/disposable-proof-db.mjs",
+      "sha256": "8785a5b6e84f27b2c6ed47e7bf635d60addf37a9916ed89d522d30d43da1cc56"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "app/server/production/telegram-inbox.ts",
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-inbox.test.ts",
+      "sha256": "a4817401a406c4b024e510186ba05cf8e89475d17944bfa42e653e62c5f9964b"
+    },
+    {
+      "path": "tools/local-runtime/disposable-proof-db.mjs",
+      "sha256": "8785a5b6e84f27b2c6ed47e7bf635d60addf37a9916ed89d522d30d43da1cc56"
+    }
+  ],
+  "realProviderRequests": 0,
+  "productionWrites": 0,
+  "publicWebhookChanged": false,
+  "consumerActivated": false,
+  "scope": "Fresh own cluster/native synthetic payload only; no identity/profile/send/consume/API or production activation. RR override is an explicit QA negative control.",
+  "clusterStopped": true
+}

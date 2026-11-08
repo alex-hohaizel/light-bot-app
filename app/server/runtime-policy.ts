@@ -1,3 +1,4 @@
+import {PRODUCT_TELEGRAM_IDENTITY} from './production/product-identity.ts';
 /**
  * Pure startup plan. Reading this module never opens a DB, starts a scheduler,
  * changes a webhook, generates credentials or sends Telegram messages.
@@ -19,6 +20,8 @@ export interface ProductionRuntimePolicy {
   readonly botMetadataOnStart: false;
   readonly seedDataOnStart: false;
   readonly apiBodyLogging: false;
+  readonly telegramAuthReplayEnabled: boolean;
+  readonly canonicalControlEpoch: number|null;
   readonly productProfileMode: 'disabled'|'read_only';
 }
 export type RuntimeEnvironment = Readonly<Record<string, string | undefined>>;
@@ -69,9 +72,19 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
   credential(env, 'JWT_SECRET', 32);
   const productProfileMode=env.LBA_PRODUCT_PROFILE_MODE||'disabled';
   if(!['disabled','read_only'].includes(productProfileMode))return rejected('LBA_RUNTIME_PRODUCT_WRITER_NOT_READY');
+  const telegramAuthReplayEnabled=explicitSwitch(env,'LBA_AUTH_REPLAY_GUARD');
+  if(telegramAuthReplayEnabled && credential(env,'TELEGRAM_BOT_TOKEN',20).split(':')[0]!==PRODUCT_TELEGRAM_IDENTITY.botId)
+    return rejected('LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
 
   const telegramDeliveryEnabled = explicitSwitch(env, 'LBA_TELEGRAM_DELIVERY');
   const telegramUpdatesEnabled = explicitSwitch(env, 'LBA_TELEGRAM_UPDATES');
+  let canonicalControlEpoch:number|null=null;
+  if(env.LBA_CANONICAL_CONTROL_EPOCH!==undefined){
+    const value=env.LBA_CANONICAL_CONTROL_EPOCH;
+    if(!/^[1-9]\d{0,15}$/.test(value)||!Number.isSafeInteger(Number(value)))return rejected('LBA_RUNTIME_CONTROL_EPOCH_INVALID');
+    canonicalControlEpoch=Number(value);
+  }
+  if(telegramUpdatesEnabled&&canonicalControlEpoch===null)return rejected('LBA_RUNTIME_CONTROL_EPOCH_REQUIRED');
   const notificationSchedulerEnabled = explicitSwitch(env, 'LBA_NOTIFICATION_SCHEDULER');
   const reconcileSubscribersOnStart = explicitSwitch(env, 'LBA_RECONCILE_SUBSCRIBERS_ON_START');
   const migrateSubscribersOnStart = explicitSwitch(env, 'LBA_MIGRATE_SUBSCRIBERS_ON_START');
@@ -79,7 +92,8 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
   if ((telegramUpdatesEnabled || notificationSchedulerEnabled) && !telegramDeliveryEnabled)
     return rejected('LBA_RUNTIME_TELEGRAM_DELIVERY_REQUIRED');
   if (telegramDeliveryEnabled) {
-    credential(env, 'TELEGRAM_BOT_TOKEN', 20);
+    if(credential(env, 'TELEGRAM_BOT_TOKEN', 20).split(':')[0]!==PRODUCT_TELEGRAM_IDENTITY.botId)
+      return rejected('LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
     const secret = credential(env, 'TELEGRAM_WEBHOOK_SECRET', 1);
     // Keep an existing valid provider secret, rather than rotating it implicitly on startup.
     if (!/^[A-Za-z0-9_-]{1,256}$/.test(secret)) return rejected('LBA_RUNTIME_WEBHOOK_SECRET_INVALID');
@@ -95,6 +109,8 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
     loadSubscribersOnStart: true,
     reconcileSubscribersOnStart, migrateSubscribersOnStart, initializeSubscriberHashesOnStart,
     botMetadataOnStart: false, seedDataOnStart: false, apiBodyLogging: false,
+    telegramAuthReplayEnabled,
+    canonicalControlEpoch,
     productProfileMode: productProfileMode as 'disabled'|'read_only',
   });
 }

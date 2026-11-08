@@ -1,9 +1,11 @@
-# V8 · ізольована передача для Replit staging
+# V8 · поточна ізольована передача Phase2
 
-Це точний код погодженого «Адресного пульта» та «Спільної доби», зі світлою, м’якою нічною темою та анімаціями. Усі 68 canonical must збережені, SHA256 requirements.json: 8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158.
+Поточний пакет перевіряти за source-transfer-phase2.json та exact Git commit, повідомленим окремою квитанцією. source-transfer.json і commit4311 залишені як історична Phase1 передача, їхні старі hashes не є manifest нового дерева.
 
-Пакет НЕ готовий до production cutover: реальний writer/спільний Bot runtime, допуск поточних джерел, identity/replay, rollback та sender coordination ще мають свої gates. Не замінювати чинний workspace, не запускати npm start/build/deploy за замовчуванням: default build/start навмисно лишилися isolated. Production candidate build — окремий build:production; він тільки збирає dist-production і не запускає runtime.
+Усі68 must збережено; requirements.json SHA2568c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158. Прийнятий «Адресний пульт»/«Спільна доба», денний і м’який нічний режими та анімації збережені. Нові auth/profile/inbox boundaries мають окремі actual PG/HTTP та незалежні bounded докази в phase2.
 
-Доставка: прочитати source-transfer.json, перевірити кожний hash, тримати код в окремій staging-папці чинного Replit. Чинний main@45d77e22e68816e5695aa4b7d2a62bfc57e8176d, deployment, webhook, користувачі та дані залишаються недоторканими. Збірка ще не означає live readiness.
+Пакет лише для staging build. Canonical sender/worker, повні tools/deep-link replacements, source/address admission/48h, actual live DB binding/backup/restore/delta та повна68/device acceptance ще відкриті. Legacy production routes перекриті до canonical replacements; це не готова для publish feature parity. Чинний Replit mainb825da267772fc87c8cbb1e85b8acb8e7f83fab9 має лише додані порожні userenv секції порівняно з45d77. Не перезаписувати workspace/main або managed databases, не запускати runtime/scheduler/Telegram і не publish.
 
-Значень секретів, архіву source, приватних профілів/БД, .env, node_modules та локальних звітів установки тут немає. Не додавати secret values у Git або відповіді. Наявні installation й canonical docs у базовій гілці збережені. Подальші рішення й QA веде root у чинному Codex-проєкті.
+Production build — окремий build:production, outputdist-production. Default build/start залишені isolated; не переносити synthetic runtime flags у production. Збірка тільки компілює, не запускає app, DB, webhook або seed. Вхідні credentials не потрібні для збірки.
+
+Передача не містить секретів, source ZIP, приватних профілів/БД, .env чи node_modules. Після fetch exact source перевірити кожний manifest file hash/size, build source fingerprint й asset hashes; отримання та збірка не означають production readiness. Рішення та всі подальші зміни залишаються в Codex.

@@ -8,15 +8,22 @@ import { fetchOdesaScheduleData, parseOdesaScheduleForQueue, getOdesaAvailableQu
 import { isAuthenticated } from "./replit_integrations/auth";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { createHash, createHmac, timingSafeEqual } from "crypto";
+import { createHash, createHmac } from "crypto";
 import { getCachedQueue, cacheQueueResult } from "./voe-lookup";
-import { getRecentStarts, handleWebhookUpdate, getWebhookSecret, updateSubscriber, getSubscribers, consumeAutoLoginToken, generateAutoLoginToken, generateLinkToken, generateWebLoginToken, resolveWebLoginToken, triggerNotifCheckIfNeeded, broadcastAnnouncement } from "./telegram-bot";
+import { getRecentStarts, updateSubscriber, getSubscribers, consumeAutoLoginToken, generateAutoLoginToken, generateLinkToken, generateWebLoginToken, resolveWebLoginToken, triggerNotifCheckIfNeeded, broadcastAnnouncement } from "./telegram-bot";
 import { authStorage } from "./replit_integrations/auth";
 import { authLimiter, scheduleLimiter } from "./middleware";
 import { generateMobileToken, isAuthenticatedMobileOrSession } from "./mobile-auth";
 import { isIsolatedMode } from "./isolated-guard";
 import { registerIsolatedFixtureRoutes } from "./isolated-routes";
-import { verifyTelegramInitData, verifyTelegramLoginData } from "./telegram-init-data";
+import { createAuthReplayGuard } from "./production/auth-replay";
+import { createTelegramAuthFlow } from "./production/telegram-auth-flow";
+import { createTelegramIdentityResolver } from "./production/telegram-identity";
+import { registerTelegramProofRoutes } from "./production/telegram-auth-http";
+import { pool } from "./db";
+import { PRODUCT_TELEGRAM_IDENTITY } from "./production/product-identity";
+import { createTelegramInbox } from "./production/telegram-inbox";
+import { registerTelegramInboxRoute } from "./production/telegram-inbox-http";
 import { productionRuntimePolicy } from "./runtime-policy";
 import { BUILD_SOURCE_SHA256 } from "./release/build-identity";
 
@@ -1235,13 +1242,8 @@ export async function registerRoutes(
     return parseScheduleForQueue(data, queueId);
   }
 
-  if (!isIsolatedMode()) {
-    fetchAllKharkivStreets().catch(err => console.error('[KHARKIV] Initial street fetch error:', err.message));
-    getDtekOemSession().catch(err => console.error('[DTEK-OEM] Initial session fetch error:', err.message));
-    setTimeout(() => {
-      fetchAllOdesaStreets().catch(err => console.error('[ODESA] Initial street fetch error:', err.message));
-    }, 15000);
-  }
+  // Public sources are fetched by the admitted source adapter on demand.
+  // No DTEK session/challenge, geocoder, or remote source prefetch runs at startup.
 
   const BUILD_TIME = new Date().toISOString();
 
@@ -1604,23 +1606,17 @@ export async function registerRoutes(
     return res.json({ queueId: null, source: 'none', alternatives: [], needsManualQueue: true });
   });
 
-  app.post('/api/telegram-webhook', async (req, res) => {
-    if (isIsolatedMode() || process.env.NODE_ENV !== 'production' || !productionRuntimePolicy().telegramUpdatesEnabled) {
-      return res.sendStatus(503);
-    }
-    const secretHeader = req.headers['x-telegram-bot-api-secret-token'];
-    const secret = getWebhookSecret();
-    if (typeof secretHeader !== 'string' || secretHeader.length !== secret.length ||
-        !timingSafeEqual(Buffer.from(secretHeader), Buffer.from(secret))) {
-      return res.sendStatus(403);
-    }
-    try {
-      if (!req.body || !Number.isSafeInteger(req.body.update_id)) return res.sendStatus(400);
-      await handleWebhookUpdate(req.body);
-      res.sendStatus(200);
-    } catch {
-      res.sendStatus(503);
-    }
+  const inboxPolicy = !isIsolatedMode() && process.env.NODE_ENV === 'production' ? productionRuntimePolicy() : null;
+  let telegramInbox: ReturnType<typeof createTelegramInbox> | undefined;
+  registerTelegramInboxRoute(app, {
+    enabled: inboxPolicy?.telegramUpdatesEnabled === true,
+    expectedControlEpoch: inboxPolicy?.canonicalControlEpoch ?? null,
+    inbox: () => {
+      if (!inboxPolicy?.telegramUpdatesEnabled || !inboxPolicy.canonicalControlEpoch) throw Error('TELEGRAM_INBOX_DISABLED');
+      return telegramInbox ??= createTelegramInbox({ enabled: true, pool,
+        expectedBotId: PRODUCT_TELEGRAM_IDENTITY.botId, expectedControlEpoch: inboxPolicy.canonicalControlEpoch,
+        secret: process.env.TELEGRAM_WEBHOOK_SECRET!, now: () => new Date().toISOString() });
+    },
   });
 
   app.get('/api/notify/telegram/bot-info', async (_req, res) => {
@@ -2084,60 +2080,24 @@ export async function registerRoutes(
     return telegramId;
   }
 
-  app.get('/api/auth/telegram', async (req: any, res) => {
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    if (!botToken) {
-      return res.status(500).json({ error: 'Telegram bot not configured' });
-    }
-
-    const now = Math.floor(Date.now() / 1000);
-    let telegramUser;
-    try { telegramUser = verifyTelegramLoginData(req.query, botToken, now); }
-    catch { return res.status(401).json({ error: 'Вхід через Telegram застарів або не підтверджений.' }); }
-    const userId = await resolveOrCreateTelegramUser(telegramUser.id, telegramUser.firstName, telegramUser.lastName, telegramUser.photoUrl);
-
-    req.login({ claims: { sub: userId, first_name: telegramUser.firstName }, expires_at: now + 7 * 24 * 3600 }, (err: any) => {
-      if (err) {
-        console.error('[Telegram Auth] Session error:', err);
-        return res.status(500).json({ error: 'Failed to create session' });
+  // The three Telegram proof routes share one durable ledger and Passport session boundary.
+  const telegramProofEnabled = !isIsolatedMode() && process.env.NODE_ENV === 'production'
+    && productionRuntimePolicy().telegramAuthReplayEnabled;
+  let telegramAuthFlow: ReturnType<typeof createTelegramAuthFlow> | undefined;
+  registerTelegramProofRoutes(app, {
+    enabled: telegramProofEnabled, now: () => Math.floor(Date.now() / 1000), limiter: authLimiter,
+    authenticateSession: isAuthenticated,
+    flow: () => {
+      if (!telegramProofEnabled) throw Error('TELEGRAM_AUTH_DISABLED');
+      if (!telegramAuthFlow) {
+        const token = process.env.TELEGRAM_BOT_TOKEN!, botId = PRODUCT_TELEGRAM_IDENTITY.botId;
+        const now = () => Math.floor(Date.now() / 1000);
+        const guard = createAuthReplayGuard(pool, { key: process.env.SESSION_SECRET!, now });
+        telegramAuthFlow = createTelegramAuthFlow({ token, botId, now, guard, resolveUser: createTelegramIdentityResolver(pool) });
       }
-      res.redirect('/');
-    });
-  });
-
-  app.post('/api/auth/telegram-webapp', async (req: any, res) => {
-    try {
-      const { initData } = req.body;
-      if (!initData || typeof initData !== 'string') {
-        return res.status(400).json({ error: 'Missing initData' });
-      }
-
-      const botToken = process.env.TELEGRAM_BOT_TOKEN;
-      if (!botToken) {
-        return res.status(500).json({ error: 'Bot token not configured' });
-      }
-
-      let telegramUser;
-      try {
-        telegramUser = verifyTelegramInitData(initData, botToken, { nowSeconds: Math.floor(Date.now() / 1000) });
-      } catch {
-        return res.status(401).json({ error: 'Вхід через Telegram застарів або не підтверджений. Відкрийте застосунок у боті ще раз.' });
-      }
-      const firstName = telegramUser.firstName;
-      const userId = await resolveOrCreateTelegramUser(telegramUser.id, firstName, telegramUser.lastName, telegramUser.photoUrl);
-
-      const now = Math.floor(Date.now() / 1000);
-      req.login({ claims: { sub: userId, first_name: firstName }, expires_at: now + 7 * 24 * 3600 }, (err: any) => {
-        if (err) {
-          console.error('[TG WebApp] Session error:', err);
-          return res.status(500).json({ error: 'Session creation failed' });
-        }
-        res.json({ ok: true });
-      });
-    } catch (error: any) {
-      console.error('[TG WebApp] Auth error:', error.message);
-      res.status(500).json({ error: 'Authentication failed' });
-    }
+      return telegramAuthFlow;
+    },
+    mobileToken: generateMobileToken, readUser: owner => authStorage.getUser(owner),
   });
 
   app.get('/api/auth/telegram-auto', async (req: any, res) => {
@@ -2467,46 +2427,6 @@ export async function registerRoutes(
     }
   });
 
-  app.post('/api/auth/mobile-token', authLimiter, async (req: any, res) => {
-    try {
-      const { telegramData, sessionToken } = req.body;
-
-      if (telegramData) {
-        const botToken = process.env.TELEGRAM_BOT_TOKEN;
-        if (!botToken) return res.status(503).json({ error: 'Telegram зараз недоступний.' });
-        let telegramUser;
-        try { telegramUser = verifyTelegramLoginData(telegramData, botToken, Math.floor(Date.now() / 1000)); }
-        catch { return res.status(401).json({ error: 'Вхід через Telegram застарів або не підтверджений.' }); }
-        const first_name = telegramUser.firstName;
-        const userId = await resolveOrCreateTelegramUser(telegramUser.id, first_name, telegramUser.lastName, telegramUser.photoUrl);
-        const token = generateMobileToken(userId, first_name);
-        const user = await authStorage.getUser(userId);
-
-        return res.json({
-          token,
-          user: user || { id: userId, firstName: first_name },
-          expiresIn: '30d',
-        });
-      }
-
-      if (req.user) {
-        const userId = req.user.claims.sub;
-        const firstName = req.user.claims.first_name;
-        const token = generateMobileToken(userId, firstName);
-        const user = await authStorage.getUser(userId);
-        return res.json({
-          token,
-          user: user || { id: userId, firstName },
-          expiresIn: '30d',
-        });
-      }
-
-      return res.status(400).json({ error: 'Provide telegramData or valid session' });
-    } catch (error: any) {
-      console.error('[API] Mobile token error:', error.message);
-      res.status(500).json({ error: 'Failed to generate token' });
-    }
-  });
 
   app.post('/api/auth/refresh-token', isAuthenticatedMobileOrSession, async (req: any, res) => {
     try {
@@ -2625,26 +2545,6 @@ export async function registerRoutes(
   registerReportRoutes(app);
   registerLocationRoutes(app);
   registerDigestRoutes(app);
-
-  if (!isIsolatedMode()) (async () => {
-    try {
-      const { ensureSeedDataForQueue } = await import("./storage-reports");
-      const queues: { city: string; queueId: string }[] = [];
-      const cities: Record<string, string[]> = {
-        'Вінниця': ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2', '4.1', '4.2', '5.1', '5.2', '6.1', '6.2'],
-        'Київ': ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2'],
-        'Харків': ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2'],
-      };
-      for (const [city, ids] of Object.entries(cities)) {
-        for (const queueId of ids) queues.push({ city, queueId });
-      }
-      for (const { city, queueId } of queues) {
-        await ensureSeedDataForQueue(city, queueId);
-      }
-    } catch (e: any) {
-      console.error('[Seed] Auto-seed error:', e.message);
-    }
-  })();
 
   app.post('/api/admin/broadcast', async (req: any, res) => {
     try {

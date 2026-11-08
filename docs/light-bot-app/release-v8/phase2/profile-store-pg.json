@@ -1,0 +1,125 @@
+{
+  "actor": "/root/v7_local_tools",
+  "actualPostgreSQL": true,
+  "actualHttp": false,
+  "syntheticOnly": true,
+  "target": {
+    "database": "lba_test_profile_store",
+    "port": 55438,
+    "listen": "127.0.0.1"
+  },
+  "tests": [
+    {
+      "name": "missing/disabled/wrong-epoch control and disabled constructor deny without canonical bootstrap",
+      "status": "pass"
+    },
+    {
+      "name": "actual legacy bootstrap is owner-scoped, preserves two addresses/zero leads, and records origin plus independent ledger exactly once",
+      "status": "pass"
+    },
+    {
+      "name": "two actual concurrent App CAS mutations allow exactly one commit, then stale retry cannot overwrite it",
+      "status": "pass"
+    },
+    {
+      "name": "two concurrent identical provider inputs replay the same durable receipt/outbox after a safe transaction retry",
+      "status": "pass"
+    },
+    {
+      "name": "actual A commit while B waits owner lock is visible to READ COMMITTED recovery; RR negative control misses it",
+      "status": "pass"
+    },
+    {
+      "name": "same-millisecond multi-message turns remain ordered by canonical revision then ordinal",
+      "status": "pass"
+    },
+    {
+      "name": "saved and not-saved ambiguous COMMIT recover honestly and exact-ID retry creates one logical transition",
+      "status": "pass"
+    },
+    {
+      "name": "failure after state update rolls state/inbox/outbox back atomically",
+      "status": "pass"
+    },
+    {
+      "name": "empty/new account needs same-transaction registry proof; independent ledger prevents reimport after profile/origin deletion",
+      "status": "pass"
+    },
+    {
+      "name": "exact owned source/binding plan is pinned to outbox; foreign namespace and synthetic plans are removed",
+      "status": "pass"
+    },
+    {
+      "name": "owner, current session and epoch fences exclude foreign/old pending rows; old store cannot write after epoch change",
+      "status": "pass"
+    },
+    {
+      "name": "all original legacy SQL fixture rows remain byte-for-byte logically unchanged",
+      "status": "pass"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F3",
+      "severity": "P2",
+      "kind": "functional_scope_gap",
+      "name": "manual technical-group plan is hidden by the personal binding display filter",
+      "confirmed": false,
+      "inputDeliveryEligible": false,
+      "directEngineScheduleMessages": 1,
+      "storeSnapshotPlans": 1,
+      "storeOutboxScheduleMessages": 1,
+      "boundary": "A separate honest technical-group display path is required; do not relax personal delivery certification."
+    },
+    {
+      "id": "F4",
+      "severity": "P2",
+      "kind": "stored_json_projection_gap",
+      "name": "pendingOutbox exports unexpected fields nested inside message JSON",
+      "confirmed": false,
+      "rejected": true,
+      "boundary": "Actual synthetic stored-JSON negative control; not a demonstrated unauthenticated writer or production leak."
+    }
+  ],
+  "driverSha256": "b858d200700e489f0ceb8748d63dd33f364294911bc08c40fac3d914d0fe7c93",
+  "sourceBefore": [
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "a6bb03ff865dc02f5e84d972ca47521061e3a60e05b736352981baa8b4c89913"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/legacy-profile.ts",
+      "sha256": "cdd1b91905ce2cf2ec1540a9fc8e7e7c63bd7541af5a75589f9c853dc19d618e"
+    },
+    {
+      "path": "app/tests/backend/live-profile-store.test.ts",
+      "sha256": "802da85f2068bf7ccb1bee3df279084855f6fb1084eb771cf2f5c2ee5074da1b"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "a6bb03ff865dc02f5e84d972ca47521061e3a60e05b736352981baa8b4c89913"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/legacy-profile.ts",
+      "sha256": "cdd1b91905ce2cf2ec1540a9fc8e7e7c63bd7541af5a75589f9c853dc19d618e"
+    },
+    {
+      "path": "app/tests/backend/live-profile-store.test.ts",
+      "sha256": "802da85f2068bf7ccb1bee3df279084855f6fb1084eb771cf2f5c2ee5074da1b"
+    }
+  ],
+  "realProviderRequests": 0,
+  "productionWrites": 0,
+  "scope": "Fresh own loopback cluster only. No API/provider/token/production effects. Original RR race has an explicit QA isolation override negative control.",
+  "clusterStopped": true
+}

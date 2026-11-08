@@ -284,7 +284,7 @@ async function loadSubscribers() {
     }));
     console.log(`[TG Bot] Loaded ${subscribers.size} subscribers from DB`);
   } catch (e: any) {
-    console.error('[TG Bot] Failed to load subscribers from DB:', e.message);
+    console.error('[TG Bot] Failed to load subscribers from DB');
   }
 }
 

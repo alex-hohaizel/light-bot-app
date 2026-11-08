@@ -9,8 +9,10 @@ export interface VerifiedSubscriberMapping {
   /** Stable verified mapping revision, not a credential or per-request authentication nonce. */
   revisionId: string;
 }
-export interface LegacyProfileReadClient {
+export interface LegacyProfileReadQuery {
   query(sql: string, values?: any[]): Promise<{rows: any[]; rowCount: number | null}>;
+}
+export interface LegacyProfileReadClient extends LegacyProfileReadQuery {
   release(): void;
 }
 export interface LegacyProfileReadPool {connect(): Promise<LegacyProfileReadClient>}
@@ -87,17 +89,18 @@ function principalAndOptions(identity: VerifiedLegacyPrincipal, options: LegacyP
   for(const m of mappings){
     if(!plain(m)||Object.keys(m).sort().join(',')!=='chatId,kind,ownerId,revisionId'||m.kind!=='verified_telegram_owner_mapping'||m.ownerId!==identity.ownerId||!boundedText(m.chatId,50)||!boundedText(m.revisionId,160)||seen.has(m.chatId))return fail('LEGACY_READER_INVALID_MAPPING');seen.add(m.chatId);
   }
-  return {owner:identity.ownerId,limit,mappings:[...mappings].sort((a,b)=>a.chatId<b.chatId?-1:a.chatId>b.chatId?1:0)};
+  return {owner:identity.ownerId,limit,mappings:structuredClone([...mappings]).sort((a,b)=>a.chatId<b.chatId?-1:a.chatId>b.chatId?1:0)};
 }
-/** Read-only snapshot for a principal already authenticated by the server. Structural flags do not authenticate callers. */
-export async function readLegacyLiveProfile(pool:LegacyProfileReadPool, identity:VerifiedLegacyPrincipal, options:LegacyProfileReadOptions={}):Promise<LegacyLiveProfileRead>{
+/** SELECT-only helper in a transaction owned by the caller. Does not BEGIN/COMMIT/ROLLBACK/release.
+ * Caller must provide a consistent snapshot and any writer/owner fence needed for bootstrap.
+ * Structural principal flags do not authenticate a caller.
+ */
+export async function selectLegacyLiveProfileInTransaction(client:LegacyProfileReadQuery, identity:VerifiedLegacyPrincipal, options:LegacyProfileReadOptions={}):Promise<LegacyLiveProfileRead>{
   const {owner,limit,mappings}=principalAndOptions(identity,options);
-  if(!pool||typeof pool.connect!=='function')return fail('LEGACY_READER_INVALID_POOL');
+  identity={kind:'verified_server_principal',ownerId:owner,verified:true};
+  if(!client||typeof client.query!=='function')return fail('LEGACY_READER_INVALID_CLIENT');
   const now=options.now??(()=>new Date().toISOString()), refs=mappings.map(m=>m.chatId);
-  let client:LegacyProfileReadClient;try{client=await pool.connect();}catch{return fail('LEGACY_READER_READ_UNCONFIRMED');}
-  let started=false;
   try{
-    await client.query('begin isolation level repeatable read read only');started=true;
     const counted=await client.query(EXACT_OWNER_COUNTS,[owner]);
     if(counted.rows.length!==1)return fail('LEGACY_READER_COUNT_MISMATCH');
     const countsRow=row(counted.rows[0],['settings','locations','subscribers']);
@@ -144,15 +147,31 @@ export async function readLegacyLiveProfile(pool:LegacyProfileReadPool, identity
     const sourceDigest=digest({version:'lba-live-legacy-reader/1',owner,settings:settingsRaw,locations:[...locations].sort((a,b)=>Number(a.id)-Number(b.id)),
       subscribers:[...originalSubscribers].sort((a,b)=>String(a.chatId)<String(b.chatId)?-1:String(a.chatId)>String(b.chatId)?1:0),mappings,blockers});
     const serverNow=now();if(typeof serverNow!=='string'||!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(serverNow)||!Number.isFinite(Date.parse(serverNow)))return fail('LEGACY_READER_INVALID_CLOCK');
-    await client.query('commit');started=false;
     return {version:'lba-live-legacy-reader/1',status:blockers.length?'blocked':'ready',projection,sourceDigest,projectionDigest:projection.sourceDigest,serverNow,
       counts:{settings:owned.settings,locations:owned.locations,directlyOwnedSubscribers:direct,verifiedMappedNullSubscribers:fromVerifiedMapping,selectedSubscribers:subscribers.length,
         verifiedMappings:refs.length,missingVerifiedMappings:missing,unresolvedSettingsReferences:unresolved},
       completeness:{ownerRows:'reconciled',selectedColumnsOnly:true,otherLegacyColumns:'not_read_not_modified',globalOrphans:'not_scanned_outside_owner_scope'},blockers};
   }catch(error){
-    if(started)try{await client.query('rollback');}catch{/* never expose provider or private query details */}
     if(error instanceof LegacyProfileReadError)throw error;
     if(error instanceof Error&&/^LEGACY_PROFILE_[A-Z_]+$/.test(error.message))return fail(error.message);
+    return fail('LEGACY_READER_READ_UNCONFIRMED');
+  }
+}
+/** Read-only snapshot for a principal already authenticated by the server. Structural flags do not authenticate callers. */
+export async function readLegacyLiveProfile(pool:LegacyProfileReadPool, identity:VerifiedLegacyPrincipal, options:LegacyProfileReadOptions={}):Promise<LegacyLiveProfileRead>{
+  const checked=principalAndOptions(identity,options);
+  const principal:VerifiedLegacyPrincipal={kind:'verified_server_principal',ownerId:checked.owner,verified:true};
+  const selectedOptions={...options,verifiedSubscriberMappings:checked.mappings};
+  if(!pool||typeof pool.connect!=='function')return fail('LEGACY_READER_INVALID_POOL');
+  let client:LegacyProfileReadClient;try{client=await pool.connect();}catch{return fail('LEGACY_READER_READ_UNCONFIRMED');}
+  let started=false;
+  try{
+    await client.query('begin isolation level repeatable read read only');started=true;
+    const result=await selectLegacyLiveProfileInTransaction(client,principal,selectedOptions);
+    await client.query('commit');started=false;return result;
+  }catch(error){
+    if(started)try{await client.query('rollback');}catch{/* never expose provider or private query details */}
+    if(error instanceof LegacyProfileReadError)throw error;
     return fail('LEGACY_READER_READ_UNCONFIRMED');
   }finally{try{client.release();}catch{return fail('LEGACY_READER_RELEASE_UNCONFIRMED');}}
 }
