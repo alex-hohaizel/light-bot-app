@@ -1,0 +1,9 @@
+{
+  "kind": "lba-one-public-official-kh-observation/1",
+  "actor": "/root",
+  "observedAt": "2026-11-09T05:00:08.626777+00:00",
+  "url": "https://oblenergo.kharkiv.ua/uk/rss.xml",
+  "requests": 1,
+  "scope": "OneboundedanonymousofficialRSSread; previousknown200scopebudget45min; no credentials/retries/challenges/bot/production",
+  "error": "URLError"
+}

@@ -1,0 +1,487 @@
+{
+  "kind": "lba-parent-requirements-impact-projection/1",
+  "canonicalRequirements": {
+    "path": "docs/light-bot-app/continuation/requirements.json",
+    "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+  },
+  "notASecondAuthorityRegistry": true,
+  "allMustRetained": 68,
+  "rows": [
+    {
+      "id": "DATA-01",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "DATA-02",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "DATA-03",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "DATA-04",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "DATA-05",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "DATA-06",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "DATA-07",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "DATA-08",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "DATA-09",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "ADDR-01",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "ADDR-02",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "ADDR-03",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "ADDR-04",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "ADDR-05",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "ADDR-06",
+      "must": true,
+      "dueStage": "P1",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "ADDR-07",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "PROFILE-01",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "PROFILE-02",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "PROFILE-03",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "PROFILE-04",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "PROFILE-05",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "PROFILE-06",
+      "must": true,
+      "dueStage": "P5",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "PROFILE-07",
+      "must": true,
+      "dueStage": "P5",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-01",
+      "must": true,
+      "dueStage": "P0-R",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-02",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-03",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-04",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-05",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-06",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-07",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "BOT-08",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "LANG-01",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "LANG-02",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "LANG-03",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "LANG-04",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "LANG-05",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-01",
+      "must": true,
+      "dueStage": "P0-R",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-02",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-03",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-04",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-05",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-06",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-07",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "APP-08",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-01",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-02",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-03",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-04",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-05",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-06",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-07",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-08",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "CHART-09",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "TECH-01",
+      "must": true,
+      "dueStage": "P0-R",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "TECH-02",
+      "must": true,
+      "dueStage": "P0-R",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "TECH-03",
+      "must": true,
+      "dueStage": "P0-R",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "TECH-04",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "TECH-05",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "TECH-06",
+      "must": true,
+      "dueStage": "P3",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "TECH-07",
+      "must": true,
+      "dueStage": "P4",
+      "componentImpact": "active",
+      "verdict": "component_code_evidence_only; actual product acceptance unchanged/pending"
+    },
+    {
+      "id": "TECH-08",
+      "must": true,
+      "dueStage": "P5",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "TECH-09",
+      "must": true,
+      "dueStage": "P6",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-01",
+      "must": true,
+      "dueStage": "INTAKE",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-02",
+      "must": true,
+      "dueStage": "INTAKE",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-03",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-04",
+      "must": true,
+      "dueStage": "INTAKE",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-05",
+      "must": true,
+      "dueStage": "INTAKE",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    },
+    {
+      "id": "GOV-06",
+      "must": true,
+      "dueStage": "P2",
+      "componentImpact": "carried_parent_requirement",
+      "verdict": "Kept mandatory; this component does not replace its current parent acceptance or unresolved evidence"
+    }
+  ]
+}

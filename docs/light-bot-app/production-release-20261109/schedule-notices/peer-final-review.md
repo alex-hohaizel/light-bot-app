@@ -1,0 +1,13 @@
+# Остаточний scoped verdict attempt03
+
+**PASS_BOUNDED_NOTICE_AND_TIME_FORMATTING —38/38 незалежних сценаріїв.** Попередні4 notice/source findings і2 наступні predicate/timezone findings закриті на нових bytes. Handoff `04353629a674c0d3bfc1eac70462a52ed955a2d338cd93266b6af1e3560088b2`; parser `39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a`, model `b287e211163deae95c61f525ea363ecc302129c897e03a4089a2f70cc72bcb7f`. Усі22 owned subject hashes однакові до/після; сторонні certification files не входять у цей verdict.
+
+Перевірено ті самі27 regressions,6 мінімальних пар emergency та5 часових/text cases: winter+02/summer+03, рівність `Z`/explicit-offset serialization, повторена03 година DST fold,24:00 і now/next viewing-time copy. «Не скасовано» тепер потребує scoped review; справжнє скасування, заперечення застосування, поради, інша територія й publication/effective-day chronology не змішуються. Датований technical plan не став телеметрією чи персонально дозволеним push.
+
+Власний raw XML oracle звірив усі12 груп fresh stored RSS05:00:37Z. Future/unreviewed day, expiry, changed publication/target/caveat, duplicate item і stale/failed refresh відхиляються правильно. Reviewer не виконував нових GET і не переносив старий observedAt на нову дату.
+
+Власні6 **hydrated Chrome** проходів у день/ніч на320,390,1280 перевірили вибір адреси, comparison scope/dedup, accordion/windows, settings CTA та його address callback. Відкриті interval details і повний текст card тепер показують actual Kyiv `UTC+02:00`. Власні SVG/PNG day/now/next зберігають notice; visible SVG text bounds і horizontal overflow checks пройшли. Reviewer фактично переглянув `peer-detail-dark-320.png`, `peer-full-card-light-320.png`, `peer-card-dark-next-320.png`: правильні time labels, читабельне невнутрішнє пояснення, без обрізання важливого змісту. Цей браузерний harness не підміняє native Telegram/Android/iOS чи owner acceptance.
+
+Це bounded evidence для DATA-05/06, CHART-03/04/05/08 та зміненого APP-07 surface; повні68 вимог не оголошені прийнятими. Actual source/address/48h/certification pipeline, реальні devices/provider і production readiness лишаються окремими роботами root. Free fallback upstream policy не змінювалася цим retest. Scope тут не створює нового approval flow.
+
+QA6 source/snapshots (`e61a53ab…`, experience `9628279a…`) повторно звірені; immutable attempts01/02 збережені й hashes перевірені. Chrome закритий; network/DB/production/real sends/certificates/source edits reviewer —0. OriginalApp35db не змінювався. Наступна дія: root інтегрує **саме ці pins** із окремо перевіреним certification компонентом у новий exact candidate; нових style/audit cycles для цього закритого repair не потрібно.

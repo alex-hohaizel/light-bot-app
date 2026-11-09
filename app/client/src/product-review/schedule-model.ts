@@ -1,5 +1,5 @@
 import type { PlanInterval, ScheduleView } from '@shared/product-contract';
-import { dayBounds, localParts, validateScheduleView, intervalMinutes } from '../../../shared/schedule-core.ts';
+import { dayBounds, localParts, validInstant, validateScheduleView, intervalMinutes } from '../../../shared/schedule-core.ts';
 
 export type CardVariant = 'day' | 'now' | 'next' | 'new' | 'changed' | 'moved' | 'cancelled' | 'emergency' | 'unknown';
 export const CARD_VARIANTS: { id: CardVariant; title: string }[] = [
@@ -15,8 +15,13 @@ export const localDayBounds = dayBounds;
 export const validateView = validateScheduleView;
 
 export function offsetLabel(instant: string): string {
-  if (instant.endsWith('Z')) return 'UTC';
-  return `UTC${instant.slice(-6)}`;
+  if (!validInstant(instant)) throw new Error('INVALID_INSTANT');
+  const epoch = Date.parse(instant), local = localParts(epoch);
+  // localParts is the canonical IANA Europe/Kyiv projection. Compare the same
+  // minute in local wall time and UTC, independent of ISO serialization.
+  const minutes = (Date.parse(`${local.date}T${local.time}:00Z`) - Math.floor(epoch / 60000) * 60000) / 60000;
+  const absolute = Math.abs(minutes);
+  return `UTC${minutes < 0 ? '-' : '+'}${String(Math.floor(absolute / 60)).padStart(2, '0')}:${String(absolute % 60).padStart(2, '0')}`;
 }
 export function intervalLabel(interval: PlanInterval, offsets = false): string {
   const base = `${interval.startLocal}–${interval.endLocal}`;
@@ -79,13 +84,14 @@ export function scheduleText(view: ScheduleView, variant: CardVariant = 'day', a
   }
   if (view.status === 'stale') lines.push('Останній відомий план; дані застаріли. Персональні сповіщення призупинено.');
   if (view.dayCoverage === 'partial') lines.push('Відомі лише частина інтервалів; решта доби має невідомий статус.');
+  if (view.notice?.trim()) lines.push(view.notice.trim());
   if (view.previousIntervals?.length) {
     lines.push('Було:', ...view.previousIntervals.map(i => `• ${intervalLabel(i, true)}`), 'Стало:');
   }
   if (view.intervals.length) lines.push(...view.intervals.map(i => `• ${intervalLabel(i, true)} · ${i.kind === 'planned_outage' ? 'планове відключення' : 'можливе відключення'}`));
   if (variant === 'now' || variant === 'next') {
     const summary = nextPlanSummary(view, asOf);
-    lines.push(`Час у прикладі: ${displayTime(asOf)}.`, `${summary.title}${summary.time ? ` о ${summary.time}` : ''}.`, summary.description);
+    lines.push(`Час перегляду: ${displayTime(asOf)}.`, `${summary.title}${summary.time ? ` о ${summary.time}` : ''}.`, summary.description);
   }
   lines.push(`Джерело: ${view.source.name}.`, `Опубліковано: ${view.publishedAt ? `${displayInstantDate(view.publishedAt)}, ${displayTime(view.publishedAt)}` : 'час не підтверджено'}.`,
     `Перевірено: ${displayInstantDate(view.observedAt)}, ${displayTime(view.observedAt)}.`, `Ревізія: ${view.revisionId}.`);

@@ -1,0 +1,150 @@
+{
+  "actor": "/root/production_campaign_worker",
+  "tests": [
+    {
+      "name": "representative actual own-PG slice: reviewed synthetic artifacts → canonical binding → certificate → projection → interactive proof → event producer → shared dispatcher",
+      "status": "pass"
+    },
+    {
+      "name": "authority stays empty in production; arbitrary pins, observed relabel and forged registries are rejected; disabled service has zero effects",
+      "status": "pass"
+    },
+    {
+      "name": "bundle loader actually rejects changed KH parser, hour-matrix parser and dependency-lock bytes under unchanged review pins",
+      "status": "pass"
+    },
+    {
+      "name": "missing 48h, observation gaps, incomplete representative coverage, paid route and duplicate control acquisition cannot qualify",
+      "status": "pass"
+    },
+    {
+      "name": "two concurrent issuers serialize on canonical owner; one certificate and one binding revision, exact restart replay",
+      "status": "pass"
+    },
+    {
+      "name": "rollback after canonical binding persistence also rolls back certificate, cancellations and revision",
+      "status": "pass"
+    },
+    {
+      "name": "lost actual COMMIT acknowledgement is read back without a second certificate or binding revision",
+      "status": "pass"
+    },
+    {
+      "name": "address TTL expires inside the30s context generation; expired proof cannot project or qualify",
+      "status": "pass"
+    },
+    {
+      "name": "new current address group contradicts old certificate immediately at qualification and in context, before issuer runs",
+      "status": "pass"
+    },
+    {
+      "name": "current address lookup failure, revoked cert and empty registry each deny exact interactive and notification qualification",
+      "status": "pass"
+    },
+    {
+      "name": "owner selection, session, epoch and DSO mismatches never bootstrap or issue a certificate",
+      "status": "pass"
+    },
+    {
+      "name": "new eligible raw revision qualifies automatically and revokes the previous view without manual approval",
+      "status": "pass"
+    },
+    {
+      "name": "rename between cached certificate and context never emits the old label; issuer preserves edits and recertifies current exact label",
+      "status": "pass"
+    },
+    {
+      "name": "cross-owner certificate borrowing and manual group upgrade are denied without changing either profile",
+      "status": "pass"
+    },
+    {
+      "name": "notification opt-out survives binding certification and suppresses autonomous messages; native unknown stays globally held across subsequent dispatch",
+      "status": "pass"
+    },
+    {
+      "name": "worker rereads canonical revision after first binding and certifies both service days in one bounded pass",
+      "status": "pass"
+    },
+    {
+      "name": "actual canonical prepare/start/stop owns the certificate worker; fixture registry enables code closure while empty real registry projects no certified data",
+      "status": "pass"
+    },
+    {
+      "name": "actual compiled CJS entry resolves the same deployed bundle from app, candidate and foreign workspace cwd",
+      "status": "pass"
+    }
+  ],
+  "passed": 18,
+  "sourceBefore": [
+    {
+      "path": "app/server/production/schedule-certification.ts",
+      "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb"
+    },
+    {
+      "path": "app/server/production/deployed-schedule-qualification.ts",
+      "sha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "sha256": "06928101f0d53b70ae201336eaa29bc3c7a1aaed024419e9247670f74be7a1c2"
+    },
+    {
+      "path": "app/server/production/runtime-context.ts",
+      "sha256": "740529701cc8dd997a45a38400a2b928b0f1eafb46826d7f847a1c213f831ca5"
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "532c3145e14ef71f8b17fc5f9cc313bad3ba60c59ec21df83647ea5d12262fa1"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "app/server/production/schedule-certification.ts",
+      "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb"
+    },
+    {
+      "path": "app/server/production/deployed-schedule-qualification.ts",
+      "sha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "sha256": "06928101f0d53b70ae201336eaa29bc3c7a1aaed024419e9247670f74be7a1c2"
+    },
+    {
+      "path": "app/server/production/runtime-context.ts",
+      "sha256": "740529701cc8dd997a45a38400a2b928b0f1eafb46826d7f847a1c213f831ca5"
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "532c3145e14ef71f8b17fc5f9cc313bad3ba60c59ec21df83647ea5d12262fa1"
+    }
+  ],
+  "sourceDrift": false,
+  "driver": {
+    "path": "tools/lba_certificate_pg.mjs",
+    "sha256": "3c47164e7c278e355ffbb55299c5e70e967c302db32e15eb27415b10b76ef54e"
+  },
+  "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "tables": 50,
+  "actualPostgres": true,
+  "target": {
+    "database": "lba_test_certification_next",
+    "port": 55466,
+    "listen": "127.0.0.1"
+  },
+  "syntheticEvidenceReviewBoundary": true,
+  "actualIndependentAcceptance": false,
+  "actualSourceAdmissionCount": 0,
+  "syntheticNativeTransport": true,
+  "realProviderRequests": 0,
+  "productionEffects": 0,
+  "clusterStopped": true
+}

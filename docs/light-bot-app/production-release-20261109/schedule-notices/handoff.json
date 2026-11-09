@@ -1,0 +1,902 @@
+{
+  "schema_version": "lba-schedule-notice-repair-handoff/1",
+  "actor": "/root/app_experience",
+  "consumer": [
+    "/root",
+    "/root/current_release_judge",
+    "/root/production_campaign_worker"
+  ],
+  "recorded_at": "2026-11-09T05:37:30.445037+00:00",
+  "product_id": "g-p-6aee37634784819189b085127be2946b",
+  "working_root": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/certification-next",
+  "authority": "Existing68must + root explicit isolated-copy schedule-notice repair task; narrow scope extensions source-intake/share projections/NotificationPolicyEditor in current conversation",
+  "permission_effects": [
+    "local copied source/doc/public-fixture changes",
+    "offline tests",
+    "approved local headlessChrome with all page requests blocked"
+  ],
+  "excluded": [
+    "original /app writes",
+    "production/database/webhook/real messages",
+    "live HTTP/provider reads by this actor",
+    "personal binding/delivery/cert admission",
+    "new redesign/new cost/native scope"
+  ],
+  "requirements": {
+    "canonical": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/docs/light-bot-app/continuation/requirements.json",
+    "all_68_retained": true,
+    "affected_ids": [
+      "DATA-02",
+      "DATA-03",
+      "DATA-08",
+      "DATA-09",
+      "CHART-03",
+      "CHART-04",
+      "CHART-05",
+      "CHART-06",
+      "CHART-07",
+      "CHART-08",
+      "APP-03",
+      "APP-06",
+      "APP-07",
+      "GOV-03"
+    ],
+    "acceptance_limit": "bounded technical repair; no full requirement/product/release/owner acceptance"
+  },
+  "source_inputs": [
+    {
+      "path": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.agents/skills/light-bot-app-recovery/SKILL.md",
+      "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+      "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+      "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+      "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+      "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+    },
+    {
+      "path": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/docs/light-bot-app/continuation/requirements.json",
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+    },
+    {
+      "path": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/docs/light-bot-app/continuation/original-user-message.json",
+      "sha256": "665f2d95f9744487b4afc3a85a10f3ca86d4992232a900e9da762e59486579fa"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/references/adaptive-work.md",
+      "sha256": "fa672d2d53145e6052129adc809f0967562d6181a1b5a657631b9d5319301ec2"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/references/production-quality.md",
+      "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/references/context-capsule.md",
+      "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/references/acceptance.md",
+      "sha256": "c212bf64bf54178f47607fe9d73a8fdeb4eaa8fbaf07a15836f4e073239cb070"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/references/evidence-contract.md",
+      "sha256": "02bfa5208020d70498cb93bad2da94a59316fb3038a316a414d6cba597c8cf63"
+    }
+  ],
+  "actual_source_observation": {
+    "actor": "/root",
+    "observedAt": "2026-11-09T05:00:37.710470Z",
+    "url": "https://oblenergo.kharkiv.ua/uk/rss.xml",
+    "requests_by_root": 1,
+    "requests_by_this_actor": 0,
+    "raw_sha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+    "receipt": "docs/light-bot-app/production-release-20261109/schedule-notices/current-source/network-observation.json",
+    "separate_archived_observation": "2026-11-08T23:38:39.043904Z; not renewed/rebound"
+  },
+  "publication_scope": {
+    "serviceDate": "2026-11-09",
+    "itemUrl": "https://oblenergo.kharkiv.ua/uk/node/13883460",
+    "publishedAt": "2026-11-08T20:18:03.000Z",
+    "reviewedAt": "2026-11-09T05:00:37.710Z",
+    "validUntil": "2026-11-09T22:00:00Z",
+    "targets": 12,
+    "raw_envelope_may_change_for_unrelated_news": true,
+    "changed_target_or_publication": "reject; prior good becomes stale on failed refresh",
+    "unknown_emergency": "explicit notice; no normal-power inference",
+    "new_service_day_emergency": "operative bulletin for local territory/effective day holds projection pending review, including previous-evening announcement; advice/conditional and explicit other-region notices are not operational Kharkiv facts",
+    "operating_rate_ms": 2700000,
+    "max_age_ms": 10800000,
+    "source_level": "schedule",
+    "address_binding_verified": false,
+    "delivery_eligible": false,
+    "parallel_48h_accepted": false,
+    "independent_fallback_verified": false
+  },
+  "identity_preservation": {
+    "baseline": "Parent frozen original /app35db; read-only comparison hashes per changed path included",
+    "accepted_mechanisms": [
+      "Address console and shared day",
+      "existing house illustration/animation",
+      "day/night semantic colors",
+      "Onest/Manrope typography",
+      "exact intervals and single temporal engine"
+    ],
+    "adaptation": "only notice propagation, scope label, truthful technical source policy and notification microcopy"
+  },
+  "changed_files": [
+    {
+      "path": "app/server/production/source-operating-policy.ts",
+      "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2",
+      "original_root_baseline_sha256": "fa0525aae9dd13195eb64d922e22609a8f675836ada0eedc89f1b9d48edbec62"
+    },
+    {
+      "path": "app/server/production/source-intake.ts",
+      "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8",
+      "original_root_baseline_sha256": "ad5e8efa8fa24e86920bca409c41c7eead297179c1fd9378126b9158edba0bff"
+    },
+    {
+      "path": "app/server/domain/kharkiv-adapter.ts",
+      "sha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a",
+      "original_root_baseline_sha256": "aac6fb95fc174278671f45d0028d7b713b0eefe778f09b23b25a6738a65845a6"
+    },
+    {
+      "path": "app/server/production/product-tools.ts",
+      "sha256": "4a472a6c2a35dd05e258e43b1d9b98c81b8880b989e5f5eab124ec56815d2ffc",
+      "original_root_baseline_sha256": "e49a913378dd94bb8168a484f140ec6626f464448b6f8586d8c97554fc698565"
+    },
+    {
+      "path": "app/shared/live-tools.ts",
+      "sha256": "2a0fe0763cb280f631bc38710fcb9fd54e7d1deb37c97f402171c2858035e8d6",
+      "original_root_baseline_sha256": "6ad7542a1b8ef92d3b72ebea246d75fbff59e7deeb5c2a5e09f1812e3029ca36"
+    },
+    {
+      "path": "app/shared/review-tools.ts",
+      "sha256": "d55ec0bdb282229062cf0f4de8d96d20135f0d70ba1374554d8554912253c215",
+      "original_root_baseline_sha256": "b9c6a9f6c3bc7fa7b8c45513bd76578eedf80eb1f45978376874922e6b58191f"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.ts",
+      "sha256": "b287e211163deae95c61f525ea363ecc302129c897e03a4089a2f70cc72bcb7f",
+      "original_root_baseline_sha256": "7576fda5be76c462c871995830ad685e152315f8ca89a79dffd2825fc984a7bf"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-renderer.tsx",
+      "sha256": "d53a38ae1a6d4b91d239408da113b02bcb13c376b76ef28fcb67437259ac2f4f",
+      "original_root_baseline_sha256": "0a38de0c531cfa6060151dd9dacc0b6cb69c9196ba829aaad4a3555ecf768271"
+    },
+    {
+      "path": "app/client/src/product-review/SharedDayComparison.tsx",
+      "sha256": "a81c07993756979596f0cc8ef010f90eac96b2c5612d2285d882e978a3405504",
+      "original_root_baseline_sha256": "29a95074142a7fbbbf8bdd759f2b130e5c3afe15a1bc4965a84d97372749ad2e"
+    },
+    {
+      "path": "app/client/src/product-review/LiveProductTools.tsx",
+      "sha256": "4ce7d2d1cf1420d6a8bba5249fa085f073ebe7d782379fe22881137726778d9b",
+      "original_root_baseline_sha256": "1666abe852722ba4630cedfbe9fece1464a61fe057c2728ae1981bbbddc9841b"
+    },
+    {
+      "path": "app/client/src/product-review/ProductTools.tsx",
+      "sha256": "4409d0d20965d0e16a2399da475479344373b1905688600153577b4e125bc050",
+      "original_root_baseline_sha256": "dd4b1fd90f516da1fdbb6d5552b7ff3c6dcc860151c0499286b614be26f804a2"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+      "original_root_baseline_sha256": "9ffd2971a884aae1a6d612e465c424ed67e29c170ee56b82a3dc399305dafee7"
+    },
+    {
+      "path": "app/client/src/product-review/district.css",
+      "sha256": "a04b257e7ffda8af06d3dc2e4b7afd9a748cf2494e8a8f99add72613d8cf82dc",
+      "original_root_baseline_sha256": "2ed74ff7700cb5ba03704a8dbecd79773207e0eb9862219da62dcbfb1e4f74d0"
+    },
+    {
+      "path": "app/tests/backend/source-operating-policy.test.ts",
+      "sha256": "c2f8a8643b5076ef1b66cfe3916c2878acd9430dc5814993d89de1c5f65af9ff",
+      "original_root_baseline_sha256": "abe27c464f3bd520d8bd0af13cf5834bc6213c922d14529bc873810b5a19abaf"
+    },
+    {
+      "path": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+      "sha256": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9",
+      "original_root_baseline_sha256": "58550065a82f28b5fdad2e3cde6d45e84fd0713083dc8c03503f36e81e057712"
+    },
+    {
+      "path": "app/tests/backend/live-address-catalog.test.ts",
+      "sha256": "942ae171dfad00b08c4bbbdba44ef586b6073f1e42997c757dc338bc06e403b3",
+      "original_root_baseline_sha256": "2d7a680ed929777fe89a92df4b463cbbdd6da56261c7375602709a1f49216cea"
+    },
+    {
+      "path": "app/tests/backend/live-source-ingestion.test.ts",
+      "sha256": "2e82a01b4e18fde7e7637cac4a08ffc28c1afc3f29d82e707bf7bc07b46202dc",
+      "original_root_baseline_sha256": "8d9b418ed680992b6a6d164f97ea69f47a70decc2f6362c73fd335d60652cf31"
+    },
+    {
+      "path": "app/tests/backend/schedule-notices.test.ts",
+      "sha256": "a8ac9d49230f8a00fc00ae69ffe87d223c4281f21349c90c4e1fa87faa6f21ba",
+      "original_root_baseline_sha256": null
+    },
+    {
+      "path": "app/tests/backend/render-schedule-notices.mts",
+      "sha256": "7befab371d1a6e14a071341813e97a4321e58a1e5d3827ea8a680759fc785e97",
+      "original_root_baseline_sha256": null
+    },
+    {
+      "path": "app/client/src/product-review/DistrictDashboard.tsx",
+      "sha256": "aa6489682fa4787453b23c8a42a7f050a7661f358b9330c3979bc9cf4708aa43",
+      "original_root_baseline_sha256": "9a55a200dfd424dd1ff417fdd34de0b1528b9a42b98a7519c011ebdd3408e6c1"
+    },
+    {
+      "path": "app/tests/backend/live-source-intake.test.ts",
+      "sha256": "3715c707f2a0eaefd2669bdc8f0caff60710935bb67b67e2a7add79d3f494967",
+      "original_root_baseline_sha256": "587059f2af88afd804fd955dbd3f4ae14643a64854aa8a5083448da2e73b8578"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.test.ts",
+      "sha256": "1e58f7924af13b17b4d2cd4452585d13190f4ed6abb20f84f9c8a5ab906486ad",
+      "original_root_baseline_sha256": "23b4c33c6734f604b2a259b01f470b3c6f68dc9155a73f595ddbe007fbd31f93"
+    }
+  ],
+  "proofs": [
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/NOTICE_REPAIR_UA.md",
+      "sha256": "2bbf470c1c4668a0668db77f78b32fa9e9358dc7e61e8aefc74389d15cf3f9c2",
+      "bytes": 14764
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/NOTICE_REPAIR_UA.md",
+      "sha256": "cdbe1fb1ed4aa45ceaa51cad4c4eee243bf2a30a761286b547541acd7d1bb81b",
+      "bytes": 10516
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/kharkiv-9nov-scope.json",
+      "sha256": "097840535bbd1d195fb2869be9488066f20f49dc8015ab5ecbaa04b4956f4bca",
+      "bytes": 1294
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-dark-1280.png",
+      "sha256": "00c416dcef931c3cfb9d166a2146b679c6bf08c84b6b726bcb991e1ac052cfc4",
+      "bytes": 195492
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-dark-320.png",
+      "sha256": "efc9a1e12ac8e49efa8e7153150a147b7a0afbe22aa9e8cf8aa167d4950cf8e6",
+      "bytes": 176678
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-dark-390.png",
+      "sha256": "c13ce1a2f16f9454bb6cc2dd94b1b501afc1a7b60f9fb8c7ad1bd8821c43daaa",
+      "bytes": 177358
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-light-1280.png",
+      "sha256": "c676a7b324f71a7fafff7d09a786c0daab7f69850325b4e13f6f2760f95f9e96",
+      "bytes": 202866
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-light-320.png",
+      "sha256": "c7dc4f80b90787207139026755a097909bc860e8e3f017fd7fd0842b765f7928",
+      "bytes": 180536
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-app-light-390.png",
+      "sha256": "3fc8675d3ad6818055ffdd8368363a8ed96ff79d10d906a646f26c1da2104c22",
+      "bytes": 181075
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-dark-320.png",
+      "sha256": "04f3763c2f7c5915d658377870a490e326560709d19325f152ab9ba76059190f",
+      "bytes": 33694
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-dark.png",
+      "sha256": "108b957e36bdcef09b1a1162cad816915da9efe63cd5f04a4883dd6465cd8451",
+      "bytes": 94939
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-dark.svg",
+      "sha256": "20e3e77842f03e981163459be3867e7e0f1575397cbce5355e756d9edd1055d4",
+      "bytes": 6254
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-light-320.png",
+      "sha256": "4b61115fabdb629f93629787f87b9907950bbb40fbb4555a5f4ad9acea328f4d",
+      "bytes": 31905
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-light.png",
+      "sha256": "fbcfaa32291fdd23700f1632d327240f66646af5fd5beab1ffb60d7589616639",
+      "bytes": 85218
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-card-light.svg",
+      "sha256": "c13f84997f48b122179144c9719de61c3bdce14608b12f6e5c9a4ae9a49ced71",
+      "bytes": 6254
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-driver.mjs",
+      "sha256": "14b9948b9b1cb8199bf6fa7674b0b415fcedb1ed883cc1ea22991f5fb9cb8d35",
+      "bytes": 19118
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-findings-before-repair.md",
+      "sha256": "086ce599d40961f56a8e674db33ec06e410a694428281c8558f4e64bc3c18408",
+      "bytes": 4059
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-policy.json",
+      "sha256": "e1c67fc709b748be18a2f10cc6d2b58a87a15bf61bd58f15f4ceab325f100430",
+      "bytes": 29493
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/peer-review.json",
+      "sha256": "30794b356c1f7c8835b8a30eeff0245433e0c979d0ba4d2bccc0ef079778083c",
+      "bytes": 48171
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/render-observations.json",
+      "sha256": "02fb6cd95416844e2cc657be85cdb19515301af0619e8f99d865ff519ace7fb2",
+      "bytes": 1500
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-dark-1280.png",
+      "sha256": "0e30ba052c1f9d3a88bb6235c5a7c9116f14917e83f8d7dca65751be72cd1d17",
+      "bytes": 159321
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-dark-320.png",
+      "sha256": "33ee0cf7918534b7abd4f4296f0c0c3ed08abaa1c8448d125b062f728cce0019",
+      "bytes": 142381
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-dark-390.png",
+      "sha256": "03a047295e7fdcc89f90561f1cfe08bdca0a9642f2b5af778cd152117cef7c47",
+      "bytes": 143091
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-dark.html",
+      "sha256": "6608f2fed29169d92ebff500db38d88e7872e796f29c231662d40e9ec5be1ea5",
+      "bytes": 578216
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-light-1280.png",
+      "sha256": "2bb9515c7add03d2067645d84a2a0563619ed2043ba4628e950637075a036c0c",
+      "bytes": 165686
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-light-320.png",
+      "sha256": "90a0735ff6735fabe675820384105a86d118946d689777491b3c189ce708850e",
+      "bytes": 145287
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-light-390.png",
+      "sha256": "965f422802998dbccdde74bbce562e536c9aaecc94f59eeb9ac5974f1728ba2b",
+      "bytes": 146400
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-app-light.html",
+      "sha256": "f40f57e00610ee143e0709d017f4bc8348aeeb2e56f4991adf39898678686434",
+      "bytes": 578209
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-bot-text.txt",
+      "sha256": "391fbd1e2979f1393544702b9ec288e737cb775ec38072346d6aedf762253ef2",
+      "bytes": 1010
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-dark-320.png",
+      "sha256": "04f3763c2f7c5915d658377870a490e326560709d19325f152ab9ba76059190f",
+      "bytes": 33694
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-dark.png",
+      "sha256": "108b957e36bdcef09b1a1162cad816915da9efe63cd5f04a4883dd6465cd8451",
+      "bytes": 94939
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-dark.svg",
+      "sha256": "9c09f1b847cab4fdbe043c75f697d8857d1165583fd3c938608f05da1960bae0",
+      "bytes": 6274
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-light-320.png",
+      "sha256": "4b61115fabdb629f93629787f87b9907950bbb40fbb4555a5f4ad9acea328f4d",
+      "bytes": 31905
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-light.png",
+      "sha256": "fbcfaa32291fdd23700f1632d327240f66646af5fd5beab1ffb60d7589616639",
+      "bytes": 85218
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-light.svg",
+      "sha256": "dad7a1a08ed7490ecf450b0b725f4be27de5eb69703314af9448a8933a80081a",
+      "bytes": 6274
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-text.txt",
+      "sha256": "5da9e7cb6feceabc500e95a3552cf8d234b17d3853d5b28ddcdc93458c3d3c16",
+      "bytes": 1092
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/representative-view.json",
+      "sha256": "f92d810377199706da52aac3dc022474a9b5ed08f71163025dad3cc8146f5215",
+      "bytes": 1990
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/tests.txt",
+      "sha256": "b38714e6e09fff7a9fed40e5433934d80100a97b7bb5949f7e34ca3f6e66de41",
+      "bytes": 6943
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-01/typecheck.txt",
+      "sha256": "4be1cd3cb31bcb363eef3035b0e868f59f5951730c81d49f77e9b373b8113052",
+      "bytes": 70
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/NOTICE_REPAIR_UA.md",
+      "sha256": "539a227b195d943bd264563ab95d712be43141ee8163b6efb2cf9b8372e3399a",
+      "bytes": 12764
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/kharkiv-9nov-scope.json",
+      "sha256": "de1e14973b91a051b1d63ac4d1571c70c649b07f45cc3a3ce044633cd1775e8e",
+      "bytes": 1294
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-atelier-experience-6-9628279a.md",
+      "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2",
+      "bytes": 22493
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-atelier-qa-6-e61a53ab.md",
+      "sha256": "e61a53abd7fb7c710f7de3a05e87e81c066e3e7e3aef0805b94d2f0fe6c32018",
+      "bytes": 22186
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-dark-1280.png",
+      "sha256": "c72c46b11e0b8be8b19ef957883fa6a88ed48c8f9cc12500fbb97c95e29533e7",
+      "bytes": 194309
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-dark-320.png",
+      "sha256": "44918bdabb4f2d8aa9d7014135e7bfb48160940e17469b543ca59fc1770a9ac1",
+      "bytes": 175508
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-dark-390.png",
+      "sha256": "366bee854deff4f8269bcd60307f9f9c485d0b313e7e3e9c5ccabb82ddddc74a",
+      "bytes": 176843
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-light-1280.png",
+      "sha256": "f6e857001f8eaffd9a0865bd36031b7e6d6d81fbdb6994b9cddafa42c5d93bb6",
+      "bytes": 201660
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-light-320.png",
+      "sha256": "5d04d596527a656a6edcb05fd56ff31836b076a747a8492cb2aef5384ae344e1",
+      "bytes": 178937
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-app-light-390.png",
+      "sha256": "9bdd5d3a81ced7460cd73fa137ee75b67b8895cb38c25d5accfa4ba3402070e3",
+      "bytes": 180483
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-attempt02-review.md",
+      "sha256": "7fbf529a4388a496684f42a092c4f374bce1a761500e34b3c62e0b13d61b27dc",
+      "bytes": 3729
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-dark-320.png",
+      "sha256": "817922f7514c298d27318828a7208c63f0bb4d08ed258286d0e4494d0d596ffb",
+      "bytes": 33278
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-dark.png",
+      "sha256": "4e74324a72cf55ce58d1884533be93c2d2bafda6732a220e62ab412c84e44b44",
+      "bytes": 93459
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-dark.svg",
+      "sha256": "8a3aa9f9a99755c313663f861f43a7f7993d9c3fd3db641864fd532d219b521a",
+      "bytes": 6222
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-light-320.png",
+      "sha256": "d241615cfe14034b4b3f19f7a9d1f802282fc83fccfb91e94b48502e6fc0e2fb",
+      "bytes": 31466
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-light.png",
+      "sha256": "ccdb262b6cd0b2b31b4462eddc0ff75abf5d6b60e870677548beb796d04aa8ee",
+      "bytes": 83730
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-card-light.svg",
+      "sha256": "783f9218d70fcae81a53acfd51293faec1c462f7f3ef7c2e147e8e105ecae74a",
+      "bytes": 6222
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-driver.mjs",
+      "sha256": "14b9948b9b1cb8199bf6fa7674b0b415fcedb1ed883cc1ea22991f5fb9cb8d35",
+      "bytes": 19118
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-findings-before-repair.md",
+      "sha256": "086ce599d40961f56a8e674db33ec06e410a694428281c8558f4e64bc3c18408",
+      "bytes": 4059
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-minimal-pairs-and-timezone.json",
+      "sha256": "78563a373727affd48600f81a6f5b73afd038e6585b3ed3167a8b5e235a28982",
+      "bytes": 4197
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-policy.json",
+      "sha256": "e1c67fc709b748be18a2f10cc6d2b58a87a15bf61bd58f15f4ceab325f100430",
+      "bytes": 29493
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-review.json",
+      "sha256": "7e55aa5f650ee51ebba6e31150480ca68e8ce6f5e8d7841854a85660fc64f263",
+      "bytes": 67215
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/peer-selected-skills-6.json",
+      "sha256": "3ad067f0d8a679275ccf6fb523e23ce6810a19e7c2e996a1dab5ec1505b4f259",
+      "bytes": 1227
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/render-observations.json",
+      "sha256": "02fb6cd95416844e2cc657be85cdb19515301af0619e8f99d865ff519ace7fb2",
+      "bytes": 1500
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-dark-1280.png",
+      "sha256": "f8ac6361b520408542afbc81fcb9f3b52d87913f9852943f3b7ad87e52ca4bf0",
+      "bytes": 158004
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-dark-320.png",
+      "sha256": "bed8fed5572ff3dcf9efb6c2ff279724f23a9aba825073244218fb360c2afc2f",
+      "bytes": 141111
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-dark-390.png",
+      "sha256": "b3883450011ef55753768e8b1338ded2b470953837aa89ca11163f3855554d7e",
+      "bytes": 142472
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-dark.html",
+      "sha256": "92e5efe43878f50a273a250c28eec30c9650f11830fd43e4ac664e297fca34c6",
+      "bytes": 578179
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-light-1280.png",
+      "sha256": "48ba71df9fc15d4458a297dc30a8d3987d2861d6943cd5408df9e1dcb9590f94",
+      "bytes": 164292
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-light-320.png",
+      "sha256": "b072b3aa71226ce49109e4d36fed0788bae2fbbcf2687c0460a35b72d502c987",
+      "bytes": 143550
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-light-390.png",
+      "sha256": "58a31683c9ff3bd7aa05102505bf1a282e7a1bffe648b451565a17bf7a0f43f5",
+      "bytes": 145674
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-app-light.html",
+      "sha256": "c8dc608652e35c51326d77b61074297766c34efe5a7557b00f9dad2e09a82300",
+      "bytes": 578172
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-bot-text.txt",
+      "sha256": "6567e45822bd4c92bb0832f3e37f4ab21f7c5b4870c50bd8c3215b879d3455ad",
+      "bytes": 994
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-dark-320.png",
+      "sha256": "817922f7514c298d27318828a7208c63f0bb4d08ed258286d0e4494d0d596ffb",
+      "bytes": 33278
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-dark.png",
+      "sha256": "4e74324a72cf55ce58d1884533be93c2d2bafda6732a220e62ab412c84e44b44",
+      "bytes": 93459
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-dark.svg",
+      "sha256": "8b80f04d2649a7065a3df19d05b798d4a367cbf99e8667a9e8f688a8fd69cfeb",
+      "bytes": 6242
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-light-320.png",
+      "sha256": "d241615cfe14034b4b3f19f7a9d1f802282fc83fccfb91e94b48502e6fc0e2fb",
+      "bytes": 31466
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-light.png",
+      "sha256": "ccdb262b6cd0b2b31b4462eddc0ff75abf5d6b60e870677548beb796d04aa8ee",
+      "bytes": 83730
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-light.svg",
+      "sha256": "e991566e8b00211aae0bd1e7587aecf6d44b6c198c8b946714a85bba1de6b73e",
+      "bytes": 6242
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-text.txt",
+      "sha256": "d1444b743dfab03bdd25ee04c037dba58b3c41bd534da4d02e047d73ab73dad8",
+      "bytes": 1076
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/representative-view.json",
+      "sha256": "cdea160fb54258cd366f6a9556a3aa0720e0fea491e8381d26ab0785d5ada29d",
+      "bytes": 1974
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/tests.txt",
+      "sha256": "2627de8f3866553b2e2932596842c5932dc664b1b697b2e94fc141d34375d8db",
+      "bytes": 9331
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/typecheck.txt",
+      "sha256": "75698c6a3866f62a7ce20af9e4a25ae21f9d6131e60c23c7d38a029b9270cbf8",
+      "bytes": 80
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/current-source/current.rss.xml",
+      "sha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "bytes": 45255
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/current-source/network-observation.json",
+      "sha256": "f1eadd2b9107ede507d11c5087765692cdcf1ab96f063ad811ad506435ea92f3",
+      "bytes": 14786
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/current-source/observation.json",
+      "sha256": "f7ccd6e9055dbcd4170cb7540e5fa8be1369e52fe53af3087ade68ec2c39cbba",
+      "bytes": 354
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/kharkiv-9nov-scope.json",
+      "sha256": "de1e14973b91a051b1d63ac4d1571c70c649b07f45cc3a3ce044633cd1775e8e",
+      "bytes": 1294
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/render-observations.json",
+      "sha256": "10ccdb03b2f34fcb6536f79dea86db285deece0c7b38fc269c91559130efc49c",
+      "bytes": 2352
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-1280.png",
+      "sha256": "f8ac6361b520408542afbc81fcb9f3b52d87913f9852943f3b7ad87e52ca4bf0",
+      "bytes": 158004
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-320.png",
+      "sha256": "bed8fed5572ff3dcf9efb6c2ff279724f23a9aba825073244218fb360c2afc2f",
+      "bytes": 141111
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-390.png",
+      "sha256": "b3883450011ef55753768e8b1338ded2b470953837aa89ca11163f3855554d7e",
+      "bytes": 142472
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark.html",
+      "sha256": "2f4721ac0f1d5baed5a560e3633e8e7c4a4cd0c79c5b266939826f7b6e62f2ae",
+      "bytes": 578233
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-1280.png",
+      "sha256": "48ba71df9fc15d4458a297dc30a8d3987d2861d6943cd5408df9e1dcb9590f94",
+      "bytes": 164292
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-320.png",
+      "sha256": "b072b3aa71226ce49109e4d36fed0788bae2fbbcf2687c0460a35b72d502c987",
+      "bytes": 143550
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-390.png",
+      "sha256": "58a31683c9ff3bd7aa05102505bf1a282e7a1bffe648b451565a17bf7a0f43f5",
+      "bytes": 145674
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light.html",
+      "sha256": "58cf8da2569f862792d4d2f126cd39f0fc6f1a1a4335b9bf53a94e195a196c6b",
+      "bytes": 578226
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-bot-text.txt",
+      "sha256": "6567e45822bd4c92bb0832f3e37f4ab21f7c5b4870c50bd8c3215b879d3455ad",
+      "bytes": 994
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark-320.png",
+      "sha256": "817922f7514c298d27318828a7208c63f0bb4d08ed258286d0e4494d0d596ffb",
+      "bytes": 33278
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark.png",
+      "sha256": "4e74324a72cf55ce58d1884533be93c2d2bafda6732a220e62ab412c84e44b44",
+      "bytes": 93459
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark.svg",
+      "sha256": "2a4b38cf75cd542368bde5f5bd11c6357909aec636ec2f3b47207a8a48683285",
+      "bytes": 6278
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-details-dark-320.png",
+      "sha256": "629f29c7b4d87c1c51e609f0e4f901d369cc090ab22d0fe9f97055390ba3e77e",
+      "bytes": 124521
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-details-light-320.png",
+      "sha256": "3a38cc0155ed52b0b84395e0418776d7b4d573013fbcee79a187fc30eb710dbb",
+      "bytes": 126230
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light-320.png",
+      "sha256": "d241615cfe14034b4b3f19f7a9d1f802282fc83fccfb91e94b48502e6fc0e2fb",
+      "bytes": 31466
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light.png",
+      "sha256": "ccdb262b6cd0b2b31b4462eddc0ff75abf5d6b60e870677548beb796d04aa8ee",
+      "bytes": 83730
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light.svg",
+      "sha256": "1563a148fbeba03481939d24dbd0db903516e614bb4ad7e0a4df6b6f96dbd436",
+      "bytes": 6278
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-dark-320.png",
+      "sha256": "348b504fb5d35a4f1c3d4c67db4b301cd5516dcb1146e6758454715ad6b61813",
+      "bytes": 33874
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-dark.svg",
+      "sha256": "bb7046dd4d021952cb12b751d708ef6be9ffa26bd5a6a120662968040985221e",
+      "bytes": 6541
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-light-320.png",
+      "sha256": "e73f2e301c629f2276b96d8c8e5954fc76c96b68673a55b8a1fe946132e04fbb",
+      "bytes": 32037
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-light.svg",
+      "sha256": "a30cb02ccfe13691e8f390b505f5d17fc609ddd6534ed3f69cc5efef130ca1dc",
+      "bytes": 6541
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-text.txt",
+      "sha256": "0aadbf7e5d2ac0a5e09d6d8fffa660b0999d27cfe56ab90677b1141929ed00fd",
+      "bytes": 1335
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-dark-320.png",
+      "sha256": "796d22a5ea295880032792802d968a0c0a682892c7557faba757a2de3efdd824",
+      "bytes": 33957
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-dark.svg",
+      "sha256": "d543b623d037561c8d5f8d3445baa73c2023bbcfe63a3f2cb3137c980c044554",
+      "bytes": 6538
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-light-320.png",
+      "sha256": "26e6f7d61cf2dab0868975e1602859ff357163ef4dd4c14ec05ba2cc62c684be",
+      "bytes": 32148
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-light.svg",
+      "sha256": "c3d4f358f67808431d153301c91821589c16d586227eeaa8df6c97d45d629f48",
+      "bytes": 6538
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-text.txt",
+      "sha256": "4d1fd8ae27e49919dce1212dbccf17f377153b15e37632c758a821328e28c3b8",
+      "bytes": 1334
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-text.txt",
+      "sha256": "9622b72260a086784efa896c7156d3dfe97add293f6fc8d52225f532aaaf10df",
+      "bytes": 1094
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-view.json",
+      "sha256": "cdea160fb54258cd366f6a9556a3aa0720e0fea491e8381d26ab0785d5ada29d",
+      "bytes": 1974
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/tests.txt",
+      "sha256": "8d9e0ad510274efa6d504c7afe66bb37dc689f9f3851c2796d23906bc1c060de",
+      "bytes": 10459
+    },
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/typecheck.txt",
+      "sha256": "c62db50405f8a50176ccc32fc634a098829f49bc76eebdb37e43a97fb39d9e5d",
+      "bytes": 80
+    }
+  ],
+  "checks": [
+    {
+      "kind": "unit_contract_negative",
+      "result": "pass",
+      "count": 86,
+      "evidence": "docs/light-bot-app/production-release-20261109/schedule-notices/tests.txt"
+    },
+    {
+      "kind": "static_types",
+      "result": "pass",
+      "evidence": "docs/light-bot-app/production-release-20261109/schedule-notices/typecheck.txt"
+    },
+    {
+      "kind": "actual_render",
+      "result": "pass",
+      "scopes": [
+        "sharpSVG→PNG day/night320/full",
+        "ChromeSSR day/night320/390/1280",
+        "allSVGtext getBBox withinbounds",
+        "comparison notice dedupe and no horizontal overflow",
+        "two actual hydrated320px day/night interval and full-card details",
+        "now/next SVG/PNG and fulltext with actualKyivUTC+02 viewingtime"
+      ],
+      "evidence": "docs/light-bot-app/production-release-20261109/schedule-notices/render-observations.json"
+    }
+  ],
+  "quality_axes": {
+    "functional": "author-scoped86tests pass",
+    "craft": "author inspected updated day/night320App+SVG/PNG; no new design/template; current independent retest pending",
+    "source": "actual root currentpublicreceipt + exactraw/item/date pins",
+    "runtime": "six offline ChromeSSR plus two hydrated320details interactions; actualSVG/sharpPNG; not wholeapp/nativeTelegram proof",
+    "independent_review": "Prior attempts retained on their exact bytes; attempt03 independent targeted retest pending",
+    "owner_acceptance": "not claimed",
+    "production_release": "Parent owner full release authority valid; this component assignment local only; production not performed/activation prerequisites open"
+  },
+  "freeze": "Code frozen and notified other owners; document/proof hashes pinned here. Further code changes only from concrete finding with new proof hashes.",
+  "next_action": "Independent judge reviews copied exact bytes and actual samples, reports scoped findings to root; root worker binds synthetic campaign to these new hashes. No new network/source read within45min origin budget, no production effects.",
+  "unknown_external_effects": [],
+  "attempt": 3,
+  "previous_attempt": {
+    "path": "docs/light-bot-app/production-release-20261109/schedule-notices/attempt-02/handoff.json",
+    "sha256": "5d36dcbf2dbf645af47ba491ee4db215a7820403eb175103f1a91db2d5e05f30",
+    "result": "Attempt02 immutable source/proofs retained; current timezone/status repair has new evidence"
+  },
+  "fixes": [
+    "educational/conditional emergency advice no false operational assertion",
+    "explicit other-region scope does not become Kharkiv emergency",
+    "effective service date independent from publication day; no inferred cancellation",
+    "natural three-sentence notice preserving all source uncertainty",
+    "truthful settings CTA",
+    "parent release grant preserved distinctly from local component rights",
+    "strict existing KH fixture now includes reviewed source switching caveat",
+    "actual Europe/Kyiv offset independent of ISOserialization; winter/summer/fold/spring/midnight goldens",
+    "now/next viewingtime wording separate from syntheticstatus",
+    "scoped not-cancelled/continuing operativebulletins with advice/conditional/otherregion/cancellation negatives"
+  ],
+  "source_change_coordination": "Waited for explicit root CERT PG WINDOW ENDED message before KH classifier edits; source-intake and source-operating-policy bytes unchanged fromattempt02. KH/parser and schedule-model sourcepins changed; cert author must read actual dependency manifest."
+}

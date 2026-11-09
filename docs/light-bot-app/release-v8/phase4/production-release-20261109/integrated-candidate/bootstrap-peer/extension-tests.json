@@ -1,0 +1,231 @@
+{
+  "kind": "lba-bootstrap-schema-preactivation-independent-qa/1",
+  "actor": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T05:54:28.185Z",
+  "verdict": "PASS_BOUNDED_SCHEMA_INSTALL_AND_PREACTIVATION",
+  "tests": [
+    {
+      "name": "actual strict9legacy readonlyplan and genuine9table nativeR1 before anyoperatorDDLorDML",
+      "status": "pass"
+    },
+    {
+      "name": "partialtable unknownlbarelation and missinglegacy rejected instead of guessedmigration",
+      "status": "pass"
+    },
+    {
+      "name": "changednativeSQL separatefile rejected bywholeSHA without execution",
+      "status": "pass"
+    },
+    {
+      "name": "unbound plan missinginstalloption missingcopiedfakeR1 cannot executeDDL",
+      "status": "pass"
+    },
+    {
+      "name": "oldR1bugs remainfixed inlegacy9 branch existingfolder dumpcallback andwrongtarget",
+      "status": "pass"
+    },
+    {
+      "name": "nativeDDL22012 failure reallyrollsback all50createdtables legacybytesunchanged",
+      "status": "pass"
+    },
+    {
+      "name": "lostDDLcommit BEFOREsend readback9 permits freshboundplan andfresh9R1 only",
+      "status": "pass"
+    },
+    {
+      "name": "lostDDLcommit AFTERrealcommit readback59 hold2rows not rolledback orreplayed",
+      "status": "pass"
+    },
+    {
+      "name": "controlled59resume doesnotrepeat nativeDDL imports4owners andpreservesalllegacy rawbytes",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation foreignhold legacydrift canonicaldrift andunknownnative denied withoutclearorloss",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation needsbootstrapauthority originalfreshR1 andsameepoch source target",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation COMMIT BEFOREsend reconciles notcommitted withno automaticCAS",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation actualclear COMMITlost readbackexactmarker saysready neverhealthy",
+      "status": "pass"
+    },
+    {
+      "name": "ready historicalreceipt noDB access preserves laterforeignhold andgrantsnosend",
+      "status": "pass"
+    },
+    {
+      "name": "directpositive9to59 fullbootstrap native9archiveprecedes everyoperatorDDLorDML",
+      "status": "pass"
+    },
+    {
+      "name": "directpositive separatepreactivation CAS emitsnotdeployednothealthy andpreserves59data",
+      "status": "pass"
+    }
+  ],
+  "passed": 16,
+  "failed": 0,
+  "sourceBefore": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "observations": {
+    "currentIntegratedSourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+    "currentBuildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+    "nativeSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+    "staticNativeAllowlist": {
+      "createTables": [
+        "lba_public_source_worker",
+        "lba_account_widget_proof_receipt",
+        "lba_auth_proof_uses",
+        "lba_public_source_origin",
+        "lba_account_link_challenge",
+        "lba_production_profile_origins",
+        "lba_production_control",
+        "lba_public_source_raw",
+        "lba_public_source_state",
+        "lba_production_tools_reports",
+        "lba_account_verified_login",
+        "lba_public_address_candidate",
+        "lba_owner_auth_epoch",
+        "lba_production_telegram_dispatch_jobs",
+        "lba_production_schedule_certificate",
+        "lba_release_campaign_jobs",
+        "lba_production_profiles",
+        "lba_production_tools_shares",
+        "lba_release_campaigns",
+        "lba_public_address_capture",
+        "lba_production_schedule_outbox_proof",
+        "lba_production_profile_outbox",
+        "lba_account_detached_identity",
+        "lba_public_address_query",
+        "lba_production_telegram_bot_state",
+        "lba_production_bootstrap_ledger",
+        "lba_production_morning_briefing_outbox_proof",
+        "lba_production_telegram_processor_scan",
+        "lba_public_source_plan",
+        "lba_production_address_lookup",
+        "lba_production_address_lookup_requests",
+        "lba_production_event_producer_lease",
+        "lba_production_telegram_chat_state",
+        "lba_release_campaign_attempts",
+        "lba_production_morning_briefing_view_proof",
+        "lba_production_telegram_inbox",
+        "lba_production_telegram_callback_ack_attempts",
+        "lba_public_source_run",
+        "lba_production_telegram_callback_acks",
+        "lba_account_operation",
+        "lba_production_telegram_processing",
+        "lba_production_profile_inbox",
+        "lba_production_tools_inbox",
+        "lba_production_schedule_cursor",
+        "lba_legacy_campaign_recipient",
+        "lba_production_schedule_event",
+        "lba_production_morning_briefing",
+        "lba_telegram_browser_challenge",
+        "lba_production_telegram_dispatch_attempts",
+        "lba_production_schedule_reminder"
+      ],
+      "foreignKeys": 42,
+      "indexes": 14,
+      "statements": 106
+    },
+    "recoveredJournal": {
+      "stage": "ready_for_activation",
+      "accounts": 4,
+      "schemaSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+      "deployedHealthy": false
+    },
+    "directPositive": {
+      "stage": "ready_for_activation",
+      "accounts": 4,
+      "deployedHealthy": false
+    }
+  },
+  "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "fixtureSourceSha256": "15d3c956ff8a9be12d77b44d91b607b47c086e5353a46f893b58a72cb69cf5ac",
+  "actualOwnPostgres": true,
+  "actualNative9And59PgDumpRestoreList": true,
+  "clusterStopped": true,
+  "temporaryRawFixturesRemoved": true,
+  "actualProductionFenceCreated": false,
+  "actualDeployedHealthyClaim": false,
+  "productionReleaseReady": false,
+  "effects": {
+    "productionConnections": 0,
+    "productionWrites": 0,
+    "providerRequests": 0,
+    "applicationRuntime": 0,
+    "helperOrAppEdits": 0,
+    "ownFixtureWrites": true
+  },
+  "limits": [
+    "Syntheticownedloopbackauthority only; noactualproductionpause/fence/DBconnection orproviderobservation.",
+    "Fixture source15d3 is notcurrentproductionbinding; CLI independentlyenforces actualcurrentfreeze.",
+    "Directowner PostgreSQL route documentaryauthority suppliedbyroot; thisreview measuresmechanics only.",
+    "Native44fc pinned static106statementallowlist is independentlyverifiedupstream; no generatedSQL textpatch.",
+    "Ready receipt explicitlynot deployed/nothealthy; root mustactualpublish/smoke/verifybot andremaining68conditions."
+  ]
+}

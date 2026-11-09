@@ -1,0 +1,398 @@
+{
+  "schema_version": "atelier-component-handoff/1",
+  "is_template": false,
+  "product_id": "g-p-6aee37634784819189b085127be2946b",
+  "component_id": "lba-v8-schedule-certification",
+  "component_kind": "chatbot",
+  "status": "executed",
+  "parent_intent_ref": "docs/light-bot-app/continuation/requirements.json",
+  "authority_ref": "docs/certification/delegation.json",
+  "parent_requirement_ids": [
+    "DATA-01",
+    "DATA-02",
+    "DATA-03",
+    "DATA-04",
+    "DATA-05",
+    "DATA-06",
+    "DATA-07",
+    "DATA-08",
+    "DATA-09",
+    "ADDR-01",
+    "ADDR-02",
+    "ADDR-03",
+    "ADDR-04",
+    "ADDR-05",
+    "ADDR-06",
+    "ADDR-07",
+    "PROFILE-01",
+    "PROFILE-02",
+    "PROFILE-03",
+    "PROFILE-04",
+    "PROFILE-05",
+    "PROFILE-06",
+    "PROFILE-07",
+    "BOT-01",
+    "BOT-02",
+    "BOT-03",
+    "BOT-04",
+    "BOT-05",
+    "BOT-06",
+    "BOT-07",
+    "BOT-08",
+    "LANG-01",
+    "LANG-02",
+    "LANG-03",
+    "LANG-04",
+    "LANG-05",
+    "APP-01",
+    "APP-02",
+    "APP-03",
+    "APP-04",
+    "APP-05",
+    "APP-06",
+    "APP-07",
+    "APP-08",
+    "CHART-01",
+    "CHART-02",
+    "CHART-03",
+    "CHART-04",
+    "CHART-05",
+    "CHART-06",
+    "CHART-07",
+    "CHART-08",
+    "CHART-09",
+    "TECH-01",
+    "TECH-02",
+    "TECH-03",
+    "TECH-04",
+    "TECH-05",
+    "TECH-06",
+    "TECH-07",
+    "TECH-08",
+    "TECH-09",
+    "GOV-01",
+    "GOV-02",
+    "GOV-03",
+    "GOV-04",
+    "GOV-05",
+    "GOV-06"
+  ],
+  "owned_requirement_ids": [
+    "DATA-05",
+    "DATA-06",
+    "DATA-07",
+    "DATA-08",
+    "DATA-09",
+    "ADDR-05",
+    "ADDR-06",
+    "ADDR-07",
+    "PROFILE-02",
+    "TECH-01",
+    "TECH-02",
+    "TECH-05",
+    "TECH-06",
+    "TECH-07"
+  ],
+  "scope": {
+    "goal": "Complete the missing trusted certificate issuance and exact current projection/qualification path in an isolated copy, preserving full68 and immutable35db",
+    "included": [
+      "root-pinned reviewed artifact admission with production registry empty",
+      "single canonical owner-scoped binding recipe",
+      "SQL-only current raw/address certificate issuance and atomic revoke/readback",
+      "certified projection and interactive/events/morning compatibility",
+      "actual ownPG synthetic representative/full regression and CJS deployment-root evidence"
+    ],
+    "excluded": [
+      "real provider/production/data/secrets or source/app35db changes",
+      "invented live48h evidence or independent acceptance",
+      "unsupported region/address/fallback connectors represented as complete"
+    ],
+    "stop": "Fail closed on missing review authority/current facts/ownership/session/epoch/ambiguity; return concrete missing actual source or connector evidence upstream"
+  },
+  "consumer": "Root light-bot-app-recovery and independent certificate QA; no production publication by this worker",
+  "permissions": {
+    "source_ref": "docs/certification/delegation.json",
+    "grant": "component_execution",
+    "allowed_effects": [
+      "owned isolated copy implementation",
+      "own loopback PG and synthetic transport tests",
+      "local source/file/hash/compiler/readiness evidence"
+    ]
+  },
+  "budget": {
+    "cap": "Existing local Node/PostgreSQL/dependencies; no paid services or external requests",
+    "stop": "No unauthorized original app/provider/production effects or invented qualification authority"
+  },
+  "decisions": [
+    "All68 must and accepted UI/language/day/night/animations kept",
+    "Use existing schema50/profile writer/event engine/global dispatcher",
+    "Production root pins only; synthetic injected pins strictly isolated",
+    "Free fallback may share upstream, never counted as independent control by domain alone",
+    "Supported connector currently Kyiv exact canonical Yasno selection; other city/legacy/fallback must remain pending",
+    "Current real production admissions0"
+  ],
+  "environment_capabilities": [
+    "Actual ChatBot Atelier Build6 source read on host; source snapshot pinned",
+    "Host Node24 and existing local PG16.15 available; app/tools dependency symlinks only existing local packages",
+    "Node20 CJS target compile and actual compiled entry executed on host Node24; native20 process not claimed"
+  ],
+  "inputs": [
+    {
+      "path": "COPY_BASE.json",
+      "sha256": "4c2fec034ff88b08371969a379f70343dec4071a0c82278f4ab31c12fe8d59f9"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/requirements.json",
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+    },
+    {
+      "path": "docs/certification/authorization.json",
+      "sha256": "613b008586fe302bc4cbdd45d4f34ae2eb45d2c050ddbf4c459747ac22e5a2bc"
+    },
+    {
+      "path": "docs/certification/delegation.json",
+      "sha256": "78aec8e3f71b4f841a7ff0338fc67d9578bb2330e00448452df709a6b7e0b5bf"
+    },
+    {
+      "path": "docs/certification/base/profile-store.ts",
+      "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a",
+      "original_path": "app/server/production/profile-store.ts",
+      "sourceCandidate": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1"
+    },
+    {
+      "path": "docs/certification/base/canonical-runtime.ts",
+      "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598",
+      "original_path": "app/server/production/canonical-runtime.ts",
+      "sourceCandidate": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1"
+    },
+    {
+      "path": "docs/certification/base/runtime-context.ts",
+      "sha256": "0572068c8d2aad4ab27c71f3e64c640da4aba0162dbf747d875c02dc86d24913",
+      "original_path": "app/server/production/runtime-context.ts",
+      "sourceCandidate": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1"
+    },
+    {
+      "path": "docs/certification/base/index.ts",
+      "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3",
+      "original_path": "app/server/index.ts",
+      "sourceCandidate": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1"
+    }
+  ],
+  "shared_contract_refs": [],
+  "related_components": [],
+  "invocation": {
+    "selector": "chatbot-atelier-build",
+    "environment": "codex",
+    "availability": "available",
+    "status": "performed",
+    "actor": "/root/production_campaign_worker",
+    "resolution": {
+      "source_ref": "/Users/admin/.agents/skills/chatbot-atelier-build/SKILL.md",
+      "version": "6.0.0",
+      "snapshot": {
+        "path": "docs/light-bot-app/skill-snapshots-6/chatbot-atelier-build.md",
+        "sha256": "77c47a46b692eaeebd133bb42f856ec26d45af833b524b8d1d97638818480bac"
+      }
+    },
+    "receipt_refs": [
+      "certification-component-execution"
+    ],
+    "activity": "product_execution"
+  },
+  "fallback": null,
+  "deliverables": [
+    {
+      "path": "app/server/production/schedule-certification.ts",
+      "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb"
+    },
+    {
+      "path": "app/server/production/deployed-schedule-qualification.ts",
+      "sha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "sha256": "06928101f0d53b70ae201336eaa29bc3c7a1aaed024419e9247670f74be7a1c2"
+    },
+    {
+      "path": "app/server/production/runtime-context.ts",
+      "sha256": "740529701cc8dd997a45a38400a2b928b0f1eafb46826d7f847a1c213f831ca5"
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "532c3145e14ef71f8b17fc5f9cc313bad3ba60c59ec21df83647ea5d12262fa1"
+    },
+    {
+      "path": "tools/lba_certificate_pg.mjs",
+      "sha256": "3c47164e7c278e355ffbb55299c5e70e967c302db32e15eb27415b10b76ef54e"
+    },
+    {
+      "path": "docs/certification/IMPLEMENTATION_UA.md",
+      "sha256": "844271b53bd37adf4ad4d2d793a7363385edf3eb072a55235ae196d478f0ec78"
+    },
+    {
+      "path": "docs/certification/component-receipt.json",
+      "sha256": "4d7f09e2f9d0289bd0425f2ce179b79c10d5a0518ff48caf4e019c729bdd1878"
+    },
+    {
+      "path": "docs/certification/requirements-impact.json",
+      "sha256": "b6d61d675e6c0360c5abad35ef297e85f45c3cde8773a6552be10fb33c328be9"
+    },
+    {
+      "path": "docs/certification/criteria-impact-24.json",
+      "sha256": "1207985de068d232e713f937539304f3f63c5a941f8ef8f34d4e59e1ac1946d8"
+    }
+  ],
+  "acceptance": [
+    "Default actual registry0 and disabled construction/run without effects",
+    "Root-reviewed raw/code/file/receipt pin boundary with no observed JSON self-admission",
+    "One canonical binding writer preserves current profile and current facts",
+    "Actual ownPG code closure, negative/concurrent/unknown/revoke/expiry/owner/rename proofs",
+    "Original35db406file manifest unchanged; all68 kept pending at their actual product gates"
+  ],
+  "evidence": [
+    {
+      "id": "certification-component-execution",
+      "claim": "Actual isolated supported code component, output pins and scope limits",
+      "actor": "/root/production_campaign_worker",
+      "method": "Actual author implementation and source/command/effect receipts",
+      "scope": "Local isolated copy only; no real source/provider/production acceptance",
+      "path": "docs/certification/component-receipt.json",
+      "sha256": "4d7f09e2f9d0289bd0425f2ce179b79c10d5a0518ff48caf4e019c729bdd1878",
+      "component_id": "lba-v8-schedule-certification",
+      "requirement_ids": [
+        "DATA-05",
+        "DATA-06",
+        "DATA-07",
+        "DATA-08",
+        "DATA-09",
+        "ADDR-05",
+        "ADDR-06",
+        "ADDR-07",
+        "PROFILE-02",
+        "TECH-01",
+        "TECH-02",
+        "TECH-05",
+        "TECH-06",
+        "TECH-07"
+      ]
+    },
+    {
+      "id": "certification-own-pg-18",
+      "claim": "Actual18case ownPG/filesystem/canonical/CJS integration with synthetic evidence/native transports",
+      "actor": "/root/production_campaign_worker",
+      "method": "Actual owned disposable PostgreSQL and local code runtime execution",
+      "scope": "Local isolated copy only; no real source/provider/production acceptance",
+      "path": "docs/certification/author-pg.json",
+      "sha256": "4570fd999ff0dd947191273e6f1189250f81e4fceed7b2047d9be6e69d8b86ba",
+      "component_id": "lba-v8-schedule-certification",
+      "requirement_ids": [
+        "DATA-05",
+        "DATA-06",
+        "DATA-07",
+        "DATA-08",
+        "DATA-09",
+        "ADDR-05",
+        "ADDR-06",
+        "ADDR-07",
+        "PROFILE-02",
+        "TECH-01",
+        "TECH-02",
+        "TECH-05",
+        "TECH-06",
+        "TECH-07"
+      ]
+    },
+    {
+      "id": "certification-original-35db",
+      "claim": "Original full406file frozen candidate remains byte-identical",
+      "actor": "/root/production_campaign_worker",
+      "method": "Actual original files compared to immutable source manifest",
+      "scope": "Local isolated copy only; no real source/provider/production acceptance",
+      "path": "docs/certification/original-35db-after.json",
+      "sha256": "c9a4fad35f9d05106b764460444fe38923485787730072d1fe548b804443517a",
+      "component_id": "lba-v8-schedule-certification",
+      "requirement_ids": [
+        "DATA-05",
+        "DATA-06",
+        "DATA-07",
+        "DATA-08",
+        "DATA-09",
+        "ADDR-05",
+        "ADDR-06",
+        "ADDR-07",
+        "PROFILE-02",
+        "TECH-01",
+        "TECH-02",
+        "TECH-05",
+        "TECH-06",
+        "TECH-07"
+      ]
+    },
+    {
+      "id": "certification-backend-317",
+      "claim": "Actual copied backend317passed0failed",
+      "actor": "/root/production_campaign_worker",
+      "method": "Actual Node test runner output",
+      "scope": "Local isolated copy only; no real source/provider/production acceptance",
+      "path": "docs/certification/backend.log",
+      "sha256": "9b9e09ddc64c2a327dd11f06315146c8198e36e4d31adc2c5f8c3f70bb42617a",
+      "component_id": "lba-v8-schedule-certification",
+      "requirement_ids": [
+        "DATA-05",
+        "DATA-06",
+        "DATA-07",
+        "DATA-08",
+        "DATA-09",
+        "ADDR-05",
+        "ADDR-06",
+        "ADDR-07",
+        "PROFILE-02",
+        "TECH-01",
+        "TECH-02",
+        "TECH-05",
+        "TECH-06",
+        "TECH-07"
+      ]
+    }
+  ],
+  "actual_jobs": [
+    "Representative actual ownPG slice before expansion; source-specific historical raw preserved",
+    "Actual final author18case ownPG/filesystem/canonical lifecycle/CJS entry proof",
+    "Actual post-notice/KH-attempt03 TypeScript exit0 and backend317pass0fail",
+    "Actual original35db full406file hash check before and after"
+  ],
+  "open_questions": [],
+  "checkpoint": {
+    "completed": [
+      "Supported exact Kyiv trusted binding/certificate/current projection/interactive/event code closure",
+      "Production authority and current source/address guard boundaries, CJS root path and acyclic semantic pin inventory",
+      "Author representative/full regression and immutable original checks"
+    ],
+    "pending": [
+      "Independent exact-source QA receipt",
+      "Actual source/address/control/48h qualification artifacts and owner/device/data acceptance",
+      "NonKyiv and legacy trusted resolvers plus real free fallback routes within full68",
+      "Durable retained actual observation capture route before starting real48h qualification clock"
+    ],
+    "unknown_outcomes": []
+  },
+  "next_action": "Root consumes independent exact-source review and only then selects accepted copy bytes for later source integration; real admission list stays empty until actual prerequisites are proven",
+  "return_condition": "Local supported connector implementation and actual author proof delivered; product/live68 acceptance remains parent responsibility",
+  "return_to": {
+    "selector": "light-bot-app-recovery",
+    "component_id": "lba-parent"
+  },
+  "orchestrator_chain": [
+    "light-bot-app-recovery",
+    "chatbot-atelier-build"
+  ],
+  "selected_channels": [
+    "telegram"
+  ],
+  "proposed_channels": [],
+  "platform_adapter_contract_refs": []
+}

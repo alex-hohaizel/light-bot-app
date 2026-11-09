@@ -1,0 +1,225 @@
+{
+  "kind": "lba-bootstrap-independent-review/2",
+  "actor": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T05:54:14.597Z",
+  "verdict": "PASS_BOUNDED_BOOTSTRAP_AND_FINALIZE",
+  "scope": "Core bootstrap on alreadyinstalledfullschema and posthealthyfinalize only; doesnot exercise later9to59 schema install or separatepreactivation modes",
+  "schemaInstallPreactivationAccepted": false,
+  "tests": [
+    {
+      "name": "exact installed contract50tables396columns55CHECK78indexes with2named consumers",
+      "status": "pass"
+    },
+    {
+      "name": "actual READONLY4owner plan no raw profile identity session URI or migration writes",
+      "status": "pass"
+    },
+    {
+      "name": "unbound tampered stale wrongsource and changedfence plans denied before coreDML",
+      "status": "pass"
+    },
+    {
+      "name": "missing real production fence and activation deny; no positive providerfixture created",
+      "status": "pass"
+    },
+    {
+      "name": "malformed and wrongresource stale source fence rejected without creating authority",
+      "status": "pass"
+    },
+    {
+      "name": "actual READONLY plan rejects injected SQLwrite25006 and rollsback",
+      "status": "pass"
+    },
+    {
+      "name": "missing actual CHECK denied before plan or bootstrap",
+      "status": "pass"
+    },
+    {
+      "name": "existing backup folder preserved and customdump nativebinary target substitutions rejected",
+      "status": "pass"
+    },
+    {
+      "name": "actual exported snapshot nativepgdump59tables0600 PGDMP before anyprofile DML",
+      "status": "pass"
+    },
+    {
+      "name": "plain signed fake copied or peeled genuine R1 cannot createcontrol profiles",
+      "status": "pass"
+    },
+    {
+      "name": "actual archive tamper and missingfile denied before DML",
+      "status": "pass"
+    },
+    {
+      "name": "samecount legacyowner reassignment afterplan rejected no profilecreated",
+      "status": "pass"
+    },
+    {
+      "name": "real perowner store snapshot failure retains onecommittedprefix andownedhold no fakeglobalrollback",
+      "status": "pass"
+    },
+    {
+      "name": "partial withoutjournal and changedjournal target/source denied",
+      "status": "pass"
+    },
+    {
+      "name": "resume fourowners preservesoriginalsession legacyorphan optout and hasnoauthoutboxsessioneffects",
+      "status": "pass"
+    },
+    {
+      "name": "repeat idempotent real operator/sessionlock legacySHAREbarrier active and releasedafterward",
+      "status": "pass"
+    },
+    {
+      "name": "foreign hold or immutable origin drift rejected withoutadoption",
+      "status": "pass"
+    },
+    {
+      "name": "legitimate real canonical preference and newlegacy session/userdelta acceptedbeforefinalize",
+      "status": "pass"
+    },
+    {
+      "name": "finalize missingactivation unbrandedauthority unknownnative orwronghold neverclears",
+      "status": "pass"
+    },
+    {
+      "name": "lostCOMMIT beforetransactioncommit reconciles notcommitted withoutretryorprofiledelta loss",
+      "status": "pass"
+    },
+    {
+      "name": "lostCOMMIT afterrealcommit confirms exactintent withreadback and nosecondUPDATE",
+      "status": "pass"
+    },
+    {
+      "name": "historical finalizedreceipt replay accessesnoDB andneverclears laterhold",
+      "status": "pass"
+    },
+    {
+      "name": "atomicprivate marker preserves symlinktarget0600 andallliteral codes idempotent",
+      "status": "pass"
+    },
+    {
+      "name": "isolatedCLI denies missingfence beforehiddeninput orproductionconnection evenafterrealbuildfreeze",
+      "status": "pass"
+    }
+  ],
+  "passed": 24,
+  "failed": 0,
+  "sourceBefore": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "fixtureSourceSha256": "15d3c956ff8a9be12d77b44d91b607b47c086e5353a46f893b58a72cb69cf5ac",
+  "fixtureOwners": 4,
+  "actualOwnPostgres": true,
+  "actualNativePgDumpAndPgRestoreList": true,
+  "clusterStopped": true,
+  "temporaryRawFixturesRemoved": true,
+  "observations": {
+    "currentSourceBinding": "current_frozen_build_matches",
+    "currentIntegratedSourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+    "currentBuildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+    "currentSourceFiles": 281,
+    "cliDenied": true,
+    "cliFixtureIsolated": true,
+    "defaultMacReadonlyModeReachesTTYGuardBeforeInputOrConnection": true
+  },
+  "guidance": {
+    "release": "6.0.0",
+    "profile": "engineering",
+    "qualityCertified": false,
+    "sources": [
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+        "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+        "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+        "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+        "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+      }
+    ]
+  },
+  "productionReleaseReady": false,
+  "actualProductionFenceCreated": false,
+  "actualProductionActivationCreated": false,
+  "limits": [
+    "Ownloopback syntheticauthority andsyntheticrawtasks only; no productionorprovideroperation.",
+    "Migrationactor comes from existingusersPK; canonicalFSM session IDs are created, notweb/provider login sessions. Legacy sessions andalllegacydata preserved until explicitlytestedlegit newappdelta.",
+    "Finalize tests clearonly syntheticownhold; real activation requires actualprovider+HTTPSproof. TrustedCodex observationfiles are not cryptographicproviderattestation.",
+    "TLS remains explicitCA/rejectUnauthorized per codeinspection; no actualremoteTLS handshake.",
+    "Current1ecb integrated build guard passes; production write paths still require genuinefence/activation. Full68 data/device/source/48h/cutover gates remain separate."
+  ],
+  "effects": {
+    "productionConnections": 0,
+    "productionWrites": 0,
+    "providerRequests": 0,
+    "applicationRuntime": 0,
+    "sourceEdits": 0,
+    "ownFixtureWrites": true
+  }
+}

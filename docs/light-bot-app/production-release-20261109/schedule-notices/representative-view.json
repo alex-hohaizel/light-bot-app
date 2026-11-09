@@ -1,0 +1,51 @@
+{
+  "contractVersion": "lba-product/1",
+  "revisionId": "kharkiv-rss:94fb88664ecf62501387ce8e382ea75cacc3d2ae1e64cbe7d6dd8fb6b4e1872c",
+  "addressId": "unbound:kharkiv-oe:kharkiv:rss:1.1",
+  "addressLabel": "Технічна група 1.1",
+  "localityLabel": "kharkiv",
+  "operatorId": "kharkiv-oe",
+  "namespace": "kharkiv:rss",
+  "targetId": "1.1",
+  "serviceDate": "2026-11-09",
+  "timezone": "Europe/Kyiv",
+  "status": "published",
+  "dayCoverage": "complete",
+  "intervals": [
+    {
+      "startsAt": "2026-11-08T23:00:00.000Z",
+      "endsAt": "2026-11-09T02:30:00.000Z",
+      "startLocal": "01:00",
+      "endLocal": "04:30",
+      "kind": "planned_outage"
+    },
+    {
+      "startsAt": "2026-11-09T04:00:00.000Z",
+      "endsAt": "2026-11-09T13:00:00.000Z",
+      "startLocal": "06:00",
+      "endLocal": "15:00",
+      "kind": "planned_outage"
+    },
+    {
+      "startsAt": "2026-11-09T16:30:00.000Z",
+      "endsAt": "2026-11-09T22:00:00.000Z",
+      "startLocal": "18:30",
+      "endLocal": "24:00",
+      "kind": "planned_outage"
+    }
+  ],
+  "source": {
+    "id": "kharkiv-official-rss",
+    "name": "Харківобленерго · офіційний RSS",
+    "url": "https://oblenergo.kharkiv.ua/uk/node/13883460",
+    "revision": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+    "accessCost": 0,
+    "verifiedLevel": "schedule"
+  },
+  "publishedAt": "2026-11-08T20:18:03.000Z",
+  "observedAt": "2026-11-09T05:00:37.710Z",
+  "freshness": "current",
+  "synthetic": false,
+  "deliveryEligible": false,
+  "notice": "Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні."
+}

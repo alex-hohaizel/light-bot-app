@@ -73,7 +73,7 @@ function publicPlace(l:BotLocation,ctx:BotContext,date:string,now:string):LivePu
  return {label,localityLabel,scope:l.binding.kind==='user_selected_group'||l.binding.kind==='operator_group'&&l.binding.status==='needs_confirmation'?'technical_group':'address',serviceDate:date,timezone:'Europe/Kyiv',
   status:unique.size>1?'conflict':p?p.status:l.binding.status==='verified'?'not_published':'needs_confirmation',dayCoverage:p?p.dayCoverage:'none',freshness:p?p.freshness:'unknown',
   intervals:p?p.intervals.map(i=>({startsAt:i.startsAt,endsAt:i.endsAt,startLocal:i.startLocal,endLocal:i.endLocal,kind:i.kind})):[],
-  sourceName:p?p.source.name:unique.size>1?'Джерела містять різні плани':l.binding.status==='verified'?'План на цю дату ще не опублікований':'Прив’язку адреси потрібно підтвердити',observedAt:p?p.observedAt:null};
+  sourceName:p?p.source.name:unique.size>1?'Джерела містять різні плани':l.binding.status==='verified'?'План на цю дату ще не опублікований':'Прив’язку адреси потрібно підтвердити',observedAt:p?p.observedAt:null,...(p?.notice?{notice:p.notice}:{})};
 }
 const SELECT_RECEIPT='select session_id as "sessionId",input_digest as "inputDigest",receipt from lba_production_tools_inbox where owner_id=$1 and input_id=$2';
 function checkedReceipt(row:any,request:LiveToolsRequest):LiveToolReceipt{

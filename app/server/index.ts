@@ -21,6 +21,8 @@ import {createOwnerAuthEpoch} from './production/auth-epoch';
 import {registerAccountLinkRoutes} from './production/account-links-http';
 import {createAccountOriginGuard} from './production/account-origin';
 import {readReleaseCampaignConfiguration,releaseCampaignPublicFields} from './production/release-campaign';
+import {fileURLToPath} from 'node:url';
+import {qualificationRootFromEntryDirectory} from './production/schedule-certification';
 
 const isolated = isIsolatedMode();
 if (isolated) assertIsolatedRuntimeReady();
@@ -115,6 +117,7 @@ app.use((req, res, next) => {
     if(policy.productProfileMode==='active'){
       const {pool}=await import('./db');
       canonicalRuntime=createCanonicalRuntime({pool,policy,token:process.env.TELEGRAM_BOT_TOKEN!,origin:'https://power-ukraine.net',fetch,
+        certification:{rootDirectory:qualificationRootFromEntryDirectory(typeof __dirname==='string'?__dirname:fileURLToPath(new URL('.',import.meta.url)))},
         ...(releaseCampaign?{releaseCampaign}:{}),
         verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!}),authorizePrincipal:ownerAuth!.authorizePrincipal,
         accountConfiguration:{bindingKey:process.env.SESSION_SECRET!,...(policy.accountLinksEnabled?{browserWidget:{botUsername:'PowerUkraineBot',configurationVerified:true as const}}:{})}});

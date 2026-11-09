@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { REVIEW_PLAN, reviewPlan } from '../../../shared/review-fixtures.ts';
-import { scheduleText, intervalLabel, localDayBounds, plannedMinutes, nextInterval, nextPlanSummary, CARD_VARIANTS, durationLabel, displayInstantDate } from './schedule-model.ts';
+import { scheduleText, intervalLabel, offsetLabel, localDayBounds, plannedMinutes, nextInterval, nextPlanSummary, CARD_VARIANTS, durationLabel, displayInstantDate } from './schedule-model.ts';
 import { cardExample, houseIdentity, streetMatches } from './examples.ts';
 test('next event qualifies possible and suppresses stale/emergency/conflict/noncurrent plans',()=>{
   const asOf='2026-11-07T14:00:00+02:00';assert.match(nextPlanSummary(reviewPlan('possible'),asOf).title,/Можливе/);
@@ -60,4 +60,28 @@ test('publication and observation dates use Kyiv day even across UTC midnight', 
   const text = scheduleText({ ...REVIEW_PLAN, publishedAt: '2026-11-06T23:30:00Z', observedAt: '2026-11-07T23:45:00Z' });
   assert.match(text, /Опубліковано: 7 листопада/);
   assert.match(text, /Перевірено: 8 листопада/);
+});
+
+test('Kyiv offset labels describe actual IANA winter/summer instants, not their serialized suffix',()=>{
+  for(const instant of ['2026-11-09T01:00:00+02:00','2026-11-08T23:00:00Z','2026-11-09T04:00:00+05:00'])assert.equal(offsetLabel(instant),'UTC+02:00');
+  for(const instant of ['2026-07-09T01:00:00+03:00','2026-07-08T22:00:00Z'])assert.equal(offsetLabel(instant),'UTC+03:00');
+  assert.throws(()=>offsetLabel('2026-11-09T01:00:00'),/INVALID_INSTANT/);
+  assert.throws(()=>offsetLabel('2026-02-30T01:00:00Z'),/INVALID_INSTANT/);
+});
+test('Z and explicit-offset interval serializations have identical labels and preserve24:00/endpoints',()=>{
+  const winter={startsAt:'2026-11-08T23:00:00Z',endsAt:'2026-11-09T02:30:00Z',startLocal:'01:00',endLocal:'04:30',kind:'planned_outage' as const};
+  assert.equal(intervalLabel(winter,true),'01:00–04:30 (UTC+02:00)');
+  assert.equal(intervalLabel(winter,true),intervalLabel({...winter,startsAt:'2026-11-09T01:00:00+02:00',endsAt:'2026-11-09T04:30:00+02:00'},true));
+  const midnight={...winter,startsAt:'2026-11-09T20:30:00Z',endsAt:'2026-11-09T22:00:00Z',startLocal:'22:30',endLocal:'24:00'};
+  assert.equal(intervalLabel(midnight,true),'22:30–24:00 (UTC+02:00)');
+  const fold={...winter,startsAt:'2026-10-25T00:30:00Z',endsAt:'2026-10-25T01:30:00Z',startLocal:'03:30',endLocal:'03:30'};
+  assert.equal(intervalLabel(fold,true),'03:30–03:30 (UTC+03:00 → UTC+02:00)');
+  const spring={...winter,startsAt:'2026-03-29T00:30:00Z',endsAt:'2026-03-29T01:30:00Z',startLocal:'02:30',endLocal:'04:30'};
+  assert.equal(intervalLabel(spring,true),'02:30–04:30 (UTC+02:00 → UTC+03:00)');
+});
+test('live and synthetic now/next text uses viewing time with synthetic status separately',()=>{
+  for(const variant of ['now','next'] as const)for(const synthetic of [true,false]){
+    const text=scheduleText({...REVIEW_PLAN,synthetic},variant);
+    assert.match(text,/Час перегляду:/);assert.doesNotMatch(text,/Час у прикладі:/);assert.equal(text.split('\n').includes('Синтетичний приклад для огляду.'),synthetic);
+  }
 });

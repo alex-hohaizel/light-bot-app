@@ -1,0 +1,293 @@
+{
+  "kind": "lba-certificate-independent-component-review/2",
+  "actor": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T05:45:15.880256+00:00",
+  "verdict": "PASS_BOUNDED_CURRENT_9D7E_CERTIFICATE_MECHANICS",
+  "acceptedScope": "New canonical explicitly selected Yasno Kyiv addresses only; default real admission registry empty. Existing legacy/non-Kyiv mapping, operational fallback connector, real20address/48h admission and full product release are outside this tested slice and remain pending.",
+  "authorFreeze": {
+    "path": "docs/certification/freeze.json",
+    "sha256": "d050c0ecc82deb4b0666256cfa9f064e2b6e52037bafacd8079440c40de7c858",
+    "owned": 6,
+    "semanticDependencies": 38,
+    "verifiedAtStart": true,
+    "verifiedAfterRun": true
+  },
+  "moduleSha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb",
+  "emptyRegistrySourceSha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c",
+  "registryVerifiedAtStartAndAfterRun": true,
+  "actualIndependentTests": 33,
+  "testReceipt": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-history/9d7e6a74/peer-tests.json",
+    "sha256": "8a94595aab288ec28d8cf0f64f1aa01d62a6e60e4b02f2db43a7021abd916de2"
+  },
+  "driver": {
+    "path": "tools/lba_v8_certification_peer.mjs",
+    "sha256": "65e1d77e360a0fb3abe97df4b7fa2b168d978efed61112872a5d015a3745c168"
+  },
+  "actualOwnPostgres": true,
+  "clusterStopped": true,
+  "temporarySyntheticArtifactsRemoved": true,
+  "sourceBeforeEqualsAfter": true,
+  "guidance": [
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-qa/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "e61a53abd7fb7c710f7de3a05e87e81c066e3e7e3aef0805b94d2f0fe6c32018"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/chatbot-atelier-qa/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "5e8b365b0021fbd7ff7a26f287f44424321614db1306aea0238d57e695bf6d9a"
+    }
+  ],
+  "earlyFindingsStatus": {
+    "C01_DEPLOYED_PIN_ROOT_BYPASS": "independent retest PASS",
+    "C02_OWNER_STATE_REUSED_AFTER_REVISION_BUMP": "independent twoaddresses/twodays retest PASS",
+    "C03_REPLAY_RENEWAL_POLICY": "independent revoked/noresurrection/freshcapture/commitunknown retest PASS",
+    "C04_PROJECTION_CURRENT_AUTHORITY_PREFIX": "independent reviewrotation/expiry retest PASS",
+    "C05_ADDRESS_CONTRADICTION_DURING_CERT_TTL": "independent switchedgroup midTTL retest PASS",
+    "ROOT_RENAME_CACHED_CERT": "independent actualrename/cache/producer/recert retest PASS",
+    "ROOT_CWD_AND_DEPENDENCY_PINS": "entry source/bundle roots, missingpackage-lock and wrongbytes retest PASS; actual CJS lifecycle remains separate author evidence"
+  },
+  "testLayers": {
+    "hypothesis": "Separate review contract and perraw machine qualification can be safe without fabricated acceptance.",
+    "codeInspection": "Frozen6files and relevant38dependencies read/pinned; specific early defects reported to author and repaired by author.",
+    "isolatedIntegration": "OwnPostgreSQL33scenario groups, currentSQLlocks and realCOMMITbefore/after injected only on ownedconnection; synthetic artifacts explicit.",
+    "providerObservation": "None.",
+    "humanAcceptance": "None. Existing release authority inherited; no new broad approval requested."
+  },
+  "newRequiredRetest": [
+    "No unresolved issuer-specific repair remains in the reviewed current freeze. Root still owns final integrated full build/backend and affected bootstrap/profile-store import proof before private candidate/staging.",
+    "Real source20address/48h admission, legacy/nonKyiv mapping/fallback connector, owner/device acceptance, serving/fence/dataqualification and production activation remain separate."
+  ],
+  "harnessCorrections": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-failure-catalog-fixture.json",
+      "classification": "HARNESS_FIXTURE_MISSING_CURRENT_CATALOG_QUERY_AND_OWNED_LOOKUP",
+      "sha256": "f3909181178f5ac1849e98241a3d60b24c9fb620a4658b78479644b7e9ba73b1"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-failure-fixture-order.json",
+      "classification": "HARNESS_FIXTURE_FK_INSERT_ORDER",
+      "sha256": "4f67d9eeb0e3deedcf17f0a7fd4fef2217fa0c52c140781726e9c5655f484993"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-failure-prior-worker.json",
+      "classification": "HARNESS_ORACLE_ALREADY_ISSUED_BY_PRIOR_WORKER_CASE",
+      "sha256": "7edcf666161f95e03cb177773cab249c8223c33ca3a5bad68bf7677265101d68"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-failure-stale-code.json",
+      "classification": "HARNESS_ORACLE_EQUIVALENT_STALE_SELECTION_CODE",
+      "sha256": "f622c1e909eeecc165a6dbbc3712c490b27128d634607ecd14941dcf6330053a"
+    }
+  ],
+  "effects": {
+    "productionConnections": 0,
+    "productionWrites": 0,
+    "providerRequests": 0,
+    "realTelegramMessages": 0,
+    "sourceEdits": 0
+  },
+  "realAdmissionCount": 0,
+  "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "all68RequirementsPreserved": true,
+  "fullProductAcceptance": false,
+  "productionReady": false,
+  "limits": [
+    "33 groups are independent actual isolated scenarios, not a claim of all possible cases or real independent source acceptance.",
+    "Synthetic input captures contain historical-looking fixture timestamps solely to test machinery; they are not observed48h data.",
+    "Independent driver does not exercise actual Telegram network/global unknown native sends; author18 proof covers synthetic coordinator/unknown scenarios separately.",
+    "No real backup R0 data, production DB, source API or Telegram account was read.",
+    "Current proof applies only exact frozen bytes and dependencies; later source changes require addressed retest."
+  ],
+  "currentKhDependencySha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a",
+  "currentSourcePinsVerifiedBeforeAndAfter": [
+    {
+      "path": "app/server/production/schedule-certification.ts",
+      "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb"
+    },
+    {
+      "path": "app/server/production/deployed-schedule-qualification.ts",
+      "sha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "sha256": "06928101f0d53b70ae201336eaa29bc3c7a1aaed024419e9247670f74be7a1c2"
+    },
+    {
+      "path": "app/server/production/runtime-context.ts",
+      "sha256": "740529701cc8dd997a45a38400a2b928b0f1eafb46826d7f847a1c213f831ca5"
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "532c3145e14ef71f8b17fc5f9cc313bad3ba60c59ec21df83647ea5d12262fa1"
+    },
+    {
+      "path": "app/package-lock.json",
+      "sha256": "fbc0cda9d58161a247397139127825be50a830d535568339db6f741386d3453b"
+    },
+    {
+      "path": "app/package.json",
+      "sha256": "47a410bad6a6c9984b2afe572c6f0c46f0b33489fa74dfde1fab101866cf024a"
+    },
+    {
+      "path": "app/server/domain/hour-matrix-adapter.ts",
+      "sha256": "ecd5304c5254cfff6d0bd74199a1f21f2fbfd3549cb5c04a4a470723858bcef2"
+    },
+    {
+      "path": "app/server/domain/kharkiv-adapter.ts",
+      "sha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a"
+    },
+    {
+      "path": "app/server/domain/profile-service.ts",
+      "sha256": "4b11bc38a137331e60a0f08600f5dda3219e95327487a75286244ca4359b8eb8"
+    },
+    {
+      "path": "app/server/domain/yasno-adapter.ts",
+      "sha256": "26743943277e72dc4b8a1d5cd61e014ff604cb9fc608062ef9a354b3410dc122"
+    },
+    {
+      "path": "app/server/domain/yasno-address-adapter.ts",
+      "sha256": "45e727865510563addf3a5372e9021bd6fda3eb411ed07d6e825902ce8d071e7"
+    },
+    {
+      "path": "app/server/production/address-catalog-http.ts",
+      "sha256": "756a2cdc9645e428dd28feb10a5bf570de5458b725d0dc1d6c36b683511fc82f"
+    },
+    {
+      "path": "app/server/production/address-catalog.ts",
+      "sha256": "8818037b81e63daab6543c702fd71d4608b771e32d8937e2663fe06ffbe59cec"
+    },
+    {
+      "path": "app/server/production/legacy-campaign-recipient.ts",
+      "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+    },
+    {
+      "path": "app/server/production/legacy-profile.ts",
+      "sha256": "cdd1b91905ce2cf2ec1540a9fc8e7e7c63bd7541af5a75589f9c853dc19d618e"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/runtime-source-proof.ts",
+      "sha256": "f31e60821a450fb39fce898ca119e313f4581ece38dd7d0be26308f46fda9361"
+    },
+    {
+      "path": "app/server/production/schedule-certification.ts",
+      "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb"
+    },
+    {
+      "path": "app/server/production/schedule-events.ts",
+      "sha256": "77b6882f333db5cec9067c32c7da2fce48ad9b29495ee013e885bcd0f232f176"
+    },
+    {
+      "path": "app/server/production/source-ingestion.ts",
+      "sha256": "02c3dac235d0b617ff7f870a6ef29756f110925833732ab6618138a45332c21f"
+    },
+    {
+      "path": "app/server/production/source-intake.ts",
+      "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8"
+    },
+    {
+      "path": "app/server/production/source-operating-policy.ts",
+      "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2"
+    },
+    {
+      "path": "app/server/production/telegram-callback-ack.ts",
+      "sha256": "62648b0448f0a04a15dec7a3a9ae941ca8b94283c85ffbf625ead873359f2203"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch-eligibility.ts",
+      "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch.ts",
+      "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+    },
+    {
+      "path": "app/server/production/telegram-transport.ts",
+      "sha256": "4b3469e5566feb73956f18987c75cc36baf206fd246bc6a02ab04cf4ce7e36b6"
+    },
+    {
+      "path": "app/server/release/update-campaign-pg.ts",
+      "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+    },
+    {
+      "path": "app/server/release/update-campaign.ts",
+      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+    },
+    {
+      "path": "app/shared/address-index.ts",
+      "sha256": "dbde7151a07f411805b27a85607d95829f9054c9c9d07b9c879c817ff6a17798"
+    },
+    {
+      "path": "app/shared/address-selection.ts",
+      "sha256": "d5c8d69b38ec868c89cc8dc099caf1404d12032d698dea5f97fc2f1930cf449f"
+    },
+    {
+      "path": "app/shared/bot/copy.ts",
+      "sha256": "d46417084ba732b0cd0d92ebce74f2c785d4831424624fd7daf3a7e19d0b61d9"
+    },
+    {
+      "path": "app/shared/bot/engine.ts",
+      "sha256": "96d1db90b909b1941bc2e381ea921efdca1f5312e92505a1cc0a4414a16532ea"
+    },
+    {
+      "path": "app/shared/bot/types.ts",
+      "sha256": "ffaf6078b3402ef0a1159be54524e68d9089db1d5fbe3c262761d2a0fecec99a"
+    },
+    {
+      "path": "app/shared/delivery-contract.ts",
+      "sha256": "346a0f56aafaa03fc23d49a4d62d8bca0d207698dd26f0eef8288b273baa156c"
+    },
+    {
+      "path": "app/shared/morning-briefing.ts",
+      "sha256": "99c832ba8511f6ef43fbc9eae72560b942b9a6812563ddd418463cfcec327e13"
+    },
+    {
+      "path": "app/shared/notification-policy.ts",
+      "sha256": "bcbeb5aa3c59c5f16609f74ef8bd98bf63b962550b46b3735d10d1f88c223742"
+    },
+    {
+      "path": "app/shared/product-contract.ts",
+      "sha256": "a3e48c4e16ba0c06c7a69f49484ad0732ff12ace710a7f0ffff08533813f45e2"
+    },
+    {
+      "path": "app/shared/profile-constraints.ts",
+      "sha256": "0b66c18332ea2caae61408d4c56d44939f7f4fdf89efa0835d6206ab96da9cea"
+    },
+    {
+      "path": "app/shared/profile-mutation.ts",
+      "sha256": "643128edbc5e5a77ed45846c9bdb3836493b3d11747d98e689c552c61f226b9d"
+    },
+    {
+      "path": "app/shared/schedule-binding.ts",
+      "sha256": "e027078ef5c40e1f8f865f7e192b3b2dfe97db9c189e01c16b84a1a3367d1c66"
+    },
+    {
+      "path": "app/shared/schedule-core.ts",
+      "sha256": "8db2ed9c8198cbd879149728809ecaf54b8da1105a7452bd9b7f0d050f76ae11"
+    }
+  ],
+  "affectedRepairRetest": {
+    "method": "Full independent33 rerun on actual current frozen bytes, no rebind of old receipt.",
+    "qualifiedNotice": "Exact generic technical notice replaced with human scoped plan text asserted on actual certificate record.",
+    "providerUncertainty": "Distinct synthetic provider warning preserved byte-for-byte on actual certificate record.",
+    "khDependency": "Current39e09483 dependency included in loader code pins and checked before/after. This issuer slice supports Yasno Kyiv; actual KH semantic guard coverage belongs to separate source-author/notice peer proofs.",
+    "oldHistoricalProof": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-history/e936aec3/peer-tests.json",
+      "sha256": "da4f9b9cbed0c3bda57e23700cdca0f87b7660492ff78c741afb288e57e9ffbd"
+    }
+  }
+}

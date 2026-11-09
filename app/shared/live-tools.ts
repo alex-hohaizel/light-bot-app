@@ -13,7 +13,7 @@ export interface LiveShareSummary {token:string;url:string;serviceDate:string;cr
 export interface LivePublicPlace {
  label:string;localityLabel:string;scope:'address'|'technical_group';serviceDate:string;timezone:'Europe/Kyiv';
  status:PlanStatus;dayCoverage:ScheduleView['dayCoverage'];freshness:ScheduleView['freshness'];intervals:PlanInterval[];
- sourceName:string;observedAt:string|null;
+ sourceName:string;observedAt:string|null;notice?:string;
 }
 export interface LivePublicShare {runtime:'production';mode:'saved_plan';serviceDate:string;createdAt:string;expiresAt:string;places:LivePublicPlace[]}
 export interface LiveToolsSnapshot {
@@ -50,12 +50,12 @@ export function parseLivePublicShare(value:unknown):LivePublicShare{
  const v=closed(value,['runtime','mode','serviceDate','createdAt','expiresAt','places']);
  if(v.runtime!=='production'||v.mode!=='saved_plan'||!validReviewServiceDate(v.serviceDate)||!validInstant(v.createdAt)||!validInstant(v.expiresAt)||Date.parse(v.expiresAt)<=Date.parse(v.createdAt)||!Array.isArray(v.places)||!v.places.length||v.places.length>20)return invalid();
  const places=v.places.map(raw=>{
-  const p=closed(raw,['label','localityLabel','scope','serviceDate','timezone','status','dayCoverage','freshness','intervals','sourceName','observedAt']);
-  if(!liveToolText(p.label,4096)||!liveToolText(p.localityLabel,4096,true)||!member(p.scope,['address','technical_group'])||p.serviceDate!==v.serviceDate||p.timezone!=='Europe/Kyiv'||!liveToolText(p.sourceName,4096)||p.observedAt!==null&&!validInstant(p.observedAt)||!Array.isArray(p.intervals)||p.intervals.length>2000)return invalid();
+  const p=closed(raw,['label','localityLabel','scope','serviceDate','timezone','status','dayCoverage','freshness','intervals','sourceName','observedAt','notice']);
+  if(p.notice!==undefined&&!liveToolText(p.notice,65536)||!liveToolText(p.label,4096)||!liveToolText(p.localityLabel,4096,true)||!member(p.scope,['address','technical_group'])||p.serviceDate!==v.serviceDate||p.timezone!=='Europe/Kyiv'||!liveToolText(p.sourceName,4096)||p.observedAt!==null&&!validInstant(p.observedAt)||!Array.isArray(p.intervals)||p.intervals.length>2000)return invalid();
   for(const i of p.intervals){closed(i,['startsAt','endsAt','startLocal','endLocal','kind']);}
   // Reuse the actual schedule semantic validator, with private identities replaced by fixed non-authorizing markers.
   validateScheduleView({contractVersion:'lba-product/1',revisionId:'public-saved',addressId:'public-saved',addressLabel:p.label,localityLabel:p.localityLabel,operatorId:'public-saved',serviceDate:p.serviceDate,timezone:p.timezone,status:p.status,dayCoverage:p.dayCoverage,intervals:p.intervals,source:{id:'public-saved',name:p.sourceName,url:null,revision:'public-saved',accessCost:0,verifiedLevel:'schedule'},publishedAt:null,observedAt:p.observedAt??v.createdAt,freshness:p.freshness,synthetic:false,deliveryEligible:false} as ScheduleView);
-  return {label:p.label,localityLabel:p.localityLabel,scope:p.scope,serviceDate:p.serviceDate,timezone:'Europe/Kyiv',status:p.status,dayCoverage:p.dayCoverage,freshness:p.freshness,intervals:p.intervals.map(i=>({startsAt:i.startsAt,endsAt:i.endsAt,startLocal:i.startLocal,endLocal:i.endLocal,kind:i.kind})),sourceName:p.sourceName,observedAt:p.observedAt} as LivePublicPlace;
+  return {label:p.label,localityLabel:p.localityLabel,scope:p.scope,serviceDate:p.serviceDate,timezone:'Europe/Kyiv',status:p.status,dayCoverage:p.dayCoverage,freshness:p.freshness,intervals:p.intervals.map(i=>({startsAt:i.startsAt,endsAt:i.endsAt,startLocal:i.startLocal,endLocal:i.endLocal,kind:i.kind})),sourceName:p.sourceName,observedAt:p.observedAt,...(p.notice!==undefined?{notice:p.notice}:{})} as LivePublicPlace;
  });
  return {runtime:'production',mode:'saved_plan',serviceDate:v.serviceDate,createdAt:v.createdAt,expiresAt:v.expiresAt,places};
 }

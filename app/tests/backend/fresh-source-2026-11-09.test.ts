@@ -81,5 +81,5 @@ test('actual9Nov KEM sixtygroup plan/tomorrowWaiting and both Dnipro DSOs emerge
 test('actual9Nov KH dated plan is selected past pinned2025 item, while current emergency applicability stays explicitly unknown',()=>{
  const raw=read('captures/kharkiv-rss.bin'),view=normalizeKharkivRss(raw,{...context(raw,'kharkiv-official-rss'),namespace:'kharkiv:rss',operatorId:'kharkiv-oe',targetId:'1.1'});
  assert.deepEqual(view.intervals.map(i=>[i.startLocal,i.endLocal]),[['01:00','04:30'],['06:00','15:00'],['18:30','24:00']]);
- const entry=technicalDisplaySourceRegistry(true).find(r=>r.sourceId==='kharkiv-official-rss');assert.equal(entry?.state,'blocked');if(entry?.state==='blocked')assert.match(entry.reason,/не підтверджена; план 9Nov є/);
+ const entry=technicalDisplaySourceRegistry(true).find(r=>r.sourceId==='kharkiv-official-rss');assert.equal(entry?.state,'technical_display');if(entry?.state==='technical_display'){assert.equal(entry.publicationScope?.serviceDate,'2026-11-09');assert.equal(entry.deliveryEligible,false);assert.match(view.notice??'',/Поточний аварійний стан групи не підтверджено/);}
 });

@@ -1,0 +1,40 @@
+{
+  "kind": "lba-currentatelieravailability/1",
+  "observedAt": "2026-11-09T05:18:10.677714+00:00",
+  "skills": [
+    {
+      "selector": "app-atelier-build",
+      "path": "/Users/admin/.agents/skills/app-atelier-build/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "5386e5025a83dc7f39dd07fcf4bb15f01cecc0c01c8740605f0ef958f5b4dd81",
+      "snapshot": ".local/light-bot-app/certification-next/docs/light-bot-app/skill-snapshots-6/app-atelier-build.md"
+    },
+    {
+      "selector": "app-atelier-experience",
+      "path": "/Users/admin/.agents/skills/app-atelier-experience/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2",
+      "snapshot": ".local/light-bot-app/certification-next/docs/light-bot-app/skill-snapshots-6/app-atelier-experience.md"
+    },
+    {
+      "selector": "chatbot-atelier-build",
+      "path": "/Users/admin/.agents/skills/chatbot-atelier-build/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "77c47a46b692eaeebd133bb42f856ec26d45af833b524b8d1d97638818480bac",
+      "snapshot": ".local/light-bot-app/certification-next/docs/light-bot-app/skill-snapshots-6/chatbot-atelier-build.md"
+    },
+    {
+      "selector": "chatbot-atelier-qa",
+      "path": "/Users/admin/.agents/skills/chatbot-atelier-qa/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "5e8b365b0021fbd7ff7a26f287f44424321614db1306aea0238d57e695bf6d9a",
+      "snapshot": ".local/light-bot-app/certification-next/docs/light-bot-app/skill-snapshots-6/chatbot-atelier-qa.md"
+    }
+  ],
+  "recovery": {
+    "version": "1.0.0",
+    "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+  },
+  "old5ProofsRebound": false,
+  "reinstalled": false
+}

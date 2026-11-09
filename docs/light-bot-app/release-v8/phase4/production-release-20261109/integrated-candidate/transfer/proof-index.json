@@ -1,0 +1,1104 @@
+{
+  "kind": "lba-integrated-candidate-proof-index/1",
+  "sourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+  "localBuildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+  "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+  "mustRequirements": 68,
+  "all68Accepted": false,
+  "reviewedCopy": {
+    "sourceRecord": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/integration.json",
+      "sha256": "eaa66572bcef1da7654b5b9276cf5f16cb92fac1b5098527a80e58210217e8df",
+      "bytes": 8153
+    },
+    "oldSourceSha256": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1",
+    "changedAppFiles": [
+      {
+        "path": "app/tests/backend/schedule-notices.test.ts",
+        "sha256": "a8ac9d49230f8a00fc00ae69ffe87d223c4281f21349c90c4e1fa87faa6f21ba",
+        "beforeSha256": null,
+        "bytes": 10728
+      },
+      {
+        "path": "app/tests/backend/live-source-ingestion.test.ts",
+        "sha256": "2e82a01b4e18fde7e7637cac4a08ffc28c1afc3f29d82e707bf7bc07b46202dc",
+        "beforeSha256": "8d9b418ed680992b6a6d164f97ea69f47a70decc2f6362c73fd335d60652cf31",
+        "bytes": 10438
+      },
+      {
+        "path": "app/tests/backend/source-operating-policy.test.ts",
+        "sha256": "c2f8a8643b5076ef1b66cfe3916c2878acd9430dc5814993d89de1c5f65af9ff",
+        "beforeSha256": "abe27c464f3bd520d8bd0af13cf5834bc6213c922d14529bc873810b5a19abaf",
+        "bytes": 3802
+      },
+      {
+        "path": "app/tests/backend/live-source-intake.test.ts",
+        "sha256": "3715c707f2a0eaefd2669bdc8f0caff60710935bb67b67e2a7add79d3f494967",
+        "beforeSha256": "587059f2af88afd804fd955dbd3f4ae14643a64854aa8a5083448da2e73b8578",
+        "bytes": 21304
+      },
+      {
+        "path": "app/tests/backend/render-schedule-notices.mts",
+        "sha256": "7befab371d1a6e14a071341813e97a4321e58a1e5d3827ea8a680759fc785e97",
+        "beforeSha256": null,
+        "bytes": 9626
+      },
+      {
+        "path": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+        "sha256": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9",
+        "beforeSha256": "58550065a82f28b5fdad2e3cde6d45e84fd0713083dc8c03503f36e81e057712",
+        "bytes": 10457
+      },
+      {
+        "path": "app/tests/backend/live-address-catalog.test.ts",
+        "sha256": "942ae171dfad00b08c4bbbdba44ef586b6073f1e42997c757dc338bc06e403b3",
+        "beforeSha256": "2d7a680ed929777fe89a92df4b463cbbdd6da56261c7375602709a1f49216cea",
+        "bytes": 10978
+      },
+      {
+        "path": "app/server/index.ts",
+        "sha256": "532c3145e14ef71f8b17fc5f9cc313bad3ba60c59ec21df83647ea5d12262fa1",
+        "beforeSha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3",
+        "bytes": 10093
+      },
+      {
+        "path": "app/server/production/source-intake.ts",
+        "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8",
+        "beforeSha256": "ad5e8efa8fa24e86920bca409c41c7eead297179c1fd9378126b9158edba0bff",
+        "bytes": 32942
+      },
+      {
+        "path": "app/server/production/deployed-schedule-qualification.ts",
+        "sha256": "3b67476f2f283d9f1970f0628e486dc9d4af31658537efd7464f06220908b89c",
+        "beforeSha256": null,
+        "bytes": 601
+      },
+      {
+        "path": "app/server/production/profile-store.ts",
+        "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc",
+        "beforeSha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a",
+        "bytes": 53904
+      },
+      {
+        "path": "app/server/production/canonical-runtime.ts",
+        "sha256": "06928101f0d53b70ae201336eaa29bc3c7a1aaed024419e9247670f74be7a1c2",
+        "beforeSha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598",
+        "bytes": 15248
+      },
+      {
+        "path": "app/server/production/runtime-context.ts",
+        "sha256": "740529701cc8dd997a45a38400a2b928b0f1eafb46826d7f847a1c213f831ca5",
+        "beforeSha256": "0572068c8d2aad4ab27c71f3e64c640da4aba0162dbf747d875c02dc86d24913",
+        "bytes": 6817
+      },
+      {
+        "path": "app/server/production/product-tools.ts",
+        "sha256": "4a472a6c2a35dd05e258e43b1d9b98c81b8880b989e5f5eab124ec56815d2ffc",
+        "beforeSha256": "e49a913378dd94bb8168a484f140ec6626f464448b6f8586d8c97554fc698565",
+        "bytes": 23393
+      },
+      {
+        "path": "app/server/production/schedule-certification.ts",
+        "sha256": "9d7e6a74ae718c2fbff48153d255d0146bbb593f910d28546c63cd817f80b9cb",
+        "beforeSha256": null,
+        "bytes": 39479
+      },
+      {
+        "path": "app/server/production/source-operating-policy.ts",
+        "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2",
+        "beforeSha256": "fa0525aae9dd13195eb64d922e22609a8f675836ada0eedc89f1b9d48edbec62",
+        "bytes": 8300
+      },
+      {
+        "path": "app/server/domain/kharkiv-adapter.ts",
+        "sha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a",
+        "beforeSha256": "aac6fb95fc174278671f45d0028d7b713b0eefe778f09b23b25a6738a65845a6",
+        "bytes": 13146
+      },
+      {
+        "path": "app/shared/review-tools.ts",
+        "sha256": "d55ec0bdb282229062cf0f4de8d96d20135f0d70ba1374554d8554912253c215",
+        "beforeSha256": "b9c6a9f6c3bc7fa7b8c45513bd76578eedf80eb1f45978376874922e6b58191f",
+        "bytes": 7326
+      },
+      {
+        "path": "app/shared/live-tools.ts",
+        "sha256": "2a0fe0763cb280f631bc38710fcb9fd54e7d1deb37c97f402171c2858035e8d6",
+        "beforeSha256": "6ad7542a1b8ef92d3b72ebea246d75fbff59e7deeb5c2a5e09f1812e3029ca36",
+        "bytes": 15221
+      },
+      {
+        "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+        "sha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+        "beforeSha256": "9ffd2971a884aae1a6d612e465c424ed67e29c170ee56b82a3dc399305dafee7",
+        "bytes": 20997
+      },
+      {
+        "path": "app/client/src/product-review/schedule-renderer.tsx",
+        "sha256": "d53a38ae1a6d4b91d239408da113b02bcb13c376b76ef28fcb67437259ac2f4f",
+        "beforeSha256": "0a38de0c531cfa6060151dd9dacc0b6cb69c9196ba829aaad4a3555ecf768271",
+        "bytes": 10185
+      },
+      {
+        "path": "app/client/src/product-review/DistrictDashboard.tsx",
+        "sha256": "aa6489682fa4787453b23c8a42a7f050a7661f358b9330c3979bc9cf4708aa43",
+        "beforeSha256": "9a55a200dfd424dd1ff417fdd34de0b1528b9a42b98a7519c011ebdd3408e6c1",
+        "bytes": 13893
+      },
+      {
+        "path": "app/client/src/product-review/LiveProductTools.tsx",
+        "sha256": "4ce7d2d1cf1420d6a8bba5249fa085f073ebe7d782379fe22881137726778d9b",
+        "beforeSha256": "1666abe852722ba4630cedfbe9fece1464a61fe057c2728ae1981bbbddc9841b",
+        "bytes": 19788
+      },
+      {
+        "path": "app/client/src/product-review/schedule-model.ts",
+        "sha256": "b287e211163deae95c61f525ea363ecc302129c897e03a4089a2f70cc72bcb7f",
+        "beforeSha256": "7576fda5be76c462c871995830ad685e152315f8ca89a79dffd2825fc984a7bf",
+        "bytes": 8845
+      },
+      {
+        "path": "app/client/src/product-review/SharedDayComparison.tsx",
+        "sha256": "a81c07993756979596f0cc8ef010f90eac96b2c5612d2285d882e978a3405504",
+        "beforeSha256": "29a95074142a7fbbbf8bdd759f2b130e5c3afe15a1bc4965a84d97372749ad2e",
+        "bytes": 11854
+      },
+      {
+        "path": "app/client/src/product-review/schedule-model.test.ts",
+        "sha256": "1e58f7924af13b17b4d2cd4452585d13190f4ed6abb20f84f9c8a5ab906486ad",
+        "beforeSha256": "23b4c33c6734f604b2a259b01f470b3c6f68dc9155a73f595ddbe007fbd31f93",
+        "bytes": 7277
+      },
+      {
+        "path": "app/client/src/product-review/district.css",
+        "sha256": "a04b257e7ffda8af06d3dc2e4b7afd9a748cf2494e8a8f99add72613d8cf82dc",
+        "beforeSha256": "2ed74ff7700cb5ba03704a8dbecd79773207e0eb9862219da62dcbfb1e4f74d0",
+        "bytes": 24349
+      },
+      {
+        "path": "app/client/src/product-review/ProductTools.tsx",
+        "sha256": "4409d0d20965d0e16a2399da475479344373b1905688600153577b4e125bc050",
+        "beforeSha256": "dd4b1fd90f516da1fdbb6d5552b7ff3c6dcc860151c0499286b614be26f804a2",
+        "bytes": 14278
+      }
+    ],
+    "rawProofFilesCopiedLocally": 883,
+    "allRawProofsTransferred": false
+  },
+  "noticePeer": {
+    "original": {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-review.json",
+      "sha256": "f7cb6fb28898fb560c106b872631fc23a0f34b38129942e68e66342fa5640fcd",
+      "bytes": 101547
+    },
+    "originalRetainedLocally": true,
+    "fullOriginalTransferred": false,
+    "status": "PASS_BOUNDED_NOTICE_AND_TIME_FORMATTING",
+    "latest": {
+      "kind": "lba-notice-independent-peer/1",
+      "actor": "/root/current_release_judge",
+      "at": "2026-11-09T05:41:49.268Z",
+      "scope": "Copied notice paths only; own offline/source and real hydrated Chrome component fixtures, not full product/certification pipeline/native device proof",
+      "handoffSha256": "04353629a674c0d3bfc1eac70462a52ed955a2d338cd93266b6af1e3560088b2",
+      "sourceBefore": [
+        {
+          "path": "app/server/production/source-operating-policy.ts",
+          "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2"
+        },
+        {
+          "path": "app/server/production/source-intake.ts",
+          "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8"
+        },
+        {
+          "path": "app/server/domain/kharkiv-adapter.ts",
+          "sha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a"
+        },
+        {
+          "path": "app/server/production/product-tools.ts",
+          "sha256": "4a472a6c2a35dd05e258e43b1d9b98c81b8880b989e5f5eab124ec56815d2ffc"
+        },
+        {
+          "path": "app/shared/live-tools.ts",
+          "sha256": "2a0fe0763cb280f631bc38710fcb9fd54e7d1deb37c97f402171c2858035e8d6"
+        },
+        {
+          "path": "app/shared/review-tools.ts",
+          "sha256": "d55ec0bdb282229062cf0f4de8d96d20135f0d70ba1374554d8554912253c215"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-model.ts",
+          "sha256": "b287e211163deae95c61f525ea363ecc302129c897e03a4089a2f70cc72bcb7f"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-renderer.tsx",
+          "sha256": "d53a38ae1a6d4b91d239408da113b02bcb13c376b76ef28fcb67437259ac2f4f"
+        },
+        {
+          "path": "app/client/src/product-review/SharedDayComparison.tsx",
+          "sha256": "a81c07993756979596f0cc8ef010f90eac96b2c5612d2285d882e978a3405504"
+        },
+        {
+          "path": "app/client/src/product-review/LiveProductTools.tsx",
+          "sha256": "4ce7d2d1cf1420d6a8bba5249fa085f073ebe7d782379fe22881137726778d9b"
+        },
+        {
+          "path": "app/client/src/product-review/ProductTools.tsx",
+          "sha256": "4409d0d20965d0e16a2399da475479344373b1905688600153577b4e125bc050"
+        },
+        {
+          "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+          "sha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb"
+        },
+        {
+          "path": "app/client/src/product-review/district.css",
+          "sha256": "a04b257e7ffda8af06d3dc2e4b7afd9a748cf2494e8a8f99add72613d8cf82dc"
+        },
+        {
+          "path": "app/tests/backend/source-operating-policy.test.ts",
+          "sha256": "c2f8a8643b5076ef1b66cfe3916c2878acd9430dc5814993d89de1c5f65af9ff"
+        },
+        {
+          "path": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+          "sha256": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9"
+        },
+        {
+          "path": "app/tests/backend/live-address-catalog.test.ts",
+          "sha256": "942ae171dfad00b08c4bbbdba44ef586b6073f1e42997c757dc338bc06e403b3"
+        },
+        {
+          "path": "app/tests/backend/live-source-ingestion.test.ts",
+          "sha256": "2e82a01b4e18fde7e7637cac4a08ffc28c1afc3f29d82e707bf7bc07b46202dc"
+        },
+        {
+          "path": "app/tests/backend/schedule-notices.test.ts",
+          "sha256": "a8ac9d49230f8a00fc00ae69ffe87d223c4281f21349c90c4e1fa87faa6f21ba"
+        },
+        {
+          "path": "app/tests/backend/render-schedule-notices.mts",
+          "sha256": "7befab371d1a6e14a071341813e97a4321e58a1e5d3827ea8a680759fc785e97"
+        },
+        {
+          "path": "app/client/src/product-review/DistrictDashboard.tsx",
+          "sha256": "aa6489682fa4787453b23c8a42a7f050a7661f358b9330c3979bc9cf4708aa43"
+        },
+        {
+          "path": "app/tests/backend/live-source-intake.test.ts",
+          "sha256": "3715c707f2a0eaefd2669bdc8f0caff60710935bb67b67e2a7add79d3f494967"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-model.test.ts",
+          "sha256": "1e58f7924af13b17b4d2cd4452585d13190f4ed6abb20f84f9c8a5ab906486ad"
+        }
+      ],
+      "sourceAfter": [
+        {
+          "path": "app/server/production/source-operating-policy.ts",
+          "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2"
+        },
+        {
+          "path": "app/server/production/source-intake.ts",
+          "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8"
+        },
+        {
+          "path": "app/server/domain/kharkiv-adapter.ts",
+          "sha256": "39e09483bbbe363ceddeecf34fcd4dc1e7ef5da3b9c9b24ef945d43ad12b201a"
+        },
+        {
+          "path": "app/server/production/product-tools.ts",
+          "sha256": "4a472a6c2a35dd05e258e43b1d9b98c81b8880b989e5f5eab124ec56815d2ffc"
+        },
+        {
+          "path": "app/shared/live-tools.ts",
+          "sha256": "2a0fe0763cb280f631bc38710fcb9fd54e7d1deb37c97f402171c2858035e8d6"
+        },
+        {
+          "path": "app/shared/review-tools.ts",
+          "sha256": "d55ec0bdb282229062cf0f4de8d96d20135f0d70ba1374554d8554912253c215"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-model.ts",
+          "sha256": "b287e211163deae95c61f525ea363ecc302129c897e03a4089a2f70cc72bcb7f"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-renderer.tsx",
+          "sha256": "d53a38ae1a6d4b91d239408da113b02bcb13c376b76ef28fcb67437259ac2f4f"
+        },
+        {
+          "path": "app/client/src/product-review/SharedDayComparison.tsx",
+          "sha256": "a81c07993756979596f0cc8ef010f90eac96b2c5612d2285d882e978a3405504"
+        },
+        {
+          "path": "app/client/src/product-review/LiveProductTools.tsx",
+          "sha256": "4ce7d2d1cf1420d6a8bba5249fa085f073ebe7d782379fe22881137726778d9b"
+        },
+        {
+          "path": "app/client/src/product-review/ProductTools.tsx",
+          "sha256": "4409d0d20965d0e16a2399da475479344373b1905688600153577b4e125bc050"
+        },
+        {
+          "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+          "sha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb"
+        },
+        {
+          "path": "app/client/src/product-review/district.css",
+          "sha256": "a04b257e7ffda8af06d3dc2e4b7afd9a748cf2494e8a8f99add72613d8cf82dc"
+        },
+        {
+          "path": "app/tests/backend/source-operating-policy.test.ts",
+          "sha256": "c2f8a8643b5076ef1b66cfe3916c2878acd9430dc5814993d89de1c5f65af9ff"
+        },
+        {
+          "path": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+          "sha256": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9"
+        },
+        {
+          "path": "app/tests/backend/live-address-catalog.test.ts",
+          "sha256": "942ae171dfad00b08c4bbbdba44ef586b6073f1e42997c757dc338bc06e403b3"
+        },
+        {
+          "path": "app/tests/backend/live-source-ingestion.test.ts",
+          "sha256": "2e82a01b4e18fde7e7637cac4a08ffc28c1afc3f29d82e707bf7bc07b46202dc"
+        },
+        {
+          "path": "app/tests/backend/schedule-notices.test.ts",
+          "sha256": "a8ac9d49230f8a00fc00ae69ffe87d223c4281f21349c90c4e1fa87faa6f21ba"
+        },
+        {
+          "path": "app/tests/backend/render-schedule-notices.mts",
+          "sha256": "7befab371d1a6e14a071341813e97a4321e58a1e5d3827ea8a680759fc785e97"
+        },
+        {
+          "path": "app/client/src/product-review/DistrictDashboard.tsx",
+          "sha256": "aa6489682fa4787453b23c8a42a7f050a7661f358b9330c3979bc9cf4708aa43"
+        },
+        {
+          "path": "app/tests/backend/live-source-intake.test.ts",
+          "sha256": "3715c707f2a0eaefd2669bdc8f0caff60710935bb67b67e2a7add79d3f494967"
+        },
+        {
+          "path": "app/client/src/product-review/schedule-model.test.ts",
+          "sha256": "1e58f7924af13b17b4d2cd4452585d13190f4ed6abb20f84f9c8a5ab906486ad"
+        }
+      ],
+      "sourceDrift": false,
+      "rootProviderReceiptSha256": "f1eadd2b9107ede507d11c5087765692cdcf1ab96f063ad811ad506435ea92f3",
+      "storedRawSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "driverSha256": "6c109163dd41a81eecfd4af2c6ae004a1bed4ef65a801c8bc5ff467ef67b4ebd",
+      "tests": [
+        {
+          "name": "handoff source pins and actual fresh root RSS observation match exact bytes",
+          "status": "pass",
+          "details": {
+            "rssSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+            "handoffSha256": "04353629a674c0d3bfc1eac70462a52ed955a2d338cd93266b6af1e3560088b2"
+          }
+        },
+        {
+          "name": "all12 group projections match independent raw XML interval oracle and keep technical authority false",
+          "status": "pass"
+        },
+        {
+          "name": "disabled registry refuses without transport",
+          "status": "pass"
+        },
+        {
+          "name": "unreviewed service day 2026-11-08 refuses",
+          "status": "pass"
+        },
+        {
+          "name": "unreviewed service day 2026-11-10 refuses",
+          "status": "pass"
+        },
+        {
+          "name": "scope expiry at22Z and pre-review clock refuse",
+          "status": "pass"
+        },
+        {
+          "name": "unrelated general news can change raw envelope without changing reviewed plan",
+          "status": "pass"
+        },
+        {
+          "name": "old8Nov emergency neither perpetuates emergency nor removes9Nov planned publication",
+          "status": "pass"
+        },
+        {
+          "name": "new current service-day operational emergency holds projection for scoped review",
+          "status": "pass"
+        },
+        {
+          "name": "educational emergency advice is unrelated news and does not assert an operational emergency",
+          "status": "pass"
+        },
+        {
+          "name": "future-effective service-day emergency announced before midnight is not silently ignored",
+          "status": "pass"
+        },
+        {
+          "name": "unrelated explicit other-region emergency is not a Kharkiv operational fact",
+          "status": "pass"
+        },
+        {
+          "name": "changed publication fails scoped semantic admission",
+          "status": "pass"
+        },
+        {
+          "name": "changed target fails scoped semantic admission",
+          "status": "pass"
+        },
+        {
+          "name": "changed switching caveat fails scoped semantic admission",
+          "status": "pass"
+        },
+        {
+          "name": "malformed duplicate dated item refuses",
+          "status": "pass"
+        },
+        {
+          "name": "3h archive staleness and bad refresh preserve original observation and stale prior only",
+          "status": "pass"
+        },
+        {
+          "name": "bot/card text and saved-share transformations conserve notice exactly once",
+          "status": "pass"
+        },
+        {
+          "name": "human copy avoids internal certification vocabulary",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: cancelled",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: not cancelled",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: negated applies",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: affirmative applies",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: tomorrow announced previous day",
+          "status": "pass"
+        },
+        {
+          "name": "same minimal pair: today announced previous day",
+          "status": "pass"
+        },
+        {
+          "name": "actual IANA Kyiv winter and summer golden offsets label local time",
+          "status": "pass"
+        },
+        {
+          "name": "same instants serialized as Z or explicit offset produce identical interval labels",
+          "status": "pass"
+        },
+        {
+          "name": "fall-back repeated03 local hours retain actual distinct Kyiv offsets",
+          "status": "pass"
+        },
+        {
+          "name": "24:00 local endpoint keeps next-day actual Kyiv offset and unchanged duration",
+          "status": "pass"
+        },
+        {
+          "name": "current now/next text says viewing time and correct local UTC offsets without example or telemetry claim",
+          "status": "pass"
+        },
+        {
+          "name": "generated light SVG visibly conserves all notice words and text bounds",
+          "status": "pass",
+          "details": {
+            "notice": "Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні.",
+            "technical": "СВІТЛО · ПЛАН ГРУПИ",
+            "overflow": []
+          }
+        },
+        {
+          "name": "actual hydrated light 320px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 320,
+              "scrollWidth": 320,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 320,
+              "scrollWidth": 320,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        },
+        {
+          "name": "actual hydrated light 390px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 390,
+              "scrollWidth": 390,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 390,
+              "scrollWidth": 390,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        },
+        {
+          "name": "actual hydrated light 1280px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 1280,
+              "scrollWidth": 1280,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 1280,
+              "scrollWidth": 1280,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        },
+        {
+          "name": "generated dark SVG visibly conserves all notice words and text bounds",
+          "status": "pass",
+          "details": {
+            "notice": "Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні.",
+            "technical": "СВІТЛО · ПЛАН ГРУПИ",
+            "overflow": []
+          }
+        },
+        {
+          "name": "actual hydrated dark 320px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 320,
+              "scrollWidth": 320,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 320,
+              "scrollWidth": 320,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        },
+        {
+          "name": "actual hydrated dark 390px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 390,
+              "scrollWidth": 390,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 390,
+              "scrollWidth": 390,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        },
+        {
+          "name": "actual hydrated dark 1280px notice conservation and address/accordion interaction",
+          "status": "pass",
+          "details": {
+            "initial": {
+              "viewport": 1280,
+              "scrollWidth": 1280,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "final": {
+              "viewport": 1280,
+              "scrollWidth": 1280,
+              "comparisonNotices": 1,
+              "topNotices": 1,
+              "overflow": []
+            },
+            "noticeScopedToSelectedOnly": true
+          }
+        }
+      ],
+      "passed": 38,
+      "failed": 0,
+      "fatal": null,
+      "rendered": [
+        {
+          "theme": "light",
+          "width": 320,
+          "path": "peer-app-light-320.png",
+          "initial": {
+            "viewport": 320,
+            "scrollWidth": 320,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 320,
+            "scrollWidth": 320,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "path": "peer-app-light-390.png",
+          "initial": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        },
+        {
+          "theme": "light",
+          "width": 1280,
+          "path": "peer-app-light-1280.png",
+          "initial": {
+            "viewport": 1280,
+            "scrollWidth": 1280,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 1280,
+            "scrollWidth": 1280,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "path": "peer-app-dark-320.png",
+          "initial": {
+            "viewport": 320,
+            "scrollWidth": 320,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 320,
+            "scrollWidth": 320,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "path": "peer-app-dark-390.png",
+          "initial": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        },
+        {
+          "theme": "dark",
+          "width": 1280,
+          "path": "peer-app-dark-1280.png",
+          "initial": {
+            "viewport": 1280,
+            "scrollWidth": 1280,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "final": {
+            "viewport": 1280,
+            "scrollWidth": 1280,
+            "comparisonNotices": 1,
+            "topNotices": 1,
+            "overflow": []
+          },
+          "actualInteractions": [
+            "expand comparison row",
+            "expand shared gaps",
+            "select second active group",
+            "remove/readd comparison address and preserve scoped notice"
+          ]
+        }
+      ],
+      "browserEvidence": {
+        "actualChrome": true,
+        "hydratedComponents": true,
+        "networkRequests": 0,
+        "blockedRequests": [],
+        "closed": true
+      },
+      "effects": {
+        "externalNetwork": 0,
+        "production": 0,
+        "database": 0,
+        "providerCalls": 0,
+        "realMessages": 0,
+        "certificates": 0,
+        "productSourceEdits": 0
+      },
+      "policyOnly": false
+    }
+  },
+  "certificatePeer": {
+    "original": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/schedule-certification/peer-review.json",
+      "sha256": "7f0b758172215bd346c75cf5c54abc3cc77cfd5fec3a20d6abfc913685b87002",
+      "bytes": 13710
+    },
+    "fullOriginalTransferred": true,
+    "verdict": "PASS_BOUNDED_CURRENT_9D7E_CERTIFICATE_MECHANICS",
+    "actualIndependentTests": 33,
+    "actualProductionAdmissions": 0
+  },
+  "currentBootstrapImportPeer": {
+    "original": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/bootstrap-peer/peer-review.json",
+      "sha256": "2dd1f3978fdbb6c5a9c429c39de6813339db50fef9ff40ff6e5dd9cb5d7bffc6",
+      "bytes": 12946
+    },
+    "fullOriginalTransferred": true,
+    "scope": "Affected independent current App imports; preserves old exact-35db proofs without rebinding them."
+  },
+  "renderTrace": {
+    "originalsAndEditableMastersRetainedLocally": true,
+    "transferredRepresentativeEditableMasters": [
+      "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light.svg",
+      "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark.svg"
+    ],
+    "localActualRenderPins": [
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-dark-1280.png",
+        "sha256": "f30ace51805d167e721cd5c6a277be53297b55008728a979a18f7dba6786cc46",
+        "bytes": 470353
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-dark-320.png",
+        "sha256": "98068149fc2f33f0f94fe25f9aa7e74fafc9c280353dee12afb512f9b86e55eb",
+        "bytes": 295355
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-dark-390.png",
+        "sha256": "4a0c8eabbcbbd023aba8ddb40dd198e15b9dbcfff1a86fcca5495047e080ee66",
+        "bytes": 300642
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-light-1280.png",
+        "sha256": "dc076b7474e253035de67c9680e0bc477a63748c1b0cd9095adadb7989427025",
+        "bytes": 484241
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-light-320.png",
+        "sha256": "e96957d978ab17f1ca19f0c68e260c8a3514aa55b86724df1e0c9fc3305f8d5d",
+        "bytes": 300097
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-light-390.png",
+        "sha256": "16db3e0bfb2c98c31de76b4faff8875e3698213def5f900cedd90d026cdd0d41",
+        "bytes": 307884
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark-320.png",
+        "sha256": "817922f7514c298d27318828a7208c63f0bb4d08ed258286d0e4494d0d596ffb",
+        "bytes": 33278
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark-next-320.png",
+        "sha256": "348b504fb5d35a4f1c3d4c67db4b301cd5516dcb1146e6758454715ad6b61813",
+        "bytes": 33874
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark-next.svg",
+        "sha256": "85bb70dad64478a3da525065c806530ea1a2679403f4b9345fc6a6db0384a3df",
+        "bytes": 6546
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark-now-320.png",
+        "sha256": "796d22a5ea295880032792802d968a0c0a682892c7557faba757a2de3efdd824",
+        "bytes": 33957
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark-now.svg",
+        "sha256": "7c485774bb3824a8bbca020d423865d7b9e6e2574a41174ad3aa0a0a04ddd91f",
+        "bytes": 6538
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark.png",
+        "sha256": "4e74324a72cf55ce58d1884533be93c2d2bafda6732a220e62ab412c84e44b44",
+        "bytes": 93459
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-dark.svg",
+        "sha256": "5fe6ea11ef5eea9cf3f81a3940cc288fab36aabd4c83f2c7e2900bfd96575264",
+        "bytes": 6258
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light-320.png",
+        "sha256": "d241615cfe14034b4b3f19f7a9d1f802282fc83fccfb91e94b48502e6fc0e2fb",
+        "bytes": 31466
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light-next-320.png",
+        "sha256": "e73f2e301c629f2276b96d8c8e5954fc76c96b68673a55b8a1fe946132e04fbb",
+        "bytes": 32037
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light-next.svg",
+        "sha256": "85401c004a720fc72bc90a58f877cd2f202f0a5f9faaf00319848f4dfa75b8a0",
+        "bytes": 6546
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light-now-320.png",
+        "sha256": "26e6f7d61cf2dab0868975e1602859ff357163ef4dd4c14ec05ba2cc62c684be",
+        "bytes": 32148
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light-now.svg",
+        "sha256": "3c1d7ecc9ddcd1eea25961e324338b5bd7a2cb4779e45c2a4be851fb1bc900c4",
+        "bytes": 6538
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light.png",
+        "sha256": "ccdb262b6cd0b2b31b4462eddc0ff75abf5d6b60e870677548beb796d04aa8ee",
+        "bytes": 83730
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-card-light.svg",
+        "sha256": "f264657c8765d7266188562ff69efdd8a563053812e3a2ed10aedd4b89d8e346",
+        "bytes": 6258
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-detail-dark-320.png",
+        "sha256": "733f148a2b4d5817849925c07f313e45e1cfad42e55beefff12fa8959eac3408",
+        "bytes": 5131
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-detail-light-320.png",
+        "sha256": "cab034a6272246eabd336457ba7a183e78386581311136d994bc6c3e7d9ea76c",
+        "bytes": 5238
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-full-card-dark-320.png",
+        "sha256": "2e8f6e04c33e419159ba96b69897db07a9e32247d845b5fb27ae400784969e05",
+        "bytes": 92160
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-full-card-light-320.png",
+        "sha256": "de32c086cea78ad86f1a2a76808f86725737a9e47f7a9c15ec930127d70630e7",
+        "bytes": 92605
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-1280.png",
+        "sha256": "f8ac6361b520408542afbc81fcb9f3b52d87913f9852943f3b7ad87e52ca4bf0",
+        "bytes": 158004
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-320.png",
+        "sha256": "bed8fed5572ff3dcf9efb6c2ff279724f23a9aba825073244218fb360c2afc2f",
+        "bytes": 141111
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark-390.png",
+        "sha256": "b3883450011ef55753768e8b1338ded2b470953837aa89ca11163f3855554d7e",
+        "bytes": 142472
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-dark.html",
+        "sha256": "2f4721ac0f1d5baed5a560e3633e8e7c4a4cd0c79c5b266939826f7b6e62f2ae",
+        "bytes": 578233
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-1280.png",
+        "sha256": "48ba71df9fc15d4458a297dc30a8d3987d2861d6943cd5408df9e1dcb9590f94",
+        "bytes": 164292
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-320.png",
+        "sha256": "b072b3aa71226ce49109e4d36fed0788bae2fbbcf2687c0460a35b72d502c987",
+        "bytes": 143550
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light-390.png",
+        "sha256": "58a31683c9ff3bd7aa05102505bf1a282e7a1bffe648b451565a17bf7a0f43f5",
+        "bytes": 145674
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-app-light.html",
+        "sha256": "58cf8da2569f862792d4d2f126cd39f0fc6f1a1a4335b9bf53a94e195a196c6b",
+        "bytes": 578226
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark-320.png",
+        "sha256": "817922f7514c298d27318828a7208c63f0bb4d08ed258286d0e4494d0d596ffb",
+        "bytes": 33278
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark.png",
+        "sha256": "4e74324a72cf55ce58d1884533be93c2d2bafda6732a220e62ab412c84e44b44",
+        "bytes": 93459
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-dark.svg",
+        "sha256": "2a4b38cf75cd542368bde5f5bd11c6357909aec636ec2f3b47207a8a48683285",
+        "bytes": 6278
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-details-dark-320.png",
+        "sha256": "629f29c7b4d87c1c51e609f0e4f901d369cc090ab22d0fe9f97055390ba3e77e",
+        "bytes": 124521
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-details-light-320.png",
+        "sha256": "3a38cc0155ed52b0b84395e0418776d7b4d573013fbcee79a187fc30eb710dbb",
+        "bytes": 126230
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light-320.png",
+        "sha256": "d241615cfe14034b4b3f19f7a9d1f802282fc83fccfb91e94b48502e6fc0e2fb",
+        "bytes": 31466
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light.png",
+        "sha256": "ccdb262b6cd0b2b31b4462eddc0ff75abf5d6b60e870677548beb796d04aa8ee",
+        "bytes": 83730
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-light.svg",
+        "sha256": "1563a148fbeba03481939d24dbd0db903516e614bb4ad7e0a4df6b6f96dbd436",
+        "bytes": 6278
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-dark-320.png",
+        "sha256": "348b504fb5d35a4f1c3d4c67db4b301cd5516dcb1146e6758454715ad6b61813",
+        "bytes": 33874
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-dark.svg",
+        "sha256": "bb7046dd4d021952cb12b751d708ef6be9ffa26bd5a6a120662968040985221e",
+        "bytes": 6541
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-light-320.png",
+        "sha256": "e73f2e301c629f2276b96d8c8e5954fc76c96b68673a55b8a1fe946132e04fbb",
+        "bytes": 32037
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-next-light.svg",
+        "sha256": "a30cb02ccfe13691e8f390b505f5d17fc609ddd6534ed3f69cc5efef130ca1dc",
+        "bytes": 6541
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-dark-320.png",
+        "sha256": "796d22a5ea295880032792802d968a0c0a682892c7557faba757a2de3efdd824",
+        "bytes": 33957
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-dark.svg",
+        "sha256": "d543b623d037561c8d5f8d3445baa73c2023bbcfe63a3f2cb3137c980c044554",
+        "bytes": 6538
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-light-320.png",
+        "sha256": "26e6f7d61cf2dab0868975e1602859ff357163ef4dd4c14ec05ba2cc62c684be",
+        "bytes": 32148
+      },
+      {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/representative-now-light.svg",
+        "sha256": "c3d4f358f67808431d153301c91821589c16d586227eeaa8df6c97d45d629f48",
+        "bytes": 6538
+      }
+    ],
+    "newPngBinariesTransferred": false
+  },
+  "scope": "New canonical explicitly selected Yasno Kyiv certificate mechanics; current KH9Nov technical display and truthful notice/time handling only. Existing legacy/non-Kyiv/free fallback/actual20addresses/actual48h/hosting/device/fence remain must. No full product acceptance or real admission created.",
+  "productionEffectsByPackager": 0,
+  "networkCallsByPackager": 0
+}

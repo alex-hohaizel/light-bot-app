@@ -73,6 +73,13 @@ export interface TechnicalDisplayAdmission {
     readonly comparisonSha256:string;readonly officialRawSha256:string;readonly mirrorRawSha256:string;
     readonly targetPlanSha256s:Readonly<Record<string,string>>;
   };
+  /** Reviewed official publication, not a permanent source-wide admission.
+   * Unrelated RSS news may change the raw envelope without changing this item. */
+  readonly publicationScope?:{
+    readonly serviceDate:string;readonly itemUrl:string;readonly publishedAt:string;
+    readonly rawCaptureSha256:string;readonly noticeSha256:string;
+    readonly targetPlanSha256s:Readonly<Record<string,string>>;
+  };
 }
 export type SourceAdmission=ContractSourceAdmission|TechnicalDisplayAdmission;
 /** Fresh positive evidence must be supplied by the integrating owner. No inferred approval. */
@@ -199,6 +206,14 @@ function validateAdmission(entry: SourceAdmission): void {
         !scope.targetPlanSha256s||Object.keys(scope.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(scope.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
       try{calendarDate(scope.serviceDate);}catch{throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');}
     }else if(scope!==undefined)throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
+    const publication=entry.publicationScope;
+    if(entry.sourceId==='kharkiv-official-rss'){
+      const targets=Array.from({length:6},(_,i)=>[`${i+1}.1`,`${i+1}.2`]).flat();
+      if(!publication||!validInstant(publication.publishedAt)||!/^https:\/\/oblenergo\.kharkiv\.ua\/uk\/node\/\d+$/.test(publication.itemUrl)||
+        !hash64(publication.rawCaptureSha256)||!hash64(publication.noticeSha256)||!publication.targetPlanSha256s||Object.keys(publication.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(publication.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
+      try{calendarDate(publication.serviceDate);}catch{throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');}
+      if(Date.parse(publication.publishedAt)>Date.parse(entry.reviewedAt))throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
+    }else if(publication!==undefined)throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
     return;
   }
   if (entry.state !== 'admitted' || !evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) ||
@@ -339,6 +354,12 @@ export function createSourceIntake(options: {
         const scope=entry.semanticScope;
         if(request.serviceDate!==scope.serviceDate||!Object.hasOwn(scope.targetPlanSha256s,request.targetId)||
           technicalPlanSha256(view)!==scope.targetPlanSha256s[request.targetId])return fail('SOURCE_SCHEMA_REJECTED');
+      }
+      if(entry.state==='technical_display'&&entry.publicationScope){
+        const scope=entry.publicationScope;
+        if(request.serviceDate!==scope.serviceDate||view.source.url!==scope.itemUrl||view.publishedAt!==scope.publishedAt||
+          !Object.hasOwn(scope.targetPlanSha256s,request.targetId)||technicalPlanSha256(view)!==scope.targetPlanSha256s[request.targetId]||sha(view.notice??'')!==scope.noticeSha256)
+          return fail('SOURCE_SCHEMA_REJECTED');
       }
     } catch { return fail('SOURCE_SCHEMA_REJECTED'); }
     return { state: 'available', cache: cacheState, view, provenance: { sourceId: profile.sourceId, admissionRevisionId: entry.revisionId,

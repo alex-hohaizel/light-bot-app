@@ -105,11 +105,10 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
   const lead = (minutes: number) => minutes === 0 ? 'вимкнено' : 'за '+durationLabel(minutes);
   const channelSummary = (value: ChannelNotificationPolicy) => `${value.enabled ? 'Дозволено' : 'Згоду вимкнено'} · нагадування ${value.remindersEnabled ? 'увімкнені' : 'вимкнені'} · перед вимкненням ${lead(value.beforeOffMinutes)} · перед відновленням ${lead(value.beforeOnMinutes)}`;
   return <section data-testid="notification-policy-editor">
-    <div className="pr-section-intro"><div><h2>Сповіщення у вашому ритмі.</h2><p>Спочатку оберіть канал або адресу. Кожний час і згода зберігаються окремо.</p></div></div>
-    <div className="pr-status-notice"><span>Локальний тестовий профіль: справжні повідомлення не надсилаються. Згода не підтверджує прив’язку будинку чи готовність доставки.</span></div>
+    <div className="pr-section-intro"><div><h2>Сповіщення у вашому ритмі.</h2><p>Спочатку оберіть канал або адресу. Сповіщення надходитимуть за адресами, для яких підтверджено графік.</p></div></div>
     {error && <div role="alert" className="pr-status-notice pr-warning">{error}</div>}
     {notice && <p role="status" className="pr-field-note">{notice}</p>}
-    {(dirty || dirtyLocations.length > 0) && <div className="pr-draft-banner" role="status"><span>Є незбережена чернетка. Перехід між розділами та перезавантаження в цьому тестовому сеансі її зберігають.</span><button className="pr-text-button" onClick={() => { reloadGlobal(); for (const id of dirtyLocations) reloadLocation(id); clearDraft('notifications'); }}>Відкинути чернетку сповіщень</button></div>}
+    {(dirty || dirtyLocations.length > 0) && <div className="pr-draft-banner" role="status"><span>Є незбережені зміни. Збережіть їх, щоб застосувати налаштування.</span><button className="pr-text-button" onClick={() => { reloadGlobal(); for (const id of dirtyLocations) reloadLocation(id); clearDraft('notifications'); }}>Відкинути чернетку сповіщень</button></div>}
     <nav className="pr-policy-navigation" aria-label="Групи сповіщень">
       <button className={area === 'summary' ? 'is-active' : ''} onClick={() => setArea('summary')}>Огляд</button>
       <button className={area === 'channel' ? 'is-active' : ''} onClick={() => setArea('channel')}>Канали</button>

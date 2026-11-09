@@ -1,0 +1,269 @@
+{
+  "kind": "lba-integrated-bootstrap-independent-review/1",
+  "actor": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T05:56:10.354056+00:00",
+  "verdict": "PASS_AFFECTED_INTEGRATION_40_SCENARIOS",
+  "scope": "Unchanged AA7 bootstrap operator with current integrated application imports, especially profile-store81fb; actual own-PG40cases. Not whole68 product or production acceptance.",
+  "currentApplication": {
+    "sourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+    "buildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+    "sourceFiles": 281,
+    "assetsReportedByRoot": 14,
+    "profileStorePath": "app/server/production/profile-store.ts",
+    "profileStoreSha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc",
+    "profileReaderSha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664",
+    "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+    "helperSha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd",
+    "launcherSha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+  },
+  "currentBuildGuard": {
+    "method": "Actual verifyCurrentSource() inventory/hash/schema check in integration core, extension and final read-only recheck, no private input or connection.",
+    "sourceAndReceiptExactMatch": true,
+    "sourceFiles": 281,
+    "actualAppInventoryVerified": true,
+    "hiddenInputUsed": false,
+    "databaseConnectionUsed": false,
+    "defaultMacReadonlyMode": "Actual cloned .command launched through /bin/bash with noDSN/nonTTY. Passed current build guard and reached BOOTSTRAP_LOCAL_TERMINAL_REQUIRED; no production connection or input prompt. This is not a manual successful production plan.",
+    "applyMissingFence": "Isolated cloned helper rejects missing plan/fence before hidden input/connection.",
+    "operationalProjectMarkersTouched": false
+  },
+  "passed": 40,
+  "failed": 0,
+  "evidence": [
+    {
+      "scope": "Core24, native59R1, perowner bootstrap, finalize/readback and defaultCLI/currentguard",
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/bootstrap-peer/core-tests.json",
+      "sha256": "60b09bab0f05b2cd2a83c5f3329990c26e116633dc37dfdda806c8f1728e6b16",
+      "passed": 24,
+      "harnessPath": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/bootstrap-peer/peer-core.mjs",
+      "harnessSha256": "9cc3b306775bd5b3f48f49cc98a02fe2d4e9392cc0071af9f36610dc3f9cb277"
+    },
+    {
+      "scope": "Extension16, native9R1 before exact44fcDDL, rollback/unknownCOMMIT/full59/resume/preactivation",
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/bootstrap-peer/extension-tests.json",
+      "sha256": "ba8256bcc039462737acf37d7170901eb0a8aed7788a253d2b56fa60a48d5ec2",
+      "passed": 16,
+      "harnessPath": "docs/light-bot-app/release-v8/phase4/production-release-20261109/integrated-candidate/bootstrap-peer/peer-extension.mjs",
+      "harnessSha256": "fee6a5505495df355879686479706f6622ed87eafc7bb33349dc602fd51d864d"
+    }
+  ],
+  "requirements": {
+    "preservedTotal": 68,
+    "boundedEvidenceFor": [
+      "PROFILE-01",
+      "PROFILE-02",
+      "PROFILE-04",
+      "PROFILE-05",
+      "TECH-03",
+      "TECH-05",
+      "TECH-06",
+      "TECH-07",
+      "TECH-08"
+    ],
+    "fullRequirementCompletionClaim": false
+  },
+  "actualMechanics": {
+    "canonicalSchema": "50tables396columns55CHECK78indexes5partial; full59tables includes9legacy",
+    "nativeSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+    "nativeSqlAllowlistStatements": 106,
+    "genuineNativeR1": "Actual pg_dump PGDMP0600 and pg_restore --list exact9/59 TABLEDATA; original WeakMap object+inode/hash/target/snapshot controls.",
+    "archiveRestoreClaim": false,
+    "owners": 4,
+    "legacyPreservation": "All raw legacy HMACs preserved through core migration; optout/orphan/owner/session preserved; changed owner/state/provenance/foreignholds refused.",
+    "atomicityRecovery": "Real nativeDDL rollback; COMMIT acknowledgement loss before/after actualDDL, posthealthy finalize and separatepreactivation; controlled readback/resume without doubleCAS or DDL repeat.",
+    "coordination": "Real operator/session advisory lock and legacy TABLE SHARE barrier; foreignhold/nativeunknown refused.",
+    "preactivation": "Separate ownhold clear only, explicitly deployedHealthy:false; no provider-health fiction."
+  },
+  "testSourceBefore": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "testSourceAfter": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "extensionSourceBefore": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "extensionSourceAfter": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "81fb477bd3c0b71fe5bf3ea86d2dd9c6b4dae1d0313014700a7c86935be89fbc"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3"
+    }
+  ],
+  "fixtureBinding": {
+    "sourceSha256": "15d3c956ff8a9be12d77b44d91b607b47c086e5353a46f893b58a72cb69cf5ac",
+    "synthetic": true,
+    "isCurrentApplicationSourceBinding": false,
+    "explanation": "Historical15d3 string remains an explicit synthetic authority/fixture binding; tests execute current rootApp imports. Separate build guard above proves actual1ecb binding. It is not rebound historical production evidence."
+  },
+  "historicalProofsPreserved": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-review.json",
+      "sha256": "f145f8eb77ebe7288ca950a4be62772105b525b0188d886625aad24717519f41"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-flow.mjs",
+      "sha256": "bf62f51d97bfc6b5e26792ccea89a4fc031eba0d2b5aeef2b0e48f4c6d0f362f"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-extension.mjs",
+      "sha256": "6beb3b4f5aa2f3a739bbafce68418c84d89963c0fe7c21585e7ccc4a903c9b93"
+    }
+  ],
+  "baseline": {
+    "path": ".local/light-bot-app/baselines/35db2f5a-1a07629f",
+    "sourceSha256": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1",
+    "status": "Immutable baseline supplied by root; not modified or relabeled by this review."
+  },
+  "guidance": [
+    {
+      "path": "/Users/admin/.agents/skills/app-atelier-qa/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "e61a53abd7fb7c710f7de3a05e87e81c066e3e7e3aef0805b94d2f0fe6c32018"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/chatbot-atelier-qa/SKILL.md",
+      "version": "6.0.0",
+      "sha256": "5e8b365b0021fbd7ff7a26f287f44424321614db1306aea0238d57e695bf6d9a"
+    }
+  ],
+  "testLayers": {
+    "codeInspection": "Existing original harnesses inspected and copied with output/import/dependency/currentguard changes only; no original helper/app edits.",
+    "isolatedIntegration": "40actualscenario groups executed again against newAppimports on owned local Postgres ports55494/55493 and native dump tools.",
+    "providerObservation": "None.",
+    "humanFeedback": "None required for this affected local regression. Existing full release authorization retained."
+  },
+  "clustersStopped": true,
+  "temporaryRawFixturesRemoved": true,
+  "full68ProductReady": false,
+  "actualProductionFenceCreated": false,
+  "actualProviderHealthProven": false,
+  "productionReleaseReady": false,
+  "effects": {
+    "productionConnections": 0,
+    "productionWrites": 0,
+    "providerRequests": 0,
+    "actualR0Reads": 0,
+    "realBotCalls": 0,
+    "sourceEdits": 0,
+    "ownFixtureWrites": true,
+    "oldProofEdits": 0
+  },
+  "nextAction": {
+    "owner": "/root",
+    "action": "Consume this new integration receipt in current1ecb private candidate/staging evidence. Preserve current code/build binding and existing owner authorization. Actual owner-only input/fence, real data qualification and activation/serving proof remain separately tracked.",
+    "additionalGeneralApprovalRequired": false,
+    "componentRegressionBlocker": null
+  },
+  "limits": [
+    "No real R0, production DSN, production DB, provider URL, bot chat or subscriber data accessed.",
+    "40scenario groups and native TOC verification do not constitute wholeproduct acceptance or actual archive restore rehearsal.",
+    "Real source admissions0/newcanonicalKyiv scope, legacy/nonKyiv/fallback and real20/48h conditions retain their separate current verdicts.",
+    "Actual Node24 source-level integration is not a claim of provider Node20 runtime execution.",
+    "Default Mac nonTTY guard probe verifies readiness before input, not a completed human production readonly plan."
+  ]
+}

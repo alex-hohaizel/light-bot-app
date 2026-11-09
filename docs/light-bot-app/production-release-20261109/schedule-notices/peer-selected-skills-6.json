@@ -1,0 +1,24 @@
+{
+  "actor": "/root/current_release_judge",
+  "mode": "Actual current read/discovery + immutable task-local source snapshots; no install/reinstall or runtime claim",
+  "sources": [
+    {
+      "selector": "app-atelier-qa",
+      "actualVersion": "6.0.0",
+      "source": "/Users/admin/.agents/skills/app-atelier-qa/SKILL.md",
+      "sha256": "e61a53abd7fb7c710f7de3a05e87e81c066e3e7e3aef0805b94d2f0fe6c32018",
+      "snapshot": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-atelier-qa-6-e61a53ab.md",
+      "role": "QA consumer"
+    },
+    {
+      "selector": "app-atelier-experience",
+      "actualVersion": "6.0.0",
+      "source": "/Users/admin/.agents/skills/app-atelier-experience/SKILL.md",
+      "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2",
+      "snapshot": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-atelier-experience-6-9628279a.md",
+      "role": "auditee instruction source read for exact context"
+    }
+  ],
+  "canonicalState": "Existing LIGHT BOT requirements/checkpoints; .appatelier/profile.json and state.json absent in root/copy, so no parallel product registry created",
+  "priorAttempt01PeerHashesVerified": true
+}

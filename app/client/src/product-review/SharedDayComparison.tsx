@@ -21,6 +21,12 @@ export function SharedDayComparison({ addresses, activeId, views, asOf, selected
   const serviceDate = views.find(v => included.some(a => a.id === v.addressId))?.serviceDate || views[0]?.serviceDate;
   let axis; try { axis = serviceDate ? createDayAxis(serviceDate) : null; } catch { axis = null; }
   const pairs = included.map(address => ({ address, view: views.find(v => v.addressId === address.id && v.serviceDate === serviceDate) }));
+  const notices = new Map<string, { text: string; labels: string[] }>();
+  for (const { address, view } of pairs) if (view?.notice?.trim()) {
+    const text = view.notice.trim(), key = JSON.stringify([view.operatorId, view.source.id, view.serviceDate, text]);
+    const existing = notices.get(key);
+    if (existing) existing.labels.push(address.label); else notices.set(key, { text, labels: [address.label] });
+  }
   const gaps = pairs.some(p => !p.view) ? null : sharedClearWindows(pairs.map(p => p.view!), asOf);
   const toggle = (id: string) => onSelectedIds(addresses.filter(a => a.id === id ? !selectedIds.includes(id) : selectedIds.includes(a.id)).map(a => a.id));
   return <section className="pr-comparison" aria-label="Спільна доба збережених адрес">
@@ -30,6 +36,7 @@ export function SharedDayComparison({ addresses, activeId, views, asOf, selected
       <div className="pr-comparison-top"><div><h3>Спільна доба</h3><p>Порівнюємо {included.length} із {addresses.length} збережених адрес.</p></div>
         <details className="pr-comparison-picker"><summary>Обрати адреси<ChevronDown size={15} /></summary><fieldset><legend>Адреси у порівнянні</legend>{addresses.map(address => <label key={address.id}><input type="checkbox" checked={selectedIds.includes(address.id)} onChange={() => toggle(address.id)} /><span>{address.label}</span></label>)}<button type="button" className="pr-text-button" onClick={() => onSelectedIds(addresses.map(a => a.id))}>Обрати всі</button></fieldset></details>
       </div>
+      {[...notices.entries()].map(([key, notice]) => <p className="pr-source-notice" role="note" key={key}><strong>{notice.labels.join(', ')}.</strong> {notice.text}</p>)}
       {!addresses.length ? <div className="pr-empty-state"><h3>Ще немає збережених адрес</h3><p>Додайте місце в розділі «Мої адреси», щоб побачити його графік.</p></div>
         : !included.length ? <div className="pr-empty-state"><h3>Оберіть адреси для порівняння</h3><p>Покажемо лише ті місця, які ви оберете.</p><button type="button" className="pr-primary" onClick={() => onSelectedIds(addresses.map(a => a.id))}>Порівняти всі адреси</button></div>
           : !axis ? <div className="pr-empty-state"><h3>Не вдалося підтвердити дату плану</h3><p>Оновіть дані перед порівнянням інтервалів.</p></div> : <>
@@ -40,7 +47,7 @@ export function SharedDayComparison({ addresses, activeId, views, asOf, selected
               return <article key={address.id} className={`pr-comparison-row ${activeId === address.id ? 'is-active' : ''} ${historical ? 'is-historical' : ''}`} data-address-id={address.id} data-phase={state.phase} data-plan-valid={display.valid} data-historical={historical}>
                 <button type="button" className="pr-comparison-row-head" onClick={() => setExpandedId(expanded ? null : address.id)} aria-expanded={expanded}>
                   <Building id={address.id} label={address.label} /><span className="pr-comparison-identity"><strong>{address.label}</strong><small>{state.phaseLabel}</small></span>
-                  <span className="pr-comparison-next">{state.next ? <><span>{state.possible ? 'Можливе ' : ''}{state.next.edge === 'on' ? 'увімкнення' : 'вимкнення'}</span><strong>{state.next.time}</strong><small>Через {state.next.remainingLabel}</small></> : <small>{state.phase === 'complete' ? view?.status === 'no_planned_outages' ? 'Без планових відключень' : 'Більше інтервалів немає' : 'Час невідомий'}</small>}</span><ChevronDown size={15} />
+                  <span className="pr-comparison-next">{state.next ? <><span>{state.possible ? 'Можливе ' : ''}{state.next.edge === 'on' ? 'увімкнення' : 'вимкнення'} за планом</span><strong>{state.next.time}</strong><small>Через {state.next.remainingLabel}</small></> : <small>{state.phase === 'complete' ? view?.status === 'no_planned_outages' ? 'Без планових відключень' : 'Більше інтервалів немає' : 'Час невідомий'}</small>}</span><ChevronDown size={15} />
                 </button>
                 {historical && <p className="pr-comparison-historical" role="status">Останні відомі інтервали · потребують оновлення. Час наступної події не підтверджено.</p>}
                 {intervals.length ? <div className={`pr-comparison-track ${historical ? 'is-historical is-uncertain' : ''}`} aria-label={`${historical ? 'Останні відомі інтервали' : 'Графік'} адреси ${address.label}`}>

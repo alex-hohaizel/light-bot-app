@@ -98,7 +98,8 @@ test('transport timeout returns a durable-hold instruction even when the transpo
 test('one-second YASNO origin budget preserves five-minute plan cadence;9Nov mirror semantic display scope creates no address certification',()=>{
  const registry=technicalDisplaySourceRegistry(true),kem=registry.find(r=>r.sourceId==='yasno-kem')!;
  assert(kem.state==='technical_display');assert.equal(kem.rate.minIntervalMs,YASNO_SHARED_ORIGIN_BUDGET_MS);assert.equal(kem.cacheTtlMs,300000);assert.equal(kem.providerQuota,'not_published_in_reviewed_sources');
+ const kh=registry.find(r=>r.sourceId==='kharkiv-official-rss')!;assert(kh.state==='technical_display');assert.equal(kh.publicationScope?.serviceDate,'2026-11-09');assert.equal(kh.addressBindingVerified,false);assert.equal(kh.deliveryEligible,false);
  const vn=registry.find(r=>r.sourceId==='voe-mirror-vn-progr')!;assert.equal(vn.state,'blocked');
  const mirror=registry.find(r=>r.sourceId==='mirror-odesa')!;assert(mirror.state==='technical_display');assert.equal(mirror.semanticScope?.serviceDate,'2026-11-09');assert.equal(mirror.addressBindingVerified,false);assert.equal(mirror.deliveryEligible,false);assert.equal(mirror.independentFallbackVerified,false);
- for(const name of ['kharkiv-official-rss','dtek-oem-official','yasno-dnem','yasno-cek'])assert.equal(registry.find(r=>r.sourceId===name)?.state,'blocked');
+ for(const name of ['dtek-oem-official','yasno-dnem','yasno-cek'])assert.equal(registry.find(r=>r.sourceId===name)?.state,'blocked');
 });

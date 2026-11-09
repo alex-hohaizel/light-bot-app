@@ -93,7 +93,7 @@ export function DistrictDashboard({ addresses, activeId, views, asOf, day, onSel
         <p className="pr-district-selected"><i aria-hidden="true" />Обране місце</p><h3>{active.label}</h3><p className="pr-district-address">{active.city} · {active.street}, {active.house}</p>
         <OperationalSummary state={state} />
         {state.phase === 'before' && plan && state.nextIndex >= 0 && <p className="pr-district-secondary">Інтервал до {plan.intervals[state.nextIndex].endLocal}</p>}
-        <div className="pr-district-reminder"><button type="button" className="pr-primary" onClick={() => onNotifications(active.id)}><Bell size={17} />{state.next?.edge === 'on' ? 'Нагадати перед увімкненням' : state.next?.edge === 'off' ? 'Нагадати перед вимкненням' : 'Налаштувати нагадування'}</button></div>
+        <div className="pr-district-reminder"><button type="button" className="pr-primary" onClick={() => onNotifications(active.id)}><Bell size={17} />Налаштувати нагадування</button></div>
       </section> : <section className="pr-panel pr-district-console"><h3>Оберіть будинок</h3><p>Його план і найближча подія з’являться тут.</p></section>}
       <section className="pr-district-day-section">{plan && active && <><DayPlanDetails key={`${active.id}/${plan.serviceDate}`} view={plan} asOf={asOf} />
         {display.valid && <details className="pr-district-source"><summary>Джерело й актуальність <ChevronDown size={14} /></summary><p>{plan.source.name}</p><p>Перевірено {displayTime(plan.observedAt)} · {plan.freshness === 'current' ? 'збережено актуальний план' : 'потрібне оновлення'}. Час Europe/Kyiv.</p><p>{state.reason}</p></details>}</>}

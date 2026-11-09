@@ -1,7 +1,7 @@
 import {createHash,randomUUID} from 'node:crypto';
 import {createBotState,handleBotInput,handleScheduleEvent,restoreBotState} from '../../shared/bot/engine.ts';
 import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState,BotAction} from '../../shared/bot/types.ts';
-import type {ScheduleView,ScheduleEvent} from '../../shared/product-contract.ts';
+import type {ScheduleView,ScheduleEvent,AddressBinding} from '../../shared/product-contract.ts';
 import {validInstant,validateScheduleView,localParts,nextCalendarDate} from '../../shared/schedule-core.ts';
 import {planMatchesDisplay} from '../../shared/schedule-binding.ts';
 import {handleMorningBriefing,type MorningBriefingPacket} from '../../shared/morning-briefing.ts';
@@ -185,12 +185,13 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
   const pool=options.pool,enabled=options.enabled===true,epoch=options.expectedControlEpoch,contextPort=options.context,mappingPort=options.verifiedSubscriberMappings;
   const emptyAccountPort=options.verifyEmptyAccount;
   const clock=()=>{const value=(options.now??(()=>new Date().toISOString()))();if(!validInstant(value))return fail('PRODUCTION_CLOCK_INVALID');return value;};
-  async function transaction<T>(identity:VerifiedLegacyPrincipal,work:(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal)=>Promise<T>,isolation:'repeatable read'|'read committed'=options.authorizePrincipal?'read committed':'repeatable read'):Promise<T>{
+  async function transaction<T>(identity:VerifiedLegacyPrincipal,work:(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal)=>Promise<T>,isolation:'repeatable read'|'read committed'=options.authorizePrincipal?'read committed':'repeatable read',certification=false):Promise<T>{
     const p=principal(identity);if(!enabled)return fail('PRODUCTION_STORE_DISABLED');
     let client:LegacyProfileReadClient;try{client=await pool.connect();}catch{return fail('PRODUCTION_TRANSACTION_UNCONFIRMED');}
     let began=false,commitStarted=false,committed=false;
     try{
       await client.query('begin isolation level '+isolation);began=true;
+      if(certification){await client.query("set local statement_timeout='5s'");await client.query("set local lock_timeout='1s'");}
       const control=await client.query('select control_epoch as "controlEpoch",writer_mode as "writerMode" from lba_production_control where id=true for share');
       if(control.rows.length!==1||control.rows[0].writerMode!=='canonical')return fail('PRODUCTION_WRITER_NOT_CANONICAL');
       if(Number(control.rows[0].controlEpoch)!==epoch)return fail('PRODUCTION_CONTROL_EPOCH_CONFLICT');
@@ -333,6 +334,49 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     });
   }
   return Object.freeze({
+    /** Server-only certification recipe, never a public ProfileMutation. The
+     * issuer proves reviewed authority and current facts in this SAME TX. Only
+     * this one-use closure may change the selected binding; it cannot bootstrap,
+     * replace a profile, infer an owner, change preferences or write an inbox lie.
+     * The recipe may read back an already committed deterministic certificate
+     * before invoking persistBinding after a lost COMMIT acknowledgement. */
+    async commitCertifiedBinding<T>(identity:VerifiedLegacyPrincipal,expected:{sessionId:string;revision:number;addressId:string;bindingDigest:string},
+      operation:(input:{client:LegacyProfileReadQuery;state:BotState;serverNow:string;persistBinding:(binding:AddressBinding)=>Promise<BotState>})=>Promise<T>):Promise<T>{
+      if(!plain(expected)||Object.keys(expected).sort().join(',')!=='addressId,bindingDigest,revision,sessionId'||!bounded(expected.sessionId)||!revision(expected.revision)||
+        !bounded(expected.addressId,255)||!/^[a-f0-9]{64}$/.test(expected.bindingDigest)||typeof operation!=='function')return fail('PRODUCTION_CERTIFICATION_INPUT_INVALID');
+      return transaction(identity,async(client,p)=>{
+        const existing=(await client.query('select control_epoch from lba_production_profiles where owner_id=$1',[p.ownerId])).rows;
+        if(existing.length!==1||Number(existing[0].control_epoch)!==epoch)return fail('PRODUCTION_CERTIFICATION_PROFILE_REQUIRED');
+        const current=await state(client,p),serverNow=clock();
+        if(current.sessionId!==expected.sessionId)return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+        const locations=current.profile.locations.filter(l=>l.address.id===expected.addressId);
+        if(locations.length!==1)return fail('PRODUCTION_CERTIFICATION_SELECTION_CHANGED');
+        let active=true,called=false,pending:Promise<BotState>|undefined;
+        const persistBinding=(binding:AddressBinding):Promise<BotState>=>{
+          if(!active||called)return Promise.reject(new ProductionProfileStoreError('PRODUCTION_CERTIFICATION_CLOSURE_USED'));called=true;
+          pending=(async()=>{
+            const location=locations[0],fields=['addressId','operatorId','namespace','targetId','kind','revisionId','status','verifiedAt','effectiveFrom','effectiveUntil'];
+            if(current.revision!==expected.revision||digest(location.binding)!==expected.bindingDigest)return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+            if(!plain(binding)||Object.keys(binding).length!==fields.length||Object.keys(binding).some(k=>!fields.includes(k))||binding.addressId!==location.address.id||
+              location.binding.kind==='user_selected_group'||binding.kind!=='operator_group'||binding.status!=='verified'||binding.operatorId!==location.binding.operatorId||
+              binding.namespace!==location.binding.namespace||!bounded(binding.targetId)||!bounded(binding.revisionId)||!validInstant(binding.verifiedAt)||
+              Date.parse(binding.verifiedAt)>Date.parse(serverNow)||binding.effectiveFrom!==null&&(!validInstant(binding.effectiveFrom)||Date.parse(binding.effectiveFrom)>Date.parse(serverNow))||
+              !validInstant(binding.effectiveUntil)||Date.parse(binding.effectiveUntil)<=Date.parse(serverNow))return fail('PRODUCTION_CERTIFICATION_BINDING_INVALID');
+            if(digest(binding)===digest(location.binding))return structuredClone(current);
+            const after=structuredClone(current);after.profile.locations.find(l=>l.address.id===expected.addressId)!.binding=structuredClone(binding);
+            after.revision++;after.callbacks={};
+            if(!revision(after.revision))return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+            await options.onProfileChange?.({client,principal:structuredClone(p),before:structuredClone(current),after:structuredClone(after),serverNow});
+            const changed=await client.query('update lba_production_profiles set revision=$4,state=$5::jsonb,updated_at=$6 where owner_id=$1 and session_id=$2 and revision=$3 and control_epoch=$7',
+              [p.ownerId,current.sessionId,current.revision,after.revision,JSON.stringify(after),serverNow,epoch]);
+            if(changed.rowCount!==1)return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+            await client.query("update lba_production_profile_outbox set status='cancelled' where owner_id=$1 and session_id=$2 and address_id=$3 and kind in ('notification','schedule') and status='pending'",[p.ownerId,current.sessionId,expected.addressId]);
+            return after;
+          })();return pending;
+        };
+        try{const result=await operation({client,state:structuredClone(current),serverNow,persistBinding});if(pending)await pending;return result;}finally{active=false;}
+      },'read committed',true);
+    },
     /** Server-only daily aggregate. The immutable occurrence/proof ledger is
      * committed by the recipe in this transaction; profiles are never created
      * or mutated merely because a background worker scanned an owner. */

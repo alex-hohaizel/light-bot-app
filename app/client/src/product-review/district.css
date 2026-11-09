@@ -19,3 +19,5 @@
 .pr-district-invalid,.pr-district-historical,.pr-comparison-historical{font-size:12px;line-height:1.8;color:var(--pr-amber);background:var(--pr-amber-soft);border-left:3px solid var(--pr-amber);border-radius:5px;padding:12px;margin:12px 0}.pr-district-day[data-historical=true] .pr-district-track,.pr-comparison-track.is-historical{opacity:.55;border-style:dashed}.pr-district-day[data-historical=true] .pr-district-interval{border-style:dashed!important}.pr-district-day[data-historical=true] .pr-district-now{display:none}
 @media(max-width:350px){.pr-district-heading{margin-bottom:10px}.pr-district-context{margin-bottom:10px}.pr-fixture-clock{margin-bottom:10px}.pr-district-summary{margin-top:14px}}
 .pr-manual-path{font-size:12px;border-top:1px solid var(--pr-line);padding-top:9px}.pr-manual-path summary{min-height:40px;cursor:pointer}.pr-manual-path .pr-field-note{line-height:1.8}
+
+.pr-source-notice{font-size:12px;line-height:1.8;color:var(--pr-muted);border-left:2px solid var(--pr-amber);padding:10px 14px;margin:12px 0 18px;overflow-wrap:anywhere;min-width:0}.pr-source-notice strong{color:var(--pr-ink)}

@@ -34,11 +34,33 @@ export const ODESA_9NOV_SEMANTIC_SCOPE=Object.freeze({
   'GPV6.2':'b188056e7af011b440d604711d83985a4c3509ed3cb8a05659574f36264294ce',
  }),
 });
+/** Archived official9Nov publication scope; raw capture is provenance, not a freshness renewal. */
+export const KHARKIV_9NOV_PUBLICATION_SCOPE=Object.freeze({
+  "serviceDate": "2026-11-09",
+  "itemUrl": "https://oblenergo.kharkiv.ua/uk/node/13883460",
+  "publishedAt": "2026-11-08T20:18:03.000Z",
+  "rawCaptureSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+  "noticeSha256": "b8c44e239af71d9099683be40d1cc0fa9ce1c6164d574a40fab008ba7199d4f0",
+  "targetPlanSha256s": {
+    "1.1": "d5b0437df626d08315dda1002e15a4e38c43e51ee31bd153d71f3a2563b1da55",
+    "1.2": "5575c66748a7ab12db97a1cde1f6ae224259449289fa1dcbecc226756482b696",
+    "2.1": "486832c3e86b12457e513b1967574220a65f499a11f35ca33013ec0ab9bea6b4",
+    "2.2": "f88dc3f7bbab179cbb409a6645c02c02ff1d71c46cfb127f131d113635cbcdaf",
+    "3.1": "46d79f0eadeb21f6fa09a4a5ea449a0b6efdfe54a8d8b4616d353d292691b751",
+    "3.2": "c11f4d8fc114a509cb6ce2db4893a599e72e4f4d74a308daca7a630b1e80695f",
+    "4.1": "6575c3c7c29aecdda7e7837093199dd4403b30900521c1ff3a8a30cfb3d60131",
+    "4.2": "95da0d9fa76c442ad66276818c0bd4ac9f21a27fe2e09da8f358dc97e5e40014",
+    "5.1": "4c6e55d709796de7b7e2c8097f5355fd3e088cbb610ee888c18d37b3649c3222",
+    "5.2": "4679f96f11f438b3098db2985f5ee4a276188e858a3cc403ea80dcb22fcac703",
+    "6.1": "765cecf1b4afad1743d8209cfaba88ee9eca1b4fd26be569552d9e7346464a0e",
+    "6.2": "66f4df2fe36bd1d3c1cb38fee1ce57b684f4b3d05e643267de20f3622b561ed0"
+  }
+});
+Object.freeze(KHARKIV_9NOV_PUBLICATION_SCOPE.targetPlanSha256s);
 /** Fresh source comparison overrides the earlier transport/parser admission.
  * Preserve reference parser capability; do not expose it as current operation. */
 export const TECHNICAL_SOURCE_QUARANTINE=Object.freeze({
  'voe-mirror-vn-progr': 'Першоджерело графіка не підтверджено. Чинний парсер дзеркала бере дані з bezsvitla.com.ua і може заповнювати пропуски як наявність світла; свіжість JSON не доводить публікацію оператором. Плановий показ утримано до перевірки офіційного джерела та повноти даних. source-research-2026-11-09/vinnytsia-followup/provenance.json.',
- 'kharkiv-official-rss': 'Чинність аварійного режиму після повідомлення 8Nov не підтверджена; план 9Nov є, фактичні/аварійні відступи невідомі. Утримувати точний плановий показ до scoped overlay/expiry/cancellation evidence; це не твердження про чинний emergency всюди. source-research-2026-11-09/semantic-observations.json.',
 });
 /** Explicit opt-in at the real service boundary. No network, jobs, DB or grants are
  * created here. These are local budgets, not invented provider quotas/licenses.
@@ -50,22 +72,22 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
   if(quarantine)return {sourceId:profile.sourceId,state:'blocked' as const,reason:quarantine};
   if(!enabled||!allowed.has(profile.sourceId)||profile.automationBlocked)return {sourceId:profile.sourceId,state:'blocked' as const,reason:profile.researchBlocker};
   const yasno=profile.parser==='yasno',rss=profile.parser==='kharkiv_rss';
-  const comparedMirror=profile.sourceId==='mirror-odesa';
+  const comparedMirror=profile.sourceId==='mirror-odesa',kharkiv=profile.sourceId==='kharkiv-official-rss';
   // One shared YASNO origin budget also serves interactive address reads.
   // Background plan cadence remains five minutes below; this is local policy,
   // not a provider-published quota or a systematic data licence.
   const minIntervalMs=yasno?YASNO_SHARED_ORIGIN_BUDGET_MS:rss?2700000:600000;
-  const record:TechnicalDisplayAdmission={sourceId:profile.sourceId,state:'technical_display',revisionId:comparedMirror?'technical-display/2026-11-09/mirror-odesa/compared-target-semantics':'technical-display/2026-11-08/'+profile.sourceId+(yasno?'/shared-origin-1s-plan-5m':''),
-   reviewedAt:comparedMirror?'2026-11-08T23:38:41.462Z':TECHNICAL_SOURCE_REVIEW.reviewedAt,validUntil:comparedMirror?'2026-11-09T22:00:00Z':TECHNICAL_SOURCE_REVIEW.validUntil,
-   accessCost:0,costEvidence:(comparedMirror?'9Nov':'8Nov')+' anonymous public GET without API key/subscription/payment; operational observation, not a price guarantee.',
-   publicationBasis:{kind:yasno||rss?'official_public_feed':'publisher_public_syndication',evidence:profile.endpoint+' ; review sha256:'+(comparedMirror?ODESA_9NOV_SEMANTIC_SCOPE.comparisonSha256:TECHNICAL_SOURCE_REVIEW.recommendationSha256)},
+  const record:TechnicalDisplayAdmission={sourceId:profile.sourceId,state:'technical_display',revisionId:kharkiv?'technical-display/2026-11-09/kharkiv-official-rss/dated-plan-unknown-overlay':comparedMirror?'technical-display/2026-11-09/mirror-odesa/compared-target-semantics':'technical-display/2026-11-08/'+profile.sourceId+(yasno?'/shared-origin-1s-plan-5m':''),
+   reviewedAt:kharkiv?'2026-11-09T05:00:37.710Z':comparedMirror?'2026-11-08T23:38:41.462Z':TECHNICAL_SOURCE_REVIEW.reviewedAt,validUntil:kharkiv||comparedMirror?'2026-11-09T22:00:00Z':TECHNICAL_SOURCE_REVIEW.validUntil,
+   accessCost:0,costEvidence:(kharkiv||comparedMirror?'9Nov':'8Nov')+' anonymous public GET without API key/subscription/payment; operational observation, not a price guarantee.',
+   publicationBasis:{kind:yasno||rss?'official_public_feed':'publisher_public_syndication',evidence:profile.endpoint+' ; review sha256:'+(kharkiv?KHARKIV_9NOV_PUBLICATION_SCOPE.rawCaptureSha256:comparedMirror?ODESA_9NOV_SEMANTIC_SCOPE.comparisonSha256:TECHNICAL_SOURCE_REVIEW.recommendationSha256)},
    formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
-   robots:{status:yasno?'unreadable_html':rss?'not_disallowed':'not_checked',evidence:yasno?'8Nov app.yasno.ua/robots.txt returned Incapsula HTML, not robots rules. API separately returned anonymous JSON; no challenge bypass.':rss?'8Nov official robots.txt does not disallow /uk/rss.xml. Official public RSS syndication.':'Public exact raw GitHub JSON endpoint and repository syndication; no claim of a checked robots policy or primary-data MIT.'},
+   robots:{status:yasno?'unreadable_html':rss?'not_disallowed':'not_checked',evidence:yasno?'8Nov app.yasno.ua/robots.txt returned Incapsula HTML, not robots rules. API separately returned anonymous JSON; no challenge bypass.':rss?'8Nov reviewed official robots.txt does not disallow /uk/rss.xml;9Nov anonymous RSS GET is separately reobserved. No new robots/licence/quota claim.':'Public exact raw GitHub JSON endpoint and repository syndication; no claim of a checked robots policy or primary-data MIT.'},
    rate:{kind:'local_operating_budget',scope:'origin',minIntervalMs,evidence:'Local conservative shared-origin policy from review; provider numeric quota not published. Honor403/429 and pause on unknown limits.'},
    // Two mirrors share one10m origin budget: round-robin gives20m/source.
    cacheTtlMs:yasno?300000:rss?minIntervalMs:1200000,maxAgeMs:rss?10800000:7200000,
    addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false,
-   ...(comparedMirror?{semanticScope:ODESA_9NOV_SEMANTIC_SCOPE}:{})};
+   ...(comparedMirror?{semanticScope:ODESA_9NOV_SEMANTIC_SCOPE}:{}),...(kharkiv?{publicationScope:KHARKIV_9NOV_PUBLICATION_SCOPE}:{})};
   return record;
  });
 }

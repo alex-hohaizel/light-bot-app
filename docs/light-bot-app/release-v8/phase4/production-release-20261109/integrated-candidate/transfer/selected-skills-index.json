@@ -1,0 +1,70 @@
+{
+  "kind": "lba-integrated-actual-selected-skills/1",
+  "snapshots": [
+    {
+      "selector": "app-atelier-build",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/app-atelier-build/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/skill-snapshots-6/app-atelier-build.md",
+        "sha256": "5386e5025a83dc7f39dd07fcf4bb15f01cecc0c01c8740605f0ef958f5b4dd81",
+        "bytes": 23060
+      }
+    },
+    {
+      "selector": "app-atelier-experience",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/app-atelier-experience/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/skill-snapshots-6/app-atelier-experience.md",
+        "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2",
+        "bytes": 22493
+      }
+    },
+    {
+      "selector": "chatbot-atelier-build",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/chatbot-atelier-build/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/skill-snapshots-6/chatbot-atelier-build.md",
+        "sha256": "77c47a46b692eaeebd133bb42f856ec26d45af833b524b8d1d97638818480bac",
+        "bytes": 18942
+      }
+    },
+    {
+      "selector": "chatbot-atelier-qa",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/chatbot-atelier-qa/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/skill-snapshots-6/chatbot-atelier-qa.md",
+        "sha256": "5e8b365b0021fbd7ff7a26f287f44424321614db1306aea0238d57e695bf6d9a",
+        "bytes": 18807
+      }
+    },
+    {
+      "selector": "app-atelier-qa",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/app-atelier-qa/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-atelier-qa-6-e61a53ab.md",
+        "sha256": "e61a53abd7fb7c710f7de3a05e87e81c066e3e7e3aef0805b94d2f0fe6c32018",
+        "bytes": 22186
+      }
+    },
+    {
+      "selector": "app-atelier-experience",
+      "version": "6.0.0",
+      "originalSource": "/Users/admin/.agents/skills/app-atelier-experience/SKILL.md",
+      "snapshot": {
+        "path": "docs/light-bot-app/production-release-20261109/schedule-notices/peer-app-atelier-experience-6-9628279a.md",
+        "sha256": "9628279a65fcd457f92bc186b5eb37cdf4cd7c324d7d162e5734e92f5839f1e2",
+        "bytes": 22493
+      }
+    }
+  ],
+  "mode": "Existing actual6 source snapshots copied as documentation, no install/discovery repeated",
+  "recovery": {
+    "version": "1.0.0",
+    "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+  }
+}

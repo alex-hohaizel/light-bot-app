@@ -35,7 +35,7 @@ function matrix(allYes = false): string {
 }
 function kharkiv(): string {
   const table = Array.from({ length: 12 }, (_, index) => `${Math.floor(index / 2) + 1}.${index % 2 + 1} 09:00 - 12:00`).join('<br/>');
-  return `<rss><channel><item><title>У Харківській області 8 листопада діятимуть графіки погодинних відключень</title><link>https://oblenergo.kharkiv.ua/uk/node/123456</link><pubDate>Sun, 08 Nov 2026 08:00:00 +0200</pubDate><description><![CDATA[<p>у Харківській області будуть діяти графіки погодинних відключень у неділю, 8 листопада, з 00:00 до 24:00</p><p>Години відсутності електропостачання</p>${table}]]></description></item></channel></rss>`;
+  return `<rss><channel><item><title>У Харківській області 8 листопада діятимуть графіки погодинних відключень</title><link>https://oblenergo.kharkiv.ua/uk/node/123456</link><pubDate>Sun, 08 Nov 2026 08:00:00 +0200</pubDate><description><![CDATA[<p>у Харківській області будуть діяти графіки погодинних відключень у неділю, 8 листопада, з 00:00 до 24:00</p><p>Години відсутності електропостачання з урахуванням часу на перемикання (орієнтовно)</p>${table}]]></description></item></channel></rss>`;
 }
 async function* body(raw: string | Uint8Array) { yield typeof raw === 'string' ? Buffer.from(raw) : raw; }
 function response(sourceId: string, raw: string | Uint8Array, extra: Partial<SourceHttpResponse> = {}): SourceHttpResponse {

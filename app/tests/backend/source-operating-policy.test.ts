@@ -7,10 +7,10 @@ const now=Date.parse(TECHNICAL_SOURCE_REVIEW.reviewedAt)+1000;
 const raw=readFileSync(new URL('../../../docs/light-bot-app/release-v8/data-current-2026-11-08/yasno-kem.json',import.meta.url));
 test('technical operating decision stays disabled by default and never invents provider rights/quota or personal delivery',()=>{
  assert(technicalDisplaySourceRegistry().every(r=>r.state==='blocked'));
- const enabled=technicalDisplaySourceRegistry(true),active=enabled.filter(r=>r.state==='technical_display');assert.deepEqual(active.map(r=>r.sourceId).sort(),['mirror-odesa','yasno-kem']);
+ const enabled=technicalDisplaySourceRegistry(true),active=enabled.filter(r=>r.state==='technical_display');assert.deepEqual(active.map(r=>r.sourceId).sort(),['kharkiv-official-rss','mirror-odesa','yasno-kem']);
  for(const entry of active){assert.equal(entry.formalPrimaryDataLicense,'not_observed');assert.equal(entry.providerQuota,'not_published_in_reviewed_sources');assert.equal(entry.deliveryEligible,false);assert.equal(entry.parallel48hAccepted,false);}
  const mirror=enabled.find(r=>r.sourceId==='mirror-odesa');assert(mirror?.state==='technical_display');assert.equal(mirror.semanticScope?.serviceDate,'2026-11-09');assert.equal(Object.keys(mirror.semanticScope!.targetPlanSha256s).length,12);
- for(const id of ['dtek-oem-official','voe-mirror-vn-progr','voe-mirror-olnet93','yasno-dnem','yasno-cek','kharkiv-official-rss'])assert.equal(enabled.find(r=>r.sourceId===id)?.state,'blocked');
+ for(const id of ['dtek-oem-official','voe-mirror-vn-progr','voe-mirror-olnet93','yasno-dnem','yasno-cek'])assert.equal(enabled.find(r=>r.sourceId===id)?.state,'blocked');
 });
 test('official anonymous API can yield dated technical plan with honest unreadable robots and operating provenance; still no binding or delivery',async()=>{
  let calls=0;const reader=createSourceIntake({registry:technicalDisplaySourceRegistry(true),now:()=>now,transport:async req=>{calls++;return {url:req.url,status:200,headers:{'content-type':'application/json'},body:(async function*(){yield raw;})()};}});

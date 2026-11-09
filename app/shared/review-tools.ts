@@ -34,7 +34,7 @@ export interface ReviewToolsSnapshot {
 export interface ReviewPublicPlace {
   label: string; localityLabel: string; serviceDate: string; timezone: 'Europe/Kyiv';
   status: PlanStatus; dayCoverage: ScheduleView['dayCoverage']; freshness: ScheduleView['freshness'];
-  intervals: PlanInterval[]; sourceName: string; observedAt: string | null; synthetic: true;
+  intervals: PlanInterval[]; sourceName: string; observedAt: string | null; synthetic: true; notice?: string;
 }
 export interface ReviewPublicShare {
   simulationOnly: true; token: string; serviceDate: string; createdAt: string; expiresAt: string;
@@ -104,7 +104,7 @@ export function publicReviewPlace(label: string, localityLabel: string, serviceD
     status: usable ? plan.status : 'not_published', dayCoverage: usable ? plan.dayCoverage : 'none',
     freshness: usable ? plan.freshness : 'unknown',
     intervals: usable ? plan.intervals.map(i => ({ startsAt: i.startsAt, endsAt: i.endsAt, startLocal: i.startLocal, endLocal: i.endLocal, kind: i.kind })) : [],
-    sourceName: usable ? plan.source.name : 'План на цю дату ще не опублікований', observedAt: usable ? plan.observedAt : null, synthetic: true,
+    sourceName: usable ? plan.source.name : 'План на цю дату ще не опублікований', observedAt: usable ? plan.observedAt : null, synthetic: true, ...(usable && plan.notice ? { notice: plan.notice } : {}),
   };
 }
 

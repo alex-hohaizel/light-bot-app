@@ -34,6 +34,46 @@ function minute(clock: string): number {
   const [hour, minutes] = clock.split(':').map(Number); return hour * 60 + minutes;
 }
 
+/** Bounded recognition of an operative bulletin from this official feed. A
+ * mention in advice, a different territory, and a publication timestamp alone
+ * are not an effective emergency scope. Unknown overlay remains in the notice. */
+function emergencyBulletinNeedsReview(title: string, description: string, publication: string, serviceDate: string): boolean {
+  const plain = load(description).text().replace(/\s+/g, ' ').toLocaleLowerCase('uk-UA');
+  const heading = title.toLocaleLowerCase('uk-UA'), publicationDate = localParts(Date.parse(publication)).date;
+  const emergency = /аварійн[\p{L}]*\s+(?:відключ|знеструм|режим)/iu;
+  const operative = /(?:застосовуються|застосовано|застосовані|запроваджуються|запроваджено|запроваджені|вводяться|введено|введені|діють|діятимуть|будуть\s+(?:діяти|застосовані|введені|запроваджені)|не\s+(?:(?:було|були)\s+)?скасован(?:о|і)|залишаються\s+(?:чинними|в\s+дії))/iu;
+  const conditional = /(?:якщо|у разі|в разі|можуть|може|як підготуватися|що робити,? коли)/iu;
+  const localTerritory = /харківськ[\p{L}]*|харківщин[\p{L}]*|(?:у|в) харкові|(?:^|[^\p{L}])харків(?:$|[^\p{L}])/iu;
+  const otherTerritory = /ки(?:єв|їв)[\p{L}]*|одес[\p{L}]*|вінниц[\p{L}]*|дніпр[\p{L}]*|львів[\p{L}]*|полтав[\p{L}]*|сумськ[\p{L}]*|чернігів[\p{L}]*|житомир[\p{L}]*|черкас[\p{L}]*|хмельниц[\p{L}]*|тернопіл[\p{L}]*|івано-франків[\p{L}]*|закарпат[\p{L}]*|чернів[\p{L}]*|рівнен[\p{L}]*|волин[\p{L}]*|миколаїв[\p{L}]*|херсон[\p{L}]*|запорі[\p{L}]*|донецьк[\p{L}]*|луган[\p{L}]*|кіровоград[\p{L}]*|крим[\p{L}]*/iu;
+  const sentences = plain.split(/[!?]\s*|\.(?!\d)\s*/u).filter(Boolean);
+  for (const sentence of sentences) {
+    if (!emergency.test(sentence) || !operative.test(sentence) || conditional.test(sentence)) continue;
+    // "не скасовано" asserts continuation; negating "застосовуються" does
+    // not. Keep this distinction before deciding whether scope needs review.
+    const affirmative = [...sentence.matchAll(new RegExp(operative.source, 'giu'))].some(match => !/не(?:\s+(?:було|були|будуть|буде))?\s*$/u.test(sentence.slice(0, match.index)));
+    if (!affirmative) continue;
+    const scope = `${heading} ${sentence}`;
+    if (!localTerritory.test(scope) && otherTerritory.test(scope)) continue;
+    const dates: string[] = [];
+    for (const match of scope.matchAll(new RegExp(`(\\d{1,2})\\s+(${MONTHS.join('|')})(?:\\s+(\\d{4}))?`, 'gu'))) {
+      const date = `${match[3] || serviceDate.slice(0, 4)}-${String(MONTHS.indexOf(match[2]) + 1).padStart(2, '0')}-${match[1].padStart(2, '0')}`;
+      try { calendarDate(date); dates.push(date); } catch { /* Not an effective calendar date. */ }
+    }
+    for (const match of scope.matchAll(/(\d{2})\.(\d{2})\.(\d{4})/gu)) {
+      const date = `${match[3]}-${match[2]}-${match[1]}`; try { calendarDate(date); dates.push(date); } catch { /* Invalid date. */ }
+    }
+    // An explicit effective day takes precedence over the posting day. A later
+    // plan is not a cancellation of a dated emergency bulletin.
+    if (dates.length) {
+      if (dates.includes(serviceDate) || dates.length === 2 && /(?:^|\s)з\s.+\sдо\s/u.test(scope) && dates[0] < serviceDate && serviceDate < dates[1]) return true;
+      continue;
+    }
+    if (/завтра/u.test(scope)) { if (nextCalendarDate(publicationDate) === serviceDate) return true; continue; }
+    if (publicationDate === serviceDate) return true;
+  }
+  return false;
+}
+
 /** Strict offline parser for the observed official dated 12-queue publication format. */
 export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext): ScheduleView {
   if (context.namespace !== 'kharkiv:rss' || context.operatorId !== 'kharkiv-oe' || context.source.id !== 'kharkiv-official-rss') throw new Error('OPERATOR_NAMESPACE_MISMATCH');
@@ -56,6 +96,15 @@ export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext)
   if (!/^https:\/\/oblenergo\.kharkiv\.ua\/uk\/node\/\d+$/.test(link)) throw new Error('RSS_UNTRUSTED_ITEM_ORIGIN');
   const publishedAt = rfcPublication(item.children('pubDate').text().trim());
   if (Date.parse(publishedAt) > Date.parse(context.observedAt) || Date.parse(publishedAt) < bounds.start - 72 * 3600_000 || Date.parse(publishedAt) >= bounds.end) throw new Error('RSS_PUBLICATION_OUTSIDE_SERVICE_WINDOW');
+  // Keep announcement time separate from effective day and territory. This
+  // holds projection for review; it does not invent an all-region emergency.
+  for (const candidate of feed('rss > channel > item').toArray()) {
+    if (candidate === matches[0]) continue;
+    const other = feed(candidate);
+    let time: string; try { time = rfcPublication(other.children('pubDate').text().trim()); } catch { continue; }
+    if (Date.parse(time) <= Date.parse(context.observedAt) && emergencyBulletinNeedsReview(other.children('title').text(), other.children('description').text(), time, context.serviceDate))
+      throw new Error('RSS_CURRENT_EMERGENCY_REQUIRES_SCOPED_REVIEW');
+  }
   const body = load(item.children('description').text());
   body('script,style').remove();
   body('br').replaceWith('\n');
@@ -67,6 +116,7 @@ export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext)
   if (!text.toLocaleLowerCase('uk-UA').replace(/'/g, '’').includes(expectedIntro)) throw new Error('RSS_BODY_DATE_CONFLICT');
   if (/скасован|аварійн|не діятим|не будуть діяти/iu.test(text)) throw new Error('RSS_PLAN_WITHDRAWN_OR_OVERLAY_REQUIRES_REVIEW');
   if (!text.includes('Години відсутності електропостачання') || !new RegExp(`у Харківській області будуть діяти графіки погодинних відключень`).test(text) || !text.includes('з 00:00 до 24:00')) throw new Error('RSS_PLAN_SEMANTICS_NOT_RECOGNIZED');
+  if (!text.includes('з урахуванням часу на перемикання (орієнтовно)')) throw new Error('RSS_PLAN_SWITCHING_CAVEAT_REQUIRES_REVIEW');
   const table = new Map<string, PlanInterval[]>();
   for (const line of text.split('\n')) {
     if (!/^\d+\.\d+\s/.test(line)) continue;
@@ -95,7 +145,7 @@ export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext)
     serviceDate: context.serviceDate, timezone: 'Europe/Kyiv', status: freshness === 'stale' ? 'stale' : 'published', dayCoverage: 'complete',
     intervals: table.get(context.targetId)!, source: { ...context.source, url: link, revision: rawHash },
     publishedAt, observedAt: context.observedAt, freshness, synthetic: context.synthetic, deliveryEligible: false,
-    notice: 'Погодинний план Харківобленерго з орієнтовним часом перемикань. Аварійний режим має окрему ревізію. Будинок і доставка не сертифіковані.',
+    notice: 'Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні.',
   };
   for (const intervals of table.values()) validateScheduleView({ ...base, intervals });
   return base;

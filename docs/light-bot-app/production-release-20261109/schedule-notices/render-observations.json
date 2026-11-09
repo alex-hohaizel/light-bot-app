@@ -1,0 +1,90 @@
+{
+  "actor": "/root/app_experience",
+  "method": "Current stored public raw→scoped source intake→normalized view→actual text/SVG/sharpPNG + ChromeSSR and hydrated interval/card details; no HTTP; no whole-app/native-device claim",
+  "observedSourceAt": "2026-11-09T05:00:37.710Z",
+  "rawSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+  "measurements": [
+    {
+      "theme": "light",
+      "width": 320,
+      "viewport": 320,
+      "scrollWidth": 320,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "viewport": 1280,
+      "scrollWidth": 1280,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "viewport": 320,
+      "scrollWidth": 320,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "viewport": 1280,
+      "scrollWidth": 1280,
+      "comparisonNoticeCount": 1,
+      "noticeCount": 2,
+      "overflow": false
+    }
+  ],
+  "detailMeasurements": [
+    {
+      "theme": "light",
+      "width": 320,
+      "selected": "01:00–04:30 (UTC+02:00)\n\nПовна тривалість: 3 год 30 хв.",
+      "fallbackContainsActualKyivOffset": true,
+      "viewingTimeLabel": true,
+      "interactions": [
+        "select exact first interval",
+        "expand card full fallback text"
+      ],
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "selected": "01:00–04:30 (UTC+02:00)\n\nПовна тривалість: 3 год 30 хв.",
+      "fallbackContainsActualKyivOffset": true,
+      "viewingTimeLabel": true,
+      "interactions": [
+        "select exact first interval",
+        "expand card full fallback text"
+      ],
+      "viewport": 320,
+      "scrollWidth": 320
+    }
+  ]
+}
