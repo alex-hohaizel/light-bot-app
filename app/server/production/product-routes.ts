@@ -1,3 +1,4 @@
+import {parseOperatorHouseNotices,currentOperatorHouseNotice} from '../../shared/operator-house-notice.ts';
 import type {Express,RequestHandler,Request,Response} from 'express';
 import type {} from 'passport';
 import type {LiveProfileSnapshot,LiveProfileReceipt,LiveProfileReceiptRecovery} from '../../shared/live-product.ts';
@@ -11,7 +12,7 @@ import type {LegacyLiveProfileRead,VerifiedLegacyPrincipal} from './profile-read
 import type {createProductionProfileStore,ProductionProfileSnapshot,ProductionProfileReceipt} from './profile-store.ts';
 
 type CanonicalStore=Pick<ReturnType<typeof createProductionProfileStore>,'snapshot'|'commitProfileMutation'|'recoverReceipt'>;
-type CommonPorts={authenticate:RequestHandler;releaseId:string;toolsEnabled?:boolean};
+type CommonPorts={authenticate:RequestHandler;releaseId:string;toolsEnabled?:boolean;operatorLookupEnabled?:boolean};
 export type LiveProductPorts=CommonPorts&(
   |{mode:'disabled'|'read_only';read(principal:VerifiedLegacyPrincipal):Promise<LegacyLiveProfileRead>}
   |{mode:'active';store:CanonicalStore}
@@ -83,11 +84,12 @@ function plan(v:ScheduleView):ScheduleView{
     publishedAt:v.publishedAt,observedAt:v.observedAt,freshness:v.freshness,synthetic:false,deliveryEligible:v.deliveryEligible,
     ...(v.previousRevisionId!==undefined?{previousRevisionId:v.previousRevisionId}:{}),...(v.previousIntervals!==undefined?{previousIntervals:v.previousIntervals.map(interval)}:{}),...(v.notice!==undefined?{notice:v.notice}:{})};
 }
-function activeSnapshot(value:ProductionProfileSnapshot,owner:string,releaseId:string,toolsEnabled=false):LiveProfileSnapshot{
+function activeSnapshot(value:ProductionProfileSnapshot,owner:string,releaseId:string,toolsEnabled=false,operatorLookupEnabled=false):LiveProfileSnapshot{
   if(value?.runtime!=='production'||value.profile?.id!==owner||!text(value.sessionId)||!Number.isSafeInteger(value.revision)||value.revision<0||!validInstant(value.serverNow)||!Array.isArray(value.catalog)||!Array.isArray(value.plans))return fail();
   const p=profile(value.profile),needsConfirmation=p.locations.some(l=>l.binding.status!=='verified'||l.binding.kind==='user_selected_group');
-  return {profile:p,sessionId:value.sessionId,revision:value.revision,catalog:value.catalog.map(option),plans:value.plans.map(plan),simulationOnly:false,serverNow:value.serverNow,releaseId,
-    capabilities:{profileMutations:true,tools:toolsEnabled},migration:needsConfirmation
+  const operatorHouseNotices=value.operatorHouseNotices===undefined?undefined:parseOperatorHouseNotices(value.operatorHouseNotices,p.locations).filter(n=>currentOperatorHouseNotice(n,value.serverNow));
+  return {...(operatorHouseNotices!==undefined?{operatorHouseNotices}:{}),profile:p,sessionId:value.sessionId,revision:value.revision,catalog:value.catalog.map(option),plans:value.plans.map(plan),simulationOnly:false,serverNow:value.serverNow,releaseId,
+    capabilities:{profileMutations:true,tools:toolsEnabled,...(operatorLookupEnabled?{addressLookupV2:['dtek:oem'] as Array<'dtek:oem'>}:{})},migration:needsConfirmation
       ?{status:'needs_confirmation',message:'Профіль збережено. Для частини адрес потрібно підтвердити прив’язку до графіків.'}
       :{status:'ready',message:p.locations.length?'Налаштування профілю доступні для змін.':'Профіль створено. Додайте адресу, щоб переглядати свій план.'}};
 }
@@ -109,13 +111,14 @@ function errorResponse(res:Response,error:unknown){
  */
 export function registerLiveProductRoutes(app:Express,ports:LiveProductPorts){
   if(!['disabled','read_only','active'].includes(ports.mode)||!/^[a-f0-9]{64}$/.test(ports.releaseId)||typeof ports.authenticate!=='function')throw new Error('LIVE_PRODUCT_RELEASE_INVALID');
+  if(ports.operatorLookupEnabled!==undefined&&typeof ports.operatorLookupEnabled!=='boolean')throw new Error('LIVE_PRODUCT_PORTS_INVALID');
   if(ports.mode==='active'&&(!ports.store||!['snapshot','commitProfileMutation','recoverReceipt'].every(k=>typeof ports.store[k as keyof CanonicalStore]==='function'))||ports.mode!=='active'&&typeof ports.read!=='function')throw new Error('LIVE_PRODUCT_PORTS_INVALID');
   const mode=ports.mode,releaseId=ports.releaseId,store=ports.mode==='active'?ports.store:null,read=ports.mode==='active'?null:ports.read;
   app.get('/api/product/profile',noStore,ports.authenticate,async(req,res)=>{
     if(mode==='disabled')return res.status(503).json({error:'Оновлена версія ще готується до запуску.'});
     const p=principal(req,res);if(!p)return;
     try{
-      if(mode==='active')return res.json(activeSnapshot(await store!.snapshot(p),p.ownerId,releaseId,ports.toolsEnabled===true));
+      if(mode==='active')return res.json(activeSnapshot(await store!.snapshot(p),p.ownerId,releaseId,ports.toolsEnabled===true,ports.operatorLookupEnabled===true));
       const value=await read!(p);
       if(value.projection.profile.id!==p.ownerId||typeof value.sourceDigest!=='string'||!/^[a-f0-9]{64}$/.test(value.sourceDigest)||!validInstant(value.serverNow))return fail();
       const snapshot:LiveProfileSnapshot={profile:profile(value.projection.profile),revision:0,sessionId:'legacy-read:'+value.sourceDigest,catalog:[],plans:[],simulationOnly:false,serverNow:value.serverNow,releaseId,
@@ -131,7 +134,7 @@ export function registerLiveProductRoutes(app:Express,ports:LiveProductPorts){
     let request;try{request=parseProfileRequest(req.body);}catch{return res.status(400).json({code:'LIVE_PROFILE_INVALID_INPUT',error:'Перевірте дані зміни профілю.'});}
     if((request.mutation.kind==='add'||request.mutation.kind==='replace')&&!request.mutation.selectionFingerprint)return res.status(409).json({code:'PROFILE_SELECTION_REQUIRED',error:profileErrorMessage('PROFILE_SELECTION_REQUIRED')});
     try{
-      const value=await store!.commitProfileMutation(p,request),snapshot=activeSnapshot(value.snapshot,p.ownerId,releaseId,ports.toolsEnabled===true),accepted=receipt(value.receipt,'app:'+request.id);
+      const value=await store!.commitProfileMutation(p,request),snapshot=activeSnapshot(value.snapshot,p.ownerId,releaseId,ports.toolsEnabled===true,ports.operatorLookupEnabled===true),accepted=receipt(value.receipt,'app:'+request.id);
       if(accepted.sessionId!==snapshot.sessionId||accepted.sessionRevision>snapshot.revision||typeof value.replayed!=='boolean')return fail();
       return res.json({...snapshot,receipt:accepted,replayed:value.replayed});
     }catch(error){return errorResponse(res,error);}

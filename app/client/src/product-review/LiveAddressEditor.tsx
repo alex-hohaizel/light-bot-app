@@ -20,7 +20,7 @@ export interface LiveAddressEditorProps extends Omit<AddressEditorProps,'mode'|'
 }
 interface Item {id:number;value:string}
 export interface LiveAddressSearchSnapshot {id:string;operation:'streets'|'houses';namespace:'yasno:25/902';observedAt:string;expiresAt:string;items:Item[];streetId?:number}
-interface LookupDraft {revision:number;streetQuery:string;houseQuery:string;streets:LiveAddressSearchSnapshot|null;houses:LiveAddressSearchSnapshot|null;street:Item|null;pending:LiveAddressLookupRequest|null}
+interface LookupDraft {revision:number;streetQuery:string;houseQuery:string;streets:LiveAddressSearchSnapshot|null;houses:LiveAddressSearchSnapshot|null;street:Item|null;pending:LiveAddressLookupRequest|null;retryAt?:string|null}
 type Status='idle'|'loading'|'available'|'empty'|'deferred'|'unavailable'|'stale'|'disabled';
 const DIRECTORY='yasno:25/902' as const;
 const plain=(v:unknown):v is Record<string,any>=>Boolean(v&&typeof v==='object'&&!Array.isArray(v)&&[Object.prototype,null].includes(Object.getPrototypeOf(v)));
@@ -40,18 +40,18 @@ function checkedPending(value:unknown):LiveAddressLookupRequest{
  return structuredClone(value) as LiveAddressLookupRequest;
 }
 function parseDraft(v:unknown):LookupDraft{
- if(!plain(v)||Object.keys(v).some(k=>!['revision','streetQuery','houseQuery','streets','houses','street','pending'].includes(k))||!Number.isSafeInteger(v.revision)||v.revision<0||!txt(v.streetQuery,100)||!txt(v.houseQuery,100))return invalid();
+ if(!plain(v)||Object.keys(v).some(k=>!['revision','streetQuery','houseQuery','streets','houses','street','pending','retryAt'].includes(k))||!Number.isSafeInteger(v.revision)||v.revision<0||!txt(v.streetQuery,100)||!txt(v.houseQuery,100)||v.retryAt!==undefined&&v.retryAt!==null&&!validInstant(v.retryAt))return invalid();
  const streets=v.streets===null?null:checkedLiveAddressSnapshot(v.streets,'streets');
  const street=v.street===null?null:plain(v.street)&&positive(v.street.id)&&txt(v.street.value)&&streets?.items.some(i=>i.id===v.street.id&&i.value===v.street.value)?{id:v.street.id,value:v.street.value}:invalid();
  const houses=v.houses===null?null:street?checkedLiveAddressSnapshot(v.houses,'houses',street.id):invalid();
- return {revision:v.revision,streetQuery:v.streetQuery,houseQuery:v.houseQuery,streets,houses,street,pending:v.pending===null?null:checkedPending(v.pending)};
+ return {revision:v.revision,streetQuery:v.streetQuery,houseQuery:v.houseQuery,streets,houses,street,pending:v.pending===null?null:checkedPending(v.pending),retryAt:v.retryAt??null};
 }
 export function liveAddressLookupMessage(code:unknown,status:Status):string{
  if(code==='PRODUCTION_PROFILE_REVISION_CONFLICT')return 'Профіль змінився в іншому вікні або боті. Оновіть його й почніть пошук ще раз.';
  if(code==='ADDRESS_FLOW_SELECTION_CHANGED'||code==='ADDRESS_STALE_SNAPSHOT'||status==='stale')return 'Час дії результатів минув або вибір змінився. Знайдіть вулицю й будинок ще раз.';
  if(code==='ADDRESS_FLOW_INVALID_INPUT'||code==='ADDRESS_INVALID_REQUEST')return 'Перевірте запит: назву вулиці введіть щонайменше двома літерами, номер будинку — точно як у документах.';
  if(code==='LIVE_ADDRESS_STORAGE_UNAVAILABLE')return 'Браузер не зберіг чернетку. Пошук ще не надіслано. Дозвольте зберігання даних для цього сайту або спробуйте інший браузер.';
- if(status==='deferred')return 'Оператор просить зачекати перед наступним пошуком. Введені дані збережено, повторювати запит зараз не потрібно.';
+ if(status==='deferred')return 'Зачекайте перед наступним пошуком. Введені дані збережено, повторювати запит зараз не потрібно.';
  if(status==='empty')return 'За цим запитом результатів немає. Перевірте написання або спробуйте іншу частину назви. Це не означає, що адреси не існує.';
  if(status==='disabled')return 'Адресний пошук зараз недоступний. Чинні адреси й налаштування збережено.';
  return 'Не вдалося підтвердити результат пошуку. Дані не замінювалися. Спробуйте ще раз тим самим запитом.';
@@ -65,7 +65,7 @@ function OwnedLiveAddressEditor({scope:liveScope,lookup,initial,catalog,operator
  const [restored]=useState(()=>loadDraft(kind,scope,parseDraft));const recovered=restored?.revision===liveScope.revision?restored:null;
  const [streetQuery,setStreetQuery]=useState(recovered?.streetQuery??initial?.street??''),[houseQuery,setHouseQuery]=useState(recovered?.houseQuery??'');
  const [streets,setStreets]=useState<LiveAddressSearchSnapshot|null>(recovered&&current(recovered.streets,Date.now())?recovered.streets:null),[street,setStreet]=useState<Item|null>(recovered&&current(recovered.streets,Date.now())?recovered.street:null),[houses,setHouses]=useState<LiveAddressSearchSnapshot|null>(recovered&&current(recovered.streets,Date.now())&&current(recovered.houses,Date.now())?recovered.houses:null);
- const [stage,setStage]=useState<'streets'|'houses'|'review'|'cache'>(recovered?.street&&current(recovered.streets,Date.now())?'houses':'streets'),[status,setStatus]=useState<Status>('idle'),[message,setMessage]=useState(''),[retryAt,setRetryAt]=useState<string|null>(null),[page,setPage]=useState(0),[stored,setStored]=useState(true),[tick,setTick]=useState(Date.now());
+ const [stage,setStage]=useState<'streets'|'houses'|'review'|'cache'>(recovered?.street&&current(recovered.streets,Date.now())?'houses':'streets'),[status,setStatus]=useState<Status>('idle'),[message,setMessage]=useState(''),[retryAt,setRetryAt]=useState<string|null>(recovered?.retryAt&&Date.parse(recovered.retryAt)>Date.now()?recovered.retryAt:null),[page,setPage]=useState(0),[stored,setStored]=useState(true),[tick,setTick]=useState(Date.now());
  const [resolved,setResolved]=useState<{option:AddressOption;expiresAt:string;capturedScope:typeof liveScope}|null>(null);
  const canonicalMatches=resolved?catalog?.filter(o=>o.id===resolved.option.id)??[]:[],canonicalReady=Boolean(resolved&&canonicalMatches.length===1&&optionConsentToken(canonicalMatches[0])===optionConsentToken(resolved.option));
  const pending=useRef<LiveAddressLookupRequest|null>(recovered?.pending??null),completed=useRef(false),requests=useRef(new Map<string,LiveAddressLookupRequest>());
@@ -73,17 +73,18 @@ function OwnedLiveAddressEditor({scope:liveScope,lookup,initial,catalog,operator
  const closeRef=useRef(onClose);closeRef.current=onClose;const closeAction=useRef<()=>void>(()=>{});closeAction.current=()=>{if(saving||saveInFlight.current)return;persist();closeRef.current();};
  useLayoutEffect(()=>{mounted.current=true;return()=>{mounted.current=false;++generation.current;};},[]);
  useEffect(()=>{const timer=setInterval(()=>setTick(Date.now()),500);return()=>clearInterval(timer);},[]);
- const draft=():LookupDraft=>({revision:liveScope.revision,streetQuery,houseQuery,streets,houses,street,pending:pending.current});
+ const draft=():LookupDraft=>({revision:liveScope.revision,streetQuery,houseQuery,streets,houses,street,pending:pending.current,retryAt});
  function persist(payload=draft()){const ok=saveDraft(kind,scope,payload);if(mounted.current)setStored(ok);return ok;}
- useEffect(()=>{persist();},[streetQuery,houseQuery,streets,houses,street,liveScope.revision]);
+ useEffect(()=>{persist();},[streetQuery,houseQuery,streets,houses,street,retryAt,liveScope.revision]);
  useEffect(()=>{if(liveScope.revision===initialRevision)return;++generation.current;working.current=false;setResolved(null);setStreets(null);setStreet(null);setHouses(null);setStage('streets');setStatus('stale');setMessage(liveAddressLookupMessage('PRODUCTION_PROFILE_REVISION_CONFLICT','stale'));},[liveScope.revision]);
  useEffect(()=>{if(stage==='review'&&resolved&&!current(resolved,tick)&&!saveInFlight.current){setResolved(null);setStage('houses');setStatus('stale');setMessage(liveAddressLookupMessage(null,'stale'));}},[tick,resolved,stage]);
  useEffect(()=>{heading.current?.focus();},[stage]);
  useEffect(()=>{if(stage==='review'&&canonicalReady||stage==='cache')return;const prior=document.activeElement as HTMLElement|null;const trap=(e:KeyboardEvent)=>{if(e.key==='Escape'){e.preventDefault();closeAction.current();}if(e.key==='Tab'&&dialog.current){const controls=[...dialog.current.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href]')].filter(el=>el.offsetParent!==null),first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}};document.addEventListener('keydown',trap);return()=>{document.removeEventListener('keydown',trap);prior?.focus();};},[stage,canonicalReady]);
  function close(){if(saving||saveInFlight.current)return;persist();onClose();}
- function invalidate(){++generation.current;setResolved(null);setStatus('idle');setMessage('');setRetryAt(null);setPage(0);}
+ function invalidate(){++generation.current;working.current=false;setResolved(null);setStatus('idle');setMessage('');setRetryAt(previous=>previous&&Date.parse(previous)>Date.now()?previous:null);setPage(0);}
  async function search(operation:'streets'|'houses'|'resolve',house?:Item){
   if(working.current||saving||!mounted.current)return;
+  if(retryAt&&Date.parse(retryAt)>Date.now()){setStatus('deferred');setMessage(liveAddressLookupMessage(null,'deferred'));return;}
   const now=Date.now();if(operation!=='streets'&&(!street||!current(streets,now))||operation==='resolve'&&(!house||!current(houses,now))){setStatus('stale');setMessage(liveAddressLookupMessage(null,'stale'));return;}
   if(operation!=='resolve'){try{if(normalizeAddressText(operation==='streets'?streetQuery:houseQuery).length<(operation==='streets'?2:1))throw Error('query');}catch{setStatus('unavailable');setMessage(liveAddressLookupMessage('ADDRESS_FLOW_INVALID_INPUT','unavailable'));return;}}
   const captured={...liveScope},base:LiveAddressLookupRequest={id:'',expectedSessionId:captured.sessionId,expectedRevision:captured.revision,operation,directoryId:DIRECTORY,...(operation==='resolve'?{}:{query:(operation==='streets'?streetQuery:houseQuery).trim()}),...(operation!=='streets'?{streetSnapshotId:streets!.id,streetId:street!.id}:{}),...(operation==='resolve'?{houseSnapshotId:houses!.id,houseId:house!.id}:{})};
@@ -92,6 +93,11 @@ function OwnedLiveAddressEditor({scope:liveScope,lookup,initial,catalog,operator
   request??={...base,id:crypto.randomUUID()};pending.current=request;requests.current.set(key,request);if(requests.current.size>20)requests.current.delete(requests.current.keys().next().value!);
   if(!persist({...draft(),pending:request})){setStatus('unavailable');setMessage(liveAddressLookupMessage('LIVE_ADDRESS_STORAGE_UNAVAILABLE','unavailable'));return;}
   const sequence=++generation.current;working.current=true;completed.current=false;setStatus('loading');setMessage('');setRetryAt(null);
+  // A new search invalidates the prior result immediately. A rejected refresh
+  // must not make its old buttons clickable again merely because their TTL runs.
+  if(operation==='streets'){setStreets(null);setStreet(null);setHouses(null);setStage('streets');}
+  else if(operation==='houses'){setHouses(null);setStage('houses');}
+  else setResolved(null);
   try{
    const result=await lookup(structuredClone(request));if(!mounted.current||sequence!==generation.current||!scopeEqual(captured,latest.current))return;
    if(!plain(result)||typeof result.state!=='string')return invalid();
@@ -123,7 +129,7 @@ function OwnedLiveAddressEditor({scope:liveScope,lookup,initial,catalog,operator
    saveInFlight.current=true;const token=readScopedDraftToken(kind,scope);try{await onSave(value);if(mounted.current)clearScopedDraft(kind,scope,undefined,token);}finally{saveInFlight.current=false;}
   }}/>;
  }
- return <div className="pr-modal-scrim" onMouseDown={e=>{if(e.target===e.currentTarget)close();}}><div ref={dialog} className="pr-modal pr-address-editor" role="dialog" aria-modal="true" aria-labelledby="live-address-heading" data-testid="live-address-lookup"><div className="pr-modal-top"><span className="pr-eyebrow">МОЯ АДРЕСА</span><button className="pr-icon-button" aria-label="Закрити" disabled={saving} onClick={close}><X size={19}/></button></div><h2 id="live-address-heading">{initial?'Замінити будинок':'Додати адресу'}</h2><p className="pr-quiet-box"><strong>Київ · ДТЕК Київські електромережі</strong><br/>Пошук у публічному каталозі YASNO. Для інших операторів адресний пошук ще перевіряється. Чинні адреси залишаються у профілі.</p><h3 ref={heading} tabIndex={-1}>{stage==='houses'?'Знайдіть точний будинок':'Знайдіть свою вулицю'}</h3>
+ return <div className="pr-modal-scrim" onMouseDown={e=>{if(e.target===e.currentTarget)close();}}><div ref={dialog} className="pr-modal pr-address-editor" role="dialog" aria-modal="true" aria-labelledby="live-address-heading" data-testid="live-address-lookup"><div className="pr-modal-top"><span className="pr-eyebrow">МОЯ АДРЕСА</span><button className="pr-icon-button" aria-label="Закрити" disabled={saving} onClick={close}><X size={19}/></button></div><h2 id="live-address-heading">{initial?'Замінити будинок':'Додати адресу'}</h2><p className="pr-quiet-box"><strong>Київ · ДТЕК Київські електромережі</strong><br/>Пошук у публічному каталозі YASNO. Оберіть точну вулицю й будинок зі списку. Чинні адреси залишаються у профілі.</p><h3 ref={heading} tabIndex={-1}>{stage==='houses'?'Знайдіть точний будинок':'Знайдіть свою вулицю'}</h3>
  {stored?<p className="pr-field-note">Назад і закриття зберігають пошук у цьому вікні. Чинна адреса не зміниться до вашого підтвердження.</p>:<p role="alert" className="pr-status-notice pr-warning">Браузер не підтвердив збереження чернетки. Залишайте вікно відкритим; перед новим пошуком потрібно дозволити зберігання даних.</p>}
  {stage==='houses'&&<p><strong>{street?.value}</strong></p>}
  <form className="pr-form-stack" onSubmit={e=>{e.preventDefault();void search(stage==='houses'?'houses':'streets');}}><label>{stage==='houses'?'Номер будинку':'Назва вулиці'}<div className="pr-input-icon"><Search size={17}/><input autoComplete="off" maxLength={100} disabled={busy||saving} value={stage==='houses'?houseQuery:streetQuery} onChange={e=>{invalidate();if(stage==='houses'){setHouseQuery(e.target.value);setHouses(null);}else{setStreetQuery(e.target.value);setStreets(null);setStreet(null);setHouses(null);}}}/></div></label><p className="pr-field-note">{stage==='houses'?'Номер, літера, дріб і корпус мають значення. Оберіть точне написання; найближчий номер не підставляємо.':'Вкажіть щонайменше дві літери. Запит до оператора надсилається тільки після натискання «Знайти».'}</p><button className="pr-primary" disabled={busy||saving||retryHeld||stage==='houses'&&!freshStreet} type="submit">{busy?'Шукаємо…':'Знайти'}</button></form>

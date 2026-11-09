@@ -1,3 +1,5 @@
+import {summarizeOperatorHouseNotice,type AddressOperatorHouseNotice} from '../../../shared/operator-house-notice.ts';
+import {OperatorHouseNoticePanel} from './OperatorHouseNoticePanel';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ArrowLeftRight, ArrowRight, Bell, ChevronDown, MapPin, Plus, Share2 } from 'lucide-react';
 import type { ScheduleView } from '@shared/product-contract';
@@ -9,6 +11,7 @@ import { displayDate, displayTime, durationLabel, intervalLabel } from './schedu
 export interface DistrictDashboardProps {
   addresses: DemoAddress[]; activeId: string; views: ScheduleView[]; asOf: string;
   day: 'today' | 'tomorrow';
+  operatorHouseNotice?:AddressOperatorHouseNotice;operatorHouseNoticeEnabled?:boolean;operatorHouseNoticeSuspended?:boolean;
   onSelect(id: string): void; onCompare(): void; onManage(): void;
   onNotifications(addressId?: string): void; onShare(): void;
   onDay(day: 'today' | 'tomorrow'): void; onAdd(): void;
@@ -70,8 +73,10 @@ export function DayPlanDetails({ view, asOf, initiallyOpen = false }: { view: Sc
   </details>;
 }
 
-export function DistrictDashboard({ addresses, activeId, views, asOf, day, onSelect, onCompare, onManage, onNotifications, onShare, onDay, onAdd }: DistrictDashboardProps) {
+export function DistrictDashboard({ operatorHouseNotice,operatorHouseNoticeEnabled=false,operatorHouseNoticeSuspended=false,addresses, activeId, views, asOf, day, onSelect, onCompare, onManage, onNotifications, onShare, onDay, onAdd }: DistrictDashboardProps) {
   const active = addresses.find(a => a.id === activeId), plan = views.find(v => v.addressId === activeId), display = inspectScheduleForDisplay(plan, asOf), state = display.operational;
+  const houseSummary=operatorHouseNoticeEnabled?summarizeOperatorHouseNotice(operatorHouseNotice,asOf,operatorHouseNoticeSuspended):null;
+  const outsideGroupPlan=Boolean(houseSummary?.outsideGroupPlan&&houseSummary.state==='current');
   const date = display.valid ? plan!.serviceDate : views.find(v => inspectScheduleForDisplay(v, asOf).valid)?.serviceDate;
   if (!addresses.length) return <section className="pr-empty-state pr-district-empty"><MapPin size={32} /><h2>Почнімо з вашої адреси</h2><p>Додайте будинок, щоб бачити його план і налаштувати потрібні нагадування.</p><button type="button" className="pr-primary" onClick={onAdd}><Plus size={18} />Додати адресу</button></section>;
   return <section className="pr-district" aria-label="Адресний пульт">
@@ -91,8 +96,9 @@ export function DistrictDashboard({ addresses, activeId, views, asOf, day, onSel
       </section>
       {active ? <section className="pr-district-console pr-panel" data-address-id={active.id} data-phase={state.phase}>
         <p className="pr-district-selected"><i aria-hidden="true" />Обране місце</p><h3>{active.label}</h3><p className="pr-district-address">{active.city} · {active.street}, {active.house}</p>
-        <OperationalSummary state={state} />
-        {state.phase === 'before' && plan && state.nextIndex >= 0 && <p className="pr-district-secondary">Інтервал до {plan.intervals[state.nextIndex].endLocal}</p>}
+        {operatorHouseNoticeEnabled&&<OperatorHouseNoticePanel notice={operatorHouseNotice} asOf={asOf} suspended={operatorHouseNoticeSuspended}/>}
+        {outsideGroupPlan?<p className="pr-house-group-qualifier">Повний погодинний план групи доступний нижче. Повідомлення для будинку має окремий орієнтир.</p>:<OperationalSummary state={state} />}
+        {!outsideGroupPlan && state.phase === 'before' && plan && state.nextIndex >= 0 && <p className="pr-district-secondary">Інтервал до {plan.intervals[state.nextIndex].endLocal}</p>}
         <div className="pr-district-reminder"><button type="button" className="pr-primary" onClick={() => onNotifications(active.id)}><Bell size={17} />Налаштувати нагадування</button></div>
       </section> : <section className="pr-panel pr-district-console"><h3>Оберіть будинок</h3><p>Його план і найближча подія з’являться тут.</p></section>}
       <section className="pr-district-day-section">{plan && active && <><DayPlanDetails key={`${active.id}/${plan.serviceDate}`} view={plan} asOf={asOf} />

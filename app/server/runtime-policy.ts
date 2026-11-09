@@ -24,6 +24,8 @@ export interface ProductionRuntimePolicy {
   readonly canonicalControlEpoch: number|null;
   readonly productProfileMode: 'disabled'|'read_only'|'active';
   readonly sourceIngestionEnabled:boolean;
+  readonly operatorAddressLookupEnabled?:boolean;
+  readonly odesaPlanApiEnabled?:boolean;
   readonly accountLinksEnabled:boolean;
 }
 export type RuntimeEnvironment = Readonly<Record<string, string | undefined>>;
@@ -89,6 +91,10 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
   if(telegramUpdatesEnabled&&canonicalControlEpoch===null)return rejected('LBA_RUNTIME_CONTROL_EPOCH_REQUIRED');
   const notificationSchedulerEnabled = explicitSwitch(env, 'LBA_NOTIFICATION_SCHEDULER');
   const sourceIngestionEnabled=explicitSwitch(env,'LBA_SOURCE_INGESTION');
+  const operatorAddressLookupEnabled=explicitSwitch(env,'LBA_OPERATOR_ADDRESS_LOOKUP');
+  if(operatorAddressLookupEnabled&&!sourceIngestionEnabled)return rejected('LBA_RUNTIME_OPERATOR_ADDRESS_LOOKUP_REQUIRES_SOURCE');
+  const odesaPlanApiEnabled=explicitSwitch(env,'LBA_ODESA_PLAN_API');
+  if(odesaPlanApiEnabled&&!sourceIngestionEnabled)return rejected('LBA_RUNTIME_ODESA_PLAN_API_REQUIRES_SOURCE');
   const accountLinksEnabled=explicitSwitch(env,'LBA_ACCOUNT_LINKS');
   const reconcileSubscribersOnStart = explicitSwitch(env, 'LBA_RECONCILE_SUBSCRIBERS_ON_START');
   const migrateSubscribersOnStart = explicitSwitch(env, 'LBA_MIGRATE_SUBSCRIBERS_ON_START');
@@ -118,6 +124,6 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
     botMetadataOnStart: false, seedDataOnStart: false, apiBodyLogging: false,
     telegramAuthReplayEnabled,
     canonicalControlEpoch,
-    productProfileMode: productProfileMode as 'disabled'|'read_only'|'active',sourceIngestionEnabled,accountLinksEnabled,
+    productProfileMode: productProfileMode as 'disabled'|'read_only'|'active',sourceIngestionEnabled,operatorAddressLookupEnabled,odesaPlanApiEnabled,accountLinksEnabled,
   });
 }

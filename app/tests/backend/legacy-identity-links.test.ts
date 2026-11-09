@@ -16,7 +16,7 @@ class Port {
  fault:((kind:string,rows:any[])=>any[])|null=null;
  pool={connect:async()=>{const id=++this.connects;let tx:any;
   return {query:async(sql:string,values:any[]=[])=>{
-   const q=sql.replace(/\s+/g,' ').trim();this.calls.push({sql:q,values:structuredClone(values),client:id});const result=(kind:string,rows:any[],rowCount=rows.length)=>({rows:structuredClone(this.fault?this.fault(kind,rows):rows),rowCount});
+   const q=sql.replace(/\s+/g,' ').trim();this.calls.push({sql:q,values:structuredClone(values),client:id});const result=(kind:string,rows:any[],rowCount=rows.length)=>({rows:structuredClone(this.fault?this.fault(kind,rows):rows),rowCount,command:q.split(' ')[0].toUpperCase()});
    if(q.startsWith('begin isolation level ')){tx=structuredClone(this.canonical);return result('begin',[]);}
    if(q==='commit'){this.canonical=tx;return result('commit',[]);}if(q==='rollback')return result('rollback',[]);
    const who=values[0];

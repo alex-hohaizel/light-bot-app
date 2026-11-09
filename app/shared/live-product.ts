@@ -9,7 +9,7 @@ export type LiveProfileSnapshot = Omit<ProfileSnapshot,'simulationOnly'|'receipt
   simulationOnly: false;
   serverNow: string;
   releaseId: string;
-  capabilities: {profileMutations: boolean; tools: boolean};
+  capabilities: {profileMutations: boolean; tools: boolean;addressLookupV2?:Array<'dtek:oem'>};
   migration: {status:'checking'|'needs_confirmation'|'ready';message:string};
   receipt?: LiveProfileReceipt;
 };

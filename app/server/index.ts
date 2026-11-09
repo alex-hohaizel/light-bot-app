@@ -119,10 +119,10 @@ app.use((req, res, next) => {
       canonicalRuntime=createCanonicalRuntime({pool,policy,token:process.env.TELEGRAM_BOT_TOKEN!,origin:'https://power-ukraine.net',fetch,
         certification:{rootDirectory:qualificationRootFromEntryDirectory(typeof __dirname==='string'?__dirname:fileURLToPath(new URL('.',import.meta.url)))},
         ...(releaseCampaign?{releaseCampaign}:{}),
-        verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!}),authorizePrincipal:ownerAuth!.authorizePrincipal,
+        verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false}),authorizePrincipal:ownerAuth!.authorizePrincipal,
         accountConfiguration:{bindingKey:process.env.SESSION_SECRET!,...(policy.accountLinksEnabled?{browserWidget:{botUsername:'PowerUkraineBot',configurationVerified:true as const}}:{})}});
       await canonicalRuntime.prepare();
-      registerLiveProductRoutes(app,{releaseId:BUILD_SOURCE_SHA256,mode:'active',authenticate,store:canonicalRuntime.store,toolsEnabled:true});
+      registerLiveProductRoutes(app,{releaseId:BUILD_SOURCE_SHA256,mode:'active',authenticate,store:canonicalRuntime.store,toolsEnabled:true,operatorLookupEnabled:canonicalRuntime.operatorLookupEnabled});
       registerProductAddressRoutes(app,{authenticate,flow:canonicalRuntime.flow});
       registerProductionToolsRoutes(app,{authenticate,enabled:true,tools:canonicalRuntime.tools});
       registerAccountLinkRoutes(app,{enabled:true,telegramLinkingEnabled:policy.accountLinksEnabled,widgetLinkingEnabled:policy.accountLinksEnabled,miniAppProofEnabled:false,service:canonicalRuntime.accounts!,authenticate,

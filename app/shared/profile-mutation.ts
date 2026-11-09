@@ -1,3 +1,4 @@
+import type {AddressOperatorHouseNotice} from './operator-house-notice.ts';
 import type { AddressOption, BotProfile } from './bot/types.ts';
 import type { LocationNotificationPolicy } from './notification-policy.ts';
 import type { ScheduleView } from './product-contract.ts';
@@ -19,6 +20,7 @@ export interface ProfileSnapshot {
   sessionId: string;
   catalog: AddressOption[];
   plans?: ScheduleView[];
+  operatorHouseNotices?:AddressOperatorHouseNotice[];
   simulationOnly: true;
   receipt?: { id: string; inputId: string; committed: true; sessionRevision: number; simulationOnly: true };
   replayed?: boolean;

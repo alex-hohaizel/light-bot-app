@@ -23,13 +23,14 @@ class Port {
  control:any={controlEpoch:'7',writerMode:'canonical'};
  legacy={settings:[structuredClone(settings)] as any[],locations:[location(),location(2)] as any[],subscribers:[] as any[]};
  calls:Array<{sql:string;values:any[]}>=[];connects=0;releases=0;legacyReads=0;
- fail:((q:string)=>void)|null=null;commit:'normal'|'unknown_saved'|'unknown_not_saved'='normal';stateOverride:((row:any)=>any)|null=null;
+ fail:((q:string)=>void)|null=null;commit:'normal'|'unknown_saved'|'unknown_not_saved'|'rollback'='normal';stateOverride:((row:any)=>any)|null=null;
  pool={connect:async()=>{this.connects++;let tx:DB|null=null;
   return {query:async(sql:string,values:any[]=[])=>{
    const q=sql.replace(/\s+/g,' ').trim();this.calls.push({sql:q,values:structuredClone(values)});this.fail?.(q);
-   const result=(rows:any[],rowCount=rows.length)=>({rows:structuredClone(rows),rowCount});
+   const result=(rows:any[],rowCount=rows.length)=>({rows:structuredClone(rows),rowCount,command:q.split(' ')[0].toUpperCase()});
    if(q==='begin isolation level repeatable read'||q==='begin isolation level read committed'){tx=structuredClone(this.data);return result([]);}
-   if(q==='commit'){const mode=this.commit;this.commit='normal';if(mode!=='unknown_not_saved')this.data=tx!;tx=null;if(mode!=='normal')throw Error('PRIVATE_COMMIT_TRANSPORT');return result([]);}
+   if(q==='commit'){const mode=this.commit;this.commit='normal';if(!['unknown_not_saved','rollback'].includes(mode))this.data=tx!;tx=null;
+    if(mode==='rollback')return {...result([]),command:'ROLLBACK'};if(mode!=='normal')throw Error('PRIVATE_COMMIT_TRANSPORT');return result([]);}
    if(q==='rollback'){tx=null;return result([]);}
    assert(tx,'every store query must be in its caller-owned transaction');
    if(q.startsWith('select control_epoch'))return result(this.control?[this.control]:[]);
@@ -62,6 +63,13 @@ class Port {
 const app=(s:{sessionId:string;revision:number},id:string,mutation:unknown)=>({id,expectedSessionId:s.sessionId,expectedRevision:s.revision,mutation});
 const emptyProof=(input:Parameters<NonNullable<ProductionProfileStoreOptions['verifyEmptyAccount']>>[0],accountState:'new'|'existing_empty'='new'):VerifiedEmptyAccountBootstrap=>({kind:'verified_empty_account',ownerId:input.principal.ownerId,accountState,accountRevisionId:'registry-revision-1',evidenceRef:'fixture-registry-proof',legacySourceDigest:input.legacySourceDigest,verifiedAt:input.serverNow});
 const emptyLegacy=(p:Port)=>{p.legacy.settings=[];p.legacy.locations=[];p.legacy.subscribers=[];};
+
+test('PostgreSQL ROLLBACK command is never acknowledged as a committed profile mutation',async()=>{
+ const p=new Port(),store=p.store(),before=await store.snapshot(identity),saved=structuredClone(p.data);
+ p.commit='rollback';await assert.rejects(store.commitProfileMutation(identity,app(before,'rollback-command',
+  {kind:'rename',addressId:before.profile.locations[0].address.id,label:'Не збережено'})),/PRODUCTION_COMMIT_UNKNOWN/);
+ assert.deepEqual(p.data,saved);assert(!p.data.inbox[owner+'|rollback-command']);
+});
 
 test('default disabled, invalid principals and owner fields deny before pool access; control missing/legacy/disabled/epoch deny before owner/bootstrap',async()=>{
  const p=new Port();await assert.rejects(p.store({enabled:undefined}).snapshot(identity),/STORE_DISABLED/);assert.equal(p.connects,0);

@@ -1,5 +1,7 @@
 import {createSourceIntake,SOURCE_PROFILES,type CapturedPublicSourceRaw,type IntakeCode} from './source-intake.ts';
-import {technicalDisplaySourceRegistry} from './source-operating-policy.ts';
+import {technicalDisplaySourceRegistry,odesaPlanApiOperatingRecord} from './source-operating-policy.ts';
+import {projectOdesaPlanSnapshot,type OdesaPlanSnapshot} from './odesa-plan-source.ts';
+import {ODESA_PLAN_API_SOURCE} from '../domain/odesa-plan-api-adapter.ts';
 import {localParts,nextCalendarDate,validInstant,validateScheduleView} from '../../shared/schedule-core.ts';
 import {planMatchesDisplay} from '../../shared/schedule-binding.ts';
 import type {ScheduleView} from '../../shared/product-contract.ts';
@@ -12,7 +14,7 @@ const uuid=(v:unknown):v is string=>typeof v==='string'&&/^[a-f0-9]{8}-(?:[a-f0-
 const epoch=(v:unknown,expected:number)=>Boolean((typeof v==='number'&&Number.isSafeInteger(v)||typeof v==='string'&&/^[1-9]\d{0,15}$/.test(v))&&Number(v)===expected);
 const time=(v:unknown):number|null=>v instanceof Date&&Number.isFinite(v.getTime())?v.getTime():validInstant(v)?Date.parse(v):null;
 const canonical=(v:unknown):string=>v===null||typeof v!=='object'?JSON.stringify(v):Array.isArray(v)?'['+v.map(canonical).join(',')+']':'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical((v as Record<string,unknown>)[k])).join(',')+'}';
-const intakeCodes=new Set<string>(['UNKNOWN_SOURCE','INVALID_REQUEST','SOURCE_SCOPE_MISMATCH','SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_CLOCK_INVALID','SOURCE_BUSY','SOURCE_RATE_LIMITED','SOURCE_RATE_LIMIT_UNVERIFIED','SOURCE_TIMEOUT','SOURCE_TRANSPORT_FAILED','SOURCE_HTTP_REJECTED','SOURCE_ORIGIN_REJECTED','SOURCE_BODY_LIMIT','SOURCE_CONTENT_TYPE_REJECTED','SOURCE_UTF8_REJECTED','SOURCE_ENCODING_REJECTED','SOURCE_SCHEMA_REJECTED']);
+const intakeCodes=new Set<string>(['SOURCE_UPDATE_UNCONFIRMED','UNKNOWN_SOURCE','INVALID_REQUEST','SOURCE_SCOPE_MISMATCH','SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_CLOCK_INVALID','SOURCE_BUSY','SOURCE_RATE_LIMITED','SOURCE_RATE_LIMIT_UNVERIFIED','SOURCE_TIMEOUT','SOURCE_TRANSPORT_FAILED','SOURCE_HTTP_REJECTED','SOURCE_ORIGIN_REJECTED','SOURCE_BODY_LIMIT','SOURCE_CONTENT_TYPE_REJECTED','SOURCE_UTF8_REJECTED','SOURCE_ENCODING_REJECTED','SOURCE_SCHEMA_REJECTED']);
 /** Compare source semantics, allowing only the canonical ownership/label binding
  * rewrite and an explicitly WORSE stale label. No certificate is inferred.
  */
@@ -36,9 +38,9 @@ export interface CurrentRawScheduleFact {
  * The fact itself never authorizes either a notification or a personal binding.
  * Caller owns the transaction; this port never creates/releases one or uses IO.
  */
-export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:number;grantTtlMs?:number}){
+export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:number;grantTtlMs?:number;odesaPlanApiEnabled?:boolean}){
  const expected=options?.expectedControlEpoch,ttl=options?.grantTtlMs??1000;
- if(!Number.isSafeInteger(expected)||expected<1||!Number.isInteger(ttl)||ttl<1||ttl>5000)throw Error('INVALID_RUNTIME_SOURCE_PROOF_OPTIONS');
+ if(options.odesaPlanApiEnabled!==undefined&&typeof options.odesaPlanApiEnabled!=='boolean'||!Number.isSafeInteger(expected)||expected<1||!Number.isInteger(ttl)||ttl<1||ttl>5000)throw Error('INVALID_RUNTIME_SOURCE_PROOF_OPTIONS');
  return async(request:CurrentRawScheduleRequest):Promise<CurrentRawScheduleFact|null>=>{
   try{
    if(!request||request.signal.aborted||!validInstant(request.now))return null;
@@ -46,7 +48,7 @@ export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:n
    if(!shown||shown.synthetic!==false||![today,nextCalendarDate(today)].includes(shown.serviceDate)||
     typeof shown.source?.revision!=='string'||! /^[a-f0-9]{64}$/.test(shown.source.revision))return null;
    validateScheduleView(shown as ScheduleView);
-   const profile=SOURCE_PROFILES.find(p=>p.sourceId===shown.source.id),registry=technicalDisplaySourceRegistry(true),admission=registry.find(r=>r.sourceId===profile?.sourceId);
+   const profile=SOURCE_PROFILES.find(p=>p.sourceId===shown.source.id),registry=technicalDisplaySourceRegistry(true),admission=profile?.sourceId===ODESA_PLAN_API_SOURCE?odesaPlanApiOperatingRecord(options.odesaPlanApiEnabled===true):registry.find(r=>r.sourceId===profile?.sourceId);
    if(!profile||profile.automationBlocked||!admission||admission.state==='blocked'||profile.operatorId!==shown.operatorId||profile.namespace!==shown.namespace||
     now<Date.parse(admission.reviewedAt)||now>=Date.parse(admission.validUntil))return null;
    const control=(await request.client.query('select control_epoch,writer_mode from lba_production_control where id=true')).rows;
@@ -58,7 +60,8 @@ export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:n
    if(plans.length!==1||plans[0].source_id!==profile.sourceId||plans[0].target_id!==shown.targetId||plans[0].service_date!==shown.serviceDate||!uuid(plans[0].raw_id))return null;
    const raws=(await request.client.query('select source_id,run_id,observed_at,snapshot from lba_public_source_raw where id=$1 for share',[plans[0].raw_id])).rows;
    if(raws.length!==1||raws[0].source_id!==profile.sourceId||!uuid(raws[0].run_id)||!plain(raws[0].snapshot))return null;
-   const snapshot=raws[0].snapshot as unknown as CapturedPublicSourceRaw,observed=time(snapshot.observedAt);
+   const snapshot=raws[0].snapshot as unknown as CapturedPublicSourceRaw|OdesaPlanSnapshot,observed=time(snapshot.observedAt);
+   if(profile.sourceId===ODESA_PLAN_API_SOURCE&&((snapshot as OdesaPlanSnapshot).reservationToken!==raws[0].run_id||(snapshot as OdesaPlanSnapshot).controlEpoch!==expected))return null;
    if(observed===null||time(raws[0].observed_at)!==observed||observed>now||snapshot.rawSha256!==shown.source.revision)return null;
    const runs=(await request.client.query('select source_id,control_epoch,status,started_at,finished_at from lba_public_source_run where id=$1 for share',[raws[0].run_id])).rows;
    if(runs.length!==1||runs[0].source_id!==profile.sourceId||runs[0].status!=='published'||!epoch(runs[0].control_epoch,expected))return null;
@@ -71,8 +74,9 @@ export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:n
    const failedAfter=failure!==null&&attempted>=observed,superseded=succeeded>observed;
    const stale=failedAfter||superseded||now-observed>=admission.cacheTtlMs;
    const intake=createSourceIntake({registry,now:()=>now,transport:async()=>{throw Error('RUNTIME_SOURCE_PROOF_HTTP_FORBIDDEN');}});
-   const result=intake.projectSnapshot({sourceId:profile.sourceId,operatorId:profile.operatorId,namespace:profile.namespace,targetId:shown.targetId!,serviceDate:shown.serviceDate},snapshot,
-    {stale,...(failedAfter?{refreshFailure:failure as IntakeCode}:{})});
+   const sourceRequest={sourceId:profile.sourceId,operatorId:profile.operatorId,namespace:profile.namespace,targetId:shown.targetId!,serviceDate:shown.serviceDate},flags={stale,...(failedAfter?{refreshFailure:failure as IntakeCode}:{})};
+   const apiAdmission=profile.sourceId===ODESA_PLAN_API_SOURCE?odesaPlanApiOperatingRecord(options.odesaPlanApiEnabled===true):null;
+   const result=apiAdmission?projectOdesaPlanSnapshot(sourceRequest,snapshot,apiAdmission,request.now,flags):intake.projectSnapshot(sourceRequest,snapshot as CapturedPublicSourceRaw,flags);
    if(request.signal.aborted||result.state!=='available'||result.provenance.rawSha256!==shown.source.revision||!sameRawPlan(shown as ScheduleView,result.view))return null;
    return {kind:'current_raw_schedule_fact',sourceRevision:result.provenance.rawSha256,sourceVerifiedLevel:result.view.source.verifiedLevel,
     expiresAt:new Date(Math.min(now+ttl,Date.parse(admission.validUntil),shown.freshness==='current'?observed+admission.cacheTtlMs:Infinity)).toISOString(),addressBindingVerified:false,deliveryEligible:false};
@@ -84,7 +88,7 @@ export function createCurrentRawScheduleVerifier(options:{expectedControlEpoch:n
  * notification. Exact raw verification level remains mandatory here; an event
  * grant can only come from the separate certified event/outbox repository.
  */
-export function createRuntimeSourceProof(options:{expectedControlEpoch:number;grantTtlMs?:number}){
+export function createRuntimeSourceProof(options:{expectedControlEpoch:number;grantTtlMs?:number;odesaPlanApiEnabled?:boolean}){
  const verify=createCurrentRawScheduleVerifier(options),expected=options.expectedControlEpoch;
  return async(request:DispatchEligibilityRequest):Promise<CurrentDispatchSourceProof|null>=>{
   try{

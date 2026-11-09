@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {types} from 'node:util';
 import type {Express,RequestHandler} from 'express';
 import type {BotContext,BotState} from '../../shared/bot/types.ts';
 import {normalizeAddressText,houseMatchesQuery} from '../../shared/address-index.ts';
@@ -6,6 +7,9 @@ import {dayBounds,localParts} from '../../shared/schedule-core.ts';
 import type {createAddressCatalog,AddressSearchResult,AddressCandidateResult} from './address-catalog.ts';
 import {ProductionProfileStoreError,type createProductionProfileStore} from './profile-store.ts';
 import type {VerifiedLegacyPrincipal,LegacyProfileReadQuery,LegacyProfileReadPool} from './profile-reader.ts';
+import {createOperatorAddressFlow,type SharedOwnedLookupState} from './operator-address-flow.ts';
+import type {createOdesaAddressCatalog} from './odesa-address-catalog.ts';
+import {parseProviderAddressLookupV2} from '../domain/provider-address-lookup.ts';
 
 export const OWNED_ADDRESS_LOOKUP_SCHEMA_SQL=`
 create table if not exists lba_production_address_lookup (
@@ -26,7 +30,7 @@ const uuid=(v:unknown)=>typeof v==='string'&&/^[a-f0-9-]{36}$/.test(v);
 const fail=(code:string):never=>{throw new ProductionProfileStoreError(code);};
 const canonical=(v:unknown):string=>v===null||typeof v!=='object'?JSON.stringify(v):Array.isArray(v)?'['+v.map(canonical).join(',')+']':'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical((v as Record<string,unknown>)[k])).join(',')+'}';
 interface LookupRequest {id:string;expectedSessionId:string;expectedRevision:number;operation:'streets'|'houses'|'resolve';query?:string;streetSnapshotId?:string;streetId?:number;houseSnapshotId?:string;houseId?:number}
-type OwnedState={directoryId:string;optionIds:string[];optionExpiries?:Record<string,string>;catalogStatus:'ready'|'loading'|'unavailable';streets?:any;houses?:any};
+type OwnedState=SharedOwnedLookupState;
 function parse(value:unknown):LookupRequest{
  if(!obj(value)||Object.keys(value).some(k=>!['id','expectedSessionId','expectedRevision','operation','query','streetSnapshotId','streetId','houseSnapshotId','houseId','directoryId'].includes(k))||
   !id(value.id)||typeof value.expectedSessionId!=='string'||value.expectedSessionId.length>128||!value.expectedSessionId||!Number.isSafeInteger(value.expectedRevision)||value.expectedRevision<0||
@@ -42,20 +46,37 @@ function parse(value:unknown):LookupRequest{
 const empty=():OwnedState=>({directoryId:directory.id,optionIds:[],catalogStatus:'ready'});
 const copy=(v:OwnedState)=>structuredClone(v);
 export function createProductAddressFlow(options:{enabled?:boolean;store:Pick<ReturnType<typeof createProductionProfileStore>,'withLockedProfile'>;
- pool:LegacyProfileReadPool;catalog:ReturnType<typeof createAddressCatalog>;now:()=>string;refreshPublicContext:()=>Promise<void>}){
- const memory=new Map<string,OwnedState>(),key=(owner:string,session:string)=>JSON.stringify([owner,session]);
+ pool:LegacyProfileReadPool;catalog:ReturnType<typeof createAddressCatalog>;operatorCatalog?:ReturnType<typeof createOdesaAddressCatalog>;now:()=>string;refreshPublicContext:()=>Promise<void>}){
+ const memory=new Map<string,{state:OwnedState;generation:number;sequence:number}>(),key=(owner:string,session:string)=>JSON.stringify([owner,session]);
+ let memorySequence=0;
+ function publish(owner:string,session:string,state:OwnedState,generation:number){
+  if(!Number.isSafeInteger(generation)||generation<1)return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');
+  const ref=key(owner,session),prior=memory.get(ref);
+  // A late COMMIT acknowledgement or refresh cannot replace a newer lookup.
+  if(prior&&(prior.generation>generation||prior.generation===generation&&prior.state.catalogStatus!=='loading'&&state.catalogStatus==='loading'))return;
+  memory.set(ref,{state:copy(state),generation,sequence:++memorySequence});
+ }
+ const operatorFlow=options.operatorCatalog?createOperatorAddressFlow({enabled:options.enabled,store:options.store,catalog:options.operatorCatalog,
+  now:options.now,refreshPublicContext:options.refreshPublicContext,bridge:{get:(owner,session)=>memory.get(key(owner,session))?.state,set:publish}}):undefined;
  async function row(c:LegacyProfileReadQuery,owner:string,session:string){
   const rows=(await c.query('select operation_id as "operationId",input_digest as "inputDigest",generation,state from lba_production_address_lookup where owner_id=$1 and session_id=$2 for update',[owner,session])).rows;
   if(rows.length>1)return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');return rows[0];
  }
  async function refreshOwned(){
-  if(options.enabled!==true)return;const c=await options.pool.connect();
-  try{const rows=(await c.query('select q.owner_id,q.session_id,q.state from lba_production_address_lookup q join lba_production_profiles p on p.owner_id=q.owner_id and p.session_id=q.session_id limit 5001')).rows;
-   if(rows.length>5000)return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');memory.clear();for(const r of rows)if(obj(r.state)&&Array.isArray(r.state.optionIds))memory.set(key(r.owner_id,r.session_id),copy(r.state as OwnedState));
+  if(options.enabled!==true)return;const startedSequence=memorySequence,c=await options.pool.connect();
+  try{const rows=(await c.query('select q.owner_id,q.session_id,q.generation,q.state from lba_production_address_lookup q join lba_production_profiles p on p.owner_id=q.owner_id and p.session_id=q.session_id limit 5001')).rows;
+   if(rows.length>5000)return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');const seen=new Set<string>();
+   for(const r of rows){if(!obj(r.state)||!Array.isArray(r.state.optionIds))return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');seen.add(key(r.owner_id,r.session_id));publish(r.owner_id,r.session_id,r.state as OwnedState,Number(r.generation));}
+   for(const [ref,cached]of memory)if(!seen.has(ref)&&cached.sequence<=startedSequence)memory.delete(ref);
   }finally{c.release();}
  }
  async function lookup(identity:VerifiedLegacyPrincipal,raw:unknown):Promise<any>{
   if(options.enabled!==true)return {state:'disabled',code:'ADDRESS_FLOW_DISABLED'};
+  if(raw&&typeof raw==='object'&&types.isProxy(raw))return fail('ADDRESS_FLOW_INVALID_INPUT');
+  if(obj(raw)&&Object.hasOwn(raw,'schemaVersion')){
+   if(!operatorFlow){parseProviderAddressLookupV2(raw);return {state:'disabled',code:'ADDRESS_FLOW_DISABLED'};}
+   return operatorFlow.lookup(identity,raw);
+  }
   const request=parse(raw),digest=createHash('sha256').update(canonical(request)).digest('hex');
   const scope={sessionId:request.expectedSessionId,revision:request.expectedRevision};
   const reservation=await options.store.withLockedProfile(identity,scope,async({client,state,serverNow})=>{
@@ -70,19 +91,22 @@ export function createProductAddressFlow(options:{enabled?:boolean;store:Pick<Re
     if(typeof expires!=='string'||!Number.isFinite(Date.parse(expires))||Date.parse(expires)<=Date.parse(serverNow))return fail('ADDRESS_FLOW_SELECTION_CHANGED');
     return {generation:Number(old.generation),saved,replay};
    }
+   if(request.operation==='streets'){saved.directoryId=directory.id;delete saved.providerV2;}
    if(old?.operationId===request.id&&old.inputDigest!==digest)return fail('ADDRESS_FLOW_INPUT_ID_CONFLICT');
    if(request.operation!=='streets'&&(saved.streets?.snapshotId!==request.streetSnapshotId||!saved.streets.items?.some((v:any)=>v.id===request.streetId)))return fail('ADDRESS_FLOW_SELECTION_CHANGED');
    if(request.operation==='resolve'&&(saved.houses?.houseSnapshotId!==request.houseSnapshotId||saved.houses.streetId!==request.streetId||!saved.houses.items?.some((v:any)=>v.id===request.houseId)))return fail('ADDRESS_FLOW_SELECTION_CHANGED');
-   const generation=old?.operationId===request.id?Number(old.generation):Number(old?.generation??0)+1;
+   // Each unfinished retry gets a new generation. Only a committed available
+   // receipt is replayed above; overlapping same-ID attempts cannot both win.
+   const generation=Number(old?.generation??0)+1;
    if(!Number.isSafeInteger(generation)||generation<1)return fail('ADDRESS_FLOW_STORAGE_UNAVAILABLE');
    if(!previous.length)await client.query('insert into lba_production_address_lookup_requests(owner_id,session_id,operation_id,input_digest,result,recorded_at) values($1,$2,$3,$4,null,$5)',[identity.ownerId,state.sessionId,request.id,digest,serverNow]);
    const next={...saved,catalogStatus:'loading' as const};
    await client.query(`insert into lba_production_address_lookup(owner_id,session_id,operation_id,input_digest,generation,state,updated_at) values($1,$2,$3,$4,$5,$6::jsonb,$7)
     on conflict(owner_id,session_id) do update set operation_id=excluded.operation_id,input_digest=excluded.input_digest,generation=excluded.generation,state=excluded.state,updated_at=excluded.updated_at`,[identity.ownerId,state.sessionId,request.id,digest,generation,JSON.stringify(next),serverNow]);
    return {generation,saved,replay:null};
-  });
-  if(reservation.replay)return structuredClone(reservation.replay);
-  memory.set(key(identity.ownerId,request.expectedSessionId),{...reservation.saved,catalogStatus:'loading'});
+  },{isolation:'read committed'});
+  if(reservation.replay){publish(identity.ownerId,request.expectedSessionId,reservation.saved,reservation.generation);
+   if(request.operation==='resolve')await options.refreshPublicContext();return structuredClone(reservation.replay);}
   // The canonical owner transaction is closed before any bounded provider GET.
   let result:AddressSearchResult|AddressCandidateResult;
   if(request.operation==='streets')result=await options.catalog.searchStreets({namespace:directory.namespace,query:request.query});
@@ -115,17 +139,17 @@ export function createProductAddressFlow(options:{enabled?:boolean;store:Pick<Re
    await client.query('update lba_production_address_lookup set state=$3::jsonb,updated_at=$4 where owner_id=$1 and session_id=$2',[identity.ownerId,state.sessionId,JSON.stringify(saved),serverNow]);
    if(result.state==='available')await client.query('update lba_production_address_lookup_requests set result=$4::jsonb where owner_id=$1 and session_id=$2 and operation_id=$3',[identity.ownerId,state.sessionId,request.id,JSON.stringify(result)]);
    return copy(saved);
-  });
-  memory.set(key(identity.ownerId,request.expectedSessionId),committed);
+  },{isolation:'read committed'});
+  publish(identity.ownerId,request.expectedSessionId,committed,reservation.generation);
   if(request.operation==='resolve'&&result.state==='available')await options.refreshPublicContext();return result;
  }
  function forProfile(owner:string,state:BotState,now:string):Partial<BotContext>{
-  const saved=memory.get(key(owner,state.sessionId));if(options.enabled!==true)return {};
+  const saved=memory.get(key(owner,state.sessionId))?.state;if(options.enabled!==true)return {};
   const expires=(v:any)=>v&&v.state==='available'&&(!Number.isFinite(Date.parse(v.expiresAt))||Date.parse(v.expiresAt)<=Date.parse(now))?{...v,state:'stale',items:[]}:v;
-  return {providerDirectory:[directory],...(saved?.streets?{providerStreets:expires(saved.streets)}:{}),...(saved?.houses?{providerHouses:expires(saved.houses)}:{}),
+  return {providerDirectory:[directory],...(operatorFlow?.forProfile(owner,state,now)??{}),...(saved?.directoryId===directory.id&&saved?.streets?{providerStreets:expires(saved.streets)}:{}),...(saved?.directoryId===directory.id&&saved?.houses?{providerHouses:expires(saved.houses)}:{}),
    addressCatalogStatus:saved?.catalogStatus??'ready'} as Partial<BotContext>;
  }
- return Object.freeze({lookup,refreshOwned,forProfile,ownedOptionIds:(owner:string,session:string)=>{const saved=memory.get(key(owner,session)),now=Date.parse(options.now());return new Set((saved?.optionIds??[]).filter(id=>Date.parse(saved?.optionExpiries?.[id]??'')>now));}});
+ return Object.freeze({lookup,refreshOwned,forProfile,ownedOptionIds:(owner:string,session:string)=>{const saved=memory.get(key(owner,session))?.state,now=Date.parse(options.now());return new Set((saved?.optionIds??[]).filter(id=>Date.parse(saved?.optionExpiries?.[id]??'')>now));}});
 }
 export function registerProductAddressRoutes(app:Express,ports:{authenticate:RequestHandler;flow:ReturnType<typeof createProductAddressFlow>}){
  app.post('/api/product/address/lookup',ports.authenticate,async(req,res)=>{

@@ -1,3 +1,4 @@
+import {parseOperatorHouseNotices,currentOperatorHouseNotice,type AddressOperatorHouseNotice} from '../../shared/operator-house-notice.ts';
 import {createHash,randomUUID} from 'node:crypto';
 import {createBotState,handleBotInput,handleScheduleEvent,restoreBotState} from '../../shared/bot/engine.ts';
 import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState,BotAction} from '../../shared/bot/types.ts';
@@ -49,7 +50,7 @@ create index if not exists lba_production_profile_outbox_pending on lba_producti
 
 export interface ProductionProfileSnapshot {
   runtime:'production';profile:BotProfile;sessionId:string;revision:number;serverNow:string;
-  catalog:AddressOption[];plans:ScheduleView[];
+  catalog:AddressOption[];plans:ScheduleView[];operatorHouseNotices?:AddressOperatorHouseNotice[];
 }
 export interface ProductionProfileReceipt {
   runtime:'production';id:string;inputId:string;channel:'app'|'bot';committed:true;
@@ -197,15 +198,18 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
       if(Number(control.rows[0].controlEpoch)!==epoch)return fail('PRODUCTION_CONTROL_EPOCH_CONFLICT');
       await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))',['lba-production-owner:'+p.ownerId]);
       if(options.authorizePrincipal&&await options.authorizePrincipal({client,principal:structuredClone(p)})!==true)return fail('PRODUCTION_PRINCIPAL_REVOKED');
-      const value=await work(client,p);commitStarted=true;await client.query('commit');committed=true;return value;
+      const value=await work(client,p);commitStarted=true;
+      const acknowledgement=await client.query('commit');
+      if(acknowledgement.command!=='COMMIT')return fail('PRODUCTION_COMMIT_UNKNOWN');
+      committed=true;return value;
     }catch(error){
-      if(began&&!committed)try{await client.query('rollback');}catch{/* only stable public error codes */}
+      if(began&&!commitStarted&&!committed)try{await client.query('rollback');}catch{/* only stable public error codes */}
       if(commitStarted)return fail('PRODUCTION_COMMIT_UNKNOWN');
       if(error instanceof ProductionProfileStoreError)throw error;
       if(error instanceof Error&&/^(?:PROFILE_|LEGACY_READER_|LEGACY_PROFILE_|LEGACY_IDENTITY_)[A-Z_]+$/.test(error.message))return fail(error.message);
       if(['40001','40P01','23505'].includes(String((error as {code?:unknown})?.code??'')))return fail('PRODUCTION_TRANSACTION_RETRY_REQUIRED');
       return fail('PRODUCTION_TRANSACTION_UNCONFIRMED');
-    }finally{try{client.release();}catch{if(committed)return fail('PRODUCTION_COMMIT_UNKNOWN');}}
+    }finally{try{client.release(commitStarted&&!committed);}catch{if(committed)return fail('PRODUCTION_COMMIT_UNKNOWN');}}
   }
   async function state(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal):Promise<BotState>{
     const selected=await client.query(SELECT_STATE,[p.ownerId]);
@@ -266,9 +270,11 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
         'Це план групи, яку довідник указав для обраного будинку. Відповідність будинку ще потребує перевірки.';
       return exact?[unconfirmed?{...view,deliveryEligible:false,notice:[...new Set([view.notice,qualifier].filter(Boolean))].join('\n')}:view]:[];
     });
-    return {...copy,actorId:p.ownerId,now,plans};
+    let notices:AddressOperatorHouseNotice[]|undefined;
+    if(copy.operatorHouseNotices!==undefined){try{notices=parseOperatorHouseNotices(copy.operatorHouseNotices,[...current.profile.locations,...copy.addresses]).filter(n=>currentOperatorHouseNotice(n,now));}catch{return fail('PRODUCTION_CONTEXT_INVALID');}}
+    return {...copy,actorId:p.ownerId,now,plans,...(notices!==undefined?{operatorHouseNotices:notices}:{})};
   }
-  const snapshot=(current:BotState,ctx:BotContext):ProductionProfileSnapshot=>({runtime:'production',profile:structuredClone(current.profile),sessionId:current.sessionId,revision:current.revision,serverNow:ctx.now,catalog:structuredClone(ctx.addresses),plans:structuredClone(ctx.plans)});
+  const snapshot=(current:BotState,ctx:BotContext):ProductionProfileSnapshot=>({runtime:'production',profile:structuredClone(current.profile),sessionId:current.sessionId,revision:current.revision,serverNow:ctx.now,catalog:structuredClone(ctx.addresses),plans:structuredClone(ctx.plans),...(ctx.operatorHouseNotices!==undefined?{operatorHouseNotices:structuredClone(ctx.operatorHouseNotices.filter(n=>current.profile.locations.some(l=>l.address.id===n.addressId)))}:{})});
   async function replay(client:LegacyProfileReadClient,owner:string,inputId:string,inputDigest:string):Promise<ProductionProfileReceipt|null>{
     const previous=await client.query(SELECT_INBOX,[owner,inputId]);if(previous.rows.length>1)return fail('PRODUCTION_STORED_RECEIPT_INVALID');if(!previous.rows.length)return null;
     if(previous.rows[0].inputDigest!==inputDigest)return fail('PRODUCTION_INPUT_ID_CONFLICT');

@@ -2,7 +2,7 @@ import type { AddressOption, BotLocation, BotState } from '../../shared/bot/type
 import type { ProfileMutation, ProfilePreferences, ProfileRequest } from '../../shared/profile-mutation.ts';
 import { parseLocationNotificationPolicy, parseNotificationPolicy, syncLegacyPolicyChanges } from '../../shared/notification-policy.ts';
 import { MAX_PROFILE_ADDRESSES } from '../../shared/profile-constraints.ts';
-import { addressOptionFingerprint } from '../../shared/address-selection.ts';
+import { addressOptionFingerprint,confirmedAddressBinding } from '../../shared/address-selection.ts';
 
 const invalid = () => { throw new Error('INVALID_PROFILE_INPUT'); };
 function object(value: unknown): Record<string, unknown> {
@@ -122,7 +122,7 @@ export function applyProfileMutation(previous: BotState, request: ProfileRequest
     const duplicate = state.profile.locations.find(item => item.address.id === option.address.id &&
       (mutation.kind !== 'replace' || item.address.id !== mutation.addressId));
     if (duplicate) throw new Error('PROFILE_ADDRESS_ALREADY_SAVED');
-    const replacement: BotLocation = { address: { ...structuredClone(option.address), label: mutation.label }, binding: structuredClone(option.binding), paused: false, notifications: false };
+    const replacement: BotLocation = { address: { ...structuredClone(option.address), label: mutation.label }, binding: confirmedAddressBinding(option.binding), paused: false, notifications: false };
     if (mutation.kind === 'add') {
       if (state.profile.locations.length >= MAX_PROFILE_ADDRESSES) throw new Error('PROFILE_ADDRESS_LIMIT');
       state.profile.locations.push(replacement);

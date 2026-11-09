@@ -6,6 +6,7 @@ import {createProductionProfileStore} from '../../server/production/profile-stor
 import {createBotState} from '../../shared/bot/engine.ts';
 import {projectLegacyLiveProfile} from '../../server/production/legacy-profile.ts';
 import type {LegacyLiveProfileRead,VerifiedLegacyPrincipal} from '../../server/production/profile-reader.ts';
+import {assertProfileSnapshotResponse} from '../../client/src/product-runtime/profile-response.ts';
 
 const owner='fixture-live-owner',now='2026-11-08T18:00:00Z',releaseId='a'.repeat(64);
 const principal:VerifiedLegacyPrincipal={kind:'verified_server_principal',ownerId:owner,verified:true};
@@ -26,7 +27,7 @@ class Port {
  data:any;connects=0;calls:string[]=[];commit:'normal'|'unknown_saved'|'unknown_not_saved'='normal';
  constructor(){const state=createBotState({ownerId:owner,sessionId:'fixture-live-session'});state.profile.locations=[{address:{id:'fixture-home',label:'Дім',territoryId:'fixture-territory',locality:'Fixture locality',street:'Fixture street',house:{number:'1',literal:'1'},aliases:[]},binding:{addressId:'fixture-home',operatorId:'fixture-operator',namespace:'fixture:namespace',targetId:'1.1',kind:'user_selected_group',revisionId:'fixture-binding',status:'needs_confirmation',verifiedAt:null,effectiveFrom:null,effectiveUntil:null},notifications:false,paused:false}];state.profile.primaryAddressId='fixture-home';state.currentAddressId='fixture-home';this.data={state,inbox:{}};}
  pool={connect:async()=>{this.connects++;let tx:any;return {query:async(sql:string,values:any[]=[])=>{
-  const q=sql.replace(/\s+/g,' ').trim();this.calls.push(q);const result=(rows:any[],rowCount=rows.length)=>({rows:structuredClone(rows),rowCount});
+  const q=sql.replace(/\s+/g,' ').trim();this.calls.push(q);const result=(rows:any[],rowCount=rows.length)=>({rows:structuredClone(rows),rowCount,command:q.split(' ')[0].toUpperCase()});
   if(q.startsWith('begin isolation level ')){tx=structuredClone(this.data);return result([]);}
   if(q==='commit'){const mode=this.commit;this.commit='normal';if(mode!=='unknown_not_saved')this.data=tx;if(mode!=='normal')throw Error('PRIVATE_CONNECTION_DETAIL');return result([]);}
   if(q==='rollback')return result([]);
@@ -44,6 +45,14 @@ class Port {
  },release(){}};}};
  store(context:{addresses:any[];plans:any[]}={addresses:[],plans:[]}){return createProductionProfileStore({pool:this.pool,enabled:true,expectedControlEpoch:9,now:()=>now,context:()=>context});}
 }
+test('only the explicit server gate exposes the known v2 address capability',async()=>{
+ for(const enabled of [false,true]){
+  const p=new Port(),h=new Harness({mode:'active',releaseId,authenticate,store:p.store(),operatorLookupEnabled:enabled});
+  const value=(await h.call()).body;assert.equal(value.capabilities.addressLookupV2?.[0],enabled?'dtek:oem':undefined);
+  assertProfileSnapshotResponse(value,'live');
+  assert.throws(()=>assertProfileSnapshotResponse({...value,capabilities:{...value.capabilities,addressLookupV2:['unrecognized-provider']}},'live'),e=>(e as {code?:string}).code==='LIVE_PROFILE_UNAVAILABLE');
+ }
+});
 const active=(store:ReturnType<Port['store']>)=>new Harness({mode:'active',releaseId,authenticate,store});
 const request=(revision=0,id='fixture-request')=>({id,expectedSessionId:'fixture-live-session',expectedRevision:revision,mutation:{kind:'rename',addressId:'fixture-home',label:'Нова мітка'}});
 const readFixture=():LegacyLiveProfileRead=>({version:'lba-live-legacy-reader/1',status:'ready',projection:projectLegacyLiveProfile({ownerId:owner,identity:principal,settings:null,locations:[],subscribers:[]}),sourceDigest:'f'.repeat(64),projectionDigest:'e'.repeat(64),serverNow:now,counts:{settings:0,locations:0,directlyOwnedSubscribers:0,verifiedMappedNullSubscribers:0,selectedSubscribers:0,verifiedMappings:0,missingVerifiedMappings:0,unresolvedSettingsReferences:0},completeness:{ownerRows:'reconciled',selectedColumnsOnly:true,otherLegacyColumns:'not_read_not_modified',globalOrphans:'not_scanned_outside_owner_scope'},blockers:[]});

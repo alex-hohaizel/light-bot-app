@@ -11,6 +11,13 @@ const telegram = {
   TELEGRAM_WEBHOOK_SECRET: 'existing_provider_secret',
 };
 const canonical={...telegram,LBA_PRODUCT_PROFILE_MODE:'active',LBA_AUTH_REPLAY_GUARD:'enabled',LBA_CANONICAL_CONTROL_EPOCH:'7'};
+test('operator address lookup is an explicit effect gate and requires the source service',()=>{
+  assert.equal(productionRuntimePolicy({...base,...canonical}).operatorAddressLookupEnabled,false);
+  assert.throws(()=>productionRuntimePolicy({...base,...canonical,LBA_OPERATOR_ADDRESS_LOOKUP:'enabled'}),e=>e instanceof RuntimePolicyError&&e.code==='LBA_RUNTIME_OPERATOR_ADDRESS_LOOKUP_REQUIRES_SOURCE');
+  const enabled=productionRuntimePolicy({...base,...canonical,LBA_SOURCE_INGESTION:'enabled',LBA_OPERATOR_ADDRESS_LOOKUP:'enabled'});
+  assert.equal(enabled.operatorAddressLookupEnabled,true);assert.equal(enabled.telegramDeliveryEnabled,false);assert.equal(enabled.notificationSchedulerEnabled,false);
+  assert.throws(()=>productionRuntimePolicy({...base,...canonical,LBA_SOURCE_INGESTION:'enabled',LBA_OPERATOR_ADDRESS_LOOKUP:'true'}),e=>e instanceof RuntimePolicyError&&e.code==='LBA_RUNTIME_INVALID_LBA_OPERATOR_ADDRESS_LOOKUP');
+});
 function refuses(env: RuntimeEnvironment, code: string) {
   assert.throws(() => productionRuntimePolicy(env), error => error instanceof RuntimePolicyError && error.code === code);
 }
@@ -103,4 +110,11 @@ test('provider secret format preserves an existing permitted value without impli
   }
   for (const secret of ['a.b', 'x'.repeat(257), 'тест'])
     refuses({ ...base, ...canonical, TELEGRAM_WEBHOOK_SECRET: secret, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_WEBHOOK_SECRET_INVALID');
+});
+test('DTEK plan API is a separate explicit effect gate without enabling Telegram or profile installation effects',()=>{
+ assert.equal(productionRuntimePolicy({...base,...canonical}).odesaPlanApiEnabled,false);
+ refuses({...base,...canonical,LBA_ODESA_PLAN_API:'enabled'},'LBA_RUNTIME_ODESA_PLAN_API_REQUIRES_SOURCE');
+ refuses({...base,...canonical,LBA_SOURCE_INGESTION:'enabled',LBA_ODESA_PLAN_API:'true'},'LBA_RUNTIME_INVALID_LBA_ODESA_PLAN_API');
+ const policy=productionRuntimePolicy({...base,...canonical,LBA_SOURCE_INGESTION:'enabled',LBA_ODESA_PLAN_API:'enabled'});
+ assert.equal(policy.odesaPlanApiEnabled,true);assert.equal(policy.operatorAddressLookupEnabled,false);assert.equal(policy.telegramUpdatesEnabled,false);assert.equal(policy.telegramDeliveryEnabled,false);assert.equal(policy.notificationSchedulerEnabled,false);assert.equal(policy.autoSetWebhook,false);
 });

@@ -42,6 +42,7 @@ export interface BotProviderDirectory {
   id:string;namespace:string;operatorId:string;localityId:string;locality:string;
   territoryId:string;territoryLabel:string;
 }
+import type {AddressOperatorHouseNotice} from '../operator-house-notice.ts';
 export type BotProviderLookupState='available'|'loading'|'unavailable'|'deferred'|'stale';
 export interface BotProviderStreets {
   directoryId:string;state:BotProviderLookupState;query:string;snapshotId?:string;expiresAt?:string;
@@ -52,13 +53,37 @@ export interface BotProviderHouses {
   streetSnapshotId:string;houseSnapshotId?:string;expiresAt?:string;
   items:Array<{id:number;value:string;optionId?:string}>;code?:string;retryAt?:string;
 }
-export type BotStage = 'home' | 'addresses' | 'settings' | 'locality' | 'street' | 'street_choice' |
+/** Versioned opaque provider keys. Numeric YASNO v1 contracts stay unchanged. */
+export interface BotProviderDirectoryV2 {
+  id:'dtek:oem';namespace:'dtek:oem';operatorId:'dtek-oem';territoryId:'source:dtek:oem';
+  label:string;localitySelection:'required';
+}
+export interface BotProviderSnapshotV2 {
+  kind:'lba-provider-address-snapshot/2';id:string;revisionId:string;namespace:'dtek:oem';
+  level:'localities'|'streets'|'houses';catalogSnapshotId:string;cityKey?:string;streetKey?:string;
+  observedAt:string;expiresAt:string;items:Array<{key:string;value:string;optionIds?:string[]}>;
+  offset:number;hasMore:boolean;catalogCompleteness:'unknown';
+}
+export interface BotProviderLookupStageV2 {
+  state:'available'|'loading'|'disabled'|'unavailable'|'deferred'|'stale';query:string;
+  code?:string;retryAt?:string;snapshot?:BotProviderSnapshotV2;
+}
+export interface BotProviderLookupV2 {
+  directoryId:'dtek:oem';localities?:BotProviderLookupStageV2;streets?:BotProviderLookupStageV2;houses?:BotProviderLookupStageV2;
+  selectedHouse?:{state:'available'|'stale';catalogSnapshotId:string;houseSnapshotId:string;cityKey:string;streetKey:string;houseKey:string;
+    options:AddressOption[];observedAt:string;expiresAt:string;operatorHouseNotice?:AddressOperatorHouseNotice};
+}
+export type BotStage = 'home' | 'addresses' | 'settings' | 'locality' | 'provider_locality' | 'street' | 'street_choice' |
   'house' | 'connection' | 'address_confirm' | 'subscription' | 'location' | 'rename' |
   'delete_confirm' | 'reminder_time' | 'quiet_hours' | 'briefing_time' | 'minimum_duration' |
   'reminder_off_time' | 'reminder_on_time' | 'push_off_time' | 'push_on_time' |
   'manual_group' | 'reset_confirm' | 'report' | 'menu' | 'tools' | 'account' | 'help' |
   'telegram' | 'push' | 'timing' | 'location_manage' | 'location_order' |
   'location_notifications' | 'location_telegram' | 'location_push' | 'location_tools';
+export interface BotProviderDraftV2 {
+  directoryId:'dtek:oem';localityQuery?:string;catalogSnapshotId?:string;cityKey?:string;
+  streetQuery?:string;streetKey?:string;houseQuery?:string;houseSnapshotId?:string;houseKey?:string;
+}
 export interface AddressDraft {
   operation: 'add' | 'edit';
   originalAddressId?: string;
@@ -77,6 +102,8 @@ export interface AddressDraft {
   providerStreetId?:number;
   providerStreetSnapshotId?:string;
   providerHouseSnapshotId?:string;
+  /** Private opaque source selection; never serialized into Telegram wire data. */
+  providerV2?:BotProviderDraftV2;
   label?: string;
   resumeStage: BotStage;
 }
@@ -87,6 +114,7 @@ export type CallbackAction =
   | { kind: 'street'; value: string }
   | { kind: 'provider_street'; value: string }
   | { kind: 'provider_house'; value: string }
+  | { kind:'provider_v2_directory'|'provider_v2_city'|'provider_v2_street'|'provider_v2_house'|'provider_v2_group'|'provider_v2_unknown_group'|'provider_v2_page'|'provider_v2_batch'|'provider_v2_retry';value:string }
   | { kind: 'connection'; value: string }
   | { kind: 'house_suggestion'; value: string }
   | { kind: 'place'; value: string }
@@ -135,12 +163,16 @@ export interface BotContext {
   now: string;
   addresses: AddressOption[];
   plans: ScheduleView[];
+  /** Ephemeral saved/owned lookup reports; public snapshots include saved addresses only. */
+  operatorHouseNotices?:AddressOperatorHouseNotice[];
   manualGroups?: ManualGroup[];
   operatorLabels?: Readonly<Record<string,string>>;
   addressCatalogStatus?: 'ready' | 'loading' | 'unavailable';
   providerDirectory?:BotProviderDirectory[];
   providerStreets?:BotProviderStreets;
   providerHouses?:BotProviderHouses;
+  providerDirectoriesV2?:BotProviderDirectoryV2[];
+  providerLookupV2?:BotProviderLookupV2;
   maxAddresses?: number;
   callbackTtlSeconds?: number;
   migration?: { status: 'needs_confirmation' | 'in_progress' | 'complete' | 'failed'; detail?: string };

@@ -1,4 +1,4 @@
-import type { AddressRecord } from './product-contract.ts';
+import type { AddressRecord,AddressBinding } from './product-contract.ts';
 import type { AddressOption } from './bot/types.ts';
 import { normalizeAddressText } from './address-index.ts';
 
@@ -26,4 +26,17 @@ export function addressOptionFingerprint(option: AddressOption): string {
     b.effectiveUntil,option.territoryLabel,option.connectionLabel??null]);
   if(value.length>32768)throw new Error('ADDRESS_SELECTION_TOO_LARGE');
   return value;
+}
+
+/** Choosing one of several operator-listed groups records the person's choice,
+ * without resolving the building's electrical ambiguity or granting delivery.
+ * Call only AFTER exact option/fingerprint and explicit owner confirmation.
+ */
+export function isManualDtekGroupChoice(binding:AddressBinding):boolean {
+  return binding.operatorId==='dtek-oem'&&binding.namespace==='dtek:oem'&&binding.kind==='operator_group'&&binding.status==='ambiguous'&&
+    /^GPV[1-6]\.[12]$/.test(binding.targetId??'')&&binding.verifiedAt===null&&binding.effectiveFrom===null&&binding.effectiveUntil===null;
+}
+export function confirmedAddressBinding(binding:AddressBinding):AddressBinding {
+  const copy=structuredClone(binding);
+  return isManualDtekGroupChoice(binding)?{...copy,kind:'user_selected_group',status:'needs_confirmation',verifiedAt:null,effectiveFrom:null,effectiveUntil:null}:copy;
 }

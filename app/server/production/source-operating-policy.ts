@@ -1,3 +1,4 @@
+import type {OdesaPlanOperatingRecord} from './odesa-plan-source.ts';
 import {SOURCE_PROFILES,type SourceAdmission,type TechnicalDisplayAdmission} from './source-intake.ts';
 
 /** Shared by plan ingestion and public address lookup, never a provider quota. */
@@ -90,4 +91,20 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
    ...(comparedMirror?{semanticScope:ODESA_9NOV_SEMANTIC_SCOPE}:{}),...(kharkiv?{publicationScope:KHARKIV_9NOV_PUBLICATION_SCOPE}:{})};
   return record;
  });
+}
+
+/** Separate operation/dated local technical-display review. Robots crawler rules
+ * are recorded as observed, never relabeled allowed or provider authorization.
+ * This grants no personal binding, source qualification, notification or SLA. */
+export function odesaPlanApiOperatingRecord(enabled=false):Readonly<OdesaPlanOperatingRecord>|null {
+ if(enabled!==true)return null;
+ return Object.freeze({kind:'lba-odesa-plan-operating-record/1',sourceId:'dtek-oem-public-plan-ajax',state:'technical_display',
+  revisionId:'odesa-browser-api/2026-11-09/typed2hop-fact-update',reviewedAt:'2026-11-09T13:18:05.574Z',validUntil:'2026-11-09T22:00:00Z',
+  accessCost:0,costEvidence:'9Nov ordinary anonymous guest GET + AJAX POST returned JSON without payment/API key; point observation, not a future price promise.',
+  publicationBasis:Object.freeze({kind:'official_public_browser_api',evidence:'Official discon-schedule.js61de43eaff514b0b3726f38922d0745d17e98307989d424fc895f79cb68115a3; actual JSON65b132a17c1b7196b6d4c56bbec45be18e83581290b4e4bf9ebe6d29e72843e8, fact.update09.11.2026 10:52. Native diagnostic is not production client proof.'}),
+  robots:Object.freeze({status:'crawler_disallow_observed',interpretation:'not_access_authorization',evidence:'9Nov wildcardDisallow:/ raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991; recorded crawler policy, no claim of reuse permission. Separate public browser API action under owner scope; no challenge bypass or repeated HTML scraping.'}),
+  formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
+  rate:Object.freeze({kind:'local_operating_budget',scope:'origin',minIntervalMs:7500,evidence:'Shared CAS origin budget with address lookup; two requests at >=7.5s start spacing, <=30s deadline, five-minute plan cadence. Local limits only; stop/hold on access rejection.'}),
+  cacheTtlMs:300000,maxAgeMs:7200000,cursorStrategy:'previous_kyiv_day_midnight_complete_matrix',
+  addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false});
 }

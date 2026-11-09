@@ -1,13 +1,15 @@
+import {formatOperatorHouseNotice,currentOperatorHouseNotice,operatorHouseScope} from '../operator-house-notice.ts';
 import type { AddressRecord, ScheduleEvent, ScheduleView } from '../product-contract.ts';
-import { canDeliver, validInstant } from '../schedule-core.ts';
+import { canDeliver, validInstant,localParts,dayBounds } from '../schedule-core.ts';
 import { normalizeHouse,normalizeAddressText,parseStreetName,streetMatchesQuery,localityMatchesQuery,houseMatchesQuery,houseLookalikeSuggestion,placeNameMatchesQuery } from '../address-index.ts';
-import { addressLocalityKey,addressStreetKey,addressOptionFingerprint } from '../address-selection.ts';
+import { addressLocalityKey,addressStreetKey,addressOptionFingerprint,confirmedAddressBinding } from '../address-selection.ts';
 import { MAX_PROFILE_ADDRESSES, ADDRESS_PAGE_SIZE } from '../profile-constraints.ts';
+import {formatMinutesDuration} from '../time-label.ts';
 import { BOT_COPY, COPY, NOTIFICATION_COPY, formatNotification, formatNotificationSettings, formatScheduleText } from './copy.ts';
 import { defaultNotificationPolicy, parseNotificationPolicy, parseLocationNotificationPolicy, resolveNotificationPolicy,
   reminderLeadMinutes, reminderDurationEligible, syncLegacyPolicyChanges, type NotificationChannel, type ReminderEdge } from '../notification-policy.ts';
 import type { AddressDraft, AddressOption, BotAction, BotContext, BotInput, BotLocation,
-  BotMessage, BotProfile, BotStage, BotState, BotTurn, CallbackAction } from './types.ts';
+  BotMessage, BotProfile, BotStage, BotState, BotTurn, CallbackAction,BotProviderDraftV2,BotProviderSnapshotV2 } from './types.ts';
 export type * from './types.ts';
 export { COPY, formatNotification, formatScheduleText } from './copy.ts';
 
@@ -46,6 +48,75 @@ function rejected(state: BotState, inputId: string, reason: NonNullable<BotTurn[
     actions: [], requiresCommit: false, rejected: reason };
 }
 
+const v2Uuid=(v:unknown):v is string=>typeof v==='string'&&v.length===36&&/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(v);
+const v2Canonical=(v:unknown):string=>v===null||typeof v!=='object'?JSON.stringify(v):Array.isArray(v)?'['+v.map(v2Canonical).join(',')+']':'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+v2Canonical((v as Record<string,unknown>)[k])).join(',')+'}';
+function v2Text(v:unknown,max=300):v is string {
+ if(typeof v!=='string'||!v.trim()||v.length>max||/[\p{Cc}\p{Cf}]/u.test(v))return false;
+ for(let i=0;i<v.length;i++){const c=v.charCodeAt(i);if(c>=0xd800&&c<=0xdbff){const n=v.charCodeAt(++i);if(!(n>=0xdc00&&n<=0xdfff))return false;}else if(c>=0xdc00&&c<=0xdfff)return false;}return true;
+}
+/** Persisted drafts are checked before use; old numeric v1 fields are separate. */
+export function readProviderV2Draft(value:unknown):BotProviderDraftV2|null {
+ try{
+  if(!value||typeof value!=='object'||Array.isArray(value)||![Object.prototype,null].includes(Object.getPrototypeOf(value)))return null;
+  const fields=Object.getOwnPropertyDescriptors(value),allowed=['directoryId','localityQuery','catalogSnapshotId','cityKey','streetQuery','streetKey','houseQuery','houseSnapshotId','houseKey'];
+  if(Reflect.ownKeys(value).some(k=>typeof k!=='string'||!allowed.includes(k)||!Object.hasOwn(fields[k],'value'))||fields.directoryId?.value!=='dtek:oem')return null;
+  const draft=Object.fromEntries(Object.entries(fields).map(([k,d])=>[k,d.value])) as unknown as BotProviderDraftV2;
+  for(const name of allowed.slice(1)){if(!Object.hasOwn(draft,name))continue;const v=(draft as any)[name];if(name.endsWith('SnapshotId')?!v2Uuid(v):!v2Text(v,name.endsWith('Query')||name==='houseKey'?100:300))return null;}
+  if(Boolean(draft.catalogSnapshotId)!==Boolean(draft.cityKey)||draft.streetKey&&!draft.cityKey||draft.streetQuery&&!draft.cityKey||draft.houseQuery&&!draft.streetKey||
+   Boolean(draft.houseSnapshotId)!==Boolean(draft.houseKey)||draft.houseKey&&!draft.streetKey)return null;
+  return draft;
+ }catch{return null;}
+}
+type V2Tuple=[string,string]|[string,string,string]|[string,string,string,string,string]|[string,string,string,string,string,string,string]|[string,string|null,string|null,string|null,string]|
+ ['localities'|'streets'|'houses',string,string,string|null,string|null,string,number,number];
+export function readProviderV2Tuple(kind:string,value:unknown):V2Tuple|null {
+ try{
+  if(typeof value!=='string'||value.length>35000)return null;const t:unknown=JSON.parse(value);if(!Array.isArray(t))return null;
+  if(kind==='provider_v2_city')return t.length===2&&v2Uuid(t[0])&&v2Text(t[1])?t as [string,string]:null;
+  if(kind==='provider_v2_street')return t.length===3&&v2Uuid(t[0])&&v2Text(t[1])&&v2Text(t[2])?t as [string,string,string]:null;
+  if(kind==='provider_v2_retry')return t.length===5&&['localities','streets','houses'].includes(t[0])&&v2Text(t[4],100)&&
+   (t[0]==='localities'?t[1]===null&&t[2]===null&&t[3]===null:v2Uuid(t[1])&&v2Text(t[2])&&(t[0]==='streets'?t[3]===null:v2Text(t[3])))?t as V2Tuple:null;
+  if(['provider_v2_house','provider_v2_unknown_group','provider_v2_group'].includes(kind)){
+   const length=kind==='provider_v2_group'?7:5;
+   return t.length===length&&v2Uuid(t[0])&&v2Uuid(t[1])&&v2Text(t[2])&&v2Text(t[3])&&v2Text(t[4],100)&&
+    (length===5||v2Text(t[5],512)&&v2Text(t[6],32768))?t as V2Tuple:null;
+  }
+  if(!['provider_v2_page','provider_v2_batch'].includes(kind)||t.length!==8||!['localities','streets','houses'].includes(t[0])||!v2Uuid(t[1])||!v2Uuid(t[2])||!v2Text(t[5],100)||
+   !Number.isSafeInteger(t[6])||t[6]<0||t[6]>20000||!Number.isSafeInteger(t[7])||t[7]<0||t[7]>(kind==='provider_v2_page'?9:20000))return null;
+  if(t[0]==='localities'?(t[1]!==t[2]||t[3]!==null||t[4]!==null):!v2Text(t[3])||t[0]==='streets'&&t[4]!==null||t[0]==='houses'&&!v2Text(t[4]))return null;
+  if(kind==='provider_v2_batch'&&Math.abs(t[7]-t[6])!==30)return null;return t as V2Tuple;
+ }catch{return null;}
+}
+/** Same current-page/lineage gate for engine callbacks and server preflight. */
+export function providerV2SnapshotForState(state:BotState,context:Pick<BotContext,'now'|'providerDirectoriesV2'|'providerLookupV2'>,level:BotProviderSnapshotV2['level']):BotProviderSnapshotV2|null {
+ try{
+  const d=readProviderV2Draft(state.draft?.providerV2),p=context.providerLookupV2;
+  if(!d||p?.directoryId!=='dtek:oem'||!validInstant(context.now)||!Array.isArray(context.providerDirectoriesV2)||context.providerDirectoriesV2.filter(v=>v?.id==='dtek:oem').length!==1||context.providerDirectoriesV2.filter(v=>v?.id==='dtek:oem'&&v.namespace==='dtek:oem'&&v.operatorId==='dtek-oem'&&v.territoryId==='source:dtek:oem'&&v.localitySelection==='required').length!==1)return null;
+  const stage=p[level],s=stage?.snapshot,query=level==='localities'?d.localityQuery:level==='streets'?d.streetQuery:d.houseQuery;
+  if(!stage||stage.state!=='available'||!v2Text(query,100)||stage.query!==query||normalizeAddressText(query).length<(level==='houses'?1:2)||
+   !s||s.kind!=='lba-provider-address-snapshot/2'||s.namespace!=='dtek:oem'||s.level!==level||!v2Uuid(s.id)||!v2Uuid(s.catalogSnapshotId)||!v2Text(s.revisionId,255)||
+   !validInstant(s.observedAt)||!validInstant(s.expiresAt)||Date.parse(s.observedAt)>Date.parse(context.now)||Date.parse(s.expiresAt)<=Date.parse(context.now)||Date.parse(s.expiresAt)<=Date.parse(s.observedAt)||Date.parse(s.expiresAt)>Date.parse(s.observedAt)+600000||Date.parse(s.expiresAt)>dayBounds(localParts(Date.parse(s.observedAt)).date).end||
+   localParts(Date.parse(s.observedAt)).date!==localParts(Date.parse(context.now)).date||!Array.isArray(s.items)||s.items.length>30||
+   s.items.some(v=>!v||!v2Text(v.key,level==='houses'?100:300)||!v2Text(v.value,level==='houses'?100:300))||new Set(s.items.map(v=>v.key)).size!==s.items.length||
+   !Number.isSafeInteger(s.offset)||s.offset<0||s.offset>20000||typeof s.hasMore!=='boolean'||s.hasMore&&s.items.length!==30||s.catalogCompleteness!=='unknown')return null;
+  if(level==='localities')return s.id===s.catalogSnapshotId&&s.cityKey===undefined&&s.streetKey===undefined?s:null;
+  const cities=providerV2SnapshotForState(state,context,'localities');
+  if(!cities||cities.id!==d.catalogSnapshotId||s.catalogSnapshotId!==d.catalogSnapshotId||s.cityKey!==d.cityKey||!cities.items.some(v=>v.key===d.cityKey)||Date.parse(s.expiresAt)>Date.parse(cities.expiresAt))return null;
+  if(level==='streets')return s.id===d.catalogSnapshotId&&s.streetKey===undefined?s:null;
+  const streets=providerV2SnapshotForState(state,context,'streets');
+  return streets&&s.streetKey===d.streetKey&&streets.items.some(v=>v.key===d.streetKey)&&Date.parse(s.expiresAt)<=Date.parse(streets.expiresAt)?s:null;
+ }catch{return null;}
+}
+export function providerV2PageItems<T>(state:BotState,items:readonly T[]):T[] {
+ const page=state.catalogPage??0;
+ return Number.isSafeInteger(page)&&page>=0&&page<Math.max(1,Math.ceil(items.length/ADDRESS_PAGE_SIZE))?items.slice(page*ADDRESS_PAGE_SIZE,(page+1)*ADDRESS_PAGE_SIZE):[];
+}
+export function providerV2BatchAllowed(state:BotState,s:BotProviderSnapshotV2,target:number):boolean {
+ const stage=s.level==='localities'?'provider_locality':s.level==='streets'?'street_choice':'house',page=state.catalogPage??0;
+ return state.stage===stage&&Number.isSafeInteger(page)&&page>=0&&page<=Math.max(0,Math.ceil(s.items.length/ADDRESS_PAGE_SIZE)-1)&&Number.isSafeInteger(target)&&target>=0&&target<=20000&&
+  (target===s.offset-30&&page===0||target===s.offset+30&&s.hasMore&&page===Math.max(0,Math.ceil(s.items.length/ADDRESS_PAGE_SIZE)-1));
+}
+
 export function handleBotInput(previous: BotState, input: BotInput, context: BotContext): BotTurn {
   if (!previous || previous.schemaVersion !== 'lba-bot/1' || previous.profile?.id !== previous.ownerId) {
     return rejected(previous, input.id, 'invalid_state', BOT_COPY.engineText001);
@@ -59,6 +130,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
   }
   if(input.kind!=='callback'&&input.text.length>4096)return rejected(previous,input.id,'invalid_state','Повідомлення завелике. Введіть коротку назву, номер або скористайтеся кнопками. Чернетку збережено.');
   if (previous.processedInputIds.includes(input.id)) return { state: previous, messages: [], actions: [], requiresCommit: false, duplicate: true };
+  if(previous.draft&&Object.hasOwn(previous.draft,'providerV2')&&!readProviderV2Draft(previous.draft.providerV2))return rejected(previous,input.id,'invalid_state','Чернетка пошуку пошкоджена. Відкрийте застосунок або зверніться до підтримки; збережені адреси не змінено.');
 
   let callback: CallbackAction | null = null;
   let callbackFailure: BotTurn['rejected'];
@@ -70,6 +142,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     else if (record.ownerId !== context.actorId) return rejected(previous, input.id, 'foreign_actor', COPY.foreignButton);
     else if (record.consumed || record.stateRevision !== previous.revision) invalidCallback('stale_callback', COPY.staleButton);
     else if (!validInstant(record.expiresAt) || Date.parse(record.expiresAt) <= Date.parse(context.now)) invalidCallback('expired_callback', COPY.expiredButton);
+    else if(!record.action||typeof record.action!=='object'||Array.isArray(record.action)||typeof record.action.kind!=='string')invalidCallback('unknown_callback',COPY.unknownButton);
     else callback = record.action;
   }
   const state = clone(previous);
@@ -99,7 +172,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
   const hasTypedPolicy = () => Boolean(state.profile.preferences.notificationPolicy || state.profile.locations.some(item => item.notificationPolicy));
   const navigation = () => [commandButton('Мій план', '/start'), commandButton('Меню', '/menu')];
   const addressLimit = Number.isInteger(context.maxAddresses) && context.maxAddresses! >= 0 ? Math.min(context.maxAddresses!, MAX_PROFILE_ADDRESSES) : MAX_PROFILE_ADDRESSES;
-  const addressWizardStages: BotStage[] = ['locality', 'street', 'street_choice', 'house', 'connection', 'address_confirm'];
+  const addressWizardStages: BotStage[] = ['locality', 'provider_locality','street', 'street_choice', 'house', 'connection', 'address_confirm'];
   const leadStages: BotStage[] = ['reminder_off_time', 'reminder_on_time', 'push_off_time', 'push_on_time'];
   const wizardNav = () => [commandButton(BOT_COPY.engineText005, '/back'), commandButton(BOT_COPY.engineText006, '/cancel')];
   const providerText=(v:unknown,max=200):v is string=>typeof v==='string'&&Boolean(v.trim())&&v.length<=max&&!/[\u0000-\u001f\u007f]/.test(v);
@@ -109,7 +182,9 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     context.providerDirectory!.filter(other=>other?.id===d.id).length===1&&
     context.providerDirectory!.filter(other=>other?.namespace===d.namespace&&other?.territoryId===d.territoryId&&other?.localityId===d.localityId).length===1);
   const providerDirectory=()=>directories().find(d=>d.id===state.draft?.providerDirectoryId);
-  const catalogUnavailable=()=>!providerDirectory()&&(context.addressCatalogStatus==='loading'||context.addressCatalogStatus==='unavailable');
+  const isV2=()=>Boolean(state.draft?.providerV2);
+  const directoriesV2=()=>Array.isArray(context.providerDirectoriesV2)?context.providerDirectoriesV2.filter(d=>d&&d.id==='dtek:oem'&&d.namespace==='dtek:oem'&&d.operatorId==='dtek-oem'&&d.territoryId==='source:dtek:oem'&&d.localitySelection==='required'&&v2Text(d.label)&&context.providerDirectoriesV2!.filter(x=>x?.id===d.id).length===1):[];
+  const catalogUnavailable=()=>!isV2()&&!providerDirectory()&&(context.addressCatalogStatus==='loading'||context.addressCatalogStatus==='unavailable');
   const showCatalogUnavailable=()=>message(context.addressCatalogStatus==='loading'
     ?'Оновлюємо довідник адрес. Зачекайте трохи й повторіть вибір. Чернетку збережено; нову адресу ще не додано.'
     :'Тимчасово не вдалося отримати довідник адрес. Це не означає, що вашого будинку немає. Чернетку збережено — повторіть вибір пізніше.',wizardNav());
@@ -118,7 +193,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     (o.address.territoryId === state.draft.territoryId && (state.draft.localityId
       ? o.address.localityId===state.draft.localityId
       : [o.address.locality,...(o.address.localityAliases??[])].some(name=>localityMatchesQuery(name,state.draft!.locality!)))));
-  const streetOptions = () => scopedOptions().filter(o => state.draft?.streetIdentity
+  const streetOptions = () => isV2()?v2Options():scopedOptions().filter(o => state.draft?.streetIdentity
     ? addressStreetKey(o.address)===state.draft.streetIdentity
     : streetMatchesQuery(o.address.street,state.draft?.street||'','exact'));
   const operatorLabel=(option:AddressOption)=>context.operatorLabels?.[option.binding.operatorId]||option.binding.operatorId;
@@ -133,6 +208,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       h.items.every(r=>r&&providerId(r.id)&&providerText(r.value,100))&&new Set(h.items.map(r=>r.id)).size===h.items.length?h:null;
   };
   const providerOptionMatches=(option:AddressOption)=>{
+    if(isV2())return v2Options().some(o=>o.id===option.id&&addressOptionFingerprint(o)===addressOptionFingerprint(option));
     const d=providerDirectory(),h=providerHouseContext();
     if(!state.draft?.providerDirectoryId)return true;
     return Boolean(d&&h&&state.draft.providerHouseSnapshotId===h.houseSnapshotId&&
@@ -141,7 +217,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       option.address.streetId===`source:${d.namespace}:street:${h.streetId}`&&
       h.items.filter(r=>r.optionId===option.id&&houseMatchesQuery(r.value,state.draft?.house||'')&&houseMatchesQuery(option.address.house.literal,r.value)).length===1);
   };
-  const draftMatches=(option:AddressOption)=>Boolean(state.draft&&scopedOptions().some(o=>o.id===option.id)&&
+  const draftMatches=(option:AddressOption)=>isV2()?providerOptionMatches(option):Boolean(state.draft&&scopedOptions().some(o=>o.id===option.id)&&
     streetOptions().some(o=>o.id===option.id)&&houseMatchesQuery(option.address.house.literal,state.draft.house||'')&&providerOptionMatches(option));
   const confirmOption = (option: AddressOption) => {
     if (!state.draft) return;
@@ -152,8 +228,14 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     state.draft.selectionFingerprint=addressOptionFingerprint(option);
     draftStage('address_confirm');
     const a = option.address;
-    const providerSelection=Boolean(state.draft.providerDirectoryId);
-    message(`${COPY.confirm}\n\n${a.locality}, ${a.street}, ${a.house.literal}${providerSelection?'':`\n${option.territoryLabel}`}\nОператор: ${operatorLabel(option)}${option.connectionLabel ? `\n${option.connectionLabel}` : ''}${a.placeNames?.length?`\n${a.placeNames.join(' · ')}`:''}\n${option.binding.status === 'verified' ? BOT_COPY.engineText007 : providerSelection?'Довідник указав групу для цього будинку. Відповідність ще потребує перевірки.':BOT_COPY.engineText008}`, [button(BOT_COPY.engineText009, { kind: 'confirm_address' }), ...wizardNav()]);
+    const providerSelection=Boolean(state.draft.providerDirectoryId||state.draft.providerV2);
+    const selection=context.providerLookupV2?.selectedHouse;
+    const selectedNotice=context.operatorHouseNotices!==undefined?context.operatorHouseNotices.find(n=>n.addressId===a.id):selection?.operatorHouseNotice;
+    const eligibleHouse=isV2()&&selection?.state==='available'&&selection.options.some(o=>o.id===option.id&&addressOptionFingerprint(o)===addressOptionFingerprint(option));
+    const ephemeral=eligibleHouse&&(context.operatorHouseNotices!==undefined||selectedNotice&&selectedNotice.addressId===a.id&&selectedNotice.observedAt===selection!.observedAt&&
+      Date.parse(selectedNotice.expiresAt)<=Date.parse(selection!.expiresAt)&&currentOperatorHouseNotice(selectedNotice,context.now))
+      ?`\n\n${formatOperatorHouseNotice(selectedNotice,context.now)}`:'';
+    message(`${COPY.confirm}\n\n${a.locality}, ${a.street}, ${a.house.literal}${providerSelection?'':`\n${option.territoryLabel}`}\nОператор: ${operatorLabel(option)}${option.connectionLabel ? `\n${option.connectionLabel}` : ''}${a.placeNames?.length?`\n${a.placeNames.join(' · ')}`:''}\n${option.binding.status === 'verified' ? BOT_COPY.engineText007 : providerSelection?'Довідник указав групу для цього будинку. Відповідність ще потребує перевірки.':BOT_COPY.engineText008}${ephemeral}`, [button(BOT_COPY.engineText009, { kind: 'confirm_address' }), ...wizardNav()]);
   };
   const pageButtons = (scope: 'addresses' | 'locality' | 'street' | 'manual_group' | 'connection' | 'provider_street' | 'provider_house', page: number, count: number) => [
     ...(page > 0 ? [button('Попередні', { kind: 'page', scope, value: page - 1 })] : []),
@@ -196,6 +278,67 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       [...shown.map((r,i)=>button(providerButtonLabel(r.value,page*ADDRESS_PAGE_SIZE+i),{kind:'provider_house',value:JSON.stringify([h.streetSnapshotId,h.houseSnapshotId,h.streetId,r.id])})),...pageButtons('provider_house',page,distinct.length),...wizardNav()]);
     if(duplicates.size)message('Для однакового номера довідник повернув різні записи без пояснення підключень. Уточніть дані в оператора; випадковий варіант не зберігаємо.',wizardNav());
   };
+  const v2Snapshot=(level:BotProviderSnapshotV2['level'])=>providerV2SnapshotForState(state,context,level);
+  const v2HouseTuple=()=>{const d=state.draft?.providerV2;return d?.catalogSnapshotId&&d.houseSnapshotId&&d.cityKey&&d.streetKey&&d.houseKey?[d.catalogSnapshotId,d.houseSnapshotId,d.cityKey,d.streetKey,d.houseKey]:null;};
+  const clearV2Confirmation=()=>{if(state.draft)for(const key of ['optionId','bindingRevision','selectionFingerprint'] as const)delete state.draft[key];};
+  const v2Options=():AddressOption[]=>{
+    try{
+      const d=state.draft?.providerV2,h=v2Snapshot('houses'),selected=context.providerLookupV2?.selectedHouse;
+      if(!d||!h||!selected||selected.state!=='available'||!providerFresh(selected.expiresAt)||!validInstant(selected.observedAt)||Date.parse(selected.observedAt)>Date.parse(context.now)||
+        selected.catalogSnapshotId!==d.catalogSnapshotId||selected.houseSnapshotId!==d.houseSnapshotId||selected.houseSnapshotId!==h.id||selected.cityKey!==d.cityKey||selected.streetKey!==d.streetKey||selected.houseKey!==d.houseKey||
+        Date.parse(selected.expiresAt)>Date.parse(h.expiresAt)||!Array.isArray(selected.options)||!selected.options.length||selected.options.length>20)return [];
+      const row=h.items.find(v=>v.key===d.houseKey),ids=selected.options.map(v=>v.id);
+      if(!row||!Array.isArray(row.optionIds)||new Set(ids).size!==ids.length||row.optionIds.length!==ids.length||row.optionIds.some(id=>!ids.includes(id))||new Set(selected.options.map(v=>v.binding.targetId)).size!==ids.length)return [];
+      const options=selected.options.map(option=>{
+        if(!option||option.binding.operatorId!=='dtek-oem'||option.binding.namespace!=='dtek:oem'||option.binding.addressId!==option.address.id||option.binding.kind!=='operator_group'||
+          !['ambiguous','needs_confirmation'].includes(option.binding.status)||!/^GPV[1-6]\.[12]$/.test(option.binding.targetId)||option.address.territoryId!=='source:dtek:oem'||
+          option.address.locality!==d.cityKey||option.address.street!==d.streetKey||option.address.house.literal!==d.houseKey)return null;
+        const actual=context.addresses.filter(v=>v.id===option.id);
+        return actual.length===1&&addressOptionFingerprint(actual[0])===addressOptionFingerprint(option)&&v2Canonical(actual[0])===v2Canonical(option)?actual[0]:null;
+      });
+      if(options.some(v=>!v)||options.some(v=>v!.address.id!==options[0]!.address.id||v2Canonical(v!.address)!==v2Canonical(options[0]!.address)))return [];
+      return options as AddressOption[];
+    }catch{return [];}
+  };
+  const v2RetryValue=(level:BotProviderSnapshotV2['level'])=>{
+    const d=state.draft?.providerV2,query=level==='localities'?d?.localityQuery:level==='streets'?d?.streetQuery:d?.houseQuery;
+    return query?JSON.stringify([level,level==='localities'?null:d?.catalogSnapshotId??null,level==='localities'?null:d?.cityKey??null,level==='houses'?d?.streetKey??null:null,query]):null;
+  };
+  const v2Repair=(level:BotProviderSnapshotV2['level'])=>{
+    draftStage(level==='localities'?'provider_locality':level==='streets'?'street_choice':'house');clearV2Confirmation();
+    const d=state.draft?.providerV2;
+    if(d){for(const key of level==='localities'?['catalogSnapshotId','cityKey','streetQuery','streetKey','houseQuery','houseSnapshotId','houseKey'] as const:level==='streets'?['streetKey','houseQuery','houseSnapshotId','houseKey'] as const:['houseSnapshotId','houseKey'] as const)delete d[key];}
+    const stage=context.providerLookupV2?.[level],retry=v2RetryValue(level),at=stage?.retryAt;
+    const when=validInstant(at)&&Date.parse(at)>Date.parse(context.now)?` Наступна спроба — після ${new Date(at).toLocaleTimeString('uk-UA',{timeZone:'Europe/Kyiv',hour:'2-digit',minute:'2-digit'})}.`:'';
+    message(stage?.state==='stale'?'Дані пошуку застаріли. Поверніться до попереднього кроку та повторіть пошук. Збережені адреси не змінено.'
+      :stage?.state==='deferred'?`Пошук тимчасово недоступний.${when} Запит збережено.`
+      :stage?.state==='loading'?'Пошук ще триває. Запит збережено — повторіть спробу трохи пізніше.'
+      :'Не вдалося отримати список від оператора. Це не означає, що адреси немає. Запит збережено.',
+      [...(retry?[button('Повторити пошук',{kind:'provider_v2_retry',value:retry})]:[]),...wizardNav()]);
+  };
+  const v2PageTuple=(s:BotProviderSnapshotV2,query:string,target:number)=>JSON.stringify([s.level,s.id,s.catalogSnapshotId,s.cityKey??null,s.streetKey??null,query,s.offset,target]);
+  const renderV2=(level:BotProviderSnapshotV2['level'])=>{
+    draftStage(level==='localities'?'provider_locality':level==='streets'?'street_choice':'house');
+    const d=state.draft?.providerV2,query=level==='localities'?d?.localityQuery:level==='streets'?d?.streetQuery:d?.houseQuery;
+    if(!query){message(level==='localities'?'Введіть назву населеного пункту в Одеській області.':level==='streets'?'Введіть назву вулиці. Якщо стара назва не знаходиться, спробуйте теперішню.':'Введіть номер будинку разом із літерою або корпусом, якщо вони є.',wizardNav());return;}
+    const s=v2Snapshot(level);if(!s){v2Repair(level);return;}
+    const page=boundedPage(state.catalogPage,s.items.length);state.catalogPage=page;const shown=s.items.slice(page*ADDRESS_PAGE_SIZE,(page+1)*ADDRESS_PAGE_SIZE);
+    const prefix=level==='localities'?'Оберіть населений пункт.':level==='streets'?`${d?.cityKey}\nОберіть вулицю.`:`${d?.cityKey}, ${d?.streetKey}\nОберіть точний будинок. Літера, дріб і корпус мають значення.`;
+    const choices=shown.map((row,index)=>button(providerButtonLabel(row.value,s.offset+page*ADDRESS_PAGE_SIZE+index),{kind:level==='localities'?'provider_v2_city':level==='streets'?'provider_v2_street':'provider_v2_house',
+      value:JSON.stringify(level==='localities'?[s.id,row.key]:level==='streets'?[s.catalogSnapshotId,s.cityKey,row.key]:[s.catalogSnapshotId,s.id,s.cityKey,s.streetKey,row.key])}));
+    const pager:BotMessage['buttons']=[];
+    if(page>0)pager.push(button('Попередні',{kind:'provider_v2_page',value:v2PageTuple(s,query,page-1)}));
+    else if(s.offset>=30)pager.push(button('Попередні',{kind:'provider_v2_batch',value:v2PageTuple(s,query,s.offset-30)}));
+    if((page+1)*ADDRESS_PAGE_SIZE<s.items.length)pager.push(button('Наступні',{kind:'provider_v2_page',value:v2PageTuple(s,query,page+1)}));
+    else if(s.hasMore&&s.offset+30<=20000)pager.push(button('Наступні',{kind:'provider_v2_batch',value:v2PageTuple(s,query,s.offset+30)}));
+    message(shown.length?`${prefix}\n${shown.map((row,index)=>`${s.offset+page*ADDRESS_PAGE_SIZE+index+1}. ${row.value}`).join('\n')}`
+      :'За цим запитом оператор не повернув записів. Перевірте назву або номер і спробуйте без скорочень. Відсутність у списку не означає, що адреси не існує.',[...choices,...pager,...wizardNav()]);
+  };
+  const chooseV2House=()=>{
+    const options=v2Options();if(!state.draft||!options.length){v2Repair('houses');return;}
+    state.draft.localityId=options[0].address.localityId;state.draft.streetIdentity=addressStreetKey(options[0].address);
+    state.catalogPage=0;if(options.length===1)confirmOption(options[0]);else renderConnections();
+  };
   const renderHome = (welcome = false) => {
     state.stage = 'home';
     if (state.profile.locations.length) showSchedule();
@@ -214,6 +357,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       [...state.profile.locations.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(l => button(`${l.address.id === state.profile.primaryAddressId ? BOT_COPY.engineText021 : ''}${l.address.label}${l.paused ? BOT_COPY.engineText022 : ''}`, { kind: 'location', value: l.address.id })),
         ...pageButtons('addresses', page, count), ...(count < addressLimit ? [commandButton(BOT_COPY.engineText023, '/add')] : []), commandButton('Назад', '/menu')]);
   };
+  const houseNoticeText=(l:BotLocation)=>context.operatorHouseNotices!==undefined&&operatorHouseScope(l)?formatOperatorHouseNotice(context.operatorHouseNotices.find(n=>n.addressId===l.address.id),context.now):'';
   const locationSummary = (l: BotLocation) => BOT_COPY.engineText031(l.address.label, l.address.locality, l.address.street, l.address.house.literal ? ', ' + l.address.house.literal : '', l.binding.kind === 'user_selected_group' ? BOT_COPY.engineText025 : l.binding.status === 'verified' ? BOT_COPY.engineText026 : BOT_COPY.engineText027, l.paused ? BOT_COPY.engineText028 : l.notifications ? BOT_COPY.engineText029 : BOT_COPY.engineText030) + `\nPush для адреси: ${l.notificationPolicy?.channels.push.enabled ? 'увімкнено' : 'вимкнено'}.\nЗагальна згода, пауза й перевірка адреси діють окремо.`;
   const renderLocation = (stage: BotStage = 'location') => {
     const l = location(); if (!l) { renderAddresses(); return; }
@@ -231,11 +375,12 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     } else if (stage === 'location_tools') buttons = [button(BOT_COPY.engineText040, { kind: 'location_action', value: 'share' }), button(BOT_COPY.engineText041, { kind: 'location_action', value: 'report' }), commandButton('Порівняти адреси', '/compare'), commandButton('Історія', '/history'), back];
     else buttons = [commandButton(BOT_COPY.engineText032, '/schedule'), commandButton('Керування адресою', '/location_manage'), commandButton('Сповіщення адреси', '/location_notifications'), commandButton('Інші дії з адресою', '/location_tools'), back];
     let summary = locationSummary(l);
+    const house=stage==='location'?houseNoticeText(l):'';if(house)summary+=`\n\n${house}`;
     if (stage === 'location_telegram' || stage === 'location_push') {
       try {
         const channel = stage === 'location_push' ? 'push' : 'telegram', policy = resolveNotificationPolicy(state.profile.preferences, l, channel);
         const raw = l.notificationPolicy?.channels[channel];
-        const lead = (field: 'beforeOffMinutes' | 'beforeOnMinutes') => `${policy[field] === 0 ? 'вимкнено' : `${policy[field]} хв`}${raw?.[field] === undefined ? ' · як у каналі' : ' · для цієї адреси'}`;
+        const lead = (field: 'beforeOffMinutes' | 'beforeOnMinutes') => `${policy[field] === 0 ? 'вимкнено' : formatMinutesDuration(policy[field])}${raw?.[field] === undefined ? ' · як у каналі' : ' · для цієї адреси'}`;
         summary += `\n\n${channel === 'push' ? 'Push' : 'Telegram'} · ${l.address.label}\nПеред вимкненням: ${lead('beforeOffMinutes')}\nПеред плановим відновленням: ${lead('beforeOnMinutes')}\nЧас не вмикає канал. Загальна згода та пауза діють окремо.`;
       } catch { summary += `\n${NOTIFICATION_COPY.invalid}`; }
     }
@@ -270,6 +415,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     renderWizard('locality');
   };
   const renderStreetMatches = () => {
+    if(isV2()){renderV2('streets');return;}
     if(providerDirectory()){renderProviderStreets();return;}
     if(catalogUnavailable()){showCatalogUnavailable();return;}
     const seen = new Set<string>();
@@ -293,6 +439,14 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     if(ambiguousStreetLabels.size||ambiguousPlaceLabels.size)message('У довіднику є різні адреси з однаковими підписами. Без району або інших точних ознак їх не можна розрізнити. Уточніть адресу в оператора; випадковий збіг не обираємо.',wizardNav());
   };
   const renderConnections = () => {
+    if(isV2()){
+      draftStage('connection');const options=v2Options(),tuple=v2HouseTuple();
+      if(!options.length||!tuple){v2Repair('houses');return;}
+      const page=boundedPage(state.catalogPage,options.length);state.catalogPage=page;
+      message('Оператор указав кілька груп для цього будинку. Оберіть свою групу. Якщо не впевнені, не обирайте навмання.',
+        [...options.slice(page*ADDRESS_PAGE_SIZE,(page+1)*ADDRESS_PAGE_SIZE).map(o=>button(o.connectionLabel||`Група ${o.binding.targetId.replace(/^GPV/,'')}`,{kind:'provider_v2_group',value:JSON.stringify([...tuple,o.id,addressOptionFingerprint(o)])})),
+         ...pageButtons('connection',page,options.length),button('Не знаю свою групу',{kind:'provider_v2_unknown_group',value:JSON.stringify(tuple)}),...wizardNav()]);return;
+    }
     if(catalogUnavailable()){showCatalogUnavailable();return;}
     const matches = streetOptions().filter(o => houseMatchesQuery(o.address.house.literal,state.draft?.house || ''));
     draftStage('connection'); const page = boundedPage(state.catalogPage, matches.length); state.catalogPage = page;
@@ -304,27 +458,31 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
   const renderWizard = (stage = state.draft?.resumeStage || 'locality') => {
     if (!state.draft) { renderHome(); return; }
     draftStage(stage);
-    if(catalogUnavailable()&&!(stage==='locality'&&directories().length)){showCatalogUnavailable();return;}
+    if(stage==='provider_locality'&&isV2()){renderV2('localities');return;}
+    if(catalogUnavailable()&&!(stage==='locality'&&(directories().length||directoriesV2().length))){showCatalogUnavailable();return;}
     if (stage === 'locality') {
       const seen = new Set<string>();
       const choices = context.addresses.filter(o=>!state.draft?.localityQuery||[o.address.locality,...(o.address.localityAliases??[])].some(name=>localityMatchesQuery(name,state.draft!.localityQuery!,'contains')))
         .filter(o=>!directories().some(d=>d.territoryId===o.address.territoryId&&d.localityId===o.address.localityId))
+        .filter(o=>!directoriesV2().some(d=>d.territoryId===o.address.territoryId&&d.namespace===o.binding.namespace&&d.operatorId===o.binding.operatorId))
         .filter(o => { const key = localityKey(o); if (seen.has(key)) return false; seen.add(key); return true; });
       const localityLabel=(o:AddressOption)=>`${o.address.locality} · ${o.territoryLabel}`;
       const ambiguous=new Set(choices.filter((o,i,all)=>all.some((other,j)=>j!==i&&localityLabel(other)===localityLabel(o))).map(localityLabel));
       const distinct=choices.filter(o=>!ambiguous.has(localityLabel(o)));
       const providerChoices=directories().filter(d=>!state.draft?.localityQuery||localityMatchesQuery(d.locality,state.draft.localityQuery,'contains'))
-        .map(d=>({label:`${d.locality} · ${context.operatorLabels?.[d.operatorId]||d.territoryLabel} · пошук адреси`,value:'provider:'+d.id}));
-      const all=[...providerChoices,...distinct.map(o=>({label:localityLabel(o),value:localityKey(o)}))];
+        .map(d=>({label:`${d.locality} · ${context.operatorLabels?.[d.operatorId]||d.territoryLabel} · пошук адреси`,value:'provider:'+d.id,v2:false}));
+      const providerChoicesV2=directoriesV2().filter(d=>!state.draft?.localityQuery||localityMatchesQuery(d.label,state.draft.localityQuery,'contains')||['одеса','одеська область'].some(name=>name.startsWith(normalizeAddressText(state.draft!.localityQuery!)))).map(d=>({label:`${d.label} · пошук адреси`,value:d.id,v2:true}));
+      const all=[...providerChoices,...providerChoicesV2,...distinct.map(o=>({label:localityLabel(o),value:localityKey(o),v2:false}))];
       const page = boundedPage(state.catalogPage, all.length); state.catalogPage = page;
       const empty=context.addressCatalogStatus==='loading'?'Оновлюємо довідник адрес. Спробуйте трохи пізніше; чернетку збережено.':context.addressCatalogStatus==='unavailable'?'Не вдалося отримати довідник адрес. Це не означає, що вашої адреси немає. Спробуйте пізніше або відкрийте допомогу.':state.draft.localityQuery?'Не знайшли такого населеного пункту в доступному довіднику. Перевірте назву або введіть її без скорочення.':BOT_COPY.engineText064;
-      message(all.length ? `${COPY.locality}\nМожна також ввести назву текстом.${all.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ''}` : empty, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(o => button(o.label, { kind: 'locality', value:o.value })), ...pageButtons('locality', page,all.length), ...wizardNav()]);
+      message(all.length ? `${COPY.locality}\nМожна також ввести назву текстом.${all.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ''}` : empty, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(o => button(o.label, { kind:o.v2?'provider_v2_directory':'locality', value:o.value })), ...pageButtons('locality', page,all.length), ...wizardNav()]);
       if(ambiguous.size)message('Є населені пункти з однаковою назвою, а в довіднику бракує району чи громади, щоб їх розрізнити. Уточніть повну адресу в оператора. За самою назвою графік не підставляємо.',wizardNav());
     } else if (stage === 'street_choice') renderStreetMatches();
-    else if (stage === 'street') message(providerDirectory()?'Введіть назву вулиці. Якщо за старою назвою нічого немає, спробуйте теперішню.':COPY.street, wizardNav());
+    else if (stage === 'street') message(providerDirectory()||isV2()?'Введіть назву вулиці. Якщо за старою назвою нічого немає, спробуйте теперішню.':COPY.street, wizardNav());
     else if (stage === 'connection') renderConnections();
     else if (stage === 'house') {
-      if(providerDirectory()&&context.providerHouses&&state.draft.house)renderProviderHouses();
+      if(isV2())renderV2('houses');
+      else if(providerDirectory()&&context.providerHouses&&state.draft.house)renderProviderHouses();
       else message(`${state.draft.street || ''}\n${COPY.house}`, wizardNav());
     }
     else if (stage === 'address_confirm') {
@@ -339,9 +497,10 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     const buttons = [commandButton('Інша адреса', '/addresses'), commandButton('Нагадування', '/location_telegram'), commandButton('Меню', '/menu')];
     const plan = context.plans.find(plan => plan.addressId === l.address.id);
     const notices = `${state.profile.preferences.paused ? BOT_COPY.engineText017 : ''}${l.binding.status !== 'verified' ? '\n\nПрив’язка адреси потребує підтвердження.' : ''}`;
-    if (!plan) { message(`${l.address.label}\n${COPY.noPlan}${notices}`, buttons); return; }
+    const house=houseNoticeText(l);
+    if (!plan) { message(`${l.address.label}\n${house?`${house}\n\n`:''}${COPY.noPlan}${notices}`, buttons); return; }
     const view: ScheduleView = { ...plan, addressLabel: l.address.label };
-    message(formatScheduleText(view) + notices, buttons, 'schedule', view);
+    message((house?`${house}\n\nПогодинний план групи\n`:'')+formatScheduleText(view) + notices, buttons, 'schedule', view);
   };
   const parentStage = (): BotStage => {
     if (leadStages.includes(state.stage)) return state.returnStage || (typeof state.policyAddressId === 'string' ? (state.stage.startsWith('push') ? 'location_push' : 'location_telegram') : state.stage.startsWith('push') ? 'push' : 'telegram');
@@ -427,6 +586,20 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       }
       case '/back': {
         if (state.draft && addressWizardStages.includes(state.stage)) {
+          if(isV2()){
+            const d=state.draft.providerV2!;clearV2Confirmation();state.catalogPage=0;
+            if(state.stage==='provider_locality'){
+              for(const k of ['providerV2','locality','localityId','territoryId','street','streetIdentity','streetQuery','house'] as const)delete state.draft[k];renderWizard('locality');
+            }else if(state.stage==='street'){
+              state.draft.providerV2={directoryId:'dtek:oem',...(d.localityQuery?{localityQuery:d.localityQuery}:{})};
+              for(const k of ['locality','localityId','street','streetIdentity','house'] as const)delete state.draft[k];renderWizard('provider_locality');
+            }else if(state.stage==='house'||state.stage==='street_choice'){
+              for(const k of ['streetKey','houseQuery','houseSnapshotId','houseKey'] as const)delete d[k];
+              for(const k of ['street','streetIdentity','house'] as const)delete state.draft[k];renderWizard('street');
+            }else{
+              delete d.houseSnapshotId;delete d.houseKey;delete state.draft.house;renderWizard('house');
+            }break;
+          }
           const earlier: Partial<Record<BotStage, BotStage>> = { address_confirm: 'house', connection: 'house', house: 'street', street_choice: 'street', street: 'locality' };
           if (earlier[state.stage]) renderWizard(earlier[state.stage]); else renderHome();
         } else { const parent = parentStage(); state.policyAddressId = null; renderStage(parent); }
@@ -466,7 +639,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     renderStage(state.stage);
   } else if (callback) {
     const catalogAction=['locality','street','provider_street','provider_house','place','house_suggestion','connection','confirm_address'].includes(callback.kind)||callback.kind==='page'&&['locality','street','connection','provider_street','provider_house'].includes(callback.scope);
-    const providerLocalityNavigation=directories().length>0&&(callback.kind==='locality'&&callback.value.startsWith('provider:')||callback.kind==='page'&&callback.scope==='locality');
+    const providerLocalityNavigation=directories().length+directoriesV2().length>0&&(callback.kind==='locality'&&callback.value.startsWith('provider:')||callback.kind==='page'&&callback.scope==='locality');
     if(catalogAction&&catalogUnavailable()&&!providerLocalityNavigation)showCatalogUnavailable();
     else
     switch (callback.kind) {
@@ -476,11 +649,58 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
         else { state.catalogPage = callback.value; if (callback.scope === 'manual_group') handleCommand('/queue'); else if(callback.scope==='provider_street')renderProviderStreets();else if(callback.scope==='provider_house')renderProviderHouses();else if (callback.scope === 'street') renderStreetMatches(); else if (callback.scope === 'connection') renderConnections(); else renderWizard('locality'); }
         break;
       }
+      case 'provider_v2_directory':{
+        if(!state.draft||callback.value!=='dtek:oem'||!directoriesV2().length){message(COPY.unavailableAction,wizardNav());break;}
+        for(const k of ['locality','localityId','street','streetIdentity','streetQuery','house','providerDirectoryId','providerStreetId','providerStreetSnapshotId','providerHouseSnapshotId'] as const)delete state.draft[k];
+        clearV2Confirmation();state.draft.territoryId='source:dtek:oem';state.draft.providerV2={directoryId:'dtek:oem'};state.catalogPage=0;renderWizard('provider_locality');break;
+      }
+      case 'provider_v2_city':{
+        const t=readProviderV2Tuple(callback.kind,callback.value),s=v2Snapshot('localities'),d=state.draft?.providerV2;
+        if(state.stage!=='provider_locality'||!d||!s||!t||t.length!==2||t[0]!==s.id||!providerV2PageItems(state,s.items).some(v=>v.key===t[1])){v2Repair('localities');break;}
+        state.draft!.providerV2={directoryId:'dtek:oem',localityQuery:d.localityQuery,catalogSnapshotId:s.id,cityKey:t[1] as string};
+        state.draft!.locality=t[1] as string;state.draft!.territoryId='source:dtek:oem';
+        for(const k of ['localityId','street','streetIdentity','house'] as const)delete state.draft![k];clearV2Confirmation();state.catalogPage=0;renderWizard('street');break;
+      }
+      case 'provider_v2_street':{
+        const t=readProviderV2Tuple(callback.kind,callback.value),s=v2Snapshot('streets'),d=state.draft?.providerV2;
+        if(state.stage!=='street_choice'||!d||!s||!t||t.length!==3||t[0]!==s.catalogSnapshotId||t[1]!==s.cityKey||!providerV2PageItems(state,s.items).some(v=>v.key===t[2])){v2Repair('streets');break;}
+        d.streetKey=t[2] as string;for(const k of ['houseQuery','houseSnapshotId','houseKey'] as const)delete d[k];
+        state.draft!.street=d.streetKey;delete state.draft!.streetIdentity;delete state.draft!.house;clearV2Confirmation();state.catalogPage=0;renderWizard('house');break;
+      }
+      case 'provider_v2_house':{
+        const t=readProviderV2Tuple(callback.kind,callback.value),s=v2Snapshot('houses'),d=state.draft?.providerV2;
+        if(state.stage!=='house'||!d||!s||!t||t.length!==5||t[0]!==s.catalogSnapshotId||t[1]!==s.id||t[2]!==s.cityKey||t[3]!==s.streetKey||!providerV2PageItems(state,s.items).some(v=>v.key===t[4])){v2Repair('houses');break;}
+        d.houseSnapshotId=s.id;d.houseKey=t[4] as string;state.draft!.house=d.houseKey;clearV2Confirmation();chooseV2House();break;
+      }
+      case 'provider_v2_group':case 'provider_v2_unknown_group':{
+        const t=readProviderV2Tuple(callback.kind,callback.value),house=v2HouseTuple(),options=v2Options();
+        if(state.stage!=='connection'||!t||!house||!house.every((v,i)=>v===t[i])||!options.length){v2Repair('houses');break;}
+        if(callback.kind==='provider_v2_unknown_group'){
+          clearV2Confirmation();draftStage('connection');message('Не обираємо групу навмання. Уточніть її у вашого оператора. Адресу ще не збережено, а чинні адреси та сповіщення не змінено.',[commandButton('Повернутися до груп','/draft'),...wizardNav()]);break;
+        }
+        const option=providerV2PageItems(state,options).find(o=>o.id===t[5]&&addressOptionFingerprint(o)===t[6]);if(option)confirmOption(option);else v2Repair('houses');break;
+      }
+      case 'provider_v2_page':case 'provider_v2_batch':{
+        const t=readProviderV2Tuple(callback.kind,callback.value);if(!t||t.length!==8){message(COPY.unavailableAction,wizardNav());break;}
+        const level=t[0] as BotProviderSnapshotV2['level'],s=v2Snapshot(level),query=state.draft?.providerV2?.[level==='localities'?'localityQuery':level==='streets'?'streetQuery':'houseQuery'];
+        const stage=level==='localities'?'provider_locality':level==='streets'?'street_choice':'house';
+        const matches=Boolean(state.stage===stage&&s&&query===t[5]&&(s.cityKey??null)===t[3]&&(s.streetKey??null)===t[4]&&(level==='localities'||s.catalogSnapshotId===t[2]));
+        if(!matches||!s||callback.kind==='provider_v2_page'&&(s.id!==t[1]||s.offset!==t[6]||Math.abs((t[7] as number)-(state.catalogPage??0))!==1||(t[7] as number)*ADDRESS_PAGE_SIZE>=Math.max(1,s.items.length))||callback.kind==='provider_v2_batch'&&(s.offset!==t[7]||(t[7] as number)>(t[6] as number)&&(state.catalogPage??0)!==9||(t[7] as number)<(t[6] as number)&&(state.catalogPage??0)!==0)){v2Repair(level);break;}
+        state.catalogPage=callback.kind==='provider_v2_page'?t[7] as number:(t[7] as number)<(t[6] as number)?Math.max(0,Math.ceil(s.items.length/ADDRESS_PAGE_SIZE)-1):0;renderV2(level);break;
+      }
+      case 'provider_v2_retry':{
+        const t=readProviderV2Tuple(callback.kind,callback.value),d=state.draft?.providerV2;
+        if(!t||!d||t.length!==5){message(COPY.unavailableAction,wizardNav());break;}const level=t[0] as BotProviderSnapshotV2['level'];
+        const expectedStage=level==='localities'?'provider_locality':level==='streets'?'street_choice':'house';
+        if(state.stage!==expectedStage||t[4]!==d[level==='localities'?'localityQuery':level==='streets'?'streetQuery':'houseQuery']||level!=='localities'&&(t[1]!==d.catalogSnapshotId||t[2]!==d.cityKey)||level==='houses'&&t[3]!==d.streetKey){v2Repair(level);break;}
+        clearV2Confirmation();state.catalogPage=0;renderV2(level);break;
+      }
       case 'locality': {
         if(callback.value.startsWith('provider:')){
           const d=directories().find(d=>'provider:'+d.id===callback.value);
           if(!d||!state.draft){message(COPY.unavailableAction,wizardNav());break;}
           state.draft.locality=d.locality;state.draft.localityId=d.localityId;state.draft.territoryId=d.territoryId;state.draft.providerDirectoryId=d.id;
+          delete state.draft.providerV2;
           for(const key of ['street','streetIdentity','streetQuery','house','optionId','bindingRevision','selectionFingerprint','providerStreetId','providerStreetSnapshotId','providerHouseSnapshotId'] as const)delete state.draft[key];
           state.catalogPage=0;renderWizard('street');break;
         }
@@ -488,6 +708,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
         if (!option || !state.draft) { message(COPY.unavailableAction, wizardNav()); break; }
         state.draft.locality = option.address.locality; state.draft.territoryId = option.address.territoryId;
         state.draft.localityId=option.address.localityId;
+        delete state.draft.providerV2;
         for(const key of ['street','streetIdentity','streetQuery','house','optionId','bindingRevision','selectionFingerprint','providerDirectoryId','providerStreetId','providerStreetSnapshotId','providerHouseSnapshotId'] as const)delete state.draft[key];
         state.catalogPage = 0;
         renderWizard('street'); break;
@@ -545,12 +766,12 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       case 'confirm_address': {
         const draft = state.draft;
         const option = context.addresses.find(o => o.id === draft?.optionId);
-        if (!draft || !option || !draftMatches(option) || draft.bindingRevision !== option.binding.revisionId || draft.selectionFingerprint!==addressOptionFingerprint(option)) { message('Дані адреси змінилися. Перевірте будинок, оператора й підключення та підтвердьте вибір ще раз.', wizardNav()); if (state.draft) draftStage('house'); break; }
+        if (!draft || !option || isV2()&&state.stage!=='address_confirm'||!draftMatches(option) || draft.bindingRevision !== option.binding.revisionId || draft.selectionFingerprint!==addressOptionFingerprint(option)) { message('Дані адреси змінилися. Перевірте будинок, оператора й підключення та підтвердьте вибір ще раз.', wizardNav()); if(isV2())clearV2Confirmation();if (state.draft) draftStage('house'); break; }
         const duplicate = state.profile.locations.find(l => l.address.id === option.address.id && l.address.id !== draft.originalAddressId);
         if (duplicate) { state.currentAddressId = duplicate.address.id; state.draft = null; message(BOT_COPY.engineText105); renderLocation(); break; }
         if (draft.operation === 'add' && state.profile.locations.length >= addressLimit) { message(BOT_COPY.engineText062(addressLimit)); renderAddresses(); break; }
         const address: AddressRecord = { ...clone(option.address), label: draft.label || (state.profile.locations.length ? BOT_COPY.engineText106(state.profile.locations.length + 1) : BOT_COPY.engineText107) };
-        const next: BotLocation = { address, binding: clone(option.binding), notifications: false, paused: false };
+        const next: BotLocation = { address, binding: confirmedAddressBinding(option.binding), notifications: false, paused: false };
         if (draft.operation === 'edit') {
           const index = state.profile.locations.findIndex(l => l.address.id === draft.originalAddressId);
           if (index < 0) { message(COPY.unavailableAction, navigation()); break; }
@@ -569,7 +790,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
         state.draft = null; mutate();
         if (next.binding.status === 'verified' && next.binding.kind !== 'user_selected_group') {
           state.stage = 'subscription'; message(COPY.saved, [button(BOT_COPY.engineText108, { kind: 'subscription', value: 'on' }), button(BOT_COPY.engineText109, { kind: 'subscription', value: 'off' })]);
-        } else { message(draft.providerDirectoryId?'Адресу збережено. Можна переглянути план групи з довідника. Відповідність будинку ще потребує перевірки; автоматичні сповіщення вимкнені.':COPY.savedUnverified, navigation()); state.stage = 'home'; }
+        } else { message(draft.providerDirectoryId||draft.providerV2?'Адресу збережено. Можна переглянути план обраної групи. Відповідність будинку ще потребує перевірки; автоматичні сповіщення вимкнені.':COPY.savedUnverified, navigation()); state.stage = 'home'; }
         break;
       }
       case 'subscription': {
@@ -644,8 +865,23 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     const typedNavigation: Record<string, string> = { 'назад': '/back', 'скасувати': '/cancel' };
     if (typedNavigation[textKey(text)]) handleCommand(typedNavigation[textKey(text)]);
     else if (text.startsWith('/')) handleCommand(text);
-    else if(addressWizardStages.includes(state.stage)&&catalogUnavailable()&&!(state.stage==='locality'&&directories().length))showCatalogUnavailable();
+    else if(addressWizardStages.includes(state.stage)&&catalogUnavailable()&&!(state.stage==='locality'&&(directories().length||directoriesV2().length)))showCatalogUnavailable();
     else if(textKey(text)===BOT_COPY.engineText141&&state.draft&&state.profile.preferences.paused) message(BOT_COPY.engineText142,[commandButton(BOT_COPY.engineText143,'/draft'),commandButton(BOT_COPY.engineText144,'/resume')]);
+    else if(isV2()&&state.draft&&addressWizardStages.includes(state.stage)){
+      const d=state.draft.providerV2!,rawText=input.kind==='text'?input.text:text;
+      if(state.stage==='connection'){renderConnections();}
+      else if(state.stage==='address_confirm'){message('Перевірте адресу й групу та натисніть «Зберегти адресу». Для виправлення оберіть «Назад».');renderWizard('address_confirm');}
+      else if(!v2Text(rawText,100)||normalizeAddressText(rawText).length<(state.stage==='house'?1:2))message(state.stage==='house'?'Введіть короткий номер будинку, за потреби — з літерою або корпусом.':'Введіть щонайменше дві літери назви без зайвих символів.',wizardNav());
+      else if(state.stage==='provider_locality'){
+        state.draft.providerV2={directoryId:'dtek:oem',localityQuery:rawText};
+        for(const k of ['locality','localityId','street','streetIdentity','house'] as const)delete state.draft[k];clearV2Confirmation();state.catalogPage=0;renderV2('localities');
+      }else if(state.stage==='street'||state.stage==='street_choice'){
+        d.streetQuery=rawText;for(const k of ['streetKey','houseQuery','houseSnapshotId','houseKey'] as const)delete d[k];
+        for(const k of ['street','streetIdentity','house'] as const)delete state.draft[k];clearV2Confirmation();state.catalogPage=0;renderV2('streets');
+      }else if(state.stage==='house'){
+        d.houseQuery=rawText;delete d.houseSnapshotId;delete d.houseKey;delete state.draft.house;clearV2Confirmation();state.catalogPage=0;renderV2('houses');
+      }
+    }
     else if (addressWizardStages.includes(state.stage)&&state.draft&&(()=>{try{normalizeAddressText(text);return false;}catch{return true;}})()) {
       message('Не вдалося прочитати назву або номер. Введіть короткий звичайний текст без зайвих символів. Чернетку збережено.',wizardNav());
     }

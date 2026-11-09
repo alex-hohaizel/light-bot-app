@@ -5,7 +5,7 @@ import { normalizeYasnoRaw } from '../domain/yasno-adapter.ts';
 import { normalizeHourMatrix } from '../domain/hour-matrix-adapter.ts';
 import { normalizeKharkivRss } from '../domain/kharkiv-adapter.ts';
 
-type Parser = 'yasno' | 'hour_matrix' | 'kharkiv_rss';
+type Parser = 'yasno' | 'hour_matrix' | 'kharkiv_rss' | 'odesa_plan_api';
 export interface SourceProfile {
   readonly sourceId: string;
   readonly name: string;
@@ -27,6 +27,7 @@ export const SOURCE_PROFILES: readonly SourceProfile[] = Object.freeze([
   { sourceId: 'yasno-cek', name: 'YASNO · ЦЕК', region: 'dnipropetrovsk', operatorId: 'cek', namespace: 'yasno:3/303', parserNamespace: 'yasno:3/303', parser: 'yasno', endpoint: 'https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/303/planned-outages', researchBlocker: 'Separate DSO; systematic reuse/rate admission and exact binding pending.' },
   { sourceId: 'voe-mirror-vn-progr', name: 'Вінниця · громадське дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:vn-progr', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Unofficial mirror; reuse/rate and primary comparison pending.' },
   { sourceId: 'voe-mirror-olnet93', name: 'Вінниця · резервне дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:olnet93', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/olnet93/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Observed obsolete 2025 payload; not a current fallback. Reuse/rate pending.' },
+  { sourceId: 'dtek-oem-public-plan-ajax', name: 'ДТЕК Одеські електромережі · JSON-план', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-api', parser: 'odesa_plan_api', endpoint: 'https://www.dtek-oem.com.ua/ua/ajax', researchBlocker: 'Typed guest API requires separate explicit operating opt-in and two-hop capture. Official publication/binding/20-address/48h and independent fallback qualification remain separate; HTML access-stop unchanged.' },
   { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: '9Nov current robots wildcardDisallow:/ confirmed by raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991. HTML200 proves plan availability, not automation permission. No repeated scraping or challenge bypass.', automationBlocked: true },
   { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: '9Nov official/mirror288cell point comparison admits only matched date/target semantics; changed plans need new comparison. Independent fallback,48h and exact binding remain unverified.' },
   { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Single dated plan verified; systematic reuse/rate and exact binding pending.' },
@@ -118,7 +119,7 @@ export type IntakeCode = 'UNKNOWN_SOURCE' | 'INVALID_REQUEST' | 'SOURCE_SCOPE_MI
   'SOURCE_NOT_ADMITTED' | 'SOURCE_ADMISSION_EXPIRED' | 'SOURCE_CLOCK_INVALID' |
   'SOURCE_BUSY' | 'SOURCE_RATE_LIMITED' | 'SOURCE_RATE_LIMIT_UNVERIFIED' |
   'SOURCE_TIMEOUT' | 'SOURCE_TRANSPORT_FAILED' | 'SOURCE_HTTP_REJECTED' |
-  'SOURCE_ORIGIN_REJECTED' | 'SOURCE_BODY_LIMIT' | 'SOURCE_CONTENT_TYPE_REJECTED' |
+  'SOURCE_ORIGIN_REJECTED' | 'SOURCE_BODY_LIMIT' | 'SOURCE_CONTENT_TYPE_REJECTED' | 'SOURCE_UPDATE_UNCONFIRMED' |
   'SOURCE_UTF8_REJECTED' | 'SOURCE_ENCODING_REJECTED' | 'SOURCE_SCHEMA_REJECTED';
 export interface IntakeProvenance {
   sourceId: string;
@@ -129,8 +130,8 @@ export interface IntakeProvenance {
   rawBytes: number;
   observedAt: string;
   publishedAt: string;
-  transport: 'injected_http';
-  operatingAdmission?:{scope:'technical_group_display';publicationBasis:TechnicalDisplayAdmission['publicationBasis']['kind'];formalPrimaryDataLicense:'not_observed';providerQuota:'not_published_in_reviewed_sources'};
+  transport: 'injected_http'|'native_guest_api'|'fixture_guest_api';
+  operatingAdmission?:{scope:'technical_group_display';publicationBasis:TechnicalDisplayAdmission['publicationBasis']['kind']|'official_public_browser_api';formalPrimaryDataLicense:'not_observed';providerQuota:'not_published_in_reviewed_sources'};
 }
 export type SourceIntakeResult = {
   state: 'available';
@@ -183,7 +184,7 @@ export function technicalPlanSha256(view:ScheduleView):string {
   return sha(JSON.stringify({operatorId:view.operatorId,namespace:view.namespace,targetId:view.targetId,serviceDate:view.serviceDate,
     status,dayCoverage:view.dayCoverage,intervals:view.intervals.map(i=>({startsAt:i.startsAt,endsAt:i.endsAt,kind:i.kind}))}));
 }
-const intakeCodes = new Set(['UNKNOWN_SOURCE','INVALID_REQUEST','SOURCE_SCOPE_MISMATCH','SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_CLOCK_INVALID','SOURCE_BUSY','SOURCE_RATE_LIMITED','SOURCE_RATE_LIMIT_UNVERIFIED','SOURCE_TIMEOUT','SOURCE_TRANSPORT_FAILED','SOURCE_HTTP_REJECTED','SOURCE_ORIGIN_REJECTED','SOURCE_BODY_LIMIT','SOURCE_CONTENT_TYPE_REJECTED','SOURCE_UTF8_REJECTED','SOURCE_ENCODING_REJECTED','SOURCE_SCHEMA_REJECTED']);
+const intakeCodes = new Set(['SOURCE_UPDATE_UNCONFIRMED','UNKNOWN_SOURCE','INVALID_REQUEST','SOURCE_SCOPE_MISMATCH','SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_CLOCK_INVALID','SOURCE_BUSY','SOURCE_RATE_LIMITED','SOURCE_RATE_LIMIT_UNVERIFIED','SOURCE_TIMEOUT','SOURCE_TRANSPORT_FAILED','SOURCE_HTTP_REJECTED','SOURCE_ORIGIN_REJECTED','SOURCE_BODY_LIMIT','SOURCE_CONTENT_TYPE_REJECTED','SOURCE_UTF8_REJECTED','SOURCE_ENCODING_REJECTED','SOURCE_SCHEMA_REJECTED']);
 const header = (headers: SourceHttpResponse['headers'], name: string) => Object.entries(headers).find(([key]) => key.toLowerCase() === name)?.[1];
 function validateAdmission(entry: SourceAdmission): void {
   if (!SOURCE_PROFILES.some(p => p.sourceId === entry.sourceId)) throw new Error('UNKNOWN_SOURCE_ADMISSION');
@@ -256,7 +257,7 @@ export function createSourceIntake(options: {
     lastClock = time; return time;
   }
   function admitted(profile: SourceProfile, time: number): AllowedAdmission {
-    if (profile.automationBlocked) return fail('SOURCE_NOT_ADMITTED');
+    if (profile.automationBlocked||profile.parser==='odesa_plan_api') return fail('SOURCE_NOT_ADMITTED');
     const entry = registry.get(profile.sourceId);
     if (!entry || entry.state === 'blocked') return fail('SOURCE_NOT_ADMITTED');
     if (time < Date.parse(entry.reviewedAt) || time >= Date.parse(entry.validUntil)) return fail('SOURCE_ADMISSION_EXPIRED');
@@ -372,6 +373,7 @@ export function createSourceIntake(options: {
     if (!request || typeof request.sourceId !== 'string') return fail('INVALID_REQUEST');
     const profile = SOURCE_PROFILES.find(p => p.sourceId === request.sourceId);
     if (!profile) return fail('UNKNOWN_SOURCE');
+    if(profile.parser==='odesa_plan_api')return fail('SOURCE_NOT_ADMITTED');
     if (request.operatorId !== profile.operatorId || request.namespace !== profile.namespace) return fail('SOURCE_SCOPE_MISMATCH');
     if (typeof request.serviceDate !== 'string' || typeof request.targetId !== 'string' ||
         !(profile.parser === 'hour_matrix' ? /^GPV[1-6]\.[12]$/ : profile.parser === 'kharkiv_rss' ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request.targetId)) return fail('INVALID_REQUEST');

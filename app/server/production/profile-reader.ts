@@ -10,10 +10,11 @@ export interface VerifiedSubscriberMapping {
   revisionId: string;
 }
 export interface LegacyProfileReadQuery {
-  query(sql: string, values?: any[]): Promise<{rows: any[]; rowCount: number | null}>;
+  query(sql: string, values?: any[]): Promise<{rows: any[]; rowCount: number | null; command?: string}>;
 }
 export interface LegacyProfileReadClient extends LegacyProfileReadQuery {
-  release(): void;
+  /** Forward pg's destroy flag when a transaction acknowledgement is unknown. */
+  release(destroy?: Error | boolean): void;
 }
 export interface LegacyProfileReadPool {connect(): Promise<LegacyProfileReadClient>}
 export interface LegacyProfileReadOptions {

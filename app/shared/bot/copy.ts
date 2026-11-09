@@ -2,6 +2,7 @@ import type { NotificationKind, PlanStatus, ScheduleView } from '../product-cont
 import { PLAN_STATUS_COPY } from '../product-contract.ts';
 import type { NotificationPolicy, NotificationChannel, ReminderEdge } from '../notification-policy.ts';
 import type { BotProfile } from './types.ts';
+import { formatMinutesDuration } from '../time-label.ts';
 
 export const NOTIFICATION_COPY = {
   invalid: 'Налаштування потребують перевірки. Попередні значення збережені.',
@@ -23,7 +24,7 @@ export const NOTIFICATION_COPY = {
   },
 };
 export function formatNotificationSettings(preferences: BotProfile['preferences'], policy: NotificationPolicy): string {
-  const lead = (value: number) => value === 0 ? 'вимкнено' : `${value} хв`;
+  const lead = (value: number) => value === 0 ? 'вимкнено' : formatMinutesDuration(value);
   const lines = ['Налаштування сповіщень', preferences.paused ? 'Усі канали на паузі. Значення збережені.' : 'Кожен канал має власну згоду.'];
   for (const channel of ['telegram', 'push'] as const) {
     const value = policy.channels[channel];
@@ -33,7 +34,7 @@ export function formatNotificationSettings(preferences: BotProfile['preferences'
   }
   lines.push('', `Тихі години: ${preferences.quietHours.enabled ? `${preferences.quietHours.start}–${preferences.quietHours.end} · Europe/Kyiv` : 'вимкнені'}`,
     `Ранковий огляд Telegram: ${preferences.morningBriefing.enabled ? preferences.morningBriefing.time : 'вимкнено'}`,
-    `Мінімальна тривалість перед вимкненням: ${preferences.minimumOutageMinutes} хв`, 'Час окремої адреси може відрізнятися від загального.');
+    `Мінімальна тривалість перед вимкненням: ${formatMinutesDuration(preferences.minimumOutageMinutes)}`, 'Час окремої адреси може відрізнятися від загального.');
   return lines.join('\n');
 }
 
@@ -123,6 +124,11 @@ export function formatNotification(kind: NotificationKind, view: ScheduleView, r
 }
 export function statusExample(status: PlanStatus): string { return PLAN_STATUS_COPY[status].detail; }
 
+function copyDuration(value: unknown): string {
+  if (typeof value === 'number') return formatMinutesDuration(value);
+  if (typeof value === 'string' && /^\d+$/.test(value)) return formatMinutesDuration(Number(value));
+  return 'не вказано';
+}
 /** Complete candidate UI templates used by the deterministic engine; keys are stable copy-deck references. */
 export const BOT_COPY = {
   engineText001: "Не вдалося прочитати стан розмови. Відкрийте /start — профіль не змінювався.",
@@ -171,11 +177,14 @@ export const BOT_COPY = {
   engineText044: "на паузі",
   engineText045: "дозволені для підтверджених адрес",
   engineText046: "вимкнені",
-  engineText047: (p0: unknown) => "за " + String(p0) + " хв",
+  engineText047: (p0: unknown) => {
+    const duration = copyDuration(p0);
+    return duration === 'не вказано' ? 'Час нагадування не вказано' : `за ${duration}`;
+  },
   engineText048: "вимкнені",
   engineText049: "вимкнені",
   engineText050: "вимкнений",
-  engineText051: (p0: unknown, p1: unknown, p2: unknown, p3: unknown, p4: unknown) => "Сповіщення: " + String(p0) + ".\nНагадування: " + String(p1) + ".\nТихі години: " + String(p2) + ".\nРанковий огляд: " + String(p3) + ".\nМінімальна тривалість для нагадування: " + String(p4) + " хв.",
+  engineText051: (p0: unknown, p1: unknown, p2: unknown, p3: unknown, p4: unknown) => "Сповіщення: " + String(p0) + ".\nНагадування: " + String(p1) + ".\nТихі години: " + String(p2) + ".\nРанковий огляд: " + String(p3) + ".\nМінімальна тривалість для нагадування: " + copyDuration(p4) + ".",
   engineText052: "Відновити після паузи",
   engineText053: "Пауза всіх повідомлень",
   engineText054: "Вимкнути повідомлення",

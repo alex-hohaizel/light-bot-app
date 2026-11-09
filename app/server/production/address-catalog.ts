@@ -3,10 +3,13 @@ import {buildYasnoAddressCandidate,readYasnoStreetCandidates,readYasnoHouseCandi
  type YasnoAddressCapture,type YasnoAddressCandidate,type AddressCaptureProof,type ProviderAddressItem} from '../domain/yasno-address-adapter.ts';
 import {localParts} from '../../shared/schedule-core.ts';
 import type {AddressOption} from '../../shared/bot/types.ts';
-import type {LegacyProfileReadPool,LegacyProfileReadClient} from './profile-reader.ts';
+import type {LegacyProfileReadPool,LegacyProfileReadClient,LegacyProfileReadQuery} from './profile-reader.ts';
 import type {SourceHttpTransport} from './source-intake.ts';
 import {TECHNICAL_SOURCE_REVIEW,YASNO_SHARED_ORIGIN_BUDGET_MS} from './source-operating-policy.ts';
 import {collectAddressCapture,type AddressHttpCode,type AddressHttpResult} from './address-catalog-http.ts';
+import {createPublicSourceReservationGuard,type SourceReservationFailure} from './public-source-reservation.ts';
+import {legacyYasnoAddressRequestKey} from '../domain/public-address-request-identity.ts';
+import type {OdesaOperatorHouseNotice} from '../domain/odesa-address-adapter.ts';
 
 /** Apply explicitly AFTER SOURCE_INGESTION_SCHEMA_SQL. No import/construction DDL.
  * These rows contain public provider catalog facts, never owners or user labels.
@@ -35,7 +38,6 @@ export const ADDRESS_CATALOG_POLICY=Object.freeze({revisionId:'yasno-25-902-addr
  accessCost:0,formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
  addressBindingVerified:false,deliveryEligible:false});
 const PREFIX='https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/';
-const LOCK="hashtextextended('lba-public-source-worker',0)";
 type Operation='streets'|'houses'|'group';
 export type AddressCatalogCode=AddressHttpCode|'ADDRESS_SERVICE_DISABLED'|'ADDRESS_INVALID_REQUEST'|'ADDRESS_SCOPE_UNSUPPORTED'|
  'ADDRESS_CONTROL_REJECTED'|'ADDRESS_EPOCH_CONFLICT'|'ADDRESS_STORAGE_UNAVAILABLE'|'ADDRESS_CLOCK_INVALID'|
@@ -52,7 +54,9 @@ export type AddressCandidateResult={state:'available';cache:'hit'|'miss';snapsho
  candidateProof:YasnoAddressCandidate['proof'];observedAt:string;expiresAt:string}|Rejected;
 export interface AddressCandidatesSnapshot {
  state:'available'|'disabled'|'unavailable';code?:AddressCatalogCode;options:AddressOption[];
- observations:Array<{addressId:string;observedAt:string;expiresAt:string;state:'current'|'stale'}>;
+ observations:Array<{addressId:string;observedAt?:string;expiresAt?:string;state:'current'|'stale'}>;
+ operatorNotices?:Array<{addressId:string;notice:OdesaOperatorHouseNotice}>;
+ providerStates?:Array<{namespace:string;state:string;code?:string}>;
  addressBindingVerified:false;deliveryEligible:false;
 }
 type CaptureRow={id:string;operation:Operation;requestUrl:string;capture:YasnoAddressCapture};
@@ -92,10 +96,11 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
   !Number.isSafeInteger(input.expectedControlEpoch)||input.expectedControlEpoch<1||input.enabled!==undefined&&typeof input.enabled!=='boolean'||
   input.timeoutMs!==undefined&&(!Number.isSafeInteger(input.timeoutMs)||input.timeoutMs<1||input.timeoutMs>30000))throw Error('INVALID_ADDRESS_CATALOG_OPTIONS');
  const options={...input},timeoutMs=input.timeoutMs??8000;let lastClock=-Infinity;
+ const reservations=createPublicSourceReservationGuard({pool:input.pool,expectedControlEpoch:input.expectedControlEpoch});
  function clock(){const t=options.now();if(!Number.isSafeInteger(t)||t<0||t>8640000000000000||t<lastClock)return fail('ADDRESS_CLOCK_INVALID');lastClock=t;return t;}
  function admission(time:number){if(time<Date.parse(ADDRESS_CATALOG_POLICY.reviewedAt)||time>=Date.parse(ADDRESS_CATALOG_POLICY.validUntil))fail('ADDRESS_ADMISSION_EXPIRED');}
  function enabled(){if(options.enabled!==true)fail('ADDRESS_SERVICE_DISABLED');admission(clock());}
- async function control(c:LegacyProfileReadClient,lock=false){
+ async function control(c:LegacyProfileReadQuery,lock=false){
   const rows=(await c.query('select control_epoch,writer_mode from lba_production_control where id=true'+(lock?' for share':''))).rows;
   if(rows.length!==1||rows[0].writer_mode!=='canonical')return fail('ADDRESS_CONTROL_REJECTED');
   const n=rows[0].control_epoch;
@@ -110,7 +115,7 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
     typeof capture.observedAt!=='string'||typeof capture.rawBody!=='string'||typeof capture.rawSha256!=='string')return fail('ADDRESS_SCHEMA_REJECTED');
   return {id:value.id,operation:value.operation as Operation,requestUrl:value.request_url,capture:capture as unknown as YasnoAddressCapture};
  }
- async function select(c:LegacyProfileReadClient,ref:string):Promise<CaptureRow>{
+ async function select(c:LegacyProfileReadQuery,ref:string):Promise<CaptureRow>{
   const rows=(await c.query('select id,operation,request_url,capture from lba_public_address_capture where id=$1',[ref])).rows;
   if(rows.length!==1)return fail('ADDRESS_SNAPSHOT_NOT_FOUND');return row(rows[0]);
  }
@@ -144,63 +149,73 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
   try{await c.query('begin isolation level repeatable read read only');tx=true;await control(c);const result=await work(c);admission(clock());await c.query('commit');tx=false;return result;}
   finally{if(tx)await c.query('rollback').catch(()=>{});c.release();}
  }
+ function reservationFailure(result:SourceReservationFailure):never{
+  const code:AddressCatalogCode=result.code==='RESERVATION_CONTROL_REJECTED'?'ADDRESS_CONTROL_REJECTED':
+   result.code==='RESERVATION_EPOCH_CONFLICT'?'ADDRESS_EPOCH_CONFLICT':result.code==='RESERVATION_WORKER_HELD'?'ADDRESS_WORKER_HELD':
+   result.code==='RESERVATION_ORIGIN_HELD'?'ADDRESS_ORIGIN_HELD':result.code==='RESERVATION_LOCAL_BUDGET_DEFERRED'?'ADDRESS_BUDGET_DEFERRED':
+   ['RESERVATION_COMMIT_UNKNOWN','RESERVATION_TOKEN_CONFLICT','RESERVATION_CLOSED','RESERVATION_DEADLINE','RESERVATION_ABORTED'].includes(result.code)?'ADDRESS_PUBLICATION_UNKNOWN':'ADDRESS_STORAGE_UNAVAILABLE';
+  return fail(code,result.retryAt);
+ }
  async function getCapture(operation:Operation,url:string,validate:(r:CaptureRow)=>unknown,minimumObserved=0):Promise<{capture:CaptureRow;cache:'hit'|'miss'}>{
-  enabled();const c=await options.pool.connect();let tx=false,locked=false;
-  try{
-   const lock=(await c.query(`select pg_try_advisory_lock(${LOCK}) as locked`)).rows[0];
-   if(lock?.locked!==true)return fail('ADDRESS_WORKER_BUSY');locked=true;
-   await c.query('begin isolation level read committed');tx=true;await control(c,true);
-   const key=sha(url),saved=(await c.query(`select q.last_attempt_at,q.last_failure,c.id,c.operation,c.request_url,c.capture
+  enabled();const key=legacyYasnoAddressRequestKey(url);
+  async function cached(c:LegacyProfileReadQuery):Promise<CaptureRow|undefined>{
+   const saved=(await c.query(`select q.last_attempt_at,q.last_failure,c.id,c.operation,c.request_url,c.capture
     from lba_public_address_query q left join lba_public_address_capture c on c.id=q.latest_capture_id where q.request_key=$1`,[key])).rows;
    if(saved.length>1)fail('ADDRESS_STORAGE_UNAVAILABLE');
-   if(saved[0]?.id){
-    const cached=row(saved[0]);
-    // A fresh but older house/group capture cannot follow a newly observed parent.
-    const failedAfter=saved[0].last_failure!==null&&instant(saved[0].last_attempt_at)>=instant(cached.capture.observedAt);
-    try{if(!failedAfter&&instant(cached.capture.observedAt)>=minimumObserved){current(cached.capture);validate(cached);await c.query('commit');tx=false;return {capture:cached,cache:'hit'};}}
-    catch(e){if(!(e instanceof Failure)||e.code!=='ADDRESS_STALE_SNAPSHOT')throw e;}
-   }
-   const worker=(await c.query('select uncertain,hold_reason from lba_public_source_worker where id=true')).rows;
-   if(worker.length>1||worker[0]&&typeof worker[0].uncertain!=='boolean')fail('ADDRESS_STORAGE_UNAVAILABLE');
-   if(worker[0]?.uncertain===true)fail('ADDRESS_WORKER_HELD');
-   const origin=(await c.query('select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1',[ADDRESS_CATALOG_POLICY.origin])).rows;
-   if(origin.length>1||origin[0]&&(typeof origin[0].uncertain!=='boolean'||origin[0].hold_reason!==null&&typeof origin[0].hold_reason!=='string'))fail('ADDRESS_STORAGE_UNAVAILABLE');
-   if(origin[0]?.uncertain===true||origin[0]?.hold_reason)fail('ADDRESS_ORIGIN_HELD');
-   const t=clock();if(origin[0]&&instant(origin[0].next_attempt_at)>t)fail('ADDRESS_BUDGET_DEFERRED',new Date(instant(origin[0].next_attempt_at)).toISOString());
-   const count=(await c.query('select (select count(*)::int from lba_public_address_query) as queries,(select count(*)::int from lba_public_address_capture) as captures')).rows[0];
-   if(!count||!Number.isSafeInteger(count.queries)||!Number.isSafeInteger(count.captures))fail('ADDRESS_STORAGE_UNAVAILABLE');
-   if((!saved.length&&Number(count.queries)>=ADDRESS_CATALOG_POLICY.maxQueries)||Number(count.captures)>=ADDRESS_CATALOG_POLICY.maxCaptures)fail('ADDRESS_CACHE_CAPACITY');
-   await c.query('insert into lba_public_source_worker(id,uncertain,hold_reason) values(true,true,null) on conflict(id) do update set uncertain=true,hold_reason=null');
-   await c.query(`insert into lba_public_source_origin(origin,next_attempt_at,uncertain,hold_reason) values($1,$2,true,null)
-    on conflict(origin) do update set next_attempt_at=excluded.next_attempt_at,uncertain=true,hold_reason=null`,[ADDRESS_CATALOG_POLICY.origin,new Date(t+YASNO_SHARED_ORIGIN_BUDGET_MS).toISOString()]);
-   await c.query(`insert into lba_public_address_query(request_key,request_url,last_attempt_at,last_failure) values($1,$2,$3,null)
-    on conflict(request_key) do update set last_attempt_at=excluded.last_attempt_at,last_failure=null`,[key,url,new Date(t).toISOString()]);
-   try{await c.query('commit');tx=false;}catch{return fail('ADDRESS_PUBLICATION_UNKNOWN');}
-   // The reservation is durable. No control/owner transaction remains open here.
-   let outcome:AddressHttpResult=await collectAddressCapture({url,transport:options.transport,now:clock,timeoutMs});
-   let captured:CaptureRow|undefined,semanticFailure:AddressCatalogCode|undefined;
-   if(outcome.ok){
-    captured={id:randomUUID(),operation,requestUrl:url,capture:outcome.capture};
-    try{current(captured.capture);if(instant(captured.capture.observedAt)<minimumObserved)fail('ADDRESS_SELECTION_REJECTED');validate(captured);}
-    catch(e){if(e instanceof Failure&&e.code==='ADDRESS_ADMISSION_EXPIRED')throw e;semanticFailure='ADDRESS_SCHEMA_REJECTED';captured=undefined;}
-   }
-   const finished=clock();admission(finished);
-   await c.query('begin isolation level read committed');tx=true;await control(c,true);
-   const reservation=(await c.query('select uncertain from lba_public_source_origin where origin=$1 for update',[ADDRESS_CATALOG_POLICY.origin])).rows;
-   if(reservation.length!==1||reservation[0].uncertain!==true)fail('ADDRESS_PUBLICATION_UNKNOWN');
-   const hold=outcome.ok?null:outcome.hold?outcome.code:null;
-   await c.query('update lba_public_source_origin set uncertain=$2,hold_reason=$3,next_attempt_at=greatest(next_attempt_at,$4::timestamptz) where origin=$1',
-    [ADDRESS_CATALOG_POLICY.origin,hold!==null,hold,new Date(finished+(!outcome.ok?outcome.retryAfterMs??0:0)).toISOString()]);
-   await c.query('update lba_public_source_worker set uncertain=$1,hold_reason=$2 where id=true',[!outcome.ok&&outcome.workerHold,!outcome.ok&&outcome.workerHold?outcome.code:null]);
-   if(captured){
-    await c.query('insert into lba_public_address_capture(id,operation,request_url,capture,observed_at,control_epoch) values($1,$2,$3,$4::jsonb,$5,$6)',
-     [captured.id,operation,url,JSON.stringify(captured.capture),captured.capture.observedAt,options.expectedControlEpoch]);
-    await c.query('update lba_public_address_query set latest_capture_id=$2,last_failure=null where request_key=$1',[key,captured.id]);
-   }else await c.query('update lba_public_address_query set last_failure=$2 where request_key=$1',[key,semanticFailure??(outcome.ok?'ADDRESS_SCHEMA_REJECTED':outcome.code)]);
-   try{await c.query('commit');tx=false;}catch{return fail('ADDRESS_PUBLICATION_UNKNOWN');}
-   if(!captured)return fail(semanticFailure??(outcome.ok?'ADDRESS_SCHEMA_REJECTED':outcome.code));
-   return {capture:captured,cache:'miss'};
-  }finally{if(tx)await c.query('rollback').catch(()=>{});if(locked)await c.query(`select pg_advisory_unlock(${LOCK})`).catch(()=>{});c.release();}
+   if(!saved[0]?.id)return;
+   const value=row(saved[0]);
+   const failedAfter=saved[0].last_failure!==null&&instant(saved[0].last_attempt_at)>=instant(value.capture.observedAt);
+   try{if(!failedAfter&&instant(value.capture.observedAt)>=minimumObserved){current(value.capture);validate(value);return value;}}
+   catch(e){if(!(e instanceof Failure)||e.code!=='ADDRESS_STALE_SNAPSHOT')throw e;}
+  }
+  // Cache reads borrow no worker token, so fresh public facts remain usable while
+  // another origin is acquiring data. The reservation callback rechecks a miss.
+  const hit=await read(c=>cached(c));if(hit)return {capture:hit,cache:'hit'};
+  let racedHit:CaptureRow|undefined,reserveFailure:Failure|undefined;
+  const abort=new AbortController();
+  const reserved=await reservations.reserve({origin:ADDRESS_CATALOG_POLICY.origin,expectedMaxHops:1,
+   minIntervalMs:YASNO_SHARED_ORIGIN_BUDGET_MS,deadlineMs:30000,signal:abort.signal,
+   persist:async(c,receipt)=>{
+    try{
+     enabled();racedHit=await cached(c);if(racedHit)throw new Failure('ADDRESS_SELECTION_REJECTED');
+     const count=(await c.query('select (select count(*)::int from lba_public_address_query) as queries,(select count(*)::int from lba_public_address_capture) as captures')).rows[0];
+     if(!count||!Number.isSafeInteger(count.queries)||!Number.isSafeInteger(count.captures))fail('ADDRESS_STORAGE_UNAVAILABLE');
+     const exists=(await c.query('select request_key from lba_public_address_query where request_key=$1',[key])).rows;
+     if((!exists.length&&count.queries>=ADDRESS_CATALOG_POLICY.maxQueries)||count.captures>=ADDRESS_CATALOG_POLICY.maxCaptures)fail('ADDRESS_CACHE_CAPACITY');
+     await c.query(`insert into lba_public_address_query(request_key,request_url,last_attempt_at,last_failure) values($1,$2,$3,null)
+      on conflict(request_key) do update set last_attempt_at=excluded.last_attempt_at`,[key,url,receipt.reservedAt]);
+    }catch(e){if(e instanceof Failure)reserveFailure=e;throw e;}
+   }});
+  if(reserved.state!=='reserved'){
+   if(racedHit&&reserved.code==='RESERVATION_CALLBACK_FAILED')return {capture:racedHit,cache:'hit'};
+   if(reserveFailure)throw reserveFailure;return reservationFailure(reserved);
+  }
+  const grant=await reserved.reservation.beforeHop({origin:ADDRESS_CATALOG_POLICY.origin},abort.signal);
+  if(grant.state!=='granted')return reservationFailure(grant);
+  // Every HTTP follows a confirmed durable grant. No borrowed PG connection,
+  // advisory/session lock or owner transaction survives across this operation.
+  const outcome:AddressHttpResult=await collectAddressCapture({url,transport:options.transport,now:clock,timeoutMs});
+  let captured:CaptureRow|undefined,semanticFailure:AddressCatalogCode|undefined;
+  if(outcome.ok){
+   captured={id:reserved.reservation.receipt.reservationToken,operation,requestUrl:url,capture:outcome.capture};
+   try{current(captured.capture);if(instant(captured.capture.observedAt)<minimumObserved)fail('ADDRESS_SELECTION_REJECTED');validate(captured);}
+   catch(e){semanticFailure=e instanceof Failure&&e.code==='ADDRESS_ADMISSION_EXPIRED'?'ADDRESS_ADMISSION_EXPIRED':'ADDRESS_SCHEMA_REJECTED';captured=undefined;}
+  }
+  const finished=await reserved.reservation.finalize({
+   ...(!outcome.ok&&outcome.hold?{hold:outcome.workerHold?'worker-and-origin' as const:'origin' as const}:{}),
+   ...(!outcome.ok&&outcome.retryAfterMs!==undefined?{retryAfterMs:outcome.retryAfterMs}:{}),
+   persist:async c=>{
+    if(captured){
+     await c.query('insert into lba_public_address_capture(id,operation,request_url,capture,observed_at,control_epoch) values($1,$2,$3,$4::jsonb,$5,$6)',
+      [captured.id,operation,url,JSON.stringify(captured.capture),captured.capture.observedAt,options.expectedControlEpoch]);
+     await c.query('update lba_public_address_query set latest_capture_id=$2,last_failure=null where request_key=$1',[key,captured.id]);
+    }else await c.query('update lba_public_address_query set last_failure=$2 where request_key=$1',[key,semanticFailure??(outcome.ok?'ADDRESS_SCHEMA_REJECTED':outcome.code)]);
+   }});
+  // On unknown COMMIT, do not retry publication or clear a possibly newer token.
+  // A real capture's UUID is the exact reservation business receipt for read-only reconciliation.
+  if(finished.state!=='finalized')return reservationFailure(finished);
+  if(!captured)return fail(semanticFailure??(outcome.ok?'ADDRESS_SCHEMA_REJECTED':outcome.code));
+  return {capture:captured,cache:'miss'};
  }
  async function searchStreets(value:unknown):Promise<AddressSearchResult>{
   try{enabled();closed(value,['namespace','query']);if(value.namespace!=='yasno:25/902')fail('ADDRESS_SCOPE_UNSUPPORTED');const q=query(value.query,2);
@@ -225,7 +240,7 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
    const result=await getCapture('group',endpoint('group',{streetId,houseId}),r=>candidate(streets,houses,r,streetId,houseId),instant(houses.capture.observedAt));
    const built=candidate(streets,houses,result.capture,streetId,houseId);
    // No owner locks exist here. Publication remains a public-only local write.
-   const c=await options.pool.connect();let tx=false;
+   const c=await options.pool.connect();let tx=false,discard=false;
    try{await c.query('begin isolation level read committed');tx=true;await control(c,true);
     await c.query("select pg_advisory_xact_lock(hashtextextended('lba-public-address-candidates',0))");
     candidate(streets,houses,result.capture,streetId,houseId);
@@ -237,8 +252,10 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
      where (select observed_at from lba_public_address_capture where id=excluded.group_id)>=
       (select observed_at from lba_public_address_capture where id=lba_public_address_candidate.group_id) returning address_id`,[built.address.id,streets.id,houses.id,result.capture.id]);
     if(published.rows.length!==1)fail('ADDRESS_SELECTION_REJECTED');
-    try{await c.query('commit');tx=false;}catch{return fail('ADDRESS_PUBLICATION_UNKNOWN');}
-   }finally{if(tx)await c.query('rollback').catch(()=>{});c.release();}
+    try{const committed=await c.query('commit');tx=false;
+     if(!('command'in committed)||committed.command!=='COMMIT'){discard=true;return fail('ADDRESS_PUBLICATION_UNKNOWN');}
+    }catch{discard=true;return fail('ADDRESS_PUBLICATION_UNKNOWN');}
+   }finally{if(tx)await c.query('rollback').catch(()=>{});c.release(discard);}
    return {state:'available',cache:result.cache,snapshotId:result.capture.id,option:asOption(built),candidateProof:built.proof,
     observedAt:built.proof.observedAt,expiresAt:new Date(Math.min(...built.proof.captures.map(v=>Date.parse(v.observedAt)))+ADDRESS_CATALOG_POLICY.cacheTtlMs).toISOString()};
   }catch(e){return reject(e);}
@@ -250,14 +267,23 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
  async function readCandidates():Promise<AddressCandidatesSnapshot>{
   const empty={options:[] as AddressOption[],observations:[] as AddressCandidatesSnapshot['observations'],addressBindingVerified:false as const,deliveryEligible:false as const};
   try{return await read(async c=>{
-   const rows=(await c.query('select address_id,streets_id,houses_id,group_id from lba_public_address_candidate order by address_id limit 513')).rows;
+   // Provider readers share this table. Decode only the explicit legacy format;
+   // the combined catalog independently reads the Odesa envelopes.
+   const rows=(await c.query(`select p.address_id,p.streets_id,p.houses_id,p.group_id from lba_public_address_candidate p
+    join lba_public_address_capture c on c.id=p.streets_id where c.capture->>'sourceId'='yasno-public-address-v2' order by p.address_id limit 513`)).rows;
    if(rows.length>ADDRESS_CATALOG_POLICY.maxCandidates)fail('ADDRESS_CACHE_CAPACITY');
    const options:AddressOption[]=[],observations:AddressCandidatesSnapshot['observations']=[];
    for(const r of rows){
     if(typeof r.address_id!=='string'||!uuid(r.streets_id)||!uuid(r.houses_id)||!uuid(r.group_id))fail('ADDRESS_SCHEMA_REJECTED');
     const streets=await select(c,r.streets_id),houses=await select(c,r.houses_id),group=await select(c,r.group_id);
     const url=new URL(group.requestUrl),streetId=Number(url.searchParams.get('streetId')),houseId=Number(url.searchParams.get('houseId'));
-    try{const built=candidate(streets,houses,group,streetId,houseId);if(built.address.id!==r.address_id)fail('ADDRESS_SCHEMA_REJECTED');
+    try{
+     for(const ref of [streets,houses,group]){
+      const pointer=(await c.query('select latest_capture_id,last_attempt_at,last_failure from lba_public_address_query where request_key=$1 and request_url=$2',
+       [legacyYasnoAddressRequestKey(ref.requestUrl),ref.requestUrl])).rows;
+      if(pointer.length!==1||pointer[0].latest_capture_id!==ref.id||pointer[0].last_failure!==null&&instant(pointer[0].last_attempt_at)>=instant(ref.capture.observedAt))fail('ADDRESS_STALE_SNAPSHOT');
+     }
+     const built=candidate(streets,houses,group,streetId,houseId);if(built.address.id!==r.address_id)fail('ADDRESS_SCHEMA_REJECTED');
      options.push(asOption(built));observations.push({addressId:built.address.id,observedAt:built.proof.observedAt,
       expiresAt:new Date(Math.min(...built.proof.captures.map(v=>Date.parse(v.observedAt)))+ADDRESS_CATALOG_POLICY.cacheTtlMs).toISOString(),state:'current'});
     }catch(e){if(!(e instanceof Failure)||e.code!=='ADDRESS_STALE_SNAPSHOT')throw e;

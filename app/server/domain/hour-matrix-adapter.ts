@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { load } from 'cheerio';
 import { parse } from 'acorn';
+import { uniqueProviderWallMinuteInstant } from './provider-wall-time.ts';
 import type { PlanInterval, ScheduleView, SourceReference } from '../../shared/product-contract.ts';
 import { dayBounds, localParts, nextCalendarDate, validInstant, validateScheduleView, wallMinuteInstant } from '../../shared/schedule-core.ts';
 
@@ -8,6 +9,7 @@ const SOURCES = {
   'voe:vn-progr': { operatorId: 'vinnytsia-oe', sourceId: 'voe-mirror-vn-progr', regionId: 'vinnytsia', targetNamespace: 'voe:vinnytsia' },
   'voe:olnet93': { operatorId: 'vinnytsia-oe', sourceId: 'voe-mirror-olnet93', regionId: 'vinnytsia', targetNamespace: 'voe:vinnytsia' },
   'dtek:oem': { operatorId: 'dtek-oem', sourceId: 'dtek-oem-official', regionId: null, targetNamespace: 'dtek:oem' },
+  'dtek:oem-api': { operatorId: 'dtek-oem', sourceId: 'dtek-oem-public-plan-ajax', regionId: null, targetNamespace: 'dtek:oem' },
   'dtek:oem-mirror': { operatorId: 'dtek-oem', sourceId: 'mirror-odesa', regionId: 'odesa', targetNamespace: 'dtek:oem' },
 } as const;
 export interface HourMatrixContext {
@@ -69,11 +71,12 @@ function jsonAssignment(raw: string, name: 'fact' | 'preset'): unknown {
   return JSON.parse(script.slice(node.right.start, node.right.end));
 }
 
-function publicationTime(value: unknown): string {
+function publicationTime(value: unknown, uniqueIana = false): string {
   if (typeof value !== 'string') throw new Error('SOURCE_PUBLICATION_MISSING');
   const match = /^(\d{2})\.(\d{2})\.(\d{4}) ((?:[01]\d|2[0-3])):([0-5]\d)$/.exec(value);
   if (!match) throw new Error('SOURCE_PUBLICATION_FORMAT');
-  return wallMinuteInstant(`${match[3]}-${match[2]}-${match[1]}`, Number(match[4]) * 60 + Number(match[5]));
+  const date = `${match[3]}-${match[2]}-${match[1]}`, minute = Number(match[4]) * 60 + Number(match[5]);
+  return uniqueIana ? uniqueProviderWallMinuteInstant(date, minute) : wallMinuteInstant(date, minute);
 }
 function midnightFromSeconds(value: unknown): string {
   if (!Number.isSafeInteger(value) || (value as number) < 0) throw new Error('INVALID_UNIX_SECONDS');
@@ -134,7 +137,7 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
       if (!Array.isArray(zone) || zone[1] !== a || zone[2] !== b) throw new Error('UNKNOWN_OEM_HOUR_LAYOUT');
     }
   }
-  const publishedAt = publicationTime(fact.update);
+  const publishedAt = publicationTime(fact.update, context.namespace === 'dtek:oem-api');
   if (Date.parse(publishedAt) > Date.parse(context.observedAt)) throw new Error('SOURCE_PUBLICATION_AFTER_OBSERVATION');
   const intervals: PlanInterval[] = [];
   function append(startMinute: number, endMinute: number, kind: PlanInterval['kind']) {

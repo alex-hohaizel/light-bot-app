@@ -1,3 +1,4 @@
+import {createOperatorAddressRefresh} from './operator-address-refresh.ts';
 import {randomUUID} from 'node:crypto';
 import sharp from 'sharp';
 import {renderScheduleSvg} from '../../client/src/product-review/schedule-renderer.tsx';
@@ -7,7 +8,7 @@ import {createProductionProfileStore,type ProductionProfileStoreOptions} from '.
 import {selectVerifiedLegacySubscriberMappings} from './legacy-identity-links.ts';
 import {createRuntimeDataContext} from './runtime-context.ts';
 import {createProductAddressFlow} from './address-flow.ts';
-import {createAddressCatalog} from './address-catalog.ts';
+import {createProviderAddressCatalog} from './provider-address-catalog.ts';
 import {createSourceIngestion} from './source-ingestion.ts';
 import {SOURCE_PROFILES} from './source-intake.ts';
 import {publicSourceTransport} from './public-http.ts';
@@ -40,18 +41,29 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  now?:()=>number;fetch:typeof fetch;verifySource?:(request:DispatchEligibilityRequest)=>Promise<CurrentDispatchSourceProof|null>;
  authorizePrincipal?:ProductionProfileStoreOptions['authorizePrincipal'];accountConfiguration?:Pick<AccountLinksOptions,'bindingKey'|'miniApp'|'browserWidget'>;
  releaseCampaign?:ReleaseCampaignConfiguration;
+ /** Interactive operator lookup has its own explicit composition gate. This
+  * does not admit an HTML crawler or qualify data for personal delivery. */
+ operatorLookupEnabled?:boolean;
  /** Trusted server composition only. No HTTP/env route introduces review pins.
   * The production entrypoint leaves the deployed registry empty by default. */
  certification?:{rootDirectory:string;registry?:LoadedQualificationRegistry;execution?:'production'|'synthetic_test'}}){
  const {policy,pool}=ports,epoch=policy.canonicalControlEpoch;
  if(policy.productProfileMode!=='active'||!epoch)throw Error('CANONICAL_RUNTIME_CONFIGURATION');
+ if(ports.operatorLookupEnabled!==undefined&&typeof ports.operatorLookupEnabled!=='boolean')throw Error('CANONICAL_RUNTIME_CONFIGURATION');
+ const operatorLookupEnabled=ports.operatorLookupEnabled??policy.operatorAddressLookupEnabled??false;
+ if(typeof operatorLookupEnabled!=='boolean'||operatorLookupEnabled&&!policy.sourceIngestionEnabled)throw Error('CANONICAL_RUNTIME_CONFIGURATION');
  if(ports.accountConfiguration&&!ports.authorizePrincipal)throw Error('CANONICAL_AUTH_EPOCH_GUARD_REQUIRED');
  if(policy.accountLinksEnabled&&(!(ports.accountConfiguration?.miniApp?.configurationVerified||ports.accountConfiguration?.browserWidget?.configurationVerified)||!ports.authorizePrincipal))throw Error('CANONICAL_ACCOUNT_LINK_CONFIGURATION_REQUIRED');
  const ms=ports.now??Date.now,now=()=>new Date(ms()).toISOString(),transport=publicSourceTransport(ports.fetch);
- const sources=createSourceIngestion({enabled:policy.sourceIngestionEnabled,expectedControlEpoch:epoch,pool,transport,now:ms});
- const catalog=createAddressCatalog({enabled:policy.sourceIngestionEnabled,expectedControlEpoch:epoch,pool,transport,now:ms});
+ const sources=createSourceIngestion({enabled:policy.sourceIngestionEnabled,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false,expectedControlEpoch:epoch,pool,transport,now:ms});
+ const catalog=createProviderAddressCatalog({enabled:policy.sourceIngestionEnabled,operatorLookupEnabled,
+  expectedControlEpoch:epoch,pool,transport,now:ms});
  let flow:ReturnType<typeof createProductAddressFlow>,tools:ReturnType<typeof createProductionTools>,certification:ReturnType<typeof createProductionScheduleCertification>;
- const labels=Object.fromEntries(SOURCE_PROFILES.map(p=>[p.operatorId,p.name]));
+ // A transport/mirror name is not the operator's identity. Preserve stable
+ // official labels when several source profiles share the same operator ID.
+ const labels={...Object.fromEntries(SOURCE_PROFILES.map(p=>[p.operatorId,p.name])),
+  'dtek-kem':'ДТЕК Київські електромережі','dtek-dnem':'ДТЕК Дніпровські електромережі','cek':'ЦЕК',
+  'vinnytsia-oe':'Вінницяобленерго','dtek-oem':'ДТЕК Одеські електромережі','kharkiv-oe':'Харківобленерго'};
  const data=createRuntimeDataContext({sources,catalog,now:ms,operatorLabels:labels,ownedOptionIds:(owner,session)=>flow.ownedOptionIds(owner,session),certifiedProjection:()=>certification.readCertifiedProjection()});
  const store=createProductionProfileStore({enabled:true,pool,expectedControlEpoch:epoch,now,
   verifiedSubscriberMappings:(principal,client)=>selectVerifiedLegacySubscriberMappings(client,principal),verifyEmptyAccount:verifyRuntimeEmptyAccount,
@@ -61,11 +73,12 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
   onProfileChange:invalidateProductionToolShares,
   handleBotActions:input=>createBotToolActions({tools,origin:ports.origin})(input),
  });
- flow=createProductAddressFlow({enabled:policy.sourceIngestionEnabled,pool,catalog,store,now,refreshPublicContext:()=>data.refresh(true)});
+ flow=createProductAddressFlow({enabled:policy.sourceIngestionEnabled,pool,catalog,...(operatorLookupEnabled?{operatorCatalog:catalog.operator}:{}),store,now,refreshPublicContext:()=>data.refresh(true)});
  tools=createProductionTools({enabled:true,pool,store,expectedControlEpoch:epoch,now});
  const accounts=ports.accountConfiguration?createAccountLinks({enabled:true,pool,store,expectedControlEpoch:epoch,botId:PRODUCT_TELEGRAM_IDENTITY.botId,botToken:ports.token,now:ms,...ports.accountConfiguration}):undefined;
  const finishVerifiedLogin=accounts?createVerifiedSessionFinalizer({store,accounts,now:()=>Math.floor(ms()/1000)}):undefined;
- certification=createProductionScheduleCertification({enabled:policy.sourceIngestionEnabled,expectedControlEpoch:epoch,pool,store,sources,catalog,now:ms,
+ const publicAddresses=createOperatorAddressRefresh({operator:operatorLookupEnabled?catalog.operator:undefined,now:ms});
+ certification=createProductionScheduleCertification({...(operatorLookupEnabled?{publicAddressRefresh:publicAddresses.refreshOneSavedAddress}:{}),enabled:policy.sourceIngestionEnabled,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false,expectedControlEpoch:epoch,pool,store,sources,catalog,now:ms,
   ...(ports.certification?.registry?{registry:ports.certification.registry}:{}),...(ports.certification?.execution?{execution:ports.certification.execution}:{})});
  const events=createProductionScheduleEvents({enabled:true,expectedControlEpoch:epoch,store,verifyCurrentSource:request=>certification.verifyCurrentSource(request)});
  const interactiveCertifiedProof=createCertifiedInteractiveScheduleProof(events,epoch);
@@ -135,6 +148,6 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
   if(releaseCampaign)loop('releaseCampaign',1000,()=>releaseCampaign.runOnce({signal:abort.signal}));
  }
  async function stop(){stopped=true;ready=false;abort.abort();releaseCampaign?.stop();certification.stop();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
- return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,certification,prepare,start,stop,
+ return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,certification,prepare,start,stop,operatorLookupEnabled,
   health:()=>({ready,started,stopped,workers:{...status},deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&certification.health().admittedSources>0&&certification.health().evidenceMedium==='observed'),scheduleCertificationRequired:true,scheduleCertification:certification.health(),accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}})});
 }
