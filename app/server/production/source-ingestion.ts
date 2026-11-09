@@ -8,7 +8,7 @@ import type {LegacyProfileReadPool,LegacyProfileReadClient} from './profile-read
 /** Explicit additive public-only cache. Never auto-applied, seeded or started. */
 export const SOURCE_INGESTION_SCHEMA_SQL = `
 create table if not exists lba_public_source_worker (
- id boolean primary key check(id),uncertain boolean not null,hold_reason text
+ id boolean primary key check(id = true),uncertain boolean not null,hold_reason text
 );
 create table if not exists lba_public_source_origin (
  origin text primary key,next_attempt_at timestamptz not null,

@@ -1,0 +1,23 @@
+{
+  "actor": "/root",
+  "recordedAt": "2026-11-09T02:44:46.347682+00:00",
+  "fix": "source-ingestion singleton CHECK(id) expressed as CHECK(id=true) to avoidnativePublishdoubleCHECKgeneration; same booleanPKsemantics",
+  "sourceFile": "app/server/production/source-ingestion.ts",
+  "sourceFileSha256": "02c3dac235d0b617ff7f870a6ef29756f110925833732ab6618138a45332c21f",
+  "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "typescript": {
+    "command": "npm run check",
+    "exit": 0
+  },
+  "backend": {
+    "command": "npm run test:backend",
+    "exit": 0,
+    "tests": 311,
+    "pass": 311,
+    "fail": 0,
+    "skipped": 0
+  },
+  "oldNativePreview": "850d6e39fd4839f7a4ea6d6ffc73ec100102c7362559e9f6c61efd43ded07ca8",
+  "productionEffects": 0,
+  "independentPG": "pending"
+}
