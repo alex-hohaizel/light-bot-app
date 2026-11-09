@@ -1,8 +1,10 @@
 import {createHash,randomUUID} from 'node:crypto';
-import {createBotState,handleBotInput,restoreBotState} from '../../shared/bot/engine.ts';
-import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState} from '../../shared/bot/types.ts';
-import type {ScheduleView} from '../../shared/product-contract.ts';
+import {createBotState,handleBotInput,handleScheduleEvent,restoreBotState} from '../../shared/bot/engine.ts';
+import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState,BotAction} from '../../shared/bot/types.ts';
+import type {ScheduleView,ScheduleEvent} from '../../shared/product-contract.ts';
 import {validInstant,validateScheduleView,localParts,nextCalendarDate} from '../../shared/schedule-core.ts';
+import {planMatchesDisplay} from '../../shared/schedule-binding.ts';
+import {handleMorningBriefing,type MorningBriefingPacket} from '../../shared/morning-briefing.ts';
 import {applyProfileMutation,parseProfileRequest} from '../domain/profile-service.ts';
 import {selectLegacyLiveProfileInTransaction,type LegacyProfileReadPool,type LegacyProfileReadClient,type LegacyProfileReadQuery,type VerifiedLegacyPrincipal,type VerifiedSubscriberMapping} from './profile-reader.ts';
 
@@ -63,9 +65,14 @@ export interface ProductionProfileCommit {
 export interface ProductionBotRequest {
   input:BotInput;expectedSessionId?:string;expectedRevision?:number;
 }
+/** Server-only capability: callers cannot put a function/fence into request JSON.
+ * A processor guard must lock and recheck its authority in this canonical transaction.
+ */
+export type ProductionBotCommitGuard=(input:{client:LegacyProfileReadQuery;principal:VerifiedLegacyPrincipal;request:ProductionBotRequest;phase:'before_bootstrap'|'before_commit'})=>Promise<boolean>|boolean;
 export interface ProductionPendingMessage {
   id:string;inputId:string;sessionId:string;revision:number;controlEpoch:number;ordinal:number;addressId:string|null;
   status:'pending';message:BotMessage;schedule?:ScheduleView;
+  briefing?:{id:string;serviceDate:string;packetDigest:string;partIndex:number;totalParts:number};
 }
 /** Trusted registry verifier result, never accepted from request JSON. The reader's
  * zero-row source digest fences this proof to the same exact owner snapshot.
@@ -87,6 +94,18 @@ export interface ProductionProfileStoreOptions {
    * An absent/unknown account, unresolved ownership or missing proof must return null.
    */
   verifyEmptyAccount?:(input:{principal:VerifiedLegacyPrincipal;client:LegacyProfileReadQuery;legacySourceDigest:string;serverNow:string})=>Promise<VerifiedEmptyAccountBootstrap|null>|VerifiedEmptyAccountBootstrap|null;
+  /** Trusted local lifecycle hooks share the canonical transaction and owner lock.
+   * They may write their own scoped tables; no provider IO or implicit DDL. */
+  onProfileChange?:(input:{client:LegacyProfileReadQuery;principal:VerifiedLegacyPrincipal;before:BotState;after:BotState;serverNow:string})=>Promise<void>|void;
+  /** A stale settings.telegram_chat_id is not an ownership proof. This explicit
+   * migration policy may retain independently owned rows while leaving that
+   * reference isolated. It never selects/reassigns a subscriber from that ref. */
+  unresolvedSettingsTelegramPolicy?:'deny'|'retain_owned_profile';
+  handleBotActions?:(input:{client:LegacyProfileReadQuery;principal:VerifiedLegacyPrincipal;state:BotState;context:BotContext;serverNow:string;
+    actions:readonly BotAction[];messages:readonly BotMessage[]})=>Promise<{handledKeys:string[];messages:BotMessage[]}>;
+  /** Recheck request authority AFTER waiting for the owner lock. HTTP adapters
+   * supply a trusted request context; background Bot/event guards remain separate. */
+  authorizePrincipal?:(input:{client:LegacyProfileReadQuery;principal:VerifiedLegacyPrincipal})=>Promise<boolean>|boolean;
 }
 export class ProductionProfileStoreError extends Error {
   readonly code:string;
@@ -141,7 +160,7 @@ function rowState(row:any,owner:string):BotState {
   if(!row||row.ownerId!==owner||!bounded(row.sessionId)||!revision(Number(row.revision)))return fail('PRODUCTION_STORED_STATE_INVALID');
   let state:BotState;try{state=restoreBotState(decoded(row.state),owner);}catch{return fail('PRODUCTION_STORED_STATE_INVALID');}
   if(state.sessionId!==row.sessionId||state.revision!==Number(row.revision)||state.ownerId!==owner||state.profile.id!==owner||!revision(state.callbackSequence)||
-    state.profile.locations.length>10000||state.processedInputIds.length>256||state.processedEventIds.length>256)return fail('PRODUCTION_STORED_STATE_INVALID');
+    state.profile.locations.length>10000||state.processedInputIds.length>256||state.processedEventIds.length>512)return fail('PRODUCTION_STORED_STATE_INVALID');
   const ids=new Set<string>();for(const location of state.profile.locations){
     if(!bounded(location.address?.id,255)||location.binding?.addressId!==location.address.id||ids.has(location.address.id))return fail('PRODUCTION_STORED_STATE_INVALID');ids.add(location.address.id);
   }
@@ -158,11 +177,15 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
   if(!options||!options.pool||typeof options.pool.connect!=='function'||!positive(options.expectedControlEpoch)||typeof options.context!=='function'||
     options.enabled!==undefined&&typeof options.enabled!=='boolean'||options.now!==undefined&&typeof options.now!=='function'||
     options.verifiedSubscriberMappings!==undefined&&typeof options.verifiedSubscriberMappings!=='function'||
-    options.verifyEmptyAccount!==undefined&&typeof options.verifyEmptyAccount!=='function')return fail('PRODUCTION_INVALID_STORE_OPTIONS');
+    options.verifyEmptyAccount!==undefined&&typeof options.verifyEmptyAccount!=='function'||
+    options.onProfileChange!==undefined&&typeof options.onProfileChange!=='function'||
+    options.handleBotActions!==undefined&&typeof options.handleBotActions!=='function'||
+    options.authorizePrincipal!==undefined&&typeof options.authorizePrincipal!=='function'||
+    options.unresolvedSettingsTelegramPolicy!==undefined&&!['deny','retain_owned_profile'].includes(options.unresolvedSettingsTelegramPolicy))return fail('PRODUCTION_INVALID_STORE_OPTIONS');
   const pool=options.pool,enabled=options.enabled===true,epoch=options.expectedControlEpoch,contextPort=options.context,mappingPort=options.verifiedSubscriberMappings;
   const emptyAccountPort=options.verifyEmptyAccount;
   const clock=()=>{const value=(options.now??(()=>new Date().toISOString()))();if(!validInstant(value))return fail('PRODUCTION_CLOCK_INVALID');return value;};
-  async function transaction<T>(identity:VerifiedLegacyPrincipal,work:(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal)=>Promise<T>,isolation:'repeatable read'|'read committed'='repeatable read'):Promise<T>{
+  async function transaction<T>(identity:VerifiedLegacyPrincipal,work:(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal)=>Promise<T>,isolation:'repeatable read'|'read committed'=options.authorizePrincipal?'read committed':'repeatable read'):Promise<T>{
     const p=principal(identity);if(!enabled)return fail('PRODUCTION_STORE_DISABLED');
     let client:LegacyProfileReadClient;try{client=await pool.connect();}catch{return fail('PRODUCTION_TRANSACTION_UNCONFIRMED');}
     let began=false,commitStarted=false,committed=false;
@@ -172,6 +195,7 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
       if(control.rows.length!==1||control.rows[0].writerMode!=='canonical')return fail('PRODUCTION_WRITER_NOT_CANONICAL');
       if(Number(control.rows[0].controlEpoch)!==epoch)return fail('PRODUCTION_CONTROL_EPOCH_CONFLICT');
       await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))',['lba-production-owner:'+p.ownerId]);
+      if(options.authorizePrincipal&&await options.authorizePrincipal({client,principal:structuredClone(p)})!==true)return fail('PRODUCTION_PRINCIPAL_REVOKED');
       const value=await work(client,p);commitStarted=true;await client.query('commit');committed=true;return value;
     }catch(error){
       if(began&&!committed)try{await client.query('rollback');}catch{/* only stable public error codes */}
@@ -200,7 +224,11 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     if(previous.rows.length)return fail('PRODUCTION_REBOOTSTRAP_FORBIDDEN');
     const mappings=structuredClone(mappingPort?await mappingPort(structuredClone(p),client):[]);
     const legacy=await selectLegacyLiveProfileInTransaction(client,p,{now:clock,verifiedSubscriberMappings:mappings});
-    if(legacy.status!=='ready'||legacy.blockers.length||legacy.projection.issues.length)return fail('PRODUCTION_BOOTSTRAP_BLOCKED');
+    const retainOwned=options.unresolvedSettingsTelegramPolicy==='retain_owned_profile'&&legacy.completeness.ownerRows==='reconciled'&&
+      legacy.counts.missingVerifiedMappings===0&&legacy.counts.unresolvedSettingsReferences===1&&legacy.blockers.length===1&&
+      legacy.blockers[0].code==='LEGACY_READER_SETTINGS_TELEGRAM_MAPPING_UNVERIFIED'&&
+      legacy.blockers[0].sourceRefs.length===1&&legacy.blockers[0].sourceRefs[0]==='user_settings.telegram_chat_id';
+    if((legacy.status!=='ready'||legacy.blockers.length)&&!retainOwned||legacy.projection.issues.length)return fail('PRODUCTION_BOOTSTRAP_BLOCKED');
     let emptyProof:VerifiedEmptyAccountBootstrap|null=null;
     if(legacy.counts.settings+legacy.counts.locations+legacy.counts.selectedSubscribers===0){
       if(!emptyAccountPort)return fail('PRODUCTION_BOOTSTRAP_EMPTY_UNCONFIRMED');
@@ -218,7 +246,7 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     await client.query(`insert into lba_production_profiles(owner_id,session_id,revision,control_epoch,state,created_at,updated_at) values($1,$2,$3,$4,$5::jsonb,$6,$6)`,
       [p.ownerId,initial.sessionId,initial.revision,epoch,JSON.stringify(initial),legacy.serverNow]);
     await client.query(`insert into lba_production_profile_origins(owner_id,source_digest,projection_digest,private_provenance,imported_at,control_epoch) values($1,$2,$3,$4::jsonb,$5,$6)`,
-      [p.ownerId,legacy.sourceDigest,legacy.projectionDigest,JSON.stringify({version:legacy.version,provenance:legacy.projection.provenance,counts:legacy.counts,completeness:legacy.completeness,blockers:legacy.blockers,verifiedSubscriberMappings:mappings,...(emptyProof?{emptyAccountProof:emptyProof}:{})}),legacy.serverNow,epoch]);
+      [p.ownerId,legacy.sourceDigest,legacy.projectionDigest,JSON.stringify({version:legacy.version,provenance:legacy.projection.provenance,counts:legacy.counts,completeness:legacy.completeness,blockers:legacy.blockers,verifiedSubscriberMappings:mappings,...(retainOwned?{unresolvedTelegramReference:{resolution:'retain_owned_rows_reference_unverified',subscriberOwnershipGranted:false}}:{}),...(emptyProof?{emptyAccountProof:emptyProof}:{})}),legacy.serverNow,epoch]);
     await client.query(`insert into lba_production_bootstrap_ledger(owner_id,session_id,source_digest,origin_kind,initialized_at,control_epoch) values($1,$2,$3,$4,$5,$6)`,
       [p.ownerId,initial.sessionId,legacy.sourceDigest,emptyProof?'verified_empty':'legacy',legacy.serverNow,epoch]);
     return initial;
@@ -231,14 +259,11 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     const plans=copy.plans.flatMap(view=>{
       try{validateScheduleView(view);}catch{return [];}
       const location=current.profile.locations.find(l=>l.address.id===view.addressId),binding=location?.binding;
-      const verified=binding?.status==='verified'&&['building','connection','operator_group'].includes(binding.kind);
-      const today=localParts(Date.parse(now)).date;
-      const manual=binding?.kind==='user_selected_group'&&binding.status==='needs_confirmation'&&view.freshness==='current'&&view.deliveryEligible===false&&
-        ['schedule','address','integration'].includes(view.source.verifiedLevel)&&[today,nextCalendarDate(today)].includes(view.serviceDate)&&Date.parse(view.observedAt)<=Date.parse(now)&&(!view.publishedAt||Date.parse(view.publishedAt)<=Date.parse(now));
-      const exact=Boolean(binding&&(verified||manual)&&view.synthetic===false&&view.source.accessCost===0&&
-        view.operatorId===binding.operatorId&&view.namespace===binding.namespace&&view.targetId===binding.targetId&&view.bindingRevisionId===binding.revisionId&&
-        (!binding.effectiveFrom||Date.parse(binding.effectiveFrom)<=Date.parse(now))&&(!binding.effectiveUntil||Date.parse(binding.effectiveUntil)>Date.parse(now)));
-      return exact?[manual?{...view,deliveryEligible:false,notice:view.notice??'План обраної вручну групи. Прив’язку будинку ще потрібно підтвердити.'}:view]:[];
+      const unconfirmed=binding?.status==='needs_confirmation';
+      const exact=Boolean(binding&&view.synthetic===false&&view.source.accessCost===0&&planMatchesDisplay(view,binding,now));
+      const qualifier=binding?.kind==='user_selected_group'?'План обраної вручну групи. Прив’язку будинку ще потрібно підтвердити.':
+        'Це план групи, яку довідник указав для обраного будинку. Відповідність будинку ще потребує перевірки.';
+      return exact?[unconfirmed?{...view,deliveryEligible:false,notice:[...new Set([view.notice,qualifier].filter(Boolean))].join('\n')}:view]:[];
     });
     return {...copy,actorId:p.ownerId,now,plans};
   }
@@ -258,6 +283,7 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
   }
   async function persist(client:LegacyProfileReadClient,p:VerifiedLegacyPrincipal,before:BotState,after:BotState,inputId:string,inputDigest:string,channel:'app'|'bot',now:string,messages:BotMessage[],cancelled:Array<string|null>,rejected:string|null,plans:ScheduleView[]=[]):Promise<ProductionProfileReceipt>{
     if(after.ownerId!==p.ownerId||after.profile.id!==p.ownerId||after.sessionId!==before.sessionId||!revision(after.revision)||after.revision<before.revision||after.revision>before.revision+1)return fail('PRODUCTION_ENGINE_STATE_INVALID');
+    await options.onProfileChange?.({client,principal:structuredClone(p),before:structuredClone(before),after:structuredClone(after),serverNow:now});
     const updated=await client.query(`update lba_production_profiles set revision=$4,state=$5::jsonb,control_epoch=$6,updated_at=$7 where owner_id=$1 and session_id=$2 and revision=$3`,[p.ownerId,before.sessionId,before.revision,after.revision,JSON.stringify(after),epoch,now]);
     if(updated.rowCount!==1)return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
     for(const addressId of cancelled)await client.query(`update lba_production_profile_outbox set status='cancelled' where owner_id=$1 and status='pending' and kind='notification' and ($2::text is null or address_id=$2)`,[p.ownerId,addressId]);
@@ -273,7 +299,122 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     const receipt:ProductionProfileReceipt={runtime:'production',id:randomUUID(),inputId,channel,committed:true,sessionId:after.sessionId,previousRevision:before.revision,sessionRevision:after.revision,controlEpoch:epoch,recordedAt:now,delivery:outboxIds.length?'pending':'none',outboxIds,rejected};
     await client.query('insert into lba_production_profile_inbox(owner_id,input_id,input_digest,receipt,recorded_at) values($1,$2,$3,$4::jsonb,$5)',[p.ownerId,inputId,inputDigest,JSON.stringify(receipt),now]);return receipt;
   }
+  async function commitBot(identity:VerifiedLegacyPrincipal,value:unknown,guard?:ProductionBotCommitGuard,preparedState?:{sessionId:string;revision:number;selectionChanged?:true}):Promise<ProductionProfileCommit>{
+    principal(identity);const request=botRequest(value),inputId='bot:'+request.input.id,inputDigest=digest({channel:'bot',request});
+    return transaction(identity,async(client,p)=>{
+      const oldReceipt=await replay(client,p.ownerId,inputId,inputDigest);
+      if(!oldReceipt&&guard&&await guard({client,principal:structuredClone(p),request:structuredClone(request),phase:'before_bootstrap'})!==true)return fail('PRODUCTION_BOT_GUARD_REJECTED');
+      const current=await state(client,p),now=clock(),ctx=await context(p,current,now);
+      if(oldReceipt)return {snapshot:snapshot(current,ctx),receipt:oldReceipt,replayed:true};
+      if(request.expectedSessionId!==undefined&&(request.expectedSessionId!==current.sessionId||request.expectedRevision!==current.revision))return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+      const input=request.input,command=input.kind==='callback'?current.callbacks[input.callbackId]?.action:undefined;
+      const reset=(text:string)=>text.trim().split(/\s+/)[0].toLowerCase().split('@')[0]==='/reset';
+      if(input.kind!=='callback'&&reset(input.text)||command?.kind==='confirm_reset'||command?.kind==='command'&&reset(command.value))return fail('PRODUCTION_RESET_NOT_AUTHORIZED');
+      const preparationChanged=preparedState&&(preparedState.selectionChanged===true||preparedState.sessionId!==current.sessionId||preparedState.revision!==current.revision);
+      const turn:ReturnType<typeof handleBotInput>=preparationChanged?{
+        state:{...structuredClone(current),revision:current.revision+1,processedInputIds:[...current.processedInputIds,input.id].slice(-256)},
+        messages:[{id:input.id+':changed',kind:'error',text:'Дані або вибір адреси змінилися під час пошуку. Цю дію не виконано. Відкрийте /start і повторіть вибір адреси.',buttons:[],commitBarrier:'none'}],
+        actions:[],requiresCommit:true,rejected:'invalid_state',
+      }:handleBotInput(current,input,ctx);
+      const extra=turn.actions.filter(action=>!['persist_profile','cancel_pending_delivery'].includes(action.type));
+      if(extra.length){
+        if(!options.handleBotActions)return fail('PRODUCTION_EFFECT_HANDLER_REQUIRED');
+        const handled=await options.handleBotActions({client,principal:structuredClone(p),state:structuredClone(current),context:structuredClone(ctx),serverNow:now,actions:structuredClone(extra),messages:structuredClone(turn.messages)});
+        if(!plain(handled)||Object.keys(handled).sort().join(',')!=='handledKeys,messages'||!Array.isArray(handled.handledKeys)||
+          new Set(handled.handledKeys).size!==extra.length||handled.handledKeys.length!==extra.length||
+          extra.some(a=>!handled.handledKeys.includes(a.idempotencyKey))||!Array.isArray(handled.messages)||handled.messages.length>100)return fail('PRODUCTION_EFFECT_HANDLER_INVALID');
+        turn.messages=handled.messages.map((m,i)=>{const id='action:'+input.id+':'+i;return storedMessage({...m,id},id);});
+      }
+      const cancelled=turn.actions.filter(a=>a.type==='cancel_pending_delivery').map(a=>a.addressId??null);
+      const receipt=await persist(client,p,current,turn.state,inputId,inputDigest,'bot',now,turn.messages,cancelled,turn.rejected??null,ctx.plans);
+      const result=snapshot(turn.state,await context(p,turn.state,now));
+      if(guard&&await guard({client,principal:structuredClone(p),request:structuredClone(request),phase:'before_commit'})!==true)return fail('PRODUCTION_BOT_GUARD_REJECTED');
+      return {snapshot:result,receipt,replayed:false};
+    });
+  }
   return Object.freeze({
+    /** Server-only daily aggregate. The immutable occurrence/proof ledger is
+     * committed by the recipe in this transaction; profiles are never created
+     * or mutated merely because a background worker scanned an owner. */
+    async commitMorningBriefing<T>(identity:VerifiedLegacyPrincipal,operation:(input:{client:LegacyProfileReadQuery;state:BotState;context:BotContext;serverNow:string;
+      persistBriefingTurn:(input:{briefing:MorningBriefingPacket})=>Promise<{sessionRevision:number;outboxIds:string[];messagesCount:number}>})=>Promise<T>):Promise<T>{
+      if(typeof operation!=='function')return fail('PRODUCTION_INVALID_INPUT');
+      return transaction(identity,async(client,p)=>{
+        const present=await client.query('select owner_id from lba_production_profiles where owner_id=$1 for update',[p.ownerId]);
+        if(present.rows.length!==1||present.rows[0].owner_id!==p.ownerId)return fail('PRODUCTION_MORNING_BRIEFING_PROFILE_MISSING');
+        const current=await state(client,p),now=clock(),ctx=await context(p,current,now);let active=true,used=false,pending:Promise<unknown>|undefined;
+        const persistBriefingTurn=({briefing}:{briefing:MorningBriefingPacket})=>{
+          if(!active||used)throw new ProductionProfileStoreError('PRODUCTION_MORNING_BRIEFING_PERSIST_REUSED');used=true;
+          const work=async()=>{
+            const turn=handleMorningBriefing(current,structuredClone(briefing),ctx),outboxIds:string[]=[],packetDigest=digest(briefing);
+            for(let ordinal=0;ordinal<turn.messages.length;ordinal++){
+              const id=randomUUID(),message=storedMessage({...turn.messages[ordinal],id},id),schedule=turn.primarySchedule?storedSchedule(turn.primarySchedule):undefined;
+              const metadata={id:briefing.id,serviceDate:briefing.serviceDate,packetDigest,partIndex:ordinal,totalParts:turn.messages.length};
+              if(message.kind!=='notification'||message.buttons.length||schedule&&turn.messages.length!==1)return fail('PRODUCTION_MORNING_BRIEFING_INVALID');
+              await client.query(`insert into lba_production_profile_outbox(id,owner_id,input_id,session_id,revision,control_epoch,ordinal,address_id,kind,payload,created_at) values($1,$2,$3,$4,$5,$6,$7,$8,'notification',$9::jsonb,$10)`,
+                [id,p.ownerId,'briefing:'+briefing.id,current.sessionId,current.revision,epoch,ordinal,schedule?.addressId??null,JSON.stringify({message,...(schedule?{schedule}:{}),briefing:metadata}),now]);
+              outboxIds.push(id);
+            }
+            return {sessionRevision:current.revision,outboxIds,messagesCount:outboxIds.length};
+          };const result=work();pending=result;return result;
+        };
+        try{const result=await operation({client,state:structuredClone(current),context:structuredClone(ctx),serverNow:now,persistBriefingTurn});if(pending)await pending;return result;}
+        finally{active=false;}
+      },'read committed');
+    },
+    /** Internal event recipe. The event service owns its certification/cursor
+     * ledger in this SAME transaction. It cannot supply a replacement profile
+     * or claim that a simulated action itself authorizes a Telegram send. */
+    async commitScheduleEvent<T>(identity:VerifiedLegacyPrincipal,operation:(input:{client:LegacyProfileReadQuery;state:BotState;context:BotContext;serverNow:string;
+      persistEventTurn:(input:{event:ScheduleEvent;view:ScheduleView})=>Promise<{sessionRevision:number;outboxIds:string[];messagesCount:number}>})=>Promise<T>):Promise<T>{
+      if(typeof operation!=='function')return fail('PRODUCTION_INVALID_INPUT');
+      return transaction(identity,async(client,p)=>{
+        const present=await client.query('select owner_id from lba_production_profiles where owner_id=$1 for update',[p.ownerId]);
+        if(present.rows.length!==1||present.rows[0].owner_id!==p.ownerId)return fail('PRODUCTION_EVENT_PROFILE_MISSING');
+        const current=await state(client,p),now=clock(),ctx=await context(p,current,now);let used=false,active=true,pending:Promise<unknown>|undefined;
+        const persistEventTurn=({event,view}:{event:ScheduleEvent;view:ScheduleView})=>{
+          if(!active||used)throw new ProductionProfileStoreError('PRODUCTION_EVENT_PERSIST_REUSED');used=true;
+          const work=async()=>{
+            if(!plain(event)||Object.keys(event).some(k=>!['id','addressId','operatorId','serviceDate','fromRevisionId','toRevisionId','kind','createdAt','reminder'].includes(k))||!bounded(event.id,128)||!/^[A-Za-z0-9_.:-]+$/.test(event.id)||
+              !bounded(event.addressId,512)||!bounded(event.operatorId,512)||!validInstant(event.createdAt)||Date.parse(event.createdAt)>Date.parse(now)||
+              event.fromRevisionId!==null&&!bounded(event.fromRevisionId,512)||!bounded(event.toRevisionId,512))return fail('PRODUCTION_EVENT_INVALID');
+            if(event.reminder!==undefined&&(!plain(event.reminder)||Object.keys(event.reminder).sort().join(',')!=='edge,intervalEndsAt,intervalStartsAt'||!['starts','ends'].includes(event.reminder.edge)||!validInstant(event.reminder.intervalStartsAt)||!validInstant(event.reminder.intervalEndsAt)))return fail('PRODUCTION_EVENT_INVALID');
+            const checked=storedSchedule(view),turn=handleScheduleEvent(current,structuredClone(event),checked,ctx);
+            if(turn.messages.some(m=>m.kind!=='notification'||m.scheduleRevisionId!==checked.revisionId)||turn.actions.some(a=>!['enqueue_simulated_delivery','cancel_pending_delivery'].includes(a.type)||a.addressId!==checked.addressId||a.eventId!==event.id))return fail('PRODUCTION_EVENT_INVALID');
+            if(!turn.messages.length)return {sessionRevision:current.revision,outboxIds:[],messagesCount:0};
+            const location=current.profile.locations.find(l=>l.address.id===checked.addressId);if(!location)return fail('PRODUCTION_EVENT_INVALID');
+            // Preserve navigation, profile and callback revisions. A background
+            // alert only advances its event dedupe vector.
+            if(digest({...turn.state,processedEventIds:current.processedEventIds})!==digest(current))return fail('PRODUCTION_EVENT_INVALID');
+            await options.onProfileChange?.({client,principal:structuredClone(p),before:structuredClone(current),after:structuredClone(turn.state),serverNow:now});
+            const changed=await client.query('update lba_production_profiles set state=$4::jsonb,updated_at=$5 where owner_id=$1 and session_id=$2 and revision=$3',[p.ownerId,current.sessionId,current.revision,JSON.stringify(turn.state),now]);
+            if(changed.rowCount!==1)return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+            if(turn.actions.some(a=>a.type==='cancel_pending_delivery'))await client.query("update lba_production_profile_outbox set status='cancelled' where owner_id=$1 and session_id=$2 and address_id=$3 and kind='notification' and status='pending'",[p.ownerId,current.sessionId,checked.addressId]);
+            const outboxIds:string[]=[],schedule={...checked,addressLabel:location.address.label};
+            for(let ordinal=0;ordinal<turn.messages.length;ordinal++){
+              const id=randomUUID(),message=storedMessage({...turn.messages[ordinal],id},id);outboxIds.push(id);
+              await client.query(`insert into lba_production_profile_outbox(id,owner_id,input_id,session_id,revision,control_epoch,ordinal,address_id,kind,payload,created_at) values($1,$2,$3,$4,$5,$6,$7,$8,'notification',$9::jsonb,$10)`,
+                [id,p.ownerId,'event:'+event.id,current.sessionId,current.revision,epoch,ordinal,checked.addressId,JSON.stringify({message,schedule}),now]);
+            }
+            return {sessionRevision:current.revision,outboxIds,messagesCount:outboxIds.length};
+          };const result=work();pending=result;return result;
+        };
+        try{const result=await operation({client,state:structuredClone(current),context:structuredClone(ctx),serverNow:now,persistEventTurn});
+          if(pending)await pending;return result;
+        }finally{active=false;}
+      },'read committed');
+    },
+    /** Server-only composition port for tools with their own idempotency ledger.
+     * State is cloned; callbacks cannot silently persist a second profile writer. */
+    async withLockedProfile<T>(identity:VerifiedLegacyPrincipal,expected:{sessionId:string;revision:number}|undefined,operation:(input:{client:LegacyProfileReadQuery;state:BotState;context:BotContext;serverNow:string})=>Promise<T>,coordination?:{isolation:'read committed'}):Promise<T>{
+      if(typeof operation!=='function'||expected!==undefined&&(!plain(expected)||Object.keys(expected).sort().join(',')!=='revision,sessionId'||!bounded(expected.sessionId)||!revision(expected.revision)))return fail('PRODUCTION_INVALID_INPUT');
+      if(coordination!==undefined&&(!plain(coordination)||Object.keys(coordination).join(',')!=='isolation'||coordination.isolation!=='read committed'))return fail('PRODUCTION_INVALID_INPUT');
+      return transaction(identity,async(client,p)=>{
+        const current=await state(client,p),serverNow=clock();
+        if(expected&&(expected.sessionId!==current.sessionId||expected.revision!==current.revision))return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
+        return operation({client,state:structuredClone(current),context:await context(p,current,serverNow),serverNow});
+      },coordination?.isolation??(options.authorizePrincipal?'read committed':'repeatable read'));
+    },
     /** Authenticated exact-input readback after an ambiguous commit. No context/network,
      * bootstrap, input execution or delivery occurs. A null result is a confirmed ledger miss.
      */
@@ -302,20 +443,12 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
       });
     },
     async commitBotInput(identity:VerifiedLegacyPrincipal,value:unknown):Promise<ProductionProfileCommit>{
-      principal(identity);const request=botRequest(value),inputId='bot:'+request.input.id,inputDigest=digest({channel:'bot',request});
-      return transaction(identity,async(client,p)=>{
-        const oldReceipt=await replay(client,p.ownerId,inputId,inputDigest),current=await state(client,p),now=clock(),ctx=await context(p,current,now);
-        if(oldReceipt)return {snapshot:snapshot(current,ctx),receipt:oldReceipt,replayed:true};
-        if(request.expectedSessionId!==undefined&&(request.expectedSessionId!==current.sessionId||request.expectedRevision!==current.revision))return fail('PRODUCTION_PROFILE_REVISION_CONFLICT');
-        const input=request.input,command=input.kind==='callback'?current.callbacks[input.callbackId]?.action:undefined;
-        const reset=(text:string)=>text.trim().split(/\s+/)[0].toLowerCase().split('@')[0]==='/reset';
-        if(input.kind!=='callback'&&reset(input.text)||command?.kind==='confirm_reset'||command?.kind==='command'&&reset(command.value))return fail('PRODUCTION_RESET_NOT_AUTHORIZED');
-        const turn=handleBotInput(current,input,ctx);
-        if(turn.actions.some(action=>!['persist_profile','cancel_pending_delivery'].includes(action.type)))return fail('PRODUCTION_EFFECT_HANDLER_REQUIRED');
-        const cancelled=turn.actions.filter(a=>a.type==='cancel_pending_delivery').map(a=>a.addressId??null);
-        const receipt=await persist(client,p,current,turn.state,inputId,inputDigest,'bot',now,turn.messages,cancelled,turn.rejected??null,ctx.plans);
-        return {snapshot:snapshot(turn.state,await context(p,turn.state,now)),receipt,replayed:false};
-      });
+      return commitBot(identity,value);
+    },
+    async commitGuardedBotInput(identity:VerifiedLegacyPrincipal,value:unknown,guard:ProductionBotCommitGuard,preparedState?:{sessionId:string;revision:number;selectionChanged?:true}):Promise<ProductionProfileCommit>{
+      if(typeof guard!=='function')return fail('PRODUCTION_BOT_GUARD_REQUIRED');
+      if(preparedState!==undefined&&(!plain(preparedState)||Object.keys(preparedState).some(k=>!['revision','sessionId','selectionChanged'].includes(k))||!bounded(preparedState.sessionId)||!revision(preparedState.revision)||preparedState.selectionChanged!==undefined&&preparedState.selectionChanged!==true))return fail('PRODUCTION_INVALID_INPUT');
+      return commitBot(identity,value,guard,preparedState);
     },
     /** Read only after the committing method returns. No automatic send/mark-delivered path. */
     async pendingOutbox(identity:VerifiedLegacyPrincipal,limit=50):Promise<ProductionPendingMessage[]>{
@@ -324,10 +457,16 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
         const rows=await client.query(`select id,input_id as "inputId",session_id as "sessionId",revision,control_epoch as "controlEpoch",ordinal,address_id as "addressId",payload from lba_production_profile_outbox where owner_id=$1 and status='pending' and control_epoch=$2 and session_id=(select session_id from lba_production_profiles where owner_id=$1) order by revision,ordinal,id limit $3`,[p.ownerId,epoch,limit]);
         return rows.rows.map(r=>{
           const payload=decoded(r.payload);
-          if(!plain(payload)||Object.keys(payload).some(k=>!['message','schedule'].includes(k))||Number(r.controlEpoch)!==epoch)return fail('PRODUCTION_OUTBOX_INVALID');
+          if(!plain(payload)||Object.keys(payload).some(k=>!['message','schedule','briefing'].includes(k))||Number(r.controlEpoch)!==epoch)return fail('PRODUCTION_OUTBOX_INVALID');
           const message=storedMessage(payload.message,r.id),schedule=payload.schedule!==undefined?storedSchedule(payload.schedule):undefined;
           if(Boolean(message.scheduleRevisionId)!==Boolean(schedule)||schedule&&(message.scheduleRevisionId!==schedule.revisionId||schedule.addressId!==r.addressId))return fail('PRODUCTION_OUTBOX_INVALID');
-          return {id:r.id,inputId:r.inputId,sessionId:r.sessionId,revision:Number(r.revision),controlEpoch:epoch,ordinal:r.ordinal,addressId:r.addressId,status:'pending' as const,message,...(schedule?{schedule}:{})};
+          let briefing:ProductionPendingMessage['briefing'];
+          if(payload.briefing!==undefined){
+            const b=payload.briefing;
+            if(!plain(b)||Object.keys(b).sort().join(',')!=='id,packetDigest,partIndex,serviceDate,totalParts'||!bounded(b.id,128)||typeof b.serviceDate!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(b.serviceDate)||typeof b.packetDigest!=='string'||!(/^[a-f0-9]{64}$/).test(b.packetDigest)||typeof b.partIndex!=='number'||!Number.isInteger(b.partIndex)||b.partIndex<0||typeof b.totalParts!=='number'||!Number.isInteger(b.totalParts)||b.totalParts<1||b.totalParts>100||b.partIndex>=b.totalParts||message.kind!=='notification'||message.buttons.length||b.partIndex!==r.ordinal||r.inputId!=='briefing:'+b.id)return fail('PRODUCTION_OUTBOX_INVALID');
+            briefing={id:b.id,serviceDate:b.serviceDate,packetDigest:b.packetDigest,partIndex:b.partIndex,totalParts:b.totalParts};
+          }
+          return {id:r.id,inputId:r.inputId,sessionId:r.sessionId,revision:Number(r.revision),controlEpoch:epoch,ordinal:r.ordinal,addressId:r.addressId,status:'pending' as const,message,...(schedule?{schedule}:{}),...(briefing?{briefing:structuredClone(briefing)}:{})};
         });
       });
     },

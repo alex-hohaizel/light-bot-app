@@ -59,6 +59,11 @@ export interface UpdateCampaignRepository {
   begin(claim: CampaignClaim, health: DeploymentHealthObservation | null, now: string): Promise<'dispatch' | 'cancelled' | 'health_blocked' | 'lost'>;
   finish(claim: CampaignClaim, outcome: DeliveryOutcome, now: string): Promise<void>;
 }
+/** Local coordinator admission is not a provider failure and spends no send attempt. */
+export interface CampaignLocalDeferral {reason:'coordinator_busy'|'coordinator_deferred';retryAt:string}
+export interface CoordinatedCampaignRepository extends UpdateCampaignRepository {
+  defer(claim:CampaignClaim,deferral:CampaignLocalDeferral,now:string):Promise<'deferred'|'cancelled'|'lost'>;
+}
 export interface CampaignEnvelope extends CampaignBinding {
   operationId: string;
   recipientRef: string;
@@ -187,6 +192,7 @@ function checkedClaim(claim: CampaignClaim, options: CampaignAttemptOptions): Ca
       j.cohort !== (spec.pilotRecipientRefs.includes(j.recipientRef) ? 'pilot' : 'full')) return campaignFail('INVALID_CAMPAIGN_CLAIM');
   return c;
 }
+export const checkedCampaignClaim=checkedClaim;
 /** One bounded attempt; caller controls the run and no recurring job is created. */
 export async function runUpdateCampaignAttempt(repo: UpdateCampaignRepository, sender: CampaignTelegramSender, observer: CampaignHealthObserver, options: CampaignAttemptOptions): Promise<CampaignAttemptResult> {
   if (!campaignId(options?.releaseId) || !campaignId(options?.workerId) || typeof options.now !== 'function' || !repo ||

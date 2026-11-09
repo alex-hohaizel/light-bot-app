@@ -1,0 +1,2692 @@
+{
+  "kind": "lba-exact-source-candidate/1",
+  "sourceSha256": "71a9ed65edc29987f812afa4bdb78966fd6c0fee0ac50c4e16a4150689197e55",
+  "localBuildReceiptSha256": "21922d2010ef6a6879f8379d8562725dc95e413b9f480c39312a3f0beb4a998b",
+  "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+  "files": [
+    {
+      "path": "app/.gitignore",
+      "bytes": 98,
+      "sha256": "2b9c52cb3eaf29a6d5d6c4210e68efeede8b24a24e90b17cb852c21e7ef118f5",
+      "gitBlobSha": "dbec518dbf73abb17cb8789d1f5bb2ad1d926792",
+      "mode": "100644"
+    },
+    {
+      "path": "app/.replit",
+      "bytes": 1462,
+      "sha256": "65d7fbc4b277fbd6280755eb6dc7adaadf1b2cb507850a43c19cf074d61c0d83",
+      "gitBlobSha": "ed0d2844bce9a9b4cd76c6bd23ab4d19606514f2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/LOCAL_RUN_UA.md",
+      "bytes": 8637,
+      "sha256": "2f5fea8cb9741758fe8a380669ab93f12106330283cebedb202f7319c7614483",
+      "gitBlobSha": "18c95e6fb586e6dac09de67177b9bb32689c3a41",
+      "mode": "100644"
+    },
+    {
+      "path": "app/capacitor.config.ts",
+      "bytes": 1027,
+      "sha256": "ff49321670b90891935599bdf9e3aa3b4b402807acbea7f484bcbc57d5587550",
+      "gitBlobSha": "1b6419f8820a77d709544b219159ad615e7dff99",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/index.html",
+      "bytes": 4478,
+      "sha256": "b693021e7a8968714b9aa7339498771ea872d59a0256a28fff6539519f492177",
+      "gitBlobSha": "67035f12088627d05b7fe11457acfab3ed031009",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/public/fonts/manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "gitBlobSha": "e271172a9ed0cddc895aabb6509f1c7d880b492d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/public/fonts/manrope.ttf",
+      "bytes": 164700,
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "gitBlobSha": "75274da58537d6123b14f2cd0c355ad4681fc2b3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/public/fonts/onest-OFL.txt",
+      "bytes": 4384,
+      "sha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc",
+      "gitBlobSha": "b6f4f91487900bb8f00ae991724121f1d59e30d9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/public/fonts/onest.ttf",
+      "bytes": 193056,
+      "sha256": "966c5c29b4755da84b6854d5c21dd4eaa2420225d0e9874de602de176d4a9f31",
+      "gitBlobSha": "477cb31027450d80e486a53119641bf87dde3d4c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/public/sw.js",
+      "bytes": 1619,
+      "sha256": "9b9ba05af76f8e87b4c40b7605d4ff4b898cb2a2e73fbb30e7469d37e38ea686",
+      "gitBlobSha": "9284c53d6e55b3456fe2a0dc1d5492917659ba6b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/App.tsx",
+      "bytes": 17846,
+      "sha256": "faf4ecd759749668dd7d0a2f2e161f9eaf5f21103d62bb408ed5af4bb5b663eb",
+      "gitBlobSha": "cc5b5a285c1cd90fa0fec87b879a2a469755be5d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/bot-review/BotReview.tsx",
+      "bytes": 10927,
+      "sha256": "a036312be601fdc0d12dcb3576cbafb322acb80248eb813dec769ebea7cb3dd5",
+      "gitBlobSha": "6a5687c708ad0c87f426a77a3262260659f4a190",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/bot-review/bot-review.css",
+      "bytes": 7237,
+      "sha256": "a7e02a467d81963fdc1d16d8d6ac08f3e86fa5134fd7326f87ff942c1273a999",
+      "gitBlobSha": "7bf978db0af4511f6d91eee0034ca23ad83c8d0b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/CompareSheet.tsx",
+      "bytes": 33169,
+      "sha256": "001afb9788b55bdaac50f80857f14c0dc9475b5f4cc7e614bcb0a95efa92b3bb",
+      "gitBlobSha": "bd9078207555ef5a159f7ef14422277141b25780",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/Dashboard.tsx",
+      "bytes": 53054,
+      "sha256": "34383224fcea066ccce7fb2403b97b653e1ebed597ea43672d159abc0ae5bdf6",
+      "gitBlobSha": "a269bef8d7dcd3e87cdec64e4b0276050224de8e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/LocationManager.tsx",
+      "bytes": 59716,
+      "sha256": "3b598d6939f623fb8fd41961f1df31386c111add28fee6478d9b54658f65fdaa",
+      "gitBlobSha": "527844448845717580d71e7ee690972acb09a183",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/LocationPrioritizer.tsx",
+      "bytes": 10229,
+      "sha256": "a237e20f218ec4d0eb7f19366771a74e96e4c1ab4a216ae16784c558388b3440",
+      "gitBlobSha": "8eb706f2eca8947c98064af273962fd7adea195e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/MultiLocationStatus.tsx",
+      "bytes": 4223,
+      "sha256": "71642e7b497a327c6d221ab1691cd554f720fa2c2ad93fe2a7bd78316a8715c0",
+      "gitBlobSha": "2037929881de6c4741c5d63eacee20e77f8e0367",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/PowerReportCard.tsx",
+      "bytes": 27800,
+      "sha256": "8836f240abc03a9d79b34023a6e5796da77ac58c3036d7729faa964dad6b0ebb",
+      "gitBlobSha": "63a2f8b1b0819253579d4217e72181b837130245",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/Settings.tsx",
+      "bytes": 63709,
+      "sha256": "eed934fbea6ddab7d5dc2af76f5d233f9cf84a8895034bf5e711759b3d34ed4d",
+      "gitBlobSha": "7507663337f02f40583643894ac846023c5335cc",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ThemeToggle.tsx",
+      "bytes": 4129,
+      "sha256": "8917419cb49fafd83c2d3cdaae73eec807f15efa5989e90af238d621b97d33f4",
+      "gitBlobSha": "4a51daaa5b16c3eb929f90b006f10e6b93ae850c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/Timeline.tsx",
+      "bytes": 4605,
+      "sha256": "633de9e922483f236f806a3ac7cf2903b22ac36c61d334a3baf31055b1a636cf",
+      "gitBlobSha": "aeab299ab88ac7c698201b7172cfb5314c6f38ad",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/WeeklyDigestCard.tsx",
+      "bytes": 8548,
+      "sha256": "0e8f49c3e55e317b9008af98183adb1fd10e1bfcef728ec061d707f7b13482f3",
+      "gitBlobSha": "6f0b19c8113f5d3bdb87c053affdc2aac38f280d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/accordion.tsx",
+      "bytes": 2001,
+      "sha256": "dcbfb3243a26096fc3e5f54039ccb5c4c23d9bb79a4d5846b4be75bf912f07d9",
+      "gitBlobSha": "e1797c93458f3751a2e0f1189ff50d77f20ae3ed",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/alert-dialog.tsx",
+      "bytes": 4419,
+      "sha256": "311bede35f785d7b1ecd7398986757e26409d1049352a94ccf83586b8603c92d",
+      "gitBlobSha": "fa2b4429f4303210462ad03f9f49280ac5ae07ce",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/alert.tsx",
+      "bytes": 1598,
+      "sha256": "5950ac01377e7eedc94b00eb3fee678745e4cc1a72b5343867f0733d07db6660",
+      "gitBlobSha": "5afd41d142c95c74069ebb5460117e74ead3b9df",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/aspect-ratio.tsx",
+      "bytes": 140,
+      "sha256": "08b0aa0b05efc573c7d63363c03e83d4b101bfeb54140764e96ddea30659cfcc",
+      "gitBlobSha": "c4abbf37f217c715a0eaade7f45ac78600df419f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/avatar.tsx",
+      "bytes": 1419,
+      "sha256": "e78b35ed76c67d8ff50603fbe0dfa4fe600097bd860d89e65beea3e16683dad8",
+      "gitBlobSha": "51e507ba9d08bcdbb1fb630498f1cbdf2bf50093",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/badge.tsx",
+      "bytes": 1522,
+      "sha256": "3c339f439797dba9b3872a9d89db42420ffd900504b4e0b27e9dad51e87bc41c",
+      "gitBlobSha": "3f03665878d609428688f5736ab2300297115e5f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/breadcrumb.tsx",
+      "bytes": 2712,
+      "sha256": "c3d3dcb0d82fc5e91d8830bac7fead905686fe876f1f42c3ed872bb0a6b6584e",
+      "gitBlobSha": "60e6c96f72f0350d08b47e4730cab8f3975dc853",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/button-group.tsx",
+      "bytes": 2209,
+      "sha256": "e3716d270e9ef6457b5cd29464ae00194abc8093c08ebf726c9204d7a69231d9",
+      "gitBlobSha": "d6e78014fc491465c059253d541b10afdaa3227a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/button.tsx",
+      "bytes": 2356,
+      "sha256": "9a9edf4fda319623ee228d5cb26ac31dd008dcfd5c57dbafe3b7d768e59e50ca",
+      "gitBlobSha": "16eb95d1cca6cdc61889bdf0d9206ad0dfcec427",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/calendar.tsx",
+      "bytes": 7569,
+      "sha256": "787a19c855cf2b826942d25440b63150c45094154c6a40e95abdb4109298b8b4",
+      "gitBlobSha": "a623682dab53fbe9e1777b83b2e93763837653d8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/card.tsx",
+      "bytes": 1828,
+      "sha256": "525c4bb2c051987be64df0e92e1d90174912b219bf541e24ffbc4a3406de49e8",
+      "gitBlobSha": "cabfbfc59d955db9efc2049783cad4a71db55442",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/carousel.tsx",
+      "bytes": 6210,
+      "sha256": "5a4ff73c804e86c873382da80c453f1399006326ef042fb984c24162ec86666e",
+      "gitBlobSha": "9c2b9bf3705d8421bef00704c0c52e83d371ca11",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/chart.tsx",
+      "bytes": 10763,
+      "sha256": "b40d1236f168c746b228adec6bc4e9d196ea362a7910878f161d3c359a013b89",
+      "gitBlobSha": "23dc1c1bb3a575bdb557e5fce9348f3815458178",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/checkbox.tsx",
+      "bytes": 1031,
+      "sha256": "ac389a574651c8bedffc10f80674c5fc2f02ab81291a5f4ad9c587d1f775fdce",
+      "gitBlobSha": "90b71e4131b047201b35476638ea324b12f76113",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/collapsible.tsx",
+      "bytes": 329,
+      "sha256": "f4cdd104de29928bfcd40b865c7d08eed9157a537fbb8b5e6d0921f02b63cc04",
+      "gitBlobSha": "9fa48946afd1eb56bd932377fd888e3986304676",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/command.tsx",
+      "bytes": 4887,
+      "sha256": "5a57ebc119f2357b097098d22865d45de8fda623ee88fe98b99999838c13633b",
+      "gitBlobSha": "2cecd9104b27be82d238aa2f1cbb351e05446af7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/context-menu.tsx",
+      "bytes": 7406,
+      "sha256": "5369fc82c51df067aec2934f5e711aaf9e3f745ed7baadd7ba4b77397dee2a1b",
+      "gitBlobSha": "0cd4b2c03d306c38836d43c7f3dc2cb2547c64a7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/dialog.tsx",
+      "bytes": 3835,
+      "sha256": "f9c982ed8114c253c6ca738043d3f455e89c6d65569e90c9415776d6b4d6be14",
+      "gitBlobSha": "9dbeaa096eef7b54a3272898770c4c32e00630af",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/drawer.tsx",
+      "bytes": 3007,
+      "sha256": "47ff6248307a4ac09bf7e00181a2a29f9f846691092e04cad03e15d749bc249b",
+      "gitBlobSha": "c17b0ccaa95dccfb96c75618e078efd263e54fd0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/dropdown-menu.tsx",
+      "bytes": 7606,
+      "sha256": "dc109123ecd59af01d07aa9f3a8e8a7085bd3f337388c5369799ab1ce6c2d45f",
+      "gitBlobSha": "5a20503b547ea0e4e467d63fe1ae78e4171afb52",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/empty.tsx",
+      "bytes": 2396,
+      "sha256": "9f975582a0290dbc7ce6efa3b36b376a4c3f07863026c3b74c1e73cb0023acb8",
+      "gitBlobSha": "71667632e77bf4265ab740e906f785fee806eec2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/field.tsx",
+      "bytes": 6044,
+      "sha256": "e463611ab049c5e9b1c61691d239e05970ead7b577a191b3f80aa6f8ffccada9",
+      "gitBlobSha": "0a276fcb1d7623b0d57fd649fddfb043b535ea62",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/form.tsx",
+      "bytes": 4175,
+      "sha256": "d50adf86568f76246f0f319c9e1e858627475563f6c1e38f5df7d4ee23958559",
+      "gitBlobSha": "1fe22e6f0be2750d1b5ec3efc7346fef4612b2e3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/hover-card.tsx",
+      "bytes": 1237,
+      "sha256": "00f9086b1412843e04e01d31d2fab00a25d65d789d1a382e41f01b1f3c167c3b",
+      "gitBlobSha": "95643d9c7099c1179f8a876fbf8840dc077e1b38",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/input-group.tsx",
+      "bytes": 4971,
+      "sha256": "e9dad28bc940ca29714312d6c75d83bfe63f0cf7f9a384d2a2969a00a1d79700",
+      "gitBlobSha": "1233eff82050abcd053131fd15ab80f87ecc15c6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/input-otp.tsx",
+      "bytes": 2143,
+      "sha256": "7c4799e3597f2780c09a39a1391b921fa16eaedd0476457492af734f58e2ec98",
+      "gitBlobSha": "f7891c9cc8ba7868f4b5bdb67dc883b1880ade9f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/input.tsx",
+      "bytes": 768,
+      "sha256": "6299a6a387dc55e528aec4342deaea0b83f1ea3a365c135a31a18ee55334f441",
+      "gitBlobSha": "69b64fb2455114c3eeda2d18741af0027b3c5e89",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/item.tsx",
+      "bytes": 4494,
+      "sha256": "90983640aa7cfef8217422347d8e14825cf55137c76369decacf440767f03188",
+      "gitBlobSha": "93d2b8122ddd7119c3580afa71e8c53708982983",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/kbd.tsx",
+      "bytes": 862,
+      "sha256": "0c025e7736d435f563bfb44105e562629672799eb1f35cbf194148d06cd1a9f7",
+      "gitBlobSha": "44d8ba842d739468527fd004503f4546cc152576",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/label.tsx",
+      "bytes": 724,
+      "sha256": "2eac8fbb04002c42b0fbc4062d20d131e421796eaf65c37d2049e29e42ecbc5a",
+      "gitBlobSha": "534182176bf87f9308355514adc884d2b69750a5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/menubar.tsx",
+      "bytes": 8608,
+      "sha256": "def61eb2c47c9ec319423471f4ca20045e99549958211cacf832e4ede769e484",
+      "gitBlobSha": "6919168b87c646d3b27fd66d68cdd7e391757583",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/navigation-menu.tsx",
+      "bytes": 5124,
+      "sha256": "a06d96a582ac207ffcd38445d773c05e841d646efb185b5e9b65f73e5bd388c7",
+      "gitBlobSha": "056354bf824bf1f06e9dbceeacad512ce21b03d1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/pagination.tsx",
+      "bytes": 2751,
+      "sha256": "9506dbd19ddd0c2810d1c9668a3f01606e39d9bf33ddc43329523c03bf629012",
+      "gitBlobSha": "d3311054cd07a90d130f7996c79b3fc0feeede39",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/popover.tsx",
+      "bytes": 1342,
+      "sha256": "04cf38bf94abd3fe1b51e90227e6e235ca74776f6fc6af718bfc149e7424f582",
+      "gitBlobSha": "fdcb511dc768b79951de97416e9bd0ff1ae9ea05",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/progress.tsx",
+      "bytes": 792,
+      "sha256": "6b3b4b69a1cb361076174892e9a96e1a09020307616965ef89f2f7e2495b57a9",
+      "gitBlobSha": "4fc3b473e6f51afa972f840fb0f4476f8663c256",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/radio-group.tsx",
+      "bytes": 1410,
+      "sha256": "9ba7808b7404cdf2159c81883a39290033bc4308f2978eb80797c92b87421301",
+      "gitBlobSha": "9d3a26e6ec5d8647f22d754be5affd9e8eba1ec5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/resizable.tsx",
+      "bytes": 1723,
+      "sha256": "70d1e35a5fb0897af7063cdd841d8ed636e1c332ef7ea6469f0f175a5a93dddf",
+      "gitBlobSha": "f4bc5586b67f45d3cc35f228e8bac2e4bc2cea16",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/scroll-area.tsx",
+      "bytes": 1642,
+      "sha256": "d7d02600effca55d0dcadce8c09c97ebddda3a19c5fa1d52dc9f6f727b26c6b1",
+      "gitBlobSha": "cf253cf17056ce04827219643e484ea99c77cf6b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/select.tsx",
+      "bytes": 5745,
+      "sha256": "3d93ae07a8f3fe121ba60f4439e26bd7859f247eb8bfcafcf4b4a8a069888eec",
+      "gitBlobSha": "6e637f7dc67daa0b2ce4f440e4bbdb3f14ce3c03",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/separator.tsx",
+      "bytes": 756,
+      "sha256": "c956c4cca4b8442fa9314d6079b9f975e1ee39d5804aaf2966990f6258ac342a",
+      "gitBlobSha": "6d7f12265ba0338704f013930ce4d52c56527dd1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/sheet.tsx",
+      "bytes": 4280,
+      "sha256": "363f8e06aa5b53c6475f445117f60fa9294be79e9e4f1f5bf70886800188124e",
+      "gitBlobSha": "272cb721eb48b7a5833ccd51f940a8830d85b64e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/sidebar.tsx",
+      "bytes": 21846,
+      "sha256": "b023ff6245be1930e152a18c6aaa2b6dd1a11df7b05fcf41bbe483968bfb1c39",
+      "gitBlobSha": "41362f6f40769bd800e4b1e77dfcc0ca61300636",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/skeleton.tsx",
+      "bytes": 266,
+      "sha256": "87608e7cc815ad3d88e0b9de6c402bb37b58ea1b38636cf69709da1baff6e334",
+      "gitBlobSha": "d7e45f7bd315f86eabf32f2c9425223417920e60",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/slider.tsx",
+      "bytes": 1037,
+      "sha256": "234e38fef59169bd02d8f5b56ca02e5ec13a0bd6846c328927b924e1299f7fb0",
+      "gitBlobSha": "9398b331513e9668b8d76f2905d570c34d080fd2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/sonner.tsx",
+      "bytes": 894,
+      "sha256": "771ab8637d27384c3ed030ba3be01a07b90c791c294eae06646250f8e81bc49e",
+      "gitBlobSha": "452f4d9f0dde88611113632c1d759d60155fe4d3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/spinner.tsx",
+      "bytes": 331,
+      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9",
+      "gitBlobSha": "a70e713c5b4ecb2af186efe3fadea51805f26ba5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/switch.tsx",
+      "bytes": 1148,
+      "sha256": "ba5867cd3145af1290edd80bb56d4b6d61c6331aa8ef96ae0b85487f4499feaf",
+      "gitBlobSha": "455c23b6cd5adcb0278792568cdddf084a4a37c9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/table.tsx",
+      "bytes": 2859,
+      "sha256": "a4a6972c2d47d465d7f02c1dc4a6cbfeda7a97e46479c1b0cebdaf26bf9b497a",
+      "gitBlobSha": "c0df655c0bf26af1148d038e1d013e884663b240",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/tabs.tsx",
+      "bytes": 1877,
+      "sha256": "6f74706bc6b53f9e4bcebb5e7ab8743b616aef181edc7758b8ee905f9b2fdcd7",
+      "gitBlobSha": "85d83beab3224580318b1dd85f93e9294fae32c0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/textarea.tsx",
+      "bytes": 649,
+      "sha256": "ec7c92aaed80f6923a7caa4bfe4eead395b50a7001504fd7fbb0b9381804dae9",
+      "gitBlobSha": "e56b0affd7e03bd8359092a81d81c606ab09972d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/toast.tsx",
+      "bytes": 4845,
+      "sha256": "99f9f4a3e897f71d89b01c6772b2f5db51b888cecb2c8214fb2c2dbb2b3e6356",
+      "gitBlobSha": "a822477534192c4df5073e4015f7461e739d3344",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/toaster.tsx",
+      "bytes": 772,
+      "sha256": "1348f1a1f9820e2f1394b93cecc156a7e22f03636ab9270753985549aae2be74",
+      "gitBlobSha": "6c67edff67a48c6ac1c46f25a6d468dd461e66cb",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/toggle-group.tsx",
+      "bytes": 1753,
+      "sha256": "dba95ead40d163af6959198ded9853a2cc9282b2cb534980f99937a65edf4e2d",
+      "gitBlobSha": "1c876bbeecabe59b684719afe58e684f34cdecbf",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/toggle.tsx",
+      "bytes": 1486,
+      "sha256": "955fa1bb97505b7a8bba3f7cff1991035a9afa0e1113f5d598147e6369dbf44b",
+      "gitBlobSha": "ab0a30fb3daa5b3fe5a4158ee1372405aac50aba",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/components/ui/tooltip.tsx",
+      "bytes": 1267,
+      "sha256": "ce6afa34fb9dae51053a863b4c3f7c6e55f3da23b00149f31a8e4402bc963be0",
+      "gitBlobSha": "28e19183f4d9dfbb73c82928190556b69575eb2b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/data-review/DataReview.tsx",
+      "bytes": 4603,
+      "sha256": "eb908348abc1aa270c82524a12731f4d17fc750ecda8070e0f2d644798fa1928",
+      "gitBlobSha": "7eb8abe3fde5ad5e6f8ded7e48fc53bf2687d0ad",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/hooks/use-auth.ts",
+      "bytes": 1091,
+      "sha256": "0ab183ba5a48dc00820a2aea7cbe5647b750f9fa46df4753799be0814f1daf4b",
+      "gitBlobSha": "14c16263b842d7aad1dda99f64e25617baaaf46a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/hooks/use-mobile.tsx",
+      "bytes": 565,
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
+      "gitBlobSha": "2b0fe1dfef3b17850bbac040665f514a8ffd0f15",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/hooks/use-toast.ts",
+      "bytes": 3895,
+      "sha256": "5aab0623ee24bddf9420c259a23a06996292e38ea70eccbac2715516f6d01a0b",
+      "gitBlobSha": "2c14125ac48b874740770da80d9e424daf1db58b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/hooks/useAuth.ts",
+      "bytes": 740,
+      "sha256": "bf70c5c0630deb53f963bd1c6a9831b7dbf6333db75d06310cfc0a14100bb51d",
+      "gitBlobSha": "106ea10fb1f2b71cc304ba1737bf74982de40fcb",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/hooks/useTheme.ts",
+      "bytes": 4722,
+      "sha256": "0bb37d9d7d3428efea032b189cf0d88a7ede640d9b96b101edfa4f84c8fead40",
+      "gitBlobSha": "9e5a1b8f952c6a891f23cba0202d1321e083f21b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/index.css",
+      "bytes": 2579,
+      "sha256": "6da4bbea31cc75cd0e9512eaa0ffddacc3d5bf1b5625360edf809656eced6e18",
+      "gitBlobSha": "2894203a9ccd552897d6e5cdeb49f838f7ec87a6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/auth-utils.ts",
+      "bytes": 517,
+      "sha256": "ca5de7a04a552ff400ae7d47dec3b45258a6a69158c6f8d49fc5650e1b09525d",
+      "gitBlobSha": "a06807d78a0dede7d55776cd84fb6f3c20e4e204",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/capacitor.ts",
+      "bytes": 430,
+      "sha256": "428c5be98a39ca81e799cf5c45d8d558596ad5285c7916be840f77883fc49a9a",
+      "gitBlobSha": "ef5328f4307bb74077f70b550aeac909bde3a59b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/native-notifications.ts",
+      "bytes": 6345,
+      "sha256": "d985d70eccf9cd41077ed7c13cfec82b4a81e86ba9c52051de66959f0cbc90f3",
+      "gitBlobSha": "b295d374d6b1ecc1f38e46b606066831e546cb3f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/notifications.ts",
+      "bytes": 3915,
+      "sha256": "62461f6f940198fc5606c41f5dad707727c80e007f835b74968167318c5689dd",
+      "gitBlobSha": "963a4a55f0704f4afbcbb2d72fe6865fa2166b9e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/queryClient.ts",
+      "bytes": 1383,
+      "sha256": "4e32b4e5cf93a98c307883ed253a7edc4b309e2a299472c1b121626c1594b726",
+      "gitBlobSha": "f315a142495772235f6e5324668ce3bc34ef1871",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/schedule-service.ts",
+      "bytes": 4814,
+      "sha256": "6a761b601f5aab7da86b884fc6eb5e080362b6e7e1d062fd14723a72376a0fab",
+      "gitBlobSha": "144442c54e692c79014c22335a95d9c7f0c33dd2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/settings-sync.ts",
+      "bytes": 9532,
+      "sha256": "df5f74638549ab2989040f64246ad3fdf7b849e707449bdeec8ecb10c514d4fb",
+      "gitBlobSha": "da53a5cdf49d7598b813c0b25713e6503c4aa55c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/store.ts",
+      "bytes": 15637,
+      "sha256": "152fe0ae526259553a87d890f02a137fdd93af59ef7fb9881480ba6353cb3cb3",
+      "gitBlobSha": "3a2f5aa232369eb3d9a29f8008c85db587b01801",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/sync-state.ts",
+      "bytes": 559,
+      "sha256": "4b03e54eb3fa03eabcaeec792bb19b052d30894baf061e834be4e53705460679",
+      "gitBlobSha": "82ee0f7dab13d0b1ded994bd83c3324b636c1646",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/telegram-login-widget.ts",
+      "bytes": 3345,
+      "sha256": "1a6071be86d852b5e738243f205601432ce01807b433f034f0886dd139fc01c0",
+      "gitBlobSha": "a57f4169685d0ec88037b4a8f90acac5dbec1a5e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/telegram-webapp.ts",
+      "bytes": 3108,
+      "sha256": "394644fda9fbc52329cc28c0d5a49c02af9fabf17491f8b0b5533bab9d31b9c4",
+      "gitBlobSha": "b38369174d9d27e05be0172f276cef338688e580",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/lib/utils.ts",
+      "bytes": 166,
+      "sha256": "7c8c3dfc0cdd370d44932828eb067ef771c8fe7996693221d5d4b90af6d54f2d",
+      "gitBlobSha": "bd0c391ddd1088e9067844c48835bf4abcd61783",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/main.tsx",
+      "bytes": 439,
+      "sha256": "507dd664a870c7e183dbf83ed001aadd3cd21b1bb9ce9743074e41096e2d71f1",
+      "gitBlobSha": "08fc7928a9eb340b796537a3dc6094035aaf2843",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/pages/ComparePage.tsx",
+      "bytes": 26244,
+      "sha256": "e4695ce3e8a7a0db545c775e4997322b641757830cd30a751a94b59baea3a3cc",
+      "gitBlobSha": "73b38448aa059aade02758c8761ec0d34dfe0ee9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/pages/LoginPage.tsx",
+      "bytes": 5373,
+      "sha256": "b550a8c2b658d355f22083296e56feb9f0b9906b53470142a069034a398969c3",
+      "gitBlobSha": "471b3815e07d319e82aa4a42551b5dde40567144",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/pages/SharePage.tsx",
+      "bytes": 26405,
+      "sha256": "185225ed26cf0383ea4cd9d34cec92a0ac29b6bde9932806a4a414bc52bf5186",
+      "gitBlobSha": "92820d95b4d83cf9698dda7f624bfe5ffab53c87",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/pages/not-found.tsx",
+      "bytes": 711,
+      "sha256": "718a41bd05a163d1db32480aba013f5fe754894e656b6542a8e4b302275b172e",
+      "gitBlobSha": "dba9f8316f8e796e2808090c4f6cf770e6b90c4a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/pages/telegram-login.css",
+      "bytes": 2839,
+      "sha256": "594041b308c1ba8e2d70a18d006b4ca76c22d88cb11023dbd7e6f369f2e53432",
+      "gitBlobSha": "fa970658ffb277bffcf0ff2caf381c5b116c5e4f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/AccountTelegramWidget.tsx",
+      "bytes": 2400,
+      "sha256": "e024e56431759c34ddd916a99c15e41072968b0149f17c408b5e9b1cc1ae28ff",
+      "gitBlobSha": "4d9fa371ab40a3f247f644a7f92e245b4102f1d9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/AddressEditor.tsx",
+      "bytes": 32735,
+      "sha256": "192e4f0de3945fec3566c58cb1c6d7b1238c0a4a9dd4d9ab9a05aa1670aa9414",
+      "gitBlobSha": "a7905887b159b9fbba2e66defa5f0f40107b0660",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "bytes": 5294,
+      "sha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "gitBlobSha": "b793d26e6f775acd66d3824daa0f59fd3a070225",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/Building.tsx",
+      "bytes": 4681,
+      "sha256": "9d55ffa4075f4dface929702d3a3790983c00b44be7e8ad8daae0c43400e9ed2",
+      "gitBlobSha": "84630553735e2c30a3b975f62c240df503090f79",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/DistrictDashboard.tsx",
+      "bytes": 14062,
+      "sha256": "9a55a200dfd424dd1ff417fdd34de0b1528b9a42b98a7519c011ebdd3408e6c1",
+      "gitBlobSha": "472e4a5c4835f167c472c96f70d3916a7cc6ea61",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/DurationField.tsx",
+      "bytes": 1604,
+      "sha256": "5498848aff3f5dcd5bf22a4f63a906c9dbef38ba85792cbd03f01e821ce92c5d",
+      "gitBlobSha": "1b53ef5026af0cb6518223cdd65825b896abc414",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/LabelEditor.tsx",
+      "bytes": 5004,
+      "sha256": "a0df0ac1f51ad08c55f5bde3acc3e054b94d58ab740ac166307902563b3b976e",
+      "gitBlobSha": "a955d46749855e581af0559faaa3f448752854f0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/LiveAccountSettings.tsx",
+      "bytes": 39438,
+      "sha256": "3c26117c2155adfaab07d3e6c68f1a447381b0610748ee568a72e687bd401970",
+      "gitBlobSha": "4dcf0ff9c20ef2858eaad4918cb03b6b3196aef3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/LiveAddressEditor.tsx",
+      "bytes": 25468,
+      "sha256": "821ac427ba72bbd4033436e4e17b8ecb2140329912093d265cfc0235cd1441ee",
+      "gitBlobSha": "bcdcc563df649a097483cfc99716c5ed02c733bf",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/LiveProductTools.tsx",
+      "bytes": 19718,
+      "sha256": "1666abe852722ba4630cedfbe9fece1464a61fe057c2728ae1981bbbddc9841b",
+      "gitBlobSha": "9d7545b1f0dee11a7bdf36381ab9d6cedd3e3079",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/Modal.tsx",
+      "bytes": 826,
+      "sha256": "bb9953680291797b6bdaf518050e71e99bd71394e72505821112c4fa903fb2d5",
+      "gitBlobSha": "9855f228c8eb08dad830e0e94bb738df6f7ecaf2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "bytes": 21321,
+      "sha256": "9ffd2971a884aae1a6d612e465c424ed67e29c170ee56b82a3dc399305dafee7",
+      "gitBlobSha": "5561b6e62c1e72d9d11d2d6777f7bc0f0e7746a2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/PlanWindow.tsx",
+      "bytes": 2837,
+      "sha256": "29e1bc4a2eddb47b50fd7bbc358539de1cbd22794fc3f875940684a4ec5e5553",
+      "gitBlobSha": "9dd94a579a50e116c699846bceda0b9ea2975e4d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "bytes": 37269,
+      "sha256": "d9c8bc7266373362c9c70c7f97d8e9d13992e1627454b1fb73c8b98d7a27675c",
+      "gitBlobSha": "7cb1aa7b390381ac899cbd5105293fa6e47919ea",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/ProductTools.tsx",
+      "bytes": 14200,
+      "sha256": "dd4b1fd90f516da1fdbb6d5552b7ff3c6dcc860151c0499286b614be26f804a2",
+      "gitBlobSha": "d8ec868affdac78ea11e304dc9d7a44049ffbcce",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/SharedDayComparison.tsx",
+      "bytes": 11248,
+      "sha256": "29a95074142a7fbbbf8bdd759f2b130e5c3afe15a1bc4965a84d97372749ad2e",
+      "gitBlobSha": "81ba3f8f40fc05ffdeecd81287e1ff8ccc415f8c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/account-telegram-widget.css",
+      "bytes": 325,
+      "sha256": "7336e3def2a798bef0817f0697dddb073c8c1fb096766078a9d41cbfb460944e",
+      "gitBlobSha": "1cc1bbdc09b417bdaa1d980cee8389d72712f5d2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/address-editor-model.ts",
+      "bytes": 6206,
+      "sha256": "c6a213512f0b2b5a61a2d24141475da4ec8e3f699af45321caa4526d40f8b810",
+      "gitBlobSha": "dea0f832e08ba8f4235891c2ecf8bbc813350fd4",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/address-editor.css",
+      "bytes": 2357,
+      "sha256": "10ec338033b746a60220ae42e2b1dc3c40b90ce268f080bd1652545938f5bf33",
+      "gitBlobSha": "52ff691df992e922e7f03de03d5aab11d68ff22c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/district.css",
+      "bytes": 24121,
+      "sha256": "2ed74ff7700cb5ba03704a8dbecd79773207e0eb9862219da62dcbfb1e4f74d0",
+      "gitBlobSha": "98dccc89b3ff677e4b2f6a74fdd3532be9dff53b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/examples.ts",
+      "bytes": 3639,
+      "sha256": "0107a00ef0b3741de4d4945cd1561b1703728085410eefb701418c55c26263f6",
+      "gitBlobSha": "9cb855e2c335e66732fdd6b90c782f8b8c1b08b9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/live-account-settings.css",
+      "bytes": 2694,
+      "sha256": "b04a227b12d2cc0c166a2eab9a5a70d25b7c4756d38c71168e76d53c5415dbca",
+      "gitBlobSha": "3ae30629bffa8cd0164d2f6a54896bf98597db3c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/notification-draft.ts",
+      "bytes": 3716,
+      "sha256": "38fd91358bbb547f7b6786fe7537876c1fa66d4f4c87d2302ab38d39cc094950",
+      "gitBlobSha": "a47dfc827e11bde5bd4a758fc6310be3cb01a6fb",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/operational.test.ts",
+      "bytes": 6007,
+      "sha256": "ee8f4da596ef6ebb8edd090cdde1706e01279b1a1c016b1ad6040def7f3563f5",
+      "gitBlobSha": "c2759aaba4ddd3cd116ed470ca9ea29cb7158cdd",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/operational.ts",
+      "bytes": 9318,
+      "sha256": "1d8253ae4f72da7dee02e9930ccff88503be24026629d0480edcc3239a88ece9",
+      "gitBlobSha": "9185ed572519fb2f7e41977aa377579e7ee88378",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/product-review.css",
+      "bytes": 43644,
+      "sha256": "d8b919b34cbe993507ff1ade4b60eda3a1cb3603a6587e79c24b6d778a61ac85",
+      "gitBlobSha": "89dbfb52df36ba16687e272f21332fb6900af46c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/runtime-clock.ts",
+      "bytes": 2098,
+      "sha256": "2213ef69bf7b77197b70b17767e9d4bdff9a1123abcab2aa0a4df1745e0850b4",
+      "gitBlobSha": "386f8c2de61d6bb4b946986428cfe73ba8a0dfd5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.test.ts",
+      "bytes": 5149,
+      "sha256": "23b4c33c6734f604b2a259b01f470b3c6f68dc9155a73f595ddbe007fbd31f93",
+      "gitBlobSha": "20c439d6aec9d5138cab5e853986ef056c930e3e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.ts",
+      "bytes": 8283,
+      "sha256": "7576fda5be76c462c871995830ad685e152315f8ca89a79dffd2825fc984a7bf",
+      "gitBlobSha": "bc2f9b1c7d4853d7728710f05fbfddc061a5685a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/schedule-renderer.tsx",
+      "bytes": 9422,
+      "sha256": "0a38de0c531cfa6060151dd9dacc0b6cb69c9196ba829aaad4a3555ecf768271",
+      "gitBlobSha": "72260c825eda6df5cfa70cbb06f5b04f95554898",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/use-telegram-shell.ts",
+      "bytes": 1742,
+      "sha256": "78ba895e3c45dc058d53ece4bfa946079d251773167c655b4e304ca34715ee07",
+      "gitBlobSha": "e64f7b43a09f343b4c0856545e68e917a946d935",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/ux-drafts.ts",
+      "bytes": 5435,
+      "sha256": "8f2f1faea89c080bb979d48ec6f0de0a18e737c468dbb578d93ef3aa1bd5797e",
+      "gitBlobSha": "1baf74e3be3ba5ffdbc3abaaceb7e9a0bdb1eec5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-review/view-preferences.ts",
+      "bytes": 1604,
+      "sha256": "fee8fe31be9b59e93d4359b4eb6c95971e3047bff117f257bec82ea1c541e07a",
+      "gitBlobSha": "bc0ab9169e8f4d08f9213fd5df7e79a90469dad1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-runtime/LiveProduct.tsx",
+      "bytes": 6806,
+      "sha256": "86d58797d8597c04eb6b842d70f6f4673e9d03e2aade4c3e1e1c90933adcf6a9",
+      "gitBlobSha": "a8bddca9afb5531c5c0714be84ae56a2365a424b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "bytes": 8537,
+      "sha256": "f28c6e7fa63fa2a415f4aa6737c6dba76eac6509a6b14c63d99597ce117fb9ae",
+      "gitBlobSha": "51cad4cf0d4998077c8bdad7ff1d10743f3cb2e8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-runtime/pending-request.test.ts",
+      "bytes": 2207,
+      "sha256": "8078d7f622b73d7083afa9242534937e231d1b1f8ab36dfdd8120f73b6cdd419",
+      "gitBlobSha": "6673da6b562ff64626e102bbb9703c7ca449e570",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-runtime/pending-request.ts",
+      "bytes": 2866,
+      "sha256": "10bd3752ecaffa7c351da935b752fa12f5c1529b6851d26caf484f46be175445",
+      "gitBlobSha": "0b0e09ccc4748315cc08197fbf24e1009668d84f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/client/src/product-runtime/profile-response.ts",
+      "bytes": 7533,
+      "sha256": "b1781b0d1fc7c9ec1c1041ef64d75e11a51338aa2f7c21ef7495ba2647231226",
+      "gitBlobSha": "147a1979ea992f5646760d2d7848573db9ff0d56",
+      "mode": "100644"
+    },
+    {
+      "path": "app/components.json",
+      "bytes": 451,
+      "sha256": "34396b963d1cede6248bdb6c7b32672b51e731b327002ebc27615edf21004fde",
+      "gitBlobSha": "684ca2d78d09ce54937df9049f564d51b0f6050d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/drizzle.config.ts",
+      "bytes": 325,
+      "sha256": "db80922910a890344195617c17acd664cd9b922973f607a5c6fdc0c749b4476a",
+      "gitBlobSha": "4cd7b4cb3770a444d70ce72acabcb58e4e3ab18a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/drizzle.isolated.config.ts",
+      "bytes": 525,
+      "sha256": "a6947466bd095a99075926c5ed114efb4c261097ce7889408871a590b8f8665c",
+      "gitBlobSha": "4365768dfe8aaf20481633c8174e5f46d69279c1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/main.py",
+      "bytes": 96,
+      "sha256": "9dd389cadb2eb8f6c58d003fca8cf53321906fc002b3e532b4d269b02a0ab470",
+      "gitBlobSha": "d7b9ef12978379847f8fdf1859d40a76fe1b1b3d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/package-lock.json",
+      "bytes": 547364,
+      "sha256": "fbc0cda9d58161a247397139127825be50a830d535568339db6f741386d3453b",
+      "gitBlobSha": "3bd530a229baf13c1709bd4ef198cc6d3c591b73",
+      "mode": "100644"
+    },
+    {
+      "path": "app/package.json",
+      "bytes": 5262,
+      "sha256": "47a410bad6a6c9984b2afe572c6f0c46f0b33489fa74dfde1fab101866cf024a",
+      "gitBlobSha": "fb57c438d4c0466124ac077c5df6e81be7d9e4ea",
+      "mode": "100644"
+    },
+    {
+      "path": "app/postcss.config.js",
+      "bytes": 80,
+      "sha256": "190c877db466995bf1482f4a16abd06e04a89ede3119341e2a86ff96e1737b27",
+      "gitBlobSha": "2e7af2b7f1a6f391da1631d93968a9d487ba977d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/pyproject.toml",
+      "bytes": 299,
+      "sha256": "2b1814d65b821d6e722b82e770d923f40b2b56f7f1198e3fa246e19d3f565777",
+      "gitBlobSha": "061d62de1f13d04b2db0c72ef46cb2984a51899a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/script/build-isolated.ts",
+      "bytes": 1816,
+      "sha256": "3116aae49589c76fd31a11fc4411ffb489b4a6992c093241b0853943050428cf",
+      "gitBlobSha": "e1b32922a0a669afda30099cdfdf7c94931f5803",
+      "mode": "100644"
+    },
+    {
+      "path": "app/script/build-production.ts",
+      "bytes": 4774,
+      "sha256": "c200fc8fe7b2de53e7ff1a69d700289f51b594efadbb7f2f25a64cf58ab3b6a6",
+      "gitBlobSha": "25f3ad894a54962481650899bccedac832d07bb0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/script/build.ts",
+      "bytes": 1417,
+      "sha256": "35df8bf9d4c1aad8cdff54df8108bbc964a853bbc29538ec0ec6e1b1a9b0d54f",
+      "gitBlobSha": "8279abb6d6e2cb13ca8d06813ff5550dd0edfca1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/scripts/post-merge.sh",
+      "bytes": 51,
+      "sha256": "858bb038ee7f709625c8e6674264061ed659dc78b3da28a909fb93c00c5afe9a",
+      "gitBlobSha": "3c93396d394352045791b04b7240d09c6b3696ac",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/db.ts",
+      "bytes": 515,
+      "sha256": "dc66b7291c0f7a884c2ba93db8603e29a87ab064d57f96c353997a9344de1b8d",
+      "gitBlobSha": "ad09f92f31b1a2017ae8045edbe4b5023b77c846",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/bot-session-store.ts",
+      "bytes": 9811,
+      "sha256": "702c62e01c6ae6adb8de63f577a2d975b767c632e923717705eb1cfa452984db",
+      "gitBlobSha": "ae78a82a74325aa619b2137ea63dac4b3e4da6b3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/captured-address-book.ts",
+      "bytes": 4687,
+      "sha256": "fbf0d1481f644f398d09b48dbf8d249b0bd83ad86e952312983baf5e4b3ea12b",
+      "gitBlobSha": "a9ff35b02ce6a8ab71f3d2c48c2b24fa4cd4d4f6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/captured-data-routes.ts",
+      "bytes": 5445,
+      "sha256": "8ab827fbeb5545c2d414cb766475b4a2833a80ac1b2c27d31dc82e8731e38062",
+      "gitBlobSha": "e36539506e5317d579662669f1f0340bbf73b779",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/delivery-repository.ts",
+      "bytes": 19641,
+      "sha256": "7cac7484362a4e271e0ddf8119712c089b9b958aaca3ed282781a9c03c4b10f2",
+      "gitBlobSha": "324426415493625a14bae8754de3dc9a9cee27d2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/delivery-worker.ts",
+      "bytes": 8698,
+      "sha256": "48d2c10adb00fa4518cb89b2c0aecfc12ff9030b0d2481a37c8da1e5a64bacbb",
+      "gitBlobSha": "24b6ea1bc24c681d6cc11f0ce01ddc6fbb9685ee",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/hour-matrix-adapter.ts",
+      "bytes": 13645,
+      "sha256": "ecd5304c5254cfff6d0bd74199a1f21f2fbfd3549cb5c04a4a470723858bcef2",
+      "gitBlobSha": "1c0528a7b2b4f2eb2b92ce6f01f99d8aa5a754f9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/kharkiv-adapter.ts",
+      "bytes": 8217,
+      "sha256": "aac6fb95fc174278671f45d0028d7b713b0eefe778f09b23b25a6738a65845a6",
+      "gitBlobSha": "0ceb231f74dd10c4f8d3ad10570aadf923389179",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/legacy-migration.ts",
+      "bytes": 26693,
+      "sha256": "c8e946a5dc222ff1d7f39d2a2b6378b429aabcdb610f123f14d1a7325c803768",
+      "gitBlobSha": "7422247f79f887ecf1177ba60e4ad7add8f7f8c0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/legacy-policy-adapter.ts",
+      "bytes": 12520,
+      "sha256": "c4aa7d885bccfdd24b36669f786bf2ac9e5141dd69c771625d91b4d15a6695a8",
+      "gitBlobSha": "c24cbb2620bcd59dc83a0ea37460201a3e784b1b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/profile-service.ts",
+      "bytes": 13284,
+      "sha256": "4b11bc38a137331e60a0f08600f5dda3219e95327487a75286244ca4359b8eb8",
+      "gitBlobSha": "8854e8365da6e5a5fda123dbf2d2eb999bf4ab48",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/review-context.ts",
+      "bytes": 3489,
+      "sha256": "8767bdb8d204c41d97cfd3febb5142dc32e1b613faa9bc4504d3a9f9d1c121d7",
+      "gitBlobSha": "8d6b10e6c8bbfef538fd3439a95ee06379ab8df3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/review-routes.ts",
+      "bytes": 4629,
+      "sha256": "8d92515ed4399221f035675daee70946453bae8b29171d6ce44f6b2a7722f45e",
+      "gitBlobSha": "6cc2529e61554e31a504e2964e4a547f87b7f036",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/review-tools-routes.ts",
+      "bytes": 1978,
+      "sha256": "7da9a6ade6b95f5da39c78b313ee4f39597badf66629c4ddb74f4223db6e320c",
+      "gitBlobSha": "eb89c0ef5edf2c7c805b7ce384b88ec817645c70",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/review-tools.ts",
+      "bytes": 14498,
+      "sha256": "ca966739e0e62fede7e87e2f0f39e521562dfca472e875957bc3189cda2166c1",
+      "gitBlobSha": "2c9c9a82473a214442726381d23199d3d9c13008",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/schedule-event-store.ts",
+      "bytes": 17917,
+      "sha256": "ddf641274542066ab5e0efd59358885d45f22a708a3933671d3b8c2cea4a7d5a",
+      "gitBlobSha": "bd7ad12e58a8e446da2edb01fab99053a5d1a492",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/yasno-adapter.ts",
+      "bytes": 6234,
+      "sha256": "26743943277e72dc4b8a1d5cd61e014ff604cb9fc608062ef9a354b3410dc122",
+      "gitBlobSha": "15d841497b9bace035942e09fd535bc97881db3a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/domain/yasno-address-adapter.ts",
+      "bytes": 15403,
+      "sha256": "45e727865510563addf3a5372e9021bd6fda3eb411ed07d6e825902ce8d071e7",
+      "gitBlobSha": "4c01900bbf38dce24f1213cb6ff7ec5809d8f300",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/emergency-alerts.ts",
+      "bytes": 8439,
+      "sha256": "e73d1136f55fe8baa7f11aaa3b6d340d6bde55ebb41e19243fe64f204537fae0",
+      "gitBlobSha": "4db04a31d2922a59e32bde3eadb52849e4d72e80",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/index.ts",
+      "bytes": 9425,
+      "sha256": "4f5ffd21eea62e58841c9bbafcd654893b9052ca5c758751f0f46ef10e5d2b0d",
+      "gitBlobSha": "b1a850d3070d50e7c232cd59a224a0eb564b633b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/isolated-entry.ts",
+      "bytes": 677,
+      "sha256": "6b7df548f42826fd0720faff230919a61778590e578c066f3e55adde95ed6850",
+      "gitBlobSha": "8848889aa2ee7e30d2eff2d7e8a96ff595613829",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/isolated-fixtures.ts",
+      "bytes": 1462,
+      "sha256": "f16a2025a66991cd670d29bccfb14b0e523b8f6246e5a835b4ffb1bff5e26286",
+      "gitBlobSha": "7b1b7cd2f4709d183d19a79e12206a4e985fc346",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/isolated-guard.ts",
+      "bytes": 8766,
+      "sha256": "e3c991aeeebb43fdbb49a2e1b745e1218fddc25ac929ccf52269dfb0b2dbd2dd",
+      "gitBlobSha": "a597216ece48fb2de703231ec80bf982c21cdc8b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/isolated-routes.ts",
+      "bytes": 4310,
+      "sha256": "d25c63fc173b8b889a81c80218eaff05317a07b935c90a6b248a666505aa8d77",
+      "gitBlobSha": "eab724cabd53ae57f01cbc9783a448a2d738a9a7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/isolated-seed.ts",
+      "bytes": 3086,
+      "sha256": "94261fec1b51b7359f06ba895b023bfc498f870a31d2242bda3038f7bc03a18d",
+      "gitBlobSha": "d63233587e52ea665420c309622ba4bb2b61f3b4",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/middleware.ts",
+      "bytes": 2699,
+      "sha256": "522e8ace599c77bbff8f649673fdb40471fe832462b827455dbe4fa0ede2f89e",
+      "gitBlobSha": "5c3c51a5610b393b561bc03ee69cec49c2260ef9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/mobile-auth.ts",
+      "bytes": 3748,
+      "sha256": "ae40b4310f8f1b1bf34ed74abdaafaeaff75230179127015e4367dfb3a01e209",
+      "gitBlobSha": "f762c5ca0e00cbf6ee00508599a91d5ab1c49ec0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production-entry.ts",
+      "bytes": 426,
+      "sha256": "a40ccfd0994cd634efff80bd6acc7bc7981cd11e7943c64332ff2c7f99b97e44",
+      "gitBlobSha": "2e4b153ee166fecdca6870ee737ea96d0139610d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/account-links-http.ts",
+      "bytes": 14638,
+      "sha256": "72ce8b1c17cedd304af213be33fefe638fbfc759552ea17a8cf0c43d6a40fb71",
+      "gitBlobSha": "f235787b84464ea5c361925ce00a0fb8526fd222",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/account-links.ts",
+      "bytes": 39656,
+      "sha256": "37f6eb54068746f22fd4a7c021dc14a9d4619e43e48ceec374e9ddae405f3062",
+      "gitBlobSha": "e93dd7e025ccb995483ad290f33c4af8510008a2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/account-origin.ts",
+      "bytes": 801,
+      "sha256": "c7b5cdb915be5984bf5b00108336567caa404ce5ca45cd5b7291bcbdcbcf4aa5",
+      "gitBlobSha": "f8e6ee3114a6c6b3d11c6d2064033842f96dfe22",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/address-catalog-http.ts",
+      "bytes": 4530,
+      "sha256": "756a2cdc9645e428dd28feb10a5bf570de5458b725d0dc1d6c36b683511fc82f",
+      "gitBlobSha": "22f094595caa19329b6132d5468e57c0942227f9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/address-catalog.ts",
+      "bytes": 25001,
+      "sha256": "8818037b81e63daab6543c702fd71d4608b771e32d8937e2663fe06ffbe59cec",
+      "gitBlobSha": "27fa79cb5d747d49b900fc86fe25cd4a7ae3488b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/address-flow.ts",
+      "bytes": 15050,
+      "sha256": "94845a427245fd94d6378db6118b6aaa5c2702ba922a399460eb5fe09bf8dc0e",
+      "gitBlobSha": "55fcdd7e27d68fa05352de84dcf9f724421a4a6d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/auth-epoch.ts",
+      "bytes": 4668,
+      "sha256": "41acd1d3c74868c8bcf477c915ba39a14ffe96619f9eea92057d4a0b856f950a",
+      "gitBlobSha": "c32fb4befd53f8d078e03c7e9e9e02954718cd39",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/auth-replay.ts",
+      "bytes": 7936,
+      "sha256": "070c1aadd24a13cf47bcdeac47b0779a1a70ceecd4bd2a5e48872b559fc42380",
+      "gitBlobSha": "688e5f9ab86210a0fb9dc7b7db54aee7bb39475a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/bot-address-preflight.ts",
+      "bytes": 5166,
+      "sha256": "8d7e688a95ce5bcc2b3e3156dbfa614acfce7e6d4d955efd4971ce0dd5c1d3ba",
+      "gitBlobSha": "fb6b2cfcc9897836564a959453c709ba06363190",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/bot-tools.ts",
+      "bytes": 3031,
+      "sha256": "d3214ab9031f7e7c99bea17516439c88c0991227cffd3b12ed596b3b478514ce",
+      "gitBlobSha": "c8e5fdf2e7651401e18bdcae816b1266fba0b133",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/campaign-dispatch.ts",
+      "bytes": 5161,
+      "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666",
+      "gitBlobSha": "1e080895bef551fc2e1d410f7944631505a27a63",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "bytes": 12590,
+      "sha256": "0f09e183fd6c1a43e7e82d196b4a17c60ddd4e651f146b7d1618d5f27156a6ab",
+      "gitBlobSha": "72e06dd0b873fe4db8519ce7c9303bf080f620d8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "bytes": 2135,
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf",
+      "gitBlobSha": "56516f8e57d39e460d204f4b7e495b4fabf0894e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/event-producer.ts",
+      "bytes": 20566,
+      "sha256": "a87da6064691c87f95b3b66f4d8e7c6f9734dfd2e2879a5ca61779d2420eefdb",
+      "gitBlobSha": "5e7adeba59b7c4ec795fbc1bb2631ece782f2f67",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/legacy-campaign-recipient.ts",
+      "bytes": 10956,
+      "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa",
+      "gitBlobSha": "f026178c8c75d87f1a3468a38efaedbfa37901fa",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/legacy-identity-links.ts",
+      "bytes": 8876,
+      "sha256": "49879626ee9673e4c7a392db48b4f97cb1ed7b98eaa4d83717b3febfe7a90b33",
+      "gitBlobSha": "b431bbc7e2115bfe404b4617fa203feac39c67a9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/legacy-profile.ts",
+      "bytes": 16195,
+      "sha256": "cdd1b91905ce2cf2ec1540a9fc8e7e7c63bd7541af5a75589f9c853dc19d618e",
+      "gitBlobSha": "cfa462df1661e86cc196c9c469d678399611723e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/legacy-route-fence.ts",
+      "bytes": 1551,
+      "sha256": "5a0237c09200ddac523bcbc6b20320eb93065d1c6105373234e9ebc588822502",
+      "gitBlobSha": "dd681079a922fa878db5908ec998213266ec1ad0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/morning-briefing.ts",
+      "bytes": 19091,
+      "sha256": "8c7814def55ecc920fdf4eb4d1b000d4dd76f4c73679fe87e675ad5fa32c2206",
+      "gitBlobSha": "49e424cdf8d7826b9d7e6287f634a8adc4b6e3c6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/product-auth.ts",
+      "bytes": 961,
+      "sha256": "2afe222d20efae5769bca549222a67ff633f3d5ddc2372ff6a5b8b7a1730f27f",
+      "gitBlobSha": "27da5a56c8912d17149e557a6a06260640628fef",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/product-identity.ts",
+      "bytes": 286,
+      "sha256": "5e2499b9174f309458545424d0e7f32fe7e9f74af01eccb8887b629526bdf5bf",
+      "gitBlobSha": "1c15ff6d382147f65606573ec245c3219e20ea72",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/product-routes.ts",
+      "bytes": 18499,
+      "sha256": "6830bc0105c1f27a80304d318e2ee60d6fc4a647afd873ac496e447bc3bbc230",
+      "gitBlobSha": "b2724d8d8dced3f7397e04aa2f586182724779b1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/product-tools-routes.ts",
+      "bytes": 4254,
+      "sha256": "36b405600d59639e02c0222b1352fd9990d5bba9e3bb3fc6ee885b36066e0912",
+      "gitBlobSha": "bb7d7d8b8890db240bf2b24e3fb398de9d9f50a9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/product-tools.ts",
+      "bytes": 23357,
+      "sha256": "e49a913378dd94bb8168a484f140ec6626f464448b6f8586d8c97554fc698565",
+      "gitBlobSha": "2a4814ea76c87cd9f422e11c02509d017485d0d0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "bytes": 15691,
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664",
+      "gitBlobSha": "0d877c6698e36ff9bfdd5b81d7e3bb74dc3b43ab",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "bytes": 48923,
+      "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a",
+      "gitBlobSha": "8cbb2b1ab0793fc94cacdfa5b517aa05059da63b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/public-http.ts",
+      "bytes": 1304,
+      "sha256": "c4831516a37ad4f7bed095403c806c89c1014e274ef809a13fec9995e86148c0",
+      "gitBlobSha": "d1dd5b2478306ac369f90cdbecc27039f72634af",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/replit-identity.ts",
+      "bytes": 2905,
+      "sha256": "523fb4c2d1922925e99ab8b232ed69baba5ffcb45b9e4223f1b1cb21c4b3c857",
+      "gitBlobSha": "be3ef03c6c05ff07ffde5a6fab4871d8c89ca93e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/replit-session.ts",
+      "bytes": 2385,
+      "sha256": "7ac597d415be9e62d52189164c16f757c2793945e9f08b5b0f1bc024ee077296",
+      "gitBlobSha": "6245f5fffd21e131d3a488ed932112fad0e822df",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/runtime-context.ts",
+      "bytes": 4766,
+      "sha256": "0572068c8d2aad4ab27c71f3e64c640da4aba0162dbf747d875c02dc86d24913",
+      "gitBlobSha": "5b89191779aba617c9fa918c56c3c5577a4957d5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/runtime-identity.ts",
+      "bytes": 3056,
+      "sha256": "348296aed53255a43e0e3c96d813f80774b23afbf7800093e3e14c63e0faaa59",
+      "gitBlobSha": "671715abb492670f7a155d22dc8a3790358eb815",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/runtime-source-proof.ts",
+      "bytes": 9819,
+      "sha256": "f31e60821a450fb39fce898ca119e313f4581ece38dd7d0be26308f46fda9361",
+      "gitBlobSha": "215cc34d1acea45eab439a67d3a7c2e77c4fd35d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/safe-request-log.ts",
+      "bytes": 839,
+      "sha256": "7ee4a5c446517a5d4d7c9a5f9d6d6603118505bdd5a668ea36dbebc511eb0fa7",
+      "gitBlobSha": "9345cf60729dc6358fdf80a11555d9215554c303",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/schedule-events.ts",
+      "bytes": 30555,
+      "sha256": "77b6882f333db5cec9067c32c7da2fce48ad9b29495ee013e885bcd0f232f176",
+      "gitBlobSha": "b555d134ceaedca071126597a381f4cc7ea98608",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/source-ingestion.ts",
+      "bytes": 20354,
+      "sha256": "0259ee78aec286cb89d624a06cb7805d65972a7d3d1985caf8d2254df14cf514",
+      "gitBlobSha": "7da661d740134b0e02bd11d9df8a5445a5dc7379",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/source-intake.ts",
+      "bytes": 31108,
+      "sha256": "ad5e8efa8fa24e86920bca409c41c7eead297179c1fd9378126b9158edba0bff",
+      "gitBlobSha": "725fa4ff419871b555eec1a051b096043902292f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/source-operating-policy.ts",
+      "bytes": 6888,
+      "sha256": "fa0525aae9dd13195eb64d922e22609a8f675836ada0eedc89f1b9d48edbec62",
+      "gitBlobSha": "bf173defe0d6778e12639fa622485b98751ecd76",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-auth-flow.ts",
+      "bytes": 3030,
+      "sha256": "e0856344238b977f784f5263761abb1e9866088b955d5e0d96dc5f369af796db",
+      "gitBlobSha": "3493f13d41dcd0966cc2e5e4f2aa50b22d6b0965",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-auth-http.ts",
+      "bytes": 4892,
+      "sha256": "7852aa2cc24f40eb1ea7a263ac681dd63451bd3031303c86547424a16f126ce3",
+      "gitBlobSha": "852fe851b2925978e32bb4adda3cf47f13f81c7b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-browser-auth.ts",
+      "bytes": 6292,
+      "sha256": "f46333d957233c1707323b74e515fc8aece105cfe434b3e5d9381cfc1cc06281",
+      "gitBlobSha": "f1b5b2d680cb4f97c2f2381ccbb7c076524f8155",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-callback-ack.ts",
+      "bytes": 21422,
+      "sha256": "62648b0448f0a04a15dec7a3a9ae941ca8b94283c85ffbf625ead873359f2203",
+      "gitBlobSha": "5fc79eb7db4df1f93812eddf546e901776d25be7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch-eligibility.ts",
+      "bytes": 14001,
+      "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12",
+      "gitBlobSha": "ebf12ca7ff74f8815242fee30243fb4c2f29a5b7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch.ts",
+      "bytes": 66353,
+      "sha256": "7b23f00b77c90a1d002d5ad5da51772879217fe03a849fc6fc9726b83be4f26e",
+      "gitBlobSha": "2917c999a4909138340ad9188330be7bc190bd38",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-identity.ts",
+      "bytes": 2259,
+      "sha256": "d804bb2725430b5cc71d390bb5351de76bf19b9690aefbd5ef4b6c645bee75a4",
+      "gitBlobSha": "971cdc01ad777746ee41d53247d6840efab4afdb",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-inbox-http.ts",
+      "bytes": 2716,
+      "sha256": "f21bbf5006ebe3beef2e02ab50fd33924c01ad28fc7c7fbfa80793e3bec687f9",
+      "gitBlobSha": "9bf2909ad6583638d7116fb058da4a67ddb4e470",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-inbox.ts",
+      "bytes": 17345,
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d",
+      "gitBlobSha": "0b55fcca2e63c5d32dfd6a3aa3912dada9cb6a67",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-processor.ts",
+      "bytes": 30237,
+      "sha256": "4f7c9ee7aba260a5ce10cceff826a8576f6c639a9510200682a63eddeee8a92a",
+      "gitBlobSha": "8aecca7bd78fd38b8355d5c2392d7596343d5749",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/telegram-transport.ts",
+      "bytes": 30860,
+      "sha256": "4b3469e5566feb73956f18987c75cc36baf206fd246bc6a02ab04cf4ce7e36b6",
+      "gitBlobSha": "928412c31e285230328783bba5b9ddd71f1c2eab",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/production/verified-session.ts",
+      "bytes": 2642,
+      "sha256": "33476e7d0186a1a9ea369d83c3d93dd87372f922c6d15aee2f8e65e6fef468e4",
+      "gitBlobSha": "e3def272ff77216ee689b6295b703f10563c1fc5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/release/build-identity.ts",
+      "bytes": 309,
+      "sha256": "6d710f3ba5076062d929bff236fe66472a7ad6c83495371760a492f9b00d5d0c",
+      "gitBlobSha": "2e4582f5f2cd104c57f971b66932dd674d0a5807",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/release/update-campaign-pg.ts",
+      "bytes": 20884,
+      "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e",
+      "gitBlobSha": "54c6b83f7f1eb07d21c20c8fdc00ec2180e83f19",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/release/update-campaign.ts",
+      "bytes": 17352,
+      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593",
+      "gitBlobSha": "c45b3a1acfc6414894c67bdbf2793d8b87262735",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/replit_integrations/auth/index.ts",
+      "bytes": 178,
+      "sha256": "ebf89f03cbca0c9f05f483b60b4d2ad15bf828b4bc3a8f5a66777932fe711689",
+      "gitBlobSha": "2fd93de5ba08dc867c0de6bcdf86eef1201b92af",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/replit_integrations/auth/replitAuth.ts",
+      "bytes": 8360,
+      "sha256": "c134fc7145c72a208051dbddaa20eb4393cbd7359c84f9a5ded9a15c447e30ab",
+      "gitBlobSha": "e4cf9db06fb8a3b013ecacb1dda38e5f2f6b609a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/replit_integrations/auth/routes.ts",
+      "bytes": 665,
+      "sha256": "c2800ecde4046c195d24570613f34bd3cd13318ffdc543b3b7473c5574c00d64",
+      "gitBlobSha": "85e59fc79493d17fc3a0f74690d877d7762c7d05",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/replit_integrations/auth/storage.ts",
+      "bytes": 943,
+      "sha256": "8838a503f98a1576383cbc316ce82473abe674f7b97424423a283a101bd2a4a9",
+      "gitBlobSha": "24924829753d0fd989a892dc1b9f92ff0c07a5e7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/routes-digest.ts",
+      "bytes": 3728,
+      "sha256": "c552e0e1e6f60dcec9839ed683f5061a5e040ecfe9c2fe804043ff516510f9ed",
+      "gitBlobSha": "72c46868c61db7faa744e46d4293e7af140d9d52",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/routes-locations.ts",
+      "bytes": 10871,
+      "sha256": "ac3181cb2e8bd513d3d97e2c44e21a8755122a98a9e586515182b98607224f1b",
+      "gitBlobSha": "4a8c7024c2e8f6002d42f0066320e598e6b69de6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/routes-reports.ts",
+      "bytes": 5224,
+      "sha256": "9d4725476e12689b43facdd55efdc9eb5714f648f786adff8980108a369279da",
+      "gitBlobSha": "87d58fc10376021b8ed66d96451c35c45354969e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/routes.ts",
+      "bytes": 108541,
+      "sha256": "63f3b93fc9bc50595d2bfb9a981870303a587d8b571c60f2430bf885e1dfdb0e",
+      "gitBlobSha": "aaa0f818f2959eb26eac652052fc68dceabadef8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/runtime-policy.ts",
+      "bytes": 8077,
+      "sha256": "fd85aa8e86b39741f671051de4595b35112dd82c2bb691b089a1497672c50b23",
+      "gitBlobSha": "c6bd32b3dd90b2992f41ab031cbefea0fa0991f2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper-kharkiv.ts",
+      "bytes": 6171,
+      "sha256": "97b27ebfd0dbecb2530e52a3baa98fadac86728d09dd8a99d5594740fc1e96c2",
+      "gitBlobSha": "2c7b09c354467eed688920a82a2340a2a970fb6b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper-kyiv.ts",
+      "bytes": 7734,
+      "sha256": "9a643c803f40689ec5711bc6737abc7e88c30dd06a731140dd5bc9740be6720f",
+      "gitBlobSha": "1787e814d66ad0243f1cc6d0a75aa6d388bdaf74",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper-odesa.ts",
+      "bytes": 6065,
+      "sha256": "7b05048caf67a4c933e16504a6903581afb977a86be9dc822f7f4c12b2656603",
+      "gitBlobSha": "f931a42826cb9961a2742258123ed4dde9158866",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper-svitlo.ts",
+      "bytes": 5531,
+      "sha256": "92ed57a9bba21addbd7eb69f9d02f7015b4afbed587f107742f38a93de15cf88",
+      "gitBlobSha": "2e5691efad638b469bedc7cb0cfe931079aa46f0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper-voe.ts",
+      "bytes": 7168,
+      "sha256": "9aae6a7d5d31c3515010103ac2da61b0bb1f954dde3b18fda02800e3b47a3585",
+      "gitBlobSha": "91c5d93247fc04f510ad07361e18135b40394470",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/scraper.ts",
+      "bytes": 6186,
+      "sha256": "0ca23c16b7f337295de13479f68935c85f65a84137c10124514b4d86200527de",
+      "gitBlobSha": "c5a8f9afe2f7e6498e86c732bc6a1871a8168ef5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/static.ts",
+      "bytes": 997,
+      "sha256": "a972edb62cf8eaa4a55fd91a06cffd158836604ab96a61bb8e3d3d9695752758",
+      "gitBlobSha": "de966bbc0711a3d0092db9ebd7b45b495470c601",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/storage-digest.ts",
+      "bytes": 1373,
+      "sha256": "9e471d89691b6650eb54856ec8ccf4d5cc3e54f0772609e79b77a69c59f3f059",
+      "gitBlobSha": "c5bf4490d3bb3ad0e4fe66e065969b1677645348",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/storage-locations.ts",
+      "bytes": 6666,
+      "sha256": "3096443ddb1fb517f026e56f3f510cbee65b65b4ffe48e45d443084d3c7a0eb4",
+      "gitBlobSha": "7a473aee0d59fba792a383711731813ed2535122",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/storage-reports.ts",
+      "bytes": 8115,
+      "sha256": "8491316e1553c8a95d0c70b848b7cef98a9f5205fb0d822e1f33e7f41e3d70da",
+      "gitBlobSha": "f805abf4062fda2302c1840b112d54cf02614693",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/storage.ts",
+      "bytes": 4008,
+      "sha256": "6f8d19123a2d1f081a77e977044b4009aef3faa19fb71d3e86a2eabe3fc4d712",
+      "gitBlobSha": "72df612eb6b18718626856424ecef1633d54f167",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/telegram-bot.ts",
+      "bytes": 233435,
+      "sha256": "f420a49b2a70bc4105862856582a31c0e9281b8a3983cadd6da128465dda5a59",
+      "gitBlobSha": "060a5dc82cff9aac6184e160e5d8c7613375d602",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/telegram-init-data.ts",
+      "bytes": 4564,
+      "sha256": "693c6753f11277a5c8b4f23a41c3220d7629a822ac57ea46a2d1111ca8cca308",
+      "gitBlobSha": "a8492691b12b4391e7d457cb6e63e0323e493b74",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/vite.ts",
+      "bytes": 1541,
+      "sha256": "b95341d19c1b83bb314467283568d9d6e72b02e21d6aff0037689c6b6be0528c",
+      "gitBlobSha": "b95f5abcbb9ee5ebfbe6f29569bb440e44cd16d1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/voe-lookup.ts",
+      "bytes": 1790,
+      "sha256": "2ea452592e8edca9272531c7e50c58bb1b42a5efe39c2f3e9e4ace3b1df24bb2",
+      "gitBlobSha": "7f4cf667dd61e06191054b1133c21cfeb4c65d4f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/server/voe-status.ts",
+      "bytes": 3910,
+      "sha256": "4754aecec8a6d90faa339269ba5d15587750fd82d8401254070826a8ddcf8145",
+      "gitBlobSha": "315ff57cb2b59785cc8398b4626f01c5b3abe573",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/address-index.ts",
+      "bytes": 12669,
+      "sha256": "dbde7151a07f411805b27a85607d95829f9054c9c9d07b9c879c817ff6a17798",
+      "gitBlobSha": "784e162396916af2197fc939efa560e5406d8791",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/address-selection.ts",
+      "bytes": 1655,
+      "sha256": "d5c8d69b38ec868c89cc8dc099caf1404d12032d698dea5f97fc2f1930cf449f",
+      "gitBlobSha": "94bbdd3e27f226acf981d312a749bbb524128416",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/bot/copy.ts",
+      "bytes": 28015,
+      "sha256": "d46417084ba732b0cd0d92ebce74f2c785d4831424624fd7daf3a7e19d0b61d9",
+      "gitBlobSha": "afefe4ad90c2853813c681b90ad893971c23b02c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/bot/engine.ts",
+      "bytes": 80797,
+      "sha256": "96d1db90b909b1941bc2e381ea921efdca1f5312e92505a1cc0a4414a16532ea",
+      "gitBlobSha": "7a635414f2549d933dfbf4d5f7b9c5ec129a1cb8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/bot/fixtures.ts",
+      "bytes": 2882,
+      "sha256": "b7e5090a0150e0a312ca6d3892f559ad3172f15f0e7c7bba2ae1828ce1b5ec09",
+      "gitBlobSha": "68465ed90995ba7ac846128d141fb77e45f2999b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/bot/types.ts",
+      "bytes": 6706,
+      "sha256": "ffaf6078b3402ef0a1159be54524e68d9089db1d5fbe3c262761d2a0fecec99a",
+      "gitBlobSha": "cdf7785c8c48127bc4383384731e41b2f6d05ed3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "bytes": 22412,
+      "sha256": "a66ebbcbff97840ddba36c09c8e053eb73f820b5596322ce915a6fe6d7aba4ad",
+      "gitBlobSha": "7980b1b407a9c5754662f5a7a7cf0f88276c4576",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/delivery-contract.ts",
+      "bytes": 1989,
+      "sha256": "346a0f56aafaa03fc23d49a4d62d8bca0d207698dd26f0eef8288b273baa156c",
+      "gitBlobSha": "9e916e702f283174dba5119ba751f7338881e980",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/isolated-schema.ts",
+      "bytes": 2133,
+      "sha256": "a33fecbef058f6ba2f9f54983f93a78a4bb20bf152553d1d706ca705d7340913",
+      "gitBlobSha": "01c4965fda9563124edee481ab3c44c6a3b49a50",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/legacy-migration-contract.ts",
+      "bytes": 3395,
+      "sha256": "064250b893005e8e2fa96dd6556a201ab422a43f550f0402cd79952ca310985e",
+      "gitBlobSha": "f915635f596f37144494fbae6252fdea1a779d36",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/live-product.ts",
+      "bytes": 901,
+      "sha256": "c47ff48741353f52ede9987f03220f907bc6048c0ba86cbab08c2363b0fe4655",
+      "gitBlobSha": "51602a87b064df5fe2e58a1dbd547cefaa7dba26",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/live-tools.ts",
+      "bytes": 15097,
+      "sha256": "6ad7542a1b8ef92d3b72ebea246d75fbff59e7deeb5c2a5e09f1812e3029ca36",
+      "gitBlobSha": "e025437e3b7ec72af4b1263aaf3ed88c29b4ebdd",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/auth.ts",
+      "bytes": 1010,
+      "sha256": "44c58b266f56a69217750f0b17022ae17d04758e272b09cb62c04c072f4868ef",
+      "gitBlobSha": "7ab72f7005466f24e6e661d005a56907c2c4375c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/compare-shares.ts",
+      "bytes": 437,
+      "sha256": "8ec2744c452114e7284cf45e95ff275e578780be14482caea5e0ef1abb97f7dd",
+      "gitBlobSha": "a2dbee3064389e1151d041413a663a837c7a6356",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/linked-accounts.ts",
+      "bytes": 839,
+      "sha256": "15dc39e073bd1de0312fbd13a0fbe606c0f5adce922019093620cc611467c48a",
+      "gitBlobSha": "c1c539e5d90c99c75c55bf0684ba2a8a2d427709",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/power-reports.ts",
+      "bytes": 878,
+      "sha256": "cb6bcbe1ae58c91d9fa0b35cdb1a63b271eb19f55f1f91779a2836213b2e47c9",
+      "gitBlobSha": "55b59670f48e0450c1f51b2e57a875c0e10f4bc7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/telegram-subscribers.ts",
+      "bytes": 1877,
+      "sha256": "bbb92b146767435d271ac64c371559f9eadd2d81ee8e3400c92d191fd0a1fbd6",
+      "gitBlobSha": "d60c98bfccfbdbf0667a4128d2c0d8eb6141e14d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/user-locations.ts",
+      "bytes": 1742,
+      "sha256": "b856d50d22b15c76ac6c2309cfa1a23fa76ae6a574c57f3183be4be9f4bc573c",
+      "gitBlobSha": "e5920384ad3219a49a76e7df77660a8bc195834a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/user-settings.ts",
+      "bytes": 2158,
+      "sha256": "02f65afcf9a4473179700f846a700fd774880ca289c8c1b27d76c82080085aee",
+      "gitBlobSha": "93a95287e8b6517b035f867603d5b66efd32edd0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/models/weekly-digest.ts",
+      "bytes": 1479,
+      "sha256": "d66c1a671956382e7c5c71bd7d39281b26cb96dfeec9da265511bfde81a22067",
+      "gitBlobSha": "87e6b1dcb5210a8200ee2a7418af38c9cf7b9dec",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/morning-briefing.ts",
+      "bytes": 7173,
+      "sha256": "99c832ba8511f6ef43fbc9eae72560b942b9a6812563ddd418463cfcec327e13",
+      "gitBlobSha": "8ba0fd2dd5a9408a3bbb9b37478e8cb59519fad4",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/notification-policy.ts",
+      "bytes": 10178,
+      "sha256": "bcbeb5aa3c59c5f16609f74ef8bd98bf63b962550b46b3735d10d1f88c223742",
+      "gitBlobSha": "f2c46f7a2973710f694e01d7a35dc02979087c65",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/product-contract.ts",
+      "bytes": 5865,
+      "sha256": "a3e48c4e16ba0c06c7a69f49484ad0732ff12ace710a7f0ffff08533813f45e2",
+      "gitBlobSha": "a4ebeecf2a067708d709d25fbf6d29e72f026b0d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/profile-constraints.ts",
+      "bytes": 222,
+      "sha256": "0b66c18332ea2caae61408d4c56d44939f7f4fdf89efa0835d6206ab96da9cea",
+      "gitBlobSha": "f9e1c5145fbe83dead135c75c80a85239e6d48ec",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/profile-errors.ts",
+      "bytes": 3169,
+      "sha256": "31d1e195a8e6d5783dae744bf0c892d5290598dd9d9666d4ca06428f87f7434e",
+      "gitBlobSha": "3dc48dbce677363fb08b5438f045e7741eac6e20",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/profile-mutation.ts",
+      "bytes": 1433,
+      "sha256": "643128edbc5e5a77ed45846c9bdb3836493b3d11747d98e689c552c61f226b9d",
+      "gitBlobSha": "09949986ad7573f6e5205e093073a4f8e79dd772",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/review-fixtures.ts",
+      "bytes": 1890,
+      "sha256": "b2f458c1f1c63db0063ee29b1d1609706e5230ee9a9d59364bc016cc50227162",
+      "gitBlobSha": "d81084561ebfabf3d9e3ee0fc87f07c0a380e548",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/review-tools.ts",
+      "bytes": 7250,
+      "sha256": "b9c6a9f6c3bc7fa7b8c45513bd76578eedf80eb1f45978376874922e6b58191f",
+      "gitBlobSha": "7512d1b793c8b8ea36933a07d063f88767516ddc",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/schedule-binding.ts",
+      "bytes": 1737,
+      "sha256": "e027078ef5c40e1f8f865f7e192b3b2dfe97db9c189e01c16b84a1a3367d1c66",
+      "gitBlobSha": "e1a2bf991575477249c539427ddfc3f50160a93f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/schedule-core.ts",
+      "bytes": 10164,
+      "sha256": "8db2ed9c8198cbd879149728809ecaf54b8da1105a7452bd9b7f0d050f76ae11",
+      "gitBlobSha": "0c7f95ae97b8a710a89f7f9370273af38b394bc3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/shared/schema.ts",
+      "bytes": 322,
+      "sha256": "cf015395db6db461662df0efb5d8edb851660e822ba2a9e15a8a5e391ef27e8e",
+      "gitBlobSha": "39bf813451735c0992a700f586ea524485f34e54",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/account-links-http.test.ts",
+      "bytes": 10267,
+      "sha256": "2cdd33b1f8b4ae782178c7c3a99e0ace0be792a82f872418bcd8daeca5d9b5da",
+      "gitBlobSha": "568863aea60679e865eb6b6f8afb7ffd9beda1cf",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/account-links-pg.mjs",
+      "bytes": 20699,
+      "sha256": "8f7c22329e5295e8f77ea41add0e7227c7933b927b85c97e82459f5c978c451c",
+      "gitBlobSha": "b5c9d15c1c19153542cc3c677819812a99f3570d",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/account-links.test.ts",
+      "bytes": 6925,
+      "sha256": "8d08baf75f12a5455a9e45f452f5a293838bb206a3c67510af71f705b885a27c",
+      "gitBlobSha": "64cd4ec4acb243a72a4c80921f794dd44e723448",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/account-widget.test.ts",
+      "bytes": 4632,
+      "sha256": "3d06f84cea4e1a1cceab1d8757ec38f5c94002097876f6ad296bdddca503a21a",
+      "gitBlobSha": "7aa5110d1f28b3ce0a0f83b72f20242636c41a88",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/auth-epoch-token.test.ts",
+      "bytes": 4313,
+      "sha256": "82face8442a3cb87f889cdf572d2f79db8956b64d58dee27b0007bca15136e30",
+      "gitBlobSha": "026462bdb6229a733ff61205ab7ec1285b16bd13",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/current-source-mirror.test.ts",
+      "bytes": 2905,
+      "sha256": "3e91abc1ebf4647dec05931aa65ee3d61aada88bf12dd7302138e86709a631e7",
+      "gitBlobSha": "8e40d22ca392e9a37c086e202214c6cc825a6b0c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/event-producer.test.ts",
+      "bytes": 2363,
+      "sha256": "db5bf311ab76d06efc48e7185f29e9eb1bd67e4fff3ec9de86bafabf36e301b2",
+      "gitBlobSha": "f63d7a11237d34c8350b682c1408eedb67d42503",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+      "bytes": 10288,
+      "sha256": "58550065a82f28b5fdad2e3cde6d45e84fd0713083dc8c03503f36e81e057712",
+      "gitBlobSha": "2027e29d37d1c204f6e148f88e2af4347ee9ffbc",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/isolated-guard.test.ts",
+      "bytes": 6594,
+      "sha256": "324c4433331da2957e74b5fef734238b8dc490172a64edbef996654423ae38b2",
+      "gitBlobSha": "1f777180762cef7ca859604ad7849692e2fd8ec6",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/legacy-campaign-recipient.test.ts",
+      "bytes": 1922,
+      "sha256": "6328c546686d8fb994b9ef5a0fffb1692edcb7b8b3f4bad5ecb90234646614d8",
+      "gitBlobSha": "dcd5436ccadbd42a1ded9a62b20ccb118eb47c24",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/legacy-identity-links.test.ts",
+      "bytes": 15596,
+      "sha256": "f9e43b786dae9b9eacfdcccc77e093cd28e3144eba1e30f378a620f5206b8ffd",
+      "gitBlobSha": "c4a3d8d9c760922c7753062fa1c557b95fc993eb",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/legacy-live-profile.test.ts",
+      "bytes": 13934,
+      "sha256": "75491b230764c9852400e31ba68e800bc5683f050d78d456e8e09ca42d620096",
+      "gitBlobSha": "713b4f40bf3ad4817bb1d2413c5fe190d5a5442c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-address-catalog.test.ts",
+      "bytes": 10750,
+      "sha256": "2d7a680ed929777fe89a92df4b463cbbdd6da56261c7375602709a1f49216cea",
+      "gitBlobSha": "c259aa2a209f4ecd2c4479b48815d319d9f94b76",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-campaign-dispatch.test.ts",
+      "bytes": 4078,
+      "sha256": "2ec713ac0be71d3a1b7cded1ee43839dddc00b2293aa5be1e67f16504b2b255f",
+      "gitBlobSha": "98289361ec95f5b875b23481f2f0ef9647305c70",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-clock.test.ts",
+      "bytes": 1149,
+      "sha256": "394bdaa7d56ce410098b3c9ce326b1fa4c0de54764ac3be8212ef20ccdd76499",
+      "gitBlobSha": "05cf8330b8507f4a59a6b6ddec3b34caf49708ef",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-product-routes.test.ts",
+      "bytes": 17363,
+      "sha256": "3668132d7d0478f043e21be40e00a38eae2ce11a66c6ff5bdb7833770cc3867b",
+      "gitBlobSha": "db5d7b80f410fbd30e07b81dd889645ea504d962",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-product-tools.test.ts",
+      "bytes": 8662,
+      "sha256": "93bb55c39d8f5bd49b561067c6308382db07f28131cf6970445bd3d50b553f25",
+      "gitBlobSha": "cbeeef50a952257043ef25430d78d81f27ca8757",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-profile-reader.test.ts",
+      "bytes": 12397,
+      "sha256": "f72a314f31c76429679eada9ddd3b008a07e7c53190aa3fec4ed10a22204ed5e",
+      "gitBlobSha": "ba7ce9a9af14f2ff8550f51f32231d1be54cb3d2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-profile-store.test.ts",
+      "bytes": 41175,
+      "sha256": "048ba6b20a7d55dc9e437846b272f1252856d6f4002a024902f410a1820859dd",
+      "gitBlobSha": "75826f082b7aba880135b3ece4954c1ca01b2bc0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-source-ingestion.test.ts",
+      "bytes": 10403,
+      "sha256": "8d9b418ed680992b6a6d164f97ea69f47a70decc2f6362c73fd335d60652cf31",
+      "gitBlobSha": "927baed0cf7581018a3353f0c5d5103c36473b3c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-source-intake.test.ts",
+      "bytes": 21218,
+      "sha256": "587059f2af88afd804fd955dbd3f4ae14643a64854aa8a5083448da2e73b8578",
+      "gitBlobSha": "ea41820fa4f92b0d35da8abdf7669b6f17fb7817",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-callback-ack.test.ts",
+      "bytes": 4791,
+      "sha256": "399f25ae58fc518294d227ff4197394c6f0ce5a88552821e5242a210393b201d",
+      "gitBlobSha": "06cbb1ad7aa0369bd4b7530dc71593309d5d3402",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-dispatch.test.ts",
+      "bytes": 7053,
+      "sha256": "5cb6854e774865e18e8fafa989072f3783c13a5a03b9fb9f19987ed373faa3f4",
+      "gitBlobSha": "20629c4c3dae045a5dee58d503c43acda2252ec8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-inbox.test.ts",
+      "bytes": 14197,
+      "sha256": "a4817401a406c4b024e510186ba05cf8e89475d17944bfa42e653e62c5f9964b",
+      "gitBlobSha": "6cf8b965083da5cb37928bafce34ebf1f1bfa769",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-processor.test.ts",
+      "bytes": 7030,
+      "sha256": "681419e672f55878f4e8c22d0b5adfdc30349fa1a6d9f9d3f3cbd38b5de75691",
+      "gitBlobSha": "e1b8973a385f18e29e1e750d4361b6be0ae380e7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-sql-eligibility.test.ts",
+      "bytes": 1894,
+      "sha256": "0f62fa10e6667332e4e30e43f85fd2a949f56d50a589bca19d2077c20ad3ec0d",
+      "gitBlobSha": "78e9d49be8329c98354e97cd07718364522375b1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/live-telegram-transport.test.ts",
+      "bytes": 25327,
+      "sha256": "fd3ab2def5f3ed3deb987e66b4f602004f16f5ccb3d63034ac8b2ea88c3f09ea",
+      "gitBlobSha": "a20358dbeb52c9f97098121ca4a1edde606582e5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/morning-briefing.test.ts",
+      "bytes": 1278,
+      "sha256": "fec94680b658bb7a449b0b4894e713c2b4952097b8ac6ee83facb7ddf9cbd84b",
+      "gitBlobSha": "2b0ea19363f2c826f1fc98cfd3ae1b7fc7c3c833",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/product-auth.test.ts",
+      "bytes": 2141,
+      "sha256": "0d6115aad7dbe6478fc16aba5b41f49092801111619ad8a781b4abb8130b0301",
+      "gitBlobSha": "378fbe6cddbe446264a00bce4a9a99d41e23e97c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/production-auth-boundaries.test.ts",
+      "bytes": 4021,
+      "sha256": "83cc8b7b5e99b94581035bfca2da66db16f8149384d464e9d68e3a0cfb07f885",
+      "gitBlobSha": "deb9b3400e719ecdd7bcebb8b5a1fe3154df9e21",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/replit-session.test.ts",
+      "bytes": 4080,
+      "sha256": "aea3bf53c1afff021c51354e2f40f6bf69ce22a0a9baadc276832378cffcec48",
+      "gitBlobSha": "149869ddb08c98eedceb73c7eb1b0b443d9271f0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/review-tools.test.ts",
+      "bytes": 9225,
+      "sha256": "2010c266bbe590161a45f3ce1e4605bbed0c39c6aa89bfcb0db78f52939cd81e",
+      "gitBlobSha": "49af1b9adcd4c1eef70087b7c3405b91b0c479f1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/runtime-policy.test.ts",
+      "bytes": 8952,
+      "sha256": "ce43f7f1a9e356fe361243661055f59987b818dff30fbdf128e52b6fdcb0ca4e",
+      "gitBlobSha": "0cbd6c47696492672ef268adc287e4a80969498c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/runtime-source-proof.test.ts",
+      "bytes": 2132,
+      "sha256": "c5fd6b37a858739debf041b4130f3df68ae57cb4992bd333ca13c776fc17b59e",
+      "gitBlobSha": "f710ef67960c7672b0883ea22103f933443e95b8",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/schedule-events.test.ts",
+      "bytes": 1853,
+      "sha256": "ff267e34c3dd15e24933171fbcf0300349c3a4ff40856dcc66a8526d591322dc",
+      "gitBlobSha": "cacab15dca5a142eba0feec554138480e4f2ca81",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/source-domain-vn-emergency.test.ts",
+      "bytes": 9490,
+      "sha256": "92556155559beb2cb28d7ea095f80a9aeb17f32be6c62b270a80fde582d2209d",
+      "gitBlobSha": "3de643f80fae2dc45040b630b535c1c6e9959232",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/source-mirror-mime.test.ts",
+      "bytes": 2801,
+      "sha256": "a8a33ee95f8da9e4641bff1d241651396b4e1e9bf5d452e02e6df5d7c6ff1b0c",
+      "gitBlobSha": "c557f5337a7a561b9babfc07e748d52e5649010c",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/source-operating-policy.test.ts",
+      "bytes": 3802,
+      "sha256": "abe27c464f3bd520d8bd0af13cf5834bc6213c922d14529bc873810b5a19abaf",
+      "gitBlobSha": "627778271ddc6d162dd70d37bd23ba7ec74b94f1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/telegram-browser-client.test.ts",
+      "bytes": 2568,
+      "sha256": "227d3972b62ec5bd6a3a95ae8beabed9507786befb7736968561c959b857f838",
+      "gitBlobSha": "90cd2e025a897a970a47c4cb3f22c9aaef4f0b41",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/telegram-init-data.test.ts",
+      "bytes": 3405,
+      "sha256": "650d5a4eb81f1c95f53e1ffde9a0eff3dfee62eb3a03416a8e257d856ee6b654",
+      "gitBlobSha": "7259387a44e3ec695670de40d937b746bb99b891",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/backend/update-campaign.test.ts",
+      "bytes": 20315,
+      "sha256": "23944c4e5f5dc0efd71cf7e00151d789a8ef6b29fa40d7838623be1b79895803",
+      "gitBlobSha": "9204e89a1edd37fc1043638e8fe58be32574ee05",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/bot/address-integration.test.ts",
+      "bytes": 6342,
+      "sha256": "83d88ca7e638286c93f6246dcc038c1ada0575708b8b0ed7b6b73f3f51009c5a",
+      "gitBlobSha": "5a830e1323ec889ab0553b8b94efc4befb338bd5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/bot/engine.test.ts",
+      "bytes": 25780,
+      "sha256": "975c88cf2af7af453cb5f6337db775c8d61dc43a0a93e1d33a23f319acebccab",
+      "gitBlobSha": "572f21e66bb4e3b775c920e1276eb4af0cce14b3",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/bot/generate-dialogues.ts",
+      "bytes": 11403,
+      "sha256": "b6a7fd63aa3df9ac48312b393a76d38ad99072d70a5366ecab54590f00e7473f",
+      "gitBlobSha": "fcc422133ec800104c86f58828b2994bf10f9dda",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/bot/provider-lookup.test.ts",
+      "bytes": 13816,
+      "sha256": "f654a7e5aa93f6800db96dc94029bbc9bbb16c9938b3c25fca41a1c40cc9dace",
+      "gitBlobSha": "396c8204fbe7f98a3f2dcaebe6dc374a622b1470",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/bot/ux-a.test.ts",
+      "bytes": 13140,
+      "sha256": "779c77dbee8ba098ae19c2878bb8e9a25d6de9621c9fdec05ab313d02dd714ce",
+      "gitBlobSha": "6cfc82e696e451f631a629cb4765d56a2136b2e4",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/address-editor.test.ts",
+      "bytes": 8171,
+      "sha256": "b02659884d4ad1b7f4dcf2659e11a6e1e1cd892dc2f308583b521d0c4812f216",
+      "gitBlobSha": "f2c11c1c4265b14164733c6430f17b3ef020f358",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-challenge-reset.browser.mjs",
+      "bytes": 11540,
+      "sha256": "4350e2690607d282899e09cc88bc4d27cf34064d4f0686a16ec2ceb9d4839f1a",
+      "gitBlobSha": "8f929d39c869035674e0a59419b342a7184cf08b",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-reset.peer.browser.mjs",
+      "bytes": 12693,
+      "sha256": "8e498f4b11333b0fe22e022620d2b54e31432e6e63da04c2dd9f91f1cfb20b6b",
+      "gitBlobSha": "776e5fdcc826256dba108d27e695fc5709b42fc7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-settings.test.ts",
+      "bytes": 7995,
+      "sha256": "be5276c3d7350a587d7526ed5495b98d5f5ef32558ded3c79cc845ebc6d111ba",
+      "gitBlobSha": "f3db5a792a7f5610c2525108770a77d8ab04138e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-ui.browser.mjs",
+      "bytes": 24795,
+      "sha256": "12281d371c2047829ed6e19f8e53ca38ad3408a5c663885ce67d9402b8aa9dee",
+      "gitBlobSha": "1ca9e412708f0840360f17040921610258e84cac",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-ui.fixture.tsx",
+      "bytes": 1039,
+      "sha256": "ae4896762e32aa9916ed1eaab9ffe06e17a024f251ef3f10533e5ab5b312de9f",
+      "gitBlobSha": "3d4eefbc5041e91f687451b027d4c015db0d9134",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-ui.peer.browser.mjs",
+      "bytes": 22090,
+      "sha256": "934447db37aa72b4b1e6be5c862b3f988646b9d11d7e1b1525c1fa74aa3339e0",
+      "gitBlobSha": "1e1a6957945380c520f8521bcb59f10aa7a22bf2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-account-ui.peer.fixture.tsx",
+      "bytes": 961,
+      "sha256": "45a8105484fd1b66dd2bb223918130189502f3de5d516657f25ac6932759d0c2",
+      "gitBlobSha": "29a0830794774a76ceecd3a0c6b7b9620a0a32d0",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/client/live-address-editor.test.ts",
+      "bytes": 1908,
+      "sha256": "d361e21062841edc60b2297f6561aae3a1a0f4431f6e1a672408128de11b08b1",
+      "gitBlobSha": "657bf05b7011fa481dac81070355de64b95314c9",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/address-index.test.ts",
+      "bytes": 13235,
+      "sha256": "b1091553ab96f1add36c19b07bf21a4806375f527361f2d0362cee91536d72aa",
+      "gitBlobSha": "83f6a3013cec612944fc670ce1729fe8434f0685",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/captured-address-book.test.ts",
+      "bytes": 2460,
+      "sha256": "06b24aa3be61b3bd62c09de0832f2a1d4e2ddd8add0e8a8403e8f48623e3e74a",
+      "gitBlobSha": "ecb92169fd7f7de9a6662972ab96542a550ac957",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/delivery-worker.test.ts",
+      "bytes": 14406,
+      "sha256": "3f8bdf42745d0ee49cc12691208821119faa1eb58f6cf963c3cdc2af23a14668",
+      "gitBlobSha": "d98d436fb3f0e688582020c7c967fee3b194df6f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/draft-fence.test.ts",
+      "bytes": 2343,
+      "sha256": "0ca16a93f23073eb8eb9a7f098352d3f6ff8636aea8063aab4248f06f9161e62",
+      "gitBlobSha": "5af95c88d847e48b03017a112c13fb63ddc4e5a1",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/event-ledger.test.ts",
+      "bytes": 21433,
+      "sha256": "e8f6c13875e3643544210a2d1d445c2b4bb58f2f623974cf5907ea6307bd4e9d",
+      "gitBlobSha": "7ddaf774174e23a163cd7ce920bf7da90241a316",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/legacy-migration.test.ts",
+      "bytes": 17845,
+      "sha256": "00912d281d75dd45cd2e2903a8cf6be91daa8c0388e96fc4abd9e8cf667e6697",
+      "gitBlobSha": "66fdc28bf3622111c87bbc54123e045a0b55a805",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/notification-policy-events.test.ts",
+      "bytes": 10204,
+      "sha256": "9fad041ee134f3815c0f3ffa66cf1383af36dad6cda025159b45c55127aed266",
+      "gitBlobSha": "bf91d7aa8aa87f5ce5f5f3dcfc1a08bdf4d61a06",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/notification-policy-integration.test.ts",
+      "bytes": 10494,
+      "sha256": "7a5f9f62781ba6b729b3eb210aa358d7041664a2925df3eb48c4c841cd379fdf",
+      "gitBlobSha": "1b4a1eda2d514b30b2d20673abf2f05dc130ef96",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/notification-policy.test.ts",
+      "bytes": 20771,
+      "sha256": "b86268ada29065eb99a7b4a888e2e7311d30a6937d751a1b0c62c4c046ba4a74",
+      "gitBlobSha": "9484e7480a6cb3678b5ee50d8d2d2e440b043aae",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/policy-root-review.test.ts",
+      "bytes": 6060,
+      "sha256": "82009b609ff7868af75644ba1cf776c060497c2fa973c2a2a6aa5efb81221264",
+      "gitBlobSha": "6746b19106f6db02bbc8fde3db28d8dc41477549",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/profile-response.test.ts",
+      "bytes": 4324,
+      "sha256": "5cb548c126ba44579265e6b823469f5f5a1af651b6c2d27fbdfa93edf16af4bb",
+      "gitBlobSha": "89b5da20dfd0133bd67b9f747d8cd6bbd8f6600f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/profile-service.test.ts",
+      "bytes": 10748,
+      "sha256": "9d09a6ab04b59be125a3a2035090fd04ebc0940dae83aa5861b7cbdf461126fa",
+      "gitBlobSha": "37c37e8c0e1601f88810e48653e0bab51c6fc4d5",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/provider-adapters.test.ts",
+      "bytes": 13290,
+      "sha256": "f06ecbc3c388e7c0f922c482cb46fbcab6fc951f4d50ae63c2bb41e828aeb25c",
+      "gitBlobSha": "62424d8dc35a29a40accc0281157cd41e69a4e2a",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/public-poi-address.test.ts",
+      "bytes": 2745,
+      "sha256": "87d0f27922779dbaf3075de0f90f14d6fe0137bfa9be9b8077e0c56963ea2578",
+      "gitBlobSha": "3dcfec636b1e2e2020c5e9edde6dfb9c7bc95171",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/schedule-core.test.ts",
+      "bytes": 7929,
+      "sha256": "d29ddfc20a17779528e5e0ddd8b00ad747534fc40a71323d4d3803262672e964",
+      "gitBlobSha": "0f44f7b12b5118f58fb872378f170c858cd60dea",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/domain/yasno-address.test.ts",
+      "bytes": 15887,
+      "sha256": "a4b78b0ac723fc984e89e23898c63357b11e859cc5d35c95e43fbc101d342500",
+      "gitBlobSha": "679ca61523a6092ccedaac6652587dc9b87eadee",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/probes/delivery-pg.ts",
+      "bytes": 15572,
+      "sha256": "65cf1574b5208d40e0729c7c9116590d33804aa60d33af5c5d9dd89474d3282e",
+      "gitBlobSha": "ff64c542c16ce03149358a39c743eb5a0d4e8e7e",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tests/probes/policy-pg.ts",
+      "bytes": 9698,
+      "sha256": "ab2fc30a3b31a5bcfba5760a3c1df14b31d747f813289d136616b4d519fcb5d6",
+      "gitBlobSha": "883efed524f2c520ab406e6401b74af0641e1573",
+      "mode": "100644"
+    },
+    {
+      "path": "app/tsconfig.json",
+      "bytes": 791,
+      "sha256": "8274bb525c05258a3de378a73f8d437ad6d0679db17b47ac4e3d13f9f5b008dd",
+      "gitBlobSha": "a1fc47885fda1c1f4416148bb2a5a806a7ca52d7",
+      "mode": "100644"
+    },
+    {
+      "path": "app/uv.lock",
+      "bytes": 94646,
+      "sha256": "25efee8294a4e9101f12689cd3232a75837c810c4e7a52e0b1fc9a7f6c739c6f",
+      "gitBlobSha": "01c8113c563fb9d811c5f7acdc23c771b16ff0d2",
+      "mode": "100644"
+    },
+    {
+      "path": "app/vite-plugin-isolated.ts",
+      "bytes": 2020,
+      "sha256": "1e08d47159c55f40f404a23dc97647f204fd3dff630e0d5c63eccbeb239108d0",
+      "gitBlobSha": "88cae1b065b688264ba471c6e6a08ebd23fcc4fd",
+      "mode": "100644"
+    },
+    {
+      "path": "app/vite-plugin-meta-images.ts",
+      "bytes": 2333,
+      "sha256": "a486d3e594b148ca2fd893d76475a0b9736c88f267cecac4e76f6b2d9579e694",
+      "gitBlobSha": "e0fcfda673097db49bf5dc0e93b262191715d131",
+      "mode": "100644"
+    },
+    {
+      "path": "app/vite.config.ts",
+      "bytes": 1421,
+      "sha256": "fcd64c0caa5eba171205a9b2134eef1b86b8cee8d5a5df1ef0e91d697499dcb4",
+      "gitBlobSha": "2cd3d1186f0418b65e782577f93eecb98e8b856e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/requirements.json",
+      "bytes": 49027,
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+      "gitBlobSha": "01aa90113547fb2b5448683d7ecb56281e21d75c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/current-release-judge/VERDICT_UA.md",
+      "bytes": 11649,
+      "sha256": "2ff375476abf0c1b5b141f25326bb23a593d5912e5b51d0a6acd9838a1b33738",
+      "gitBlobSha": "b827202a91c0444ec1903e5e06a737c482ca3d5a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/current-release-judge/verdict.json",
+      "bytes": 23887,
+      "sha256": "1a3a6059ba46dd0c32e00f2750dbe718e18570daf6e8b15198cee35e585594f9",
+      "gitBlobSha": "8178e6095c0e9d88cabd1e08e5adf865dcbafb1a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/exact-candidate/REPLIT_STAGING_UA.md",
+      "bytes": 1381,
+      "sha256": "7d04f906ae55061a0dc5e54eacd1d83ae3d76c6067b31123b1097830d7c3df84",
+      "gitBlobSha": "a633807eb75eaa0fc53300c7538eb6baecd624d9",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/exact-candidate/local-build.json",
+      "bytes": 84731,
+      "sha256": "21922d2010ef6a6879f8379d8562725dc95e413b9f480c39312a3f0beb4a998b",
+      "gitBlobSha": "ac47683abe2e7c3291cf7cceac16ebfc24da133b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/kharkiv-rss.bin",
+      "bytes": 45255,
+      "sha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "gitBlobSha": "70b947cfcfb7ed5661c15741c3df53e89832e1fe",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-official.bin",
+      "bytes": 924371,
+      "sha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+      "gitBlobSha": "ac59b9fff661096a88832f9eeba83d3d11d30c78",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-public-json.bin",
+      "bytes": 61694,
+      "sha256": "e6831ab19c618a9187210cbe0c765bbe8028c4430d349d56890b5be519168cf5",
+      "gitBlobSha": "f271de52ec475fd3c6dc7b586b565ff974d98cba",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-robots-current.bin",
+      "bytes": 257,
+      "sha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "gitBlobSha": "f5110e9e5048603c7cab202b0fb0f67d53fef88c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/vinnytsia-public-json.bin",
+      "bytes": 14945,
+      "sha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+      "gitBlobSha": "5f25a682a9208fd7e7315a1be468fb2e62127591",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-cek.bin",
+      "bytes": 2677,
+      "sha256": "9382d5d38d8d31a801133f0355dda120425a61f0d1a4d6044e868c2881ea65ed",
+      "gitBlobSha": "b438ad7a4951437771e23a5898078ff482a52acc",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-dnem.bin",
+      "bytes": 2677,
+      "sha256": "4146481e69a9eab31b5f2f5bf10b29eeef2428a83d57e6f050fc6c37b948a86a",
+      "gitBlobSha": "c2e7f06a4a0192f9f151b1e6ca41130cc932371d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-kem.bin",
+      "bytes": 27682,
+      "sha256": "c9e5539050f32c6f575fd93c9c2b685c70dc0a1ca1d5212688a36423f0dc5e44",
+      "gitBlobSha": "cf17dac6b230994a077672643ecb3f9ead964599",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/odesa-comparison-2026-11-09.json",
+      "bytes": 1713,
+      "sha256": "96ce177b9e3c8baabfed677b2d9f6b30d692294ed8f65b9bb5800cc5dfa3a94c",
+      "gitBlobSha": "1571931e67b4364945f1c5498627da78b3a06636",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/provenance.json",
+      "bytes": 4621,
+      "sha256": "0efa08410de263841ed6083e27b380d947fc5584cdafb65c22884208eebedcdd",
+      "gitBlobSha": "2f698e5f19e28ceff26d13c27ebb7473aedfd7c7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/receipt.json",
+      "bytes": 12598,
+      "sha256": "9150b613d22ca3e614f7c2fd9d83dd40bd093db08de459880151aacca9d6c920",
+      "gitBlobSha": "116b7a09f393e6c519d7cd30af23c570c5ccb2a1",
+      "mode": "100644"
+    }
+  ],
+  "privateValuesExported": false,
+  "productionActivationPermittedByManifest": false,
+  "scope": "Sanitized code/public-source test fixtures/metadata only; isolated Replit compile and exact readback. No archive/private backup/credentials/real account rows."
+}

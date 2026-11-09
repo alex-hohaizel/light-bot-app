@@ -43,7 +43,7 @@ export function normalizeYasno(payload: unknown, day: 'today' | 'tomorrow', cont
   const freshness = context.freshness === 'stale' || ![observedDate, nextCalendarDate(observedDate)].includes(context.serviceDate) ? 'stale' : context.freshness;
   const bounds = dayBounds(context.serviceDate);
   if (!validInstant(raw.date) || raw.date.slice(0, 10) !== context.serviceDate || Date.parse(raw.date) !== bounds.start) throw new Error('SERVICE_DATE_OR_OFFSET_MISMATCH');
-  if (!['ScheduleApplies', 'WaitingForSchedule'].includes(raw.status)) throw new Error('UNKNOWN_PROVIDER_DAY_STATUS');
+  if (!['ScheduleApplies', 'WaitingForSchedule', 'EmergencyShutdowns'].includes(raw.status)) throw new Error('UNKNOWN_PROVIDER_DAY_STATUS');
   const revision = createHash('sha256').update(JSON.stringify({ context: { namespace: context.namespace, target: context.targetId, date: context.serviceDate }, raw })).digest('hex');
   const view: ScheduleView = {
     contractVersion: 'lba-product/1', revisionId: `yasno:${revision}`, addressId: context.addressId,
@@ -54,6 +54,14 @@ export function normalizeYasno(payload: unknown, day: 'today' | 'tomorrow', cont
     observedAt: context.observedAt, freshness, synthetic: context.synthetic, deliveryEligible: false,
     notice: 'Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо.',
   };
+  // Actual8Nov DnEM exposes an explicit emergency state with no time windows.
+  // Empty slots here are unknown outage timing, never a complete power-on day.
+  if (raw.status === 'EmergencyShutdowns') {
+    if (!Array.isArray(raw.slots) || raw.slots.length !== 0) throw new Error('EMERGENCY_DAY_HAS_UNEXPECTED_SLOTS');
+    view.status = freshness === 'stale' ? 'stale' : 'emergency';
+    view.notice = 'Аварійний режим. Погодинний графік може не діяти; точний час відновлення не визначений у цьому повідомленні.';
+    validateScheduleView(view); return view;
+  }
   // Real current DnEM/CEK responses contain a NotPlanned full-day slot WHILE
   // WaitingForSchedule. The explicit day status wins over that placeholder.
   if (raw.status === 'WaitingForSchedule') { if (freshness === 'stale') view.status = 'stale'; validateScheduleView(view); return view; }

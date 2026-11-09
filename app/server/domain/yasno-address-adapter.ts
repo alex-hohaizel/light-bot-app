@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { parseExpressionAt } from 'acorn';
 import type { AddressBinding, AddressRecord, SourceReference } from '../../shared/product-contract.ts';
-import { normalizeAddressText, normalizeHouse } from '../../shared/address-index.ts';
+import { normalizeAddressText, normalizeHouse, parseStreetName, streetMatchesQuery, houseMatchesQuery } from '../../shared/address-index.ts';
 import { localParts, validInstant } from '../../shared/schedule-core.ts';
 
 const ORIGIN = 'https://app.yasno.ua';
@@ -40,7 +40,7 @@ export interface YasnoAddressCandidate {
   proof: {
     verdict: 'source_reported_binding_candidate';
     scope: YasnoKyivAddressScope;
-    providerStreetId: number; providerStreetValue: string; streetTypeLiteral: 'вул.' | 'просп.' | 'пров.';
+    providerStreetId: number; providerStreetValue: string; streetTypeLiteral: string;
     providerHouseId: number; providerHouseLiteral: string;
     providerAddressId: string;
     canonicalMunicipalAddressId: null; katottg: null; connectionId: null;
@@ -57,7 +57,8 @@ const sha = (value: string) => createHash('sha256').update(value).digest('hex');
 const positiveId = (value: unknown): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
 function clean(value: unknown, maximum = 200): string {
   if (typeof value !== 'string' || !value.trim() || value.length > maximum || /[\u0000-\u001f\u007f]/.test(value)) return fail('INVALID_TEXT');
-  return value.trim();
+  try { normalizeAddressText(value); } catch { return fail('INVALID_TEXT'); }
+  return value.normalize('NFC').trim();
 }
 function assertScope(scope: YasnoKyivAddressScope) {
   if (!scope || Object.keys(scope).length !== 4 || Object.keys(scope).some(key => !['operatorId', 'namespace', 'regionId', 'dsoId'].includes(key)) ||
@@ -66,10 +67,21 @@ function assertScope(scope: YasnoKyivAddressScope) {
 function parseUniqueJson(raw: string): unknown {
   let parsed: unknown;
   try { parsed = JSON.parse(raw); } catch { return fail('INVALID_SOURCE_JSON'); }
+  // Bound depth before Acorn's recursive parser, including arrays the schema will
+  // reject. Braces inside a quoted string do not count as structural nesting.
+  let depth = 0, quoted = false, escaped = false;
+  for (const c of raw) {
+    if (quoted) { if (escaped) escaped = false; else if (c === '\\') escaped = true; else if (c === '"') quoted = false; }
+    else if (c === '"') quoted = true;
+    else if (c === '[' || c === '{') { if (++depth > 24) return fail('SOURCE_JSON_TOO_DEEP'); }
+    else if (c === ']' || c === '}') depth--;
+  }
   // JSON.parse alone silently keeps the final duplicate key. Ambiguous provider
   // fields are rejected; parsing an AST never executes the source.
-  const pending: any[] = [parseExpressionAt(raw, 0, { ecmaVersion: 2022 })];
+  let ast: unknown; try { ast = parseExpressionAt(raw, 0, { ecmaVersion: 2022 }); } catch { return fail('INVALID_SOURCE_JSON'); }
+  const pending: any[] = [ast]; let visited = 0;
   while (pending.length) {
+    if (++visited > 30_000) return fail('SOURCE_JSON_TOO_COMPLEX');
     const node = pending.pop();
     if (!node || typeof node !== 'object') continue;
     if (node.type === 'ObjectExpression') {
@@ -121,28 +133,37 @@ function items(value: unknown): ProviderAddressItem[] {
 export function readYasnoStreetCandidates(capture: YasnoAddressCapture, policy: AddressCapturePolicy, scope = YASNO_KYIV_ADDRESS_SCOPE) {
   const read = readCapture(capture, 'streets', scope, policy);
   const catalog = items(read.value);
-  if (catalog.some(row => !normalizeAddressText(row.value).includes(normalizeAddressText(read.query)))) fail('STREET_QUERY_RESPONSE_MISMATCH');
+  if (catalog.some(row => !streetMatchesQuery(row.value, read.query))) fail('STREET_QUERY_RESPONSE_MISMATCH');
   return { scope: { ...scope }, items: catalog, proof: read.proof, catalogCompleteness: 'unknown' as const };
 }
 export function readYasnoHouseCandidates(capture: YasnoAddressCapture, streetId: number, policy: AddressCapturePolicy, scope = YASNO_KYIV_ADDRESS_SCOPE) {
   if (!positiveId(streetId)) fail('INVALID_STREET_ID');
   const read = readCapture(capture, 'houses', scope, policy, { streetId });
   const catalog = items(read.value), query = normalizeHouse(read.query);
-  if (catalog.some(row => query && !normalizeHouse(row.value).startsWith(query))) fail('HOUSE_QUERY_RESPONSE_MISMATCH');
+  // Actual provider query1 also returns20/1А: its search is containment.
+  // Selection below still requires the exact house ID and normalized literal.
+  if (catalog.some(row => query && !normalizeHouse(row.value).includes(query))) fail('HOUSE_QUERY_RESPONSE_MISMATCH');
   return { scope: { ...scope }, streetId, items: catalog, proof: read.proof, catalogCompleteness: 'unknown' as const };
 }
 
 /** Pure candidate builder. A trusted collector supplies captures; this is not
  * transport authentication, consent, independent OSR QA or source admission. */
 export function buildYasnoAddressCandidate(input: YasnoAddressCandidateInput): YasnoAddressCandidate {
+  if (!isObject(input) || Object.keys(input).some(key => !['scope', 'selection', 'captures', 'policy'].includes(key)) ||
+    !isObject(input.selection) || Object.keys(input.selection).some(key => !['streetId', 'streetValue', 'houseId', 'houseLiteral', 'label'].includes(key)) ||
+    !isObject(input.captures) || Object.keys(input.captures).sort().join(',') !== 'group,houses,streets') fail('EXACT_SELECTION_REQUIRED');
   const { scope, selection, captures, policy } = input;
   assertScope(scope);
   if (!selection || !positiveId(selection.streetId) || !positiveId(selection.houseId)) fail('EXACT_SELECTION_REQUIRED');
   const selectedStreet = clean(selection.streetValue), selectedHouse = clean(selection.houseLiteral, 100);
   const streets = readYasnoStreetCandidates(captures.streets, policy, scope);
   const street = streets.items.find(row => row.id === selection.streetId);
-  if (!street || normalizeAddressText(street.value) !== normalizeAddressText(selectedStreet)) fail('EXACT_STREET_SELECTION_REQUIRED');
-  const type = /^(вул\.|просп\.|пров\.)\s+\S/u.exec(street.value)?.[1];
+  if (!street || parseStreetName(street.value).key !== parseStreetName(selectedStreet).key) fail('EXACT_STREET_SELECTION_REQUIRED');
+  const streetType = parseStreetName(street.value).type;
+  // Road is backed by the captured public Кільцева/985 chain (8 Nov).
+  // Other kinds remain closed until an exact source example is checked.
+  if (!['street', 'avenue', 'lane', 'road'].includes(streetType || '')) fail('UNSUPPORTED_SOURCE_STREET_TYPE');
+  const type = /^(?:вулиця|вул|проспект|просп|пр-т|провулок|пров-к|пров|дорога)\.?/iu.exec(street.value)?.[0];
   if (!type) fail('UNSUPPORTED_SOURCE_STREET_TYPE');
   const houses = readYasnoHouseCandidates(captures.houses, street.id, policy, scope);
   const house = houses.items.find(row => row.id === selection.houseId);
@@ -156,17 +177,19 @@ export function buildYasnoAddressCandidate(input: YasnoAddressCandidateInput): Y
   const addressId = `provisional:${providerAddressId}`;
   const revision = sha(JSON.stringify({ operatorId: scope.operatorId, namespace: scope.namespace, regionId: scope.regionId, dsoId: scope.dsoId,
     streetId: street.id, streetValue: street.value, houseId: house.id, houseLiteral: house.value, targetId,
-    groupRequest: group.proof.canonicalRequestUrl, groupResponse: group.proof.rawSha256 }));
+    captureChain: [streets.proof, houses.proof, group.proof].map(proof => ({ operation: proof.operation,
+      request: proof.canonicalRequestUrl, response: proof.rawSha256 })) }));
   const letter = /^(\d+)\s*([а-яіїєґ])$/iu.exec(house.value);
   const address: AddressRecord = { id: addressId, label: selection.label === undefined ? 'Обрана адреса' : clean(selection.label, 60),
-    territoryId: `source:${scope.namespace}`, locality: 'Київ', street: street.value,
+    territoryId: `source:${scope.namespace}`, locality: 'Київ', localityId: `source:${scope.namespace}:locality:kyiv`,
+    street: street.value, streetId: `source:${scope.namespace}:street:${street.id}`,
     house: { number: letter?.[1] || house.value, ...(letter ? { letter: letter[2] } : {}), literal: house.value }, aliases: [] };
   const binding: AddressBinding = { addressId, operatorId: scope.operatorId, namespace: scope.namespace, targetId, kind: 'operator_group',
     revisionId: `yasno-address-candidate:${revision}`, status: 'needs_confirmation', verifiedAt: null, effectiveFrom: null, effectiveUntil: null };
   return { kind: 'yasno-address-candidate/1', address, binding,
     source: { id: SOURCE, name: 'YASNO · публічний адресний candidate', url: group.proof.requestUrl, revision, accessCost: 0, verifiedLevel: 'catalog' },
     proof: { verdict: 'source_reported_binding_candidate', scope: { ...scope }, providerStreetId: street.id, providerStreetValue: street.value,
-      streetTypeLiteral: type as 'вул.' | 'просп.' | 'пров.', providerHouseId: house.id, providerHouseLiteral: house.value, providerAddressId,
+      streetTypeLiteral: type, providerHouseId: house.id, providerHouseLiteral: house.value, providerAddressId,
       canonicalMunicipalAddressId: null, katottg: null, connectionId: null, catalogCompleteness: 'unknown', aliasesVerified: false,
       providerEffectiveRevision: null, validFrom: null, validUntil: null,
       clientRevisionMeaning: 'hash of exact selected provider scope and group response; not provider validity', observedAt: group.proof.observedAt,

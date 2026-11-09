@@ -1,0 +1,330 @@
+{
+  "kind": "lba-vinnytsia-primary-provenance-followup/1",
+  "actor": "/root/browser_login",
+  "observedAt": "2026-11-09T01:20:47.738698+00:00",
+  "serviceDateUnderReview": "2026-11-09",
+  "timezone": "Europe/Kyiv",
+  "scope": "READ-ONLY new bounded probes beyond prior9Nov capture; no rerun of national/P0/install audit",
+  "verdict": "unofficial_chain_confirmed_primary_plan_and_address_binding_not_validated",
+  "requirementIds": [
+    "DATA-01",
+    "DATA-02",
+    "DATA-03",
+    "DATA-04",
+    "DATA-05",
+    "DATA-06",
+    "DATA-07",
+    "DATA-08",
+    "DATA-09",
+    "ADDR-01",
+    "ADDR-02",
+    "ADDR-03",
+    "ADDR-05",
+    "CHART-05",
+    "CHART-06"
+  ],
+  "immutableProvenance": {
+    "commit": "98356983b4107e149215fcac3c9a72324cac877d",
+    "commitAtUTC": "2026-11-09T01:10:23Z",
+    "parserGitBlobSha1": "44ddfdf75828b98b1ab36602080084994cfe0af9",
+    "parserSha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61",
+    "parserUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/scripts/parser.py",
+    "workflowGitBlobSha1": "8e4c2edb96d27305d96347946136bd3a03bba78d",
+    "workflowUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/.github/workflows/update-all-sync.yml",
+    "currentMirrorGitBlobSha1": "5d5d6bb5e829c2c213e249c9b1c47a2816975acf",
+    "currentMirrorSha256": "4334710a20148be8ba55dd8517f0b41742e91cb6144bfd97348974c1a5558bdf",
+    "mirrorUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/data/Vinnytsiaoblenerho.json",
+    "capturedBytesGitBlobValidated": true,
+    "upstreamInCurrentCode": "https://bezsvitla.com.ua/vinnytska-oblast/cherha-{queue}",
+    "upstreamKind": "third_party_html_not_operator",
+    "staleReadmeClaim": "e-svitlo/auth/12EIC origin belongs to README ending2025-12-07 and conflicts with current parser/workflow",
+    "generationRuntimeAttested": false,
+    "lineEvidence": [
+      {
+        "lines": [
+          46,
+          47
+        ],
+        "fact": "Current published parser fetches third-party bezsvitla.com.ua per queue and tomorrow path; it does not read operator/e-svitlo in this source."
+      },
+      {
+        "lines": [
+          48,
+          48
+        ],
+        "fact": "Fixed timezone UTC+2, no IANA DST handling."
+      },
+      {
+        "lines": [
+          66,
+          68
+        ],
+        "fact": "Minute values are rounded to 0 or30."
+      },
+      {
+        "lines": [
+          74,
+          93
+        ],
+        "fact": "parse_html_schedule starts with all24hours yes and leaves them yes if selectors find no off slots."
+      },
+      {
+        "lines": [
+          139,
+          152
+        ],
+        "fact": "Per-queue GET failures produce empty slots or None; no independent official check."
+      },
+      {
+        "lines": [
+          154,
+          169
+        ],
+        "fact": "Missing queue result is replaced by all24hours yes."
+      },
+      {
+        "lines": [
+          196,
+          203
+        ],
+        "fact": "lastUpdateStatus parsed/ok=true/code200 is hardcoded when saving, independent of individual request/parse success."
+      }
+    ],
+    "collectorDateIsNotOperatorPublicationDate": true
+  },
+  "semanticComparison": {
+    "kind": "mirror_to_mirror_only",
+    "oldCaptureSha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+    "newCaptureSha256": "4334710a20148be8ba55dd8517f0b41742e91cb6144bfd97348974c1a5558bdf",
+    "currentCollectorUTC": "2026-11-09T01:10:21+00:00",
+    "factUpdate": "09.11.2026 03:10",
+    "comparedCells": 576,
+    "changedCells": 0,
+    "serviceDates": [
+      {
+        "serviceDate": "2026-11-09",
+        "dayEpoch": "1794175200",
+        "groups": 12,
+        "groupKeys": [
+          "GPV1.1",
+          "GPV1.2",
+          "GPV2.1",
+          "GPV2.2",
+          "GPV3.1",
+          "GPV3.2",
+          "GPV4.1",
+          "GPV4.2",
+          "GPV5.1",
+          "GPV5.2",
+          "GPV6.1",
+          "GPV6.2"
+        ],
+        "cells": {
+          "yes": 218,
+          "no": 70
+        }
+      },
+      {
+        "serviceDate": "2026-11-10",
+        "dayEpoch": "1794261600",
+        "groups": 12,
+        "groupKeys": [
+          "GPV1.1",
+          "GPV1.2",
+          "GPV2.1",
+          "GPV2.2",
+          "GPV3.1",
+          "GPV3.2",
+          "GPV4.1",
+          "GPV4.2",
+          "GPV5.1",
+          "GPV5.2",
+          "GPV6.1",
+          "GPV6.2"
+        ],
+        "cells": {
+          "yes": 288
+        }
+      }
+    ],
+    "tomorrowAllYesIsNotPublicationProof": true,
+    "halfHourOrientationOfficiallyValidated": false
+  },
+  "officialAccess": [
+    {
+      "url": "https://www.voe.com.ua/",
+      "tool": "web.open",
+      "reportedStatus": 403,
+      "rawBodyAvailable": false,
+      "exactAcquisitionTimeExposed": false,
+      "providerWebsiteOriginStopped": true,
+      "retryBypass": false
+    },
+    {
+      "url": "https://t.me/s/vinoblenergo",
+      "tool": "Replit read-only anonymous GET after web capability unavailable",
+      "requestAtUTC": "2026-11-09T01:15:25.673Z",
+      "reportedStatus": 200,
+      "reportedContentType": "text/html; charset=utf-8",
+      "reportedBytes": 27475,
+      "reportedBodySha256": "8d992df12d187e4fa60bc6892dbbbf86748f2b3304111a0c47f0dfe2f3653e6b",
+      "rawBodyReturnedToCodex": false,
+      "title": "vinoblenergo",
+      "description": "",
+      "messageDatesUTC": [
+        "2024-12-01T05:44:03+00:00",
+        "2024-12-01T05:47:11+00:00"
+      ],
+      "publicRedirectAnnouncementUrl": "https://www.voe.com.ua/news/my-ye-v-telehram-pidpysuytes",
+      "announcementUrlFetched": false,
+      "currentOperatorChannelOwnershipVerified": false,
+      "currentReplacementChannel": "unknown",
+      "dated9Nov2026Plan12GroupsFound": false,
+      "officialClosureClaimVerified": false
+    },
+    {
+      "url": "https://www.facebook.com/vinoblenergo/",
+      "tool": "web.open",
+      "result": "Redirected to Facebook login; temporarily blocked text. No login or further action.",
+      "datedPlanAvailable": false
+    },
+    {
+      "url": "https://t.me/s/vmroficial",
+      "tool": "web.open bounded public text",
+      "publisher": "city council relay, not operator",
+      "result": "Returned text has no dated9Nov2026/12group plan; no absolute dates in viewed text. Search snippets from2023/older posts rejected.",
+      "rawBodyAvailable": false,
+      "sameDatePrimaryComparison": false
+    }
+  ],
+  "legacyReplitSource": {
+    "workspaceHead": "b825da267772fc87c8cbb1e85b8acb8e7f83fab9",
+    "reportedBy": "Replit Agent ask_question source read only",
+    "connectedPlanSource": "server/scraper.ts vn-progr then olnet93",
+    "loginOrEicUsedInConnectedPath": false,
+    "operatorNewsForStatusOnly": "https://www.voe.com.ua/news",
+    "servingProcessOrHistoricalRequestAttested": false,
+    "matchedLocalFilePins": [
+      {
+        "localPath": "app/server/scraper.ts",
+        "sha256": "0ca23c16b7f337295de13479f68935c85f65a84137c10124514b4d86200527de",
+        "remoteReadbackSha256": "0ca23c16b7f337295de13479f68935c85f65a84137c10124514b4d86200527de",
+        "matchesRemoteReadback": true
+      },
+      {
+        "localPath": "app/server/scraper-voe.ts",
+        "sha256": "9aae6a7d5d31c3515010103ac2da61b0bb1f954dde3b18fda02800e3b47a3585",
+        "remoteReadbackSha256": "9aae6a7d5d31c3515010103ac2da61b0bb1f954dde3b18fda02800e3b47a3585",
+        "matchesRemoteReadback": true
+      },
+      {
+        "localPath": "app/server/scraper-svitlo.ts",
+        "sha256": "92ed57a9bba21addbd7eb69f9d02f7015b4afbed587f107742f38a93de15cf88",
+        "remoteReadbackSha256": "92ed57a9bba21addbd7eb69f9d02f7015b4afbed587f107742f38a93de15cf88",
+        "matchesRemoteReadback": true
+      },
+      {
+        "localPath": "app/server/voe-status.ts",
+        "sha256": "4754aecec8a6d90faa339269ba5d15587750fd82d8401254070826a8ddcf8145",
+        "remoteReadbackSha256": "4754aecec8a6d90faa339269ba5d15587750fd82d8401254070826a8ddcf8145",
+        "matchesRemoteReadback": true
+      }
+    ]
+  },
+  "addressGap": {
+    "officialCurrentCatalogObtained": false,
+    "officialCurrentRenamingsObtained": false,
+    "providerBuildingGroupBindingObtained": false,
+    "validatedAddressesThisFollowup": 0,
+    "twentyAddressAcceptance": false,
+    "why": "Website origin403 stopped; current replacement official channel unknown; group-only thirdparty mirrors have no building identity/binding catalog. Legacy local voe-lookup.ts returns null absent external cache, not provider proof.",
+    "existing20AddressRequirementPreserved": true
+  },
+  "readiness": {
+    "official9NovPlanCompared": false,
+    "independentFallbackCertified": false,
+    "reuseAndRateAuthorityEstablished": false,
+    "parallel48hCertified": false,
+    "personalScheduleActivationAuthorized": false,
+    "rootNotifiedTechnicalQuarantineNeeded": true,
+    "productQuarantineEditedByThisActor": false
+  },
+  "nextSmallestProbe": {
+    "state": "needs_external_public_access_or_current_firstparty_URL",
+    "inputNeeded": "An accessible current operator-published replacement-channel/static-plan/address-catalog URL or a confirmed allowed anonymous provider endpoint. No credentials/EIC/private profile required.",
+    "operation": "After external access/permission changes, one anonymousGET without redirects/retries to that confirmedpublicURL; verify exact publication/service date,12groups+legend before separate nonpersonal building sample.",
+    "currentlyNotPerformed": true,
+    "doNotRetryNow": [
+      "https://www.voe.com.ua/403-origin",
+      "old /disconnection/detailed/autocomplete/read_city endpoint previously404",
+      "Cloudflare/CAPTCHA/robots or credential-protected e-svitlo"
+    ]
+  },
+  "newProbeAccounting": {
+    "githubConnectorReadOperations": 6,
+    "githubReads": [
+      "scripts/parser.py@main",
+      "workflows directory@main",
+      "branches/main",
+      "update-all-sync.yml@98356983",
+      "scripts/parser.py@98356983",
+      "dataJSON@98356983"
+    ],
+    "whyImmutableParserReadWasNeeded": "Pin code and currentJSON to the same exact commit after material provenance mismatch; not a blind repeat of prior13source probes.",
+    "replitAnonymousProviderGets": 1,
+    "websiteRawNativeGetsByCodex": 0,
+    "webToolUnderlyingRequestCount": "not exposed; only explicit public opens/searches, no native retries",
+    "bezsvitlaRequests": 0,
+    "priorBoundedProbeScriptRerun": false
+  },
+  "effects": {
+    "productCodeEdits": 0,
+    "sourceCertificationFlagsChanged": 0,
+    "providerLogins": 0,
+    "messagesSent": 0,
+    "productionWrites": 0,
+    "databaseReads": 0,
+    "privateExports": 0,
+    "appStarts": 0,
+    "publisherScriptExecutions": 0,
+    "offlineAnalysisExecuted": true
+  },
+  "manifest": [
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/parser-98356983.py.txt",
+      "bytes": 7414,
+      "sha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/mirror-98356983.json",
+      "bytes": 14945,
+      "sha256": "4334710a20148be8ba55dd8517f0b41742e91cb6144bfd97348974c1a5558bdf"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/provenance.json",
+      "bytes": 4621,
+      "sha256": "0efa08410de263841ed6083e27b380d947fc5584cdafb65c22884208eebedcdd"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/replit-readonly-receipt.json",
+      "bytes": 6714,
+      "sha256": "5859a5d309a2b27fc39d02e6e8a12682c4c9f251c092aa671c1a26d90835094c"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/analyze_offline.py",
+      "bytes": 2997,
+      "sha256": "37bc53adee73c1bea5f29867a2a81bfa9345aaa0a4a23589d111f843cf72961a"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/offline-comparison.json",
+      "bytes": 1974,
+      "sha256": "6bf7276b2f1c0486bdfda6906baea4743eeb2841cb151b3066f038049bf7cbf6"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/README_UA.md",
+      "bytes": 5032,
+      "sha256": "acf8a067b5cb32e75d85660b60e3954cc3cb3cf93df542de450ad43107be7d88"
+    }
+  ],
+  "acceptance": "Research/provenance finding and capability gap only. No official current plan/address/20address/48h/source activation/full-product pass."
+}

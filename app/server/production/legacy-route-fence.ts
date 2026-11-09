@@ -6,10 +6,10 @@ import type {RequestHandler} from 'express';
  */
 export function legacyProductionRouteFence():RequestHandler {
  const exact=new Set([
-  '/api/auth/link-telegram','/api/auth/unlink','/api/auth/telegram-auto','/api/auth/telegram-link-token',
+  '/api/auth/link-telegram','/api/auth/unlink','/api/auth/telegram-auto','/api/auth/telegram-link-token','/api/auth/linked-accounts',
   '/api/auth/telegram-login-request','/api/auth/telegram-login-poll',
   '/api/admin/broadcast','/api/user/settings','/api/user/settings-beacon','/api/user/settings-stream',
-  '/api/queues','/api/schedule','/api/street-queue','/api/address-queue',
+  '/api/queues','/api/schedule','/api/street-queue','/api/address-queue','/api/version',
  ]);
  return(req,res,next)=>{
   const path=req.path.toLowerCase().replace(/\/+$/,'');

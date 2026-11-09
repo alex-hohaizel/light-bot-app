@@ -5,14 +5,20 @@ import { useEffect, useRef, useState } from 'react';
 import type { ProfileMutation, ProfileRequest } from '@shared/profile-mutation';
 import type { ProductSnapshot } from '@shared/live-product';
 import { clearPendingProfile, loadPendingProfile, savePendingProfile } from './pending-request';
+import {profileErrorMessage} from '@shared/profile-errors';
+import {profileResponseFailure,assertProfileSnapshotResponse,assertProfileCommitResponse} from './profile-response';
 
-async function fetchProfile(request: ProfileRequest|undefined, mode:'review'|'live'): Promise<ProductSnapshot> {
+async function fetchProfile(request: ProfileRequest|undefined, mode:'review'|'live',ownerId?:string): Promise<ProductSnapshot> {
   const response = await fetch(mode==='live'?'/api/product/profile':'/api/review/profile', { cache: 'no-store', ...(request ? {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request),
   } : {}) });
-  const value = await response.json();
-  if (!response.ok) throw Object.assign(new Error(value.error || 'Не вдалося отримати профіль.'), { status: response.status });
-  if (mode==='live' && (value.simulationOnly!==false || !value.capabilities)) throw new Error('Сервер ще не підтвердив робочий профіль.');
+  let value:any;
+  try{value=await response.json();}catch{throw Object.assign(new Error(profileErrorMessage('LIVE_PROFILE_UNAVAILABLE')),{status:response.status,code:'LIVE_PROFILE_UNAVAILABLE',definiteRejection:false});}
+  if (!response.ok) {
+    throw profileResponseFailure(response.status,value);
+  }
+  assertProfileSnapshotResponse(value,mode);
+  if(request)assertProfileCommitResponse(value,request,mode,ownerId||'');
   return value;
 }
 
@@ -22,23 +28,25 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
   const [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [pending, setPending] = useState<ProfileRequest | null>(null), [lastMutationId, setLastMutationId] = useState('');
   const snapshotRef = useRef(snapshot), pendingRef = useRef(pending), working = useRef(false);
+  const mounted=useRef(true);
   const requestSequence = useRef(0);
   snapshotRef.current = snapshot; pendingRef.current = pending;
-  async function refresh() {
-    if (working.current || pendingRef.current) return;
+  async function refresh(options?:{throwOnFailure?:boolean}) {
+    if (working.current || pendingRef.current) {if(options?.throwOnFailure)throw Error('Спочатку перевірте результат попереднього збереження.');return;}
     const sequence = ++requestSequence.current;
-    try { const value = await fetchProfile(undefined,mode); if (sequence === requestSequence.current) {
+    try { const value = await fetchProfile(undefined,mode); if (mounted.current&&sequence === requestSequence.current) {
       const recovered = loadPendingProfile(sessionStorage, value.profile.id, value.sessionId);
       snapshotRef.current = value; setSnapshot(value); pendingRef.current = recovered; setPending(recovered);
       setError(recovered ? 'Результат попереднього збереження ще не підтверджено. Перевірте той самий запит.' : '');
-    } }
-    catch (error) { if (sequence === requestSequence.current) setError(error instanceof Error ? error.message : 'Немає зв’язку з локальним профілем.'); }
+    }else if(options?.throwOnFailure)throw Error('Профіль змінився під час перевірки адреси. Повторіть вибір.'); }
+    catch (error) { if (sequence === requestSequence.current) setError(error instanceof Error ? error.message : 'Немає зв’язку з локальним профілем.');if(options?.throwOnFailure)throw error; }
   }
   useEffect(() => {
+    mounted.current=true;
     void refresh();
     const onFocus = () => { void refresh(); };
     window.addEventListener('focus', onFocus);
-    return () => window.removeEventListener('focus', onFocus);
+    return () => {mounted.current=false;++requestSequence.current;window.removeEventListener('focus', onFocus);};
   }, []);
   async function submit(request: ProfileRequest) {
     if (working.current) throw new Error('Дочекайтеся завершення попереднього запиту.');
@@ -50,18 +58,20 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
     ++requestSequence.current;
     working.current = true; setBusy(true); setError(''); pendingRef.current = request; setPending(request);
     try {
-      const value = await fetchProfile(request,mode);
+      const value = await fetchProfile(request,mode,current.profile.id);
+      if(!mounted.current)return;
       snapshotRef.current = value; setSnapshot(value); pendingRef.current = null; setPending(null); setLastMutationId(request.id);
-      try { clearPendingProfile(sessionStorage); } catch {}
+      try { clearPendingProfile(sessionStorage,{ownerId:current.profile.id,requestId:request.id,sessionId:request.expectedSessionId}); } catch {}
     } catch (error) {
+      if(!mounted.current)throw error;
       const message = error instanceof Error ? error.message : 'Збереження ще не підтверджено.';
       setError(message);
       const status = (error as { status?: number }).status;
-      if (status && status < 500) {
+      if ((error as {definiteRejection?:boolean}).definiteRejection===true) {
         // A definite rejection is not an unknown commit; a deliberate retry gets a fresh ID/revision.
         pendingRef.current = null; setPending(null);
-        try { clearPendingProfile(sessionStorage); } catch {}
-        if (status === 409) { const latest = await fetchProfile(undefined,mode).catch(() => null); if (latest) { snapshotRef.current = latest; setSnapshot(latest); } }
+        try { clearPendingProfile(sessionStorage,{ownerId:current.profile.id,requestId:request.id,sessionId:request.expectedSessionId}); } catch {}
+        if (status === 409) { const latest = await fetchProfile(undefined,mode).catch(() => null); if (latest&&mounted.current&&latest.profile.id===current.profile.id) { snapshotRef.current = latest; setSnapshot(latest); } }
       }
       throw error;
     } finally { working.current = false; setBusy(false); }

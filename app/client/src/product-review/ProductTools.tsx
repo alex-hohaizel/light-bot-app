@@ -1,4 +1,5 @@
 import {useEffect,useState,useRef} from 'react';
+import {LiveProductTools} from './LiveProductTools';
 import type {ReviewProvider,ReviewToolsAction,ReviewToolsRequest,ReviewToolsSnapshot,ReviewShareSummary,ReviewPublicShare} from '@shared/review-tools';
 import type {ProfileController} from './ProductReview';
 import {PLAN_STATUS_COPY} from '@shared/product-contract';
@@ -46,8 +47,7 @@ function ReviewProductTools({screen,runtime,activeId,shareIds,serviceDate,onAddr
 }
 export function ProductTools(props:Parameters<typeof ReviewProductTools>[0]){
  if(props.runtime.snapshot.simulationOnly!==false)return <ReviewProductTools {...props}/>;
- const title={reports:'Повідомлення про світло',digest:'Тижневий підсумок',accounts:'Акаунти й вхід',share:'Поділитися планом'}[props.screen];
- return <section className="pr-tools"><div className="pr-section-intro"><h2>{title}</h2></div><article className="pr-panel pr-tool-panel"><h3>Триває перевірка перенесення</h3><p>{props.screen==='digest'?'Для тижневого підсумку потрібна перевірена історія. Попередні згенеровані числа не використовуємо.':props.screen==='accounts'?'Ви ввійшли до свого чинного акаунта. Перенесення керування способами входу ще перевіряється.':props.screen==='reports'?'Перенесення ваших спостережень ще перевіряється. Вони не змінюють план оператора.':'Публічні посилання з’являться після перевірки адрес і захисту доступу.'}</p><p>У цьому перегляді дані не змінюються.</p><a className="pr-secondary" href="https://t.me/PowerUkraineBot">Відкрити чинного бота</a></article></section>;
+ return <LiveProductTools {...props}/>;
 }
 export function LocalPublicPlan(){
  const {prefs,update}=useViewPreferences('public'),[data,setData]=useState<ReviewPublicShare|null>(null),[error,setError]=useState('');

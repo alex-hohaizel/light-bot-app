@@ -89,6 +89,8 @@ test('missing hours, unknown enums, foreign legends and unproven VOE half-hours 
     const raw = mutateOem(change); assert.throws(() => normalizeHourMatrix(raw, matrixContext(raw, 'dtek:oem')), /HOUR|LEGEND/);
   }
   const payload = JSON.parse(vn); payload.fact.data['1794002400']['GPV1.1']['2'] = 'first';
+  // Half-hours require the separately pinned publisher contract metadata.
+  delete payload.meta;
   const raw = JSON.stringify(payload); assert.throws(() => normalizeHourMatrix(raw, matrixContext(raw)), /UNKNOWN_(?:VOE|PROVIDER)_HOUR_ENUM/);
 });
 test('explicit complete all-yes day differs from missing day or missing target', () => {

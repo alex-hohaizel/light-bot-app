@@ -10,6 +10,7 @@ const telegram = {
   TELEGRAM_BOT_TOKEN: '8577497098:fixture_provider_token_xxxxxxxxxxxxx',
   TELEGRAM_WEBHOOK_SECRET: 'existing_provider_secret',
 };
+const canonical={...telegram,LBA_PRODUCT_PROFILE_MODE:'active',LBA_AUTH_REPLAY_GUARD:'enabled',LBA_CANONICAL_CONTROL_EPOCH:'7'};
 function refuses(env: RuntimeEnvironment, code: string) {
   assert.throws(() => productionRuntimePolicy(env), error => error instanceof RuntimePolicyError && error.code === code);
 }
@@ -27,11 +28,16 @@ test('production plan is immutable, does not expose credentials, and preserves e
     assert(!serialized.includes(secret));
   assert.throws(() => { (policy as unknown as Record<string, unknown>).autoSetWebhook = true; }, TypeError);
 });
-test('profile shadow mode cannot silently activate an unfinished canonical writer',()=>{
+test('canonical profile mode requires explicit replay guard and reviewed epoch; old writers stay forbidden',()=>{
   assert.equal(productionRuntimePolicy(base).productProfileMode,'disabled');
   assert.equal(productionRuntimePolicy({...base,LBA_PRODUCT_PROFILE_MODE:'read_only'}).productProfileMode,'read_only');
-  for(const value of ['active','enabled','true','review'])
+  for(const value of ['enabled','true','review'])
     refuses({...base,LBA_PRODUCT_PROFILE_MODE:value},'LBA_RUNTIME_PRODUCT_WRITER_NOT_READY');
+  refuses({...base,LBA_PRODUCT_PROFILE_MODE:'active'},'LBA_RUNTIME_CANONICAL_PROFILE_PREREQUISITES');
+  assert.equal(productionRuntimePolicy({...base,...canonical}).productProfileMode,'active');
+  for(const flag of ['LBA_RECONCILE_SUBSCRIBERS_ON_START','LBA_MIGRATE_SUBSCRIBERS_ON_START','LBA_INITIALIZE_SUBSCRIBER_HASHES_ON_START'])
+    refuses({...base,...canonical,[flag]:'enabled'},'LBA_RUNTIME_LEGACY_WRITER_FORBIDDEN');
+  refuses({...base,...telegram,LBA_SOURCE_INGESTION:'enabled'},'LBA_RUNTIME_CANONICAL_PROFILE_REQUIRED');
 });
 test('production identity rejects local/synthetic/ambiguous modes and databases without logging their values', () => {
   for (const NODE_ENV of [undefined, 'test', 'development']) refuses({ ...base, NODE_ENV }, 'LBA_RUNTIME_PRODUCTION_MODE_REQUIRED');
@@ -56,10 +62,10 @@ test('stable auth credentials are mandatory; sanitized local/test literals canno
 });
 test('scheduler and updates require explicit delivery and actual credential configuration', () => {
   for (const flag of ['LBA_NOTIFICATION_SCHEDULER', 'LBA_TELEGRAM_UPDATES'])
-    refuses({ ...base, ...telegram, LBA_CANONICAL_CONTROL_EPOCH:'7', [flag]: 'enabled' }, 'LBA_RUNTIME_TELEGRAM_DELIVERY_REQUIRED');
-  refuses({ ...base, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_REQUIRED_TELEGRAM_BOT_TOKEN');
-  refuses({ ...base, TELEGRAM_BOT_TOKEN: telegram.TELEGRAM_BOT_TOKEN, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_REQUIRED_TELEGRAM_WEBHOOK_SECRET');
-  const policy = productionRuntimePolicy({ ...base, ...telegram, LBA_TELEGRAM_DELIVERY: 'enabled',
+    refuses({ ...base, ...canonical, [flag]: 'enabled' }, 'LBA_RUNTIME_TELEGRAM_DELIVERY_REQUIRED');
+  refuses({ ...base,LBA_PRODUCT_PROFILE_MODE:'active',LBA_AUTH_REPLAY_GUARD:'enabled',LBA_CANONICAL_CONTROL_EPOCH:'7', LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_REQUIRED_TELEGRAM_BOT_TOKEN');
+  refuses({ ...base, ...canonical, TELEGRAM_WEBHOOK_SECRET:undefined, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_REQUIRED_TELEGRAM_WEBHOOK_SECRET');
+  const policy = productionRuntimePolicy({ ...base, ...canonical, LBA_TELEGRAM_DELIVERY: 'enabled',
     LBA_CANONICAL_CONTROL_EPOCH:'7', LBA_TELEGRAM_UPDATES: 'enabled', LBA_NOTIFICATION_SCHEDULER: 'enabled' });
   assert(policy.telegramDeliveryEnabled && policy.telegramUpdatesEnabled && policy.notificationSchedulerEnabled);
   assert.equal(policy.autoSetWebhook, false); assert.equal(policy.dropPendingUpdates, false);
@@ -80,7 +86,7 @@ test('writer switches are separate, exact and disabled until deliberately config
 test('Telegram proof login and outgoing runtime cannot silently switch to another configured bot',()=>{
   const wrong={...base,...telegram,TELEGRAM_BOT_TOKEN:'123456789:fixture_other_bot_token_xxxxxxxxx'};
   refuses({...wrong,LBA_AUTH_REPLAY_GUARD:'enabled'},'LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
-  refuses({...wrong,LBA_TELEGRAM_DELIVERY:'enabled'},'LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
+  refuses({...base,...canonical,TELEGRAM_BOT_TOKEN:wrong.TELEGRAM_BOT_TOKEN,LBA_TELEGRAM_DELIVERY:'enabled'},'LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
   assert.equal(productionRuntimePolicy({...base,...telegram,LBA_AUTH_REPLAY_GUARD:'enabled'}).telegramAuthReplayEnabled,true);
   refuses({...base,...telegram,LBA_AUTH_REPLAY_GUARD:'true'},'LBA_RUNTIME_INVALID_LBA_AUTH_REPLAY_GUARD');
 });
@@ -92,9 +98,9 @@ test('unsafe boot effects are denied even if supplied alongside otherwise valid 
 });
 test('provider secret format preserves an existing permitted value without implicit rotation', () => {
   for (const secret of ['a', 'A_z-0123456789', 'x'.repeat(256)]) {
-    const policy = productionRuntimePolicy({ ...base, ...telegram, TELEGRAM_WEBHOOK_SECRET: secret, LBA_TELEGRAM_DELIVERY: 'enabled' });
+    const policy = productionRuntimePolicy({ ...base, ...canonical, TELEGRAM_WEBHOOK_SECRET: secret, LBA_TELEGRAM_DELIVERY: 'enabled' });
     assert(policy.telegramDeliveryEnabled); assert.equal(policy.autoSetWebhook, false);
   }
   for (const secret of ['a.b', 'x'.repeat(257), 'тест'])
-    refuses({ ...base, ...telegram, TELEGRAM_WEBHOOK_SECRET: secret, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_WEBHOOK_SECRET_INVALID');
+    refuses({ ...base, ...canonical, TELEGRAM_WEBHOOK_SECRET: secret, LBA_TELEGRAM_DELIVERY: 'enabled' }, 'LBA_RUNTIME_WEBHOOK_SECRET_INVALID');
 });

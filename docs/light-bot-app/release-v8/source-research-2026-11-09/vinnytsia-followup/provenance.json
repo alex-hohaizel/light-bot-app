@@ -1,0 +1,130 @@
+{
+  "actor": "/root/browser_login",
+  "observedAt": "2026-11-09T01:14:26.082188+00:00",
+  "status": "immutable_publisher_code_provenance_observed_official_validation_still_open",
+  "sourceCommit": "98356983b4107e149215fcac3c9a72324cac877d",
+  "sourceCommitAtUTC": "2026-11-09T01:10:23Z",
+  "parser": {
+    "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/parser-98356983.py.txt",
+    "bytes": 7414,
+    "sha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61",
+    "gitBlobSha1": "44ddfdf75828b98b1ab36602080084994cfe0af9"
+  },
+  "parserUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/scripts/parser.py",
+  "lineEvidence": [
+    {
+      "lines": [
+        46,
+        47
+      ],
+      "fact": "Current published parser fetches third-party bezsvitla.com.ua per queue and tomorrow path; it does not read operator/e-svitlo in this source."
+    },
+    {
+      "lines": [
+        48,
+        48
+      ],
+      "fact": "Fixed timezone UTC+2, no IANA DST handling."
+    },
+    {
+      "lines": [
+        66,
+        68
+      ],
+      "fact": "Minute values are rounded to 0 or30."
+    },
+    {
+      "lines": [
+        74,
+        93
+      ],
+      "fact": "parse_html_schedule starts with all24hours yes and leaves them yes if selectors find no off slots."
+    },
+    {
+      "lines": [
+        139,
+        152
+      ],
+      "fact": "Per-queue GET failures produce empty slots or None; no independent official check."
+    },
+    {
+      "lines": [
+        154,
+        169
+      ],
+      "fact": "Missing queue result is replaced by all24hours yes."
+    },
+    {
+      "lines": [
+        196,
+        203
+      ],
+      "fact": "lastUpdateStatus parsed/ok=true/code200 is hardcoded when saving, independent of individual request/parse success."
+    }
+  ],
+  "workflow": {
+    "url": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/.github/workflows/update-all-sync.yml",
+    "gitBlobSha1": "8e4c2edb96d27305d96347946136bd3a03bba78d",
+    "observed": "Only update-all-sync.yml listed in current workflows directory; it invokes scripts/parser.py in Parse BezSvitla step. Schedule section commented, workflow_dispatch present. No execution triggered."
+  },
+  "currentMirror": {
+    "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/mirror-98356983.json",
+    "bytes": 14945,
+    "sha256": "4334710a20148be8ba55dd8517f0b41742e91cb6144bfd97348974c1a5558bdf",
+    "gitBlobSha1": "5d5d6bb5e829c2c213e249c9b1c47a2816975acf"
+  },
+  "mirrorUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/98356983b4107e149215fcac3c9a72324cac877d/data/Vinnytsiaoblenerho.json",
+  "currentMirrorMetadata": {
+    "collectorUTC": "2026-11-09T01:10:21+00:00",
+    "factUpdate": "09.11.2026 03:10",
+    "factTodayEpoch": 1794175200,
+    "lastUpdateStatus": {
+      "status": "parsed",
+      "ok": true,
+      "code": 200,
+      "message": null,
+      "at": 1794186621,
+      "attempt": 1
+    }
+  },
+  "comparisonToPrior9NovCapture": {
+    "prior": {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/vinnytsia-public-json.bin",
+      "bytes": 14945,
+      "sha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+      "gitBlobSha1": "5f25a682a9208fd7e7315a1be468fb2e62127591"
+    },
+    "currentServiceDatesUnchanged": true,
+    "comparedCells": 576,
+    "changedCells": 0,
+    "differences": [],
+    "meaning": "Same mirror plan across collector revisions is not official validation."
+  },
+  "websiteProbe": {
+    "url": "https://www.voe.com.ua/",
+    "route": "web.open",
+    "result": "403 Forbidden",
+    "observedAtPrecision": "current tool call on2026-11-09 UTC; HTTPraw capture unavailable",
+    "stoppedProviderWebsiteOrigin": true,
+    "noRetryOrBypass": true
+  },
+  "readiness": {
+    "primaryOfficialComparison": false,
+    "providerAddressBinding": false,
+    "twentyAddressesAccepted": false,
+    "parallel48hCertified": false,
+    "personalScheduleActivation": false
+  },
+  "effectCounts": {
+    "productEdits": 0,
+    "providerLogins": 0,
+    "messages": 0,
+    "productionWrites": 0,
+    "privateExports": 0
+  },
+  "limits": [
+    "Published parser/workflow provenance is observed; exact remote execution that generated a historical payload is not independently attested.",
+    "README origin e-svitlo claims are stale and conflict with current parser; neither grants data reuse rights.",
+    "Only mirror-to-mirror cell comparison performed; no official same-date plan was obtained."
+  ]
+}

@@ -9,6 +9,7 @@ export interface TelegramLoginSession {
  login(ownerId:string,firstName:string):Promise<string>;
  /** Clears/destroys a newly issued session if its proof cannot be durably bound. */
  invalidate():Promise<void>;
+  verified?:(input:{user:VerifiedTelegramUser;kind:VerifiedAuthProof['kind']})=>Promise<void>;
 }
 /** Cryptographic verification always precedes replay reservation, identity lookup and session writes. */
 export function createTelegramAuthFlow(ports:{token:string;botId:string;now:()=>number;guard:ReplayGuard;
@@ -29,6 +30,7 @@ export function createTelegramAuthFlow(ports:{token:string;botId:string;now:()=>
   try{
    fresh();loginStarted=true;const newSessionId=await session.login(ownerId,user.firstName);fresh();
    await ports.guard.bind(reservation,newSessionId,ownerId);
+   await session.verified?.({user,kind});
   }catch(error){
    if(loginStarted)try{await session.invalidate();}catch{throw Error('AUTH_SESSION_CLEANUP_UNCONFIRMED');}
    throw error;
@@ -38,6 +40,7 @@ export function createTelegramAuthFlow(ports:{token:string;botId:string;now:()=>
  return {
   mini(raw:unknown,session:TelegramLoginSession){
    const user=verifyTelegramInitData(raw,ports.token,{nowSeconds:ports.now()});
+   if(new URLSearchParams(raw as string).get('start_param')?.startsWith('acctlink_'))throw Error('AUTH_PROOF_PURPOSE_MISMATCH');
    return finish(user,'mini_app',new URLSearchParams(raw as string).get('hash')!,session);
   },
   login(raw:unknown,session:TelegramLoginSession){

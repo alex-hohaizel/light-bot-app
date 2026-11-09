@@ -150,3 +150,48 @@ test('input is unchanged and canonical request ordering keeps deterministic cand
   const again = buildYasnoAddressCandidate(reordered);
   assert.equal(first.binding.revisionId, again.binding.revisionId); assert.equal(first.address.id, again.address.id);
 });
+test('shared street presentation matching accepts full words without changing provider ID, scope or proof admission', () => {
+  const value = input(); value.selection.streetValue = 'вулиця Ревуцького';
+  const candidate = buildYasnoAddressCandidate(value);
+  assert.equal(candidate.proof.providerStreetId, 736);
+  assert.equal(candidate.proof.streetTypeLiteral, 'вул.');
+  assert.equal(candidate.address.localityId, 'source:yasno:25/902:locality:kyiv');
+  assert.equal(candidate.address.streetId, 'source:yasno:25/902:street:736');
+  assert.equal(candidate.proof.canonicalMunicipalAddressId, null);
+  assert.equal(candidate.binding.status, 'needs_confirmation'); assert.equal(candidate.proof.deliveryEligible, false);
+  const fullSource = input(); fullSource.captures.streets = mutateRaw(fullSource.captures.streets,
+    JSON.stringify(JSON.parse(fullSource.captures.streets.rawBody).map((r: any) => ({ ...r, value: r.value.replace('вул.', 'Вулиця') }))));
+  fullSource.selection.streetValue = 'вул. Ревуцького';
+  assert.equal(buildYasnoAddressCandidate(fullSource).proof.streetTypeLiteral, 'Вулиця');
+});
+test('typed provider query cannot return a different street type and a missing selected street type is not an exact choice', () => {
+  const value = input(); const url = new URL(value.captures.streets.url); url.searchParams.set('query', 'вул.Ревуцького');value.captures.streets.url = url.href;
+  assert.equal(buildYasnoAddressCandidate(value).proof.providerStreetId, 736);
+  const wrong = input(); const other = new URL(wrong.captures.streets.url);other.searchParams.set('query', 'просп.Ревуцького');wrong.captures.streets.url = other.href;
+  assert.throws(() => buildYasnoAddressCandidate(wrong), /STREET_QUERY_RESPONSE/);
+  const bare = input();bare.selection.streetValue = 'Ревуцького';
+  assert.throws(() => buildYasnoAddressCandidate(bare), /EXACT_STREET_SELECTION/);
+});
+test('client revision binds all three source-query captures, not just a repeated group body', () => {
+  const original = input(), changed = input();
+  const rows = JSON.parse(changed.captures.houses.rawBody);const extra = rows.find((r: any) => r.id !== changed.selection.houseId);assert(extra);extra.value = '12/999';
+  changed.captures.houses = mutateRaw(changed.captures.houses, JSON.stringify(rows));
+  const a = buildYasnoAddressCandidate(original), b = buildYasnoAddressCandidate(changed);
+  assert.equal(a.address.id, b.address.id);assert.equal(a.binding.targetId, b.binding.targetId);
+  assert.notEqual(a.binding.revisionId, b.binding.revisionId);
+  assert.equal(a.proof.providerEffectiveRevision, null);assert.equal(b.proof.independentlyConfirmed, false);
+});
+test('malformed/extra input, hidden controls and deeply nested provider JSON fail with bounded fixed errors', () => {
+  assert.throws(() => buildYasnoAddressCandidate(undefined as any), /EXACT_SELECTION_REQUIRED/);
+  const extra = input() as any;extra.selection.verified = true;assert.throws(() => buildYasnoAddressCandidate(extra), /EXACT_SELECTION_REQUIRED/);
+  const hidden = input();hidden.selection.streetValue += '\u202e';assert.throws(() => buildYasnoAddressCandidate(hidden), /INVALID_TEXT/);
+  const deep = input();deep.captures.group = mutateRaw(deep.captures.group, '['.repeat(25) + '0' + ']'.repeat(25));
+  assert.throws(() => buildYasnoAddressCandidate(deep), /SOURCE_JSON_TOO_DEEP/);
+  const quoted = input();quoted.captures.group = mutateRaw(quoted.captures.group, JSON.stringify({group:45,subgroup:1,note:'['.repeat(100)}));
+  assert.throws(() => buildYasnoAddressCandidate(quoted), /UNKNOWN_GROUP_ENUM/);
+});
+test('house script-lookalikes stay rejected even when spacing is presentation-equivalent', () => {
+  const good = input();good.selection.houseLiteral = '12\u00a0А';assert.equal(buildYasnoAddressCandidate(good).proof.providerHouseLiteral,'12А');
+  const latin = input();latin.selection.houseLiteral = '12 A';assert.throws(() => buildYasnoAddressCandidate(latin), /EXACT_HOUSE_SELECTION/);
+  const otherScope = input() as any;otherScope.scope.regionId = 3;otherScope.scope.dsoId = 301;assert.throws(() => buildYasnoAddressCandidate(otherScope), /OPERATOR_SCOPE/);
+});

@@ -1,0 +1,383 @@
+{
+  "schema": "lba-current-release-judge/1",
+  "actor": "/root/current_release_judge",
+  "reviewedAt": "2026-11-09T01:27:41.483676+00:00",
+  "decision": "NO_GO_NOW_FOR_PRODUCTION_CUTOVER",
+  "all68MustRetained": true,
+  "canonicalCount": 68,
+  "canonicalRequirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+  "decisionBasis": "Observed prerequisite gaps, not absence of authorization. Local/injected evidence cannot close currentprimary/address48h, actualprovider/device or livecutover gates. This is a scoped current-readiness decision, not a fresh exhaustiveall68 audit.",
+  "authority": {
+    "existingReleaseAndCampaignAuthorizationPresent": true,
+    "newBroadApprovalNeeded": false,
+    "noScopeWaiverInferredFromInstabilityAnnouncement": true,
+    "namedMiniAppNotARequiredNewGateForBrowserWidget": true
+  },
+  "project": {
+    "cwd": "/Users/admin/Projects/LIGHT BOT APP [CODEX]",
+    "origin": "https://github.com/alex-hohaizel/light-bot-app.git",
+    "branch": "agent/light-bot-app-recovery-v1",
+    "gitHead": "4eeb1df7e51eb02ad15701bb6e247047105de439",
+    "intentionalLocalProductChangesPreserved": true
+  },
+  "skillRead": {
+    "path": ".agents/skills/light-bot-app-recovery/SKILL.md",
+    "actualVersion": "1.0.0",
+    "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0",
+    "v5Upgrade": "Unsupported legacyadoption plan is not a completed5.0.0 install; no fabricatedreceipt or globalduplicate. This review did not reinstall anything."
+  },
+  "method": {
+    "artifactIntegrityChecks": true,
+    "publishedParserCodeInspection": true,
+    "newRuntimeTestsExecutedByJudge": 0,
+    "newProviderRequests": 0,
+    "newHumanFeedback": false,
+    "privateProductionBackupRead": false,
+    "independentPeerProofsAcceptedOnlyAtTheirPins": true
+  },
+  "sourceProvenanceFinding": {
+    "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/provenance.json",
+    "parserGitBlobSha1": "44ddfdf75828b98b1ab36602080084994cfe0af9",
+    "parserSha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61",
+    "verifiedLocalRawHashAndGitBlob": true,
+    "fact": "Observed current published parser fetches thirdpartyBezSvitla/defaultsyes/onfailure andsavesok; oldREADMEoperatororigin is not current primaryproof. Exacthistoricalremoteexecution not independentlyattested.",
+    "notClaimed": "This alone does not prove specifictodayintervals false. Mirrormatches/updatedtimestamp do not validateofficialcorrectness.",
+    "repairStatus": "Implemented scopedtechnicaldisplayquarantine fa0525; independent6PG+32scopedunits reportedgreen. Exact final localbuild independently verified afterrepair. Officialsource/address/fallback/48h acceptance remainsunproved.",
+    "quarantinePolicySha256": "fa0525aae9dd13195eb64d922e22609a8f675836ada0eedc89f1b9d48edbec62",
+    "quarantineEvidence": "docs/light-bot-app/release-v8/phase4/vinnytsia-quarantine/peer-review.json"
+  },
+  "boundedEvidenceAccepted": [
+    {
+      "scope": "Widgetaccountlink PG/HTTPS/Passport/Chrome",
+      "passed": 13,
+      "realProvider": false,
+      "realDevice": false,
+      "all24CurrentPinsMatch": true
+    },
+    {
+      "scope": "Legacyrecipientqualification afterlosslessSQLtextrepair",
+      "passed": 16,
+      "exactModuleSha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+    },
+    {
+      "scope": "Legacycampaignsharedcoordinator/nativefixture includingNULLchatfix",
+      "passed": 14,
+      "exactSenderSha256": "7b23f00b77c90a1d002d5ad5da51772879217fe03a849fc6fc9726b83be4f26e",
+      "all15CurrentPinsMatch": true
+    },
+    {
+      "scope": "Morningaggregate/nativefixture peer",
+      "passed": 12,
+      "historicalExactPinProof": true,
+      "expectedCurrentDrift": [
+        "telegram-dispatch.ts",
+        "telegram-dispatch-eligibility.ts"
+      ],
+      "doesNotBecomeCurrentWholeModuleApproval": true
+    },
+    {
+      "scope": "Fresh-tail publicschema recovery",
+      "passed": 6,
+      "actualNativePgDumpRestorePsql": true,
+      "consumedDDL": "77205a4294b8af0a935ff024cf183c3481ce8bbacca17a08f2b9d0bc4bc98e57",
+      "syntheticSendStates": true,
+      "actualR0StaleAndCorruptRestoreNegative": true
+    },
+    {
+      "scope": "Privateproductionbackup10accounts9tables andcanonicalbootstrap",
+      "source": "root public checkpoint/teamreceipt",
+      "acceptedAsParentReportedBoundedFact": true,
+      "privateRowsReadByJudge": false
+    },
+    {
+      "scope": "Final shared morning native consumer after7b23/fa freeze",
+      "passed": 7,
+      "evidence": "docs/light-bot-app/release-v8/phase4/briefing-dispatch/author-pg.json",
+      "evidenceSha256": "d93694f7164929b1bbed7e08398241b84ee67385df80c40f71e50e363fcd201b",
+      "allCurrentSourcePinsMatch": true,
+      "syntheticNativeTransport": true,
+      "realProvider": false
+    }
+  ],
+  "hardGates": [
+    {
+      "id": "G-DATA-QUALIFICATION",
+      "kind": "pre_cutover",
+      "status": "blocked_observed",
+      "mustIds": [
+        "DATA-02",
+        "DATA-03",
+        "DATA-05",
+        "DATA-06",
+        "DATA-08",
+        "DATA-09",
+        "ADDR-05",
+        "ADDR-06"
+      ],
+      "observed": "Current KEM group plans exist; no accepted twenty-address/DSO set or actual48h parallel record is present. OEM9Nov288-cell match is one dated technical comparison; official automation is disallowed at the inspected endpoint and shared upstream is not independent fallback. VN published parser reads third-party BezSvitla, defaults missing/failed slots toyes and saves unconditionalok; same576mirror cells do not validate an official plan. KH current emergency termination/scope is unknown. No real delivery certificates were established by the supplied proofs.",
+      "missingEvidence": "Current allowed primary plus qualified zero-cost independent fallback for required geography; separately accepted exact address binding and source revision; actual observed >=48h/representative20-address or genuinely exhaustive smaller valid scope with retained geography; reviewed proof-backed certificate issuance.",
+      "minimalNextAction": "Keep the independently checked Vinnytsia quarantine; the provenance follow-up is complete and confirms the officialchannel/address gap. Obtain an allowed current primary for VN/OEM and a bounded explicit KH overlay/termination model; compare exact dates/targets and required address samples, then start/continue actual timed parallel observations. Do not manufacture elapsed time or promote a mirror/HTTP200 tointegration. A genuinely exhaustive smaller testscope does not permit silently dropping the required fourcities or confirmedlegacy geography.",
+      "owner": "root/data",
+      "notRequired": "No wholeWork/install audit or paid fallback; no waiver requested."
+    },
+    {
+      "id": "G-ADDRESS-REAL-CONSUMER",
+      "kind": "pre_cutover",
+      "status": "not_release_proven",
+      "mustIds": [
+        "ADDR-01",
+        "ADDR-02",
+        "ADDR-03",
+        "ADDR-04",
+        "ADDR-05",
+        "ADDR-06",
+        "APP-03",
+        "APP-04"
+      ],
+      "observed": "The shared YASNO catalog/provider lookup and canonicalApp/Bot consumers have bounded saved-public/synthetic PG/browser proofs. These do not establish complete live addresses/renamings/electrical connections across all required cities.",
+      "missingEvidence": "For each admitted scope, fresh locality->street/alias->exacthouse/input->operator/namespace/target binding gives the same authoritative record inApp andBot. Required samples include old/newnames, number/literal/corpus ambiguity and relevant commercial objects when an actual provider catalog covers them.",
+      "minimalNextAction": "Run the existing shared lookup path against the accepted provider address set. Save candidate/snapshot/binding revisions and repeat canonical save/reload plusApp/Bot same-target/day readback. An unresolved alias or multipleinput remains a choice/unknown, never auto-activation.",
+      "owner": "root/data + existingApp/Chat consumers"
+    },
+    {
+      "id": "G-REAL-AUTH",
+      "kind": "pre_cutover",
+      "status": "blocked_provider_observation",
+      "mustIds": [
+        "PROFILE-03",
+        "APP-04",
+        "APP-05"
+      ],
+      "observed": "Existing botidentity/menu retained. Anonymous exact-origin Widget request forPowerUkraineBot returnedBot domain invalid. Independent Widget-account13PASS used real localPG/Passport/Chrome with synthetic signedprovider/iframe fixtures, and excludes realprovider/securecookie/device acceptance.",
+      "missingEvidence": "A successful current exact-origin Widget iframe after the pending BotFather repair, actual signed callback and correct secure cookie/session, compatible existingReplitOIDC roundtrip, realMiniApp initData bridge to the same existingaccount.",
+      "minimalNextAction": "Use the already requested /setdomain step for existingPowerUkraineBot/power-ukraine.net and read back the exact iframe. Exercise the reviewed candidate on a verified isolated HTTPS staging route with sendsdisabled and actual authorized provider proofs; confirm the same owner/profile and unlink recovery.",
+      "owner": "root + existing botowner/provider route",
+      "notRequired": "No newbot, namedMiniApp or repeated general release/secret approval is required for the implemented browserWidget link adapter."
+    },
+    {
+      "id": "G-TARGET-CONSUMER",
+      "kind": "pre_cutover_and_pilot",
+      "status": "not_observed_on_real_targets",
+      "mustIds": [
+        "LANG-05",
+        "APP-06",
+        "APP-07",
+        "CHART-09"
+      ],
+      "observed": "Synthetic/local Chrome viewports and actual locally rendered assets are useful bounded evidence. They are not physicalTelegramAndroid/iOS, actual Telegram image delivery or target OS permission/update proof. Accepted design direction/tone are inherited.",
+      "missingEvidence": "Target-device navigation/auth/safearea/Back/theme/weak-network and actual graph/text legibility; material visual/copy changes compared with accepted direction are identified explicitly. Live production delivery confirmation belongs to the allowed pilot after healthyrelease.",
+      "minimalNextAction": "On the exact staging candidate inspect day/night home+comparison, active outage restoreETA, longnames, addresswizard back/cancel, offline recovery, reducedmotion and exact card/text fallback on actualTelegramAndroid/iOS and browser. Preserve existing owner decisions; ask only for a genuinely unresolved material difference, not a fresh tone/design vote.",
+      "owner": "root/App+Chat QA and accessible testdevices"
+    },
+    {
+      "id": "G-LEGACY-COMPATIBILITY",
+      "kind": "pre_cutover",
+      "status": "targeted_verdict_due",
+      "mustIds": [
+        "APP-08",
+        "PROFILE-03",
+        "PROFILE-06"
+      ],
+      "observed": "Original audit/disposition are accepted historical inputs. V7disposition retained oldURL/PWA/Capacitor/local-only contracts with externalpending boundaries; current canonical replacement/fences and liveaccount tooling are later revisions. No evidence here closes the current complete compatibility disposition.",
+      "missingEvidence": "Current explicit handling of oldstart/callback/share routes and local-only/native/PWA functions used by the originalapp; no silently removed capability. Updated visual announcement must use the actualreleased UI and explain preserved/unconfirmed addresses.",
+      "minimalNextAction": "Use the existing inventory and run only affected compatibility entry->action->result/repair cases on the finalcandidate. Record keep/rebuild/controlledfallback for local-onlyaddresses/PWA/nativepush instead of counting retained source files as functioning features. Prepare the actual UI card/text variants for verified and unconfirmedaddresses.",
+      "owner": "root/App+Chat integrations",
+      "scopeLimit": "This is not a request to restore historically unmounted UI or redo theWorkaudit."
+    },
+    {
+      "id": "G-EXACT-CANDIDATE",
+      "kind": "pre_cutover",
+      "status": "local_build_verified_isolated_Replit_compile_transfer_pending",
+      "mustIds": [
+        "TECH-01",
+        "TECH-05",
+        "TECH-06"
+      ],
+      "observed": "Final local278source/14asset build verified independently by judge from current bytes and manifest fingerprint; targetNode20/buildNode24, no runtime/DB/deploy. Root reports311backend+fullTypeScript+7currentconsumer pass. Exact current ReplitNode20compile/readback not yet observed.",
+      "missingEvidence": "Final source/asset/schema/config pin after the VNrepair and finalsender7b23; targeted affected regression plus exact current Replit staging readback/build.",
+      "minimalNextAction": "Transfer only this sanitizedexactcandidate to the already verifiedprivatecodexbranch and existingReplitisolatedstaging; verify source/asset/configmanifest and actualNode20compilation without applicationstart, DB/jobs/production/secret/webhook/send changes. Do not reuse oldba342/e95stagingproof.",
+      "owner": "root/release",
+      "notRequired": "Do not reuse oldstagingreceipt or require a new general publication approval already covered by the current authorization."
+    },
+    {
+      "id": "G-FRESH-CUTOVER",
+      "kind": "pre_cutover_and_post_publish_smoke",
+      "status": "not_observed_on_live_target",
+      "mustIds": [
+        "PROFILE-01",
+        "PROFILE-02",
+        "PROFILE-04",
+        "PROFILE-05",
+        "TECH-03",
+        "TECH-08",
+        "BOT-06",
+        "BOT-07"
+      ],
+      "observed": "Root reports privatebackup restore/peraccount10profiles9tables exact and repeat bootstrap. Independentpostwrite6PASS proves freshR1 recovery and corruption atomicity for consumedpublicDDL; it excludes realproduction fencing/ACL/legacyrollback. Owner already confirmedproductionDBhostmatch. Those facts remain accepted within scope.",
+      "missingEvidence": "Fresh fenced productiontail/currentaccount denominator and safe sender/writer cutover, actual targetconnection+permissions/installedschema/control proof, preserved pendingupdates/nativeunknowns, compatible code recovery for exact finalschema. New servingartifact/DB/bot/menu/TLS health is read back during deployment smoke.",
+      "minimalNextAction": "When earlier gates are closed, use the existing approved privatebackup route to capture currentR1 in a concrete cutover window, compare all currentaccounts/settings/exceptions, fence old noncooperatingwriters/schedulers before enabling one canonicalconsumer/sender, preserve pendingupdates and allunknown/sent/revocation records. Verify baseline activation does not emit historical importchanges. Activate only the exactcandidate, then inspect actualservingSHA/DB/bot/menu/TLS and authorized controlflow before broadtraffic/campaign.",
+      "owner": "root solecutoverwriter",
+      "notRequired": "No repeated request for the already granted backup/export/release scope. No restore of staleR0 over newwrites."
+    },
+    {
+      "id": "G-CAMPAIGN-PREPARATION",
+      "kind": "pre_cutover_preparation_and_post_healthy_send",
+      "status": "implementation_bounded_pass_live_audience_pending",
+      "mustIds": [
+        "PROFILE-06",
+        "PROFILE-07",
+        "TECH-08"
+      ],
+      "observed": "Legacyregistry16PASS and sharedcoordinator14PASS now cover syntheticaccountlessrecipients without inventingownership. Earlier aggregate9subscribers/8mapped/1enabledunmapped is not a currenteligibleaudience or actual enrollment. No livecampaign was sent.",
+      "missingEvidence": "Actualcurrent eligible endpoint registry/audience digest, realhealthy exactrelease, acceptedmessage+actualUIasset, pilotreceipt then remainingeligible outcomes without duplicates or optoutoverride.",
+      "minimalNextAction": "Read current existing subscriptions under the prepared scopedrecipe; keep existingsettings, reconcile mappings and explicitly enroll an allowedNULLowner endpoint through reviewedregistry without user/profilecreation. Seal release×recipient audience and updateannouncement. After exacthealthydeploy choose a controlled eligibleexistingrecipient forpilot, verify the same-attempt receipt, then send the remainingeligible subscriptions and report skip/defer/unknown reasons.",
+      "owner": "root/release+existingbot",
+      "notRequired": "Do not ask for a newtestusername: owner already specified existing subscribers. Do not claim9sent from the stale9/8/1classification."
+    }
+  ],
+  "conditionalCurrentDisposition": [
+    "DATA-04 requires current matrix disposition of DNE/CEK/MK and any confirmednewterritory; this review does not repeat the nationalresearch or declare allcandidates operational.",
+    "TECH-09 remains required: prepare actual runtime monitoring/runbook/owner beforeactivation and collect observedproductionmetrics afterwards; no fictitiousbackgroundjob."
+  ],
+  "inheritedDecisionsNotReopened": [
+    "Адресний пульт + Спільна доба",
+    "Day/night with a softer neutralnight; animations retained",
+    "Ukrainian politeви, calm tone andnoemoji inimportantmessages",
+    "Originalrequestverbatim recovered: textSHA256b1c3c454026e671792650b528181797c001df5211663bfc65a2a00feea158a9a; do not reopen GOV-06 solely from stale canonicalmetadata",
+    "WorkP0 andfiveinstallationreports accepted/preserved; no repeat without concrete drift"
+  ],
+  "stageSeparation": {
+    "preCutover": "Close genuine data/address/auth/device/candidate/freshfencing prerequisites. Preparation/staging cancontinue within existingauthorization.",
+    "postPublishBeforeWideSend": "Verify actual serving artifact/DB/bot/menu/TLS and pilot underexactnewrelease. These observations cannot be pre-fabricated or required as already-completed before thefirstpublish.",
+    "postHealthyCampaign": "Sendonceperrelease tocurrenteligibleaudience, controlledpilotthenremaining, keepallterminal/unknownstates.",
+    "postRelease": "Observe TECH-09 operationalmetrics andcomplete P6 duties; theirfuture naturedoes not justifywaivingpre-cutover requirements."
+  },
+  "exactNextAction": "Complete the already authorizedexactprivatecandidate transfer and isolatedReplitNode20compile/readback without appstart/DB/jobs/production/send. KeepVNquarantine; obtain allowedcurrentprimary/addressdata and actual48h observations while validating the pendingexistingBotFatherdomain/provider/device routes. Only after genuine prerequisites close perform freshfencedtail/cutover/smoke/pilot/remainingcampaign underexistingauthorization.",
+  "finalCandidateBuild": {
+    "status": "local_exact_build_pass_isolated_Replit_compile_readback_pending",
+    "receipt": "app/dist-production/build-receipt.json",
+    "immutableJudgeCopy": "docs/light-bot-app/release-v8/phase4/current-release-judge/final-local-build-receipt.json",
+    "receiptSha256": "21922d2010ef6a6879f8379d8562725dc95e413b9f480c39312a3f0beb4a998b",
+    "sourceSha256": "71a9ed65edc29987f812afa4bdb78966fd6c0fee0ac50c4e16a4150689197e55",
+    "entries": 278,
+    "assets": 14,
+    "judgeRecomputedEverySourceAndAssetHash": true,
+    "sourceBeforeEqualsAfter": true,
+    "target": "node20",
+    "buildRuntime": "v24.22.2",
+    "actualNode20Runtime": "not_yet_observed_for_this_source",
+    "applicationExecuted": false,
+    "databaseConnected": false,
+    "deployed": false,
+    "rootReportedCurrentChecks": {
+      "backend": {
+        "passed": 311,
+        "failed": 0
+      },
+      "typecheck": "exit0",
+      "briefingNativeConsumer": {
+        "passed": 7,
+        "currentSenderAndQuarantinePins": true,
+        "clusterStopped": true
+      }
+    },
+    "productionCutoverReady": false
+  },
+  "evidence": [
+    {
+      "path": ".agents/skills/light-bot-app-recovery/SKILL.md",
+      "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/requirements.json",
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/original-user-message.json",
+      "sha256": "665f2d95f9744487b4afc3a85a10f3ca86d4992232a900e9da762e59486579fa"
+    },
+    {
+      "path": "docs/light-bot-app/implementation-v7/OWNER_DECISION_UA.md",
+      "sha256": "5d6e4f7a01dc6a1b78bcade158838dbc4c40fc63d634fddba14fa60e31434323"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/browser-login/config-probe.json",
+      "sha256": "ea60700fc96c4710e4eb5b0717af68ca6fe7bb11e37b7ed134b2fe4b8aace3f2"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/browser-login/account-widget/peer-review.json",
+      "sha256": "9db26ef4eec86739ea7b7b745ab6f493c7155bd005bb08d70c68372aea82ac95"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/morning-briefing/peer-review.json",
+      "sha256": "6946606389590f4b1a30fec82e3b2d940a076f4f921913a57e1ef329a35c7024"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/legacy-campaign-recipient/peer-review.json",
+      "sha256": "8b409fe57528f2454f7664ac961284b7145b564a225eaee3c22de4ae897ead07"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/legacy-campaign-dispatch/peer-review.json",
+      "sha256": "a1a2cd17e91f9bba9cfb1ae0b90ea853d5d1a18a88c2d2aae54e4e981284b0e5"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/postwrite-recovery/peer-review.json",
+      "sha256": "0f1becb09d035733e48ce51a292dcf79549e02f5feaab515ee843e35d103b661"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/README_UA.md",
+      "sha256": "ac9896c66e34a751cb9a2af296c17e8781ef877a079ed5e53da236167d11fa9e"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/provenance.json",
+      "sha256": "0efa08410de263841ed6083e27b380d947fc5584cdafb65c22884208eebedcdd"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/parser-98356983.py.txt",
+      "sha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/root-integration/current-round.json",
+      "sha256": "16e76088d28045711ed1b2588da2574511e4f94dd0094575ac3e3fa2c4c4f891"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/vinnytsia-quarantine/peer-review.json",
+      "sha256": "eee36b0cded3ab804a0bf89f618abce146c1ca366ea6ec19e6888f1b731033b2"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/vinnytsia-followup/receipt.json",
+      "sha256": "9150b613d22ca3e614f7c2fd9d83dd40bd093db08de459880151aacca9d6c920"
+    },
+    {
+      "path": "app/server/production/source-operating-policy.ts",
+      "sha256": "fa0525aae9dd13195eb64d922e22609a8f675836ada0eedc89f1b9d48edbec62"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/current-release-judge/final-local-build-receipt.json",
+      "sha256": "21922d2010ef6a6879f8379d8562725dc95e413b9f480c39312a3f0beb4a998b"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/briefing-dispatch/author-pg.json",
+      "sha256": "d93694f7164929b1bbed7e08398241b84ee67385df80c40f71e50e363fcd201b"
+    }
+  ],
+  "effects": {
+    "productEdits": 0,
+    "requirementsEdits": 0,
+    "productionWrites": 0,
+    "deployments": 0,
+    "webhookChanges": 0,
+    "messages": 0,
+    "privateChatsRead": 0
+  },
+  "notClaimed": [
+    "Exhaustiveall68accepted",
+    "PrimaryplanaccuracyfromHTTP200/mirrorupdatedtimestamp",
+    "Actual48hoursfromfixtureclock",
+    "Productionreadinessfromtestcounts",
+    "Realnativeacceptancefromsyntheticreceipts",
+    "FreshliveDBbindingfromoldpublicationmetadata",
+    "Humanfinalvisualacceptancefromcode/screenshot-onlychecks"
+  ],
+  "reviewScope": "Current prerequisite decision only; no exhaustivefreshall68 test/audit. Unlistedmusts are not markedcomplete."
+}

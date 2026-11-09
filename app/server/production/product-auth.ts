@@ -1,7 +1,7 @@
 import type {RequestHandler} from 'express';
 
 export function createProductAuthentication(ports:{
-  verifyMobile(token:string): {sub:unknown}|null;
+  verifyMobile(token:string): {sub:unknown;authEpoch?:number}|null;
   authenticateSession: RequestHandler;
 }):RequestHandler {
   return (req:any,res,next)=>{
@@ -10,7 +10,7 @@ export function createProductAuthentication(ports:{
       if(typeof header!=='string'||!header.startsWith('Bearer '))return res.sendStatus(401);
       const payload=ports.verifyMobile(header.slice(7));
       if(!payload||typeof payload.sub!=='string'||!payload.sub.trim()||payload.sub.length>255||/[\u0000-\u001f\u007f]/.test(payload.sub))return res.sendStatus(401);
-      req.user={claims:{sub:payload.sub}};
+      req.user={claims:{sub:payload.sub},authEpoch:payload.authEpoch??0};
       return next();
     }
     // The established session middleware checks signature, expiry and refresh.

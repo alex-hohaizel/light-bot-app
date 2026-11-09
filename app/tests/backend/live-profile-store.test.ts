@@ -264,3 +264,21 @@ test('SELECT-only legacy helper owns no transaction boundary, while schema/impor
  const q=new Port();q.store();assert.equal(q.connects,0);assert(!/\b(?:drop|truncate|delete|update|insert)\b/i.test(PRODUCTION_PROFILE_SCHEMA_SQL));assert(PRODUCTION_PROFILE_SCHEMA_SQL.includes("default 'disabled'"));
  const child=spawnSync(process.execPath,['--experimental-strip-types','--input-type=module','-e',"await import('./server/production/profile-store.ts');console.log('STORE_IMPORT_PASS')"],{cwd:fileURLToPath(new URL('../../',import.meta.url)),env:{PATH:process.env.PATH,TZ:'UTC'},encoding:'utf8',timeout:10000});assert.equal(child.status,0,child.stderr);assert(child.stdout.includes('STORE_IMPORT_PASS'));
 });
+test('server-only guarded Bot entrypoint requires a function and literal true before bootstrap; request JSON cannot supply it',async()=>{
+ const p=new Port(),store=p.store(),input={input:{id:'guarded-first',kind:'command',text:'/menu'}};
+ await assert.rejects(store.commitGuardedBotInput(identity,input,undefined as any),/BOT_GUARD_REQUIRED/);assert.equal(p.connects,0);
+ for(const result of [false,undefined,{allowed:true}])await assert.rejects(store.commitGuardedBotInput(identity,input,(()=>result) as any),/BOT_GUARD_REJECTED/);
+ assert.deepEqual(p.data.profiles,{});assert.equal(p.legacyReads,0);
+ await assert.rejects(store.commitBotInput(identity,{...input,guard:{allowed:true}}),/INVALID_INPUT/);
+});
+test('guard is rechecked after async context; expired authority rolls state, receipt and pending messages back together',async()=>{
+ const p=new Port();let calls=0,expired=false,release!:()=>void,entered!:()=>void;const reached=new Promise<void>(r=>{entered=r;}),gate=new Promise<void>(r=>{release=r;});
+ const store=p.store({context:async()=>{calls++;if(calls===2){entered();await gate;expired=true;}return {addresses:[option],plans:[]};}});
+ const phases:string[]=[];const pending=store.commitGuardedBotInput(identity,{input:{id:'guard-async-expiry',kind:'command',text:'/addresses'}},({phase})=>{phases.push(phase);return !expired;});
+ await reached;assert.deepEqual(p.data.profiles,{});release();await assert.rejects(pending,/BOT_GUARD_REJECTED/);assert.deepEqual(phases,['before_bootstrap','before_commit']);assert.deepEqual(p.data.profiles,{});assert.deepEqual(p.data.inbox,{});assert.deepEqual(p.data.outbox,[]);assert.equal(p.calls.at(-1)?.sql,'rollback');
+});
+test('a confirmed guarded Bot replay retains the old semantic receipt and skips new authority guard execution',async()=>{
+ const p=new Port(),store=p.store(),input={input:{id:'guard-replay',kind:'command',text:'/addresses'}},phases:string[]=[];
+ const first=await store.commitGuardedBotInput(identity,input,({phase})=>{phases.push(phase);return true;});assert.deepEqual(phases,['before_bootstrap','before_commit']);
+ const again=await store.commitGuardedBotInput(identity,input,()=>{throw Error('must not authorize historical commit again');});assert.equal(again.replayed,true);assert.deepEqual(again.receipt,first.receipt);assert.equal(again.snapshot.revision,1);assert.equal(p.data.outbox.length,first.receipt.outboxIds.length);
+});

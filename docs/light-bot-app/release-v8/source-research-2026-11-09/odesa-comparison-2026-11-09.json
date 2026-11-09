@@ -1,0 +1,32 @@
+{
+  "kind": "lba-official-mirror-semantic-comparison/1",
+  "serviceDate": "2026-11-09",
+  "operatorId": "dtek-oem",
+  "namespace": "dtek:oem",
+  "officialRawSha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+  "mirrorRawSha256": "e6831ab19c618a9187210cbe0c765bbe8028c4430d349d56890b5be519168cf5",
+  "officialObservedAt": "2026-11-08T23:38:38.610950+00:00",
+  "mirrorObservedAt": "2026-11-08T23:38:41.462138+00:00",
+  "officialPlanUpdatedLocal": "08.11.2026 22:04",
+  "groupsCompared": 12,
+  "cellsCompared": 288,
+  "cellDifferences": 0,
+  "targetPlanSha256s": {
+    "GPV1.1": "a54135d51212cccbab410b46dab10be54da7d537e09be6fedd5c7f67ede5da7e",
+    "GPV1.2": "65b9356842b34532151d7fa0e5bcbf8d23c8c8c3cb1a139b0c13a43f6a6ea351",
+    "GPV2.1": "5f4f0486fb06e9535642b09b391b78d49f24af5a365d30fc0f84492baab4d876",
+    "GPV2.2": "4701b351d2232083071dfb1c6b3267b107d946c7d0d1ba2c7db46d1e275a0f9a",
+    "GPV3.1": "5ab0a94a570630e335e4af9ba22e839f736fbf83c9a053b0a9ad0e7e196a34b5",
+    "GPV3.2": "d2f32bd01b0cdde24b2d915aafd10278c52fe7a6e06a08656d6f9b3589dbb34c",
+    "GPV4.1": "637076b3503a2d61ab5e94065f758d5b133b92703ed1cc48c2463bd3ac89d1fd",
+    "GPV4.2": "4ea61670806d3009bf46eb035f3c3bfa06542e9aa0e66aee2d0d6fcda1535249",
+    "GPV5.1": "fe323826dd45be9fc4d95ae48418700bbaa45974cb65de8c160af544066b578f",
+    "GPV5.2": "b255277a4c39d1776d541ed8e99d182de3e4917943af7c684cd2b6dc8886dd96",
+    "GPV6.1": "dccb45074aa372c651c89b0dccaf443238a5f0ce20642fb200c934222c437fea",
+    "GPV6.2": "b188056e7af011b440d604711d83985a4c3509ed3cb8a05659574f36264294ce"
+  },
+  "independentFallbackVerified": false,
+  "parallel48hAccepted": false,
+  "addressBindingVerified": false,
+  "deliveryEligible": false
+}

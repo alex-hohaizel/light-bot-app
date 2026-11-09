@@ -1,0 +1,19 @@
+/* Address repair shares the accepted day/night tokens and reduced-motion policy. */
+.pr-address-editor .pr-address-fields{border:0;padding:0;margin:0;min-width:0}
+.pr-address-editor .pr-address-results,.pr-address-editor .pr-address-connections{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pr-address-editor .pr-search-result{width:100%;min-height:48px;overflow-wrap:anywhere}
+.pr-address-editor .pr-search-result>span{min-width:0}
+.pr-address-editor .pr-house-grid button small{display:block;font-size:10px;font-weight:400;line-height:1.5;color:var(--pr-muted);margin-top:5px}
+.pr-address-editor .pr-address-pager{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pr-address-editor .pr-address-pager>span{font-size:11px;color:var(--pr-muted);text-align:center}
+.pr-address-editor .pr-address-pager button{min-height:44px;min-width:44px;padding:10px}
+.pr-address-editor .pr-address-suggestions{display:flex;flex-wrap:wrap;gap:9px;padding:14px;border:1px solid var(--pr-line);border-radius:12px;background:var(--pr-bg)}
+.pr-address-editor .pr-address-suggestions>p{width:100%}
+.pr-address-editor .pr-address-confirm strong,.pr-address-editor .pr-address-confirm small{overflow-wrap:anywhere}
+.pr-address-editor .pr-quiet-box p{margin-top:8px}
+.pr-address-editor button:focus-visible,.pr-address-editor input:focus-visible,.pr-address-editor select:focus-visible,.pr-address-editor summary:focus-visible,.pr-address-editor a:focus-visible{outline:3px solid var(--pr-accent);outline-offset:3px}
+.pr-address-editor [tabindex="-1"]:focus{outline:2px solid var(--pr-accent);outline-offset:4px;border-radius:4px}
+.pr-address-editor button:disabled{cursor:not-allowed;opacity:.55}
+.pr-address-editor .pr-house-grid button:not(:disabled):hover,.pr-address-editor .pr-search-result:not(:disabled):hover{border-color:var(--pr-accent)!important;background:var(--pr-accent-soft)!important}
+.pr-address-editor .pr-status-notice{overflow-wrap:anywhere}
+@media(max-width:420px){.pr-address-editor .pr-house-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-address-editor .pr-status-notice>span{min-width:0;flex-basis:100%}.pr-address-editor .pr-status-notice>button{margin-left:0;white-space:normal;text-align:left}.pr-address-editor .pr-address-confirm>span{min-width:0}.pr-address-editor .pr-address-pager>span{font-size:10px}}

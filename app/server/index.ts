@@ -12,12 +12,21 @@ import { registerLiveProductRoutes } from "./production/product-routes";
 import { createProductAuthentication } from "./production/product-auth";
 import { legacyProductionRouteFence } from "./production/legacy-route-fence";
 import { assertIsolatedRuntimeReady, assertLocalRequestHeaders, isIsolatedMode } from "./isolated-guard";
+import {safeApiLogPath} from './production/safe-request-log';
+import {createCanonicalRuntime} from './production/canonical-runtime';
+import {registerProductAddressRoutes} from './production/address-flow';
+import {registerProductionToolsRoutes} from './production/product-tools-routes';
+import {createRuntimeSourceProof} from './production/runtime-source-proof';
+import {createOwnerAuthEpoch} from './production/auth-epoch';
+import {registerAccountLinkRoutes} from './production/account-links-http';
+import {createAccountOriginGuard} from './production/account-origin';
 
 const isolated = isIsolatedMode();
 if (isolated) assertIsolatedRuntimeReady();
 
 const app = express();
 const httpServer = createServer(app);
+let canonicalRuntime:ReturnType<typeof createCanonicalRuntime>|undefined;
 
 if (isolated) {
   app.use((req, res, next) => {
@@ -53,9 +62,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api', apiVersionHeader);
 app.use('/api', requestIdMiddleware);
 app.use('/api', apiLimiter);
-app.use('/api/auth', authLimiter);
 app.use('/api/schedule', scheduleLimiter);
-app.use('/api', isMobileAuth);
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -70,7 +77,7 @@ export function log(message: string, source = "express") {
 
 app.use((req, res, next) => {
   const start = Date.now();
-  const path = req.path;
+  const path = safeApiLogPath(req.path);
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
@@ -87,15 +94,36 @@ app.use((req, res, next) => {
     const { seedIsolatedData } = await import("./isolated-seed");
     await seedIsolatedData();
   }
-  await setupAuth(app);
-  registerAuthRoutes(app);
+  const policy=!isolated&&process.env.NODE_ENV==='production'?productionRuntimePolicy():null;
+  if(policy?.productProfileMode==='active'&&!BUILD_SOURCE_SHA256)throw Error('CANONICAL_BUILD_IDENTITY_REQUIRED');
+  const ownerAuth=policy?.productProfileMode==='active'?createOwnerAuthEpoch({pool:(await import('./db')).pool,verifyMobile:verifyMobileToken,now:()=>Math.floor(Date.now()/1000)}):undefined;
+  const onVerifiedLogin:NonNullable<Parameters<typeof setupAuth>[1]>['onVerifiedLogin']=async input=>{await canonicalRuntime?.finishVerifiedLogin?.(input);};
+  await setupAuth(app,{onVerifiedLogin,limiter:authLimiter});
+  // Passport reads the cookie first; an explicit verified Bearer then takes
+  // precedence. No legacy reader may accidentally use the other cookie owner.
+  app.use('/api',isMobileAuth);
+  if(ownerAuth)app.use(ownerAuth.enforce);
+  const authenticate=createProductAuthentication({verifyMobile:verifyMobileToken,authenticateSession:isAuthenticated});
+  registerAuthRoutes(app,authenticate);
+  if(!isolated&&process.env.NODE_ENV==='production')app.get('/api/version',(_req,res)=>res.json({version:BUILD_SOURCE_SHA256,build:BUILD_SOURCE_SHA256}));
   if (!isolated && process.env.NODE_ENV==='production') app.use(legacyProductionRouteFence());
-  await registerRoutes(httpServer, app);
+  await registerRoutes(httpServer, app,{onVerifiedLogin,sessionIsCurrent:ownerAuth?.sessionIsCurrent});
   if (!isolated && process.env.NODE_ENV==='production' && BUILD_SOURCE_SHA256) {
     const policy=productionRuntimePolicy();
-    registerLiveProductRoutes(app,{
-      releaseId:BUILD_SOURCE_SHA256,mode:policy.productProfileMode,
-      authenticate:createProductAuthentication({verifyMobile:verifyMobileToken,authenticateSession:isAuthenticated}),
+    if(policy.productProfileMode==='active'){
+      const {pool}=await import('./db');
+      canonicalRuntime=createCanonicalRuntime({pool,policy,token:process.env.TELEGRAM_BOT_TOKEN!,origin:'https://power-ukraine.net',fetch,
+        verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!}),authorizePrincipal:ownerAuth!.authorizePrincipal,
+        accountConfiguration:{bindingKey:process.env.SESSION_SECRET!,...(policy.accountLinksEnabled?{browserWidget:{botUsername:'PowerUkraineBot',configurationVerified:true as const}}:{})}});
+      await canonicalRuntime.prepare();
+      registerLiveProductRoutes(app,{releaseId:BUILD_SOURCE_SHA256,mode:'active',authenticate,store:canonicalRuntime.store,toolsEnabled:true});
+      registerProductAddressRoutes(app,{authenticate,flow:canonicalRuntime.flow});
+      registerProductionToolsRoutes(app,{authenticate,enabled:true,tools:canonicalRuntime.tools});
+      registerAccountLinkRoutes(app,{enabled:true,telegramLinkingEnabled:policy.accountLinksEnabled,widgetLinkingEnabled:policy.accountLinksEnabled,miniAppProofEnabled:false,service:canonicalRuntime.accounts!,authenticate,
+        principal:req=>ownerAuth!.accountPrincipal(req),sameOrigin:createAccountOriginGuard('https://power-ukraine.net'),limiter:authLimiter,
+        recoveryAuthenticate:(req,res,next)=>{void ownerAuth!.accountPrincipal(req,true).then(()=>next(),()=>res.sendStatus(401));},recoveryPrincipal:req=>ownerAuth!.accountPrincipal(req,true)});
+    }else registerLiveProductRoutes(app,{
+      releaseId:BUILD_SOURCE_SHA256,mode:policy.productProfileMode,authenticate,
       read:async principal=>{
         const [{pool},{readOwnedLegacyProfile}]=await Promise.all([import('./db'),import('./production/legacy-identity-links')]);
         return readOwnedLegacyProfile(pool,principal);
@@ -104,7 +132,7 @@ app.use((req, res, next) => {
     app.get('/api/health/release',(_req,res)=>{
       res.setHeader('Cache-Control','no-store');
       res.json({releaseId:BUILD_SOURCE_SHA256,mode:'production',profileMode:policy.productProfileMode,
-        status:'process_serving',productAccepted:false});
+        status:'process_serving',productAccepted:false,...(canonicalRuntime?{canonical:canonicalRuntime.health()}:{})});
     });
   }
 
@@ -147,7 +175,8 @@ app.use((req, res, next) => {
     },
     () => {
       log(`serving on port ${port}`);
-      if (!isolated) startTelegramBot().catch(() => console.error('[TG Bot] Failed to start'));
+      canonicalRuntime?.start();
+      if (!isolated && process.env.NODE_ENV!=='production') startTelegramBot().catch(() => console.error('[TG Bot] Failed to start'));
     },
   );
 })().catch(async () => {
@@ -157,4 +186,10 @@ app.use((req, res, next) => {
     await pool.end();
   }
   process.exitCode = 1;
+});
+
+// Stop taking requests before draining explicit workers. The old bot is never
+// started in production; deployment overlap still requires platform cutover proof.
+for(const signal of ['SIGTERM','SIGINT'] as const)process.once(signal,()=>{
+  httpServer.close(()=>{void (async()=>{await canonicalRuntime?.stop();const {pool}=await import('./db');await pool.end();})().catch(()=>{process.exitCode=1;});});
 });

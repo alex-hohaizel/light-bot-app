@@ -2,7 +2,7 @@ import type { DeliveryOutcome, DeliveryState } from '../../shared/delivery-contr
 import { UPDATE_CAMPAIGN_VERSION, campaignBinding, campaignFail, campaignId, campaignInstant, campaignOperationId, campaignSpecHash,
   checkedCampaignOutcome, prepareCampaignSpec, validDeploymentHealth,
   type CampaignClaim, type CampaignJob, type CampaignRecord, type CampaignSummary, type DeploymentHealthObservation,
-  type UpdateCampaignRepository, type UpdateCampaignSpec } from './update-campaign.ts';
+  type CoordinatedCampaignRepository, type UpdateCampaignSpec } from './update-campaign.ts';
 
 /** Explicit additive migration, exported for the sole production schema writer. Never executed on import. */
 export const UPDATE_CAMPAIGN_SCHEMA_SQL = `
@@ -159,7 +159,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
   async function pause(releaseId: string) {
     return tx(async client => { const c = await load(client, releaseId); if (c.phase !== 'completed') { c.phase = 'paused'; c.pauseReason = 'operator_paused'; await saveCampaign(client, c); } return summaryIn(client, c); });
   }
-  const repo: UpdateCampaignRepository = {
+  const repo: CoordinatedCampaignRepository = {
     async claim(releaseId, workerId, now, leaseSeconds) {
       const time = nowCheck(now);
       if (!campaignId(workerId) || !Number.isInteger(leaseSeconds) || leaseSeconds < 5 || leaseSeconds > 300) return campaignFail('INVALID_CAMPAIGN_WORKER');
@@ -197,6 +197,19 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
         j.state = 'dispatching'; j.attempts++; j.lastOutcome = 'dispatch_started';
         await client.query('insert into lba_release_campaign_attempts(operation_id,fence,release_id,worker_id,spec_hash,events) values($1,$2,$3,$4,$5,$6::jsonb)', [j.operationId,j.fence,j.releaseId,claim.workerId,c.specHash,JSON.stringify([{kind:'dispatching',observedAt:now}])]);
         await saveJob(client, j); return 'dispatch';
+      });
+    },
+    async defer(claim,deferral,now){
+      const time=nowCheck(now);
+      if(!deferral||!['coordinator_busy','coordinator_deferred'].includes(deferral.reason)||!campaignInstant(deferral.retryAt)||Date.parse(deferral.retryAt)<=time||Date.parse(deferral.retryAt)-time>86400000)return campaignFail('INVALID_CAMPAIGN_LOCAL_DEFERRAL');
+      return tx(async client=>{
+        const c=await load(client,claim.job.releaseId),rows=await client.query('select * from lba_release_campaign_jobs where operation_id=$1 for update',[claim.job.operationId]);
+        if(rows.rows.length!==1)return 'lost';const j=job(rows.rows[0]);
+        if(!sameClaim(c,j,claim)||j.state!=='dispatching'||!j.leaseUntil||time>=Date.parse(j.leaseUntil)||j.attempts!==claim.job.attempts+1)return 'lost';
+        const updated=await client.query('update lba_release_campaign_attempts set events=events||$3::jsonb where operation_id=$1 and fence=$2',[j.operationId,j.fence,JSON.stringify([{kind:'local_deferred',reason:deferral.reason,retryAt:deferral.retryAt,observedAt:now}])]);if(updated.rowCount!==1)return campaignFail('CAMPAIGN_ATTEMPT_MISSING');
+        j.attempts--;j.nextAttemptAt=deferral.retryAt;j.lastOutcome=deferral.reason;j.state=time>=Date.parse(c.spec.expiresAt)||Date.parse(deferral.retryAt)>=Date.parse(c.spec.expiresAt)?'cancelled':'retry_wait';clearLease(j);await saveJob(client,j);
+        if(c.phase==='full'&&(await jobs(client,j.releaseId)).every(item=>TERMINAL.includes(item.state))){c.phase='completed';c.pauseReason=null;await saveCampaign(client,c);}
+        return j.state==='cancelled'?'cancelled':'deferred';
       });
     },
     async finish(claim, value: DeliveryOutcome, now) {

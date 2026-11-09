@@ -32,6 +32,13 @@ const OEM_LEGEND = {
   first: 'Світла не буде перші 30 хв.', second: 'Світла не буде другі 30 хв',
   mfirst: 'Світла можливо не буде перші 30 хв.', msecond: 'Світла можливо не буде другі 30 хв',
 } as const;
+/** Publisher's active parser + cell renderers at one pinned workflow revision.
+ * README disagrees; this records JSON semantics, not primary plan accuracy. */
+export const VN_PRODUCER_CONTRACT = Object.freeze({
+  revision: 'vn-progr/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab',
+  schemaVersion: '1.0.0',
+  independentPrimaryAccuracyVerified: false,
+});
 
 /** Read only a JSON object following one exact assignment; never evaluate source scripts. */
 function jsonAssignment(raw: string, name: 'fact' | 'preset'): unknown {
@@ -93,6 +100,11 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
     : JSON.parse(rawBody);
   if (!record(payload) || !record(payload.fact) || !record(payload.preset)) throw new Error('SOURCE_MATRIX_MISSING');
   if (config.regionId && payload.regionId !== config.regionId) throw new Error('SOURCE_REGION_MISMATCH');
+  const vnProgr = context.namespace === 'voe:vn-progr';
+  // Historical yes/no fixtures lack metadata. Half-hour support is versioned
+  // only for the actual publisher1.0.0 contract; unknown versions fail closed.
+  if (vnProgr && payload.meta !== undefined && (!record(payload.meta) || payload.meta.schemaVersion !== VN_PRODUCER_CONTRACT.schemaVersion)) throw new Error('UNKNOWN_VOE_PRODUCER_SCHEMA');
+  const vnHalfHours = vnProgr && record(payload.meta) && payload.meta.schemaVersion === VN_PRODUCER_CONTRACT.schemaVersion;
   const fact = payload.fact, preset = payload.preset;
   const sourceDay = midnightFromSeconds(fact.today);
   const bounds = dayBounds(context.serviceDate);
@@ -108,7 +120,7 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
   if (Object.keys(day).length !== queueIds.length || queueIds.some(id => !Object.hasOwn(day, id))) throw new Error('INCOMPLETE_OR_UNKNOWN_QUEUE_TABLE');
   for (const group of Object.values(day)) {
     if (!record(group) || Object.keys(group).length !== 24 || Array.from({ length: 24 }, (_, i) => String(i + 1)).some(key => !Object.hasOwn(group, key))) throw new Error('INCOMPLETE_OR_UNKNOWN_HOUR_KEYS');
-    const allowed = oem ? Object.keys(OEM_LEGEND) : ['yes', 'no'];
+    const allowed = oem ? Object.keys(OEM_LEGEND) : vnHalfHours ? ['yes', 'no', 'first', 'second'] : ['yes', 'no'];
     if (Object.values(group).some(value => typeof value !== 'string' || !allowed.includes(value))) throw new Error('UNKNOWN_PROVIDER_HOUR_ENUM');
   }
   if (oem) {
@@ -136,7 +148,12 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
     const code = hours[String(hour)], a = (hour - 1) * 60;
     if (code === 'yes') continue;
     if (code === 'no') { append(a, a + 60, 'planned_outage'); continue; }
-    // VOE's captured schema proves only yes/no. Its adapter does not borrow OEM's legend.
+    if (vnHalfHours) {
+      // Independently derived from the pinned publisher parser's :30 boundary
+      // and actual cell drawing, never borrowed from OEM or the stale README.
+      if (code === 'first') { append(a, a + 30, 'planned_outage'); continue; }
+      if (code === 'second') { append(a + 30, a + 60, 'planned_outage'); continue; }
+    }
     if (!oem) throw new Error('UNKNOWN_VOE_HOUR_ENUM');
     switch (code) {
       case 'maybe': append(a, a + 60, 'possible_outage'); break;
@@ -152,17 +169,18 @@ export function normalizeHourMatrix(rawBody: string, context: HourMatrixContext)
   // These observed formats have no independent published flag per day. An
   // entirely all-yes matrix (actual VOE tomorrow) can be an unpublished default.
   const anyPublishedOutage = Object.values(day).some(group => record(group) && Object.values(group).some(code =>
-    code === 'no' || (oem && ['maybe', 'first', 'second', 'mfirst', 'msecond'].includes(String(code)))));
+    code === 'no' || (oem && ['maybe', 'first', 'second', 'mfirst', 'msecond'].includes(String(code))) || (vnHalfHours && ['first','second'].includes(String(code)))));
   const unconfirmedEmpty = !intervals.length && !anyPublishedOutage;
   const view: ScheduleView = {
-    contractVersion: 'lba-product/1', revisionId: `hour-matrix:${hash(JSON.stringify({ rawHash, namespace: context.namespace, target: context.targetId, date: context.serviceDate }))}`,
+    contractVersion: 'lba-product/1', revisionId: `hour-matrix:${hash(JSON.stringify({ rawHash, namespace: context.namespace, target: context.targetId, date: context.serviceDate,
+      ...(vnHalfHours ? {parserContract: VN_PRODUCER_CONTRACT.revision} : {}) }))}`,
     addressId: context.addressId, addressLabel: context.addressLabel, localityLabel: context.localityLabel,
     operatorId: context.operatorId, namespace: config.targetNamespace, targetId: context.targetId,
     serviceDate: context.serviceDate, timezone: 'Europe/Kyiv',
     status: freshness === 'stale' ? 'stale' : unconfirmedEmpty ? 'not_published' : intervals.some(i => i.kind === 'planned_outage') ? 'published' : intervals.length ? 'possible' : 'no_planned_outages',
     dayCoverage: unconfirmedEmpty ? 'none' : 'complete', intervals, source: { ...context.source, revision: rawHash },
     publishedAt, observedAt: context.observedAt, freshness: unconfirmedEmpty && freshness !== 'stale' ? 'unknown' : freshness, synthetic: context.synthetic, deliveryEligible: false,
-    notice: 'План технічної групи, не вимір фактичного живлення. Адресна прив’язка, регулярне використання джерела та доставка не сертифіковані.',
+    notice: vnProgr ? 'План зі стороннього джерела. Відповідність актуальному плану оператора й прив’язка до будинку ще не підтверджені.' : 'План технічної групи, не вимір фактичного живлення. Адресна прив’язка, регулярне використання джерела та доставка не сертифіковані.',
   };
   validateScheduleView(view); return view;
 }

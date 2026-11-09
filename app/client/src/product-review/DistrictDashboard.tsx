@@ -77,6 +77,7 @@ export function DistrictDashboard({ addresses, activeId, views, asOf, day, onSel
   return <section className="pr-district" aria-label="Адресний пульт">
     <div className="pr-district-context"><span>{date ? displayDate(date) : 'Плани збережених адрес'}</span><div className="pr-segmented" aria-label="Дата плану"><button type="button" aria-pressed={day === 'today'} className={day === 'today' ? 'is-active' : ''} onClick={() => onDay('today')}>Сьогодні</button><button type="button" aria-pressed={day === 'tomorrow'} className={day === 'tomorrow' ? 'is-active' : ''} onClick={() => onDay('tomorrow')}>Завтра</button></div></div>
     <header className="pr-district-heading"><div><p className="pr-eyebrow">ВАШІ ЗБЕРЕЖЕНІ МІСЦЯ</p><h2>Адресний пульт</h2></div><button type="button" className="pr-secondary" onClick={onManage}>Керувати<ArrowRight size={16} /></button></header>
+    {plan?.notice&&<p className="pr-status-notice" role="note">{plan.notice}</p>}
     <div className="pr-district-workspace">
       <section className="pr-district-neighborhood" aria-label="Ваші збережені адреси"><div className="pr-district-section-heading"><h3>Кожне місце — поруч</h3><span>{addresses.length}</span></div>
         <div className="pr-district-buildings" role="list">{addresses.map(address => {
@@ -95,7 +96,7 @@ export function DistrictDashboard({ addresses, activeId, views, asOf, day, onSel
         <div className="pr-district-reminder"><button type="button" className="pr-primary" onClick={() => onNotifications(active.id)}><Bell size={17} />{state.next?.edge === 'on' ? 'Нагадати перед увімкненням' : state.next?.edge === 'off' ? 'Нагадати перед вимкненням' : 'Налаштувати нагадування'}</button></div>
       </section> : <section className="pr-panel pr-district-console"><h3>Оберіть будинок</h3><p>Його план і найближча подія з’являться тут.</p></section>}
       <section className="pr-district-day-section">{plan && active && <><DayPlanDetails key={`${active.id}/${plan.serviceDate}`} view={plan} asOf={asOf} />
-        {display.valid && <details className="pr-district-source"><summary>Джерело й актуальність <ChevronDown size={14} /></summary><p>{plan.source.name}</p><p>Перевірено {displayTime(plan.observedAt)} · {plan.freshness === 'current' ? 'збережено актуальний план' : 'потрібне оновлення'}. Час Europe/Kyiv.</p><p>{state.reason}</p>{plan.notice && <p>{plan.notice}</p>}</details>}</>}
+        {display.valid && <details className="pr-district-source"><summary>Джерело й актуальність <ChevronDown size={14} /></summary><p>{plan.source.name}</p><p>Перевірено {displayTime(plan.observedAt)} · {plan.freshness === 'current' ? 'збережено актуальний план' : 'потрібне оновлення'}. Час Europe/Kyiv.</p><p>{state.reason}</p></details>}</>}
         <div className="pr-district-tools"><button type="button" className="pr-secondary" onClick={onCompare}><ArrowLeftRight size={17} />Порівняти адреси</button><button type="button" className="pr-secondary" onClick={onShare} disabled={!active}><Share2 size={17} />Поділитися планом</button></div>
       </section>
     </div>

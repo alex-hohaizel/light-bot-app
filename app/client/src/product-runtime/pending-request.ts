@@ -17,7 +17,14 @@ export function savePendingProfile(storage: StoragePort, ownerId: string, reques
   if (json.length > 65536 || !validRequest(request)) throw new Error('Не вдалося підготувати відновлення запиту.');
   storage.setItem(PENDING_PROFILE_KEY, json);
 }
-export function clearPendingProfile(storage: StoragePort): void { storage.removeItem(PENDING_PROFILE_KEY); }
+export function clearPendingProfile(storage: StoragePort,expected?:{ownerId:string;requestId:string;sessionId:string}): void {
+  if(expected){
+    const raw=storage.getItem(PENDING_PROFILE_KEY);if(!raw||raw.length>65536)return;
+    let value:any;try{value=JSON.parse(raw);}catch{return;}
+    if(value?.ownerId!==expected.ownerId||value?.sessionId!==expected.sessionId||value?.request?.id!==expected.requestId)return;
+  }
+  storage.removeItem(PENDING_PROFILE_KEY);
+}
 export function loadPendingProfile(storage: StoragePort, ownerId: string, sessionId: string, now = Date.now()): ProfileRequest | null {
   try {
     const raw = storage.getItem(PENDING_PROFILE_KEY);

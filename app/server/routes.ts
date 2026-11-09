@@ -19,12 +19,16 @@ import { registerIsolatedFixtureRoutes } from "./isolated-routes";
 import { createAuthReplayGuard } from "./production/auth-replay";
 import { createTelegramAuthFlow } from "./production/telegram-auth-flow";
 import { createTelegramIdentityResolver } from "./production/telegram-identity";
-import { registerTelegramProofRoutes } from "./production/telegram-auth-http";
+import { registerTelegramProofRoutes,telegramHttpSession } from "./production/telegram-auth-http";
+import {createTelegramBrowserChallenges,registerTelegramBrowserAuthRoutes} from './production/telegram-browser-auth';
+import {verifyTelegramLoginData} from './telegram-init-data';
 import { pool } from "./db";
 import { PRODUCT_TELEGRAM_IDENTITY } from "./production/product-identity";
 import { createTelegramInbox } from "./production/telegram-inbox";
 import { registerTelegramInboxRoute } from "./production/telegram-inbox-http";
 import { productionRuntimePolicy } from "./runtime-policy";
+import type {VerifiedSessionHook} from './production/verified-session';
+import {isDetachedAccountIdentity} from './production/account-links';
 import { BUILD_SOURCE_SHA256 } from "./release/build-identity";
 
 function buildBotUpdates(data: Record<string, any>): Record<string, any> {
@@ -1225,7 +1229,8 @@ function findKharkivQueuesForStreet(streetName: string): { street: string; queue
 
 export async function registerRoutes(
   httpServer: Server,
-  app: Express
+  app: Express,
+  hooks:{onVerifiedLogin?:VerifiedSessionHook;sessionIsCurrent?:(req:any)=>Promise<boolean>}={}
 ): Promise<Server> {
   if (isIsolatedMode()) {
     registerIsolatedFixtureRoutes(app);
@@ -2084,20 +2089,39 @@ export async function registerRoutes(
   const telegramProofEnabled = !isIsolatedMode() && process.env.NODE_ENV === 'production'
     && productionRuntimePolicy().telegramAuthReplayEnabled;
   let telegramAuthFlow: ReturnType<typeof createTelegramAuthFlow> | undefined;
-  registerTelegramProofRoutes(app, {
-    enabled: telegramProofEnabled, now: () => Math.floor(Date.now() / 1000), limiter: authLimiter,
-    authenticateSession: isAuthenticated,
-    flow: () => {
+  const telegramNow=()=>Math.floor(Date.now()/1000);
+  const getTelegramFlow=() => {
       if (!telegramProofEnabled) throw Error('TELEGRAM_AUTH_DISABLED');
       if (!telegramAuthFlow) {
         const token = process.env.TELEGRAM_BOT_TOKEN!, botId = PRODUCT_TELEGRAM_IDENTITY.botId;
         const now = () => Math.floor(Date.now() / 1000);
         const guard = createAuthReplayGuard(pool, { key: process.env.SESSION_SECRET!, now });
-        telegramAuthFlow = createTelegramAuthFlow({ token, botId, now, guard, resolveUser: createTelegramIdentityResolver(pool) });
+        telegramAuthFlow = createTelegramAuthFlow({ token, botId, now, guard, resolveUser: createTelegramIdentityResolver(pool,{isDetached:(client,subject)=>
+          process.env.LBA_PRODUCT_PROFILE_MODE==='active'?isDetachedAccountIdentity(client,'telegram',subject):Promise.resolve(false)}) });
       }
       return telegramAuthFlow;
+  };
+  registerTelegramProofRoutes(app, {
+    enabled: telegramProofEnabled, now: telegramNow, limiter: authLimiter,
+    allowDirectWidgetGet:process.env.NODE_ENV!=='production',authenticateSession: isAuthenticated,
+    flow:getTelegramFlow,
+    mobileToken: generateMobileToken, readUser: owner => authStorage.getUser(owner),onVerifiedLogin:hooks.onVerifiedLogin,sessionIsCurrent:hooks.sessionIsCurrent,
+  });
+  let telegramBrowserChallenges:ReturnType<typeof createTelegramBrowserChallenges>|undefined;
+  const getBrowserChallenges=()=>{
+    if(!telegramProofEnabled)throw Error('TELEGRAM_AUTH_DISABLED');
+    return telegramBrowserChallenges??=createTelegramBrowserChallenges(pool,{key:process.env.SESSION_SECRET!,now:telegramNow,origin:'https://power-ukraine.net'});
+  };
+  registerTelegramBrowserAuthRoutes(app,{
+    enabled:telegramProofEnabled,origin:'https://power-ukraine.net',botUsername:PRODUCT_TELEGRAM_IDENTITY.username,limiter:authLimiter,
+    challenges:{issue:sessionId=>getBrowserChallenges().issue(sessionId),consume:(challenge,sessionId)=>getBrowserChallenges().consume(challenge,sessionId)},
+    flow:getTelegramFlow,session:(req,res)=>telegramHttpSession(req,res,telegramNow,hooks.onVerifiedLogin),
+    verifyLogin:raw=>verifyTelegramLoginData(raw,process.env.TELEGRAM_BOT_TOKEN!,telegramNow()),
+    saveAnonymousSession:async req=>{
+      if(!req.session||typeof req.sessionID!=='string'||typeof req.session.save!=='function')throw Error('TELEGRAM_BROWSER_SESSION');
+      req.session.telegramBrowserChallenge=true;
+      await new Promise<void>((resolve,reject)=>req.session.save((error:unknown)=>error?reject(Error('TELEGRAM_BROWSER_SESSION')):resolve()));
     },
-    mobileToken: generateMobileToken, readUser: owner => authStorage.getUser(owner),
   });
 
   app.get('/api/auth/telegram-auto', async (req: any, res) => {
@@ -2432,7 +2456,7 @@ export async function registerRoutes(
     try {
       const userId = req.user.claims.sub;
       const firstName = req.user.claims.first_name;
-      const token = generateMobileToken(userId, firstName);
+      const token = generateMobileToken(userId, firstName,req.user.authEpoch??0);
       const user = await authStorage.getUser(userId);
       res.json({
         token,

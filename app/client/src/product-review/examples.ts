@@ -22,10 +22,10 @@ export const STATUS_OPTIONS: { id: PlanStatus; label: string }[] = [
 export interface DemoAddress {
   id: string; label: string; city: string; street: string; house: string;
   confirmedInDemo: boolean; paused: boolean;
-  notifications?: boolean; primary?: boolean; optionId?: string; bindingRevisionId?: string; recordFingerprint?: string;
+  notifications?: boolean; primary?: boolean; optionId?: string; bindingRevisionId?: string; selectionFingerprint?: string; recordFingerprint?: string;
 }
 export function addressBindingFingerprint({ address: a, binding: b }: Pick<BotLocation, 'address' | 'binding'>): string {
-  return JSON.stringify([a.id, a.territoryId, a.locality, a.street, a.house.number, a.house.letter || null, a.house.building || null,
+  return JSON.stringify([a.id, a.territoryId, a.localityId??null, a.locality, [...(a.localityAliases??[])].sort(), a.streetId??null, a.street, [...(a.placeNames??[])].sort(), a.objectKind??null, a.house.number, a.house.letter || null, a.house.building || null,
     a.house.literal, [...a.aliases].sort(), b.addressId, b.operatorId, b.namespace, b.targetId, b.kind, b.revisionId,
     b.status, b.verifiedAt, b.effectiveFrom, b.effectiveUntil]);
 }

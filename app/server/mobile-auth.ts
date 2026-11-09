@@ -19,11 +19,13 @@ export interface MobileTokenPayload {
   type: 'mobile';
   iss?: string;
   aud?: string;
+  authEpoch?:number;
 }
 
-export function generateMobileToken(userId: string, firstName?: string): string {
+export function generateMobileToken(userId: string, firstName?: string,authEpoch=0): string {
+  if(!Number.isSafeInteger(authEpoch)||authEpoch<0)throw Error('INVALID_AUTH_EPOCH');
   return jwt.sign(
-    { sub: userId, firstName, type: 'mobile' },
+    { sub: userId, firstName, type: 'mobile',authEpoch },
     JWT_SECRET,
     { expiresIn: TOKEN_EXPIRY, issuer: TOKEN_ISSUER, audience: TOKEN_AUDIENCE }
   );
@@ -38,7 +40,7 @@ export function verifyMobileToken(token: string): MobileTokenPayload | null {
       clockTolerance: 30,
     }) as MobileTokenPayload;
     if (!decoded || typeof decoded !== 'object' || decoded.type !== 'mobile' || typeof decoded.sub !== 'string' ||
-      !decoded.sub.trim() || decoded.sub.length > 255 || /[\u0000-\u001f\u007f]/.test(decoded.sub)) return null;
+      !decoded.sub.trim() || decoded.sub.length > 255 || /[\u0000-\u001f\u007f]/.test(decoded.sub)||decoded.authEpoch!==undefined&&(!Number.isSafeInteger(decoded.authEpoch)||decoded.authEpoch<0)) return null;
     return decoded;
   } catch {
     return null;
@@ -65,6 +67,7 @@ export function isMobileAuth(req: Request, res: Response, next: NextFunction) {
   }
 
   (req as any).user = {
+    authEpoch:payload.authEpoch??0,
     claims: {
       sub: payload.sub,
       first_name: payload.firstName,
@@ -82,6 +85,7 @@ export function isAuthenticatedMobileOrSession(req: Request, res: Response, next
     const payload = verifyMobileToken(token);
     if (payload) {
       (req as any).user = {
+        authEpoch:payload.authEpoch??0,
         claims: {
           sub: payload.sub,
           first_name: payload.firstName,
@@ -95,7 +99,7 @@ export function isAuthenticatedMobileOrSession(req: Request, res: Response, next
 
   const user=(req as any).user;
   if (typeof req.isAuthenticated === 'function' && req.isAuthenticated() === true &&
-    Number.isSafeInteger(user?.expires_at) && user.expires_at >= Math.floor(Date.now()/1000) &&
+    Number.isSafeInteger(user?.expires_at) && user.expires_at > Math.floor(Date.now()/1000) &&
     typeof user?.claims?.sub === 'string' && user.claims.sub.trim() && user.claims.sub.length <= 255 &&
     !/[\u0000-\u001f\u007f]/.test(user.claims.sub)) return next();
 

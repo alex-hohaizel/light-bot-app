@@ -6,9 +6,12 @@ import session from "express-session";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
-import { authStorage } from "./storage";
-import { addLinkedAccount, getLinkedAccountByProvider, migrateUserSettings } from "../../storage";
+import { pool } from "../../db";
+import { createReplitIdentityResolver } from "../../production/replit-identity";
+import { prepareReplitSession } from "../../production/replit-session";
 import { assertIsolatedRuntimeReady, isIsolatedMode, SYNTHETIC_USER_ID } from "../../isolated-guard";
+import type {VerifiedSessionHook} from '../../production/verified-session';
+import {isDetachedAccountIdentity} from '../../production/account-links';
 
 const getOidcConfig = memoize(
   async () => {
@@ -37,40 +40,16 @@ export function getSession() {
     cookie: {
       httpOnly: true,
       secure: true,
+      sameSite:'lax',
       maxAge: sessionTtl,
     },
   });
 }
 
-function updateUserSession(
-  user: any,
-  tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers
-) {
-  user.claims = tokens.claims();
-  user.access_token = tokens.access_token;
-  user.refresh_token = tokens.refresh_token;
-  user.expires_at = user.claims?.exp;
-}
+const replitIdentity = createReplitIdentityResolver(pool,{isDetached:(client,subject)=>
+  process.env.NODE_ENV==='production'&&process.env.LBA_PRODUCT_PROFILE_MODE==='active'?isDetachedAccountIdentity(client,'replit',subject):Promise.resolve(false)});
 
-async function upsertUser(claims: any) {
-  const userId = claims["sub"];
-  await authStorage.upsertUser({
-    id: userId,
-    email: claims["email"],
-    firstName: claims["first_name"],
-    lastName: claims["last_name"],
-    profileImageUrl: claims["profile_image_url"],
-  });
-
-  const existing = await getLinkedAccountByProvider('replit', userId).catch(() => null);
-  if (!existing) {
-    const displayName = claims["email"] || claims["first_name"] || userId;
-    await addLinkedAccount(userId, 'replit', userId, `Replit: ${displayName}`).catch((e: any) =>
-      console.error('[Auth] Failed to create linked account:', e.message));
-  }
-}
-
-export async function setupAuth(app: Express) {
+export async function setupAuth(app: Express,hooks:{onVerifiedLogin?:VerifiedSessionHook;limiter?:RequestHandler}={}) {
   if (isIsolatedMode()) {
     assertIsolatedRuntimeReady();
     // Explicit local-only identity; application data still uses the real pg/Drizzle path.
@@ -93,33 +72,17 @@ export async function setupAuth(app: Express) {
 
   const config = await getOidcConfig();
 
-  const verify: VerifyFunction = async (
-    tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
-    verified: passport.AuthenticateCallback
-  ) => {
-    const claims = tokens.claims()!;
-    const replitId = claims["sub"] as string;
-
-    const linkedAccount = await getLinkedAccountByProvider('replit', replitId).catch(() => null);
-
-    const user: any = {};
-    updateUserSession(user, tokens);
-
-    if (linkedAccount && linkedAccount.userId !== replitId) {
-      user.claims = { ...(user.claims || {}), sub: linkedAccount.userId };
-      await migrateUserSettings(replitId, linkedAccount.userId);
-      await authStorage.upsertUser({
-        id: replitId,
-        email: (claims["email"] as string) || null,
-        firstName: (claims["first_name"] as string) || null,
-        lastName: (claims["last_name"] as string) || null,
-        profileImageUrl: (claims["profile_image_url"] as string) || null,
-      });
-    } else {
-      await upsertUser(claims);
-    }
-
-    verified(null, user);
+  const verify: VerifyFunction = async (tokens, verified: passport.AuthenticateCallback) => {
+    try {
+      const claims = tokens.claims();
+      if (!claims) throw Error('REPLIT_AUTH_UNCONFIRMED');
+      const signed = structuredClone(claims);
+      const tokenSnapshot = { access_token: tokens.access_token, refresh_token: tokens.refresh_token,
+        expires_in: tokens.expires_in, claims: () => signed };
+      const owner = await replitIdentity.login(signed);
+      const user = prepareReplitSession(null, tokenSnapshot, owner, Math.floor(Date.now() / 1000));
+      verified(null, user);
+    } catch { verified(new Error('REPLIT_AUTH_UNCONFIRMED')); }
   };
 
   // Keep track of registered strategies
@@ -146,7 +109,8 @@ export async function setupAuth(app: Express) {
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
   passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
-  app.get("/api/login", (req: any, res, next) => {
+  const limit=hooks.limiter??((_req,_res,next)=>next());
+  app.get("/api/login",limit, (req: any, res, next) => {
     ensureStrategy(req.hostname);
     passport.authenticate(`replitauth:${req.hostname}`, {
       prompt: "login consent",
@@ -154,68 +118,32 @@ export async function setupAuth(app: Express) {
     })(req, res, next);
   });
 
-  app.get("/api/auth/link-replit", (req: any, res, next) => {
-    if (req.isAuthenticated() && req.user?.claims?.sub) {
-      req.session.linkingUserId = req.user.claims.sub;
+  // Account linking requires a separate proof/preview flow; ordinary OAuth login never merges profiles.
+  app.get("/api/auth/link-replit", (_req, res) => {
+    res.setHeader('Cache-Control', 'no-store');
+    res.status(503).json({ error: 'Під’єднання акаунтів ще проходить перевірку. Збережені профілі не змінено.' });
+  });
+
+  app.get("/api/callback",limit, (req: any, res, next) => {
+    ensureStrategy(req.hostname);
+
+    if (req.session?.linkingUserId) {
+      delete req.session.linkingUserId;
+      return res.status(409).json({ error: 'Для під’єднання потрібна нова перевірка. Збережені профілі не змінено.' });
     }
-    ensureStrategy(req.hostname);
-    passport.authenticate(`replitauth:${req.hostname}`, {
-      prompt: "login consent",
-      scope: ["openid", "email", "profile", "offline_access"],
-    })(req, res, next);
-  });
-
-  app.get("/api/callback", (req: any, res, next) => {
-    ensureStrategy(req.hostname);
-
-    const linkingUserId = req.session?.linkingUserId;
 
     passport.authenticate(`replitauth:${req.hostname}`, async (err: any, user: any) => {
-      if (err || !user) {
-        return res.redirect("/api/login");
-      }
+      if (err || !user) return res.redirect("/api/login");
 
-      if (linkingUserId && user.claims?.sub) {
-        try {
-          delete req.session.linkingUserId;
-          const replitId = user.claims.sub;
-          const displayName = user.claims.email || user.claims.first_name || replitId;
-
-          const existingLink = await getLinkedAccountByProvider('replit', replitId).catch(() => null);
-          if (existingLink && existingLink.userId === linkingUserId) {
-            console.log(`[Auth] Account replit:${replitId} already linked to user ${linkingUserId}, skipping`);
-            user.claims = { ...(user.claims || {}), sub: linkingUserId };
-            req.login(user, () => res.redirect("/settings"));
-            return;
-          }
-
-          if (replitId !== linkingUserId) {
-            await migrateUserSettings(replitId, linkingUserId);
-          }
-
-          await addLinkedAccount(linkingUserId, 'replit', replitId, `Replit: ${displayName}`);
-          await authStorage.upsertUser({
-            id: replitId,
-            email: user.claims.email || null,
-            firstName: user.claims.first_name || null,
-            lastName: user.claims.last_name || null,
-            profileImageUrl: user.claims.profile_image_url || null,
-          });
-          console.log(`[Auth] Linked Replit ${replitId} to existing user ${linkingUserId}`);
-
-          user.claims = { ...(user.claims || {}), sub: linkingUserId };
-          req.login(user, () => res.redirect("/settings"));
-          return;
-        } catch (e: any) {
-          console.error('[Auth] Linking error:', e.message);
-        }
-      }
-
-      req.login(user, (loginErr: any) => {
+      const verifiedAt=Math.floor(Date.now()/1000);
+      req.login(user, async (loginErr: any) => {
         if (loginErr) {
           return res.redirect("/api/login");
         }
-        return res.redirect("/");
+        try{await hooks.onVerifiedLogin?.({req,provider:'replit',providerId:user.providerIdentity.subject,verifiedAt});return res.redirect('/');}
+        catch{const session=req.session;req.user=undefined;res.clearCookie('connect.sid',{path:'/',httpOnly:true,secure:true});
+          try{if(session)await new Promise<void>((resolve,reject)=>session.destroy((error:unknown)=>error?reject(Error('AUTH_SESSION_CLEANUP_UNCONFIRMED')):resolve()));}catch{}finally{req.session=null;}
+          return res.status(401).send('Не вдалося підтвердити вхід. Увійдіть ще раз.');}
       });
     })(req, res, next);
   });
@@ -235,12 +163,12 @@ export async function setupAuth(app: Express) {
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
 
-  if (!req.isAuthenticated() || !user.expires_at) {
+  if (!req.isAuthenticated() || !Number.isSafeInteger(user?.expires_at) || user.expires_at <= 0) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   const now = Math.floor(Date.now() / 1000);
-  if (now <= user.expires_at) {
+  if (now < user.expires_at) {
     return next();
   }
 
@@ -253,7 +181,19 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
   try {
     const config = await getOidcConfig();
     const tokenResponse = await client.refreshTokenGrant(config, refreshToken);
-    updateUserSession(user, tokenResponse);
+    const claims = tokenResponse.claims();
+    const signed = claims ? structuredClone(claims) : undefined;
+    const subject = signed?.sub ?? user.providerIdentity?.subject;
+    if (typeof subject !== 'string') throw Error('REPLIT_REFRESH_IDENTITY_UNCONFIRMED');
+    const owner = await replitIdentity.existing(subject);
+    if (owner !== user.claims?.sub) throw Error('REPLIT_REFRESH_IDENTITY_CHANGED');
+    const refreshed = prepareReplitSession(user, { access_token: tokenResponse.access_token,
+      refresh_token: tokenResponse.refresh_token, expires_in: tokenResponse.expires_in, claims: () => signed }, owner, now);
+    Object.assign(user, refreshed);
+    const sessionData = req.session as (typeof req.session & {passport?:{user?:unknown}}) | undefined;
+    if (!sessionData?.passport || typeof sessionData.save !== 'function') throw Error('REPLIT_SESSION_UNAVAILABLE');
+    sessionData.passport.user = user;
+    await new Promise<void>((resolve, reject) => sessionData.save(error => error ? reject(Error('REPLIT_SESSION_SAVE_UNCONFIRMED')) : resolve()));
     return next();
   } catch (error) {
     res.status(401).json({ message: "Unauthorized" });

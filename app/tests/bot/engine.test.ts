@@ -104,7 +104,7 @@ test('foreign actor and unknown legacy callbacks never alter state or reveal pro
 
 test('catalog binding revision drift invalidates pending confirmation', () => {
   const h = harness(); h.wizard(); h.context.addresses[0].binding.revisionId = 'binding-after-change';
-  const turn = h.click('Зберегти адресу'); assert.match(text(turn), /Прив’язка змінилася/);
+  const turn = h.click('Зберегти адресу'); assert.match(text(turn), /Дані адреси змінилися/);
   assert.equal(h.state.profile.locations.length, 0); assert.equal(turn.actions.length, 0);
 });
 

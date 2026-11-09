@@ -2,6 +2,7 @@ import type { AddressOption, BotLocation, BotState } from '../../shared/bot/type
 import type { ProfileMutation, ProfilePreferences, ProfileRequest } from '../../shared/profile-mutation.ts';
 import { parseLocationNotificationPolicy, parseNotificationPolicy, syncLegacyPolicyChanges } from '../../shared/notification-policy.ts';
 import { MAX_PROFILE_ADDRESSES } from '../../shared/profile-constraints.ts';
+import { addressOptionFingerprint } from '../../shared/address-selection.ts';
 
 const invalid = () => { throw new Error('INVALID_PROFILE_INPUT'); };
 function object(value: unknown): Record<string, unknown> {
@@ -63,9 +64,11 @@ export function parseProfileRequest(value: unknown): ProfileRequest {
   let mutation: ProfileMutation;
   switch (raw.kind) {
     case 'add': case 'replace': {
-      keys(raw, raw.kind === 'add' ? ['kind', 'optionId', 'bindingRevisionId', 'label', 'confirmed'] : ['kind', 'addressId', 'optionId', 'bindingRevisionId', 'label', 'confirmed']);
+      keys(raw, raw.kind === 'add' ? ['kind', 'optionId', 'bindingRevisionId', 'selectionFingerprint', 'label', 'confirmed'] : ['kind', 'addressId', 'optionId', 'bindingRevisionId', 'selectionFingerprint', 'label', 'confirmed']);
       if (raw.confirmed !== true) invalid();
-      const fields = { optionId: string(raw.optionId), bindingRevisionId: string(raw.bindingRevisionId), label: string(raw.label, 60), confirmed: true as const };
+      const fields = { optionId: string(raw.optionId), bindingRevisionId: string(raw.bindingRevisionId),
+        ...(raw.selectionFingerprint !== undefined ? { selectionFingerprint: string(raw.selectionFingerprint, 32768) } : {}),
+        label: string(raw.label, 60), confirmed: true as const };
       mutation = raw.kind === 'add' ? { kind: 'add', ...fields } : { kind: 'replace', addressId: string(raw.addressId), ...fields };
       break;
     }
@@ -115,6 +118,7 @@ export function applyProfileMutation(previous: BotState, request: ProfileRequest
     if (options.length !== 1) throw new Error('PROFILE_OPTION_NOT_FOUND');
     const option = options[0];
     if (option.binding.revisionId !== mutation.bindingRevisionId) throw new Error('PROFILE_BINDING_REVISION_CONFLICT');
+    if (mutation.selectionFingerprint !== undefined && mutation.selectionFingerprint !== addressOptionFingerprint(option)) throw new Error('PROFILE_SELECTION_CHANGED');
     const duplicate = state.profile.locations.find(item => item.address.id === option.address.id &&
       (mutation.kind !== 'replace' || item.address.id !== mutation.addressId));
     if (duplicate) throw new Error('PROFILE_ADDRESS_ALREADY_SAVED');

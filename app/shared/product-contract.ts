@@ -10,9 +10,18 @@ export interface AddressRecord {
   label: string;
   territoryId: string;
   locality: string;
+  /** Source-scoped locality identity; labels alone cannot distinguish namesakes. */
+  localityId?: string;
+  localityAliases?: string[];
   street: string;
+  /** Source-scoped street identity, independent of a current display name. */
+  streetId?: string;
   house: { number: string; letter?: string; building?: string; literal: string };
+  /** Historical STREET names only; object names must never become street aliases. */
   aliases: string[];
+  /** Optional evidenced names of a mall/office/public object at this exact address. */
+  placeNames?: string[];
+  objectKind?: 'residential' | 'commercial' | 'public' | 'other';
 }
 export interface AddressBinding {
   addressId: AddressId;

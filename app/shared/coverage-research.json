@@ -1,43 +1,43 @@
 [
   {
     "id": "vinnytsia-oe",
-    "territoryLabel": "АТ «Вінницяобленерго»",
+    "territoryLabel": "Вінниця / Вінниччина",
     "operatorLabel": "АТ «Вінницяобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:49:34.021983+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Є свіжий публічний JSON за 8 листопада. Перевірено значення його півгодинних позначень, але самі інтервали ще не звірені з первинним графіком оператора. Прив’язку будинку потрібно підтвердити."
   },
   {
     "id": "volyn-oe",
-    "territoryLabel": "ПрАТ «Волиньобленерго»",
+    "territoryLabel": "Луцьк / Волинь",
     "operatorLabel": "ПрАТ «Волиньобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:23.791974+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Адресні HTML-сервіси; оновлення08.11 о21:00/21:25. Самі інтервали не перевірені. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "dtek-dnem",
-    "territoryLabel": "АТ «ДТЕК Дніпровські електромережі»",
+    "territoryLabel": "Дніпро / мережі ДТЕК області",
     "operatorLabel": "АТ «ДТЕК Дніпровські електромережі»",
     "status": "candidate",
-    "schedule": "unverified",
+    "schedule": "verified",
     "address": "unverified",
-    "primaryCost": null,
+    "primaryCost": 0,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:49:33.807005+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Публічна відповідь YASNO за 8–9 листопада повідомляє про аварійні відключення. Точних годин відновлення немає; з порожніх інтервалів не робимо висновок, що відключень немає."
   },
   {
     "id": "dtek-dem",
-    "territoryLabel": "АТ «ДТЕК Донецькі електромережі»",
+    "territoryLabel": "Донеччина / мережі ДТЕК",
     "operatorLabel": "АТ «ДТЕК Донецькі електромережі»",
     "status": "candidate",
     "schedule": "unverified",
@@ -45,191 +45,191 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна адресна форма; свіжий nativeGET повернув короткий HTML. Поточний план не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "zhytomyr-oe",
-    "territoryLabel": "АТ «Житомиробленерго»",
+    "territoryLabel": "Житомир / Житомирщина",
     "operatorLabel": "АТ «Житомиробленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.054263+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. HTML-матриця08.11, оновлено21:00. Потрібен розбір кольорів/легенди. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "zakarpattia-oe",
-    "territoryLabel": "ПрАТ «Закарпаттяобленерго»",
+    "territoryLabel": "Ужгород / Закарпаття",
     "operatorLabel": "ПрАТ «Закарпаттяобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.042051+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний динамічний сервіс; план08.11 не отримано. Метадані07.11 не прийняті як сьогоднішній план. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "zaporizhzhia-oe",
-    "territoryLabel": "ПАТ «Запоріжжяобленерго»",
+    "territoryLabel": "Запоріжжя / Запорізька область",
     "operatorLabel": "ПАТ «Запоріжжяобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.652903+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна динамічна HTML-сторінка доступна. Поточну добову дату/JSON не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "dtek-kem",
-    "territoryLabel": "ПрАТ «ДТЕК Київські електромережі»",
+    "territoryLabel": "Київ, місто",
     "operatorLabel": "ПрАТ «ДТЕК Київські електромережі»",
     "status": "candidate",
-    "schedule": "unverified",
+    "schedule": "verified",
     "address": "unverified",
-    "primaryCost": null,
+    "primaryCost": 0,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:57:50.399844+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "У публічній відповіді YASNO перевірено план на 8 листопада для 60 груп. Вибір будинку перевіряється окремо; план групи не підтверджує фактичну наявність світла."
   },
   {
     "id": "dtek-krem",
-    "territoryLabel": "ПрАТ «ДТЕК Київські регіональні електромережі»",
+    "territoryLabel": "Київська область",
     "operatorLabel": "ПрАТ «ДТЕК Київські регіональні електромережі»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:25.403408+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний сервіс; у нашій відповіді Incapsula script shell. Дані плану не отримано. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "kirovohrad-oe",
-    "territoryLabel": "ПрАТ «Кіровоградобленерго»",
+    "territoryLabel": "Кропивницький / Кіровоградщина",
     "operatorLabel": "ПрАТ «Кіровоградобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.634157+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Адресний сервіс і посилання прогнозів08/09.11. Точні інтервали ще не прочитані. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "lviv-oe",
-    "territoryLabel": "ПрАТ «Львівобленерго»",
+    "territoryLabel": "Львів / мережі Львівобленерго",
     "operatorLabel": "ПрАТ «Львівобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:23.791791+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний poweron і бот є; API-кандидат403. План08.11 у цьому проході не отримано. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "mykolaiv-oe",
-    "territoryLabel": "АТ «Миколаївобленерго»",
+    "territoryLabel": "Миколаїв / мережі Миколаївобленерго",
     "operatorLabel": "АТ «Миколаївобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.402186+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний JSON /api/v2/schedule/active: план08.11; API підтверджено власним JS сайту. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "dtek-oem",
-    "territoryLabel": "АТ «ДТЕК Одеські електромережі»",
+    "territoryLabel": "Одеса / Одещина",
     "operatorLabel": "АТ «ДТЕК Одеські електромережі»",
     "status": "candidate",
-    "schedule": "unverified",
+    "schedule": "verified",
     "address": "unverified",
-    "primaryCost": null,
+    "primaryCost": 0,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:25.247789+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "На офіційному сайті перевірено план від 8 листопада, 21:52. Публічне дзеркало відстає і суперечить йому, тому як актуальний план не використовується. Регулярне отримання та адресу ще потрібно перевірити."
   },
   {
     "id": "poltava-oe",
-    "territoryLabel": "АТ «Полтаваобленерго»",
+    "territoryLabel": "Полтава / мережі Полтаваобленерго",
     "operatorLabel": "АТ «Полтаваобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.223216+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Є сервіс перерв і сезонна схема2026–27. Добовий план08.11 не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "prykarpattia-oe",
-    "territoryLabel": "АТ «Прикарпаттяобленерго»",
+    "territoryLabel": "Івано-Франківськ / Прикарпаття",
     "operatorLabel": "АТ «Прикарпаттяобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.620846+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний be-svitlo; public queue1.1 повернув[]. Без дати це невідомий стан. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "sumy-oe",
-    "territoryLabel": "АТ «Сумиобленерго»",
+    "territoryLabel": "Суми / Сумщина",
     "operatorLabel": "АТ «Сумиобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.620411+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний JS-сервіс є. Поточний payload не отримано; /api/ заборонено robots. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "rivne-oe",
-    "territoryLabel": "ПрАТ «Рівнеобленерго»",
+    "territoryLabel": "Рівне / Рівненщина",
     "operatorLabel": "ПрАТ «Рівнеобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.985789+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Датована таблиця08.11 о21:30: всі12підчерг Очікується; інтервалів немає. Окремий виняток Вараша. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "ternopil-oe",
-    "territoryLabel": "ВАТ «Тернопільобленерго»",
+    "territoryLabel": "Тернопіль / Тернопільщина",
     "operatorLabel": "ВАТ «Тернопільобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.697184+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційні poweron/notify сервіси є. Поточний JSON/план08.11 не отримано. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "kharkiv-oe",
-    "territoryLabel": "АТ «Харківобленерго»",
+    "territoryLabel": "Харків / Харківщина",
     "operatorLabel": "АТ «Харківобленерго»",
-    "status": "candidate",
+    "status": "blocked",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:59:21.402386+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Є офіційний добовий план на 8 листопада, але пізніше оператор повідомив про аварійні відключення. Поки їх дію не уточнено, точний зворотний відлік за добовим планом не показуємо."
   },
   {
     "id": "kherson-oe",
-    "territoryLabel": "АТ «Херсонобленерго»",
+    "territoryLabel": "Херсон / Херсонщина",
     "operatorLabel": "АТ «Херсонобленерго»",
     "status": "candidate",
     "schedule": "unverified",
@@ -237,59 +237,59 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний сайт і кабінет доступні. Відкритого датованого добового плану/API не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "khmelnytskyi-oe",
-    "territoryLabel": "АТ «Хмельницькобленерго»",
+    "territoryLabel": "Хмельницький / Хмельниччина",
     "operatorLabel": "АТ «Хмельницькобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.821121+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Текстовий план8листопада й адресний пошук. Рік виведено з поточного2026контексту; є попередні редакції. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "cherkasy-oe",
-    "territoryLabel": "ПАТ «Черкасиобленерго»",
+    "territoryLabel": "Черкаси / Черкащина",
     "operatorLabel": "ПАТ «Черкасиобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.227175+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Датований текстовий план08.11; CMS JSON працює. Не плутати ГПВ з обмеженням потужності. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "chernivtsi-oe",
-    "territoryLabel": "АТ «Чернівціобленерго»",
+    "territoryLabel": "Чернівці / Буковина",
     "operatorLabel": "АТ «Чернівціобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.483861+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний URL відомий;403 з нашого клієнта. Поточний план не отримано. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "chernihiv-oe",
-    "territoryLabel": "АТ «Чернігівобленерго»",
+    "territoryLabel": "Чернігів / Чернігівщина",
     "operatorLabel": "АТ «Чернігівобленерго»",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:53:24.577829+00:00",
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. Офіційний сервіс; під час перевірки connection reset/timeout. Поточний план не отримано. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "dtek-pem",
-    "territoryLabel": "ПрАТ «ДТЕК ПЕМ-Енерговугілля»",
+    "territoryLabel": "Спеціальні мережі ПЕМ",
     "operatorLabel": "ПрАТ «ДТЕК ПЕМ-Енерговугілля»",
     "status": "candidate",
     "schedule": "unverified",
@@ -297,11 +297,11 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна сторінка є. Аварійний notice лише в4-денному web-кеші; свіжий план не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "dtek-vvm",
-    "territoryLabel": "ТОВ «ДТЕК Високовольтні мережі»",
+    "territoryLabel": "Спеціальні високовольтні мережі",
     "operatorLabel": "ТОВ «ДТЕК Високовольтні мережі»",
     "status": "candidate",
     "schedule": "unverified",
@@ -309,23 +309,23 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна сторінка є. Аварійний notice лише в4-денному web-кеші; свіжий план не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "cek",
-    "territoryLabel": "ПрАТ \"ПЕЕМ\" ЦЕК\"",
+    "territoryLabel": "Мережі ЦЕК у Дніпропетровській області",
     "operatorLabel": "ПрАТ \"ПЕЕМ\" ЦЕК\"",
     "status": "candidate",
     "schedule": "unverified",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
-    "checkedAt": "2026-11-07T12:49:33.807208+00:00",
-    "reason": "Є зафіксований план на 7 листопада. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "checkedAt": null,
+    "reason": "Перевірка 8 листопада 2026 року. YASNO JSON3/303: план08.11. На сайті також аварійний notice без часу публікації та локальні винятки. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "naftogaz-teplo",
-    "territoryLabel": "ТОВ \"Нафтогаз Тепло\"",
+    "territoryLabel": "Новий Розділ / Новояворівськ, мережі ОСР",
     "operatorLabel": "ТОВ \"Нафтогаз Тепло\"",
     "status": "candidate",
     "schedule": "unverified",
@@ -333,11 +333,11 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна сторінка із затвердженими PDF2025–26. Чинний добовий план08.11 не підтверджено. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "ukrzaliznytsia",
-    "territoryLabel": "АТ \"Укрзалізниця\"",
+    "territoryLabel": "Місцеві мережі Укрзалізниці в різних областях",
     "operatorLabel": "АТ \"Укрзалізниця\"",
     "status": "candidate",
     "schedule": "unverified",
@@ -345,11 +345,11 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційні регіональні HTML-індекси. Прочитаний приклад має7листопада без року; не прийнятий за поточний. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "atomservis",
-    "territoryLabel": "ДПЕМ ПрАТ \"Атомсервіс\"",
+    "territoryLabel": "Південноукраїнськ, мережі ОСР",
     "operatorLabel": "ДПЕМ ПрАТ \"Атомсервіс\"",
     "status": "candidate",
     "schedule": "unverified",
@@ -357,42 +357,42 @@
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Перевірка 8 листопада 2026 року. Офіційна півгодинна HTML/JS-сітка; поточна дата не встановлена, відповідь обрізана bodycap. Точну адресу та автоматичне отримання графіка ще потрібно перевірити."
   },
   {
     "id": "luhansk-leo",
     "territoryLabel": "luhansk-leo",
-    "operatorLabel": "luhansk-leo",
-    "status": "candidate",
-    "schedule": "unverified",
+    "operatorLabel": "ТОВ «Луганське енергетичне об’єднання»",
+    "status": "blocked",
+    "schedule": "unavailable",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Станом на перевірку 8 листопада чинне українське джерело актуальних інтервалів не підтверджене. Старі дані не показуємо як поточний графік."
   },
   {
     "id": "crimea",
     "territoryLabel": "crimea",
-    "operatorLabel": "crimea",
-    "status": "candidate",
-    "schedule": "unverified",
+    "operatorLabel": "Крим / Севастополь — чинний український ОСР endpoint не верифіковано",
+    "status": "blocked",
+    "schedule": "unavailable",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Станом на перевірку 8 листопада чинне українське джерело актуальних інтервалів не підтверджене. Старі дані не показуємо як поточний графік."
   },
   {
     "id": "sevastopol",
     "territoryLabel": "sevastopol",
-    "operatorLabel": "sevastopol",
-    "status": "candidate",
-    "schedule": "unverified",
+    "operatorLabel": "Крим / Севастополь — чинний український ОСР endpoint не верифіковано",
+    "status": "blocked",
+    "schedule": "unavailable",
     "address": "unverified",
     "primaryCost": null,
     "fallbackCost": null,
     "checkedAt": null,
-    "reason": "Джерело внесено до переліку ОСР. Точну адресу, безплатний резерв і наскрізну доставку ще не прийнято."
+    "reason": "Станом на перевірку 8 листопада чинне українське джерело актуальних інтервалів не підтверджене. Старі дані не показуємо як поточний графік."
   }
 ]

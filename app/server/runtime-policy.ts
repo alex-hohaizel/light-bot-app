@@ -22,7 +22,9 @@ export interface ProductionRuntimePolicy {
   readonly apiBodyLogging: false;
   readonly telegramAuthReplayEnabled: boolean;
   readonly canonicalControlEpoch: number|null;
-  readonly productProfileMode: 'disabled'|'read_only';
+  readonly productProfileMode: 'disabled'|'read_only'|'active';
+  readonly sourceIngestionEnabled:boolean;
+  readonly accountLinksEnabled:boolean;
 }
 export type RuntimeEnvironment = Readonly<Record<string, string | undefined>>;
 export class RuntimePolicyError extends Error {
@@ -71,7 +73,7 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
   credential(env, 'SESSION_SECRET', 32);
   credential(env, 'JWT_SECRET', 32);
   const productProfileMode=env.LBA_PRODUCT_PROFILE_MODE||'disabled';
-  if(!['disabled','read_only'].includes(productProfileMode))return rejected('LBA_RUNTIME_PRODUCT_WRITER_NOT_READY');
+  if(!['disabled','read_only','active'].includes(productProfileMode))return rejected('LBA_RUNTIME_PRODUCT_WRITER_NOT_READY');
   const telegramAuthReplayEnabled=explicitSwitch(env,'LBA_AUTH_REPLAY_GUARD');
   if(telegramAuthReplayEnabled && credential(env,'TELEGRAM_BOT_TOKEN',20).split(':')[0]!==PRODUCT_TELEGRAM_IDENTITY.botId)
     return rejected('LBA_RUNTIME_TELEGRAM_IDENTITY_MISMATCH');
@@ -86,9 +88,14 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
   }
   if(telegramUpdatesEnabled&&canonicalControlEpoch===null)return rejected('LBA_RUNTIME_CONTROL_EPOCH_REQUIRED');
   const notificationSchedulerEnabled = explicitSwitch(env, 'LBA_NOTIFICATION_SCHEDULER');
+  const sourceIngestionEnabled=explicitSwitch(env,'LBA_SOURCE_INGESTION');
+  const accountLinksEnabled=explicitSwitch(env,'LBA_ACCOUNT_LINKS');
   const reconcileSubscribersOnStart = explicitSwitch(env, 'LBA_RECONCILE_SUBSCRIBERS_ON_START');
   const migrateSubscribersOnStart = explicitSwitch(env, 'LBA_MIGRATE_SUBSCRIBERS_ON_START');
   const initializeSubscriberHashesOnStart = explicitSwitch(env, 'LBA_INITIALIZE_SUBSCRIBER_HASHES_ON_START');
+  if(productProfileMode==='active'&&(!telegramAuthReplayEnabled||canonicalControlEpoch===null))return rejected('LBA_RUNTIME_CANONICAL_PROFILE_PREREQUISITES');
+  if((telegramUpdatesEnabled||telegramDeliveryEnabled||sourceIngestionEnabled||accountLinksEnabled)&&productProfileMode!=='active')return rejected('LBA_RUNTIME_CANONICAL_PROFILE_REQUIRED');
+  if(productProfileMode==='active'&&(reconcileSubscribersOnStart||migrateSubscribersOnStart||initializeSubscriberHashesOnStart))return rejected('LBA_RUNTIME_LEGACY_WRITER_FORBIDDEN');
   if ((telegramUpdatesEnabled || notificationSchedulerEnabled) && !telegramDeliveryEnabled)
     return rejected('LBA_RUNTIME_TELEGRAM_DELIVERY_REQUIRED');
   if (telegramDeliveryEnabled) {
@@ -111,6 +118,6 @@ export function productionRuntimePolicy(env: RuntimeEnvironment = process.env): 
     botMetadataOnStart: false, seedDataOnStart: false, apiBodyLogging: false,
     telegramAuthReplayEnabled,
     canonicalControlEpoch,
-    productProfileMode: productProfileMode as 'disabled'|'read_only',
+    productProfileMode: productProfileMode as 'disabled'|'read_only'|'active',sourceIngestionEnabled,accountLinksEnabled,
   });
 }

@@ -27,12 +27,12 @@ export const SOURCE_PROFILES: readonly SourceProfile[] = Object.freeze([
   { sourceId: 'yasno-cek', name: 'YASNO · ЦЕК', region: 'dnipropetrovsk', operatorId: 'cek', namespace: 'yasno:3/303', parserNamespace: 'yasno:3/303', parser: 'yasno', endpoint: 'https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/303/planned-outages', researchBlocker: 'Separate DSO; systematic reuse/rate admission and exact binding pending.' },
   { sourceId: 'voe-mirror-vn-progr', name: 'Вінниця · громадське дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:vn-progr', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Unofficial mirror; reuse/rate and primary comparison pending.' },
   { sourceId: 'voe-mirror-olnet93', name: 'Вінниця · резервне дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:olnet93', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/olnet93/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Observed obsolete 2025 payload; not a current fallback. Reuse/rate pending.' },
-  { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: 'Robots disallows automation. No repeated scraping or challenge bypass.', automationBlocked: true },
-  { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: 'Current public payload and repository license observed8Nov; ongoing admission, independent fallback and exact binding remain separate.' },
+  { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: '9Nov current robots wildcardDisallow:/ confirmed by raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991. HTML200 proves plan availability, not automation permission. No repeated scraping or challenge bypass.', automationBlocked: true },
+  { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: '9Nov official/mirror288cell point comparison admits only matched date/target semantics; changed plans need new comparison. Independent fallback,48h and exact binding remain unverified.' },
   { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Single dated plan verified; systematic reuse/rate and exact binding pending.' },
 ].map(profile => Object.freeze(profile)) as SourceProfile[]);
 
-export type SourceAdmission = {
+type ContractSourceAdmission = {
   readonly sourceId: string;
   readonly state: 'blocked';
   readonly reason: string;
@@ -50,6 +50,31 @@ export type SourceAdmission = {
   readonly cacheTtlMs: number;
   readonly maxAgeMs: number;
 };
+/** Local operational decision for published factual group plans. This is explicitly
+ * not a provider-issued license/quota, address certification, or delivery grant.
+ */
+export interface TechnicalDisplayAdmission {
+  readonly sourceId:string;
+  readonly state:'technical_display';
+  readonly revisionId:string;readonly reviewedAt:string;readonly validUntil:string;
+  readonly accessCost:0;readonly costEvidence:string;
+  readonly publicationBasis:{readonly kind:'official_public_feed'|'publisher_public_syndication';readonly evidence:string};
+  readonly formalPrimaryDataLicense:'not_observed';
+  readonly robots:{readonly status:'not_disallowed'|'unreadable_html'|'not_checked';readonly evidence:string};
+  readonly providerQuota:'not_published_in_reviewed_sources';
+  readonly rate:{readonly kind:'local_operating_budget';readonly scope:'origin';readonly minIntervalMs:number;readonly evidence:string};
+  readonly cacheTtlMs:number;readonly maxAgeMs:number;
+  readonly addressBindingVerified:false;readonly deliveryEligible:false;
+  readonly parallel48hAccepted:false;readonly independentFallbackVerified:false;
+  /** A point comparison admits only the compared date/target semantics. Raw
+   * collector metadata may change; a changed plan needs a new comparison. */
+  readonly semanticScope?:{
+    readonly serviceDate:string;
+    readonly comparisonSha256:string;readonly officialRawSha256:string;readonly mirrorRawSha256:string;
+    readonly targetPlanSha256s:Readonly<Record<string,string>>;
+  };
+}
+export type SourceAdmission=ContractSourceAdmission|TechnicalDisplayAdmission;
 /** Fresh positive evidence must be supplied by the integrating owner. No inferred approval. */
 export function researchSourceRegistry(): SourceAdmission[] {
   return SOURCE_PROFILES.map(profile => ({ sourceId: profile.sourceId, state: 'blocked', reason: profile.researchBlocker }));
@@ -98,6 +123,7 @@ export interface IntakeProvenance {
   observedAt: string;
   publishedAt: string;
   transport: 'injected_http';
+  operatingAdmission?:{scope:'technical_group_display';publicationBasis:TechnicalDisplayAdmission['publicationBasis']['kind'];formalPrimaryDataLicense:'not_observed';providerQuota:'not_published_in_reviewed_sources'};
 }
 export type SourceIntakeResult = {
   state: 'available';
@@ -117,7 +143,21 @@ export type SourceIntakeResult = {
   deliveryEligible: false;
 };
 interface RawResponse { raw: string; rawSha256: string; rawBytes: number; observedAt: string; responseUrl: string }
-type AllowedAdmission = Extract<SourceAdmission, { state: 'admitted' }>;
+/** HTTP-envelope validation alone is not semantic acceptance. Persist privately in
+ * the public-source cache; only projectSnapshot successful views reach consumers. */
+export interface CapturedPublicSourceRaw extends RawResponse {
+  sourceId: string;
+  admissionRevisionId: string;
+  requestedUrl: string;
+  semanticValidation: 'pending';
+}
+export interface SourceIntake {
+  load(request: SourceIntakeRequest): Promise<SourceIntakeResult>;
+  snapshotRaw(sourceId: string): CapturedPublicSourceRaw | null;
+  projectSnapshot(request: SourceIntakeRequest, snapshot: CapturedPublicSourceRaw,
+    options?: {stale?: boolean; refreshFailure?: IntakeCode}): SourceIntakeResult;
+}
+type AllowedAdmission = Exclude<SourceAdmission, { state: 'blocked' }>;
 class IntakeFailure extends Error {
   readonly code: IntakeCode;
   constructor(code: IntakeCode) { super(code); this.code = code; }
@@ -126,10 +166,41 @@ const fail = (code: IntakeCode): never => { throw new IntakeFailure(code); };
 const evidence = (v: unknown): boolean => typeof v === 'string' && v.trim().length > 0 && v.length <= 2_048;
 const integer = (n: unknown, min: number, max: number): n is number => Number.isSafeInteger(n) && (n as number) >= min && (n as number) <= max;
 const sha = (value: string | Uint8Array) => createHash('sha256').update(value).digest('hex');
+/** Excludes observation/publication/collector metadata and source attribution;
+ * includes the complete normalized electrical plan for this exact target/day. */
+export function technicalPlanSha256(view:ScheduleView):string {
+  // Stale is an observation label, not a changed electrical matrix. This scope
+  // is restricted to hour-matrix plans, whose underlying state is determined
+  // by coverage and interval kinds; it never certifies an emergency overlay.
+  const status=view.status==='stale'?(view.dayCoverage==='none'?'not_published':view.intervals.some(i=>i.kind==='planned_outage')?'published':view.intervals.length?'possible':'no_planned_outages'):view.status;
+  return sha(JSON.stringify({operatorId:view.operatorId,namespace:view.namespace,targetId:view.targetId,serviceDate:view.serviceDate,
+    status,dayCoverage:view.dayCoverage,intervals:view.intervals.map(i=>({startsAt:i.startsAt,endsAt:i.endsAt,kind:i.kind}))}));
+}
+const intakeCodes = new Set(['UNKNOWN_SOURCE','INVALID_REQUEST','SOURCE_SCOPE_MISMATCH','SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_CLOCK_INVALID','SOURCE_BUSY','SOURCE_RATE_LIMITED','SOURCE_RATE_LIMIT_UNVERIFIED','SOURCE_TIMEOUT','SOURCE_TRANSPORT_FAILED','SOURCE_HTTP_REJECTED','SOURCE_ORIGIN_REJECTED','SOURCE_BODY_LIMIT','SOURCE_CONTENT_TYPE_REJECTED','SOURCE_UTF8_REJECTED','SOURCE_ENCODING_REJECTED','SOURCE_SCHEMA_REJECTED']);
 const header = (headers: SourceHttpResponse['headers'], name: string) => Object.entries(headers).find(([key]) => key.toLowerCase() === name)?.[1];
 function validateAdmission(entry: SourceAdmission): void {
   if (!SOURCE_PROFILES.some(p => p.sourceId === entry.sourceId)) throw new Error('UNKNOWN_SOURCE_ADMISSION');
   if (entry.state === 'blocked') { if (!evidence(entry.reason)) throw new Error('INVALID_SOURCE_ADMISSION'); return; }
+  if(entry.state==='technical_display'){
+    const profile=SOURCE_PROFILES.find(p=>p.sourceId===entry.sourceId)!;
+    const official=profile.parser==='yasno'||profile.parser==='kharkiv_rss';
+    if(!evidence(entry.revisionId)||!validInstant(entry.reviewedAt)||!validInstant(entry.validUntil)||Date.parse(entry.validUntil)<=Date.parse(entry.reviewedAt)||
+      entry.accessCost!==0||!evidence(entry.costEvidence)||entry.publicationBasis?.kind!==(official?'official_public_feed':'publisher_public_syndication')||!evidence(entry.publicationBasis.evidence)||
+      entry.formalPrimaryDataLicense!=='not_observed'||entry.providerQuota!=='not_published_in_reviewed_sources'||
+      !['not_disallowed','unreadable_html','not_checked'].includes(entry.robots?.status)||!evidence(entry.robots.evidence)||
+      entry.robots.status==='unreadable_html'&&profile.parser!=='yasno'||entry.robots.status==='not_checked'&&official||
+      entry.rate?.kind!=='local_operating_budget'||entry.rate.scope!=='origin'||!evidence(entry.rate.evidence)||!integer(entry.rate.minIntervalMs,1000,86400000)||
+      !integer(entry.cacheTtlMs,1000,3600000)||!integer(entry.maxAgeMs,entry.cacheTtlMs,86400000)||entry.addressBindingVerified!==false||entry.deliveryEligible!==false||
+      entry.parallel48hAccepted!==false||entry.independentFallbackVerified!==false)throw Error('INVALID_TECHNICAL_SOURCE_ADMISSION');
+    const scope=entry.semanticScope,hash64=(v:unknown)=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
+    if(entry.sourceId==='mirror-odesa'){
+      const targets=Array.from({length:6},(_,i)=>[`GPV${i+1}.1`,`GPV${i+1}.2`]).flat();
+      if(!scope||!/^\d{4}-\d{2}-\d{2}$/.test(scope.serviceDate)||!hash64(scope.comparisonSha256)||!hash64(scope.officialRawSha256)||!hash64(scope.mirrorRawSha256)||
+        !scope.targetPlanSha256s||Object.keys(scope.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(scope.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
+      try{calendarDate(scope.serviceDate);}catch{throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');}
+    }else if(scope!==undefined)throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
+    return;
+  }
   if (entry.state !== 'admitted' || !evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) ||
       Date.parse(entry.validUntil) <= Date.parse(entry.reviewedAt) || entry.accessCost !== 0 || !evidence(entry.costEvidence) ||
       entry.license?.systematicReuse !== 'allowed' || !evidence(entry.license.evidence) ||
@@ -144,7 +215,7 @@ export function createSourceIntake(options: {
   transport: SourceHttpTransport;
   now: () => number;
   limits?: { timeoutMs?: number; maxBytes?: number; maxConcurrent?: number };
-}): { load(request: SourceIntakeRequest): Promise<SourceIntakeResult> } {
+}): SourceIntake {
   const timeoutMs = options.limits?.timeoutMs ?? 8_000, maxBytes = options.limits?.maxBytes ?? 2_000_000,
     maxConcurrent = options.limits?.maxConcurrent ?? 2;
   if (typeof options.transport !== 'function' || typeof options.now !== 'function' || !integer(timeoutMs, 1, 30_000) ||
@@ -155,11 +226,12 @@ export function createSourceIntake(options: {
     validateAdmission(entry);
     if (registry.has(entry.sourceId)) throw new Error('DUPLICATE_SOURCE_ADMISSION');
     registry.set(entry.sourceId, structuredClone(entry));
-    if (entry.state === 'admitted') {
+    if (entry.state !== 'blocked') {
       const origin = new URL(SOURCE_PROFILES.find(p => p.sourceId === entry.sourceId)!.endpoint).origin;
       originInterval.set(origin, Math.max(originInterval.get(origin) ?? 0, entry.rate.minIntervalMs));
     }
   }
+  const captures = new Map<string, CapturedPublicSourceRaw>();
   const cache = new Map<string, RawResponse>(), inFlight = new Map<string, Promise<RawResponse>>(),
     nextAttempt = new Map<string, number>();
   let active = 0, lastClock = -Infinity;
@@ -171,7 +243,7 @@ export function createSourceIntake(options: {
   function admitted(profile: SourceProfile, time: number): AllowedAdmission {
     if (profile.automationBlocked) return fail('SOURCE_NOT_ADMITTED');
     const entry = registry.get(profile.sourceId);
-    if (!entry || entry.state !== 'admitted') return fail('SOURCE_NOT_ADMITTED');
+    if (!entry || entry.state === 'blocked') return fail('SOURCE_NOT_ADMITTED');
     if (time < Date.parse(entry.reviewedAt) || time >= Date.parse(entry.validUntil)) return fail('SOURCE_ADMISSION_EXPIRED');
     return entry;
   }
@@ -204,7 +276,9 @@ export function createSourceIntake(options: {
       const encoding = header(response.headers, 'content-encoding');
       if (encoding !== undefined && encoding.trim().toLowerCase() !== 'identity') return fail('SOURCE_ENCODING_REJECTED');
       const type = (header(response.headers, 'content-type') ?? '').split(';')[0].trim().toLowerCase();
-      const accepted = profile.parser === 'yasno' || profile.parser === 'hour_matrix' && profile.parserNamespace !== 'dtek:oem'
+      const pinnedGithubJson = ['voe-mirror-vn-progr','voe-mirror-olnet93','mirror-odesa'].includes(profile.sourceId) &&
+        profile.parser === 'hour_matrix' && new URL(profile.endpoint).hostname === 'raw.githubusercontent.com' && profile.endpoint.endsWith('.json');
+      const accepted = pinnedGithubJson ? ['application/json', 'text/plain'] : profile.parser === 'yasno' || profile.parser === 'hour_matrix' && profile.parserNamespace !== 'dtek:oem'
         ? ['application/json'] : profile.parser === 'kharkiv_rss'
           ? ['application/rss+xml', 'application/xml', 'text/xml'] : ['text/html'];
       if (!accepted.includes(type)) return fail('SOURCE_CONTENT_TYPE_REJECTED');
@@ -223,6 +297,8 @@ export function createSourceIntake(options: {
       const observed = clock(); admitted(profile, observed);
       const output = { raw, rawSha256: sha(bytes), rawBytes: total, observedAt: new Date(observed).toISOString(), responseUrl: response.url };
       if (controller.signal.aborted) return fail('SOURCE_TIMEOUT');
+      captures.set(profile.sourceId, { ...output, sourceId: profile.sourceId, admissionRevisionId: entry.revisionId,
+        requestedUrl: profile.endpoint, semanticValidation: 'pending' });
       return output;
     });
     const deadline = new Promise<never>((_resolve, reject) => {
@@ -259,22 +335,55 @@ export function createSourceIntake(options: {
       if (!view.publishedAt || view.operatorId !== request.operatorId || view.namespace !== request.namespace || view.targetId !== request.targetId ||
           view.serviceDate !== request.serviceDate || view.source.revision !== raw.rawSha256) return fail('SOURCE_SCHEMA_REJECTED');
       validateScheduleView(view);
+      if(entry.state==='technical_display'&&entry.semanticScope){
+        const scope=entry.semanticScope;
+        if(request.serviceDate!==scope.serviceDate||!Object.hasOwn(scope.targetPlanSha256s,request.targetId)||
+          technicalPlanSha256(view)!==scope.targetPlanSha256s[request.targetId])return fail('SOURCE_SCHEMA_REJECTED');
+      }
     } catch { return fail('SOURCE_SCHEMA_REJECTED'); }
     return { state: 'available', cache: cacheState, view, provenance: { sourceId: profile.sourceId, admissionRevisionId: entry.revisionId,
       requestedUrl: profile.endpoint, responseUrl: raw.responseUrl, rawSha256: raw.rawSha256, rawBytes: raw.rawBytes,
-      observedAt: raw.observedAt, publishedAt: view.publishedAt!, transport: 'injected_http' },
+      observedAt: raw.observedAt, publishedAt: view.publishedAt!, transport: 'injected_http',
+      ...(entry.state==='technical_display'?{operatingAdmission:{scope:'technical_group_display' as const,publicationBasis:entry.publicationBasis.kind,formalPrimaryDataLicense:'not_observed' as const,providerQuota:'not_published_in_reviewed_sources' as const}}:{}) },
       ...(refreshFailure ? { refreshFailure } : {}), addressBindingVerified: false, deliveryEligible: false };
   }
-  return Object.freeze({ async load(input: SourceIntakeRequest): Promise<SourceIntakeResult> {
+  function checkedRequest(request: SourceIntakeRequest): SourceProfile {
+    if (!request || typeof request.sourceId !== 'string') return fail('INVALID_REQUEST');
+    const profile = SOURCE_PROFILES.find(p => p.sourceId === request.sourceId);
+    if (!profile) return fail('UNKNOWN_SOURCE');
+    if (request.operatorId !== profile.operatorId || request.namespace !== profile.namespace) return fail('SOURCE_SCOPE_MISMATCH');
+    if (typeof request.serviceDate !== 'string' || typeof request.targetId !== 'string' ||
+        !(profile.parser === 'hour_matrix' ? /^GPV[1-6]\.[12]$/ : profile.parser === 'kharkiv_rss' ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request.targetId)) return fail('INVALID_REQUEST');
+    try { calendarDate(request.serviceDate); } catch { return fail('INVALID_REQUEST'); }
+    return profile;
+  }
+  function rejected(request: SourceIntakeRequest, error: unknown): SourceIntakeResult {
+    const code = error instanceof IntakeFailure ? error.code : 'SOURCE_TRANSPORT_FAILED';
+    return {state: ['SOURCE_NOT_ADMITTED','SOURCE_ADMISSION_EXPIRED','SOURCE_SCOPE_MISMATCH'].includes(code) ? 'blocked' : 'unavailable',
+      sourceId: typeof request?.sourceId === 'string' ? request.sourceId : '', code, view: null, addressBindingVerified: false, deliveryEligible: false};
+  }
+  return Object.freeze({
+    snapshotRaw(sourceId: string) { const value = captures.get(sourceId); return value ? structuredClone(value) : null; },
+    projectSnapshot(input: SourceIntakeRequest, snapshot: CapturedPublicSourceRaw, flags: {stale?: boolean; refreshFailure?: IntakeCode} = {}) {
+      const request = {...input};
+      try {
+        const profile = checkedRequest(request), time = clock(), entry = admitted(profile, time);
+        const allowed = ['raw','rawSha256','rawBytes','observedAt','responseUrl','sourceId','admissionRevisionId','requestedUrl','semanticValidation'];
+        if (!snapshot || typeof snapshot !== 'object' || Object.keys(snapshot).length !== allowed.length || Object.keys(snapshot).some(k => !allowed.includes(k)) ||
+          snapshot.sourceId !== profile.sourceId || snapshot.admissionRevisionId !== entry.revisionId || snapshot.requestedUrl !== profile.endpoint ||
+          snapshot.responseUrl !== profile.endpoint || snapshot.semanticValidation !== 'pending' || typeof snapshot.raw !== 'string' ||
+          !integer(snapshot.rawBytes,1,maxBytes) || Buffer.byteLength(snapshot.raw,'utf8') !== snapshot.rawBytes || snapshot.rawSha256 !== sha(snapshot.raw) ||
+          !validInstant(snapshot.observedAt) || Date.parse(snapshot.observedAt) < Date.parse(entry.reviewedAt) || Date.parse(snapshot.observedAt) > time ||
+          !flags || typeof flags !== 'object' || Object.keys(flags).some(k => !['stale','refreshFailure'].includes(k)) || flags.stale !== undefined && typeof flags.stale !== 'boolean' ||
+          flags.refreshFailure !== undefined && (typeof flags.refreshFailure !== 'string' || !intakeCodes.has(flags.refreshFailure)))
+          return fail('SOURCE_SCHEMA_REJECTED');
+        return project(profile,entry,{...snapshot},request,time,flags.stale ? 'stale' : 'fresh',flags.refreshFailure);
+      } catch (error) { return rejected(request,error); }
+    },
+    async load(input: SourceIntakeRequest): Promise<SourceIntakeResult> {
     const request = { ...input };
     try {
-      if (!request || typeof request.sourceId !== 'string') return fail('INVALID_REQUEST');
-      const profile = SOURCE_PROFILES.find(p => p.sourceId === request.sourceId);
-      if (!profile) return fail('UNKNOWN_SOURCE');
-      if (request.operatorId !== profile.operatorId || request.namespace !== profile.namespace) return fail('SOURCE_SCOPE_MISMATCH');
-      if (typeof request.serviceDate !== 'string' || typeof request.targetId !== 'string' ||
-          !(profile.parser === 'hour_matrix' ? /^GPV[1-6]\.[12]$/ : profile.parser === 'kharkiv_rss' ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request.targetId)) return fail('INVALID_REQUEST');
-      try { calendarDate(request.serviceDate); } catch { return fail('INVALID_REQUEST'); }
+      const profile = checkedRequest(request);
       const time = clock(), entry = admitted(profile, time), existing = cache.get(profile.sourceId);
       if (existing && time - Date.parse(existing.observedAt) <= entry.cacheTtlMs)
         return project(profile, entry, existing, request, time, 'fresh');
@@ -296,9 +405,7 @@ export function createSourceIntake(options: {
         throw error;
       }
     } catch (error) {
-      const code = error instanceof IntakeFailure ? error.code : 'SOURCE_TRANSPORT_FAILED';
-      return { state: ['SOURCE_NOT_ADMITTED', 'SOURCE_ADMISSION_EXPIRED', 'SOURCE_SCOPE_MISMATCH'].includes(code) ? 'blocked' : 'unavailable',
-        sourceId: typeof request.sourceId === 'string' ? request.sourceId : '', code, view: null, addressBindingVerified: false, deliveryEligible: false };
+      return rejected(request,error);
     }
   } });
 }

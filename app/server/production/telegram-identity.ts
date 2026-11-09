@@ -1,8 +1,8 @@
 import {randomUUID} from 'node:crypto';
-import type {AuthReplayPool} from './auth-replay.ts';
+import type {AuthReplayPool,AuthReplayClient} from './auth-replay.ts';
 import type {VerifiedTelegramUser} from '../telegram-init-data.ts';
 /** Called only after verified Telegram proof was durably reserved. Never merges by username/email/chat heuristics. */
-export function createTelegramIdentityResolver(pool:AuthReplayPool){
+export function createTelegramIdentityResolver(pool:AuthReplayPool,options:{isDetached?:(client:AuthReplayClient,subject:string)=>Promise<boolean>}={}){
  return async(user:VerifiedTelegramUser):Promise<string>=>{
   if(!user||!/^[1-9]\d{0,15}$/.test(user.id))throw Error('TELEGRAM_IDENTITY_INVALID');
   const subject=user.id,client=await pool.connect();
@@ -14,6 +14,7 @@ export function createTelegramIdentityResolver(pool:AuthReplayPool){
     await client.query('commit');return linked.rows[0].owner;
    }
    if(linked.rows.length)throw Error('TELEGRAM_IDENTITY_AMBIGUOUS');
+   if(await options.isDetached?.(client,subject))throw Error('TELEGRAM_IDENTITY_CONFIRMATION_REQUIRED');
    // A dangling link or old convention-based account is retained for reconciliation, never overwritten or silently duplicated.
    const unresolved=await client.query("select 1 from linked_accounts where provider='telegram' and provider_id=$1 union all select 1 from users where id=$2",[subject,'tg_'+subject]);
    if(unresolved.rows.length)throw Error('TELEGRAM_IDENTITY_CONFIRMATION_REQUIRED');

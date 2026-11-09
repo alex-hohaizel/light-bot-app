@@ -8,6 +8,7 @@ import { ComparePage } from "./pages/ComparePage";
 import ProductRuntime from './product-runtime/ProductRuntime';
 import LiveProduct from './product-runtime/LiveProduct';
 import {LocalPublicPlan} from './product-review/ProductTools';
+import {LivePublicPlan} from './product-review/LiveProductTools';
 import BotReview from './bot-review/BotReview';
 import DataReview from './data-review/DataReview';
 
@@ -463,6 +464,7 @@ function App() {
         <Switch>
           {(window as Window & {__LBA_ISOLATED__?:boolean}).__LBA_ISOLATED__ && <Route path="/">{()=> <ProductRuntime/>}</Route>}
           {(window as Window & {__LBA_ISOLATED__?:boolean}).__LBA_ISOLATED__ && <Route path="/local-share/:token" component={LocalPublicPlan} />}
+          {!(window as Window & {__LBA_ISOLATED__?:boolean}).__LBA_ISOLATED__ && <Route path="/shared-plan/:token" component={LivePublicPlan} />}
           {!(window as Window & {__LBA_ISOLATED__?:boolean}).__LBA_ISOLATED__ && <Route path="/next" component={LiveProduct} />}
           <Route path="/legacy" component={ThemeRoot} />
           <Route path="/review/data" component={DataReview} />
@@ -471,7 +473,7 @@ function App() {
           <Route path="/s/:shareId" component={SharePage} />
           <Route path="/c/:shareId" component={ComparePage} />
           <Route>
-            <ThemeRoot />
+            <LiveProduct />
           </Route>
         </Switch>
       </QueryClientProvider>

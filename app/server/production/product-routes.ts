@@ -5,12 +5,13 @@ import type {AddressBinding,AddressRecord,ScheduleView} from '../../shared/produ
 import type {BotProfile,AddressOption} from '../../shared/bot/types.ts';
 import {validInstant,validateScheduleView} from '../../shared/schedule-core.ts';
 import {parseProfileRequest} from '../domain/profile-service.ts';
+import {profileErrorMessage} from '../../shared/profile-errors.ts';
 import {parseLocationNotificationPolicy,parseNotificationPolicy} from '../../shared/notification-policy.ts';
 import type {LegacyLiveProfileRead,VerifiedLegacyPrincipal} from './profile-reader.ts';
 import type {createProductionProfileStore,ProductionProfileSnapshot,ProductionProfileReceipt} from './profile-store.ts';
 
 type CanonicalStore=Pick<ReturnType<typeof createProductionProfileStore>,'snapshot'|'commitProfileMutation'|'recoverReceipt'>;
-type CommonPorts={authenticate:RequestHandler;releaseId:string};
+type CommonPorts={authenticate:RequestHandler;releaseId:string;toolsEnabled?:boolean};
 export type LiveProductPorts=CommonPorts&(
   |{mode:'disabled'|'read_only';read(principal:VerifiedLegacyPrincipal):Promise<LegacyLiveProfileRead>}
   |{mode:'active';store:CanonicalStore}
@@ -35,8 +36,13 @@ function address(a:AddressRecord):AddressRecord{
   if(!object(a)||!object(a.house)||!Array.isArray(a.aliases)||a.aliases.length>1000)return fail();
   for(const v of [a.id,a.territoryId])stringValue(v,512,false);for(const v of [a.label,a.locality,a.street,a.house.number,a.house.literal])stringValue(v);
   for(const v of [a.house.letter,a.house.building])if(v!==undefined)stringValue(v,255);for(const v of a.aliases)stringValue(v,4096);
+  for(const v of [a.localityId,a.streetId])if(v!==undefined)stringValue(v,512,false);
+  for(const values of [a.localityAliases,a.placeNames])if(values!==undefined){if(!Array.isArray(values)||values.length>1000)return fail();for(const v of values)stringValue(v,4096,false);}
+  if(a.objectKind!==undefined&&!['residential','commercial','public','other'].includes(a.objectKind))return fail();
   return {id:a.id,label:a.label,territoryId:a.territoryId,locality:a.locality,street:a.street,
-    house:{number:a.house.number,literal:a.house.literal,...(a.house.letter!==undefined?{letter:a.house.letter}:{}),...(a.house.building!==undefined?{building:a.house.building}:{})},aliases:[...a.aliases]};
+    house:{number:a.house.number,literal:a.house.literal,...(a.house.letter!==undefined?{letter:a.house.letter}:{}),...(a.house.building!==undefined?{building:a.house.building}:{})},aliases:[...a.aliases],
+    ...(a.localityId!==undefined?{localityId:a.localityId}:{}),...(a.streetId!==undefined?{streetId:a.streetId}:{}),
+    ...(a.localityAliases!==undefined?{localityAliases:[...a.localityAliases]}:{}),...(a.placeNames!==undefined?{placeNames:[...a.placeNames]}:{}),...(a.objectKind!==undefined?{objectKind:a.objectKind}:{})};
 }
 function binding(b:AddressBinding):AddressBinding{
   if(!object(b))return fail();for(const v of [b.addressId,b.operatorId,b.namespace,b.targetId,b.revisionId])stringValue(v,512,false);
@@ -77,11 +83,11 @@ function plan(v:ScheduleView):ScheduleView{
     publishedAt:v.publishedAt,observedAt:v.observedAt,freshness:v.freshness,synthetic:false,deliveryEligible:v.deliveryEligible,
     ...(v.previousRevisionId!==undefined?{previousRevisionId:v.previousRevisionId}:{}),...(v.previousIntervals!==undefined?{previousIntervals:v.previousIntervals.map(interval)}:{}),...(v.notice!==undefined?{notice:v.notice}:{})};
 }
-function activeSnapshot(value:ProductionProfileSnapshot,owner:string,releaseId:string):LiveProfileSnapshot{
+function activeSnapshot(value:ProductionProfileSnapshot,owner:string,releaseId:string,toolsEnabled=false):LiveProfileSnapshot{
   if(value?.runtime!=='production'||value.profile?.id!==owner||!text(value.sessionId)||!Number.isSafeInteger(value.revision)||value.revision<0||!validInstant(value.serverNow)||!Array.isArray(value.catalog)||!Array.isArray(value.plans))return fail();
   const p=profile(value.profile),needsConfirmation=p.locations.some(l=>l.binding.status!=='verified'||l.binding.kind==='user_selected_group');
   return {profile:p,sessionId:value.sessionId,revision:value.revision,catalog:value.catalog.map(option),plans:value.plans.map(plan),simulationOnly:false,serverNow:value.serverNow,releaseId,
-    capabilities:{profileMutations:true,tools:false},migration:needsConfirmation
+    capabilities:{profileMutations:true,tools:toolsEnabled},migration:needsConfirmation
       ?{status:'needs_confirmation',message:'Профіль збережено. Для частини адрес потрібно підтвердити прив’язку до графіків.'}
       :{status:'ready',message:p.locations.length?'Налаштування профілю доступні для змін.':'Профіль створено. Додайте адресу, щоб переглядати свій план.'}};
 }
@@ -92,8 +98,8 @@ function receipt(value:ProductionProfileReceipt,inputId:string):LiveProfileRecei
 function errorResponse(res:Response,error:unknown){
   const code=error instanceof Error?error.message:'';
   if(code==='PRODUCTION_COMMIT_UNKNOWN')return res.status(503).json({code,error:'Результат збереження ще перевіряється. Повторіть перевірку з тим самим номером запиту.',nextAction:'recover_same_request',retryWithSameRequestId:true});
-  if(['PRODUCTION_INPUT_ID_CONFLICT','PROFILE_REVISION_CONFLICT','PRODUCTION_PROFILE_REVISION_CONFLICT','PROFILE_BINDING_REVISION_CONFLICT','PROFILE_ADDRESS_NOT_FOUND','PROFILE_OPTION_NOT_FOUND','PROFILE_ADDRESS_ALREADY_SAVED','PROFILE_ADDRESS_LIMIT','PROFILE_BINDING_NOT_VERIFIED'].includes(code))
-    return res.status(409).json({code,error:code==='PRODUCTION_INPUT_ID_CONFLICT'?'Цей номер запиту вже використано для іншої зміни.':'Профіль змінився або адреса потребує перевірки. Оновіть дані перед наступною зміною.'});
+  if(['PRODUCTION_INPUT_ID_CONFLICT','PROFILE_REVISION_CONFLICT','PRODUCTION_PROFILE_REVISION_CONFLICT','PROFILE_BINDING_REVISION_CONFLICT','PROFILE_SELECTION_CHANGED','PROFILE_SELECTION_REQUIRED','PROFILE_ADDRESS_NOT_FOUND','PROFILE_OPTION_NOT_FOUND','PROFILE_ADDRESS_ALREADY_SAVED','PROFILE_ADDRESS_LIMIT','PROFILE_BINDING_NOT_VERIFIED'].includes(code))
+    return res.status(409).json({code,error:profileErrorMessage(code)});
   if(code==='PRODUCTION_INVALID_INPUT'||code==='INVALID_PROFILE_INPUT')return res.status(400).json({code:'LIVE_PROFILE_INVALID_INPUT',error:'Перевірте дані зміни профілю.'});
   if(code==='PRODUCTION_TRANSACTION_RETRY_REQUIRED')return res.status(503).json({code,error:'Не вдалося завершити зміну. Повторіть той самий запит.',nextAction:'retry_same_request',retryWithSameRequestId:true});
   return res.status(503).json({code:'LIVE_PROFILE_UNAVAILABLE',error:'Не вдалося перевірити збережений профіль. Повторіть спробу з тим самим номером запиту.',retryWithSameRequestId:true});
@@ -109,7 +115,7 @@ export function registerLiveProductRoutes(app:Express,ports:LiveProductPorts){
     if(mode==='disabled')return res.status(503).json({error:'Оновлена версія ще готується до запуску.'});
     const p=principal(req,res);if(!p)return;
     try{
-      if(mode==='active')return res.json(activeSnapshot(await store!.snapshot(p),p.ownerId,releaseId));
+      if(mode==='active')return res.json(activeSnapshot(await store!.snapshot(p),p.ownerId,releaseId,ports.toolsEnabled===true));
       const value=await read!(p);
       if(value.projection.profile.id!==p.ownerId||typeof value.sourceDigest!=='string'||!/^[a-f0-9]{64}$/.test(value.sourceDigest)||!validInstant(value.serverNow))return fail();
       const snapshot:LiveProfileSnapshot={profile:profile(value.projection.profile),revision:0,sessionId:'legacy-read:'+value.sourceDigest,catalog:[],plans:[],simulationOnly:false,serverNow:value.serverNow,releaseId,
@@ -123,8 +129,9 @@ export function registerLiveProductRoutes(app:Express,ports:LiveProductPorts){
     if(mode!=='active')return res.status(503).json({code:'LIVE_PROFILE_WRITER_NOT_READY',error:'Зміни поки недоступні: триває перевірка перенесення профілів.'});
     const p=principal(req,res);if(!p)return;
     let request;try{request=parseProfileRequest(req.body);}catch{return res.status(400).json({code:'LIVE_PROFILE_INVALID_INPUT',error:'Перевірте дані зміни профілю.'});}
+    if((request.mutation.kind==='add'||request.mutation.kind==='replace')&&!request.mutation.selectionFingerprint)return res.status(409).json({code:'PROFILE_SELECTION_REQUIRED',error:profileErrorMessage('PROFILE_SELECTION_REQUIRED')});
     try{
-      const value=await store!.commitProfileMutation(p,request),snapshot=activeSnapshot(value.snapshot,p.ownerId,releaseId),accepted=receipt(value.receipt,'app:'+request.id);
+      const value=await store!.commitProfileMutation(p,request),snapshot=activeSnapshot(value.snapshot,p.ownerId,releaseId,ports.toolsEnabled===true),accepted=receipt(value.receipt,'app:'+request.id);
       if(accepted.sessionId!==snapshot.sessionId||accepted.sessionRevision>snapshot.revision||typeof value.replayed!=='boolean')return fail();
       return res.json({...snapshot,receipt:accepted,replayed:value.replayed});
     }catch(error){return errorResponse(res,error);}

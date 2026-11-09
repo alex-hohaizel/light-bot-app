@@ -36,6 +36,22 @@ export interface ManualGroup {
   targetId: string;
   revisionId: string;
 }
+/** Optional trusted provider lookup context. These are source directory facts,
+ * never an owner claim, a complete address index or a delivery certificate. */
+export interface BotProviderDirectory {
+  id:string;namespace:string;operatorId:string;localityId:string;locality:string;
+  territoryId:string;territoryLabel:string;
+}
+export type BotProviderLookupState='available'|'loading'|'unavailable'|'deferred'|'stale';
+export interface BotProviderStreets {
+  directoryId:string;state:BotProviderLookupState;query:string;snapshotId?:string;expiresAt?:string;
+  items:Array<{id:number;value:string}>;code?:string;retryAt?:string;
+}
+export interface BotProviderHouses {
+  directoryId:string;state:BotProviderLookupState;query:string;streetId:number;streetValue:string;
+  streetSnapshotId:string;houseSnapshotId?:string;expiresAt?:string;
+  items:Array<{id:number;value:string;optionId?:string}>;code?:string;retryAt?:string;
+}
 export type BotStage = 'home' | 'addresses' | 'settings' | 'locality' | 'street' | 'street_choice' |
   'house' | 'connection' | 'address_confirm' | 'subscription' | 'location' | 'rename' |
   'delete_confirm' | 'reminder_time' | 'quiet_hours' | 'briefing_time' | 'minimum_duration' |
@@ -48,20 +64,32 @@ export interface AddressDraft {
   originalAddressId?: string;
   locality?: string;
   territoryId?: string;
+  localityId?: string;
+  localityQuery?: string;
   street?: string;
+  streetIdentity?: string;
   streetQuery?: string;
   house?: string;
   optionId?: string;
   bindingRevision?: string;
+  selectionFingerprint?: string;
+  providerDirectoryId?:string;
+  providerStreetId?:number;
+  providerStreetSnapshotId?:string;
+  providerHouseSnapshotId?:string;
   label?: string;
   resumeStage: BotStage;
 }
 export type CallbackAction =
   | { kind: 'command'; value: string }
-  | { kind: 'page'; scope: 'addresses' | 'locality' | 'street' | 'manual_group' | 'connection'; value: number }
+  | { kind: 'page'; scope: 'addresses' | 'locality' | 'street' | 'manual_group' | 'connection' | 'provider_street' | 'provider_house'; value: number }
   | { kind: 'locality'; value: string }
   | { kind: 'street'; value: string }
+  | { kind: 'provider_street'; value: string }
+  | { kind: 'provider_house'; value: string }
   | { kind: 'connection'; value: string }
+  | { kind: 'house_suggestion'; value: string }
+  | { kind: 'place'; value: string }
   | { kind: 'location'; value: string }
   | { kind: 'confirm_address' }
   | { kind: 'subscription'; value: 'on' | 'off' }
@@ -108,6 +136,11 @@ export interface BotContext {
   addresses: AddressOption[];
   plans: ScheduleView[];
   manualGroups?: ManualGroup[];
+  operatorLabels?: Readonly<Record<string,string>>;
+  addressCatalogStatus?: 'ready' | 'loading' | 'unavailable';
+  providerDirectory?:BotProviderDirectory[];
+  providerStreets?:BotProviderStreets;
+  providerHouses?:BotProviderHouses;
   maxAddresses?: number;
   callbackTtlSeconds?: number;
   migration?: { status: 'needs_confirmation' | 'in_progress' | 'complete' | 'failed'; detail?: string };
