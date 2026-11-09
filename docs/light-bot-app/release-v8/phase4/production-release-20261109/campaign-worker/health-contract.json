@@ -1,0 +1,34 @@
+{
+  "kind": "lba-release-public-health-contract/1",
+  "sourcePaths": [
+    "app/server/index.ts",
+    "app/server/production/release-campaign.ts",
+    "app/server/production/canonical-runtime.ts"
+  ],
+  "requiredTechnicalFields": {
+    "releaseId": "actualcompile-stampedsourceSHA256",
+    "buildSha256": "sameactualcompile-stampedsourceSHA256",
+    "configuredBotId": "8577497098; configuration, NOTnativegetMeproof",
+    "origin": "https://power-ukraine.net",
+    "observedAt": "freshISOinstantcreatedperGET",
+    "mode": "production",
+    "profileMode": "active",
+    "status": "process_serving",
+    "canonical.ready": true,
+    "canonical.started": true,
+    "canonical.stopped": false
+  },
+  "campaignAdditionalFields": {
+    "noticeReleaseId": "explicitapprovedcampaignreleaseID",
+    "deploymentRef": "explicitlogicaloperatorrolloutreference, prefixlba-release:",
+    "canonical.deliveryReady": true
+  },
+  "logicalVsNative": "deploymentRef maps engineCampaignBinding.deploymentId butisNOTproviderdeploymentUUID. Providerget_publish_status nativeID separatelyobservedbyroot/operator.",
+  "notRequiredForCoreFinalize": [
+    "noticeReleaseId",
+    "deploymentRef",
+    "productAccepted",
+    "canonical.releaseCampaign.state"
+  ],
+  "notEvidence": "Thisfileisfieldcontract,notanactualpublishedhealthobservation. No productionrequestperformed."
+}

@@ -1,0 +1,240 @@
+{
+  "schema": "lba-component-execution-receipt/1",
+  "componentId": "lba-v8-production-campaign-worker",
+  "actor": "/root/production_campaign_worker",
+  "status": "executed_pending_independent_qa",
+  "at": "2026-11-09T04:14:54.600051+00:00",
+  "requirementIds": [
+    "PROFILE-06",
+    "PROFILE-07",
+    "TECH-06"
+  ],
+  "authority": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/authorization.json",
+    "sha256": "613b008586fe302bc4cbdd45d4f34ae2eb45d2c050ddbf4c459747ac22e5a2bc"
+  },
+  "historicalSkill": {
+    "selector": "chatbot-atelier-build",
+    "version": "5.0.0",
+    "snapshot": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/skill-build.md",
+      "sha256": "1f9d6e0188043af9800dab5eb7b4b559b74122e39788328556e73da098f369c1"
+    },
+    "sourceAtStart": "/Users/admin/.agents/skills/chatbot-atelier-build/SKILL.md",
+    "proofRebound": false
+  },
+  "laterApplicableQualityProfile": {
+    "version": "AgentSystem 6.0.0",
+    "risk": "medium",
+    "profile": "engineering",
+    "effect": "Production quality, context and tool evidence rules applied to these outputs; no reinstall, design reset, history or skill proof rebind",
+    "readSources": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "1d8d165ff088e2cf89d503649d213df46c3f9cc92f95a4075fb90e1027dcd5e9"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+        "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+        "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+        "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+        "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+      }
+    ]
+  },
+  "ownedAppOutputs": [
+    {
+      "path": "app/server/production/release-campaign.ts",
+      "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+    },
+    {
+      "path": "app/server/production/canonical-runtime.ts",
+      "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch.ts",
+      "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+    }
+  ],
+  "otherOutputs": [
+    {
+      "path": "tools/lba_v8_campaign_runtime_pg.mjs",
+      "sha256": "37c8886312f1b6e2e9c51272c2e97b1ad5c8bb24a93496cd70596bd81c83f91f"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/legacy-regression-driver.mjs",
+      "sha256": "d81aca055dc034645f71b78de6a19e05e5e3e4e2da633c1e6c26bea9ac0f8ca0"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/IMPLEMENTATION_UA.md",
+      "sha256": "39db6d773b3da14dbec3310a39a1deb6d8a9bc542932d7a316e73e4c86de090e"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/health-contract.json",
+      "sha256": "be1773133a0ef5cd58562d9a1b7504c054e8144ddd2a41aac1f42c9a4266c1a0"
+    }
+  ],
+  "inputPins": [
+    {
+      "path": "docs/light-bot-app/continuation/requirements.json",
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/authorization.json",
+      "sha256": "613b008586fe302bc4cbdd45d4f34ae2eb45d2c050ddbf4c459747ac22e5a2bc"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/base-canonical-runtime.ts",
+      "sha256": "0f09e183fd6c1a43e7e82d196b4a17c60ddd4e651f146b7d1618d5f27156a6ab",
+      "original_path": "app/server/production/canonical-runtime.ts"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/base-index.ts",
+      "sha256": "4f5ffd21eea62e58841c9bbafcd654893b9052ca5c758751f0f46ef10e5d2b0d",
+      "original_path": "app/server/index.ts"
+    },
+    {
+      "path": "app/server/release/update-campaign.ts",
+      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+    },
+    {
+      "path": "app/server/release/update-campaign-pg.ts",
+      "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/base-telegram-dispatch.ts",
+      "sha256": "7b23f00b77c90a1d002d5ad5da51772879217fe03a849fc6fc9726b83be4f26e",
+      "original_path": "app/server/production/telegram-dispatch.ts"
+    },
+    {
+      "path": "app/server/production/legacy-campaign-recipient.ts",
+      "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+    }
+  ],
+  "canonicalDdlSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "verification": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/verification.json",
+    "sha256": "95d54238e8641e4de86aea53f86dbf0b86bc1b85c130813ca5bf30ee5b4fdf4b"
+  },
+  "actualJobs": [
+    {
+      "kind": "own PostgreSQL and HTTP",
+      "tests": 17,
+      "passed": 17,
+      "syntheticNative": true,
+      "syntheticPublicDomainAdapter": true,
+      "raw": {
+        "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/author-pg.json",
+        "sha256": "05a6d6e736867f5ca9dbe2c0729ef6177dafa98031ef303fe76529debf2333f7"
+      }
+    },
+    {
+      "kind": "existing legacy regression author rerun",
+      "tests": 14,
+      "passed": 14,
+      "independent": false,
+      "raw": {
+        "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/legacy-regression/peer-pg.json",
+        "sha256": "854bfbdd70796e0ef69ad7ae6ba41d87ec7cc5f39d1866cd99f19dbce15ca35f"
+      }
+    },
+    {
+      "kind": "TypeScript and backend",
+      "typecheckExit": 0,
+      "backendPassed": 311,
+      "scope": "Historical actual 311/311 before one-line MIME repair; preserved in before-mime-repair receipt, not rebound to new source; root final broad checks pending",
+      "typecheckSource": {
+        "path": "app/server/production/release-campaign.ts",
+        "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      }
+    }
+  ],
+  "failureBeforeEvidence": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-poison-repro.json",
+      "sha256": "d77e451ab61405cc729027265ae2c46b93d6b66641c981fdaf01bfeaaee2fd70"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/legacy-regression/before-terminal-cleanup-13pass-1fail.json",
+      "sha256": "9ea9f076f39f961b3c292930baa2867105a87407c0d3f67af9b0fe3748f9569b"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-mime-repair/reproduction.json",
+      "sha256": "ef4e753122992463b0e31abb8229b1a98562d36d97d18a2ca57e35e196b9edf4"
+    }
+  ],
+  "runtimeConfiguration": {
+    "default": "disabled",
+    "input": "LBA_RELEASE_NOTICE_CONFIG",
+    "schema": "ReleaseCampaignConfiguration in app/server/production/release-campaign.ts",
+    "actualBuildPinRequired": true,
+    "sameSessionSecretLegacyRegistry": true,
+    "logicalDeploymentRef": "lba-release:..., never native provider UUID",
+    "publicHealth": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/health-contract.json",
+      "sha256": "be1773133a0ef5cd58562d9a1b7504c054e8144ddd2a41aac1f42c9a4266c1a0"
+    },
+    "copy": "existing UPDATE_ANNOUNCEMENT_UA unchanged",
+    "pilotThenFull": "only positive verified receipts for every pilot permit repository promotion",
+    "noNewTables": true
+  },
+  "independentReviewRequired": [
+    "new release-campaign composition",
+    "narrow shared telegram-dispatch hydration/selection and terminal cleanup fix"
+  ],
+  "productionEffects": {
+    "providerRequests": 0,
+    "telegramRequests": 0,
+    "productionDatabaseReads": 0,
+    "productionDatabaseWrites": 0,
+    "deployments": 0,
+    "subscriberEnrolled": 0
+  },
+  "limitations": [
+    "This author receipt is not independent QA",
+    "Loopback HTTP and synthetic native transport do not prove production domain/device/provider readiness",
+    "Native provider deployment UUID is observed separately by root, not asserted by deploymentRef",
+    "No all68 or full product acceptance claim; existing source certification/data/device/native identity gates remain",
+    "No live audience counts or real provider receipts exist from this worker execution",
+    "Backend311 is historical pre-MIME repair evidence; current TS+PG17 passed; root final broad checks remain"
+  ],
+  "nextAction": "Root independent judge reviews exact four app output pins and actual local proof; root freezes a new candidate, obtains actual same-build public/provider receipts, then binds explicitly configured authorized pilot/full campaign",
+  "mimeRepair": {
+    "scope": "Only exact media type selection in release-campaign.ts plus owned regression/artifacts",
+    "before": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-mime-repair/release-campaign.ts",
+      "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+    },
+    "oldReceipt": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-mime-repair/component-receipt.json",
+      "sha256": "ebcf1bd61d85e815ef6efb42003abaecf7ca8905578e5dd736802b54902603e5"
+    },
+    "oldActualProof": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-mime-repair/author-pg.json",
+      "sha256": "ddf440d19e44c5ae8c270291e20ee3637dd7248d78a90f5431929ab705051acc"
+    },
+    "actualBeforeFailure": {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/campaign-worker/before-mime-repair/reproduction.json",
+      "sha256": "ef4e753122992463b0e31abb8229b1a98562d36d97d18a2ca57e35e196b9edf4"
+    },
+    "after": {
+      "path": "app/server/production/release-campaign.ts",
+      "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+    },
+    "regression": "Actual loopback HTTP: application/jsonx denied before SQL preparation; Application/JSON ; charset=utf-8 accepted; entire17 suite pass",
+    "unchangedLegacyProof": "Every recorded dependency hash still matches; no legacy regression rerun necessary"
+  }
+}

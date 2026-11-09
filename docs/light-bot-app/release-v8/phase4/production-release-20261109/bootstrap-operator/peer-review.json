@@ -1,0 +1,548 @@
+{
+  "kind": "lba-bootstrap-independent-review/3",
+  "actor": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T04:31:31.580454+00:00",
+  "verdict": "PASS_BOUNDED_OPERATOR_9_TO_59_AND_PREACTIVATION",
+  "scope": "Independent actual own PostgreSQL mechanics: strict9/full59 plans, genuine native R1, exact reviewed DDL, per-owner core bootstrap/resume, separate preactivation and posthealthy finalize. Not an actual production release verdict.",
+  "helperSha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd",
+  "commandSha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003",
+  "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+  "nativeSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+  "expectedCanonicalContractSha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920",
+  "passed": 40,
+  "failed": 0,
+  "schemaInstallPreactivationAccepted": true,
+  "evidence": [
+    {
+      "scope": "Core24 on alreadyinstalledfullschema plus posthealthy finalize",
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-history/aa7a0895/core-review.json",
+      "sha256": "fd54fd7f90b7e317054798165a3a3f51faa59b1dae244215606f9f682524291c",
+      "passed": 24,
+      "harnessPath": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-flow.mjs",
+      "harnessSha256": "bf62f51d97bfc6b5e26792ccea89a4fc031eba0d2b5aeef2b0e48f4c6d0f362f"
+    },
+    {
+      "scope": "Strict9 to full59 exact nativeDDL plus separate preactivation16",
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-extension.json",
+      "sha256": "059117f4ed94c2b1a96aaf0ec9406aa54a5faa1697f73733fa1e301cab495d23",
+      "passed": 16,
+      "harnessPath": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-extension.mjs",
+      "harnessSha256": "6beb3b4f5aa2f3a739bbafce68418c84d89963c0fe7c21585e7ccc4a903c9b93"
+    },
+    {
+      "scope": "Independent native44fc versus canonical3dab fullsemantic comparison",
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/native-schema-peer/fresh-native-peer.json",
+      "sha256": "0ff91c3a64b7e56a15467b9b97d1c7ed47e25ffddb894476778764ace4c025d6"
+    }
+  ],
+  "testLayers": {
+    "codeInspection": "Actual frozen helper, launcher and called store/backup APIs; explicit TLS checks and static nativeSQL allowlist inspected.",
+    "isolatedIntegration": "40 independent scenarios on own disposable PostgreSQL using real pg_dump, pg_restore --list, transactions and locks; synthetic4-owner fixtures only.",
+    "providerObservation": "None; no actual all-writer suspension/fence or native provider activation observed by this review.",
+    "humanFeedback": "Not sought for bounded helper mechanics; existing full-release authorization retained.",
+    "runtimeMedium": "Actual local PostgreSQL, native Mac executables and an isolated CLI fixture. Not a real production connection/device acceptance."
+  },
+  "sourceBefore": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    }
+  ],
+  "extensionSourceBefore": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    }
+  ],
+  "extensionSourceAfter": [
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    }
+  ],
+  "fixtureSourceSha256": "15d3c956ff8a9be12d77b44d91b607b47c086e5353a46f893b58a72cb69cf5ac",
+  "fixtureSourceIsCurrentDeployment": false,
+  "coreTests": [
+    {
+      "name": "exact installed contract50tables396columns55CHECK78indexes with2named consumers",
+      "status": "pass"
+    },
+    {
+      "name": "actual READONLY4owner plan no raw profile identity session URI or migration writes",
+      "status": "pass"
+    },
+    {
+      "name": "unbound tampered stale wrongsource and changedfence plans denied before coreDML",
+      "status": "pass"
+    },
+    {
+      "name": "missing real production fence and activation deny; no positive providerfixture created",
+      "status": "pass"
+    },
+    {
+      "name": "malformed and wrongresource stale source fence rejected without creating authority",
+      "status": "pass"
+    },
+    {
+      "name": "actual READONLY plan rejects injected SQLwrite25006 and rollsback",
+      "status": "pass"
+    },
+    {
+      "name": "missing actual CHECK denied before plan or bootstrap",
+      "status": "pass"
+    },
+    {
+      "name": "existing backup folder preserved and customdump nativebinary target substitutions rejected",
+      "status": "pass"
+    },
+    {
+      "name": "actual exported snapshot nativepgdump59tables0600 PGDMP before anyprofile DML",
+      "status": "pass"
+    },
+    {
+      "name": "plain signed fake copied or peeled genuine R1 cannot createcontrol profiles",
+      "status": "pass"
+    },
+    {
+      "name": "actual archive tamper and missingfile denied before DML",
+      "status": "pass"
+    },
+    {
+      "name": "samecount legacyowner reassignment afterplan rejected no profilecreated",
+      "status": "pass"
+    },
+    {
+      "name": "real perowner store snapshot failure retains onecommittedprefix andownedhold no fakeglobalrollback",
+      "status": "pass"
+    },
+    {
+      "name": "partial withoutjournal and changedjournal target/source denied",
+      "status": "pass"
+    },
+    {
+      "name": "resume fourowners preservesoriginalsession legacyorphan optout and hasnoauthoutboxsessioneffects",
+      "status": "pass"
+    },
+    {
+      "name": "repeat idempotent real operator/sessionlock legacySHAREbarrier active and releasedafterward",
+      "status": "pass"
+    },
+    {
+      "name": "foreign hold or immutable origin drift rejected withoutadoption",
+      "status": "pass"
+    },
+    {
+      "name": "legitimate real canonical preference and newlegacy session/userdelta acceptedbeforefinalize",
+      "status": "pass"
+    },
+    {
+      "name": "finalize missingactivation unbrandedauthority unknownnative orwronghold neverclears",
+      "status": "pass"
+    },
+    {
+      "name": "lostCOMMIT beforetransactioncommit reconciles notcommitted withoutretryorprofiledelta loss",
+      "status": "pass"
+    },
+    {
+      "name": "lostCOMMIT afterrealcommit confirms exactintent withreadback and nosecondUPDATE",
+      "status": "pass"
+    },
+    {
+      "name": "historical finalizedreceipt replay accessesnoDB andneverclears laterhold",
+      "status": "pass"
+    },
+    {
+      "name": "atomicprivate marker preserves symlinktarget0600 andallliteral codes idempotent",
+      "status": "pass"
+    },
+    {
+      "name": "isolatedCLI denies missingfence beforehiddeninput orproductionconnection evenafterrealbuildfreeze",
+      "status": "pass"
+    }
+  ],
+  "schemaPreactivationTests": [
+    {
+      "name": "actual strict9legacy readonlyplan and genuine9table nativeR1 before anyoperatorDDLorDML",
+      "status": "pass"
+    },
+    {
+      "name": "partialtable unknownlbarelation and missinglegacy rejected instead of guessedmigration",
+      "status": "pass"
+    },
+    {
+      "name": "changednativeSQL separatefile rejected bywholeSHA without execution",
+      "status": "pass"
+    },
+    {
+      "name": "unbound plan missinginstalloption missingcopiedfakeR1 cannot executeDDL",
+      "status": "pass"
+    },
+    {
+      "name": "oldR1bugs remainfixed inlegacy9 branch existingfolder dumpcallback andwrongtarget",
+      "status": "pass"
+    },
+    {
+      "name": "nativeDDL22012 failure reallyrollsback all50createdtables legacybytesunchanged",
+      "status": "pass"
+    },
+    {
+      "name": "lostDDLcommit BEFOREsend readback9 permits freshboundplan andfresh9R1 only",
+      "status": "pass"
+    },
+    {
+      "name": "lostDDLcommit AFTERrealcommit readback59 hold2rows not rolledback orreplayed",
+      "status": "pass"
+    },
+    {
+      "name": "controlled59resume doesnotrepeat nativeDDL imports4owners andpreservesalllegacy rawbytes",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation foreignhold legacydrift canonicaldrift andunknownnative denied withoutclearorloss",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation needsbootstrapauthority originalfreshR1 andsameepoch source target",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation COMMIT BEFOREsend reconciles notcommitted withno automaticCAS",
+      "status": "pass"
+    },
+    {
+      "name": "preactivation actualclear COMMITlost readbackexactmarker saysready neverhealthy",
+      "status": "pass"
+    },
+    {
+      "name": "ready historicalreceipt noDB access preserves laterforeignhold andgrantsnosend",
+      "status": "pass"
+    },
+    {
+      "name": "directpositive9to59 fullbootstrap native9archiveprecedes everyoperatorDDLorDML",
+      "status": "pass"
+    },
+    {
+      "name": "directpositive separatepreactivation CAS emitsnotdeployednothealthy andpreserves59data",
+      "status": "pass"
+    }
+  ],
+  "coreObservations": {
+    "currentSourceBinding": "current_frozen_build_matches",
+    "cliDenied": true,
+    "cliFixtureIsolated": true
+  },
+  "extensionObservations": {
+    "nativeSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+    "staticNativeAllowlist": {
+      "createTables": [
+        "lba_public_source_worker",
+        "lba_account_widget_proof_receipt",
+        "lba_auth_proof_uses",
+        "lba_public_source_origin",
+        "lba_account_link_challenge",
+        "lba_production_profile_origins",
+        "lba_production_control",
+        "lba_public_source_raw",
+        "lba_public_source_state",
+        "lba_production_tools_reports",
+        "lba_account_verified_login",
+        "lba_public_address_candidate",
+        "lba_owner_auth_epoch",
+        "lba_production_telegram_dispatch_jobs",
+        "lba_production_schedule_certificate",
+        "lba_release_campaign_jobs",
+        "lba_production_profiles",
+        "lba_production_tools_shares",
+        "lba_release_campaigns",
+        "lba_public_address_capture",
+        "lba_production_schedule_outbox_proof",
+        "lba_production_profile_outbox",
+        "lba_account_detached_identity",
+        "lba_public_address_query",
+        "lba_production_telegram_bot_state",
+        "lba_production_bootstrap_ledger",
+        "lba_production_morning_briefing_outbox_proof",
+        "lba_production_telegram_processor_scan",
+        "lba_public_source_plan",
+        "lba_production_address_lookup",
+        "lba_production_address_lookup_requests",
+        "lba_production_event_producer_lease",
+        "lba_production_telegram_chat_state",
+        "lba_release_campaign_attempts",
+        "lba_production_morning_briefing_view_proof",
+        "lba_production_telegram_inbox",
+        "lba_production_telegram_callback_ack_attempts",
+        "lba_public_source_run",
+        "lba_production_telegram_callback_acks",
+        "lba_account_operation",
+        "lba_production_telegram_processing",
+        "lba_production_profile_inbox",
+        "lba_production_tools_inbox",
+        "lba_production_schedule_cursor",
+        "lba_legacy_campaign_recipient",
+        "lba_production_schedule_event",
+        "lba_production_morning_briefing",
+        "lba_telegram_browser_challenge",
+        "lba_production_telegram_dispatch_attempts",
+        "lba_production_schedule_reminder"
+      ],
+      "foreignKeys": 42,
+      "indexes": 14,
+      "statements": 106
+    },
+    "recoveredJournal": {
+      "stage": "ready_for_activation",
+      "accounts": 4,
+      "schemaSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+      "deployedHealthy": false
+    },
+    "directPositive": {
+      "stage": "ready_for_activation",
+      "accounts": 4,
+      "deployedHealthy": false
+    }
+  },
+  "priorRejectedRevision": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-adversarial.json",
+    "sha256": "3c6a0fc1eb2f4c1645423441ab7a4ed97753175c0d40a39891d132ef9a818bc3",
+    "sourceBefore": [
+      {
+        "path": "tools/prepare-production-bootstrap.command",
+        "sha256": "753edcdac4a7b6b6f318614d32d05db64d10bc9d4ad7abfcf0455d3ff0f178a6"
+      },
+      {
+        "path": "tools/local-runtime/production-bootstrap.mjs",
+        "sha256": "37a6c556c232a658a01045a21ccee3a5d9b46e182ff9859b0fb5b8728b758cf0"
+      },
+      {
+        "path": "app/server/production/profile-store.ts",
+        "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a"
+      },
+      {
+        "path": "app/server/production/profile-reader.ts",
+        "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+      }
+    ],
+    "sourceAfter": [
+      {
+        "path": "tools/prepare-production-bootstrap.command",
+        "sha256": "753edcdac4a7b6b6f318614d32d05db64d10bc9d4ad7abfcf0455d3ff0f178a6"
+      },
+      {
+        "path": "tools/local-runtime/production-bootstrap.mjs",
+        "sha256": "37a6c556c232a658a01045a21ccee3a5d9b46e182ff9859b0fb5b8728b758cf0"
+      },
+      {
+        "path": "app/server/production/profile-store.ts",
+        "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a"
+      },
+      {
+        "path": "app/server/production/profile-reader.ts",
+        "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+      }
+    ],
+    "findings": [
+      {
+        "id": "PREEXISTING_BACKUP_FOLDER_CLEANUP",
+        "syntheticOwnedFixture": true,
+        "expected": "existingfolder andsentinel preserved on mkdirEEXIST",
+        "observedError": "EEXIST",
+        "sentinelPreserved": false,
+        "reproduced": true
+      },
+      {
+        "id": "UNCREATED_PLAIN_R1_ACCEPTED",
+        "syntheticOwnedFixture": true,
+        "expected": "deny DML because no fresharchive exists",
+        "observedCode": "BOOTSTRAP_VERIFIED_HELD",
+        "profilesCreated": 3,
+        "reproduced": true,
+        "archiveCreated": false
+      },
+      {
+        "id": "DUMP_PORT_CAN_MINT_NON_NATIVE_R1",
+        "syntheticOwnedFixture": true,
+        "expected": "fakecallback cannot yield realR1record",
+        "callbackInvoked": true,
+        "returnedKind": "lba-fresh-bootstrap-r1/1",
+        "nativeArchiveHeader": false,
+        "reproduced": true
+      }
+    ]
+  },
+  "historicalAcceptedCore": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/peer-history/c7cdf830/peer-review.json",
+    "sha256": "133bc542f7834cbb0ec0a625424cb82a65057841260a73369aceb7f7e03cb8e3",
+    "helperSha256": "c7cdf8308c9b75f83c3c0408dacf35774a5313f64a8e904e5cdf40a9f2bbe028",
+    "commandSha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003",
+    "scope": "Bounded core bootstrap plus post-healthy finalize only; no9to59 schema install orpreactivation authority",
+    "tests": 24,
+    "actualOwnPostgres": true,
+    "actualNativePgDumpAndPgRestoreList": true,
+    "clusterStopped": true
+  },
+  "supplementalHistoricalCampaignHealthUnit": {
+    "kind": "peer-health-observer-bounded-unit/1",
+    "actor": "/root/release_authority_judge",
+    "passed": 25,
+    "tests": [
+      "closedconfig logicalref source authority enforced",
+      "valid HTTPport parsesreturneddata and makes exactboundedcredentialfreeGET",
+      "mereconfigurationecho lacksactualservingcanonicalstate andisrejected",
+      "reject_compiledsource",
+      "reject_actualbuild",
+      "reject_logicalref",
+      "reject_noticerelease",
+      "reject_bot",
+      "reject_origin",
+      "reject_mode",
+      "reject_profilemode",
+      "reject_servingstatus",
+      "reject_stale",
+      "reject_future",
+      "reject_canonical_ready",
+      "reject_canonical_started",
+      "reject_canonical_stopped",
+      "reject_canonical_deliveryReady",
+      "reject_http_status",
+      "reject_redirect",
+      "reject_wrongurl",
+      "reject_html",
+      "reject_largedeclared",
+      "oversizedstreamandinvalidJSON rejected",
+      "preabort causesnofetch andhungfetch returnsboundedtimeout"
+    ],
+    "sourceBefore": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c",
+    "sourceAfter": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c",
+    "sourceUnchanged": true,
+    "actualRemoteHTTPS": false,
+    "fixture": "Injected Response/fetch only; notproviderobservation",
+    "productionConnections": 0,
+    "providerRequests": 0
+  },
+  "guidance": {
+    "release": "6.0.0",
+    "profile": "engineering",
+    "qualityCertified": false,
+    "sources": [
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+        "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+        "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+        "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+      },
+      {
+        "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+        "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+      }
+    ]
+  },
+  "requirements": {
+    "preservedCount": 68,
+    "completedByThisReview": [],
+    "boundedEvidenceFor": [
+      "PROFILE-01",
+      "PROFILE-02",
+      "PROFILE-04",
+      "PROFILE-05",
+      "TECH-03",
+      "TECH-05",
+      "TECH-06",
+      "TECH-07",
+      "TECH-08"
+    ],
+    "limits": "Synthetic owner preservation, per-owner repeat/resume, actual rollback/unknownCOMMIT, no fabricated source or healthy proof support these requirements only within this operator scope. Does not complete whole requirement acceptance; pg_restore --list is not an archive restore/recovery rehearsal."
+  },
+  "operatorReadiness": {
+    "mechanicsAccepted": true,
+    "ownerClientRoute": "Documented external PostgreSQL owner-client path supplied by root; no SELECT-only MCP bypass.",
+    "nextActualOperation": "Root must obtain fresh real all-old-production/dev-writer suspension observations for the exact current build/resource/target/epoch. Then use a fence-bound readonly plan, actual fresh native9 R1, explicit exact44fc install, full3dab verification and held core bootstrap; separate readiness may clear only ownhold under a fresh same-resource fence while no app actors run. Native publish and real HTTPS/bot/DB serving proof follow separately.",
+    "currentConcreteBlocker": "No real production all-writer fence artifact exists in the reviewed inputs.",
+    "readyReceiptSemantics": "ready_for_activation is explicitly deployedHealthy:false, providerHealthyVerified:false and nativeBotIdentityVerified:false; it is not proof of publish, provider health or send permission.",
+    "newGeneralOwnerApprovalRequired": false
+  },
+  "actualOwnPostgres": true,
+  "actualNative9And59PgDumpRestoreList": true,
+  "clusterStopped": true,
+  "temporaryRawFixturesRemoved": true,
+  "productionReleaseReady": false,
+  "actualProductionFenceCreated": false,
+  "actualProductionActivationCreated": false,
+  "effects": {
+    "productionConnections": 0,
+    "productionWrites": 0,
+    "providerRequests": 0,
+    "applicationRuntime": 0,
+    "helperOrAppEdits": 0,
+    "ownFixtureWrites": true
+  },
+  "limits": [
+    "All authority used by these integration tests is explicitly owned-loopback synthetic authority, never fabricated historical production evidence.",
+    "Fixture source15d3 remains a historical synthetic test binding; actual CLI enforces the current complete frozen build. It was not rebound to current source35db.",
+    "No actual production connection, remote TLS handshake, Replit pause, publish, live HTTPS proof, bot identity/menu action or messaging occurred.",
+    "No actual archive restore has been performed by these two review drivers; native PGDMP header, file identity/hash and complete9/59 TABLE DATA TOC were verified.",
+    "Trusted Codex provider-observation wrappers are not cryptographic provider attestations. Production factories still require genuine resource-specific fresh observations.",
+    "40 scenario groups include multiple assertions; they are not a claim that every possible failure mode was tested. The author42 proof is distinct, not counted as independent tests.",
+    "Existing full68 requirements, source/address qualification, owner/device/design acceptance, actual serving mapping, cutover/single-sender and rollback obligations remain separately tracked by root."
+  ]
+}

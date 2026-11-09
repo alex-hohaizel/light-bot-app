@@ -1,0 +1,33 @@
+{
+  "kind": "lba-loaded-quality-profile/1",
+  "source": "LatestuserAGENTSreplacement",
+  "release": "6.0.0",
+  "recordedAt": "2026-11-09T04:18:07.662716+00:00",
+  "appliedMedium": "engineering",
+  "otherUnchangedAcceptedMedia": [
+    "UI",
+    "data-graphic",
+    "motion"
+  ],
+  "resources": [
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+      "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+      "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+      "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+      "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+    }
+  ],
+  "scope": "Currentreleasecode/config/migration/operator/QA; preserveaccepteddesign/copy/all68; no newpermissionorinstallation",
+  "oldProofsRebound": false,
+  "authorizationRef": "authorization.json"
+}

@@ -1,0 +1,315 @@
+{
+  "kind": "lba-bootstrap-operator-return/1",
+  "actor": "/root/production_bootstrap_operator",
+  "recordedAt": "2026-11-09T04:21:28.487764+00:00",
+  "status": "EXTENDED_OWNER_CLIENT_SCHEMA_AND_PREACTIVATION_IMPLEMENTED_LOCAL_42_AUTHOR_PASS_AWAITING_CURRENT_PEER",
+  "qualityProfile": {
+    "id": "engineering",
+    "guidanceVersion": "6.0.0",
+    "scope": "Narrow explicit migration operator; no design acceptance or reinstall."
+  },
+  "project": {
+    "cwd": "/Users/admin/Projects/LIGHT BOT APP [CODEX]",
+    "origin": "https://github.com/alex-hohaizel/light-bot-app.git",
+    "branch": "agent/light-bot-app-recovery-v1",
+    "head": "4eeb1df7e51eb02ad15701bb6e247047105de439",
+    "ownedChanges": "New local untracked files only; no Git mutation, product source edits, or existing helper edits by this actor."
+  },
+  "requirements": {
+    "count": 68,
+    "mustCount": 68,
+    "allIds": [
+      "DATA-01",
+      "DATA-02",
+      "DATA-03",
+      "DATA-04",
+      "DATA-05",
+      "DATA-06",
+      "DATA-07",
+      "DATA-08",
+      "DATA-09",
+      "ADDR-01",
+      "ADDR-02",
+      "ADDR-03",
+      "ADDR-04",
+      "ADDR-05",
+      "ADDR-06",
+      "ADDR-07",
+      "PROFILE-01",
+      "PROFILE-02",
+      "PROFILE-03",
+      "PROFILE-04",
+      "PROFILE-05",
+      "PROFILE-06",
+      "PROFILE-07",
+      "BOT-01",
+      "BOT-02",
+      "BOT-03",
+      "BOT-04",
+      "BOT-05",
+      "BOT-06",
+      "BOT-07",
+      "BOT-08",
+      "LANG-01",
+      "LANG-02",
+      "LANG-03",
+      "LANG-04",
+      "LANG-05",
+      "APP-01",
+      "APP-02",
+      "APP-03",
+      "APP-04",
+      "APP-05",
+      "APP-06",
+      "APP-07",
+      "APP-08",
+      "CHART-01",
+      "CHART-02",
+      "CHART-03",
+      "CHART-04",
+      "CHART-05",
+      "CHART-06",
+      "CHART-07",
+      "CHART-08",
+      "CHART-09",
+      "TECH-01",
+      "TECH-02",
+      "TECH-03",
+      "TECH-04",
+      "TECH-05",
+      "TECH-06",
+      "TECH-07",
+      "TECH-08",
+      "TECH-09",
+      "GOV-01",
+      "GOV-02",
+      "GOV-03",
+      "GOV-04",
+      "GOV-05",
+      "GOV-06"
+    ],
+    "assigned": [
+      "PROFILE-05",
+      "TECH-03",
+      "TECH-06",
+      "TECH-08"
+    ],
+    "requiredTransitiveContext": [
+      "PROFILE-01",
+      "PROFILE-02",
+      "PROFILE-04",
+      "LBA-01",
+      "LBA-04",
+      "LBA-08",
+      "BOT-06",
+      "BOT-07"
+    ],
+    "verdicts": {
+      "PROFILE-05": "Scoped bootstrap repeat/resume/native R1 guard and legitimate-delta-preserving finalize tested. Fresh production R1 restore and actual rollback remain separate required release evidence. Actual9→59 DDL rollback/committed-DDL response loss/fresh59 resume and preactivation COMMIT both-side recovery tested.",
+      "TECH-03": "Current frozen build/source+actual schema/target evidence admission implemented. Actual serving-to-DB production binding remains root observation scope.",
+      "TECH-06": "Actual owned disposable PostgreSQL native tools, static checks and meaningful failure tests passed; no new vendor/environment dependencies installed.",
+      "TECH-08": "Actual-fence/own-hold/per-owner resume/finalize CAS/unknown-COMMIT guards tested locally. Real native stop, activation, campaign, DNS/TLS and rollback not performed or accepted here."
+    }
+  },
+  "scope": {
+    "authorizedParent": "Direct user full production release authority; parent assigned this actor LOCALONLY construction/test and exact owned paths.",
+    "writesAllowedByFutureHelper": [
+      "lba_production_control",
+      "lba_production_telegram_bot_state",
+      "lba_production_profiles",
+      "lba_production_profile_origins",
+      "lba_production_bootstrap_ledger"
+    ],
+    "forbiddenByThisTask": [
+      "Actual production connection/write",
+      "Provider action",
+      "New auth/session/provider proof",
+      "Fake owner inference/merge",
+      "Campaign preparation/send/native Telegram",
+      "Production restore/delete",
+      "App/shared helper edits",
+      "Agent install/reset/global duplicate"
+    ],
+    "futureSchemaOperation": "Only explicit --install-reviewed-schema with exact allowlisted native SQL44fc after genuine current9-table private R1; DDL and initial ownhold/control in same TX; full3dab and unchangedlegacy verified before commit. No DROP or arbitrary SQL.",
+    "futurePreactivationOperation": "Separate --ready-for-activation under actual fresh same-resource oldprod/dev fence, same source/target/epoch/operation, completed exact initial core/legacy proofs and fresh59 R1; one ownhold CAS, deployedHealthy:false. No server/provider/Telegram effect."
+  },
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1d8d165ff088e2cf89d503649d213df46c3f9cc92f95a4075fb90e1027dcd5e9"
+    },
+    {
+      "path": ".agents/skills/light-bot-app-recovery/SKILL.md",
+      "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+    },
+    {
+      "path": ".agents/skills/light-bot-app-recovery/references/joint-work-codex.md",
+      "sha256": "9598613254564bed10f95d2506c99c3fa520587292c25256376361dbce8b1d63"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/requirements.json",
+      "sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+    },
+    {
+      "path": "docs/light-bot-app/continuation/SOURCES_AND_AUTHORITY_UA.md",
+      "sha256": "53afef323f25f777c1baa17f375107a927f3053c586257fc91869c5555bf06f8"
+    },
+    {
+      "path": "tools/local-runtime/production-backup.mjs",
+      "sha256": "7256f7451f7d04f0abfe99b39fa8123144705c81160076d5952c90edf4044473"
+    },
+    {
+      "path": "tools/local-runtime/production-release-preflight.mjs",
+      "sha256": "88af63bab71ed1a2cb21a8eebfa2f539eab1eee0b418a9e688f4da2288fa0cb5"
+    },
+    {
+      "path": "tools/local-runtime/rehearse-canonical-migration.mjs",
+      "sha256": "dcdc09cf699bd2242c760a1341f6992627431bc3fd0bed0d3b7baaa8da99a990"
+    },
+    {
+      "path": "tools/local-runtime/disposable-proof-db.mjs",
+      "sha256": "8785a5b6e84f27b2c6ed47e7bf635d60addf37a9916ed89d522d30d43da1cc56"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "2a64e8ceca6490c8f3539dfc207faa7d01ae6cc0fa1598f3d6142229bc27cf4a"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/legacy-identity-links.ts",
+      "sha256": "49879626ee9673e4c7a392db48b4f97cb1ed7b98eaa4d83717b3febfe7a90b33"
+    },
+    {
+      "path": "app/server/production/runtime-identity.ts",
+      "sha256": "348296aed53255a43e0e3c96d813f80774b23afbf7800093e3e14c63e0faaa59"
+    },
+    {
+      "path": "app/server/production/canonical-schema.ts",
+      "sha256": "e577d64e9b59179f6992cba1f2fb18e6b5e1aa6c7dcadeac85674f0e0e4926cf"
+    },
+    {
+      "path": "app/server/production/telegram-dispatch.ts",
+      "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+    },
+    {
+      "path": "app/shared/bot/engine.ts",
+      "sha256": "96d1db90b909b1941bc2e381ea921efdca1f5312e92505a1cc0a4414a16532ea"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/production-quality.md",
+      "sha256": "7ebe6f7fb8834de7741f328d48cf5fb44d7e4b8344b73cd10e97b051b8815d41"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/context-capsule.md",
+      "sha256": "c5e0a797f6e95392199c91e364483467b4a6bcfd2d96a1a0363a405c9217b9ba"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/references/tool-compatibility.md",
+      "sha256": "98a5e7de2ec46f4a26ec62179f79c87a48dd3ffcc67d400ab1b88f9f9600b3fe"
+    },
+    {
+      "path": "/Users/admin/.agents/skills/agent-foundry/assets/production-profiles.json",
+      "sha256": "a1db1ea55bb6f5a3f9d02ef314623e5a9ddb2eab4468733107a07df0b137fed9"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/native-schema-peer/native-preview-fixed.sql",
+      "sha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112"
+    },
+    {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "681b7b8487ee1022c388faf130f349435f97b3afb7d0830901d71bc89ee6da3d"
+    }
+  ],
+  "ownedOutputs": [
+    {
+      "path": "tools/prepare-production-bootstrap.command",
+      "sha256": "da628a115ab090a8d48d145df3196f4f0c934cadcd07603a0ac96cc602f47003"
+    },
+    {
+      "path": "tools/local-runtime/production-bootstrap.mjs",
+      "sha256": "aa7a08958a34aa4250912042734e8cf3264020fab3160a47b3deb2f8e26f8abd"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/expected-canonical-schema.json",
+      "sha256": "11a3c8de2fda470f4f4873a89e7579490c33d545055aabfbcf72ea1500c04920"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/author-proof.mjs",
+      "sha256": "a28bd414ed281f0146f42b3b53d3eda3c94b6aa9f43a3300e1b785c3bf16c926"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/author-pg.json",
+      "sha256": "b7ffb7b67da2a3b8d6c70c6573fb19732efc0a956284d9580ff3492c529061dc"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/author-tty.json",
+      "sha256": "d88b2bd62d2ac497c9271cb7cdea70c66f576dc44d2148ef5bb6fd9b99dccff0"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/README_UA.md",
+      "sha256": "4a3ec727506d03a7e102607a26183ac8aca8c01e0dff5e5e47404f94a2568a8d"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/FENCE_AND_ACTIVATION_UA.md",
+      "sha256": "3454ed6bf8b42fbac85d7e95ed248198646b86a9c723199925c34d7488533811"
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/bootstrap-operator/historical-c7cdf830-31case/freeze.json",
+      "sha256": "47bde7f62f655c2a9113e5c1e29849b663cf6a7c38cb57767814accf45ebbc4b"
+    }
+  ],
+  "sourceBinding": {
+    "production": "Dynamic complete frozen build receipt/inventory verification; no historical candidate hardcode.",
+    "authorFixtureSourceSha256": "15d3c956ff8a9be12d77b44d91b607b47c086e5353a46f893b58a72cb69cf5ac",
+    "schemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+    "observedLocalCliCode": "BOOTSTRAP_CONNECTION_INVALID",
+    "observedLocalCliScope": "Actual PTY hidden input/readable Mac launcher using rejected synthetic invalid URI; source guard passed, no DB connection. Earlier SOURCE_BUILD_DRIFT remains preserved historical evidence only.",
+    "currentFrozenSourceSha256": "35db2f5a75d85b90a55b177d18257dd4ae552a9ae3ddedde25ce438cf6ce58f1",
+    "currentBuildReceiptSha256": "681b7b8487ee1022c388faf130f349435f97b3afb7d0830901d71bc89ee6da3d",
+    "currentSourceGuard": "PASS via verifyCurrentSource() with complete actual inventory; no DB/provider request."
+  },
+  "checks": {
+    "actualPostgresCases": 42,
+    "failed": 0,
+    "nodeSyntax": "PASS",
+    "bashSyntax": "PASS",
+    "nodeVersion": "v24.22.2",
+    "nativePgDumpVersion": "18.6",
+    "actualNativePgRestoreList": true,
+    "clusterStopped": true,
+    "temporaryFixtureRemoved": true,
+    "privacy": "No raw owner/chat/PII/URI/provider diagnostics printed or public-exported; plain/copy/fake archive capability regressions tested.",
+    "limits": [
+      "No actual production DSN/connection or native Finder GUI flow observed; actual Mac PTY hidden-input/rejection/exit tested.",
+      "No actual provider suspension or healthy activation artifact created.",
+      "Native R1 list/format verification is not a restore verification claim.",
+      "Trusted root observation JSON is not cryptographic provider attestation.",
+      "Per-owner transactions are resumable commits, not a global atomic migration.",
+      "Actual production counts/audience/classification remain fresh-read operations.",
+      "Default readonly plan cannot apply. Three cutover Mac runs each request the same hidden DSN again; no credential is retained across launches.",
+      "Current actual42-case source is new helper bytes; historical31-case c7cdf830 is preserved unchanged, never rebound as new proof."
+    ],
+    "actualHiddenTtySyntheticRejection": "PASS; author-tty.json"
+  },
+  "productionConnections": 0,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "recovery": {
+    "bootstrap": "Signed private journal plus real owned hold; fresh read-only bound plan/current fence/R1 before exact per-owner resume. Unknown/foreign holds and drift deny.",
+    "finalize": "Persist intent then one own-hold CAS. Unknown COMMIT readback reconciles exact clear-marker or returns NOT_COMMITTED with no automatic DML retry. Finalized historical replay cannot clear later hold.",
+    "backupRetention": "Private R1/tail retained; existing paths never auto-removed. No automatic production restore.",
+    "schema": "Exact native44fc DDL and initial owncontrol/hold commit together. DDL error rolls back all50; response loss reconciles actual9/59 and private journal, never repeats DDL against59.",
+    "preactivation": "Persist readiness intent then ownhold CAS; actual stopped same-resource fence renewed if needed. Before/after COMMIT outcome recovered by exact readback, no blind repeat. Receipt never claims deployedHealthy."
+  },
+  "nextAction": "Independent reviewer tests frozen aa7a0895 helper core/R1/schema/preactivation/finalize. Root then performs actual all-old production/dev stop/readbacks, fresh bound-plan/apply/ready Mac sequence via supported owner-managed external PostgreSQL. Actual native Publish must observe hasDiff=false before activating35db compiled app; health/native/campaign evidence stays separate. No actual fence means apply/ready BLOCKED.",
+  "manualPhases": [
+    "Optional default readonly unbound inspection (inapplicable).",
+    "Fresh actual old production/dev all-writer fence and current frozen source; readonly --fence plan.",
+    "Explicit --apply --plan --fence [--install-reviewed-schema]; same DSN HMAC and exact plan fence bytes, fresh9/59 R1 before DDL/DML.",
+    "Explicit --ready-for-activation --fence; fresh same-resource observations may renew the5min window, original/new SHA lineage, same operation/target/source/epoch, fresh59 R1.",
+    "Root separately observes native Publish hasDiff=false, starts actual active app, verifies actual provider/HTTPS/native identity, then campaign route."
+  ]
+}

@@ -20,6 +20,7 @@ import {createRuntimeSourceProof} from './production/runtime-source-proof';
 import {createOwnerAuthEpoch} from './production/auth-epoch';
 import {registerAccountLinkRoutes} from './production/account-links-http';
 import {createAccountOriginGuard} from './production/account-origin';
+import {readReleaseCampaignConfiguration,releaseCampaignPublicFields} from './production/release-campaign';
 
 const isolated = isIsolatedMode();
 if (isolated) assertIsolatedRuntimeReady();
@@ -110,9 +111,11 @@ app.use((req, res, next) => {
   await registerRoutes(httpServer, app,{onVerifiedLogin,sessionIsCurrent:ownerAuth?.sessionIsCurrent});
   if (!isolated && process.env.NODE_ENV==='production' && BUILD_SOURCE_SHA256) {
     const policy=productionRuntimePolicy();
+    const releaseCampaign=readReleaseCampaignConfiguration(process.env.LBA_RELEASE_NOTICE_CONFIG,BUILD_SOURCE_SHA256);
     if(policy.productProfileMode==='active'){
       const {pool}=await import('./db');
       canonicalRuntime=createCanonicalRuntime({pool,policy,token:process.env.TELEGRAM_BOT_TOKEN!,origin:'https://power-ukraine.net',fetch,
+        ...(releaseCampaign?{releaseCampaign}:{}),
         verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!}),authorizePrincipal:ownerAuth!.authorizePrincipal,
         accountConfiguration:{bindingKey:process.env.SESSION_SECRET!,...(policy.accountLinksEnabled?{browserWidget:{botUsername:'PowerUkraineBot',configurationVerified:true as const}}:{})}});
       await canonicalRuntime.prepare();
@@ -132,6 +135,7 @@ app.use((req, res, next) => {
     app.get('/api/health/release',(_req,res)=>{
       res.setHeader('Cache-Control','no-store');
       res.json({releaseId:BUILD_SOURCE_SHA256,mode:'production',profileMode:policy.productProfileMode,
+        ...releaseCampaignPublicFields(releaseCampaign,BUILD_SOURCE_SHA256!,new Date().toISOString()),
         status:'process_serving',productAccepted:false,...(canonicalRuntime?{canonical:canonicalRuntime.health()}:{})});
     });
   }

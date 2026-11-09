@@ -30,13 +30,15 @@ import {createCurrentRawScheduleVerifier} from './runtime-source-proof.ts';
 import {createProductionMorningBriefing} from './morning-briefing.ts';
 import {createProductionEventProducer} from './event-producer.ts';
 import {createLegacyCampaignRecipients} from './legacy-campaign-recipient.ts';
+import {createProductionReleaseCampaign,type ReleaseCampaignConfiguration} from './release-campaign.ts';
 
 /** Explicit application composition. Construction has no HTTP, DB, timer or DDL.
  * prepare() checks an already installed canonical database; start() alone starts
  * workers. No fallback invokes the legacy bot, migration, seed or webhook setter. */
 export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:ProductionRuntimePolicy;token:string;origin:string;
  now?:()=>number;fetch:typeof fetch;verifySource?:(request:DispatchEligibilityRequest)=>Promise<CurrentDispatchSourceProof|null>;
- authorizePrincipal?:ProductionProfileStoreOptions['authorizePrincipal'];accountConfiguration?:Pick<AccountLinksOptions,'bindingKey'|'miniApp'|'browserWidget'>}){
+ authorizePrincipal?:ProductionProfileStoreOptions['authorizePrincipal'];accountConfiguration?:Pick<AccountLinksOptions,'bindingKey'|'miniApp'|'browserWidget'>;
+ releaseCampaign?:ReleaseCampaignConfiguration}){
  const {policy,pool}=ports,epoch=policy.canonicalControlEpoch;
  if(policy.productProfileMode!=='active'||!epoch)throw Error('CANONICAL_RUNTIME_CONFIGURATION');
  if(ports.accountConfiguration&&!ports.authorizePrincipal)throw Error('CANONICAL_AUTH_EPOCH_GUARD_REQUIRED');
@@ -89,8 +91,12 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
     const png=await sharp(Buffer.from(svg)).png().toBuffer();if(signal.aborted)throw Error('CANONICAL_RENDER_ABORTED');return png;},
   }),
  });
+ const releaseCampaign=ports.releaseCampaign?createProductionReleaseCampaign({enabled:policy.telegramDeliveryEnabled,configuration:ports.releaseCampaign,
+  expectedControlEpoch:epoch,pool,dispatcher,eligibility:eligibility.campaignEligibility,
+  legacyRecipients:legacyRecipients??{prepare:async()=>null},fetch:ports.fetch,now:ms}):undefined;
+ if(ports.releaseCampaign&&(!policy.telegramDeliveryEnabled||!legacyRecipients))throw Error('CANONICAL_RELEASE_CAMPAIGN_CONFIGURATION_REQUIRED');
  let ready=false,started=false,stopped=false;const timers=new Set<ReturnType<typeof setTimeout>>(),running=new Set<Promise<unknown>>(),abort=new AbortController();
- const status={context:'waiting',source:'waiting',processor:'waiting',delivery:'waiting',callbacks:'waiting',notifications:'waiting'};
+ const status={context:'waiting',source:'waiting',processor:'waiting',delivery:'waiting',callbacks:'waiting',notifications:'waiting',releaseCampaign:releaseCampaign?'waiting':'disabled'};
  async function prepare(){
   if(started||stopped)throw Error('CANONICAL_RUNTIME_STATE');
   ready=false;status.context='waiting';
@@ -117,8 +123,9 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
   if(policy.notificationSchedulerEnabled)loop('notifications',1000,()=>eventProducer.runOnce({signal:abort.signal}));
   if(policy.telegramDeliveryEnabled)loop('delivery',100,()=>dispatcher.dispatchNextPending(abort.signal));
   if(policy.telegramUpdatesEnabled&&policy.telegramDeliveryEnabled)loop('callbacks',50,()=>dispatcher.dispatchNextCallbackAck(abort.signal));
+  if(releaseCampaign)loop('releaseCampaign',1000,()=>releaseCampaign.runOnce({signal:abort.signal}));
  }
- async function stop(){stopped=true;ready=false;abort.abort();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
- return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,prepare,start,stop,
-  health:()=>({ready,started,stopped,workers:{...status},notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled),scheduleCertificationRequired:true,accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts)})});
+ async function stop(){stopped=true;ready=false;abort.abort();releaseCampaign?.stop();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
+ return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,prepare,start,stop,
+  health:()=>({ready,started,stopped,workers:{...status},deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled),scheduleCertificationRequired:true,accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}})});
 }

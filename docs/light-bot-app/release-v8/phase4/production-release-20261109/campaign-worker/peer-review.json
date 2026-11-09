@@ -1,0 +1,1779 @@
+{
+  "schema": "lba-campaign-worker-independent-review/1",
+  "status": "PASS_COMPONENT_ONLY",
+  "scope": "Independent local component QA; actual PostgreSQL16 and TLS loopback exchange with certificate validation; native Telegram is a synthetic fixture. No production readiness or full68 acceptance claimed.",
+  "latest": {
+    "at": "2026-11-09T04:15:18.626Z",
+    "actor": "/root/current_release_judge",
+    "sourceBefore": [
+      {
+        "path": "app/server/production/release-campaign.ts",
+        "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      },
+      {
+        "path": "app/server/production/canonical-runtime.ts",
+        "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+      },
+      {
+        "path": "app/server/index.ts",
+        "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+      },
+      {
+        "path": "app/server/production/telegram-dispatch.ts",
+        "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+      },
+      {
+        "path": "app/server/production/telegram-dispatch-eligibility.ts",
+        "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+      },
+      {
+        "path": "app/server/production/legacy-campaign-recipient.ts",
+        "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+      },
+      {
+        "path": "app/server/production/campaign-dispatch.ts",
+        "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+      },
+      {
+        "path": "app/server/release/update-campaign.ts",
+        "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+      },
+      {
+        "path": "app/server/release/update-campaign-pg.ts",
+        "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+      }
+    ],
+    "sourceAfter": [
+      {
+        "path": "app/server/production/release-campaign.ts",
+        "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      },
+      {
+        "path": "app/server/production/canonical-runtime.ts",
+        "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+      },
+      {
+        "path": "app/server/index.ts",
+        "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+      },
+      {
+        "path": "app/server/production/telegram-dispatch.ts",
+        "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+      },
+      {
+        "path": "app/server/production/telegram-dispatch-eligibility.ts",
+        "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+      },
+      {
+        "path": "app/server/production/legacy-campaign-recipient.ts",
+        "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+      },
+      {
+        "path": "app/server/production/campaign-dispatch.ts",
+        "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+      },
+      {
+        "path": "app/server/release/update-campaign.ts",
+        "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+      },
+      {
+        "path": "app/server/release/update-campaign-pg.ts",
+        "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+      }
+    ],
+    "sourceDrift": false,
+    "driverSha256": "703c483edd3578589e0f058f6c28c1c09f80a1b18b461ad9203ab171ed55f2c6",
+    "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+    "nodeVersion": "v24.22.2",
+    "tests": [
+      {
+        "name": "inert disabled constructor and closed config; logical ref is distinct from native deployment UUID",
+        "status": "pass",
+        "elapsedMs": 36
+      },
+      {
+        "name": "representative actual validated TLS health then own-PG pilot notice",
+        "status": "pass",
+        "elapsedMs": 110,
+        "observed": {
+          "tlsRequests": 4,
+          "nativeFixtureCalls": [
+            "getMe",
+            "sendMessage"
+          ]
+        }
+      },
+      {
+        "name": "HTTPS health rejects http_503",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects redirect",
+        "status": "pass",
+        "elapsedMs": 7
+      },
+      {
+        "name": "HTTPS health rejects redirected",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects foreign_url",
+        "status": "pass",
+        "elapsedMs": 1
+      },
+      {
+        "name": "HTTPS health rejects mime_wrong",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects bad_json",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects primitive",
+        "status": "pass",
+        "elapsedMs": 0
+      },
+      {
+        "name": "HTTPS health rejects oversize_declared",
+        "status": "pass",
+        "elapsedMs": 3
+      },
+      {
+        "name": "HTTPS health rejects oversize_stream",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_source",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_build",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_notice",
+        "status": "pass",
+        "elapsedMs": 0
+      },
+      {
+        "name": "HTTPS health rejects wrong_ref",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_bot",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_origin",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_mode",
+        "status": "pass",
+        "elapsedMs": 1
+      },
+      {
+        "name": "HTTPS health rejects wrong_profile",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects wrong_status",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects stale",
+        "status": "pass",
+        "elapsedMs": 1
+      },
+      {
+        "name": "HTTPS health rejects future",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects canonical_ready",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects canonical_started",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects canonical_stopped",
+        "status": "pass",
+        "elapsedMs": 0
+      },
+      {
+        "name": "HTTPS health rejects canonical_deliveryReady",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health rejects slow_headers",
+        "status": "pass",
+        "elapsedMs": 43
+      },
+      {
+        "name": "HTTPS health rejects slow_body",
+        "status": "pass",
+        "elapsedMs": 42
+      },
+      {
+        "name": "HTTPS health rejects a non-JSON MIME subtype with JSON prefix",
+        "status": "pass",
+        "elapsedMs": 2
+      },
+      {
+        "name": "HTTPS health accepts case-insensitive JSON media type with parameters",
+        "status": "pass",
+        "elapsedMs": 3
+      },
+      {
+        "name": "caller abort during HTTPS body is bounded and creates no campaign",
+        "status": "pass",
+        "elapsedMs": 25
+      },
+      {
+        "name": "worker consumes negative HTTPS health before any campaign preparation or native invocation",
+        "status": "pass",
+        "elapsedMs": 96
+      },
+      {
+        "name": "HTTPS health has no transaction or row-lock held across either observation",
+        "status": "pass",
+        "elapsedMs": 70
+      },
+      {
+        "name": "frozen three-recipient audience requires both pilot receipts before full and fresh worker cannot resend",
+        "status": "pass",
+        "elapsedMs": 132
+      },
+      {
+        "name": "two fresh workers race preparation and pilot without duplicate native notice",
+        "status": "pass",
+        "elapsedMs": 107
+      },
+      {
+        "name": "earlier same-chat reply defers campaign; regular worker preserves it; later notice sends exactly once",
+        "status": "pass",
+        "elapsedMs": 95
+      },
+      {
+        "name": "regular worker reconciles already cancelled outer campaign and releases later profile reply",
+        "status": "pass",
+        "elapsedMs": 84
+      },
+      {
+        "name": "regular worker reconciles already failed outer campaign and releases later profile reply",
+        "status": "pass",
+        "elapsedMs": 85
+      },
+      {
+        "name": "campaign native crash globally holds unrelated profile on different chat before any new native call",
+        "status": "pass",
+        "elapsedMs": 75
+      },
+      {
+        "name": "profile native crash globally holds campaign on different chat before any new native call",
+        "status": "pass",
+        "elapsedMs": 69
+      },
+      {
+        "name": "unknown native outcome holds across worker restart and never advances full",
+        "status": "pass",
+        "elapsedMs": 71
+      },
+      {
+        "name": "429 enforces whole-bot cooldown; 403 does not authorize full audience",
+        "status": "pass",
+        "elapsedMs": 154
+      },
+      {
+        "name": "bot-global advisory lock defers without native invocation or attempted pilot charge",
+        "status": "pass",
+        "elapsedMs": 51
+      },
+      {
+        "name": "stop while HTTPS request is open prevents preparation and native calls",
+        "status": "pass",
+        "elapsedMs": 33
+      },
+      {
+        "name": "stop at actual getMe boundary prevents subsequent native send",
+        "status": "pass",
+        "elapsedMs": 59
+      },
+      {
+        "name": "consent revoked at identity boundary prevents new native notice",
+        "status": "pass",
+        "elapsedMs": 58
+      },
+      {
+        "name": "configured bot identity in health cannot substitute a mismatching native getMe",
+        "status": "pass",
+        "elapsedMs": 56
+      },
+      {
+        "name": "outer operator pause persists through fresh worker; expiry reconciles pending queue",
+        "status": "pass",
+        "elapsedMs": 137
+      },
+      {
+        "name": "actual canonical runtime is inert then prepares starts completes and drains optional campaign",
+        "status": "pass",
+        "elapsedMs": 2425
+      },
+      {
+        "name": "profile dispatcher remains operational without optional campaign tables",
+        "status": "pass",
+        "elapsedMs": 78
+      }
+    ],
+    "passed": 50,
+    "failed": 0,
+    "fatal": null,
+    "resources": {
+      "postgresPort": 55497,
+      "httpsPort": 55499,
+      "clusterStopped": true,
+      "tlsStopped": true
+    },
+    "tls": {
+      "privateFixtureDirectory": ".local/light-bot-app/campaign-peer-liP4h2",
+      "certificateSha256": "76ca5eaba3ecba7ce9cceb50fc877e38b380c21ace3aa85d0368685182ae6017",
+      "rejectUnauthorized": true,
+      "publicOriginAdapter": true
+    },
+    "postgres": {
+      "version": "16.15",
+      "database": "lba_test_camp_notice_peer",
+      "port": 55497,
+      "host": "127.0.0.1/32"
+    },
+    "totalHealthRequests": 100
+  },
+  "attempts": [
+    {
+      "at": "2026-11-09T04:09:03.001Z",
+      "actor": "/root/current_release_judge",
+      "sourceBefore": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceAfter": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceDrift": false,
+      "driverSha256": "7bee60f5d4ff5ee7ba88c7c895f25d9fb24484e5253682f374979624ee1f92d7",
+      "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+      "nodeVersion": "v24.22.2",
+      "tests": [
+        {
+          "name": "inert disabled constructor and closed config; logical ref is distinct from native deployment UUID",
+          "status": "pass",
+          "elapsedMs": 51
+        },
+        {
+          "name": "representative actual validated TLS health then own-PG pilot notice",
+          "status": "fail",
+          "elapsedMs": 170,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'pilot'\n- 'completed'\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'pilot'\n- 'completed'\n\n    at file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:109:426\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:108:3\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:37:2"
+        },
+        {
+          "name": "HTTPS health rejects http_503",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirect",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirected",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects foreign_url",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects mime_wrong",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects bad_json",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects primitive",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects oversize_declared",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects oversize_stream",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects wrong_source",
+          "status": "pass",
+          "elapsedMs": 4
+        },
+        {
+          "name": "HTTPS health rejects wrong_build",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_notice",
+          "status": "pass",
+          "elapsedMs": 0
+        },
+        {
+          "name": "HTTPS health rejects wrong_ref",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_bot",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_origin",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_mode",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_profile",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_status",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects stale",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects future",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects canonical_ready",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects canonical_started",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_stopped",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_deliveryReady",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects slow_headers",
+          "status": "pass",
+          "elapsedMs": 42
+        },
+        {
+          "name": "HTTPS health rejects slow_body",
+          "status": "pass",
+          "elapsedMs": 43
+        },
+        {
+          "name": "HTTPS health rejects a non-JSON MIME subtype with JSON prefix",
+          "status": "fail",
+          "elapsedMs": 2,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n\n    at file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:115:269\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:115:3\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:37:2"
+        },
+        {
+          "name": "caller abort during HTTPS body is bounded and creates no campaign",
+          "status": "pass",
+          "elapsedMs": 24
+        },
+        {
+          "name": "frozen three-recipient audience requires both pilot receipts before full and fresh worker cannot resend",
+          "status": "pass",
+          "elapsedMs": 166
+        },
+        {
+          "name": "earlier same-chat reply defers campaign; regular worker preserves it; later notice sends exactly once",
+          "status": "pass",
+          "elapsedMs": 98
+        },
+        {
+          "name": "regular worker reconciles already cancelled outer campaign and releases later profile reply",
+          "status": "fail",
+          "elapsedMs": 80,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'cancelled'\n- false\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'cancelled'\n- false\n\n    at file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:131:16\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:126:48\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:37:2"
+        },
+        {
+          "name": "regular worker reconciles already failed outer campaign and releases later profile reply",
+          "status": "fail",
+          "elapsedMs": 72,
+          "error": "Expected values to be strictly equal:\n\n'dispatch' !== true\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'dispatch' !== true\n\n    at file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:130:35\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:126:48\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:37:2"
+        },
+        {
+          "name": "campaign native crash globally holds unrelated profile on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 79
+        },
+        {
+          "name": "profile native crash globally holds campaign on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 80
+        },
+        {
+          "name": "unknown native outcome holds across worker restart and never advances full",
+          "status": "pass",
+          "elapsedMs": 75
+        },
+        {
+          "name": "429 enforces whole-bot cooldown; 403 does not authorize full audience",
+          "status": "pass",
+          "elapsedMs": 163
+        },
+        {
+          "name": "bot-global advisory lock defers without native invocation or attempted pilot charge",
+          "status": "pass",
+          "elapsedMs": 52
+        },
+        {
+          "name": "stop while HTTPS request is open prevents preparation and native calls",
+          "status": "pass",
+          "elapsedMs": 34
+        },
+        {
+          "name": "stop at actual getMe boundary prevents subsequent native send",
+          "status": "pass",
+          "elapsedMs": 60
+        },
+        {
+          "name": "consent revoked at identity boundary prevents new native notice",
+          "status": "pass",
+          "elapsedMs": 59
+        },
+        {
+          "name": "outer operator pause persists through fresh worker; expiry reconciles pending queue",
+          "status": "pass",
+          "elapsedMs": 139
+        },
+        {
+          "name": "profile dispatcher remains operational without optional campaign tables",
+          "status": "pass",
+          "elapsedMs": 47
+        }
+      ],
+      "passed": 40,
+      "failed": 4,
+      "fatal": null,
+      "resources": {
+        "postgresPort": 55497,
+        "httpsPort": 55499,
+        "clusterStopped": true,
+        "tlsStopped": true
+      },
+      "tls": {
+        "privateFixtureDirectory": ".local/light-bot-app/campaign-peer-BPZTUK",
+        "certificateSha256": "cdf3b84bdccee9e7ec27b344dd17fb5644726047e1019a886955d89052f9fbab",
+        "rejectUnauthorized": true,
+        "publicOriginAdapter": true
+      },
+      "totalHealthRequests": 0
+    },
+    {
+      "at": "2026-11-09T04:09:42.073Z",
+      "actor": "/root/current_release_judge",
+      "sourceBefore": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceAfter": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceDrift": false,
+      "driverSha256": "7bf51c2f83bf2d390e7bd8abe138ac98e3e3348c06a25fee550fbd9b9a15d0d3",
+      "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+      "nodeVersion": "v24.22.2",
+      "tests": [
+        {
+          "name": "inert disabled constructor and closed config; logical ref is distinct from native deployment UUID",
+          "status": "pass",
+          "elapsedMs": 34
+        },
+        {
+          "name": "representative actual validated TLS health then own-PG pilot notice",
+          "status": "pass",
+          "elapsedMs": 116,
+          "observed": {
+            "tlsRequests": 4,
+            "nativeFixtureCalls": [
+              "getMe",
+              "sendMessage"
+            ]
+          }
+        },
+        {
+          "name": "HTTPS health rejects http_503",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirect",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirected",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects foreign_url",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects mime_wrong",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects bad_json",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects primitive",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects oversize_declared",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects oversize_stream",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects wrong_source",
+          "status": "pass",
+          "elapsedMs": 4
+        },
+        {
+          "name": "HTTPS health rejects wrong_build",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_notice",
+          "status": "pass",
+          "elapsedMs": 0
+        },
+        {
+          "name": "HTTPS health rejects wrong_ref",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_bot",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_origin",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_mode",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_profile",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_status",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects stale",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects future",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_ready",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_started",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects canonical_stopped",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_deliveryReady",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects slow_headers",
+          "status": "pass",
+          "elapsedMs": 42
+        },
+        {
+          "name": "HTTPS health rejects slow_body",
+          "status": "pass",
+          "elapsedMs": 42
+        },
+        {
+          "name": "HTTPS health rejects a non-JSON MIME subtype with JSON prefix",
+          "status": "fail",
+          "elapsedMs": 3,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n\n    at file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:115:269\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:115:3\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/lba_v8_campaign_worker_peer.mjs:37:2"
+        },
+        {
+          "name": "caller abort during HTTPS body is bounded and creates no campaign",
+          "status": "pass",
+          "elapsedMs": 24
+        },
+        {
+          "name": "frozen three-recipient audience requires both pilot receipts before full and fresh worker cannot resend",
+          "status": "pass",
+          "elapsedMs": 154
+        },
+        {
+          "name": "earlier same-chat reply defers campaign; regular worker preserves it; later notice sends exactly once",
+          "status": "pass",
+          "elapsedMs": 96
+        },
+        {
+          "name": "regular worker reconciles already cancelled outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 86
+        },
+        {
+          "name": "regular worker reconciles already failed outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 81
+        },
+        {
+          "name": "campaign native crash globally holds unrelated profile on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 76
+        },
+        {
+          "name": "profile native crash globally holds campaign on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 72
+        },
+        {
+          "name": "unknown native outcome holds across worker restart and never advances full",
+          "status": "pass",
+          "elapsedMs": 73
+        },
+        {
+          "name": "429 enforces whole-bot cooldown; 403 does not authorize full audience",
+          "status": "pass",
+          "elapsedMs": 166
+        },
+        {
+          "name": "bot-global advisory lock defers without native invocation or attempted pilot charge",
+          "status": "pass",
+          "elapsedMs": 55
+        },
+        {
+          "name": "stop while HTTPS request is open prevents preparation and native calls",
+          "status": "pass",
+          "elapsedMs": 36
+        },
+        {
+          "name": "stop at actual getMe boundary prevents subsequent native send",
+          "status": "pass",
+          "elapsedMs": 63
+        },
+        {
+          "name": "consent revoked at identity boundary prevents new native notice",
+          "status": "pass",
+          "elapsedMs": 59
+        },
+        {
+          "name": "outer operator pause persists through fresh worker; expiry reconciles pending queue",
+          "status": "pass",
+          "elapsedMs": 160
+        },
+        {
+          "name": "profile dispatcher remains operational without optional campaign tables",
+          "status": "pass",
+          "elapsedMs": 48
+        }
+      ],
+      "passed": 43,
+      "failed": 1,
+      "fatal": null,
+      "resources": {
+        "postgresPort": 55497,
+        "httpsPort": 55499,
+        "clusterStopped": true,
+        "tlsStopped": true
+      },
+      "tls": {
+        "privateFixtureDirectory": ".local/light-bot-app/campaign-peer-Ch7l7D",
+        "certificateSha256": "bec890e2927d06ae8e0487103e80c5453891ad516d264128e0daa5c64598801a",
+        "rejectUnauthorized": true,
+        "publicOriginAdapter": true
+      },
+      "totalHealthRequests": 0
+    },
+    {
+      "at": "2026-11-09T04:10:50.390Z",
+      "actor": "/root/current_release_judge",
+      "sourceBefore": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceAfter": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceDrift": false,
+      "driverSha256": "a4d6da5b6110913cf9a905e94fba1a2d8f1ccbac60cd761299ffb9caf5014926",
+      "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+      "nodeVersion": "v24.22.2",
+      "tests": [
+        {
+          "name": "inert disabled constructor and closed config; logical ref is distinct from native deployment UUID",
+          "status": "pass",
+          "elapsedMs": 38
+        },
+        {
+          "name": "representative actual validated TLS health then own-PG pilot notice",
+          "status": "pass",
+          "elapsedMs": 116,
+          "observed": {
+            "tlsRequests": 4,
+            "nativeFixtureCalls": [
+              "getMe",
+              "sendMessage"
+            ]
+          }
+        },
+        {
+          "name": "HTTPS health rejects http_503",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirect",
+          "status": "pass",
+          "elapsedMs": 6
+        },
+        {
+          "name": "HTTPS health rejects redirected",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects foreign_url",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects mime_wrong",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects bad_json",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects primitive",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects oversize_declared",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects oversize_stream",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_source",
+          "status": "pass",
+          "elapsedMs": 4
+        },
+        {
+          "name": "HTTPS health rejects wrong_build",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_notice",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_ref",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_bot",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_origin",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_mode",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_profile",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_status",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects stale",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects future",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_ready",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_started",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects canonical_stopped",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects canonical_deliveryReady",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects slow_headers",
+          "status": "pass",
+          "elapsedMs": 44
+        },
+        {
+          "name": "HTTPS health rejects slow_body",
+          "status": "pass",
+          "elapsedMs": 43
+        },
+        {
+          "name": "HTTPS health rejects a non-JSON MIME subtype with JSON prefix",
+          "status": "fail",
+          "elapsedMs": 3,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   botId: '8577497098',\n+   buildSha256: '1111111111111111111111111111111111111111111111111111111111111111',\n+   deploymentId: 'lba-release:peer-health-negatives',\n+   healthy: true,\n+   observedAt: '2026-11-09T12:00:00.000Z',\n+   origin: 'https://power-ukraine.net',\n+   releaseId: 'peer-health-negatives'\n+ }\n- null\n\n    at <anonymous> (/Users/admin/Projects/LIGHT BOT APP [CODEX]/tools/lba_v8_campaign_worker_peer.mjs:115:269)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async test (/Users/admin/Projects/LIGHT BOT APP [CODEX]/tools/lba_v8_campaign_worker_peer.mjs:27:74)\n    at async <anonymous> (/Users/admin/Projects/LIGHT BOT APP [CODEX]/tools/lba_v8_campaign_worker_peer.mjs:115:3)\n    at async withProofDatabase (file:///Users/admin/Projects/LIGHT%20BOT%20APP%20%5BCODEX%5D/tools/local-runtime/disposable-proof-db.mjs:24:10)\n    at async <anonymous> (/Users/admin/Projects/LIGHT BOT APP [CODEX]/tools/lba_v8_campaign_worker_peer.mjs:37:2)"
+        },
+        {
+          "name": "caller abort during HTTPS body is bounded and creates no campaign",
+          "status": "pass",
+          "elapsedMs": 24
+        },
+        {
+          "name": "frozen three-recipient audience requires both pilot receipts before full and fresh worker cannot resend",
+          "status": "pass",
+          "elapsedMs": 153
+        },
+        {
+          "name": "two fresh workers race preparation and pilot without duplicate native notice",
+          "status": "pass",
+          "elapsedMs": 106
+        },
+        {
+          "name": "earlier same-chat reply defers campaign; regular worker preserves it; later notice sends exactly once",
+          "status": "pass",
+          "elapsedMs": 95
+        },
+        {
+          "name": "regular worker reconciles already cancelled outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 95
+        },
+        {
+          "name": "regular worker reconciles already failed outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 88
+        },
+        {
+          "name": "campaign native crash globally holds unrelated profile on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 72
+        },
+        {
+          "name": "profile native crash globally holds campaign on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 76
+        },
+        {
+          "name": "unknown native outcome holds across worker restart and never advances full",
+          "status": "pass",
+          "elapsedMs": 78
+        },
+        {
+          "name": "429 enforces whole-bot cooldown; 403 does not authorize full audience",
+          "status": "pass",
+          "elapsedMs": 159
+        },
+        {
+          "name": "bot-global advisory lock defers without native invocation or attempted pilot charge",
+          "status": "pass",
+          "elapsedMs": 53
+        },
+        {
+          "name": "stop while HTTPS request is open prevents preparation and native calls",
+          "status": "pass",
+          "elapsedMs": 35
+        },
+        {
+          "name": "stop at actual getMe boundary prevents subsequent native send",
+          "status": "pass",
+          "elapsedMs": 62
+        },
+        {
+          "name": "consent revoked at identity boundary prevents new native notice",
+          "status": "pass",
+          "elapsedMs": 58
+        },
+        {
+          "name": "outer operator pause persists through fresh worker; expiry reconciles pending queue",
+          "status": "pass",
+          "elapsedMs": 154
+        },
+        {
+          "name": "actual canonical runtime is inert then prepares starts completes and drains optional campaign",
+          "status": "pass",
+          "elapsedMs": 2482
+        },
+        {
+          "name": "profile dispatcher remains operational without optional campaign tables",
+          "status": "pass",
+          "elapsedMs": 82
+        }
+      ],
+      "passed": 45,
+      "failed": 1,
+      "fatal": null,
+      "resources": {
+        "postgresPort": 55497,
+        "httpsPort": 55499,
+        "clusterStopped": true,
+        "tlsStopped": true
+      },
+      "tls": {
+        "privateFixtureDirectory": ".local/light-bot-app/campaign-peer-0rKlw4",
+        "certificateSha256": "f904b54e0fc286e6c927cdfa4c4e72d76096f4c48c12029fa4b55020ca2d0f84",
+        "rejectUnauthorized": true,
+        "publicOriginAdapter": true
+      },
+      "totalHealthRequests": 0
+    },
+    {
+      "at": "2026-11-09T04:15:18.626Z",
+      "actor": "/root/current_release_judge",
+      "sourceBefore": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceAfter": [
+        {
+          "path": "app/server/production/release-campaign.ts",
+          "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+        },
+        {
+          "path": "app/server/production/canonical-runtime.ts",
+          "sha256": "c326643dd55fc69acbc03ed27f9f997423fa1e840f8da021237df25e0635b598"
+        },
+        {
+          "path": "app/server/index.ts",
+          "sha256": "898adbbd8ff919a67458da10bb31ed7ba51a31af439353b96b2877914e5725b3"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch.ts",
+          "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+        },
+        {
+          "path": "app/server/production/telegram-dispatch-eligibility.ts",
+          "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+        },
+        {
+          "path": "app/server/production/legacy-campaign-recipient.ts",
+          "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+        },
+        {
+          "path": "app/server/production/campaign-dispatch.ts",
+          "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+        },
+        {
+          "path": "app/server/release/update-campaign.ts",
+          "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+        },
+        {
+          "path": "app/server/release/update-campaign-pg.ts",
+          "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+        }
+      ],
+      "sourceDrift": false,
+      "driverSha256": "703c483edd3578589e0f058f6c28c1c09f80a1b18b461ad9203ab171ed55f2c6",
+      "canonicalSchemaSha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+      "nodeVersion": "v24.22.2",
+      "tests": [
+        {
+          "name": "inert disabled constructor and closed config; logical ref is distinct from native deployment UUID",
+          "status": "pass",
+          "elapsedMs": 36
+        },
+        {
+          "name": "representative actual validated TLS health then own-PG pilot notice",
+          "status": "pass",
+          "elapsedMs": 110,
+          "observed": {
+            "tlsRequests": 4,
+            "nativeFixtureCalls": [
+              "getMe",
+              "sendMessage"
+            ]
+          }
+        },
+        {
+          "name": "HTTPS health rejects http_503",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects redirect",
+          "status": "pass",
+          "elapsedMs": 7
+        },
+        {
+          "name": "HTTPS health rejects redirected",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects foreign_url",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects mime_wrong",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects bad_json",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects primitive",
+          "status": "pass",
+          "elapsedMs": 0
+        },
+        {
+          "name": "HTTPS health rejects oversize_declared",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "HTTPS health rejects oversize_stream",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_source",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_build",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_notice",
+          "status": "pass",
+          "elapsedMs": 0
+        },
+        {
+          "name": "HTTPS health rejects wrong_ref",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_bot",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_origin",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_mode",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects wrong_profile",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects wrong_status",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects stale",
+          "status": "pass",
+          "elapsedMs": 1
+        },
+        {
+          "name": "HTTPS health rejects future",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_ready",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_started",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects canonical_stopped",
+          "status": "pass",
+          "elapsedMs": 0
+        },
+        {
+          "name": "HTTPS health rejects canonical_deliveryReady",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health rejects slow_headers",
+          "status": "pass",
+          "elapsedMs": 43
+        },
+        {
+          "name": "HTTPS health rejects slow_body",
+          "status": "pass",
+          "elapsedMs": 42
+        },
+        {
+          "name": "HTTPS health rejects a non-JSON MIME subtype with JSON prefix",
+          "status": "pass",
+          "elapsedMs": 2
+        },
+        {
+          "name": "HTTPS health accepts case-insensitive JSON media type with parameters",
+          "status": "pass",
+          "elapsedMs": 3
+        },
+        {
+          "name": "caller abort during HTTPS body is bounded and creates no campaign",
+          "status": "pass",
+          "elapsedMs": 25
+        },
+        {
+          "name": "worker consumes negative HTTPS health before any campaign preparation or native invocation",
+          "status": "pass",
+          "elapsedMs": 96
+        },
+        {
+          "name": "HTTPS health has no transaction or row-lock held across either observation",
+          "status": "pass",
+          "elapsedMs": 70
+        },
+        {
+          "name": "frozen three-recipient audience requires both pilot receipts before full and fresh worker cannot resend",
+          "status": "pass",
+          "elapsedMs": 132
+        },
+        {
+          "name": "two fresh workers race preparation and pilot without duplicate native notice",
+          "status": "pass",
+          "elapsedMs": 107
+        },
+        {
+          "name": "earlier same-chat reply defers campaign; regular worker preserves it; later notice sends exactly once",
+          "status": "pass",
+          "elapsedMs": 95
+        },
+        {
+          "name": "regular worker reconciles already cancelled outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 84
+        },
+        {
+          "name": "regular worker reconciles already failed outer campaign and releases later profile reply",
+          "status": "pass",
+          "elapsedMs": 85
+        },
+        {
+          "name": "campaign native crash globally holds unrelated profile on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 75
+        },
+        {
+          "name": "profile native crash globally holds campaign on different chat before any new native call",
+          "status": "pass",
+          "elapsedMs": 69
+        },
+        {
+          "name": "unknown native outcome holds across worker restart and never advances full",
+          "status": "pass",
+          "elapsedMs": 71
+        },
+        {
+          "name": "429 enforces whole-bot cooldown; 403 does not authorize full audience",
+          "status": "pass",
+          "elapsedMs": 154
+        },
+        {
+          "name": "bot-global advisory lock defers without native invocation or attempted pilot charge",
+          "status": "pass",
+          "elapsedMs": 51
+        },
+        {
+          "name": "stop while HTTPS request is open prevents preparation and native calls",
+          "status": "pass",
+          "elapsedMs": 33
+        },
+        {
+          "name": "stop at actual getMe boundary prevents subsequent native send",
+          "status": "pass",
+          "elapsedMs": 59
+        },
+        {
+          "name": "consent revoked at identity boundary prevents new native notice",
+          "status": "pass",
+          "elapsedMs": 58
+        },
+        {
+          "name": "configured bot identity in health cannot substitute a mismatching native getMe",
+          "status": "pass",
+          "elapsedMs": 56
+        },
+        {
+          "name": "outer operator pause persists through fresh worker; expiry reconciles pending queue",
+          "status": "pass",
+          "elapsedMs": 137
+        },
+        {
+          "name": "actual canonical runtime is inert then prepares starts completes and drains optional campaign",
+          "status": "pass",
+          "elapsedMs": 2425
+        },
+        {
+          "name": "profile dispatcher remains operational without optional campaign tables",
+          "status": "pass",
+          "elapsedMs": 78
+        }
+      ],
+      "passed": 50,
+      "failed": 0,
+      "fatal": null,
+      "resources": {
+        "postgresPort": 55497,
+        "httpsPort": 55499,
+        "clusterStopped": true,
+        "tlsStopped": true
+      },
+      "tls": {
+        "privateFixtureDirectory": ".local/light-bot-app/campaign-peer-liP4h2",
+        "certificateSha256": "76ca5eaba3ecba7ce9cceb50fc877e38b380c21ace3aa85d0368685182ae6017",
+        "rejectUnauthorized": true,
+        "publicOriginAdapter": true
+      },
+      "postgres": {
+        "version": "16.15",
+        "database": "lba_test_camp_notice_peer",
+        "port": 55497,
+        "host": "127.0.0.1/32"
+      },
+      "totalHealthRequests": 100
+    }
+  ],
+  "effects": {
+    "externalProviderRequests": 0,
+    "productionWrites": 0,
+    "secretsRead": 0,
+    "realRecipientMessages": 0
+  },
+  "reviewConclusion": {
+    "verdict": "PASS_COMPONENT_ONLY",
+    "reviewer": "/root/current_release_judge",
+    "componentRequirementRefs": [
+      "PROFILE-06",
+      "PROFILE-07",
+      "TECH-06"
+    ],
+    "wholeRequirementsAccepted": false,
+    "productionReadinessClaimed": false,
+    "actualProviderObservationClaimed": false,
+    "humanAcceptanceClaimed": false,
+    "resolvedFinding": {
+      "id": "PEER-HEALTH-MIME-01",
+      "oldSourceSha256": "71ec626de0da0e73df35d4c863ab111c2b20b94886cc68bb9529cc221ede4a5c",
+      "repairedSourceSha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42",
+      "observedBefore": "application/jsonx returned healthy on actual owned TLS",
+      "observedAfter": "observer null; worker waiting_health before SQL campaign prepare and native invocation; uppercase media type plus parameters accepted"
+    },
+    "command": "app/node_modules/.bin/tsx --tsconfig app/tsconfig.json tools/lba_v8_campaign_worker_peer.mjs",
+    "independentOfAuthorDriver": true,
+    "portsObservedClosedAfterRun": [
+      55497,
+      55499
+    ],
+    "remainingComponentFindings": [],
+    "scopeLimits": [
+      "Public origin URL is explicitly substituted with actual owned TLS loopback origin",
+      "Native Telegram transport is synthetic; no real receivers or provider requests",
+      "Local Node24 execution does not certify Node20 Replit target",
+      "All68 source/device/owner/product acceptance gates remain separate"
+    ],
+    "nextAction": "Root freezes a new candidate including exactly repaired component pins, verifies actual same-build public health and native provider identity, and obtains real pilot/full receipts only during separately controlled authorized execution."
+  }
+}

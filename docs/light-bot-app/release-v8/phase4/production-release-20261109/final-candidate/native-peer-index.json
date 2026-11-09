@@ -1,0 +1,53 @@
+{
+  "kind": "lba-native-peer-transport-index/1",
+  "derivativeOf": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/native-schema-peer/fresh-native-peer.json",
+    "sha256": "0ff91c3a64b7e56a15467b9b97d1c7ed47e25ffddb894476778764ace4c025d6",
+    "bytes": 764826,
+    "originalRetainedLocally": true,
+    "fullOriginalIncludedInTransfer": false
+  },
+  "transformation": "Compact transport index only; large duplicated normalized catalogs remain in immutable local original. The required runtime contract and exact reviewed native SQL are transferred separately.",
+  "actualReviewer": "/root/release_authority_judge",
+  "observedAt": "2026-11-09T03:39:02.975Z",
+  "verdict": "PASS_EXACT_NORMALIZED_SCHEMA",
+  "canonicalDDL": {
+    "sha256": "3dab788973ff187b372683c0def227da51fd091c2cba94e5ecda04154029e2ce",
+    "relations": 50
+  },
+  "nativeSqlSha256": "44fc2c6935c6d73325309431303bbd1b2700d9817c55320b95b7ef588a451112",
+  "comparison": {
+    "equal": true,
+    "differences": {
+      "tables": {
+        "missing": [],
+        "extra": []
+      },
+      "columns": {
+        "missing": [],
+        "extra": []
+      },
+      "constraints": {
+        "missing": [],
+        "extra": []
+      },
+      "indexes": {
+        "missing": [],
+        "extra": []
+      }
+    }
+  },
+  "explicitNameConsumersMatch": true,
+  "sourceRowsRead": 0,
+  "applicationRuntime": 0,
+  "productionConnections": 0,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "clusterStopped": true,
+  "limits": [
+    "Only ownemptyloopbackDBs plus minimaluserslegacyFKfixture; no productionrows, migrationorcutover.",
+    "Constraint/indexnames ignored; definitions, FKactions/deferrability/checks/defaults/types/nullability/partialuniqueness andindexopclasses retained.",
+    "Nativepreview maychange beforePublish; only exactprovidedhash accepted."
+  ],
+  "transportInputLimit": "Parent supplied exact44fc SQL; reviewer independently rehashed file and executed exactunmodifiedbytes. Compression transport verified byparent, not independently repeated bythisreviewer."
+}
