@@ -12,7 +12,7 @@ import { readNotificationForm as readForm, readNotificationLocations as readLoca
 const CHANNEL_NAMES = { telegram: 'Telegram', push: 'Push у застосунку' };
 interface EditorProps {
   profile: BotProfile; revision: number; sessionId: string; blocked: boolean; lastMutationId: string; focusAddressId?: string;
-  mutate(value: ProfileMutation): Promise<void>;
+  mutate(value: ProfileMutation): Promise<unknown>;
 }
 
 function Toggle({ title, checked, onChange }: { title: string; checked: boolean; onChange(value: boolean): void }) {

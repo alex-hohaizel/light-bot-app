@@ -16,7 +16,7 @@ export function AddressList({ addresses, blocked, onAdd, onPlan, onLabel, onRepl
     <label className="pr-context-picker">Знайти адресу<input aria-label="Знайти збережену адресу" value={query} onChange={event => { setQuery(event.target.value); setPage(0); }} placeholder="Мітка, місто або вулиця" /></label>
     <div className="pr-address-grid">{matched.slice(safePage * 4, (safePage + 1) * 4).map(item => <article className="pr-panel pr-address-card" key={item.id} data-testid={`review-address-${item.id}`}>
       <div className="pr-address-card-top"><span className="pr-location-icon"><House size={22} /></span>{item.primary && <span className="pr-pill">Основна</span>}</div><h2>{item.label}</h2><p>{item.city}, {item.street}, {item.house}</p>
-      <span className={`pr-pill ${!item.confirmedInDemo ? 'pr-pill-amber' : ''}`}>{item.confirmedInDemo ? <Check size={13} /> : <Activity size={13} />}{item.confirmedInDemo ? 'Прив’язка перевірена в тестовому каталозі' : 'Потрібна перевірка будинку'}</span>
+      <span className={`pr-pill ${!item.confirmedInDemo ? 'pr-pill-amber' : ''}`}>{item.confirmedInDemo ? <Check size={13} /> : <Activity size={13} />}{item.confirmedInDemo ? 'Прив’язка до графіка перевірена' : 'Потрібна перевірка будинку'}</span>
       {item.paused && <p className="pr-paused-note">Сповіщення адреси на паузі; згоду й час збережено.</p>}
       <div className="pr-address-actions"><button className="pr-secondary" onClick={() => onPlan(item.id)}>Відкрити план<ArrowRight size={15} /></button>
         <details className="pr-address-menu"><summary>Дії адреси</summary><div>

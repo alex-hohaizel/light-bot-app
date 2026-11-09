@@ -4,6 +4,7 @@ import coverage from '@shared/coverage-research.json';
 import { useEffect, useRef, useState } from 'react';
 import type { ProfileMutation, ProfileRequest } from '@shared/profile-mutation';
 import type { ProductSnapshot } from '@shared/live-product';
+import type {ProfileCommit} from '../product-review/address-save-feedback';
 import { clearPendingProfile, loadPendingProfile, savePendingProfile } from './pending-request';
 import {profileErrorMessage} from '@shared/profile-errors';
 import {profileResponseFailure,assertProfileSnapshotResponse,assertProfileCommitResponse} from './profile-response';
@@ -27,6 +28,7 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
   const [snapshot, setSnapshot] = useState<ProductSnapshot | null>(null);
   const [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [pending, setPending] = useState<ProfileRequest | null>(null), [lastMutationId, setLastMutationId] = useState('');
+  const [lastCommit,setLastCommit]=useState<ProfileCommit|null>(null);
   const snapshotRef = useRef(snapshot), pendingRef = useRef(pending), working = useRef(false);
   const mounted=useRef(true);
   const requestSequence = useRef(0);
@@ -39,7 +41,7 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
       snapshotRef.current = value; setSnapshot(value); pendingRef.current = recovered; setPending(recovered);
       setError(recovered ? 'Результат попереднього збереження ще не підтверджено. Перевірте той самий запит.' : '');
     }else if(options?.throwOnFailure)throw Error('Профіль змінився під час перевірки адреси. Повторіть вибір.'); }
-    catch (error) { if (sequence === requestSequence.current) setError(error instanceof Error ? error.message : 'Немає зв’язку з локальним профілем.');if(options?.throwOnFailure)throw error; }
+    catch (error) { if (sequence === requestSequence.current) setError(error instanceof Error ? error.message : 'Не вдалося отримати ваш профіль. Спробуйте оновити його.');if(options?.throwOnFailure)throw error; }
   }
   useEffect(() => {
     mounted.current=true;
@@ -59,9 +61,11 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
     working.current = true; setBusy(true); setError(''); pendingRef.current = request; setPending(request);
     try {
       const value = await fetchProfile(request,mode,current.profile.id);
-      if(!mounted.current)return;
+      if(!mounted.current)return value;
       snapshotRef.current = value; setSnapshot(value); pendingRef.current = null; setPending(null); setLastMutationId(request.id);
+      setLastCommit({before:current,request,snapshot:value});
       try { clearPendingProfile(sessionStorage,{ownerId:current.profile.id,requestId:request.id,sessionId:request.expectedSessionId}); } catch {}
+      return value;
     } catch (error) {
       if(!mounted.current)throw error;
       const message = error instanceof Error ? error.message : 'Збереження ще не підтверджено.';
@@ -80,9 +84,9 @@ export default function ProductRuntime({mode='review'}:{mode?:'review'|'live'}={
     if (snapshotRef.current?.simulationOnly===false && !snapshotRef.current.capabilities.profileMutations) throw new Error('Зміни поки недоступні: триває перевірка перенесення профілів.');
     if (pendingRef.current || !snapshotRef.current) throw new Error('Спочатку перевірте результат попереднього збереження.');
     const current = snapshotRef.current;
-    await submit({ id: crypto.randomUUID(), expectedSessionId: current.sessionId, expectedRevision: current.revision, mutation });
+    return submit({ id: crypto.randomUUID(), expectedSessionId: current.sessionId, expectedRevision: current.revision, mutation });
   }
   const readOnly=snapshot?.simulationOnly===false&&!snapshot.capabilities.profileMutations;
   const notice = error || pending ? <div className="pr-runtime-error" role="alert"><span>{error || 'Перевіряємо збереження…'}</span>{pending ? <button disabled={busy} onClick={() => void submit(pending).catch(() => {})}>{busy ? 'Перевіряємо…' : 'Перевірити результат того самого запиту'}</button> : <button disabled={busy} onClick={() => void refresh()}>Оновити профіль</button>}{pending && <small>Нові зміни заблоковані до підтвердження. Повтор не дублює дію.</small>}</div> : <details className="pr-runtime-status"><summary>{busy ? 'Зберігаємо зміни…' : mode==='live'?(readOnly?'Перевірка перенесення · тільки перегляд':'Ваш профіль застосунку й бота'):'Тестовий профіль застосунку й бота'}</summary><span>{snapshot?.simulationOnly===false?snapshot.migration.message:`Ревізія ${snapshot?.revision}. PostgreSQL цього локального запуску.`}</span><button disabled={busy} onClick={() => void refresh()}>Оновити профіль</button></details>;
-  return snapshot ? <ProductReview coverage={coverage as CoverageRecord[]} runtimeNotice={notice} runtimeError={Boolean(error||pending)} runtime={{snapshot,busy,blocked:busy||Boolean(pending)||readOnly,lastMutationId,mutate,refresh,...(pending?{retry:()=>submit(pending)}:{})}}/> : <main className="pr-app"><div className="pr-empty-state"><h1>Ваші адреси</h1><p>{error || (mode==='live'?'Отримуємо ваш збережений профіль…':'Отримуємо збережений тестовий профіль…')}</p><button className="pr-secondary" onClick={()=>void refresh()}>Оновити профіль</button></div></main>;
+  return snapshot ? <ProductReview coverage={coverage as CoverageRecord[]} runtimeNotice={notice} runtimeError={Boolean(error||pending)} runtime={{snapshot,busy,blocked:busy||Boolean(pending)||readOnly,lastMutationId,lastCommit,mutate,refresh,...(pending?{retry:async()=>{await submit(pending);}}:{})}}/> : <main className="pr-app"><div className="pr-empty-state"><h1>Ваші адреси</h1><p>{error || (mode==='live'?'Отримуємо ваш збережений профіль…':'Отримуємо збережений тестовий профіль…')}</p><button className="pr-secondary" onClick={()=>void refresh()}>Оновити профіль</button></div></main>;
 }

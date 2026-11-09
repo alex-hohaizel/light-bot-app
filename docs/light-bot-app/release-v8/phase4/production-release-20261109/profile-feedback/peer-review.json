@@ -1,0 +1,256 @@
+{
+  "kind": "lba-profile-feedback-independent-review/1",
+  "actor": "/root/profile_feedback_peer",
+  "recordedAt": "2026-11-09T07:03:31.513746+00:00",
+  "attempt": "01",
+  "verdict": "PASS_BOUNDED_FUNCTIONAL_AND_ACTUAL_UI_SCOPE_WITH_EXISTING_COPY_FINDINGS",
+  "authorHandoff": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/handoff.json",
+    "sha256": "7d50d86de173459f8ff7407a4b9b01a493752edf5a55d4c36b38a5e77a481840"
+  },
+  "sourcePinsBeforeAndAfter": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-runtime/ProductRuntime.tsx",
+      "beforeSha256": "f28c6e7fa63fa2a415f4aa6737c6dba76eac6509a6b14c63d99597ce117fb9ae",
+      "afterSha256": "d2e9a7df89361c585cdfa6fa0f17328a1d99d400f877f32d749a990d47898e83"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/ProductReview.tsx",
+      "beforeSha256": "d9c8bc7266373362c9c70c7f97d8e9d13992e1627454b1fb73c8b98d7a27675c",
+      "afterSha256": "678321679e16aa97ad2c3e5cfa037ec893527f1f05d0435baf5f9024657f9e82"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "beforeSha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+      "afterSha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.ts",
+      "beforeSha256": null,
+      "afterSha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.css",
+      "beforeSha256": null,
+      "afterSha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    }
+  ],
+  "sourceUnchangedDuringIndependentRun": true,
+  "canonicalBaseline": {
+    "sourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+    "receiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+    "sourceFilesIndependentlyRehashed": 281,
+    "candidateUnchangedBaselineFilesRehashed": 278
+  },
+  "requirements": {
+    "assigned": [
+      "ADDR-05",
+      "ADDR-07",
+      "PROFILE-02",
+      "LANG-01",
+      "LANG-02",
+      "APP-03",
+      "APP-04"
+    ],
+    "privacyDependency": "CHART-07",
+    "all68Retained": true,
+    "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+  },
+  "actualChecks": {
+    "pureAndContract": {
+      "passed": 18,
+      "failed": 0,
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-pure-results.json",
+      "sha256": "14d44a203ddcab817da034d275909cf4506034a82cbb6f2e54a5d2ccd64e11c1"
+    },
+    "reactAndSyntheticHttp": {
+      "passed": 12,
+      "failed": 0,
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-browser-results.json",
+      "sha256": "5cbe937ce339ce37b0b1dac98a06b75d8907272b3a96c94ab68af610fa18e4e9"
+    },
+    "visibleFailureText": {
+      "passed": 3,
+      "failed": 0,
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-error-results.json",
+      "sha256": "73017dbdf49f4414249e49b2f57da4bec0e8f502884d30f3f176d19ea2d25ff8",
+      "rawRecordCountCorrection": "Original raw6 records include3 text observations; they are metadata, not6 scenarios. Three actual scenarios counted."
+    },
+    "meaningfulScenarios": 33,
+    "typescript": "Independent npm run check, tsc --incremental false, exit0; no source modifications",
+    "actualUi": {
+      "hydratedRenders": 4,
+      "screenshotsActuallyInspected": 4,
+      "widths": [
+        320,
+        390,
+        1280
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "font": "Actual loaded Onest",
+      "controls": "Measured all new panel controls at least44x44px",
+      "overflow": "Measured document and notice bounds within viewport",
+      "persistentNotice": "Observed after4.7s; dismiss restores exact generic missing-plan warning",
+      "existingAction": "Actual new-panel notifications CTA opens actual address notification editor"
+    }
+  },
+  "actualBehaviorEvidence": [
+    "Live runtime actual POST -> current snapshot+receipt validators -> lastCommit -> actual ProductReview panel, both disabled channels proven",
+    "Unknown applied commit then same-request retry retains ID and creates one logical operation",
+    "Wrong owner HTTP200 and missing receipt keep pending and no success; correct replay settles once",
+    "Definite409 produces no save or success and releases pending",
+    "Unmount during in-flight commit returns actual validated value without UI; remount/restart recovers original intent and same-request retry",
+    "Same verified binding label edit preserves enabled Telegram+Push and uses short confirmation",
+    "Owner change hides prior toast; later revision/owner change hides persistent panel",
+    "Newer replay with re-enabled channels never shows stale OFF copy; removed address never resurrected in current snapshot",
+    "Actual review editor city/street/house/checkbox/save -> real runtime synthetic HTTP -> actual panel and editor close",
+    "Wrong owner/session/missingreceipt visible errors are human Ukrainian; no literal validator codes"
+  ],
+  "independentContractInspection": {
+    "actor": "/root/profile_feedback_peer/feedback_contract_callsite",
+    "method": "Read-only five-file and consumer analysis",
+    "result": "No current Promise contract incompatibility. NotificationPolicyEditor Promise<unknown>, other handlers await/ignore, retry Promise<void>. LiveProduct owner key remounts runtime. Runtime race composition source review kept separate from browser cases."
+  },
+  "craftFindings": [
+    {
+      "id": "PF-COPY-01",
+      "severity": "copy repair before final release",
+      "status": "Source-derived and visible in own actual four renders; pre-existing text outside new panel",
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "observed": "План оператора не є виміром живлення",
+      "recommended": "Графік не підтверджує, чи є світло саме зараз",
+      "owner": "root/author consolidated repair"
+    },
+    {
+      "id": "PF-COPY-02",
+      "severity": "copy repair before final release",
+      "status": "Source-derived reachable live verified address list; not mutated in this frozen attempt",
+      "path": "app/client/src/product-review/AddressList.tsx:19",
+      "observed": "Прив’язка перевірена в тестовому каталозі",
+      "recommended": "Прив’язка до графіка перевірена",
+      "cause": "Real runtime maps verified binding into same confirmedInDemo field; a test-catalog label is unsuitable for the live surface",
+      "owner": "root/author consolidated repair"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-changed-1280-dark.png",
+      "sha256": "4dad238529aa9c988d086b559e98251fdaac67aa2364141fad0119ae0f6c9595",
+      "bytes": 96557
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-changed-390-dark.png",
+      "sha256": "3fbe8107a5c21feb116223a8d63b15ccc9035a429122d8a644ac0c0128bfe469",
+      "bytes": 73414
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-error-missing-receipt.png",
+      "sha256": "dcf45e346fac22984d8630ee9821475b08ed8f2f8c8175b70c87a2e209533a87",
+      "bytes": 99547
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-error-wrong-owner.png",
+      "sha256": "d11826d9fd81c95cbdfd2c5237c6af01b4bcc44cfc790933415c566ba427f492",
+      "bytes": 99700
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-error-wrong-session.png",
+      "sha256": "0f6dadbcf3907dd07b6ba65577e6c16afcbe061f940e6d1c98fecb7b1c7a1956",
+      "bytes": 99281
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-unverified-1280-light.png",
+      "sha256": "eb482fd862e72260a26bf954c06ddefe4c723a9477cd750894acdb8ba48ee52f",
+      "bytes": 97562
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-unverified-320-light.png",
+      "sha256": "51050db2c335f07812296877ce1c11e8470edc1655fb99934d1d67ee71ba1851",
+      "bytes": 70473
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-browser-results.json",
+      "sha256": "5cbe937ce339ce37b0b1dac98a06b75d8907272b3a96c94ab68af610fa18e4e9",
+      "bytes": 9311
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-error-results.json",
+      "sha256": "73017dbdf49f4414249e49b2f57da4bec0e8f502884d30f3f176d19ea2d25ff8",
+      "bytes": 3329
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-pure-results.json",
+      "sha256": "14d44a203ddcab817da034d275909cf4506034a82cbb6f2e54a5d2ccd64e11c1",
+      "bytes": 2084
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/fixture.ts",
+      "sha256": "1f73d6623c237fe06405be5bc2d375445ec33b71649ac30166e0945d02bba452",
+      "bytes": 2543
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/pure.mjs",
+      "sha256": "4ce2c7696c1449f6f3e96303e2ddcd1470fd7f42f4e62ea6fb23740fea3b8c2c",
+      "bytes": 8276
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/preview.tsx",
+      "sha256": "82a848a616ae67de90765bd49e560fa56929b9796db3572ed553046f4cf1ec6a",
+      "bytes": 566
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/probe.tsx",
+      "sha256": "e10562c448cbbf777732c78213c2b2eb2b649090a7eba18ce1498ba24bacc0a2",
+      "bytes": 233
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/browser.mjs",
+      "sha256": "8f937a7e4e237e5647cee44f574e564dc61f8b14d8f1b8b6ec4c24a805fd0508",
+      "bytes": 18572
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/browser-negatives.mjs",
+      "sha256": "65932163d7574dc7c56fa4856eb34e8a8a22d416e2461be47c64a68b326ea1ee",
+      "bytes": 10230
+    }
+  ],
+  "cleanup": {
+    "servers": [
+      {
+        "pid": 16746,
+        "port": 49747,
+        "stopped": true
+      },
+      {
+        "pid": 16859,
+        "port": 49773,
+        "stopped": true
+      }
+    ],
+    "bothServersStopped": true,
+    "bothChromeInstancesClosed": true,
+    "externalHttp": 0,
+    "productionWrites": 0,
+    "db": 0,
+    "realMessages": 0,
+    "publish": 0,
+    "canonicalAppEdits": 0,
+    "authorSourceEdits": 0
+  },
+  "limits": [
+    "Own synthetic loopback HTTP and headless desktop Chrome, not real provider/physical device/production",
+    "Live runtime controller was observed through a test-only wrapper, without modifying runtime source; full user editor save exercised on synthetic review route, not external live address lookup",
+    "Current data/source admission registry remains empty; no real certificate, address or notification qualification created",
+    "Four actual layouts cover this repair; no new motion playback proof claimed because accepted motion/source CSS remains unchanged",
+    "No full product, all68 acceptance or owner approval inferred from33 scenarios",
+    "Any consolidated copy/source changes need new exact diff/freeze and affected proof; immutable current raw outputs remain bound to current five hashes"
+  ]
+}

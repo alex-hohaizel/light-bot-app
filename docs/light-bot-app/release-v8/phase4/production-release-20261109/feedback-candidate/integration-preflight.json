@@ -1,0 +1,56 @@
+{
+  "kind": "lba-feedback-integration-preflight/1",
+  "recordedAt": "2026-11-09T07:25:25.742971+00:00",
+  "baselineSourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+  "baselineBuildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+  "baselineLocalCopy": ".local/light-bot-app/baselines/1ecb9839-cff3bcc1",
+  "changes": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-runtime/ProductRuntime.tsx",
+      "beforeSha256": "f28c6e7fa63fa2a415f4aa6737c6dba76eac6509a6b14c63d99597ce117fb9ae",
+      "afterSha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/ProductReview.tsx",
+      "beforeSha256": "d9c8bc7266373362c9c70c7f97d8e9d13992e1627454b1fb73c8b98d7a27675c",
+      "afterSha256": "be7ebfc6c92d0ed5e10c08288911184f3454221feb2fad891d838d75b8f82842"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "beforeSha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+      "afterSha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.ts",
+      "beforeSha256": null,
+      "afterSha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.css",
+      "beforeSha256": null,
+      "afterSha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/AddressList.tsx",
+      "beforeSha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "afterSha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/shared/coverage-research.json",
+      "beforeSha256": "a66ebbcbff97840ddba36c09c8e053eb73f820b5596322ce915a6fe6d7aba4ad",
+      "afterSha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "authorHandoffSha256": "8270e181def7ffd854d5a49372edfef93b0fdace2b35979103a6919bcdc77894",
+  "qualificationDependencyFilesRehashedUnchanged": 38,
+  "productionEffects": 0,
+  "canonicalAppModified": false,
+  "state": "ready_pending_final_exact_copy_peer_receipt"
+}

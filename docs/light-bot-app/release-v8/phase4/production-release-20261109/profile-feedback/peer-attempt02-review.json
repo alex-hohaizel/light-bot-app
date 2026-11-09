@@ -1,0 +1,212 @@
+{
+  "kind": "lba-profile-feedback-independent-attempt02-review/1",
+  "actor": "/root/profile_feedback_peer",
+  "recordedAt": "2026-11-09T07:17:32.999405+00:00",
+  "attempt": 2,
+  "verdict": "PASS_EXACT_COPY_DATA_DIFF_AND_TARGETED_ACTUAL_RENDER",
+  "acceptedScope": "Three literal UI copy repairs and three dated research coverage records; unchanged feedback mechanism kept distinct from historical exact33 proof",
+  "handoff": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/handoff.json",
+    "sha256": "90ef4b0654659fc4ff9a8eba46054316413b0e5864610a93aebc76fbce46a370"
+  },
+  "accepted7Files": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "sha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "sha256": "d785df1bdbde9c8e62770d190d5483ce3072e19b2af0dff8288d53d4ff245bce"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "sha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "sha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "sha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "sha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "current7HashesVerifiedBeforeAndAfter": true,
+  "historicalProofPreserved": {
+    "attempt01SourceCopiesVerified": 5,
+    "handoffRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt01/handoff.json",
+    "handoffSha256": "7d50d86de173459f8ff7407a4b9b01a493752edf5a55d4c36b38a5e77a481840",
+    "peer33Ref": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-review.json",
+    "peer33Sha256": "4e555dfe82b128c76b3c6499f23a63344e3583ec8ed0ed2f5247ee70110c31ca",
+    "notRerun": true,
+    "notReboundToCurrentBytes": true
+  },
+  "exactDiff": {
+    "ref": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-exact-diff.json",
+    "sha256": "7ec113179b12d1f6524855b9b473c15b2ddc884694bf5396ce9e5b5f853af7c4",
+    "inverseByteSubstitutions": 3,
+    "unchangedImplementationFiles": [
+      "NotificationPolicyEditor.tsx",
+      "address-save-feedback.ts",
+      "address-save-feedback.css"
+    ],
+    "unchangedCoverageRecords": 30,
+    "coverageCount": 33,
+    "coverageOrderAndKeyOrderPreserved": true
+  },
+  "currentPolicySourcePins": [
+    {
+      "path": "app/server/production/source-operating-policy.ts",
+      "sha256": "37af5a6cfbd1e6af72a618eb692bff505c54303d5ddafdb1c8458a4f7880b6c2"
+    },
+    {
+      "path": "app/server/production/source-intake.ts",
+      "sha256": "d0d5b5f347a47d4f5bd48e0e3cb65a6c4da68deef68e1e8d9db48261cae861b8"
+    }
+  ],
+  "delegatedReadOnlyPolicyReview": {
+    "actor": "/root/profile_feedback_peer/feedback_contract_callsite",
+    "result": "PASS_WITH_DATED_LIMITS",
+    "method": "Actual canonical/candidate source and evidence records inspected; no runtime, network or edits",
+    "facts": [
+      "OnlyVN/Odesa/KH changed;30 other records/order/keys unchanged",
+      "VN checkedAt agrees with real9Nov provenance timestamp to millisecond rounding; unknown origin/gap-filling remains quarantined",
+      "Odesa9Nov semantic scope has12 targets;8Nov conflict record retained rather than rewritten",
+      "KH9Nov item13883460/pub8Nov20:18:03Z has12 target plans with emergency overlay unknown",
+      "Both technical plan scopes expire9Nov22:00:00Z; intake rejects expiry and other service date",
+      "Source policy four admission flags remain false; JSON address unverified/fallbackCost null; no tomorrow/current-live, independent-control, personal or integration grant"
+    ]
+  },
+  "actualMedium": {
+    "ref": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-render-results.json",
+    "sha256": "d74a4f0dac87d8fad9bf45e37b389497b3a844b0923ca4e995379d2810fff1fe",
+    "actualCases": 9,
+    "cases": [
+      "AddressList+footer320dark",
+      "AddressList+footer390light",
+      "VN/Odesa/KH cards each320dark and390light from full33 registry",
+      "Actual ProductRuntime non-Error fetch rejection displays repaired natural copy"
+    ],
+    "screenshotsVisuallyInspected": 6,
+    "visuallyInspectedFiles": [
+      "peer-attempt02-addresses-320-dark.png",
+      "peer-attempt02-addresses-390-light.png",
+      "peer-attempt02-coverage-vinnytsia-oe-320-dark.png",
+      "peer-attempt02-coverage-dtek-oem-320-dark.png",
+      "peer-attempt02-coverage-kharkiv-oe-390-light.png",
+      "peer-attempt02-nonError-profile-390-light.png"
+    ],
+    "all9OutputsMeasuredAndTextAsserted": true,
+    "fonts": "Actual Onest loaded",
+    "responsive": "No horizontal document/card overflow at320/390; actual day/night classes verified",
+    "checkedAtDisplay": "All three show local Kyiv9Nov date; Odesa UTC8Nov23:38:41 correctly displays9Nov01:38:41",
+    "failureText": "Не вдалося отримати ваш профіль. Спробуйте оновити його.",
+    "method": "Own synthetic profile, current actual components/registry; hydrated file-backed Chrome, all HTTP blocked",
+    "externalPageHttp": 0,
+    "pageErrors": 0,
+    "chromeClosed": true
+  },
+  "findings": {
+    "logic": 0,
+    "currentScopedCopyOrDatedProjection": 0,
+    "attempt01FooterAndAddressPillFindings": "Closed by exact literal repairs and own current actual render"
+  },
+  "staticChecks": "No current independent TypeScript rerun: three TSX edits proven exact string substitutions, other typed mechanism unchanged; JSON shape/keys/allowed statuses preserved. Current author TypeScript exit0 evidence retained, not labeled independent.",
+  "artifacts": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-addresses-320-dark.png",
+      "sha256": "6787899d4d5879117d55f1429f4ccb052ff50da77eeec56a5283961cac69f4e7",
+      "bytes": 56713
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-addresses-390-light.png",
+      "sha256": "e295714eff70cdf3f907881343c88419d361e5b0b61968ceff4812261e210ce2",
+      "bytes": 58616
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-dtek-oem-320-dark.png",
+      "sha256": "fb55420ccffafc143eb31f346035744dbb293d5a52269c7a598eaabd37193da8",
+      "bytes": 38642
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-dtek-oem-390-light.png",
+      "sha256": "4dac0891e61feca90e683ec38ad25811e3c891d8f436820fff1fb2cd3eeb9aca",
+      "bytes": 39104
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-kharkiv-oe-320-dark.png",
+      "sha256": "07adcb4a6af8594a3f0c8d3f503d3b9a6700353735128822a898e07d5c9cf748",
+      "bytes": 36065
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-kharkiv-oe-390-light.png",
+      "sha256": "d1630b076384137dd96b7f7cabcd838011244f42ded8aff159fe7e211f149560",
+      "bytes": 36310
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-vinnytsia-oe-320-dark.png",
+      "sha256": "21e4bbe321fc766d590b84e62069c27e7c61caa52657f4324d19b7c2a4df2be7",
+      "bytes": 33235
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-coverage-vinnytsia-oe-390-light.png",
+      "sha256": "50b094a485507e2bee6f9a71103dfea59a5324d0ae6d52034c6a1188dd1b3f89",
+      "bytes": 33334
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-nonError-profile-390-light.png",
+      "sha256": "93a515fe02356d25ce451d55f9dab26e5bffe0b5940c7b8a076777bef79545d9",
+      "bytes": 14576
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-exact-diff.json",
+      "sha256": "7ec113179b12d1f6524855b9b473c15b2ddc884694bf5396ce9e5b5f853af7c4",
+      "bytes": 9335
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-render-results.json",
+      "sha256": "d74a4f0dac87d8fad9bf45e37b389497b3a844b0923ca4e995379d2810fff1fe",
+      "bytes": 8665
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/attempt02-preview.tsx",
+      "sha256": "8249a4f1bf1ff02663445a2665b681cabf1b376581dbc23c42db9711fd542ef4",
+      "bytes": 817
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/attempt02-render.mjs",
+      "sha256": "e5a08944f3f54d2a1a00a1b6dbdf21257a6bff8508e6772aa52d657d7ff5fdbe",
+      "bytes": 7634
+    }
+  ],
+  "requirements": {
+    "all68Preserved": true,
+    "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+  },
+  "effects": {
+    "sourceEdits": 0,
+    "canonicalAppEdits": 0,
+    "authorEdits": 0,
+    "externalHttp": 0,
+    "db": 0,
+    "productionWrites": 0,
+    "realMessages": 0,
+    "publish": 0,
+    "resourceCreation": 0
+  },
+  "limits": [
+    "Dated coverage projection, not new data admission/current live validation",
+    "No actual source/48h/house binding/free fallback qualification created",
+    "No whole33 rerun or new full-product/device/provider/production claim",
+    "Old33 and new exactdiff/current medium evidence are separate layers; source bytes and full build after integration still belong to root"
+  ],
+  "nextAction": "Root may integrate exact accepted7 files, then build/hash the new complete candidate. Do not attach old1ecb build/staging receipts to new bytes."
+}

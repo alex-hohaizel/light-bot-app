@@ -1,0 +1,122 @@
+{
+  "kind": "lba-profile-feedback-peer-attempt03-exact-diff/1",
+  "actor": "/root/profile_feedback_peer",
+  "recordedAt": "2026-11-09T07:25:36.495514+00:00",
+  "handoffSha256": "8270e181def7ffd854d5a49372edfef93b0fdace2b35979103a6919bcdc77894",
+  "old02HandoffSha256": "90ef4b0654659fc4ff9a8eba46054316413b0e5864610a93aebc76fbce46a370",
+  "old33ReceiptSha256": "4e555dfe82b128c76b3c6499f23a63344e3583ec8ed0ed2f5247ee70110c31ca",
+  "old02ReceiptSha256": "cc1178259e632de33b5c568661973ed33a901bd79ad7fecb9b90f48d5752a1cd",
+  "onlyChangedFile": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/ProductReview.tsx",
+  "currentSha256": "be7ebfc6c92d0ed5e10c08288911184f3454221feb2fad891d838d75b8f82842",
+  "literalChanges": [
+    {
+      "old": "Покриття, яке можна перевірити.",
+      "new": "Джерела графіків",
+      "oldOffset": 86,
+      "newOffset": 86
+    },
+    {
+      "old": "Фактичні результати перевірок джерел. Графік та адреса оцінюються окремо.",
+      "new": "Тут видно, які графіки й адреси перевірено та на яку дату.",
+      "oldOffset": 138,
+      "newOffset": 123
+    },
+    {
+      "old": "Вимога: основне й резервне джерела безплатні",
+      "new": "Лише безплатні джерела даних",
+      "oldOffset": 342,
+      "newOffset": 312
+    },
+    {
+      "old": "Інтеграцію прийнято",
+      "new": "Доступно",
+      "oldOffset": 883,
+      "newOffset": 837
+    },
+    {
+      "old": "Адресну прив’язку перевірено",
+      "new": "Є перевірені адреси",
+      "oldOffset": 946,
+      "newOffset": 889
+    },
+    {
+      "old": "Є блокер",
+      "new": "Поки недоступно",
+      "oldOffset": 1071,
+      "newOffset": 1005
+    },
+    {
+      "old": "Кандидат",
+      "new": "Потребує перевірки",
+      "oldOffset": 1084,
+      "newOffset": 1025
+    },
+    {
+      "old": "Перевірено в межах доказу",
+      "new": "Перевірено на вказану дату",
+      "oldOffset": 1211,
+      "newOffset": 1162
+    },
+    {
+      "old": "Підтверджено в межах доказу",
+      "new": "Відповідність підтверджено",
+      "oldOffset": 1405,
+      "newOffset": 1357
+    },
+    {
+      "old": "Пошук потребує доступу",
+      "new": "Пошук тимчасово недоступний",
+      "oldOffset": 1468,
+      "newOffset": 1419
+    },
+    {
+      "old": "Немає поточного доказу",
+      "new": "Ще не перевірено",
+      "oldOffset": 1714,
+      "newOffset": 1670
+    },
+    {
+      "old": "Мінімум першого відновлення — Київ, Вінниця, Одеса, Харків та все підтверджене старе покриття. Додаткові території додаються за окремими доказами. Платний fallback не використовується.",
+      "new": "Для сусідніх будинків можуть діяти різні графіки. Перевіряйте дату плану й повідомлення оператора.",
+      "oldOffset": 1829,
+      "newOffset": 1779
+    }
+  ],
+  "literalCount": 12,
+  "exactForward": true,
+  "exactPositionAwareInverse": true,
+  "outsideCoverageBytesIdentical": true,
+  "otherSixFilesIdentical": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "sha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "sha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "sha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "sha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "sha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "coverageJSONUnchanged": true,
+  "requirementsSHA256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+  "mustCount": 68,
+  "mustOrDocsRemoved": false,
+  "newSourceAdmission": false,
+  "whole33Rerun": false,
+  "effects": 0
+}

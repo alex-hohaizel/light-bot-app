@@ -1,0 +1,160 @@
+{
+  "kind": "lba-profile-feedback-peer-attempt02-exact-diff/1",
+  "actor": "/root/profile_feedback_peer",
+  "recordedAt": "2026-11-09T07:13:40.243955+00:00",
+  "handoffSha256": "90ef4b0654659fc4ff9a8eba46054316413b0e5864610a93aebc76fbce46a370",
+  "historicalAttempt01HandoffSha256": "7d50d86de173459f8ff7407a4b9b01a493752edf5a55d4c36b38a5e77a481840",
+  "historicalPeer33Sha256": "4e555dfe82b128c76b3c6499f23a63344e3583ec8ed0ed2f5247ee70110c31ca",
+  "oldSourceCopiesVerified": 5,
+  "literalChecks": [
+    {
+      "path": "client/src/product-runtime/ProductRuntime.tsx",
+      "oldSha256": "d2e9a7df89361c585cdfa6fa0f17328a1d99d400f877f32d749a990d47898e83",
+      "currentSha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73",
+      "exactReplacementCount": 1,
+      "from": "Немає зв’язку з локальним профілем.",
+      "to": "Не вдалося отримати ваш профіль. Спробуйте оновити його.",
+      "inverseByteEquality": true
+    },
+    {
+      "path": "client/src/product-review/ProductReview.tsx",
+      "oldSha256": "678321679e16aa97ad2c3e5cfa037ec893527f1f05d0435baf5f9024657f9e82",
+      "currentSha256": "d785df1bdbde9c8e62770d190d5483ce3072e19b2af0dff8288d53d4ff245bce",
+      "exactReplacementCount": 1,
+      "from": "План оператора не є виміром живлення",
+      "to": "Графік не підтверджує, чи є світло саме зараз",
+      "inverseByteEquality": true
+    },
+    {
+      "path": "client/src/product-review/AddressList.tsx",
+      "oldSha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "currentSha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30",
+      "exactReplacementCount": 1,
+      "from": "Прив’язка перевірена в тестовому каталозі",
+      "to": "Прив’язка до графіка перевірена",
+      "inverseByteEquality": true
+    }
+  ],
+  "unchangedMechanismFiles": [
+    {
+      "path": "client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "client/src/product-review/address-save-feedback.ts",
+      "sha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "client/src/product-review/address-save-feedback.css",
+      "sha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    }
+  ],
+  "coverageCount": 33,
+  "unchangedCoverageRecords": 30,
+  "coverageOrderUnchanged": true,
+  "coverageKeysUnchanged": true,
+  "coverageDiff": [
+    {
+      "id": "vinnytsia-oe",
+      "changedFields": {
+        "status": {
+          "before": "candidate",
+          "after": "blocked"
+        },
+        "checkedAt": {
+          "before": null,
+          "after": "2026-11-09T01:14:26.082Z"
+        },
+        "reason": {
+          "before": "Є свіжий публічний JSON за 8 листопада. Перевірено значення його півгодинних позначень, але самі інтервали ще не звірені з первинним графіком оператора. Прив’язку будинку потрібно підтвердити.",
+          "after": "Перевірка 9 листопада 2026 року: дзеркало отримує дані зі стороннього bezsvitla.com.ua, а пропуски може трактувати як наявність світла. Ці плани не показуємо, доки не підтверджено офіційне джерело й повноту даних. Адресну прив’язку також ще потрібно перевірити."
+        }
+      }
+    },
+    {
+      "id": "dtek-oem",
+      "changedFields": {
+        "checkedAt": {
+          "before": null,
+          "after": "2026-11-08T23:38:41.462Z"
+        },
+        "reason": {
+          "before": "На офіційному сайті перевірено план від 8 листопада, 21:52. Публічне дзеркало відстає і суперечить йому, тому як актуальний план не використовується. Регулярне отримання та адресу ще потрібно перевірити.",
+          "after": "8 листопада дзеркало суперечило офіційному плану; цю розбіжність збережено. Для 9 листопада 2026 року інтервали 12 груп у перевіреній редакції дзеркала збіглися з офіційним сайтом. Це висновок лише про цю редакцію; зміни потребують нової звірки. Адресу, безплатний резерв і персональні сповіщення ще не підтверджено."
+        }
+      }
+    },
+    {
+      "id": "kharkiv-oe",
+      "changedFields": {
+        "status": {
+          "before": "blocked",
+          "after": "candidate"
+        },
+        "schedule": {
+          "before": "unverified",
+          "after": "verified"
+        },
+        "primaryCost": {
+          "before": null,
+          "after": 0
+        },
+        "checkedAt": {
+          "before": null,
+          "after": "2026-11-09T05:00:37.710Z"
+        },
+        "reason": {
+          "before": "Є офіційний добовий план на 8 листопада, але пізніше оператор повідомив про аварійні відключення. Поки їх дію не уточнено, точний зворотний відлік за добовим планом не показуємо.",
+          "after": "Перевірка 9 листопада 2026 року: в офіційному RSS прочитано план на 9 листопада для 12 груп, опублікований 8 листопада. Чи діють аварійні обмеження на цю дату, достеменно невідомо: план показуємо з цим застереженням. Точну адресу й персональні сповіщення ще не підтверджено."
+        }
+      }
+    }
+  ],
+  "current7Files": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-runtime/ProductRuntime.tsx",
+      "beforeSha256": "f28c6e7fa63fa2a415f4aa6737c6dba76eac6509a6b14c63d99597ce117fb9ae",
+      "afterSha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/ProductReview.tsx",
+      "beforeSha256": "d9c8bc7266373362c9c70c7f97d8e9d13992e1627454b1fb73c8b98d7a27675c",
+      "afterSha256": "d785df1bdbde9c8e62770d190d5483ce3072e19b2af0dff8288d53d4ff245bce"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "beforeSha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+      "afterSha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.ts",
+      "beforeSha256": null,
+      "afterSha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.css",
+      "beforeSha256": null,
+      "afterSha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/AddressList.tsx",
+      "beforeSha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "afterSha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/shared/coverage-research.json",
+      "beforeSha256": "a66ebbcbff97840ddba36c09c8e053eb73f820b5596322ce915a6fe6d7aba4ad",
+      "afterSha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "currentMechanismRerun33": false,
+  "currentRenderReview": "pending",
+  "productionEffects": 0
+}

@@ -1,0 +1,7 @@
+.pr-address-save-notice{align-items:flex-start;gap:16px;margin:0 0 20px}
+.pr-address-save-notice>div{flex:1;min-width:0;overflow-wrap:anywhere}
+.pr-address-save-notice strong{display:block;font-size:14px;line-height:1.5}
+.pr-address-save-notice p{margin:6px 0 10px;font-size:12px;line-height:1.65}
+.pr-address-save-notice .pr-text-button{min-height:44px;text-align:left}
+.pr-address-save-notice>.pr-icon-button{flex:none;min-width:44px;min-height:44px}
+@media(max-width:760px){.pr-address-save-notice{padding:14px;gap:8px}.pr-address-save-notice strong{font-size:13px}}

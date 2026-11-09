@@ -1,0 +1,156 @@
+{
+  "kind": "lba-profile-feedback-independent-attempt03-review/1",
+  "actor": "/root/profile_feedback_peer",
+  "recordedAt": "2026-11-09T07:27:46.089414+00:00",
+  "attempt": 3,
+  "verdict": "PASS_EXACT_COVERAGE_COPY_DIFF_AND_ONE_ACTUAL_MEDIUM",
+  "handoff": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/handoff.json",
+    "sha256": "8270e181def7ffd854d5a49372edfef93b0fdace2b35979103a6919bcdc77894"
+  },
+  "accepted7Files": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "sha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "sha256": "be7ebfc6c92d0ed5e10c08288911184f3454221feb2fad891d838d75b8f82842"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "sha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "sha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "sha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "sha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "beforeAndAfterCurrent7HashesMatch": true,
+  "exactDiff": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-exact-diff.json",
+    "sha256": "4029428858657c622a135fde55a4bcb9a3a5e3fc64334dbfd65145f684dc3f23",
+    "onlyChangedFile": "ProductReview.tsx",
+    "literalCount": 12,
+    "positionAwareForwardAndInverseReconstruction": true,
+    "outsideCoverageBytesIdentical": true,
+    "otherSixFilesUnchangedFrom02": true,
+    "functionsBranchesStatusesRoutesStyleAndDataChanges": 0
+  },
+  "semantics": {
+    "coverageJSONSha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9",
+    "datesReasonsAndAdmissionFlagsUnchanged": true,
+    "newSourceCurrentTomorrowAddressPersonalFallbackGrant": false,
+    "fourCitiesAndFreePrimaryFallbackRequirementsRetainedInCanonicalDocs": true,
+    "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+    "mustCount": 68,
+    "removedMust": 0,
+    "interpretation": "UI workflow vocabulary simplified; current data/admission enums, dates and policy remain exactly as independently reviewed in02."
+  },
+  "actualMedium": {
+    "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-render-results.json",
+    "sha256": "6e123e6420e7c822500025d6894ba3aae5b99ce232469269391b80a5b8c527a6",
+    "method": "Own synthetic live-shaped profile and actual current ProductReview with full33-record registry in hydrated file-backed Chrome320dark; allHTTPblocked",
+    "scenarios": 1,
+    "captures": 2,
+    "positions": [
+      "top",
+      "bottom"
+    ],
+    "bothCapturesActuallyInspected": true,
+    "cardCount": 33,
+    "documentOverflow": false,
+    "fonts": "Onest loaded",
+    "theme": "Actual dark class verified",
+    "copyReview": "Human Ukrainian heading/status/dated qualifier/bottom guidance; prior internal labels absent from visible full coverage text",
+    "pageErrors": 0,
+    "externalHttp": 0,
+    "chromeClosed": true
+  },
+  "historyLayers": [
+    {
+      "layer": "01 functional mechanism",
+      "receipt": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-review.json",
+      "sha256": "4e555dfe82b128c76b3c6499f23a63344e3583ec8ed0ed2f5247ee70110c31ca",
+      "scenarios": 33,
+      "exactHistoricalSourcePinsRetained": true,
+      "rerun": false,
+      "rebound": false
+    },
+    {
+      "layer": "02 dated data and literal repairs",
+      "receipt": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-review.json",
+      "sha256": "cc1178259e632de33b5c568661973ed33a901bd79ad7fecb9b90f48d5752a1cd",
+      "exactHistoricalSourcePinsRetained": true,
+      "rerun": false,
+      "rebound": false
+    },
+    {
+      "layer": "03 coverage copy only",
+      "exactDiffAndOwnCurrentMedium": true,
+      "currentWhole33Claim": false
+    }
+  ],
+  "findings": 0,
+  "artifacts": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-exact-diff.json",
+      "sha256": "4029428858657c622a135fde55a4bcb9a3a5e3fc64334dbfd65145f684dc3f23",
+      "bytes": 4897
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-render-results.json",
+      "sha256": "6e123e6420e7c822500025d6894ba3aae5b99ce232469269391b80a5b8c527a6",
+      "bytes": 21922
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-coverage-top-320-dark.png",
+      "sha256": "a23544f0424a92896376bf24105b64bfa6e61070793a3eb21b2cf24fd1990e69",
+      "bytes": 61675
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt03-coverage-bottom-320-dark.png",
+      "sha256": "409032a0ca7a86e1c94b190a23d8a7552433ae3ecce041e54ab95ef9a09b4cea",
+      "bytes": 60020
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/attempt03-preview.tsx",
+      "sha256": "8249a4f1bf1ff02663445a2665b681cabf1b376581dbc23c42db9711fd542ef4",
+      "bytes": 817
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-peer/attempt03-render.mjs",
+      "sha256": "94b966c5ec5ee1f3101077bf5931a7cd18fe20678dd7d612322a4335b162c3d9",
+      "bytes": 5957
+    }
+  ],
+  "effects": {
+    "sourceEdits": 0,
+    "canonicalAppEdits": 0,
+    "authorSourceEdits": 0,
+    "externalHttp": 0,
+    "db": 0,
+    "productionWrites": 0,
+    "realMessages": 0,
+    "publish": 0
+  },
+  "limits": [
+    "Only the assigned12-literal coverage copy diff and representative actual320dark medium reviewed in03",
+    "Other6files/data and unchanged mechanism use exact-byte layered evidence, not newly rebound33-test claims",
+    "No real source/48h/address/provider/device/production or full68 acceptance inferred",
+    "Root still owns integration, exact full candidate build and publication"
+  ],
+  "nextAction": "Root can promote exact accepted7files and create a new complete source/build receipt."
+}

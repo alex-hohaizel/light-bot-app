@@ -1,0 +1,171 @@
+{
+  "kind": "lba-profile-feedback-author-handoff/1",
+  "actor": "/root/profile_feedback_repair",
+  "attempt": 3,
+  "frozenAt": "2026-11-09T07:23:39.919404+00:00",
+  "state": "ready_for_independent_exact_diff_and_actual_coverage_review",
+  "baseline": {
+    "sourceSha256": "1ecb9839fbbef4d1cec1e3ecbfbd0344dcb050c47ceae3beddaf830cccd71345",
+    "buildReceiptSha256": "7244b74bb695eecbb269d4bd990baadf1f58b8193d34a1557ba71a27f30042b3",
+    "sourceFilesRehashedUnchanged": 281
+  },
+  "isolatedAppRoot": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app",
+  "requirements": {
+    "assigned": [
+      "ADDR-05",
+      "ADDR-07",
+      "PROFILE-02",
+      "LANG-01",
+      "LANG-02",
+      "APP-03",
+      "APP-04"
+    ],
+    "all68Retained": true,
+    "requirementsSha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+  },
+  "acceptedDesign": "Адресний пульт + Спільна доба; day/night, motion, existing tokens and controls retained",
+  "changes": [
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-runtime/ProductRuntime.tsx",
+      "beforeSha256": "f28c6e7fa63fa2a415f4aa6737c6dba76eac6509a6b14c63d99597ce117fb9ae",
+      "afterSha256": "1d0d1ef05e63e16697e8df81c413ebc997ab8cce7b2f4c4b5a88e30c6487cf73"
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/ProductReview.tsx",
+      "beforeSha256": "d9c8bc7266373362c9c70c7f97d8e9d13992e1627454b1fb73c8b98d7a27675c",
+      "afterSha256": "be7ebfc6c92d0ed5e10c08288911184f3454221feb2fad891d838d75b8f82842"
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "beforeSha256": "c9a4f480ecb9738897e938c7dcaf7821c9cfe9e0a28b5becc7a60de330e370fb",
+      "afterSha256": "2e4329730392ad329c24df07c39a407855bb5cfe215b959ea10fa1174a0381d2"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.ts",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.ts",
+      "beforeSha256": null,
+      "afterSha256": "60b6b1cb458233cc8f129389d0c13de654d6a7445b33812de1ac921ca445a354"
+    },
+    {
+      "path": "app/client/src/product-review/address-save-feedback.css",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/address-save-feedback.css",
+      "beforeSha256": null,
+      "afterSha256": "26b8404fc681e3fe757d048db22297d4e134bcc79c2abb12fad8872893e93092"
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/client/src/product-review/AddressList.tsx",
+      "beforeSha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "afterSha256": "cf50996c6a999d94dd3c686350dab7380ee5319980e4fe3f685da168f3ad5d30"
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "isolatedPath": "/Users/admin/Projects/LIGHT BOT APP [CODEX]/.local/light-bot-app/profile-feedback-next/app/shared/coverage-research.json",
+      "beforeSha256": "a66ebbcbff97840ddba36c09c8e053eb73f820b5596322ce915a6fe6d7aba4ad",
+      "afterSha256": "17434d515593084b44736f9654b28aea252d4debb579bfd7f0cdfa5341c012a9"
+    }
+  ],
+  "history": {
+    "attempt01": {
+      "handoffRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt01/handoff.json",
+      "handoffSha256": "7d50d86de173459f8ff7407a4b9b01a493752edf5a55d4c36b38a5e77a481840",
+      "peerRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-review.json",
+      "peerSha256": "4e555dfe82b128c76b3c6499f23a63344e3583ec8ed0ed2f5247ee70110c31ca",
+      "verdict": "33/33 bounded functional scenarios, TS0 and4 layouts apply to exact attempt01 bytes only",
+      "sourceCopiesRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt01/app",
+      "allOldRawLogsImagesAndPeerReceiptRehashedUnchanged": true,
+      "oldProofRebound": false
+    },
+    "attempt02": {
+      "handoffRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt02/handoff.json",
+      "handoffSha256": "90ef4b0654659fc4ff9a8eba46054316413b0e5864610a93aebc76fbce46a370",
+      "peerRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/peer-attempt02-review.json",
+      "peerSha256": "cc1178259e632de33b5c568661973ed33a901bd79ad7fecb9b90f48d5752a1cd",
+      "peerVerdict": "PASS_EXACT_COPY_DATA_DIFF_AND_TARGETED_ACTUAL_RENDER",
+      "sourceCopiesRef": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt02/app",
+      "allOldRawLogsImagesAndPeerReceiptRehashedUnchanged": true,
+      "oldProofRebound": false
+    }
+  },
+  "attempt03Changes": [
+    "Only12 visible static string literals in the coverage JSX section changed to plain Ukrainian: heading/introduction/free-source policy/status/date/address labels/user-useful closing note",
+    "No functions, conditions, data values, dates, reasons, routes, styles, IDs or existing product scope changed",
+    "All68 requirements, four-city minimum and free primary/fallback obligations remain in the existing project documents; no project brief appears in the user-facing closing note"
+  ],
+  "authorChecks": {
+    "exactDiff": "PASS12 ordered literal substitutions with exact position-aware inverse byte reconstruction to preserved attempt02 ProductReview; all bytes outside coverage section identical",
+    "otherSixImplementationFiles": "Exact attempt02 SHA unchanged, including all33 coverage records and their dates/reasons",
+    "typescript": "PASS exit0",
+    "actualRendering": "4 actual hydrated full33-record coverage screenshots: top/bottom320dark and390light, loaded Onest, requested themes and no global viewport overflow; current7 source hashes identical before/after",
+    "oldLogicSuiteRepeated": false,
+    "newWhole33PassClaimed": false,
+    "limits": "Synthetic profile and dated local coverage research in file-backed Chrome. No external provider/device/production or owner approval claimed."
+  },
+  "artifacts": [
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-coverage-bottom-320-dark.png",
+      "sha256": "4fb87357d55cf6688a7385b1ded340792303e9a0e778c3da337c1e128f7a6bc2",
+      "bytes": 60018
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-coverage-bottom-390-light.png",
+      "sha256": "387e362b1cd7bc8ea410987a85fb9635275de1344c5aaa2a6e2f1bb5956c5a1f",
+      "bytes": 64100
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-coverage-top-320-dark.png",
+      "sha256": "5e24a96b1143c356c2685b15c47dfb1e46fbea4d2316508917dd210697a33f36",
+      "bytes": 64488
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-coverage-top-390-light.png",
+      "sha256": "b0396772ae513199c99a5671d14603a55694907cc4ed486384779b3770aa8768",
+      "bytes": 73769
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-diff.json",
+      "sha256": "d5ea334b2496aca53071e531a381d1e6e213b9af4294f34e2d0c7e88b4458403",
+      "bytes": 4647
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-render-results.json",
+      "sha256": "e335d3ed2d9890c898c0166af9d8f9866f7e3381b7e9fe80016b81407b3e4994",
+      "bytes": 5023
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-replacements.json",
+      "sha256": "535fa027dcae56f417e2668bedab473c68402cffd06ded7c97d558152466cd32",
+      "bytes": 2519
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase4/production-release-20261109/profile-feedback/author-attempt03-typecheck.log",
+      "sha256": "331a1c721f52e7320eb5125e45a7ac74a14ce28345192a4c287d8370f3de5a8a",
+      "bytes": 55
+    }
+  ],
+  "authorTools": [
+    {
+      "path": ".local/light-bot-app/profile-feedback-next/author-attempt02-preview.tsx",
+      "sha256": "cfcca90e5dc67aee702cde2f97243786004eb9a48d1a2e052e202476f0899a21"
+    },
+    {
+      "path": ".local/light-bot-app/profile-feedback-next/author-attempt03-render.mjs",
+      "sha256": "478f061b72d2783fca76061b55a39486abea9f15a0d22b69fe9ad4eeb1b21690"
+    }
+  ],
+  "preserved": {
+    "canonicalAppUntouched": true,
+    "replitUntouched": true,
+    "productionDDL": 0,
+    "productionDML": 0,
+    "externalHTTP": 0,
+    "botMessages": 0,
+    "certificatesMinted": 0,
+    "settingsChanged": 0,
+    "installRepeated": false
+  },
+  "consumer": "Root integration owner and independent profile_feedback_peer. Review exact12-literal diff and current coverage UI. No source promotion/publication by this child."
+}
