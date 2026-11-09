@@ -1,0 +1,18 @@
+{
+  "kind": "lba-owner-release-authority/1",
+  "recordedAt": "2026-11-09T02:12:37.949982+00:00",
+  "source": "current owner message in this Codex chat",
+  "exactQuote": "Дозволяю передачу і повний реліз версії у прод",
+  "authority": "private source transfer and full release in existing Replit/production are authorized; no repeat broad approval required",
+  "existingIdentity": {
+    "repository": "alex-hohaizel/light-bot-app",
+    "replitId": "6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+    "domain": "power-ukraine.net",
+    "bot": "@PowerUkraineBot"
+  },
+  "all68MustRetained": true,
+  "retainedPriorAuthority": "Posthealthyrelease update announcement to all existing eligible subscriptions, pilot then rest, already authorized",
+  "readinessFactsCreatedByConsent": false,
+  "currentSource": "71a9ed65edc29987f812afa4bdb78966fd6c0fee0ac50c4e16a4150689197e55",
+  "productionMutationAttempted": false
+}
