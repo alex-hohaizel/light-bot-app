@@ -1,6 +1,7 @@
 import {createOperatorAddressRefresh} from './operator-address-refresh.ts';
 import {randomUUID} from 'node:crypto';
 import sharp from 'sharp';
+import {requireBundledMediaFontsReady} from './media-fonts';
 import {renderScheduleSvg} from '../../client/src/product-review/schedule-renderer.tsx';
 import type {ProductionRuntimePolicy} from '../runtime-policy.ts';
 import type {LegacyProfileReadPool} from './profile-reader.ts';
@@ -79,6 +80,7 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  const finishVerifiedLogin=accounts?createVerifiedSessionFinalizer({store,accounts,now:()=>Math.floor(ms()/1000)}):undefined;
  const publicAddresses=createOperatorAddressRefresh({operator:operatorLookupEnabled?catalog.operator:undefined,now:ms});
  certification=createProductionScheduleCertification({...(operatorLookupEnabled?{publicAddressRefresh:publicAddresses.refreshOneSavedAddress}:{}),enabled:policy.sourceIngestionEnabled,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false,expectedControlEpoch:epoch,pool,store,sources,catalog,now:ms,
+  ...(operatorLookupEnabled?{operatorCatalog:catalog.operator}:{}),
   ...(ports.certification?.registry?{registry:ports.certification.registry}:{}),...(ports.certification?.execution?{execution:ports.certification.execution}:{})});
  const events=createProductionScheduleEvents({enabled:true,expectedControlEpoch:epoch,store,verifyCurrentSource:request=>certification.verifyCurrentSource(request)});
  const interactiveCertifiedProof=createCertifiedInteractiveScheduleProof(events,epoch);
@@ -107,6 +109,7 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
   ...(legacyRecipients?{createLegacyTransport:({authorize}:{authorize:Parameters<typeof createTelegramTransport>[0]['authorize']})=>createTelegramTransport({expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,token:ports.token,fetch:telegramFetch,authorize,now:ms})}:{}),
   createTransport:({authorize,job,renderKey})=>createTelegramTransport({expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,token:ports.token,fetch:telegramFetch,authorize,now:ms,
    renderPhoto:async(request,signal)=>{if(signal.aborted||request.renderKey!==renderKey||request.operationId!==job.operationId||request.recipientRef!==job.recipientRef||!job.payload.schedule)throw Error('CANONICAL_RENDER_SCOPE');
+    requireBundledMediaFontsReady();
     const svg=renderScheduleSvg(job.payload.schedule,'day','light',now(),'telegram');
     const png=await sharp(Buffer.from(svg)).png().toBuffer();if(signal.aborted)throw Error('CANONICAL_RENDER_ABORTED');return png;},
   }),

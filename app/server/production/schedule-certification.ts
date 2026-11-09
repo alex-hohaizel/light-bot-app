@@ -2,7 +2,10 @@ import {createHash} from 'node:crypto';
 import {readFile,lstat,realpath} from 'node:fs/promises';
 import path from 'node:path';
 import type {AddressBinding,ScheduleView} from '../../shared/product-contract.ts';
-import type {BotState} from '../../shared/bot/types.ts';
+import type {BotState,BotLocation} from '../../shared/bot/types.ts';
+import {loadReviewedOdesaQualification,parseOdesaQualificationJson} from '../domain/odesa-qualification.ts';
+import {readOdesaAddressCertificationFacts,readOdesaAddressTargetHint} from './odesa-address-certification.ts';
+import type {createOdesaAddressCatalog} from './odesa-address-catalog.ts';
 import {restoreBotState} from '../../shared/bot/engine.ts';
 import {dayBounds,localParts,nextCalendarDate,validInstant,validateScheduleView} from '../../shared/schedule-core.ts';
 import {normalizeHouse} from '../../shared/address-index.ts';
@@ -12,7 +15,8 @@ import {SOURCE_PROFILES} from './source-intake.ts';
 import {technicalDisplaySourceRegistry,odesaPlanApiOperatingRecord} from './source-operating-policy.ts';
 import {ADDRESS_CATALOG_POLICY,type createAddressCatalog} from './address-catalog.ts';
 import {createCurrentRawScheduleVerifier} from './runtime-source-proof.ts';
-import {scheduleEventDigest as digest,type ScheduleCertificateRecord,type createProductionScheduleEvents,type CertifiedScheduleSourceRequest} from './schedule-events.ts';
+import {scheduleEventDigest as digest,collectScheduleRenewalPredecessors,validScheduleCertificateShape,type ScheduleCertificateRecord,type createProductionScheduleEvents,type CertifiedScheduleSourceRequest} from './schedule-events.ts';
+import {captureQualificationMorningParts,recordQualificationRevision} from './morning-reconciliation.ts';
 import {ProductionProfileStoreError,type createProductionProfileStore} from './profile-store.ts';
 import type {LegacyProfileReadPool,LegacyProfileReadQuery} from './profile-reader.ts';
 import type {PublicTechnicalPlans} from './source-ingestion.ts';
@@ -22,7 +26,7 @@ import type {CurrentDispatchSourceProof} from './telegram-dispatch-eligibility.t
 
 import {DEPLOYED_QUALIFICATION_PINS,type PinnedQualificationFile,type DeployedQualificationPin} from './deployed-schedule-qualification.ts';
 export {DEPLOYED_QUALIFICATION_PINS,type PinnedQualificationFile,type DeployedQualificationPin} from './deployed-schedule-qualification.ts';
-export const QUALIFICATION_CODE_DEPENDENCIES=Object.freeze(["app/package-lock.json","app/package.json","app/server/domain/hour-matrix-adapter.ts","app/server/domain/kharkiv-adapter.ts","app/server/domain/odesa-address-adapter.ts","app/server/domain/odesa-plan-api-adapter.ts","app/server/domain/profile-service.ts","app/server/domain/provider-address-lookup.ts","app/server/domain/provider-wall-time.ts","app/server/domain/yasno-adapter.ts","app/server/domain/yasno-address-adapter.ts","app/server/production/address-catalog-http.ts","app/server/production/address-catalog.ts","app/server/production/address-flow.ts","app/server/production/bot-address-preflight.ts","app/server/production/canonical-runtime.ts","app/server/production/legacy-campaign-recipient.ts","app/server/production/legacy-profile.ts","app/server/production/odesa-address-catalog.ts","app/server/production/odesa-plan-source.ts","app/server/production/operator-address-flow.ts","app/server/production/operator-address-refresh.ts","app/server/production/profile-reader.ts","app/server/production/profile-store.ts","app/server/production/provider-address-catalog.ts","app/server/domain/public-address-request-identity.ts","app/server/production/public-source-reservation.ts","app/server/production/runtime-context.ts","app/server/production/runtime-source-proof.ts","app/server/production/schedule-certification.ts","app/server/production/schedule-events.ts","app/server/production/source-ingestion.ts","app/server/production/source-intake.ts","app/server/production/source-operating-policy.ts","app/server/production/telegram-callback-ack.ts","app/server/production/telegram-dispatch-eligibility.ts","app/server/production/telegram-dispatch.ts","app/server/production/telegram-transport.ts","app/server/providers/odesa-public-client.ts","app/server/release/update-campaign-pg.ts","app/server/release/update-campaign.ts","app/server/runtime-policy.ts","app/shared/address-index.ts","app/shared/address-selection.ts","app/shared/bot/copy.ts","app/shared/bot/engine.ts","app/shared/bot/types.ts","app/shared/delivery-contract.ts","app/shared/morning-briefing.ts","app/shared/notification-policy.ts","app/shared/operator-house-notice.ts","app/shared/product-contract.ts","app/shared/profile-constraints.ts","app/shared/profile-mutation.ts","app/shared/schedule-binding.ts","app/shared/schedule-core.ts","app/shared/time-label.ts"]);
+export const QUALIFICATION_CODE_DEPENDENCIES=Object.freeze(["app/package-lock.json","app/package.json","app/server/domain/hour-matrix-adapter.ts","app/server/domain/kharkiv-adapter.ts","app/server/domain/odesa-address-adapter.ts","app/server/domain/odesa-plan-api-adapter.ts","app/server/domain/odesa-qualification.ts","app/server/domain/profile-service.ts","app/server/domain/provider-address-lookup.ts","app/server/domain/provider-wall-time.ts","app/server/domain/public-address-request-identity.ts","app/server/domain/yasno-adapter.ts","app/server/domain/yasno-address-adapter.ts","app/server/production/address-catalog-http.ts","app/server/production/address-catalog.ts","app/server/production/address-flow.ts","app/server/production/bot-address-preflight.ts","app/server/production/canonical-runtime.ts","app/server/production/canonical-schema.ts","app/server/production/event-producer.ts","app/server/production/legacy-campaign-recipient.ts","app/server/production/legacy-profile.ts","app/server/production/morning-briefing.ts","app/server/production/morning-reconciliation.ts","app/server/production/odesa-address-catalog.ts","app/server/production/odesa-address-certification.ts","app/server/production/odesa-plan-source.ts","app/server/production/operator-address-flow.ts","app/server/production/operator-address-refresh.ts","app/server/production/profile-reader.ts","app/server/production/profile-store.ts","app/server/production/provider-address-catalog.ts","app/server/production/public-source-reservation.ts","app/server/production/runtime-context.ts","app/server/production/runtime-source-proof.ts","app/server/production/schedule-certification.ts","app/server/production/schedule-events.ts","app/server/production/source-ingestion.ts","app/server/production/source-intake.ts","app/server/production/source-operating-policy.ts","app/server/production/telegram-callback-ack.ts","app/server/production/telegram-dispatch-eligibility.ts","app/server/production/telegram-dispatch.ts","app/server/production/telegram-transport.ts","app/server/providers/odesa-public-client.ts","app/server/release/update-campaign-pg.ts","app/server/release/update-campaign.ts","app/server/runtime-policy.ts","app/shared/address-index.ts","app/shared/address-selection.ts","app/shared/bot/copy.ts","app/shared/bot/engine.ts","app/shared/bot/types.ts","app/shared/delivery-contract.ts","app/shared/morning-briefing.ts","app/shared/notification-policy.ts","app/shared/operator-house-notice.ts","app/shared/product-contract.ts","app/shared/profile-constraints.ts","app/shared/profile-mutation.ts","app/shared/schedule-binding.ts","app/shared/schedule-core.ts","app/shared/time-label.ts"]);
 /** index.ts passes its actual source or bundled entry directory. Both
  * candidate/app/server and candidate/app/dist-production have the same depth.
  * This uses neither process.cwd() nor an environment/HTTP authority override. */
@@ -61,7 +65,17 @@ export async function loadDeployedQualificationRegistry(options:{rootDirectory:s
  const admissions:Admission[]=[];let registryMedium:'observed'|'synthetic_fixture'='observed';
  for(const pin of pins){
   if(!closed(pin,['bundle','reviewReceipt']))return die('PIN_INVALID');
-  const b=await json(pin.bundle),receipt=await json(pin.reviewReceipt);
+  const bundleRaw=await read(pin.bundle);let b:any;try{b=JSON.parse(bundleRaw.toString('utf8'));}catch{return die('JSON_INVALID');}
+  // Preliminary parsing selects the finite existing v1/v2 branch only. No v2
+  // field is trusted before strict raw-byte parsing, including bundle/review.
+  const isOdesaV2=b?.kind==='lba-reviewed-schedule-qualification/2';
+  if(isOdesaV2)b=parseOdesaQualificationJson(bundleRaw);
+  const receipt=isOdesaV2?parseOdesaQualificationJson(await read(pin.reviewReceipt)):await json(pin.reviewReceipt);
+  if(b?.kind==='lba-reviewed-schedule-qualification/2'){
+   const a=await loadReviewedOdesaQualification({bundle:b,receipt,bundleSha256:pin.bundle.sha256,purpose:options.purpose,codeDependencies:QUALIFICATION_CODE_DEPENDENCIES,read,digest});
+   if(a.medium==='synthetic_fixture')registryMedium='synthetic_fixture';
+   admissions.push(Object.freeze({...a,bundleSha256:pin.bundle.sha256,reviewSha256:pin.reviewReceipt.sha256}));continue;
+  }
   if(!closed(b,['kind','sourceId','operatorId','namespace','reviewedAt','validUntil','medium','codePins','primary','fallback','control','coverage','addresses','observations','maximumObservationGapMs','negativeFixtures'])||
    b.kind!=='lba-reviewed-schedule-qualification/1'||!['observed','synthetic_fixture'].includes(b.medium)||b.medium==='synthetic_fixture'&&options.purpose!=='synthetic_test'||options.purpose==='synthetic_test'&&b.medium!=='synthetic_fixture'||
    !validInstant(b.reviewedAt)||!validInstant(b.validUntil)||Date.parse(b.validUntil)<=Date.parse(b.reviewedAt)||!Number.isSafeInteger(b.maximumObservationGapMs)||b.maximumObservationGapMs<60000||b.maximumObservationGapMs>86400000)return die('BUNDLE_INVALID');
@@ -134,7 +148,10 @@ type Catalog=Pick<ReturnType<typeof createAddressCatalog>,'searchStreets'|'searc
  * explicit synthetic-test composition; plain JSON cannot impersonate either. */
 export function createProductionScheduleCertification(options:{enabled:boolean;odesaPlanApiEnabled?:boolean;expectedControlEpoch:number;pool:LegacyProfileReadPool;store:Store;sources:Sources;catalog:Catalog;
  now?:()=>number;registry?:LoadedQualificationRegistry;execution?:'production'|'synthetic_test';batchSize?:number;
- publicAddressRefresh?:ReturnType<typeof createOperatorAddressRefresh>['refreshOneSavedAddress']}){
+ publicAddressRefresh?:ReturnType<typeof createOperatorAddressRefresh>['refreshOneSavedAddress'];
+ /** Explicit trusted opt-in wiring only. Public refresh already owns acquisition;
+  * regional certification reads the current cache and never polls twice. */
+ operatorCatalog?:ReturnType<typeof createOdesaAddressCatalog>}){
  let registry=options.registry??emptyRegistry();const clock=options.now??Date.now,epoch=options.expectedControlEpoch,batch=options.batchSize??20;
  const checkRegistry=(r:LoadedQualificationRegistry)=>{if(!registries.has(r)||r.medium==='synthetic_fixture'&&options.execution!=='synthetic_test')return die('REGISTRY_AUTHORITY_REQUIRED');};checkRegistry(registry);
  if(!Number.isSafeInteger(epoch)||epoch<1||!Number.isInteger(batch)||batch<1||batch>50||typeof options.enabled!=='boolean'||options.publicAddressRefresh!==undefined&&typeof options.publicAddressRefresh!=='function')return die('OPTIONS_INVALID');
@@ -143,6 +160,7 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
  function rawExpiry(view:ScheduleView){const operating=view.source.id==='dtek-oem-public-plan-ajax'?odesaPlanApiOperatingRecord(options.odesaPlanApiEnabled===true):technicalDisplaySourceRegistry(true).find(a=>a.sourceId===view.source.id);return operating&&operating.state!=='blocked'?Math.min(Date.parse(view.observedAt)+operating.cacheTtlMs,Date.parse(operating.validUntil)):0;}
  async function addressFacts(client:LegacyProfileReadQuery,state:BotState,addressId:string,at:string){
   const location=state.profile.locations.find(l=>l.address.id===addressId);if(!location||location.binding.kind==='user_selected_group')return null;
+  if(location.binding.operatorId==='dtek-oem'&&location.binding.namespace==='dtek:oem')return options.operatorCatalog&&options.odesaPlanApiEnabled===true?readOdesaAddressCertificationFacts({client,state,addressId,at,expectedControlEpoch:epoch,allowFixture:options.execution==='synthetic_test'}):null;
   const ids=/^provisional:yasno:25\/902:street:(\d+):house:(\d+)$/.exec(addressId);if(!ids)return null;
   // Ownership comes from the owner's saved exact resolve result, not the global
   // candidate or a historical label. Its immutable receipt survives cache TTL.
@@ -165,6 +183,7 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
   return {built,expiry,selection: digest(selected),captures:built.proof.captures};
  }
  async function refreshAddress(state:BotState,addressId:string){
+  if(state.profile.locations.some(l=>l.address.id===addressId&&l.binding.operatorId==='dtek-oem'&&l.binding.namespace==='dtek:oem'))return;
   const location=state.profile.locations.find(l=>l.address.id===addressId),ids=/^provisional:yasno:25\/902:street:(\d+):house:(\d+)$/.exec(addressId);if(!location||!ids)return;
   const street=await options.catalog.searchStreets({namespace:'yasno:25/902',query:location.address.street});if(street.state!=='available'||!street.snapshot.items.some(i=>i.id===Number(ids[1])))return;
   const house=await options.catalog.searchHouses({streetSnapshotId:street.snapshot.id,streetId:Number(ids[1]),query:location.address.house.literal});if(house.state!=='available'||!house.snapshot.items.some(i=>i.id===Number(ids[2])))return;
@@ -172,6 +191,7 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
  }
  async function issue(input:{state:BotState;view:ScheduleView;signal:AbortSignal}){
   if(!options.enabled||!registry.bundleCount||stopped||input.signal.aborted)return {kind:'pending'};
+  if(input.view.source.id==='dtek-oem-public-plan-ajax'&&input.view.synthetic!==false)return {kind:'pending'};
   const hint=input.state,selected=hint.profile.locations.find(l=>l.address.id===input.view.addressId);if(!selected)return {kind:'pending'};
   const expected={sessionId:hint.sessionId,revision:hint.revision,addressId:selected.address.id,bindingDigest:digest(selected.binding)};
   return options.store.commitCertifiedBinding(principal(hint.ownerId),expected,async tx=>{
@@ -179,9 +199,12 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
    const location=tx.state.profile.locations.find(l=>l.address.id===selected.address.id);if(!location)return {kind:'pending'};
    const a=admission(input.view,tx.serverNow,location.address.id);if(!a||input.view.operatorId!==location.binding.operatorId||input.view.namespace!==location.binding.namespace)return {kind:'pending'};
    const facts=await addressFacts(tx.client,tx.state,location.address.id,tx.serverNow);if(!facts||facts.built.binding.targetId!==input.view.targetId||facts.built.binding.operatorId!==a.operatorId||facts.built.binding.namespace!==a.namespace)return {kind:'pending'};
-   const revisionId='verified-provider:'+digest({addressId:location.address.id,operatorId:a.operatorId,namespace:a.namespace,targetId:facts.built.binding.targetId,admission:a.bundleSha256});
-   const binding:AddressBinding=location.binding.status==='verified'&&location.binding.revisionId===revisionId?structuredClone(location.binding):{
-    ...facts.built.binding,revisionId,status:'verified',verifiedAt:tx.serverNow,effectiveFrom:tx.serverNow,effectiveUntil:a.validUntil};
+   const odesa=a.sourceId==='dtek-oem-public-plan-ajax';
+   const revisionId=odesa?facts.built.binding.revisionId:'verified-provider:'+digest({addressId:location.address.id,operatorId:a.operatorId,namespace:a.namespace,targetId:facts.built.binding.targetId,admission:a.bundleSha256});
+   const old=location.binding,keepTimes=odesa&&old.status==='verified'&&old.revisionId===revisionId&&validInstant(old.verifiedAt)&&Date.parse(old.verifiedAt!)<=Date.parse(tx.serverNow);
+   const binding:AddressBinding=odesa?{...facts.built.binding,revisionId,status:'verified',
+    verifiedAt:keepTimes?old.verifiedAt:tx.serverNow,effectiveFrom:keepTimes&&validInstant(old.effectiveFrom)&&Date.parse(old.effectiveFrom!)<=Date.parse(tx.serverNow)?old.effectiveFrom:tx.serverNow,effectiveUntil:new Date(Date.parse(a.validUntil)).toISOString()}:
+    old.status==='verified'&&old.revisionId===revisionId?structuredClone(old):{...facts.built.binding,revisionId,status:'verified',verifiedAt:tx.serverNow,effectiveFrom:tx.serverNow,effectiveUntil:a.validUntil};
    const view:ScheduleView={...structuredClone(input.view),addressId:location.address.id,addressLabel:location.address.label,localityLabel:location.address.locality,bindingRevisionId:binding.revisionId,
     source:{...input.view.source,verifiedLevel:'integration'},deliveryEligible:true,
     ...(input.view.notice==='Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо.'?{notice:'План для цієї адреси. Час та інтервали можуть змінюватися.'}:{})};
@@ -194,9 +217,12 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
    const existing=(await tx.client.query('select record,record_digest,view_digest,revoked_at,expires_at from lba_production_schedule_certificate where id=$1 for share',[id])).rows;
    if(existing.length){const old=existing[0];if(existing.length!==1||!plain(old.record)||digest(old.record)!==old.record_digest||old.view_digest!==digest(view)||old.record.ownerId!==tx.state.ownerId||old.record.sessionId!==tx.state.sessionId||digest(old.record.binding)!==digest(binding)||old.revoked_at!==null||Date.parse(iso(old.expires_at))<=now)return die('CERTIFICATE_REPLAY_CONFLICT');return {kind:'replayed',certificateId:id};}
    if(tx.state.revision!==expected.revision||digest(location.binding)!==expected.bindingDigest)return die('SELECTION_CHANGED');
-   await tx.persistBinding(binding);
+   const morningParts=await captureQualificationMorningParts(tx.client,tx.state,view.addressId,epoch,tx.serverNow);
+   const predecessors=await collectScheduleRenewalPredecessors({client:tx.client,state:tx.state,view,now:tx.serverNow,expectedControlEpoch:epoch});
+   const afterBinding=await tx.persistBinding(binding);
    const expiresAt=new Date(expires).toISOString(),ref='review-sha256:'+a.reviewSha256+'/bundle-sha256:'+a.bundleSha256;
-   const record:ScheduleCertificateRecord={kind:'lba-certified-schedule/1',ownerId:tx.state.ownerId,sessionId:tx.state.sessionId,controlEpoch:epoch,issuedAt:tx.serverNow,expiresAt,view,binding,
+   const record:ScheduleCertificateRecord={kind:predecessors.length?'lba-certified-schedule/2':'lba-certified-schedule/1',ownerId:tx.state.ownerId,sessionId:tx.state.sessionId,controlEpoch:epoch,issuedAt:tx.serverNow,expiresAt,view,binding,
+    ...(predecessors.length?{renewal:{kind:'lba-pending-intent-renewal/1' as const,profileRevision:afterBinding.revision,controlEpoch:epoch,predecessors}}:{}),
     sourceEvidence:{kind:'accepted_source_revision',sourceId:view.source.id,sourceRevision:view.source.revision,acceptedAt:tx.serverNow,validUntil:expiresAt,evidenceRef:ref},
     addressEvidence:{kind:'accepted_address_binding',bindingRevisionId:binding.revisionId,bindingDigest:digest(binding),acceptedAt:tx.serverNow,validUntil:expiresAt,evidenceRef:ref+'/selection:'+facts.selection+'/captures:'+digest(facts.captures)},
     parallel48hEvidence:{kind:'accepted_parallel_48h',sourceId:view.source.id,operatorId:view.operatorId,namespace:view.namespace!,targetId:view.targetId!,startedAt:a.startedAt,finishedAt:a.finishedAt,acceptedAt:a.reviewedAt,evidenceRef:ref}};
@@ -204,13 +230,16 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
    await tx.client.query('update lba_production_schedule_certificate set revoked_at=$5 where owner_id=$1 and session_id=$2 and address_id=$3 and (record->\'view\'->>\'serviceDate\'=$4 or binding_revision_id<>$6) and revoked_at is null',[tx.state.ownerId,tx.state.sessionId,view.addressId,view.serviceDate,tx.serverNow,binding.revisionId]);
    await tx.client.query(`insert into lba_production_schedule_certificate(id,owner_id,session_id,control_epoch,address_id,schedule_revision_id,source_revision,binding_revision_id,view_digest,record_digest,record,issued_at,expires_at)
     values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11::jsonb,$12,$13)`,[id,tx.state.ownerId,tx.state.sessionId,epoch,view.addressId,view.revisionId,view.source.revision,binding.revisionId,digest(view),digest(record),JSON.stringify(record),tx.serverNow,expiresAt]);
+   await recordQualificationRevision({client:tx.client,before:tx.state,after:afterBinding,addressId:view.addressId,certificateId:id,certificateDigest:digest(record),parts:morningParts,now:tx.serverNow,expected:epoch});
    if(stopped||input.signal.aborted||admission(view,tx.serverNow,view.addressId)!==a)return die('ABORTED');
    return {kind:'issued',certificateId:id};
   });
  }
  let ownerOffset:{ownerId:string;index:number}|undefined;
- async function targetHint(addressId:string){
-  const c=await options.pool.connect();try{const r=(await c.query('select raw.capture from lba_public_address_candidate p join lba_public_address_capture raw on raw.id=p.group_id where p.address_id=$1',[addressId])).rows;
+ async function targetHint(location:BotLocation){
+  const addressId=location.address.id,c=await options.pool.connect();try{
+   if(location.binding.operatorId==='dtek-oem'&&location.binding.namespace==='dtek:oem')return options.operatorCatalog&&options.odesaPlanApiEnabled===true?readOdesaAddressTargetHint({client:c,location,at:new Date(clock()).toISOString(),expectedControlEpoch:epoch,allowFixture:options.execution==='synthetic_test'}):null;
+const r=(await c.query('select raw.capture from lba_public_address_candidate p join lba_public_address_capture raw on raw.id=p.group_id where p.address_id=$1',[addressId])).rows;
    if(r.length!==1||typeof r[0].capture?.rawBody!=='string')return null;const v=JSON.parse(r[0].capture.rawBody);return Number.isInteger(v.group)&&v.subgroup===1?String(v.group)+'.1':null;
   }finally{c.release();}
  }
@@ -242,7 +271,7 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
      if(!registries.get(registry)!.some(a=>a.operatorId===location.binding.operatorId&&a.namespace===location.binding.namespace&&(!a.addressIds||a.addressIds.has(location.address.id)))){last.pending++;continue;}
      try{
       // Public network/cache refresh is outside the canonical owner transaction.
-      await refreshAddress(state,location.address.id);const target=await targetHint(location.address.id);
+      await refreshAddress(state,location.address.id);const target=await targetHint(location);
       const at=new Date(clock()).toISOString(),dates=[localParts(clock()).date,nextCalendarDate(localParts(clock()).date)];
       const matching=plans.plans.filter(p=>p.view.operatorId===location.binding.operatorId&&p.view.namespace===location.binding.namespace&&p.view.targetId===target&&dates.includes(p.view.serviceDate)&&admission(p.view,at,location.address.id)).slice(0,2);
       if(!matching.length){last.pending++;continue;}
@@ -264,7 +293,7 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
   const client=await options.pool.connect();try{const at=new Date(clock()).toISOString();const rows=(await client.query(`select c.owner_id,c.session_id,c.control_epoch,c.address_id,c.schedule_revision_id,c.binding_revision_id,c.source_revision,c.record,c.record_digest,c.view_digest,c.issued_at,c.expires_at from lba_production_schedule_certificate c join lba_production_profiles p on p.owner_id=c.owner_id and p.session_id=c.session_id
    where c.control_epoch=$1 and p.control_epoch=$1 and c.revoked_at is null and c.issued_at<=$2::timestamptz and c.expires_at>$2::timestamptz order by c.issued_at desc,c.id desc limit 20001`,[epoch,at])).rows;
    if(rows.length>20000)return die('PROJECTION_LIMIT');return rows.flatMap(r=>{try{const c=r.record as ScheduleCertificateRecord;validateScheduleView(c.view);const a=admission(c.view,at,c.view.addressId),ref=a?'review-sha256:'+a.reviewSha256+'/bundle-sha256:'+a.bundleSha256:null;
-    if(!closed(c,['kind','ownerId','sessionId','controlEpoch','issuedAt','expiresAt','view','binding','sourceEvidence','addressEvidence','parallel48hEvidence'])||c.kind!=='lba-certified-schedule/1'||c.controlEpoch!==epoch||Number(r.control_epoch)!==epoch||c.ownerId!==r.owner_id||c.sessionId!==r.session_id||c.view.addressId!==r.address_id||c.view.revisionId!==r.schedule_revision_id||c.binding.revisionId!==r.binding_revision_id||c.view.source.revision!==r.source_revision||
+    if(!validScheduleCertificateShape(c)||c.controlEpoch!==epoch||Number(r.control_epoch)!==epoch||c.ownerId!==r.owner_id||c.sessionId!==r.session_id||c.view.addressId!==r.address_id||c.view.revisionId!==r.schedule_revision_id||c.binding.revisionId!==r.binding_revision_id||c.view.source.revision!==r.source_revision||
      c.view.source.verifiedLevel!=='integration'||c.view.deliveryEligible!==true||c.view.synthetic!==false||c.view.bindingRevisionId!==c.binding.revisionId||c.binding.addressId!==c.view.addressId||c.binding.status!=='verified'||c.binding.kind!=='operator_group'||c.binding.operatorId!==c.view.operatorId||c.binding.namespace!==c.view.namespace||c.binding.targetId!==c.view.targetId||!validInstant(c.binding.verifiedAt)||!validInstant(c.binding.effectiveUntil)||Date.parse(c.binding.verifiedAt)>Date.parse(at)||Date.parse(c.binding.effectiveUntil)<=Date.parse(at)||digest(c)!==r.record_digest||digest(c.view)!==r.view_digest||!a||
      !accepted(c.sourceEvidence,'accepted_source_revision',['sourceId','sourceRevision'],c.issuedAt,c.expiresAt)||!accepted(c.addressEvidence,'accepted_address_binding',['bindingRevisionId','bindingDigest'],c.issuedAt,c.expiresAt)||
      c.sourceEvidence.evidenceRef!==ref||c.parallel48hEvidence.evidenceRef!==ref||!c.addressEvidence.evidenceRef.startsWith(ref+'/selection:')||c.addressEvidence.bindingRevisionId!==c.binding.revisionId||c.addressEvidence.bindingDigest!==digest(c.binding)||

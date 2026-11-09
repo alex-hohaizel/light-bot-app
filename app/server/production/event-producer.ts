@@ -4,7 +4,7 @@ import type {BotState} from '../../shared/bot/types.ts';
 import {handleScheduleEvent,restoreBotState} from '../../shared/bot/engine.ts';
 import {validInstant,validateScheduleView} from '../../shared/schedule-core.ts';
 import type {LegacyProfileReadPool,LegacyProfileReadQuery} from './profile-reader.ts';
-import {scheduleEventDigest,type createProductionScheduleEvents} from './schedule-events.ts';
+import {scheduleEventDigest,type ScheduleIntentReplacement,type createProductionScheduleEvents} from './schedule-events.ts';
 import type {createProductionMorningBriefing} from './morning-briefing.ts';
 
 /** Explicit additive migration only. No constructor/startup DDL, certificate
@@ -168,6 +168,12 @@ export function createProductionEventProducer(options:ProductionEventProducerOpt
   let attempt=0;if(rows.length){const suffix=rows[0].event_id.slice(prefix.length);if(!/^\d{10}$/.test(suffix))return fail('ATTEMPT_INVALID');attempt=Number(suffix)+1;}
   if(attempt>9999999999)return fail('ATTEMPT_LIMIT');return prefix+String(attempt).padStart(10,'0');
  }
+ async function replacementId(client:LegacyProfileReadQuery,state:BotState,r:ScheduleIntentReplacement){
+  const prefix='replacement:'+r.previousOutboxId+':'+r.certificateId+':';
+  const rows=(await client.query('select event_id from lba_production_schedule_event where owner_id=$1 and session_id=$2 and event_id like $3 order by event_id desc limit 1',[state.ownerId,state.sessionId,prefix+'%'])).rows;
+  let n=0;if(rows.length){const suffix=String(rows[0].event_id).slice(prefix.length);if(!/^\d{10}$/.test(suffix))return fail('ATTEMPT_INVALID');n=Number(suffix)+1;}
+  if(n>9999999999)return fail('ATTEMPT_LIMIT');return prefix+String(n).padStart(10,'0');
+ }
  async function produce(lease:Lease,row:Candidate,report:EventProducerResult,signal:AbortSignal){
   const checked=candidate(row);if(!checked){report.skipped++;return;}
   const {state,view,issuedAt}=checked,scopeHash=scope(view),now=clock();
@@ -176,8 +182,27 @@ export function createProductionEventProducer(options:ProductionEventProducerOpt
    if(rows.length>1||rows.length===1&&(!epoch(rows[0].control_epoch,expected)||!text(rows[0].event_id,128)||!text(rows[0].revision_id)||typeof rows[0].semantics!=='string'))return fail('CURSOR_INVALID');return rows[0];
   });
   const base={addressId:view.addressId,operatorId:view.operatorId,serviceDate:view.serviceDate,fromRevisionId:cursor?.revision_id??null,toRevisionId:view.revisionId,createdAt:issuedAt};
-  const jobs:Array<{event:Omit<ScheduleEvent,'id'>;key:unknown;reminder:boolean}>=[];
-  if(cursor?.certificate_id!==row.id){
+  const jobs:Array<{event:Omit<ScheduleEvent,'id'>;key:unknown;reminder:boolean;replacement?:ScheduleIntentReplacement}>=[];
+  // Only the issuer's closed, revision-bound renewal marker can propose an
+  // already sealed intent. Advisory reads are revalidated atomically by events.
+  const renewal=plain(row.record)&&plain(row.record.renewal)?row.record.renewal:null;
+  if(renewal?.profileRevision===state.revision&&renewal.controlEpoch===expected&&Array.isArray(renewal.predecessors)&&renewal.predecessors.length<=32){
+   for(const pin of renewal.predecessors){
+    if(!plain(pin)||!validInstant(pin.intentDeadline)||Date.parse(pin.intentDeadline)<=Date.parse(now)||typeof pin.outboxId!=='string')continue;
+    const previous=await query(async client=>(await client.query(`select e.event,o.status from lba_production_profile_outbox o join lba_production_schedule_outbox_proof p on p.outbox_id=o.id
+     join lba_production_schedule_event e on e.owner_id=p.owner_id and e.session_id=p.session_id and e.event_id=p.event_id
+     where o.id=$1 and o.owner_id=$2 and o.session_id=$3 and o.status in ('pending','cancelled')
+     and not exists(select 1 from lba_production_schedule_event s where s.owner_id=o.owner_id and s.session_id=o.session_id and s.event_id like $4 and s.receipt->>'outcome'='notification_committed')
+     and not exists(select 1 from lba_production_telegram_dispatch_jobs j where j.source_kind='profile' and j.source_id=o.id::text and (j.state<>'pending' or j.fence<>0 or j.attempts<>0 or exists(select 1 from lba_production_telegram_dispatch_attempts a where a.operation_id=j.operation_id)))`,[pin.outboxId,state.ownerId,state.sessionId,'replacement:'+pin.outboxId+':%'])).rows);
+    if(previous.length!==1||!plain(previous[0].event))continue;
+    const old=previous[0].event as unknown as ScheduleEvent;
+    const event:ScheduleEvent={...base,id:'producer:replacement-probe',kind:old.kind,...(old.reminder?{reminder:structuredClone(old.reminder)}:{})};
+    if(!handleScheduleEvent(state,event,view,{actorId:state.ownerId,now,addresses:[],plans:[]}).messages.length)continue;
+    const replacement:ScheduleIntentReplacement={kind:'lba-schedule-intent-replacement/1',previousOutboxId:pin.outboxId,certificateId:row.id};
+    jobs.push({event,key:{kind:'replacement',old:pin.outboxId,certificate:row.id},reminder:old.kind==='reminder',replacement});
+   }
+  }
+  if(cursor?.certificate_id!==row.id&&!jobs.some(j=>!j.reminder)){
    const kind:ScheduleEvent['kind']=view.status==='emergency'?'emergency':view.status==='no_planned_outages'?'cancelled':cursor?'changed':'new_plan';
    jobs.push({event:{...base,kind},key:{kind:'observation',scope:scopeHash,predecessor:cursor?.event_id??null,certificate:row.record_digest,view:row.view_digest},reminder:false});
   }
@@ -196,12 +221,12 @@ export function createProductionEventProducer(options:ProductionEventProducerOpt
    if(signal.aborted||lifecycleAbort.signal.aborted)return;
    if(report.committed+report.ignored+report.replayed>=maxEvents)return;
    await renew(lease);
-   const id=await query(client=>nextId(client,state,job.key)),event={...job.event,id} as ScheduleEvent;
+   const id=await query(client=>job.replacement?replacementId(client,state,job.replacement):nextId(client,state,job.key)),event={...job.event,id} as ScheduleEvent;
    // Guard executes inside the service's canonical transaction and holds the
    // lease row FOR SHARE through event/outbox commit. Expired/replaced workers,
    // changed sessions and aborted runs cannot commit a late notification.
    const guard=guardFor(lease,state,signal);
-   const result=await events.commit({kind:'verified_server_principal',verified:true,ownerId:state.ownerId},event,view,guard);
+   const result=await events.commit({kind:'verified_server_principal',verified:true,ownerId:state.ownerId},event,view,guard,job.replacement);
    if('receipt' in result){if(result.replayed)report.replayed++;else if(result.receipt.outcome==='notification_committed'){report.committed++;report.eligible++;}else report.ignored++;}
    else return fail('EVENT_SERVICE_DISABLED');
   }
