@@ -1,0 +1,26 @@
+{
+  "kind": "lba-sanitized-historical-html-test-descriptor/1",
+  "originalRawSha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+  "originalRawBytes": 924371,
+  "sanitizedRawSha256": "2bef4b31f9145dff1195a326f50835525d0991e223783f89cded53d693909dc9",
+  "sanitizedRawBytes": 923491,
+  "transformation": {
+    "id": "clear-public-guest-csrf-attribute-values/1",
+    "encoding": "bytes; no decode/re-encode",
+    "metaPattern": "(<meta name=\"csrf-token\" content=\")[^\"]*(\">)",
+    "hiddenInputPattern": "(<input type=\"hidden\" name=\"_csrf-dtek-oem\" value=\")[^\"]*(\">)",
+    "replacement": "\\1\\2",
+    "metaValuesCleared": 1,
+    "hiddenValuesCleared": 9,
+    "scriptsByteIdentical": true,
+    "scriptElementCount": 23,
+    "scriptElementsSha256": "6710def7c1e9e53a569fca070c5741c7599cb764a7d8cffa9ce589dee22f5589",
+    "remainingNonemptyGuestCsrfValues": 0
+  },
+  "originalLocalProof": {
+    "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/operator-followup/implementation-current-local-8dc02d657991-r2.json",
+    "sha256": "f49a14c7f55615d7419f53f497a96ccc481483295813d274e986edcec4315650",
+    "notReperformedOnNode20": true
+  },
+  "meaning": "Historical captured public HTML with security metadata cleared. Portable test does not re-prove the original whole-raw acquisition pin. No source admission or new observation."
+}

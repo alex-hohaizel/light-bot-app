@@ -1,0 +1,28 @@
+{
+  "fixtureDerivation": {
+    "kind": "minimal-public-test-metadata-derivative/1",
+    "originalLedgerSha256": "15a90c1500d6ec1469bcfc16a9559ad514582aa167f91182b4a237a4d17edcd6",
+    "selectedOriginalRequest": "respublika-streets",
+    "omittedOriginalRequestCount": 10,
+    "retainedObservationValuesUnchanged": true,
+    "newObservationPerformed": false,
+    "syntheticWrapper": true,
+    "omitted": [
+      "unrelated requests",
+      "all unconsumed record fields",
+      "headers except Content-Type"
+    ],
+    "meaning": "Only the wrapper is derived. The public body, captured timestamp, response SHA256 and content type remain original evidence, not a new fetch."
+  },
+  "requests": [
+    {
+      "name": "respublika-streets",
+      "observed_at_utc": "2026-11-08T20:51:25.350538+00:00",
+      "response_sha256": "ae980cb8278bfa414e061d4745715228d199ed4a614c3be4798723b09cf1bec9",
+      "body_file": "respublika-streets.json",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "schemaVersion": "lba-public-test-fixture-package/1",
+  "actor": "/root/source_reservation_guard",
+  "createdAt": "2026-11-09T16:12:54.991336+00:00",
+  "purpose": "Separate test-only fixture overlay; not production source, source admission, or new native observation.",
+  "sourceSha256": "8dc02d6579912313618237d3480ee3bed96ea742e235de05dcc50a4645b52a45",
+  "candidateCommit": "40e4ac04c0ed90a32f79a5bf87dfca951eed11ea",
+  "candidateTree": "b5bd5f966148be4b25b3f34213e59c0337863081",
+  "registeredBackendFiles": 41,
+  "unchangedTestSha256s": {
+    "app/tests/backend/account-links-http.test.ts": "2cdd33b1f8b4ae782178c7c3a99e0ace0be792a82f872418bcd8daeca5d9b5da",
+    "app/tests/backend/account-links.test.ts": "8d08baf75f12a5455a9e45f452f5a293838bb206a3c67510af71f705b885a27c",
+    "app/tests/backend/account-widget.test.ts": "3d06f84cea4e1a1cceab1d8757ec38f5c94002097876f6ad296bdddca503a21a",
+    "app/tests/backend/auth-epoch-token.test.ts": "82face8442a3cb87f889cdf572d2f79db8956b64d58dee27b0007bca15136e30",
+    "app/tests/backend/current-source-mirror.test.ts": "3e91abc1ebf4647dec05931aa65ee3d61aada88bf12dd7302138e86709a631e7",
+    "app/tests/backend/event-producer.test.ts": "db5bf311ab76d06efc48e7185f29e9eb1bd67e4fff3ec9de86bafabf36e301b2",
+    "app/tests/backend/fresh-source-2026-11-09.test.ts": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9",
+    "app/tests/backend/isolated-guard.test.ts": "324c4433331da2957e74b5fef734238b8dc490172a64edbef996654423ae38b2",
+    "app/tests/backend/legacy-campaign-recipient.test.ts": "6328c546686d8fb994b9ef5a0fffb1692edcb7b8b3f4bad5ecb90234646614d8",
+    "app/tests/backend/legacy-identity-links.test.ts": "355d89c9eb2439c360fb0009630f148c1b990605cac0db8c91bcc7cafc268e33",
+    "app/tests/backend/legacy-live-profile.test.ts": "75491b230764c9852400e31ba68e800bc5683f050d78d456e8e09ca42d620096",
+    "app/tests/backend/live-address-catalog.test.ts": "942ae171dfad00b08c4bbbdba44ef586b6073f1e42997c757dc338bc06e403b3",
+    "app/tests/backend/live-campaign-dispatch.test.ts": "2ec713ac0be71d3a1b7cded1ee43839dddc00b2293aa5be1e67f16504b2b255f",
+    "app/tests/backend/live-clock.test.ts": "394bdaa7d56ce410098b3c9ce326b1fa4c0de54764ac3be8212ef20ccdd76499",
+    "app/tests/backend/live-product-routes.test.ts": "5cc4edbc1c8d6bbb419c79e24c421f1dbec76553934f3a2e0b601c66f55ba803",
+    "app/tests/backend/live-product-tools.test.ts": "93bb55c39d8f5bd49b561067c6308382db07f28131cf6970445bd3d50b553f25",
+    "app/tests/backend/live-profile-reader.test.ts": "f72a314f31c76429679eada9ddd3b008a07e7c53190aa3fec4ed10a22204ed5e",
+    "app/tests/backend/live-profile-store.test.ts": "d725796c1d5f539deaf2faac26151ffe0c514a45dcc8a5b02caf5389f5e76c9a",
+    "app/tests/backend/live-source-ingestion.test.ts": "2e82a01b4e18fde7e7637cac4a08ffc28c1afc3f29d82e707bf7bc07b46202dc",
+    "app/tests/backend/live-source-intake.test.ts": "3715c707f2a0eaefd2669bdc8f0caff60710935bb67b67e2a7add79d3f494967",
+    "app/tests/backend/live-telegram-callback-ack.test.ts": "399f25ae58fc518294d227ff4197394c6f0ce5a88552821e5242a210393b201d",
+    "app/tests/backend/live-telegram-dispatch.test.ts": "5cb6854e774865e18e8fafa989072f3783c13a5a03b9fb9f19987ed373faa3f4",
+    "app/tests/backend/live-telegram-inbox.test.ts": "a4817401a406c4b024e510186ba05cf8e89475d17944bfa42e653e62c5f9964b",
+    "app/tests/backend/live-telegram-processor.test.ts": "681419e672f55878f4e8c22d0b5adfdc30349fa1a6d9f9d3f3cbd38b5de75691",
+    "app/tests/backend/live-telegram-sql-eligibility.test.ts": "0f62fa10e6667332e4e30e43f85fd2a949f56d50a589bca19d2077c20ad3ec0d",
+    "app/tests/backend/live-telegram-transport.test.ts": "fd3ab2def5f3ed3deb987e66b4f602004f16f5ccb3d63034ac8b2ea88c3f09ea",
+    "app/tests/backend/morning-briefing.test.ts": "fec94680b658bb7a449b0b4894e713c2b4952097b8ac6ee83facb7ddf9cbd84b",
+    "app/tests/backend/product-auth.test.ts": "0d6115aad7dbe6478fc16aba5b41f49092801111619ad8a781b4abb8130b0301",
+    "app/tests/backend/production-auth-boundaries.test.ts": "83cc8b7b5e99b94581035bfca2da66db16f8149384d464e9d68e3a0cfb07f885",
+    "app/tests/backend/replit-session.test.ts": "aea3bf53c1afff021c51354e2f40f6bf69ce22a0a9baadc276832378cffcec48",
+    "app/tests/backend/review-tools.test.ts": "2010c266bbe590161a45f3ce1e4605bbed0c39c6aa89bfcb0db78f52939cd81e",
+    "app/tests/backend/runtime-policy.test.ts": "d3990d8c2eed4b364069a6e73a9bef508dd5e597bc92925c377180025b40ac89",
+    "app/tests/backend/runtime-source-proof.test.ts": "c5fd6b37a858739debf041b4130f3df68ae57cb4992bd333ca13c776fc17b59e",
+    "app/tests/backend/schedule-events.test.ts": "ff267e34c3dd15e24933171fbcf0300349c3a4ff40856dcc66a8526d591322dc",
+    "app/tests/backend/schedule-notices.test.ts": "a8ac9d49230f8a00fc00ae69ffe87d223c4281f21349c90c4e1fa87faa6f21ba",
+    "app/tests/backend/source-domain-vn-emergency.test.ts": "92556155559beb2cb28d7ea095f80a9aeb17f32be6c62b270a80fde582d2209d",
+    "app/tests/backend/source-mirror-mime.test.ts": "a8a33ee95f8da9e4641bff1d241651396b4e1e9bf5d452e02e6df5d7c6ff1b0c",
+    "app/tests/backend/source-operating-policy.test.ts": "c2f8a8643b5076ef1b66cfe3916c2878acd9430dc5814993d89de1c5f65af9ff",
+    "app/tests/backend/telegram-browser-client.test.ts": "227d3972b62ec5bd6a3a95ae8beabed9507786befb7736968561c959b857f838",
+    "app/tests/backend/telegram-init-data.test.ts": "650d5a4eb81f1c95f53e1ffde9a0eff3dfee62eb3a03416a8e257d856ee6b654",
+    "app/tests/backend/update-campaign.test.ts": "23944c4e5f5dc0efd71cf7e00151d789a8ef6b29fa40d7838623be1b79895803"
+  },
+  "fixtureClosureCount": 25,
+  "overlayPathCount": 20,
+  "candidateExistingExactCount": 6,
+  "overlayBytes": 1229125,
+  "files": [
+    {
+      "path": "docs/light-bot-app/production-release-20261109/schedule-notices/current-source/current.rss.xml",
+      "consumers": [
+        "app/tests/backend/schedule-notices.test.ts"
+      ],
+      "bytes": 45255,
+      "sha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "gitBlobSha": "70b947cfcfb7ed5661c15741c3df53e89832e1fe",
+      "originalSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "originalBytes": 45255,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/public-poi/observations.json",
+      "consumers": [
+        "app/tests/backend/live-address-catalog.test.ts"
+      ],
+      "bytes": 1033,
+      "sha256": "b5957a0afe2d135665db472ba30aa39e289fbd5b9c0cd311fac04232ac2a9716",
+      "gitBlobSha": "93ec04a1801a3828b20ad3e891995e8545ae949d",
+      "originalSha256": "15a90c1500d6ec1469bcfc16a9559ad514582aa167f91182b4a237a4d17edcd6",
+      "originalBytes": 9678,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": false,
+      "provenance": {
+        "sourceEvidenceSha256": "15a90c1500d6ec1469bcfc16a9559ad514582aa167f91182b4a237a4d17edcd6",
+        "derivative": {
+          "kind": "minimal-public-test-metadata-derivative/1",
+          "originalLedgerSha256": "15a90c1500d6ec1469bcfc16a9559ad514582aa167f91182b4a237a4d17edcd6",
+          "selectedOriginalRequest": "respublika-streets",
+          "omittedOriginalRequestCount": 10,
+          "retainedObservationValuesUnchanged": true,
+          "newObservationPerformed": false,
+          "syntheticWrapper": true,
+          "omitted": [
+            "unrelated requests",
+            "all unconsumed record fields",
+            "headers except Content-Type"
+          ],
+          "meaning": "Only the wrapper is derived. The public body, captured timestamp, response SHA256 and content type remain original evidence, not a new fetch."
+        }
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/public-poi/respublika-streets.json",
+      "consumers": [
+        "app/tests/backend/live-address-catalog.test.ts"
+      ],
+      "bytes": 111,
+      "sha256": "ae980cb8278bfa414e061d4745715228d199ed4a614c3be4798723b09cf1bec9",
+      "gitBlobSha": "9d0c26bf4e2ff418bb173f52402c55e396c67231",
+      "originalSha256": "ae980cb8278bfa414e061d4745715228d199ed4a614c3be4798723b09cf1bec9",
+      "originalBytes": 111,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%9A%D1%96%D0%BB%D1%8C%D1%86%D0%B5%D0%B2%D0%B0",
+        "observedAt": "2026-11-08T20:51:25.350538+00:00",
+        "recordedSha256": "ae980cb8278bfa414e061d4745715228d199ed4a614c3be4798723b09cf1bec9",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/public-poi/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-data-48580.json",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 14910,
+      "sha256": "2fe1f285e218838fc791d4eec62fb51cfae5fb5aad3f2286a0c9a0a6c0b47324",
+      "gitBlobSha": "79df97be6d83e98f69adcb619f6d0f0433d45017",
+      "originalSha256": "2fe1f285e218838fc791d4eec62fb51cfae5fb5aad3f2286a0c9a0a6c0b47324",
+      "originalBytes": 14910,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/data/Vinnytsiaoblenerho.json",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "79df97be6d83e98f69adcb619f6d0f0433d45017",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-parser.txt",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 7414,
+      "sha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61",
+      "gitBlobSha": "44ddfdf75828b98b1ab36602080084994cfe0af9",
+      "originalSha256": "45037fa228986f8e2362f483141ec29a467cd0c913db427849e3e4c024773e61",
+      "originalBytes": 7414,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/scripts/parser.py",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "44ddfdf75828b98b1ab36602080084994cfe0af9",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-readme.txt",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 11034,
+      "sha256": "9868050c405aebdc9263c63bdcd8b53ed27085001aa4244fe41baa3c8a9f95de",
+      "gitBlobSha": "a5435a12feeb9615246070e0b7a2c7a1e964674c",
+      "originalSha256": "9868050c405aebdc9263c63bdcd8b53ed27085001aa4244fe41baa3c8a9f95de",
+      "originalBytes": 11034,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/README.md",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "a5435a12feeb9615246070e0b7a2c7a1e964674c",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-render-all-today.txt",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 13891,
+      "sha256": "cdfa6a13f34d1be3670409c7196e0824d80e358027a58a676a1c63927aa8f37a",
+      "gitBlobSha": "fccb19c40607d49551ecf077d8b60fdfc70e4c55",
+      "originalSha256": "cdfa6a13f34d1be3670409c7196e0824d80e358027a58a676a1c63927aa8f37a",
+      "originalBytes": 13891,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/scripts/render_png_all_today.py",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "fccb19c40607d49551ecf077d8b60fdfc70e4c55",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-render-png.txt",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 18674,
+      "sha256": "db85da4692cfcc7f7ad9d4b5dff7747ebd2dc7830464d02effd085f3c14ac5c4",
+      "gitBlobSha": "d5ec248e96034bc2f3ef29b03d614f1c75b615b0",
+      "originalSha256": "db85da4692cfcc7f7ad9d4b5dff7747ebd2dc7830464d02effd085f3c14ac5c4",
+      "originalBytes": 18674,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/scripts/render_png.py",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "d5ec248e96034bc2f3ef29b03d614f1c75b615b0",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/address-data-integration/source/vn-workflow.txt",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 2708,
+      "sha256": "d883de498730450f343be58e7cdef19a1b7455867c922955fcab25c58a77f1a0",
+      "gitBlobSha": "8e4c2edb96d27305d96347946136bd3a03bba78d",
+      "originalSha256": "d883de498730450f343be58e7cdef19a1b7455867c922955fcab25c58a77f1a0",
+      "originalBytes": 2708,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://github.com/vn-progr/gpv-voe-vinnytsia/blob/48580d43fd8bc9b308aa4ed4f817eafb2b8804ab/.github/workflows/update-all-sync.yml",
+        "publisherCommit": "48580d43fd8bc9b308aa4ed4f817eafb2b8804ab",
+        "publisherCommitCreatedAt": "2026-11-08T20:28:22Z",
+        "recordedGitBlobSha": "8e4c2edb96d27305d96347946136bd3a03bba78d",
+        "evidence": "docs/light-bot-app/release-v8/address-data-integration/source/evidence.json",
+        "observedAt": null,
+        "observationCaveat": "Evidence records immutable publisher commit identity; no new observation or Actions execution claimed."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/kharkiv-rss.txt",
+      "consumers": [
+        "app/tests/backend/current-source-mirror.test.ts",
+        "app/tests/backend/live-source-ingestion.test.ts"
+      ],
+      "bytes": 51249,
+      "sha256": "86fa99e05ed01496ddcfdfd31dfeb7b9c7a7c445263c661a6ed62b2375a951b1",
+      "gitBlobSha": "e1e5ad33912e403c13229130321063de57ccc6e8",
+      "originalSha256": "86fa99e05ed01496ddcfdfd31dfeb7b9c7a7c445263c661a6ed62b2375a951b1",
+      "originalBytes": 51249,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/odesa-mirror.txt",
+      "consumers": [
+        "app/tests/backend/current-source-mirror.test.ts",
+        "app/tests/backend/live-source-ingestion.test.ts",
+        "app/tests/backend/source-mirror-mime.test.ts"
+      ],
+      "bytes": 61709,
+      "sha256": "78b66a32be1eed1c97f99c7b0549784ad07436472f8e0aa076dadf0145c46314",
+      "gitBlobSha": "4cb49b8f763b6cf5e0828d29454556792cbf0e45",
+      "originalSha256": "78b66a32be1eed1c97f99c7b0549784ad07436472f8e0aa076dadf0145c46314",
+      "originalBytes": 61709,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/voe-mirror-vn-progr.txt",
+      "consumers": [
+        "app/tests/backend/live-source-ingestion.test.ts"
+      ],
+      "bytes": 14974,
+      "sha256": "a35c40c1d091e474ab62d79ecbe33830e9459a3c290fceae896eaef86fc819e8",
+      "gitBlobSha": "a53fed45df0cd3b601958b5f78b6f245b9676369",
+      "originalSha256": "a35c40c1d091e474ab62d79ecbe33830e9459a3c290fceae896eaef86fc819e8",
+      "originalBytes": 14974,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/yasno-kem.json",
+      "consumers": [
+        "app/tests/backend/current-source-mirror.test.ts",
+        "app/tests/backend/live-source-ingestion.test.ts",
+        "app/tests/backend/source-mirror-mime.test.ts",
+        "app/tests/backend/source-operating-policy.test.ts"
+      ],
+      "bytes": 26792,
+      "sha256": "1edabe64f243b1b4be983846a9d2277af22411da9e90d49d43497ae0d8b469ec",
+      "gitBlobSha": "3c56fce5d8e72135c8c227bd633eda315e2147a3",
+      "originalSha256": "1edabe64f243b1b4be983846a9d2277af22411da9e90d49d43497ae0d8b469ec",
+      "originalBytes": 26792,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/captures/odesa-mirror-comparison.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 61709,
+      "sha256": "b8a28623c0f3ef1d93ff10d1dcb67812588ec9516340bdf7591685ac41167570",
+      "gitBlobSha": "a4df763fd731a137e8c49f2c59b18f823b20ec93",
+      "originalSha256": "b8a28623c0f3ef1d93ff10d1dcb67812588ec9516340bdf7591685ac41167570",
+      "originalBytes": 61709,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json",
+        "observedAt": "2026-11-08T20:01:41.593191+00:00",
+        "recordedSha256": "b8a28623c0f3ef1d93ff10d1dcb67812588ec9516340bdf7591685ac41167570",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/captures/vinnytsia-mirror-comparison.bin",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 14910,
+      "sha256": "524f8ca67ad678f79f381d92e0820661827d61759db2fccc29e212f72483d256",
+      "gitBlobSha": "76a6ce7a7b25c0babf34d1b06f484d5d4bb7abb6",
+      "originalSha256": "524f8ca67ad678f79f381d92e0820661827d61759db2fccc29e212f72483d256",
+      "originalBytes": 14910,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json",
+        "observedAt": "2026-11-08T20:01:41.809380+00:00",
+        "recordedSha256": "524f8ca67ad678f79f381d92e0820661827d61759db2fccc29e212f72483d256",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/captures/yasno-dnem.bin",
+      "consumers": [
+        "app/tests/backend/source-domain-vn-emergency.test.ts"
+      ],
+      "bytes": 2677,
+      "sha256": "f4c8a05324f5c71c4ecaae0897c7d0678a1647b9eee60ed3e479d75bcc986ee1",
+      "gitBlobSha": "58ad719d8bf34637b76cd6e6567de5ed5b1ecf59",
+      "originalSha256": "f4c8a05324f5c71c4ecaae0897c7d0678a1647b9eee60ed3e479d75bcc986ee1",
+      "originalBytes": 2677,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/301/planned-outages",
+        "observedAt": "2026-11-08T20:02:55.234397+00:00",
+        "recordedSha256": "f4c8a05324f5c71c4ecaae0897c7d0678a1647b9eee60ed3e479d75bcc986ee1",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-08/root/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/kharkiv-rss.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 45255,
+      "sha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "gitBlobSha": "70b947cfcfb7ed5661c15741c3df53e89832e1fe",
+      "originalSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+      "originalBytes": 45255,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://oblenergo.kharkiv.ua/uk/rss.xml",
+        "observedAt": "2026-11-08T23:38:39.043904+00:00",
+        "recordedSha256": "96b817608a6a53cfdb53322d2ddd22e2826aacf5a0cf5ee1777819237286d720",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-official.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 923491,
+      "sha256": "2bef4b31f9145dff1195a326f50835525d0991e223783f89cded53d693909dc9",
+      "gitBlobSha": "f38cd1cbe4063e5df7d521351aa87acdf722280a",
+      "originalSha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+      "originalBytes": 924371,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": false,
+      "provenance": {
+        "sourceUrl": "https://www.dtek-oem.com.ua/ua/shutdowns",
+        "observedAt": "2026-11-08T23:38:38.610950+00:00",
+        "recordedSha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      },
+      "sanitization": {
+        "kind": "lba-sanitized-historical-html-test-descriptor/1",
+        "originalRawSha256": "ecca5119c62c19b12e20bc0e10ec2be6f8c73103b927d43aabeaba0acb2fdda1",
+        "originalRawBytes": 924371,
+        "sanitizedRawSha256": "2bef4b31f9145dff1195a326f50835525d0991e223783f89cded53d693909dc9",
+        "sanitizedRawBytes": 923491,
+        "transformation": {
+          "id": "clear-public-guest-csrf-attribute-values/1",
+          "encoding": "bytes; no decode/re-encode",
+          "metaPattern": "(<meta name=\"csrf-token\" content=\")[^\"]*(\">)",
+          "hiddenInputPattern": "(<input type=\"hidden\" name=\"_csrf-dtek-oem\" value=\")[^\"]*(\">)",
+          "replacement": "\\1\\2",
+          "metaValuesCleared": 1,
+          "hiddenValuesCleared": 9,
+          "scriptsByteIdentical": true,
+          "scriptElementCount": 23,
+          "scriptElementsSha256": "6710def7c1e9e53a569fca070c5741c7599cb764a7d8cffa9ce589dee22f5589",
+          "remainingNonemptyGuestCsrfValues": 0
+        },
+        "originalLocalProof": {
+          "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/operator-followup/implementation-current-local-8dc02d657991-r2.json",
+          "sha256": "f49a14c7f55615d7419f53f497a96ccc481483295813d274e986edcec4315650",
+          "notReperformedOnNode20": true
+        },
+        "meaning": "Historical captured public HTML with security metadata cleared. Portable test does not re-prove the original whole-raw acquisition pin. No source admission or new observation."
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-public-json.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 61694,
+      "sha256": "e6831ab19c618a9187210cbe0c765bbe8028c4430d349d56890b5be519168cf5",
+      "gitBlobSha": "f271de52ec475fd3c6dc7b586b565ff974d98cba",
+      "originalSha256": "e6831ab19c618a9187210cbe0c765bbe8028c4430d349d56890b5be519168cf5",
+      "originalBytes": 61694,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json",
+        "observedAt": "2026-11-08T23:38:41.462138+00:00",
+        "recordedSha256": "e6831ab19c618a9187210cbe0c765bbe8028c4430d349d56890b5be519168cf5",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/odesa-robots-current.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 257,
+      "sha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "gitBlobSha": "f5110e9e5048603c7cab202b0fb0f67d53fef88c",
+      "originalSha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "originalBytes": 257,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://www.dtek-oem.com.ua/robots.txt",
+        "observedAt": "2026-11-08T23:45:06.771024+00:00",
+        "recordedSha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/vinnytsia-public-json.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 14945,
+      "sha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+      "gitBlobSha": "5f25a682a9208fd7e7315a1be468fb2e62127591",
+      "originalSha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+      "originalBytes": 14945,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json",
+        "observedAt": "2026-11-08T23:38:38.788276+00:00",
+        "recordedSha256": "056288f6cf53c7f58e09bd45de631d212abc8d8e66638b1dfeba803cc092ea67",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-cek.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 2677,
+      "sha256": "9382d5d38d8d31a801133f0355dda120425a61f0d1a4d6044e868c2881ea65ed",
+      "gitBlobSha": "b438ad7a4951437771e23a5898078ff482a52acc",
+      "originalSha256": "9382d5d38d8d31a801133f0355dda120425a61f0d1a4d6044e868c2881ea65ed",
+      "originalBytes": 2677,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/303/planned-outages",
+        "observedAt": "2026-11-08T23:38:41.120095+00:00",
+        "recordedSha256": "9382d5d38d8d31a801133f0355dda120425a61f0d1a4d6044e868c2881ea65ed",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-dnem.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 2677,
+      "sha256": "4146481e69a9eab31b5f2f5bf10b29eeef2428a83d57e6f050fc6c37b948a86a",
+      "gitBlobSha": "c2e7f06a4a0192f9f151b1e6ca41130cc932371d",
+      "originalSha256": "4146481e69a9eab31b5f2f5bf10b29eeef2428a83d57e6f050fc6c37b948a86a",
+      "originalBytes": 2677,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/301/planned-outages",
+        "observedAt": "2026-11-08T23:38:39.891022+00:00",
+        "recordedSha256": "4146481e69a9eab31b5f2f5bf10b29eeef2428a83d57e6f050fc6c37b948a86a",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/captures/yasno-kem.bin",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 27682,
+      "sha256": "c9e5539050f32c6f575fd93c9c2b685c70dc0a1ca1d5212688a36423f0dc5e44",
+      "gitBlobSha": "cf17dac6b230994a077672643ecb3f9ead964599",
+      "originalSha256": "c9e5539050f32c6f575fd93c9c2b685c70dc0a1ca1d5212688a36423f0dc5e44",
+      "originalBytes": 27682,
+      "candidateDisposition": "separate_test_only_overlay",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "sourceUrl": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+        "observedAt": "2026-11-08T23:38:38.005023+00:00",
+        "recordedSha256": "c9e5539050f32c6f575fd93c9c2b685c70dc0a1ca1d5212688a36423f0dc5e44",
+        "evidence": "docs/light-bot-app/release-v8/source-research-2026-11-09/observations.json"
+      }
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/odesa-comparison-2026-11-09.json",
+      "consumers": [
+        "app/tests/backend/fresh-source-2026-11-09.test.ts"
+      ],
+      "bytes": 1713,
+      "sha256": "96ce177b9e3c8baabfed677b2d9f6b30d692294ed8f65b9bb5800cc5dfa3a94c",
+      "gitBlobSha": "1571931e67b4364945f1c5498627da78b3a06636",
+      "originalSha256": "96ce177b9e3c8baabfed677b2d9f6b30d692294ed8f65b9bb5800cc5dfa3a94c",
+      "originalBytes": 1713,
+      "candidateDisposition": "already_present_exact",
+      "preservedExactOriginalBytes": true,
+      "provenance": {
+        "evidence": "already present in exact candidate tree; no new observation"
+      }
+    }
+  ],
+  "extraDescriptor": {
+    "path": "docs/light-bot-app/release-v8/source-research-2026-11-09/portable-odesa-html-descriptor.json",
+    "bytes": 1376,
+    "sha256": "9e05edb98845a8f9b8ef767be92959b4001ea1e82c4bade2473be3d13f87191d",
+    "candidateDisposition": "separate_test_only_descriptor",
+    "preservedExactOriginalBytes": false
+  },
+  "portableTest": {
+    "path": "portable-tests/app/tests/backend/fresh-source-2026-11-09-portable.test.ts",
+    "assembledPath": "app/tests/backend/fresh-source-2026-11-09-portable.test.ts",
+    "sha256": "aca26f2ea54dd9332b8f6075e19a98453f6d8e20a2bfc0f931290b4da55de96f",
+    "bytes": 10739,
+    "originalTestSha256": "790ba720d75fbe525b9c00a78d096064ed398b8fdd33b868b6e3da684b0d8ed9",
+    "originalTestPath": "app/tests/backend/fresh-source-2026-11-09.test.ts",
+    "onlyChanges": [
+      "explicit portable-boundary comment",
+      "descriptor read declaration",
+      "one original whole-raw SHA assertion replaced with descriptor original pin plus actual sanitized SHA assertion"
+    ],
+    "allOtherTestBytesPreserved": true,
+    "inventory": "40 original files plus1portable; original exact-raw fixture acquisition pin not rerun on Node20"
+  },
+  "originalAssertionsChanged": false,
+  "portableWholeRawAssertionReplacedExplicitly": true,
+  "sourceEdits": false,
+  "noExternalOperations": true,
+  "guestCsrfValuesIncluded": false
+}
