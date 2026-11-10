@@ -188,7 +188,7 @@ export function createProductionReleaseCampaign(options:{enabled:boolean;configu
    if(scope.signal.aborted)return set({state:'stopped'});
    const guardedObserver:CampaignHealthObserver={observe:async(b,s)=>{const gate=scopedSignal(scope.signal,s);try{if(gate.signal.aborted)return null;const health=await observer.observe(b,gate.signal);return gate.signal.aborted?null:health;}finally{gate.dispose();}}};
    const guardedDispatcher:Pick<TelegramDispatcher,'dispatchCampaign'>={dispatchCampaign:async(envelope,s):Promise<DispatchRunResult>=>{const gate=scopedSignal(scope.signal,s);try{return gate.signal.aborted?{kind:'cancelled',reason:'release_worker_stopped'}:await options.dispatcher.dispatchCampaign(envelope,gate.signal);}finally{gate.dispose();}}};
-   const attempt=await runCoordinatedCampaignAttempt(repository,guardedDispatcher,guardedObserver,{releaseId:c!.releaseId,workerId,now,leaseSeconds:60,timeoutMs:25000,healthTimeoutMs:5000});
+   const attempt=await runCoordinatedCampaignAttempt(repository,guardedDispatcher,guardedObserver,{releaseId:c!.releaseId,workerId,now,timing:'production-release-notice'});
    summary=await repository.summary(c!.releaseId);if(summary.phase==='completed')finished=true;
    if(scope.signal.aborted)return set({state:'stopped',result:attempt.result});
    return set({state:summary.phase,result:attempt.result,...(observation.audience?{audience:observation.audience}:{})});

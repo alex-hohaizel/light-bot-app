@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T22:30:34.616Z",
+  "builtAt": "2026-11-10T22:55:50.625Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9",
+  "sourceSha256": "9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -819,7 +819,7 @@
     },
     {
       "path": "server/production/campaign-dispatch.ts",
-      "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+      "sha256": "13b8ee192519b39bba76a48117bd68bef9c1864c204c2b0c0f063dfe3e74dade"
     },
     {
       "path": "server/production/canonical-runtime.ts",
@@ -927,7 +927,7 @@
     },
     {
       "path": "server/production/release-campaign.ts",
-      "sha256": "14f19fb45b5f44e0107a55376014ffdc5889431154573c68158324ec673583b7"
+      "sha256": "395b69e138150f8c5f70cdb0b92c7064ee9f96558e6d7fb3eb070586e5c52581"
     },
     {
       "path": "server/production/replit-identity.ts",
@@ -999,7 +999,7 @@
     },
     {
       "path": "server/production/telegram-dispatch.ts",
-      "sha256": "dc52d97c21310265e9b9f296ce4a3c7fd039ab1223fa8b2f8372b183170483b9"
+      "sha256": "78ee6bbc0174241229a49ccc4888be5ca12d26cbc4fa829adb48f7df018ca2ab"
     },
     {
       "path": "server/production/telegram-identity.ts",
@@ -2081,7 +2081,7 @@
     },
     {
       "path": "server/production/campaign-dispatch.ts",
-      "sha256": "96307696e4859e6ff3d954887748e8ef2978bcdf6e8e54aaacf998320cd99666"
+      "sha256": "13b8ee192519b39bba76a48117bd68bef9c1864c204c2b0c0f063dfe3e74dade"
     },
     {
       "path": "server/production/canonical-runtime.ts",
@@ -2189,7 +2189,7 @@
     },
     {
       "path": "server/production/release-campaign.ts",
-      "sha256": "14f19fb45b5f44e0107a55376014ffdc5889431154573c68158324ec673583b7"
+      "sha256": "395b69e138150f8c5f70cdb0b92c7064ee9f96558e6d7fb3eb070586e5c52581"
     },
     {
       "path": "server/production/replit-identity.ts",
@@ -2261,7 +2261,7 @@
     },
     {
       "path": "server/production/telegram-dispatch.ts",
-      "sha256": "dc52d97c21310265e9b9f296ce4a3c7fd039ab1223fa8b2f8372b183170483b9"
+      "sha256": "78ee6bbc0174241229a49ccc4888be5ca12d26cbc4fa829adb48f7df018ca2ab"
     },
     {
       "path": "server/production/telegram-identity.ts",
@@ -2548,7 +2548,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "63d469a607ae6a5ff354acc8df47d9ae9bee8a15e4de62805ab73038babed306"
+      "sha256": "f21c346f42283d2ac25486e42f058013328eafbfbd875be9f4739f8a9409da79"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2612,7 +2612,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "56115c707b25f7541b485094907d77e27a6032a90ce897e6b8184f6c7c38f7a0"
+      "sha256": "e4f5723286b7f6291f8aaffcbe8c9baef873727bbe403ad863b21c1663c08d16"
     }
   ]
 }

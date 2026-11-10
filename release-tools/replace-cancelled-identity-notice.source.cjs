@@ -10,28 +10,39 @@ const {
 } = require('../app/server/release/update-campaign.ts');
 const {productionRuntimePolicy} = require('../app/server/runtime-policy.ts');
 
-const KIND = 'lba-unissued-notice-replacement/1';
-const EVENT = 'operator_replace_unissued_notice';
+const KIND = 'lba-identity-cancelled-notice-replacement/1';
+const EVENT = 'operator_replace_identity_cancelled_notice';
 const CAMPAIGN_LOCK = 'lba-update-campaign-global-v1';
 const EXPIRY = '2026-11-11T12:54:30.870Z';
-const INITIAL_WINDOW = '2026-11-10T22:24:00.000Z';
-const OLD_WINDOW = '2026-11-10T12:54:30.870Z';
+const INITIAL_WINDOW = '2026-11-10T22:53:00.000Z';
+const OLD_WINDOW = '2026-11-10T22:24:00.000Z';
 const PRODUCTION_PINS = Object.freeze({
-  oldReleaseId: 'lba-v8-dispatch-768f1d60-20261110-r2',
-  oldDeploymentRef: 'lba-release:dispatch-768f1d60-20261110-r2',
-  oldSourceSha256: '768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126',
-  oldSpecHash: '25f32d7ce0319b12acc6ffbd4998dc5af4a74373e26b96148c441563e032844d',
+  oldReleaseId: 'lba-v8-idle-fc244e31-20261111-r3',
+  oldDeploymentRef: 'lba-release:idle-fc244e31-20261111-r3',
+  oldSourceSha256: 'fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9',
+  oldSpecHash: '8a2e238cd3325cfe944ac9ee2f79935ab4f8b0818879cdff792a069fc25ab60f',
   audienceDigest: '4998040c6c58df6eab51402e72aa7b6fd34cd18879a81f4a349fdb80223a9a0b',
-  pilotCertificateSha256: '3dd3141863feddfb38c97204d7bf3029eff0dc562a588c76ae7b2c1e1577799f',
-  recoveryCertificateSha256: '4b698aa0a9663fc0e8f0ab87129eca884c68119f777524373a0c6aa836da0eb4',
-  unknownObservedAt: '2026-11-10T22:11:30.587Z',
-  newReleaseId: 'lba-v8-idle-fc244e31-20261111-r3',
-  newDeploymentRef: 'lba-release:idle-fc244e31-20261111-r3',
-  newSourceSha256: 'fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9',
+  previousReleaseId: 'lba-v8-dispatch-768f1d60-20261110-r2',
+  previousDeploymentRef: 'lba-release:dispatch-768f1d60-20261110-r2',
+  previousSourceSha256: '768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126',
+  previousSpecHash: '25f32d7ce0319b12acc6ffbd4998dc5af4a74373e26b96148c441563e032844d',
+  previousCertificateSha256: 'c12856ea7fec34c631be50933249138b070334b29fd11128f9f286052655c904',
+  previousOperatorSha256: '28d96d1118f3930483f1dc67fa6c61523d4ff5dcc1992d73919aed77735ed8ae',
+  previousPilotCertificateSha256: '3dd3141863feddfb38c97204d7bf3029eff0dc562a588c76ae7b2c1e1577799f',
+  previousRecoveryCertificateSha256: '4b698aa0a9663fc0e8f0ab87129eca884c68119f777524373a0c6aa836da0eb4',
+  previousObservedAt: '2026-11-10T22:49:35.808Z',
+  dispatchStartedAt: '2026-11-10T22:49:48.177Z',
+  unknownObservedAt: '2026-11-10T22:50:27.247Z',
+  leaseUntil: '2026-11-10T22:50:46.848Z',
+  nativePreparedAt: '2026-11-10T22:50:38.848Z',
+  nativeFinishedAt: '2026-11-10T22:50:45.150Z',
+  nativeNotBefore: '2026-11-10T22:50:46.361Z',
+  newReleaseId: 'lba-v8-notice-deadline-20261111-r4',
+  newDeploymentRef: 'lba-release:notice-deadline-20261111-r4',
+  newSourceSha256: '9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27',
   authoritySha256: '613b008586fe302bc4cbdd45d4f34ae2eb45d2c050ddbf4c459747ac22e5a2bc',
-  oldSenderSha256: '8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f',
-  oldPilotOperatorSha256: '7c37d28ec9fb1eacaec3219bc6695ca1fbb55c4a06a8121e0d11c55eaa72f60f',
-  oldRecoveryHelperSha256: '2ba753277aa131a43abc99773c3bf0ef2fa41835e0ba0412ae79db885d9382ce',
+  oldSenderSha256: 'dc52d97c21310265e9b9f296ce4a3c7fd039ab1223fa8b2f8372b183170483b9',
+  oldTransportSha256: '4b3469e5566feb73956f18987c75cc36baf206fd246bc6a02ab04cf4ce7e36b6',
   botId: '8577497098',
   origin: 'https://power-ukraine.net',
 });
@@ -85,80 +96,97 @@ function oldSpecMatches(spec, pins) {
     spec.audienceDigest === pins.audienceDigest && campaignSpecHash(spec) === pins.oldSpecHash;
 }
 
-async function inspectPriorPilot(client, pilot, oldOperationDigest, pins) {
-  check(pilot.state === 'failed' && pilot.fence === 64 && pilot.attempts === 1 &&
-    pilot.lastOutcome === 'not_sent' && pilot.providerReceipt === null &&
-    pilot.leaseOwner === null && pilot.leaseUntil === null, 'REPLACE_OLD_PILOT');
-  const history = (await client.query(`select operation_id, release_id, spec_hash, events
-    from lba_release_campaign_attempts where operation_id=$1 and fence=64`, [pilot.operationId])).rows;
-  check(history.length === 1 && matchingAttempt(history[0], pilot.operationId, pins.oldReleaseId, pins.oldSpecHash), 'REPLACE_OLD_PILOT');
-  const events = decode(history[0].events).filter(event => event?.kind === 'operator_advance' &&
-    event.reason === 'verified_pilot_telegram_forbidden' && event.deliveryOutcome === 'not_sent');
-  const cert = events[0]?.operatorCertificate;
-  check(events.length === 1 && cert?.kind === 'lba-unreachable-pilot-advance/1' &&
-    cert.certificateSha256 === pins.pilotCertificateSha256 && certificateDigest(cert) === cert.certificateSha256 &&
-    cert.operatorSha256 === pins.oldPilotOperatorSha256 && cert.sourceSha256 === pins.oldSourceSha256 &&
-    cert.releaseId === pins.oldReleaseId && cert.specHash === pins.oldSpecHash && cert.audienceDigest === pins.audienceDigest &&
-    cert.operationIdsDigest === oldOperationDigest && cert.pilotSnapshotSha256 === digest(pilot), 'REPLACE_OLD_PILOT_CERTIFICATE');
-
-  const jobs = (await client.query(`select operation_id,bot_id,source_kind,source_id,recipient_ref,control_epoch,
-    state,fence,attempts,provider_receipt,last_reason,payload_digest
-    from lba_production_telegram_dispatch_jobs where operation_id=$1`, [pilot.operationId])).rows;
-  const attempts = (await client.query(`select fence,control_epoch,state,dispatch_marked_at,finished_at,outcome,receipt
-    from lba_production_telegram_dispatch_attempts where operation_id=$1`, [pilot.operationId])).rows;
-  check(jobs.length === 1 && attempts.length === 1, 'REPLACE_PILOT_NATIVE');
-  const job = jobs[0], attempt = attempts[0], outcome = decode(attempt.outcome), receipt = decode(attempt.receipt);
-  check(job.bot_id === pins.botId && job.source_kind === 'campaign' && job.source_id === pilot.operationId &&
-    job.recipient_ref === pilot.recipientRef && Number(job.control_epoch) === 1 && Number(job.fence) === 1 &&
-    Number(job.attempts) === 1 && job.state === 'not_sent' && job.provider_receipt === null &&
-    job.last_reason === 'telegram_forbidden' && hex(job.payload_digest), 'REPLACE_PILOT_NATIVE');
-  check(Number(attempt.fence) === 1 && Number(attempt.control_epoch) === 1 && attempt.state === 'not_sent' &&
-    outcome?.kind === 'not_sent' && outcome.reason === 'telegram_forbidden' && outcome.retryable === false &&
-    campaignInstant(iso(attempt.dispatch_marked_at)) && campaignInstant(iso(attempt.finished_at)), 'REPLACE_PILOT_NATIVE');
-  const wire = receipt?.attempts?.[0];
-  check(receipt?.botId === pins.botId && receipt.operationId === pilot.operationId && receipt.recipientRef === pilot.recipientRef &&
-    campaignInstant(receipt.completedAt) && Array.isArray(receipt.attempts) && receipt.attempts.length === 1 &&
-    wire?.method === 'sendMessage' && wire.providerAccepted === false && wire.providerErrorCode === 403 &&
-    wire.messageId === undefined && hex(wire.requestSha256), 'REPLACE_PILOT_NATIVE');
-  const nativeEvidence = {
-    operationId: pilot.operationId, fence: 1, payloadDigest: job.payload_digest,
-    dispatchMarkedAt: iso(attempt.dispatch_marked_at), finishedAt: iso(attempt.finished_at), outcome, receipt,
-  };
-  check(digest(nativeEvidence) === cert.nativeEvidenceSha256, 'REPLACE_PILOT_NATIVE');
+async function inspectPreviousReplacement(client, currentJobs, pins) {
+  const rows = (await client.query('select * from lba_release_campaigns where release_id=$1', [pins.previousReleaseId])).rows;
+  const row = rows[0], prior = decode(row?.record), spec = prior?.spec;
+  check(rows.length === 1 && row.bot_id === pins.botId && row.spec_hash === pins.previousSpecHash &&
+    prior?.specHash === pins.previousSpecHash && prior.phase === 'completed' && prior.pauseReason === null &&
+    spec?.releaseId === pins.previousReleaseId && spec.deploymentId === pins.previousDeploymentRef &&
+    spec.buildSha256 === pins.previousSourceSha256 && spec.botId === pins.botId && spec.origin === pins.origin &&
+    spec.audienceDigest === pins.audienceDigest && campaignSpecHash(spec) === pins.previousSpecHash, 'REPLACE_PREVIOUS_BINDING');
+  const raw = (await client.query('select * from lba_release_campaign_jobs where release_id=$1 order by operation_id limit 9', [pins.previousReleaseId])).rows;
+  const jobs = raw.map(item => validateJob(item, spec));
+  const pilot = jobs.find(job => job.cohort === 'pilot');
+  const full = jobs.filter(job => job.cohort === 'full');
+  const currentPilot = currentJobs.find(job => job.cohort === 'pilot');
+  check(jobs.length === 8 && full.length === 7 && pilot?.recipientRef === currentPilot?.recipientRef &&
+    pilot.state === 'failed' && pilot.lastOutcome === 'not_sent' && pilot.providerReceipt === null &&
+    pilot.fence === 64 && pilot.attempts === 1, 'REPLACE_PREVIOUS_PILOT');
+  const history = (await client.query(`select operation_id,release_id,spec_hash,events
+    from lba_release_campaign_attempts where operation_id=$1 and fence=15`, [full[0].operationId])).rows;
+  check(history.length === 1 && matchingAttempt(history[0], full[0].operationId, pins.previousReleaseId, pins.previousSpecHash), 'REPLACE_PREVIOUS_CERTIFICATE');
+  const event = decode(history[0].events).at(-1), cert = event?.operatorCertificate;
+  check(event?.kind === 'operator_replace_unissued_notice' && event.reason === 'verified_no_native_attempt_replaced' &&
+    event.deliveryOutcome === 'not_issued' && cert?.kind === 'lba-unissued-notice-replacement/1' &&
+    cert.certificateSha256 === pins.previousCertificateSha256 && certificateDigest(cert) === cert.certificateSha256 &&
+    cert.operatorSha256 === pins.previousOperatorSha256 && cert.observedAt === pins.previousObservedAt &&
+    event.observedAt === cert.observedAt && cert.oldReleaseId === pins.previousReleaseId &&
+    cert.oldSourceSha256 === pins.previousSourceSha256 && cert.oldSpecHash === pins.previousSpecHash &&
+    cert.newReleaseId === pins.oldReleaseId && cert.newSourceSha256 === pins.oldSourceSha256 && cert.newSpecHash === pins.oldSpecHash &&
+    cert.authoritySha256 === pins.authoritySha256 && cert.controlEpoch === 1 && cert.audienceDigest === pins.audienceDigest &&
+    cert.oldPilotCertificateSha256 === pins.previousPilotCertificateSha256 && cert.oldRecoveryCertificateSha256 === pins.previousRecoveryCertificateSha256 &&
+    cert.retiredJobsSha256 === digest(jobs) && cert.oldFullOperationDigest === campaignHash(full.map(job => job.operationId).sort()) &&
+    cert.newOperationDigest === campaignHash(currentJobs.map(job => job.operationId).sort()) &&
+    cert.originalAudience === 8 && cert.pendingReplacement === 7 && cert.excludedForbidden === 1 &&
+    cert.nativeJobs === 0 && cert.nativeAttempts === 0 && cert.nativeMarks === 0 && cert.nativeReceipts === 0, 'REPLACE_PREVIOUS_CERTIFICATE');
+  return full.map(job => job.operationId);
 }
 
 function inspectTargetHistory(rows, target, pins) {
-  check(rows.length >= 2 && rows.length <= 15 && rows.every(row =>
-    Number.isInteger(Number(row.fence)) && Number(row.fence) >= 1 && Number(row.fence) <= 15 &&
-    matchingAttempt(row, target.operationId, pins.oldReleaseId, pins.oldSpecHash)), 'REPLACE_TARGET_HISTORY');
-  const initial = rows.find(row => Number(row.fence) === 1);
-  const current = rows.find(row => Number(row.fence) === 15);
-  check(initial && current, 'REPLACE_TARGET_HISTORY');
-  const firstEvents = decode(initial.events), oldEvent = firstEvents.at(-1), oldCert = oldEvent?.operatorCertificate;
-  check(oldEvent?.kind === 'operator_never_issued_recovery' && oldEvent.reason === 'verified_no_native_attempt' &&
-    oldEvent.deliveryOutcome === 'not_issued' && oldCert?.kind === 'lba-never-issued-full-recovery/1' &&
-    oldCert.certificateSha256 === pins.recoveryCertificateSha256 && certificateDigest(oldCert) === oldCert.certificateSha256 &&
-    oldCert.helperSha256 === pins.oldRecoveryHelperSha256 && oldCert.sourceSha256 === pins.oldSourceSha256 &&
-    oldCert.releaseId === pins.oldReleaseId && oldCert.specHash === pins.oldSpecHash && oldCert.audienceDigest === pins.audienceDigest &&
-    oldCert.pilotAdvanceCertificateSha256 === pins.pilotCertificateSha256 && oldCert.targetOperationDigest === digest(target.operationId) &&
-    oldCert.originalFence === 1 && oldCert.originalAttempts === 1 && oldCert.nativeJobs === 0 && oldCert.nativeAttempts === 0 &&
-    oldCert.nativeMarks === 0 && oldCert.nativeReceipts === 0 && oldCert.historyPrefixSha256 === digest(firstEvents.slice(0, -1)), 'REPLACE_PREVIOUS_RECOVERY');
-  for (const row of rows.filter(item => Number(item.fence) > 1 && Number(item.fence) < 15)) {
-    const middle = decode(row.events), [started, deferred] = middle;
-    check(middle.length === 2 && started?.kind === 'dispatching' &&
-      Object.keys(started).sort().join('|') === 'kind|observedAt' && campaignInstant(started.observedAt) &&
-      deferred?.kind === 'local_deferred' && Object.keys(deferred).sort().join('|') === 'kind|observedAt|reason|retryAt' &&
-      ['coordinator_busy','coordinator_deferred'].includes(deferred.reason) && campaignInstant(deferred.observedAt) &&
-      campaignInstant(deferred.retryAt) && Date.parse(started.observedAt) <= Date.parse(deferred.observedAt) &&
-      Date.parse(deferred.retryAt) > Date.parse(deferred.observedAt) &&
-      Date.parse(deferred.retryAt) - Date.parse(deferred.observedAt) <= 86400000, 'REPLACE_MIDDLE_HISTORY');
-  }
-  const events = decode(current.events), last = events.at(-1), replaced = last?.kind === EVENT;
+  check(rows.length === 1 && Number(rows[0].fence) === 1 &&
+    matchingAttempt(rows[0], target.operationId, pins.oldReleaseId, pins.oldSpecHash), 'REPLACE_TARGET_HISTORY');
+  const current = rows[0], events = decode(current.events), last = events.at(-1);
+  const replaced = last?.kind === EVENT;
   const prefix = replaced ? events.slice(0, -1) : events;
-  check(prefix.length === 2 && prefix[0]?.kind === 'dispatching' && campaignInstant(prefix[0].observedAt) &&
-    prefix[1]?.kind === 'unknown' && prefix[1].reason === 'dispatch_lease_expired' &&
-    prefix[1].observedAt === pins.unknownObservedAt && Date.parse(prefix[0].observedAt) <= Date.parse(prefix[1].observedAt), 'REPLACE_CURRENT_HISTORY');
-  return {current, prefix, priorAttemptsDigest:digest(rows.filter(row => Number(row.fence) < 15)), replacement: replaced ? last : null};
+  check(prefix.length === 2 && canonical(prefix[0]) === canonical({kind:'dispatching',observedAt:pins.dispatchStartedAt}) &&
+    canonical(prefix[1]) === canonical({kind:'unknown',reason:'coordinator_unconfirmed',observedAt:pins.unknownObservedAt}) &&
+    Date.parse(pins.dispatchStartedAt) <= Date.parse(pins.unknownObservedAt), 'REPLACE_CURRENT_HISTORY');
+  return {current, prefix, replacement:replaced ? last : null};
+}
+
+async function inspectCancelledIdentity(client, target, spec, pins, retiredAt) {
+  const jobs = (await client.query(`select operation_id,bot_id,source_kind,source_id,recipient_ref,recipient_kind,
+    owner_id,session_id,source_revision,source_ordinal,control_epoch,chat_key,mapping_revision,payload_digest,payload,
+    state,fence,attempts,not_before,provider_receipt,last_reason,updated_at
+    from lba_production_telegram_dispatch_jobs where operation_id=$1 limit 2`, [target.operationId])).rows;
+  const attempts = (await client.query(`select operation_id,fence,worker_id,control_epoch,state,prepared_at,
+    dispatch_marked_at,finished_at,outcome,receipt from lba_production_telegram_dispatch_attempts
+    where operation_id=$1 order by fence limit 2`, [target.operationId])).rows;
+  check(jobs.length === 1 && attempts.length === 1, 'REPLACE_IDENTITY_JOURNAL_COUNT');
+  const job = jobs[0], attempt = attempts[0], payload = decode(job.payload), outcome = decode(attempt.outcome);
+  check(job.operation_id === target.operationId && job.bot_id === pins.botId && job.source_kind === 'campaign' &&
+    job.source_id === target.operationId && job.recipient_ref === target.recipientRef &&
+    /^legacy:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(job.recipient_ref) &&
+    job.recipient_kind === 'legacy_subscription' && job.owner_id === null && job.session_id === null &&
+    Number(job.source_revision) === 0 && Number(job.source_ordinal) === 0 && Number(job.control_epoch) === 1 &&
+    hex(job.chat_key) && /^legacy-mapping:[a-f0-9]{64}$/.test(job.mapping_revision) && Number(job.fence) === 1 &&
+    Number(job.attempts) === 1 && job.provider_receipt === null && hex(job.payload_digest) &&
+    digest(payload) === job.payload_digest, 'REPLACE_IDENTITY_JOB');
+  const envelope = {
+    releaseId:spec.releaseId,deploymentId:spec.deploymentId,buildSha256:spec.buildSha256,botId:spec.botId,
+    origin:spec.origin,operationId:target.operationId,recipientRef:target.recipientRef,text:spec.text,appUrl:spec.appUrl,
+  };
+  const expectedPayload = {message:{id:target.operationId,kind:'reply',text:spec.text,buttons:[],commitBarrier:'none'},campaign:envelope};
+  check(canonical(payload) === canonical(expectedPayload), 'REPLACE_IDENTITY_PAYLOAD');
+  check(attempt.operation_id === target.operationId && Number(attempt.fence) === 1 && Number(attempt.control_epoch) === 1 &&
+    typeof attempt.worker_id === 'string' && attempt.worker_id.length > 0 && attempt.state === 'not_dispatched' &&
+    attempt.dispatch_marked_at === null && attempt.receipt === null && iso(attempt.prepared_at) === pins.nativePreparedAt &&
+    iso(attempt.finished_at) === pins.nativeFinishedAt && Date.parse(pins.nativePreparedAt) <= Date.parse(pins.nativeFinishedAt) &&
+    canonical(outcome) === canonical({kind:'not_sent',retryable:false,reason:'telegram_cancelled_before_dispatch'}), 'REPLACE_IDENTITY_OUTCOME');
+  if (retiredAt) {
+    check(job.state === 'cancelled' && job.last_reason === 'operator_verified_not_issued_replaced' &&
+      job.not_before === null && iso(job.updated_at) === retiredAt, 'REPLACE_IDENTITY_RETIREMENT');
+  } else {
+    check(job.state === 'retry_wait' && job.last_reason === 'identity_unverified' &&
+      iso(job.not_before) === pins.nativeNotBefore && Date.parse(pins.nativeFinishedAt) <= Date.parse(pins.nativeNotBefore), 'REPLACE_IDENTITY_JOB');
+  }
+  const identity = {
+    operationId:job.operation_id,botId:job.bot_id,sourceKind:job.source_kind,sourceId:job.source_id,
+    recipientRef:job.recipient_ref,recipientKind:job.recipient_kind,controlEpoch:1,fence:1,attempts:1,
+    sourceRevision:0,sourceOrdinal:0,chatKey:job.chat_key,mappingRevision:job.mapping_revision,payloadDigest:job.payload_digest,
+  };
+  const proof = {...attempt,prepared_at:iso(attempt.prepared_at),finished_at:iso(attempt.finished_at),outcome};
+  return {nativeJobIdentitySha256:digest(identity),nativeAttemptSha256:digest(proof)};
 }
 
 async function requireNoNative(client, operationIds) {
@@ -203,10 +231,13 @@ async function replaceWithPool(pool, {pins = PRODUCTION_PINS, operatorSha256} = 
     const pilot = jobs.find(job => job.cohort === 'pilot'), full = jobs.filter(job => job.cohort === 'full');
     check(pilot && full.length === 7, 'REPLACE_AUDIENCE');
     const target = full[0];
-    await inspectPriorPilot(client, pilot, campaignHash(jobs.map(job => job.operationId).sort()), pins);
+    check(pristine(pilot, 'cancelled', 'predecessor_telegram_forbidden'), 'REPLACE_EXCLUDED_PILOT');
+    const previousFullIds = await inspectPreviousReplacement(client, jobs, pins);
     const history = (await client.query(`select operation_id,release_id,spec_hash,worker_id,fence,events
-      from lba_release_campaign_attempts where operation_id=$1 order by fence limit 16`, [target.operationId])).rows;
-    const {current, prefix, priorAttemptsDigest, replacement: event} = inspectTargetHistory(history, target, pins);
+      from lba_release_campaign_attempts where operation_id=$1 order by fence limit 2`, [target.operationId])).rows;
+    const {current, prefix, replacement: event} = inspectTargetHistory(history, target, pins);
+    const identityProof = await inspectCancelledIdentity(client, target, spec, pins, event?.operatorCertificate?.observedAt);
+    const absentOldIds = [...previousFullIds, ...jobs.filter(job => job.operationId !== target.operationId).map(job => job.operationId)];
     const nextSpec = prepareCampaignSpec({
       releaseId: pins.newReleaseId, deploymentId: pins.newDeploymentRef, buildSha256: pins.newSourceSha256,
       botId: pins.botId, origin: pins.origin, text: spec.text, appUrl: spec.appUrl,
@@ -231,12 +262,13 @@ async function replaceWithPool(pool, {pins = PRODUCTION_PINS, operatorSha256} = 
         kind: KIND, oldReleaseId: pins.oldReleaseId, oldSourceSha256: pins.oldSourceSha256, oldSpecHash: pins.oldSpecHash,
         newReleaseId: pins.newReleaseId, newSourceSha256: pins.newSourceSha256, newSpecHash: nextHash,
         authoritySha256: pins.authoritySha256, controlEpoch: 1, audienceDigest: pins.audienceDigest,
-        oldPilotCertificateSha256: pins.pilotCertificateSha256, oldRecoveryCertificateSha256: pins.recoveryCertificateSha256,
-        oldSenderSha256: pins.oldSenderSha256, operatorSha256, oldFullOperationDigest: campaignHash(full.map(job => job.operationId).sort()),
+        previousReplacementCertificateSha256: pins.previousCertificateSha256,
+        oldSenderSha256: pins.oldSenderSha256, oldTransportSha256:pins.oldTransportSha256, operatorSha256, oldFullOperationDigest: campaignHash(full.map(job => job.operationId).sort()),
         newOperationDigest: campaignHash(nextJobs.map(job => job.operationId).sort()), targetHistoryPrefixSha256: digest(prefix),
-        targetPriorAttemptsSha256: priorAttemptsDigest,
-        retiredJobsSha256: digest(retiredJobs), originalFence: 15, originalAttempts: 2,
-        nativeJobs: 0, nativeAttempts: 0, nativeMarks: 0, nativeReceipts: 0,
+        retiredJobsSha256: digest(retiredJobs), originalFence: 1, originalAttempts: 1,
+        ...identityProof, nativeJobsRetired: 1, nativeAttemptsPreserved: 1, nativeMarks: 0, nativeReceipts: 0,
+        nativePreparedAt:pins.nativePreparedAt,nativeFinishedAt:pins.nativeFinishedAt,nativePreviousNotBefore:pins.nativeNotBefore,
+        nativeProof:'identity_not_dispatched_telegram_cancelled_before_dispatch',
         originalAudience: 8, pendingReplacement: 7, excludedForbidden: 1, observedAt,
       };
       return {...unsigned, certificateSha256: digest(unsigned)};
@@ -244,11 +276,11 @@ async function replaceWithPool(pool, {pins = PRODUCTION_PINS, operatorSha256} = 
 
     if (replacement || event) {
       check(replacement && event && campaign.phase === 'completed' && campaign.pauseReason === null &&
-        target.state === 'failed' && target.fence === 15 && target.attempts === 2 && target.providerReceipt === null &&
+        target.state === 'failed' && target.fence === 1 && target.attempts === 1 && target.providerReceipt === null &&
         target.leaseOwner === null && target.leaseUntil === null && target.lastOutcome === 'operator_verified_not_issued' &&
         full.slice(1).every(job => pristine(job, 'cancelled', 'transferred_to_replacement_notice')), 'REPLACE_REPLAY_CONFLICT');
       const saved = event.operatorCertificate;
-      check(event.reason === 'verified_no_native_attempt_replaced' && event.deliveryOutcome === 'not_issued' &&
+      check(event.reason === 'verified_identity_cancelled_before_dispatch_replaced' && event.deliveryOutcome === 'not_issued' &&
         campaignInstant(saved?.observedAt) && event.observedAt === saved.observedAt &&
         Date.parse(saved.observedAt) >= Date.parse(INITIAL_WINDOW) && Date.parse(saved.observedAt) < Date.parse(EXPIRY) &&
         canonical(saved) === canonical(certificate(saved.observedAt, jobs)), 'REPLACE_CERTIFICATE');
@@ -260,18 +292,18 @@ async function replaceWithPool(pool, {pins = PRODUCTION_PINS, operatorSha256} = 
       check(live.length === 8 && campaignHash(live.map(job => job.operationId).sort()) === saved.newOperationDigest, 'REPLACE_NEW_AUDIENCE');
       const excluded = live.find(job => job.cohort === 'pilot');
       check(excluded && canonical(excluded) === canonical(nextJobs.find(job => job.cohort === 'pilot')), 'REPLACE_EXCLUDED_PILOT');
-      await requireNoNative(client, [...full.map(job => job.operationId), excluded.operationId]);
+      await requireNoNative(client, [...absentOldIds, excluded.operationId]);
       return {replayed:true, certificate:saved};
     }
 
     check(campaign.phase === 'paused' && campaign.pauseReason === 'dispatch_outcome_unknown' &&
-      target.state === 'outcome_unknown' && target.lastOutcome === 'dispatch_lease_expired' && target.fence === 15 && target.attempts === 2 &&
+      target.state === 'outcome_unknown' && target.lastOutcome === 'coordinator_unconfirmed' && target.fence === 1 && target.attempts === 1 &&
       target.providerReceipt === null && typeof target.leaseOwner === 'string' && target.leaseOwner === current.worker_id &&
-      campaignInstant(target.leaseUntil) && Date.parse(target.leaseUntil) <= Date.parse(pins.unknownObservedAt) &&
+      target.leaseUntil === pins.leaseUntil && Date.parse(target.leaseUntil) < Date.parse(now) &&
       full.slice(1).every(job => pristine(job, 'pending', null)), 'REPLACE_TARGET_STATE');
     check(Date.parse(now) >= Date.parse(INITIAL_WINDOW) && Date.parse(now) < Date.parse(EXPIRY) &&
       Date.parse(pins.unknownObservedAt) <= Date.parse(now), 'REPLACE_WINDOW');
-    await requireNoNative(client, [...full.map(job => job.operationId), ...nextJobs.map(job => job.operationId)]);
+    await requireNoNative(client, [...absentOldIds, ...nextJobs.map(job => job.operationId)]);
     return {replayed:false, certificate:certificate(now, retired), campaign, target, retired, nextSpec, nextHash, nextJobs};
   }
 
@@ -305,16 +337,24 @@ async function replaceWithPool(pool, {pins = PRODUCTION_PINS, operatorSha256} = 
     const active = (await client.query(`select
       (select count(*) from lba_release_campaign_jobs j join lba_release_campaigns c on c.release_id=j.release_id
         where c.bot_id=$1 and j.operation_id<>$2 and j.record->>'state' in ('leased','dispatching','outcome_unknown','retry_wait'))::int as campaigns,
-      (select count(*) from lba_production_telegram_dispatch_jobs where bot_id=$1 and state in ('pending','prepared','dispatching','retry_wait','unknown','held'))::int as jobs,
+      (select count(*) from lba_production_telegram_dispatch_jobs where bot_id=$1 and operation_id::text<>$2 and state in ('pending','prepared','dispatching','retry_wait','unknown','held'))::int as jobs,
       (select count(*) from lba_production_telegram_dispatch_attempts a left join lba_production_telegram_dispatch_jobs j on j.operation_id=a.operation_id
         where (j.bot_id=$1 or j.operation_id is null) and a.state in ('prepared','dispatching','unknown'))::int as attempts,
       (select count(*) from lba_production_profile_outbox where status in ('dispatching','unknown'))::int as outbox`, [pins.botId, prepared.target.operationId])).rows[0];
     check(active && ['campaigns','jobs','attempts','outbox'].every(key => active[key] === 0), 'REPLACE_OTHER_UNRESOLVED');
 
     const certificate = prepared.certificate;
-    const event = {kind:EVENT, reason:'verified_no_native_attempt_replaced', deliveryOutcome:'not_issued', observedAt:certificate.observedAt, operatorCertificate:certificate};
+    // The terminal identity branch committed before any message marker or native effect.
+    const nativeRetired = await client.query(`update lba_production_telegram_dispatch_jobs
+      set state='cancelled',last_reason='operator_verified_not_issued_replaced',not_before=null,updated_at=$3
+      where operation_id=$1 and bot_id=$2 and source_kind='campaign' and source_id=$1::text and control_epoch=1
+        and recipient_kind='legacy_subscription' and fence=1 and attempts=1 and state='retry_wait'
+        and last_reason='identity_unverified' and not_before=$4 and provider_receipt is null`,
+      [prepared.target.operationId,pins.botId,certificate.observedAt,pins.nativeNotBefore]);
+    check(nativeRetired.rowCount === 1, 'REPLACE_NATIVE_RETIREMENT_FENCE');
+    const event = {kind:EVENT, reason:'verified_identity_cancelled_before_dispatch_replaced', deliveryOutcome:'not_issued', observedAt:certificate.observedAt, operatorCertificate:certificate};
     const appended = await client.query(`update lba_release_campaign_attempts set events=events||$3::jsonb
-      where operation_id=$1 and fence=15 and spec_hash=$2`, [prepared.target.operationId, pins.oldSpecHash, JSON.stringify([event])]);
+      where operation_id=$1 and fence=1 and spec_hash=$2`, [prepared.target.operationId, pins.oldSpecHash, JSON.stringify([event])]);
     check(appended.rowCount === 1, 'REPLACE_WRITE_FENCE');
     const transferred = prepared.retired.filter(job => job.cohort === 'full').map(job => ({operation_id:job.operationId,record:job}));
     const retired = await client.query(`update lba_release_campaign_jobs j set record=x.record
@@ -352,7 +392,7 @@ function verify() {
   const app = path.resolve(__dirname,'../app');
   check(hash(fs.readFileSync(path.join(app,'server/runtime-policy.ts'))) === POLICY_SOURCE &&
     hash(fs.readFileSync(path.join(__dirname,'production-environment.cjs'))) === ENVIRONMENT, 'REPLACE_POLICY_DRIFT');
-  return {kind:'lba-replace-unissued-notice-config/1',...verified,operatorSha256:hash(fs.readFileSync(__filename)),databaseConnected:false,providerCalls:0};
+  return {kind:'lba-replace-cancelled-identity-notice-config/1',...verified,operatorSha256:hash(fs.readFileSync(__filename)),databaseConnected:false,providerCalls:0};
 }
 function productionGuard() {
   check(process.env.NODE_ENV === 'production' && process.env.LBA_CANONICAL_CONTROL_EPOCH === '1', 'REPLACE_ENVIRONMENT');

@@ -391,6 +391,7 @@ export function createTelegramDispatcher(options:DispatchOptions):TelegramDispat
   });
  }
  async function execute(client:DispatchClient,job:DispatchQueuedJob,signal:AbortSignal):Promise<DispatchRunResult>{
+  if(signal.aborted)return {kind:'cancelled',reason:'cancelled_before_effect'};
   job=(await tx(client,async()=>{
    const current=(await loadJob(client,job.operationId))!;if(current.attempts>=maxAttempts){await cancel(client,current,'attempt_limit','not_sent');return null;}
    const fence=current.fence+1;await client.query("update lba_production_telegram_dispatch_jobs set state='prepared',fence=$3,attempts=attempts+1,updated_at=$4 where bot_id=$1 and operation_id=$2 and state in ('pending','retry_wait')",[DISPATCH_BOT_ID,current.operationId,fence,now()]);
@@ -429,11 +430,19 @@ export function createTelegramDispatcher(options:DispatchOptions):TelegramDispat
   try{
    await tx(client,async()=>{
     const profile=await owned(client,job),decision=await eligibility(client,job,profile,'dispatch',signal);if(decision.denied)fail('dispatch_eligibility_revoked');
-    await client.query("update lba_production_telegram_dispatch_jobs set state='dispatching',updated_at=$4 where bot_id=$1 and operation_id=$2 and fence=$3 and state='prepared'",[DISPATCH_BOT_ID,job.operationId,job.fence,now()]);
-    await client.query("update lba_production_telegram_dispatch_attempts set state='dispatching',dispatch_marked_at=$3 where operation_id=$1 and fence=$2 and state='prepared'",[job.operationId,job.fence,now()]);
+    if(signal.aborted)fail('dispatch_cancelled_before_effect');
+    const markedJob=await client.query("update lba_production_telegram_dispatch_jobs set state='dispatching',updated_at=$4 where bot_id=$1 and operation_id=$2 and fence=$3 and state='prepared' and control_epoch=$5",[DISPATCH_BOT_ID,job.operationId,job.fence,now(),epoch]);
+    if(markedJob.rowCount!==1)fail('dispatch_mark_fence_lost');
+    const markedAttempt=await client.query("update lba_production_telegram_dispatch_attempts set state='dispatching',dispatch_marked_at=$3 where operation_id=$1 and fence=$2 and state='prepared' and dispatch_marked_at is null and worker_id=$4 and control_epoch=$5",[job.operationId,job.fence,now(),worker,epoch]);
+    if(markedAttempt.rowCount!==1)fail('dispatch_mark_fence_lost');
     if(job.sourceKind==='profile'){const updated=await client.query("update lba_production_profile_outbox set status='dispatching' where id=$1 and owner_id=$2 and status='pending' and control_epoch=$3",[job.sourceId,job.ownerId,epoch]);if(updated.rowCount!==1)fail('dispatch_outbox_changed');}
    });
-  }catch(error){phase='closed';const unresolved=await tx(client,async()=>{const current=await loadJob(client,job.operationId);if(current?.state==='dispatching'){await hold(client,'dispatch_mark_unknown',job.operationId);return true;}await cancel(client,job,error instanceof DispatchError?error.code:'dispatch_prepare_failed');await client.query("update lba_production_telegram_dispatch_attempts set state='cancelled',finished_at=$3,outcome=$4::jsonb where operation_id=$1 and fence=$2",[job.operationId,job.fence,now(),JSON.stringify(notSent('eligibility_revoked'))]);return false;});return unresolved?{kind:'unknown',operationId:job.operationId,outcome:unknown('dispatch_mark_unknown')}:{kind:'cancelled',operationId:job.operationId,reason:'eligibility_revoked'};}
+  }catch(error){
+   phase='closed';
+   if(error instanceof DispatchError&&error.code==='dispatch_mark_fence_lost')return {kind:'unknown',operationId:job.operationId,outcome:unknown(error.code)};
+   const unresolved=await tx(client,async()=>{const current=await loadJob(client,job.operationId);if(current?.state==='dispatching'){await hold(client,'dispatch_mark_unknown',job.operationId);return true;}if(current?.fence!==job.fence||current.state!=='prepared')return true;await cancel(client,job,error instanceof DispatchError?error.code:'dispatch_prepare_failed');await client.query("update lba_production_telegram_dispatch_attempts set state='cancelled',finished_at=$3,outcome=$4::jsonb where operation_id=$1 and fence=$2",[job.operationId,job.fence,now(),JSON.stringify(notSent('eligibility_revoked'))]);return false;});
+   return unresolved?{kind:'unknown',operationId:job.operationId,outcome:unknown('dispatch_mark_unknown')}:{kind:'cancelled',operationId:job.operationId,reason:'eligibility_revoked'};
+  }
   let result:TelegramEffectResult,nativeInvoked=false;
   try{
    await begin(client);

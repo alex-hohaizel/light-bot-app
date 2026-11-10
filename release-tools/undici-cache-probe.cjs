@@ -38,7 +38,7 @@ try {
   check(lock.packages['node_modules/cheerio'].version === '1.2.0' &&
     lock.packages['node_modules/undici'].version === '7.28.0', 'UNDCACHE_LOCK_IDENTITY');
   const bundle = path.join(app, 'dist-production/index.cjs');
-  check(sha(fs.readFileSync(bundle)) === '63d469a607ae6a5ff354acc8df47d9ae9bee8a15e4de62805ab73038babed306', 'UNDCACHE_BUNDLE_DRIFT');
+  check(sha(fs.readFileSync(bundle)) === 'f21c346f42283d2ac25486e42f058013328eafbfbd875be9f4739f8a9409da79', 'UNDCACHE_BUNDLE_DRIFT');
   const cheerioEntry = createRequire(bundle).resolve('cheerio');
   const cheerioRoot = path.join(app, 'node_modules/cheerio');
   physicalPath(cheerioEntry);

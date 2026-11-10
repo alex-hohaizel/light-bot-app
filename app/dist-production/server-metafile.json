@@ -2940,7 +2940,7 @@
       "format": "esm"
     },
     "server/production/telegram-dispatch.ts": {
-      "bytes": 70792,
+      "bytes": 71457,
       "imports": [
         {
           "path": "node:crypto",
@@ -3244,7 +3244,7 @@
       "format": "esm"
     },
     "server/production/campaign-dispatch.ts": {
-      "bytes": 5161,
+      "bytes": 6215,
       "imports": [
         {
           "path": "server/release/update-campaign.ts",
@@ -3260,7 +3260,7 @@
       "format": "esm"
     },
     "server/production/release-campaign.ts": {
-      "bytes": 19910,
+      "bytes": 19892,
       "imports": [
         {
           "path": "node:crypto",
@@ -4962,7 +4962,7 @@
           "bytesInOutput": 21869
         },
         "server/production/telegram-dispatch.ts": {
-          "bytesInOutput": 68554
+          "bytesInOutput": 69291
         },
         "server/production/telegram-dispatch-eligibility.ts": {
           "bytesInOutput": 13947
@@ -4989,10 +4989,10 @@
           "bytesInOutput": 2175
         },
         "server/production/campaign-dispatch.ts": {
-          "bytesInOutput": 4891
+          "bytesInOutput": 5910
         },
         "server/production/release-campaign.ts": {
-          "bytesInOutput": 18602
+          "bytesInOutput": 18582
         },
         "server/domain/odesa-qualification.ts": {
           "bytesInOutput": 17212
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1802023
+      "bytes": 1803759
     }
   }
 }

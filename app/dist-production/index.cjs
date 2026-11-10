@@ -9627,7 +9627,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9") ? "fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27") ? "9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27" : null;
   }
 });
 
@@ -22107,6 +22107,7 @@ function createTelegramDispatcher(options) {
     });
   }
   async function execute(client2, job2, signal) {
+    if (signal.aborted) return { kind: "cancelled", reason: "cancelled_before_effect" };
     job2 = await tx(client2, async () => {
       const current2 = await loadJob(client2, job2.operationId);
       if (current2.attempts >= maxAttempts) {
@@ -22156,8 +22157,11 @@ function createTelegramDispatcher(options) {
       await tx(client2, async () => {
         const profile2 = await owned(client2, job2), decision = await eligibility(client2, job2, profile2, "dispatch", signal);
         if (decision.denied) fail24("dispatch_eligibility_revoked");
-        await client2.query("update lba_production_telegram_dispatch_jobs set state='dispatching',updated_at=$4 where bot_id=$1 and operation_id=$2 and fence=$3 and state='prepared'", [DISPATCH_BOT_ID, job2.operationId, job2.fence, now()]);
-        await client2.query("update lba_production_telegram_dispatch_attempts set state='dispatching',dispatch_marked_at=$3 where operation_id=$1 and fence=$2 and state='prepared'", [job2.operationId, job2.fence, now()]);
+        if (signal.aborted) fail24("dispatch_cancelled_before_effect");
+        const markedJob = await client2.query("update lba_production_telegram_dispatch_jobs set state='dispatching',updated_at=$4 where bot_id=$1 and operation_id=$2 and fence=$3 and state='prepared' and control_epoch=$5", [DISPATCH_BOT_ID, job2.operationId, job2.fence, now(), epoch8]);
+        if (markedJob.rowCount !== 1) fail24("dispatch_mark_fence_lost");
+        const markedAttempt = await client2.query("update lba_production_telegram_dispatch_attempts set state='dispatching',dispatch_marked_at=$3 where operation_id=$1 and fence=$2 and state='prepared' and dispatch_marked_at is null and worker_id=$4 and control_epoch=$5", [job2.operationId, job2.fence, now(), worker, epoch8]);
+        if (markedAttempt.rowCount !== 1) fail24("dispatch_mark_fence_lost");
         if (job2.sourceKind === "profile") {
           const updated = await client2.query("update lba_production_profile_outbox set status='dispatching' where id=$1 and owner_id=$2 and status='pending' and control_epoch=$3", [job2.sourceId, job2.ownerId, epoch8]);
           if (updated.rowCount !== 1) fail24("dispatch_outbox_changed");
@@ -22165,12 +22169,14 @@ function createTelegramDispatcher(options) {
       });
     } catch (error2) {
       phase = "closed";
+      if (error2 instanceof DispatchError && error2.code === "dispatch_mark_fence_lost") return { kind: "unknown", operationId: job2.operationId, outcome: unknown3(error2.code) };
       const unresolved = await tx(client2, async () => {
         const current2 = await loadJob(client2, job2.operationId);
         if (current2?.state === "dispatching") {
           await hold(client2, "dispatch_mark_unknown", job2.operationId);
           return true;
         }
+        if (current2?.fence !== job2.fence || current2.state !== "prepared") return true;
         await cancel(client2, job2, error2 instanceof DispatchError ? error2.code : "dispatch_prepare_failed");
         await client2.query("update lba_production_telegram_dispatch_attempts set state='cancelled',finished_at=$3,outcome=$4::jsonb where operation_id=$1 and fence=$2", [job2.operationId, job2.fence, now(), JSON.stringify(notSent3("eligibility_revoked"))]);
         return false;
@@ -24082,8 +24088,9 @@ var init_verified_session = __esm({
 // server/production/campaign-dispatch.ts
 async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options) {
   if (!campaignId(options?.releaseId) || !campaignId(options?.workerId) || typeof options.now !== "function" || !repo || !["claim", "begin", "finish", "defer"].every((k) => typeof repo[k] === "function") || typeof dispatcher?.dispatchCampaign !== "function" || typeof observer?.observe !== "function") throw Error("INVALID_COORDINATED_CAMPAIGN_RUN");
+  const productionNotice = options.timing === "production-release-notice";
   const lease = options.leaseSeconds ?? 60, timeout = options.timeoutMs ?? 25e3, healthTimeout = options.healthTimeoutMs ?? 5e3;
-  if (!Number.isInteger(lease) || lease < 5 || lease > 300 || !Number.isInteger(timeout) || timeout < 1 || timeout > 3e4 || !Number.isInteger(healthTimeout) || healthTimeout < 1 || healthTimeout > 1e4) throw Error("INVALID_CAMPAIGN_BOUNDS");
+  if (options.timing !== void 0 && !productionNotice || productionNotice && (options.leaseSeconds !== void 0 || options.timeoutMs !== void 0) || !Number.isInteger(lease) || lease < 5 || lease > 300 || !Number.isInteger(timeout) || timeout < 1 || timeout > 3e4 || !Number.isInteger(healthTimeout) || healthTimeout < 1 || healthTimeout > 1e4) throw Error("INVALID_CAMPAIGN_BOUNDS");
   let last = options.now();
   if (!campaignInstant(last)) throw Error("INVALID_CAMPAIGN_CLOCK");
   const clock = () => {
@@ -24097,7 +24104,7 @@ async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options
     }
     return { now: last, valid: false };
   };
-  const raw = await repo.claim(options.releaseId, options.workerId, last, lease);
+  const raw = await repo.claim(options.releaseId, options.workerId, last, productionNotice ? PRODUCTION_NOTICE_LEASE_SECONDS : lease);
   if (!raw) return { operationId: null, result: "idle" };
   const claim = checkedCampaignClaim(raw, options), operationId = claim.job.operationId, spec = claim.campaign.spec;
   const healthController = new AbortController();
@@ -24111,10 +24118,17 @@ async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options
   if (healthTimer) clearTimeout(healthTimer);
   const before = clock(), begun = await repo.begin(claim, before.valid && validDeploymentHealth(spec, health, before.now) ? health : null, before.now);
   if (begun !== "dispatch") return { operationId, result: begun };
-  const at = clock();
-  if (!at.valid || !claim.job.leaseUntil || Date.parse(at.now) >= Date.parse(claim.job.leaseUntil) || Date.parse(at.now) >= Date.parse(spec.expiresAt)) {
+  const at = clock(), deadline = Math.min(Date.parse(claim.job.leaseUntil ?? ""), Date.parse(spec.expiresAt));
+  const remaining = deadline - Date.parse(at.now);
+  if (!at.valid || !Number.isFinite(remaining) || remaining <= 0) {
     await repo.finish(claim, { kind: "unknown", reason: "dispatch_clock_or_deadline_changed" }, at.now);
     return { operationId, result: "unknown" };
+  }
+  const watchdog = productionNotice ? Math.min(PRODUCTION_NOTICE_WATCHDOG_MS, remaining - TERMINAL_RESERVE_MS) : timeout;
+  if (watchdog <= 0) {
+    const retryAt = new Date(Date.parse(at.now) + TERMINAL_RESERVE_MS).toISOString();
+    const deferred = await repo.defer(claim, { reason: "coordinator_deferred", retryAt }, at.now);
+    return { operationId, result: deferred, ...deferred === "deferred" ? { retryAt } : {} };
   }
   const envelope = Object.freeze({ ...campaignBinding(spec), operationId, recipientRef: claim.job.recipientRef, text: spec.text, appUrl: spec.appUrl });
   const controller = new AbortController();
@@ -24125,7 +24139,7 @@ async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options
       timedOut = true;
       controller.abort();
       resolve({ kind: "unknown", outcome: { kind: "unknown", reason: "coordinator_timeout" } });
-    }, timeout);
+    }, watchdog);
   })]);
   if (timer) clearTimeout(timer);
   const finish = clock();
@@ -24134,7 +24148,7 @@ async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options
     const deferred = await repo.defer(claim, { reason: result2.kind === "busy" ? "coordinator_busy" : "coordinator_deferred", retryAt }, finish.now);
     return { operationId, result: deferred, ...deferred === "deferred" ? { retryAt } : {} };
   }
-  const outcome = !finish.valid ? { kind: "unknown", reason: "clock_changed_after_send" } : result2.kind === "completed" ? checkedDispatchTransportResult(result2, { operationId, recipientRef: envelope.recipientRef }).outcome : result2.kind === "cancelled" ? { kind: "not_sent", retryable: false, reason: "coordinator_cancelled" } : { kind: "unknown", reason: result2.kind === "held" ? "coordinator_held" : "coordinator_unconfirmed" };
+  const outcome = timedOut ? { kind: "unknown", reason: "coordinator_timeout" } : !finish.valid ? { kind: "unknown", reason: "clock_changed_after_send" } : result2.kind === "completed" ? checkedDispatchTransportResult(result2, { operationId, recipientRef: envelope.recipientRef }).outcome : result2.kind === "cancelled" ? { kind: "not_sent", retryable: false, reason: "coordinator_cancelled" } : { kind: "unknown", reason: result2.kind === "held" ? "coordinator_held" : "coordinator_unconfirmed" };
   await repo.finish(claim, outcome, finish.now);
   if (timedOut) void completion.then(async (late) => {
     if (late.kind === "completed") {
@@ -24150,11 +24164,15 @@ async function runCoordinatedCampaignAttempt(repo, dispatcher, observer, options
   });
   return { operationId, result: outcome.kind };
 }
+var PRODUCTION_NOTICE_LEASE_SECONDS, PRODUCTION_NOTICE_WATCHDOG_MS, TERMINAL_RESERVE_MS;
 var init_campaign_dispatch = __esm({
   "server/production/campaign-dispatch.ts"() {
     "use strict";
     init_update_campaign();
     init_telegram_dispatch();
+    PRODUCTION_NOTICE_LEASE_SECONDS = 210;
+    PRODUCTION_NOTICE_WATCHDOG_MS = 15e4;
+    TERMINAL_RESERVE_MS = 15e3;
   }
 });
 
@@ -24435,7 +24453,7 @@ function createProductionReleaseCampaign(options) {
           gate.dispose();
         }
       } };
-      const attempt = await runCoordinatedCampaignAttempt(repository, guardedDispatcher, guardedObserver, { releaseId: c.releaseId, workerId, now, leaseSeconds: 60, timeoutMs: 25e3, healthTimeoutMs: 5e3 });
+      const attempt = await runCoordinatedCampaignAttempt(repository, guardedDispatcher, guardedObserver, { releaseId: c.releaseId, workerId, now, timing: "production-release-notice" });
       summary = await repository.summary(c.releaseId);
       if (summary.phase === "completed") finished = true;
       if (scope5.signal.aborted) return set({ state: "stopped", result: attempt.result });
