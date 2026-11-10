@@ -2991,7 +2991,7 @@
       "format": "esm"
     },
     "server/production/telegram-dispatch-eligibility.ts": {
-      "bytes": 14001,
+      "bytes": 14627,
       "imports": [
         {
           "path": "node:crypto",
@@ -3022,7 +3022,7 @@
       "format": "esm"
     },
     "server/release/update-campaign-pg.ts": {
-      "bytes": 20884,
+      "bytes": 32818,
       "imports": [
         {
           "path": "server/release/update-campaign.ts",
@@ -3116,7 +3116,7 @@
       "format": "esm"
     },
     "server/production/legacy-campaign-recipient.ts": {
-      "bytes": 10956,
+      "bytes": 12199,
       "imports": [
         {
           "path": "node:crypto",
@@ -3500,7 +3500,7 @@
       "format": "esm"
     },
     "server/production/canonical-runtime.ts": {
-      "bytes": 17501,
+      "bytes": 17515,
       "imports": [
         {
           "path": "server/production/operator-address-refresh.ts",
@@ -4965,7 +4965,7 @@
           "bytesInOutput": 65930
         },
         "server/production/telegram-dispatch-eligibility.ts": {
-          "bytesInOutput": 13347
+          "bytesInOutput": 13947
         },
         "server/release/update-campaign-pg.ts": {
           "bytesInOutput": 20004
@@ -4980,7 +4980,7 @@
           "bytesInOutput": 21655
         },
         "server/production/legacy-campaign-recipient.ts": {
-          "bytesInOutput": 9707
+          "bytesInOutput": 10958
         },
         "server/production/canonical-schema.ts": {
           "bytesInOutput": 1740
@@ -5007,7 +5007,7 @@
           "bytesInOutput": 56967
         },
         "server/production/canonical-runtime.ts": {
-          "bytesInOutput": 16853
+          "bytesInOutput": 16875
         },
         "server/production/product-tools-routes.ts": {
           "bytesInOutput": 4548
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1795610
+      "bytes": 1797483
     }
   }
 }

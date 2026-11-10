@@ -1,0 +1,42 @@
+{
+  "kind": "lba-dispatch-integrated-author/1",
+  "recordedAt": "2026-11-10T19:49:10.468150+00:00",
+  "sourceSha256": "768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126",
+  "sourceInputs": 315,
+  "buildArtifacts": 17,
+  "buildReceiptSha256": "dfabd9949f07cd3d9a0883698e8a1b98ab9de834768eb56d5eb2060f97b99613",
+  "manifestSha256": "64af68adb048a7a641011a9a91a689c061da0597498085edaf49ed8158b616e8",
+  "sourceDiff": [
+    "server/production/canonical-runtime.ts",
+    "server/production/legacy-campaign-recipient.ts",
+    "server/production/telegram-dispatch-eligibility.ts",
+    "server/release/update-campaign-pg.ts"
+  ],
+  "packageLockUnchanged": true,
+  "clientPublicAssetsUnchanged": 15,
+  "strictTypescriptExit": 0,
+  "backendTests": {
+    "passed": 376,
+    "failed": 0,
+    "skipped": 0
+  },
+  "buildExit": 0,
+  "grantActualPgTests": 3,
+  "reconciliationActualPgTests": 7,
+  "operatorBundleSha256": "c170a127cc057466dedff8ca7542c946356a4da86a1a61576585273718b9a558",
+  "activationSha256": "d2029d1e30010eb78ef14c47d5cdb75f45cdf1addfc4a3a52add36a8c6637c95",
+  "runtimePreflightSha256": "85cc5a18483788e53e5109acfdf284273e11d7229bbe4b0609ebe88b87f2c289",
+  "undiciFiveFileProbeSha256": "3348b601b96d3637067471df7f8ad7b203d1a20cc02e562791e2797f527cf985",
+  "actualProductionPredecessorNoEffectProof": false,
+  "actualProductionReconciliation": false,
+  "telegramSendsByPreparation": 0,
+  "migrationRepeated": false,
+  "native": "pending",
+  "publish": "pending",
+  "publicationFiles": 344,
+  "launcherSha256": "0d052bc6564d80c0557b783b2f67ee1e197bdf6b4c99a9f40e2a01aeff7a84dd",
+  "sharedEnvironmentSha256": "302a2c28f5b8899c639d4648117a2274da3515504a963c71e3309474789b310d",
+  "pureRuntimePolicySha256": "e3119ba1b5c4648e42621148ccfc4f3af84799dad549c3f9e3a17ad9b7179575",
+  "activationIndependentBoundaryCases": 8,
+  "activationBoundaryOldFailureRetained": true
+}

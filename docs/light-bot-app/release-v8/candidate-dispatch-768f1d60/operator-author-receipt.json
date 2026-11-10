@@ -1,0 +1,82 @@
+{
+  "kind": "lba-proven-unissued-operator-author/1",
+  "recordedAt": "2026-11-10T19:38:47.340974+00:00",
+  "actor": "/root/predecessor_no_effect_gate",
+  "files": [
+    {
+      "path": "app/server/release/update-campaign-pg.ts",
+      "sha256": "939024a5bf7ced420d77fb3babae063564837b918718e8c0a17397d089a6a74f",
+      "bytes": 32818
+    },
+    {
+      "path": "app/tests/backend/campaign-proven-unissued.test.ts",
+      "sha256": "fca2de0ac2e94072e18f534b611b814ab7058cf763180f1b5b6f17bd0db4b510",
+      "bytes": 936
+    },
+    {
+      "path": "release-tools/predecessor-no-effect.source.cjs",
+      "sha256": "b26e36eecf96223580646d12c2616584c5b2d0e672feb57c9a85521537191663",
+      "bytes": 3228
+    },
+    {
+      "path": "release-tools/predecessor-no-effect.cjs",
+      "sha256": "c170a127cc057466dedff8ca7542c946356a4da86a1a61576585273718b9a558",
+      "bytes": 42454
+    },
+    {
+      "path": "predecessor-gate-evidence/reconcile-test.mjs",
+      "sha256": "debf27da75b644059470780165486e3a8078de4436ba7659e326791e8d3a4fee",
+      "bytes": 11621
+    },
+    {
+      "path": "predecessor-gate-evidence/reconciliation-result.json",
+      "sha256": "adce40a41ae324a2037cab83e94cf312d473c5172394b8253c2c833edd37a500",
+      "bytes": 2383
+    },
+    {
+      "path": "predecessor-gate-evidence/readonly-v1.cjs",
+      "sha256": "0b44eefdb167c566bb1eea97a12634bef2b3e3272aa3a3197dbec2df36a59172",
+      "bytes": 11007
+    }
+  ],
+  "scope": "Typed campaign metadata reconciliation under fresh direct serving DB proof; no deployment or real production execution by author.",
+  "actualLocalPostgres": {
+    "version": "16.15",
+    "casesPassed": 7,
+    "casesFailed": 0,
+    "nativeProviderCalls": 0,
+    "realPrivateDataRead": false
+  },
+  "unitTestsPassed": 1,
+  "typescriptExit": 0,
+  "compiledOperatorImportInert": true,
+  "oldReadonlyHistoricalTests": {
+    "passed": 7,
+    "currentProcedure": false
+  },
+  "productionActions": 0,
+  "schemaProfileChanges": 0,
+  "changedApplicationFiles": [
+    "app/server/release/update-campaign-pg.ts"
+  ],
+  "supportedTransition": {
+    "oldState": "outcome_unknown",
+    "newState": "failed",
+    "outcome": "not_sent",
+    "reason": "operator_proven_unissued",
+    "historicalUnknownEvents": "preserved",
+    "immutableSpec": "unchanged",
+    "otherSevenPending": "unchanged",
+    "fences": "preserved",
+    "providerReceipt": "never invented"
+  },
+  "coldStart": "Existing validated certificate is re-read without acquiring sender locks or requiring later campaign holds to clear; no announcement-window expiry rejection.",
+  "assumptions": [
+    "Pinned sender requires committed dispatch job/attempt before native effects.",
+    "No deployed sender path deletes journals.",
+    "External journal deletion/unauthorized manual writes are outside the proof model."
+  ],
+  "reviewRequired": true,
+  "runtimeServingProof": "not executed",
+  "nativeNoticeSent": "not claimed"
+}

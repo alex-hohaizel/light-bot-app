@@ -89,11 +89,11 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  const interactiveCertifiedProof=createCertifiedInteractiveScheduleProof(events,epoch);
  const morningBriefing=createProductionMorningBriefing({enabled:policy.notificationSchedulerEnabled,expectedControlEpoch:epoch,store,events});
  const eventProducer=createProductionEventProducer({enabled:policy.notificationSchedulerEnabled,expectedControlEpoch:epoch,pool,events,morningBriefing,now});
- const legacyRecipients=ports.accountConfiguration?createLegacyCampaignRecipients({enabled:policy.telegramDeliveryEnabled,expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,expectedControlEpoch:epoch,bindingKey:ports.accountConfiguration.bindingKey}):undefined;
+ const legacyRecipients=ports.accountConfiguration?createLegacyCampaignRecipients({enabled:policy.telegramDeliveryEnabled,expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,expectedControlEpoch:epoch,bindingKey:ports.accountConfiguration.bindingKey,now:ms}):undefined;
  const preflight=createBotAddressPreflight({store,pool,flow,now,wait:ms=>new Promise(resolve=>setTimeout(resolve,ms))});
  const processor=createTelegramProcessor({enabled:policy.telegramUpdatesEnabled,expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,
   expectedControlEpoch:epoch,pool,store:preflight,now,leaseMs:30000,resolveOwner:createIngressOwnerResolver(epoch,ports.accountConfiguration?{isDetached:(client,subject)=>isDetachedAccountIdentity(client,'telegram',subject)}:{})});
- const eligibility=createSqlTelegramDispatchEligibility({expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,expectedControlEpoch:epoch,legacyRecipients,
+ const eligibility=createSqlTelegramDispatchEligibility({expectedBotId:PRODUCT_TELEGRAM_IDENTITY.botId,expectedControlEpoch:epoch,legacyRecipients,now:ms,
   verifySource:request=>request.job.payload.briefing?morningBriefing.verifyDispatch(request):request.job.payload.message.kind==='notification'?events.verifyDispatch(request):
    request.job.payload.message.kind==='schedule'&&request.job.payload.schedule?.deliveryEligible===true?interactiveCertifiedProof(request):ports.verifySource?.(request)??Promise.resolve(null)});
  const telegramFetch:TelegramFetch=async(url,request)=>{

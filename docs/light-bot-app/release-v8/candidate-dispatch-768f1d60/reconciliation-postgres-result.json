@@ -1,0 +1,63 @@
+{
+  "kind": "lba-proven-unissued-reconciliation-pg-tests/1",
+  "recordedAt": "2026-11-10T19:34:47.273Z",
+  "postgres": "PostgreSQL 16.15 on aarch64-apple-darwin24.6.0, compiled by Apple clang version 17.0.0 (clang-1700.0.13.5), 64-bit",
+  "passed": 7,
+  "failed": 0,
+  "results": [
+    {
+      "name": "typed resolution preserves immutable predecessor and historical unknown, then permits a new pilot",
+      "pass": true
+    },
+    {
+      "name": "already-resolved cold start after expiry ignores a later bot hold and busy locks without writes",
+      "pass": true
+    },
+    {
+      "name": "any prior dispatch job or orphan attempt aborts without resolving unknown",
+      "pass": true
+    },
+    {
+      "name": "provider receipt or bot hold aborts with predecessor intact",
+      "pass": true
+    },
+    {
+      "name": "post-lock snapshot sees a sender commit after initial read-only precheck",
+      "pass": true
+    },
+    {
+      "name": "lost commit acknowledgement is idempotently resolved without duplicate certificate",
+      "pass": true
+    },
+    {
+      "name": "tampered certificate is never silently replaced",
+      "pass": true
+    }
+  ],
+  "result": {
+    "state": "reconciled",
+    "certificate": {
+      "kind": "lba-campaign-proven-unissued/1",
+      "releaseId": "lba-v8-font-ab0a12bc-20261110",
+      "specHash": "b7e92ac61d5110ef29dddbbd422826313b16e8072fb774868c0c13a28f4e68ca",
+      "buildSha256": "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc",
+      "botId": "8577497098",
+      "controlEpoch": 1,
+      "audienceDigest": "f15302574aebe17d1b5db8e8c93adc383c8abc3722ba72624136bec4f3a03cdb",
+      "operationIdsDigest": "7732bf2cb942bd4764cf84db76fbd41e2e39895dedca489e18363cd070d4e89d",
+      "operations": 8,
+      "dispatchJobs": 0,
+      "dispatchAttempts": 0,
+      "providerReceipts": 0,
+      "predecessorSenderSha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f",
+      "operatorCodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "observedAt": "2026-11-10T19:34:46.934Z",
+      "certificateSha256": "3e63a76666049da3f501e4330e1ed3320ed438b5b1f9f44a9dcce546d202fa20"
+    }
+  },
+  "realProductionRead": false,
+  "realSecretsRead": false,
+  "externalHttp": 0,
+  "telegramSends": 0,
+  "scope": "Owned synthetic PostgreSQL only; no actual production reconciliation."
+}

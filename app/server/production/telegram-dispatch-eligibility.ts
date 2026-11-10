@@ -23,12 +23,13 @@ export interface CurrentDispatchSourceProof {
  sourceRevision:string;expiresAt:string;eventProof?:Extract<DispatchEligibility,{eligible:true}>['eventProof'];
 }
 /** No pool/env/network/schema writer. Every read uses the coordinator's existing TX. */
-export function createSqlTelegramDispatchEligibility(options:{expectedBotId:typeof BOT;expectedControlEpoch:number;grantTtlMs?:number;
+export function createSqlTelegramDispatchEligibility(options:{expectedBotId:typeof BOT;expectedControlEpoch:number;grantTtlMs?:number;now?:()=>number;
  verifySource?:(request:DispatchEligibilityRequest)=>Promise<CurrentDispatchSourceProof|null>;
  legacyRecipients?:Pick<ReturnType<typeof createLegacyCampaignRecipients>,'resolve'>;
 }){
- const epoch=options.expectedControlEpoch,ttl=options.grantTtlMs??1000;
- if(options.expectedBotId!==BOT||!Number.isSafeInteger(epoch)||epoch<1||!Number.isInteger(ttl)||ttl<1||ttl>5000||options.verifySource!==undefined&&typeof options.verifySource!=='function')throw Error('INVALID_TELEGRAM_SQL_ELIGIBILITY');
+ const epoch=options.expectedControlEpoch,ttl=options.grantTtlMs??1000,clock=options.now??Date.now;
+ if(options.expectedBotId!==BOT||!Number.isSafeInteger(epoch)||epoch<1||!Number.isInteger(ttl)||ttl<1||ttl>5000||options.verifySource!==undefined&&typeof options.verifySource!=='function'||options.now!==undefined&&typeof options.now!=='function')throw Error('INVALID_TELEGRAM_SQL_ELIGIBILITY');
+ function current(after:string):string|null{try{const ms=clock();return validInstant(after)&&Number.isSafeInteger(ms)&&ms>=Date.parse(after)?new Date(ms).toISOString():null;}catch{return null;}}
  async function mapping(client:Pick<DispatchClient,'query'>,owner:string,expectedSession?:string,emptyReplyAt?:string){
   const rows=(await client.query(`select p.owner_id as "ownerId",p.session_id as "sessionId",p.revision,p.state,p.control_epoch as "profileEpoch",o.control_epoch as "originEpoch",o.private_provenance as provenance,o.source_digest as "sourceDigest",b.control_epoch as "bootstrapEpoch",b.session_id as "bootstrapSession",b.origin_kind as "originKind",b.source_digest as "bootstrapDigest" from lba_production_profiles p join lba_production_profile_origins o on o.owner_id=p.owner_id join lba_production_bootstrap_ledger b on b.owner_id=p.owner_id where p.owner_id=$1 for share of p,o,b`,[owner])).rows;
   if(rows.length!==1)return null;const row=rows[0];if(row.ownerId!==owner||[row.profileEpoch,row.originEpoch,row.bootstrapEpoch].some(v=>Number(v)!==epoch)||row.sessionId!==row.bootstrapSession||expectedSession!==undefined&&row.sessionId!==expectedSession)return null;
@@ -62,36 +63,41 @@ export function createSqlTelegramDispatchEligibility(options:{expectedBotId:type
   const value=await mapping(client,job.ownerId,job.sessionId,job.sourceKind==='profile'?now:undefined);if(!value||value.state.revision!==profile.revision)return {eligible:false,reason:'unlinked'};
   if(job.payload.message.kind==='notification'){try{if(!globalNotificationPolicy(value.state.profile.preferences,'telegram').enabled)return {eligible:false,reason:'paused'};}catch{return {eligible:false,reason:'not_eligible'};}}
   if(job.sourceKind==='campaign'){try{if(!globalNotificationPolicy(value.state.profile.preferences,'telegram').enabled)return {eligible:false,reason:'paused'};}catch{return {eligible:false,reason:'not_eligible'};}}
-  let expiresAt=new Date(Date.parse(now)+ttl).toISOString(),proof:CurrentDispatchSourceProof|null=null;
+  let bound=Number.POSITIVE_INFINITY,proof:CurrentDispatchSourceProof|null=null;
   if(job.sourceKind==='campaign'){
    if(!job.payload.campaign)return {eligible:false,reason:'not_eligible'};const current=await resolveCampaignOwner({client,envelope:job.payload.campaign,now,signal:request.signal});
-   if(!current||current.ownerId!==job.ownerId)return {eligible:false,reason:'not_eligible'};expiresAt=new Date(Math.min(Date.parse(expiresAt),Date.parse(current.expiresAt))).toISOString();
+   if(!current||current.ownerId!==job.ownerId)return {eligible:false,reason:'not_eligible'};bound=Math.min(bound,Date.parse(current.expiresAt));
   }
-  if(job.payload.schedule||job.payload.briefing){proof=await options.verifySource?.(request)??null;if(!proof||!text(proof.sourceRevision)||job.payload.schedule&&proof.sourceRevision!==job.payload.schedule.source.revision||!validInstant(proof.expiresAt)||Date.parse(proof.expiresAt)<=Date.parse(now))return {eligible:false,reason:'source_unverified'};expiresAt=new Date(Math.min(Date.parse(expiresAt),Date.parse(proof.expiresAt))).toISOString();}
+  if(job.payload.schedule||job.payload.briefing){proof=await options.verifySource?.(request)??null;if(!proof||!text(proof.sourceRevision)||job.payload.schedule&&proof.sourceRevision!==job.payload.schedule.source.revision||!validInstant(proof.expiresAt)||Date.parse(proof.expiresAt)<=Date.parse(now))return {eligible:false,reason:'source_unverified'};bound=Math.min(bound,Date.parse(proof.expiresAt));}
+  const issuedAt=current(now);if(!issuedAt||request.signal.aborted)return {eligible:false,reason:'not_eligible'};
+  if(bound<=Date.parse(issuedAt))return {eligible:false,reason:proof?'source_unverified':'not_eligible'};
+  const expiresAt=new Date(Math.min(Date.parse(issuedAt)+ttl,bound)).toISOString();
   return {eligible:true,ownerId:job.ownerId,recipientRef:job.recipientRef,chatId:value.chatId,chatType:'private',mappingRevision:value.mappingRevision,expiresAt,...(proof?{sourceRevision:proof.sourceRevision,...(proof.eventProof?{eventProof:proof.eventProof}:{})}:{})};
  };
- async function campaignLease({client,envelope,now,signal}:Parameters<NonNullable<DispatchOptions['resolveCampaignOwner']>>[0]):Promise<string|null>{
+ async function campaignLease({client,envelope,now,signal}:Parameters<NonNullable<DispatchOptions['resolveCampaignOwner']>>[0]):Promise<{validUntil:string;checkedAt:string}|null>{
   if(signal.aborted||envelope.botId!==BOT||!validInstant(now))return null;
   // Acquire campaign rows BEFORE the coordinator's canonical owner lock. Its
   // begin()/pause()/finish() writers use the same campaign -> owner order.
   const rows=(await client.query('select c.spec_hash as "specHash",c.record as campaign,j.record as job from lba_release_campaigns c join lba_release_campaign_jobs j on j.release_id=c.release_id where c.release_id=$1 and j.operation_id=$2 for share of c,j',[envelope.releaseId,envelope.operationId])).rows;
-  if(rows.length!==1)return null;const c=decoded(rows[0].campaign),j=decoded(rows[0].job),spec=c?.spec;
-  if(!c||!j||!spec||c.specHash!==rows[0].specHash||campaignSpecHash(spec)!==c.specHash||!['pilot','full'].includes(c.phase)||c.phase==='pilot'&&j.cohort!=='pilot'||j.state!=='dispatching'||j.botId!==BOT||j.releaseId!==envelope.releaseId||j.recipientRef!==envelope.recipientRef||j.operationId!==envelope.operationId||envelope.operationId!==campaignOperationId(envelope.releaseId,envelope.recipientRef)||!validInstant(j.leaseUntil)||Date.parse(j.leaseUntil)<=Date.parse(now)||!validInstant(spec.expiresAt)||Date.parse(spec.expiresAt)<=Date.parse(now)||['releaseId','deploymentId','buildSha256','botId','origin','text','appUrl'].some(k=>spec[k]!==envelope[k as keyof typeof envelope]))return null;
-  return new Date(Math.min(Date.parse(now)+ttl,Date.parse(j.leaseUntil),Date.parse(spec.expiresAt))).toISOString();
+  const checkedAt=current(now);if(rows.length!==1||!checkedAt||signal.aborted)return null;const c=decoded(rows[0].campaign),j=decoded(rows[0].job),spec=c?.spec;
+  if(!c||!j||!spec||c.specHash!==rows[0].specHash||campaignSpecHash(spec)!==c.specHash||!['pilot','full'].includes(c.phase)||c.phase==='pilot'&&j.cohort!=='pilot'||j.state!=='dispatching'||j.botId!==BOT||j.releaseId!==envelope.releaseId||j.recipientRef!==envelope.recipientRef||j.operationId!==envelope.operationId||envelope.operationId!==campaignOperationId(envelope.releaseId,envelope.recipientRef)||!validInstant(j.leaseUntil)||Date.parse(j.leaseUntil)<=Date.parse(checkedAt)||!validInstant(spec.expiresAt)||Date.parse(spec.expiresAt)<=Date.parse(checkedAt)||['releaseId','deploymentId','buildSha256','botId','origin','text','appUrl'].some(k=>spec[k]!==envelope[k as keyof typeof envelope]))return null;
+  // This is the locked lease horizon, not an already-running short grant.
+  return {validUntil:new Date(Math.min(Date.parse(j.leaseUntil),Date.parse(spec.expiresAt))).toISOString(),checkedAt};
  }
  const resolveCampaignOwner:NonNullable<DispatchOptions['resolveCampaignOwner']>=async request=>{
-  const expiresAt=await campaignLease(request);if(!expiresAt)return null;
-  const ownerId=await ownerForRef(request.client,request.envelope.recipientRef);return ownerId?{ownerId,expiresAt}:null;
+  const lease=await campaignLease(request);if(!lease)return null;
+  const ownerId=await ownerForRef(request.client,request.envelope.recipientRef),issuedAt=current(lease.checkedAt);
+  if(!ownerId||!issuedAt||request.signal.aborted||Date.parse(lease.validUntil)<=Date.parse(issuedAt))return null;
+  return {ownerId,expiresAt:new Date(Math.min(Date.parse(issuedAt)+ttl,Date.parse(lease.validUntil))).toISOString()};
  };
  const resolveLegacyCampaignRecipient:NonNullable<DispatchOptions['resolveLegacyCampaignRecipient']>=async request=>{
-  const expiresAt=await campaignLease(request);if(!expiresAt||!options.legacyRecipients)return null;
-  const subject=await options.legacyRecipients.resolve(request.client,{recipientRef:request.envelope.recipientRef,now:request.now,signal:request.signal});
-  if(!subject||subject.botId!==BOT||subject.recipientRef!==request.envelope.recipientRef||!validInstant(subject.expiresAt)||Date.parse(subject.expiresAt)<=Date.parse(request.now))return null;
-  // The same physical chat history/cooldown applies; a former account mapping
-  // is never silently replaced by an accountless endpoint capability.
-  const reach=(await request.client.query('select owner_id as "ownerId",recipient_kind as "recipientKind",reachability from lba_production_telegram_chat_state where bot_id=$1 and chat_key=$2 for share',[BOT,sha([BOT,subject.chatId,'private'])])).rows;
-  if(reach.length>1||reach.length===1&&(reach[0].ownerId!==null||reach[0].recipientKind!=='legacy_subscription'||!['unknown','reachable'].includes(reach[0].reachability)))return null;
-  return {...subject,expiresAt:new Date(Math.min(Date.parse(subject.expiresAt),Date.parse(expiresAt))).toISOString()};
+  const lease=await campaignLease(request);if(!lease||!options.legacyRecipients)return null;
+  // resolve issues its short subject only after all locked eligibility and chat
+  // reads. No further SQL may consume that subject's freshness budget here.
+  const subject=await options.legacyRecipients.resolve(request.client,{recipientRef:request.envelope.recipientRef,now:lease.checkedAt,signal:request.signal});
+  if(!subject||subject.botId!==BOT||subject.recipientRef!==request.envelope.recipientRef||!validInstant(subject.expiresAt))return null;
+  const issuedAt=current(lease.checkedAt);if(!issuedAt||request.signal.aborted||Date.parse(subject.expiresAt)<=Date.parse(issuedAt)||Date.parse(lease.validUntil)<=Date.parse(issuedAt))return null;
+  return {...subject,expiresAt:new Date(Math.min(Date.parse(issuedAt)+ttl,Date.parse(subject.expiresAt),Date.parse(lease.validUntil))).toISOString()};
  };
  const campaignEligibility:CampaignRecipientEligibility={async enabled(client,recipientRef,botId,now){
   if(botId!==BOT||!validInstant(now))return false;

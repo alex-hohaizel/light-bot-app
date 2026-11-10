@@ -1,7 +1,7 @@
 import type { DeliveryOutcome, DeliveryState } from '../../shared/delivery-contract.ts';
-import { UPDATE_CAMPAIGN_VERSION, campaignBinding, campaignFail, campaignId, campaignInstant, campaignOperationId, campaignSpecHash,
+import { UPDATE_CAMPAIGN_VERSION, UPDATE_ANNOUNCEMENT_UA, campaignHash, campaignBinding, campaignFail, campaignId, campaignInstant, campaignOperationId, campaignSpecHash,
   checkedCampaignOutcome, prepareCampaignSpec, validDeploymentHealth,
-  type CampaignClaim, type CampaignJob, type CampaignRecord, type CampaignSummary, type DeploymentHealthObservation,
+  type CampaignBinding, type CampaignClaim, type CampaignJob, type CampaignRecord, type CampaignSummary, type DeploymentHealthObservation,
   type CoordinatedCampaignRepository, type UpdateCampaignSpec } from './update-campaign.ts';
 
 /** Explicit additive migration, exported for the sole production schema writer. Never executed on import. */
@@ -28,6 +28,124 @@ export interface CampaignPgClient {
   release(): void;
 }
 export interface CampaignPgPool { connect(): Promise<CampaignPgClient> }
+export interface CampaignProvenUnissuedRequest {
+  binding: CampaignBinding;
+  controlEpoch: number;
+  audienceSize: number;
+  predecessorSenderSha256: string;
+  operatorCodeSha256: string;
+  acquireMs?: number;
+}
+export interface CampaignProvenUnissuedCertificate {
+  kind: 'lba-campaign-proven-unissued/1';
+  releaseId: string; specHash: string; buildSha256: string; botId: string;
+  controlEpoch: number; audienceDigest: string; operationIdsDigest: string;
+  operations: number; dispatchJobs: 0; dispatchAttempts: 0; providerReceipts: 0;
+  predecessorSenderSha256: string; operatorCodeSha256: string; observedAt: string;
+  certificateSha256: string;
+}
+export interface CampaignProvenUnissuedEvent {
+  kind: 'not_sent'; retryable: false; reason: 'operator_proven_unissued';
+  observedAt: string; operatorCertificate: CampaignProvenUnissuedCertificate;
+}
+const certHash=(c:Omit<CampaignProvenUnissuedCertificate,'certificateSha256'>)=>campaignHash([
+  c.kind,c.releaseId,c.specHash,c.buildSha256,c.botId,c.controlEpoch,c.audienceDigest,c.operationIdsDigest,
+  c.operations,c.dispatchJobs,c.dispatchAttempts,c.providerReceipts,c.predecessorSenderSha256,c.operatorCodeSha256,c.observedAt]);
+
+/** Operator-only reconciliation. Native effects are impossible without a prior
+ * committed dispatch job/attempt in the pinned sender. This procedure never
+ * sends, retries, rewrites historical events or changes the immutable spec.
+ * It assumes those append-only journals have not been externally deleted. */
+export async function reconcileCampaignProvenUnissued(pool:CampaignPgPool,request:CampaignProvenUnissuedRequest) {
+  const b=request?.binding,hex=(v:unknown):v is string=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
+  if(!pool||typeof pool.connect!=='function'||!b||!campaignId(b.releaseId)||!campaignId(b.deploymentId)||!campaignId(b.botId)||!hex(b.buildSha256)||b.origin!=='https://power-ukraine.net'||
+    !Number.isSafeInteger(request.controlEpoch)||request.controlEpoch<1||!Number.isInteger(request.audienceSize)||request.audienceSize<1||request.audienceSize>100000||!hex(request.predecessorSenderSha256)||!hex(request.operatorCodeSha256))return campaignFail('PROVEN_UNISSUED_OPTIONS');
+  const acquire=request.acquireMs??4000;if(!Number.isInteger(acquire)||acquire<1||acquire>10000)return campaignFail('PROVEN_UNISSUED_LOCK_BUDGET');
+  const client=await pool.connect(),locks:string[]=[];let begun=false,tainted=false;
+  const check=(yes:unknown,code:string)=>{if(!yes)campaignFail(code);};
+  async function inspect(){
+    const backend=(await client.query("select pg_is_in_recovery() as recovery,current_setting('default_transaction_read_only') as default_ro,to_char(clock_timestamp() at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') as observed_at")).rows[0];
+    check(backend?.recovery===false&&backend.default_ro==='off'&&campaignInstant(backend.observed_at),'PROVEN_UNISSUED_NOT_PRIMARY');
+    const control=(await client.query('select control_epoch,writer_mode from lba_production_control where id=true')).rows;
+    check(control.length===1&&Number(control[0].control_epoch)===request.controlEpoch&&control[0].writer_mode==='canonical','PROVEN_UNISSUED_CONTROL');
+    const rows=(await client.query('select * from lba_release_campaigns where release_id=$1',[b.releaseId])).rows;check(rows.length===1,'PROVEN_UNISSUED_CAMPAIGN_MISSING');
+    const c=record(rows[0]),s=c.spec;
+    check(['releaseId','deploymentId','buildSha256','botId','origin'].every(k=>s[k as keyof CampaignBinding]===b[k as keyof CampaignBinding])&&s.text===UPDATE_ANNOUNCEMENT_UA&&s.appUrl===b.origin+'/'&&c.phase==='paused'&&c.pauseReason==='dispatch_outcome_unknown','PROVEN_UNISSUED_BINDING');
+    const all=(await client.query('select * from lba_release_campaign_jobs where release_id=$1 order by operation_id',[b.releaseId])).rows.map(job);
+    check(all.length===request.audienceSize&&new Set(all.map(j=>j.operationId)).size===all.length&&all.every(j=>j.botId===b.botId&&j.providerReceipt===null),'PROVEN_UNISSUED_AUDIENCE');
+    check(s.audienceDigest===campaignHash(all.map(j=>j.recipientRef).sort()),'PROVEN_UNISSUED_AUDIENCE_DIGEST');
+    const pilot=all.filter(j=>j.cohort==='pilot');check(pilot.length===1&&s.pilotRecipientRefs.length===1&&pilot[0].recipientRef===s.pilotRecipientRefs[0],'PROVEN_UNISSUED_PILOT');
+    const opids=all.map(j=>j.operationId),history=(await client.query('select operation_id,fence,spec_hash,events from lba_release_campaign_attempts where release_id=$1 order by operation_id,fence',[b.releaseId])).rows;
+    check(history.every(a=>opids.includes(a.operation_id)&&a.spec_hash===c.specHash&&Array.isArray(decode(a.events))),'PROVEN_UNISSUED_HISTORY');
+    const proofEvents=history.flatMap(a=>decode<any[]>(a.events).filter(e=>e?.reason==='operator_proven_unissued').map(e=>({attempt:a,event:e})));
+    const dispatch=(await client.query('select count(*)::int as count from lba_production_telegram_dispatch_jobs where operation_id::text=any($1::text[])',[opids])).rows;
+    const attempts=(await client.query('select count(*)::int as count from lba_production_telegram_dispatch_attempts where operation_id::text=any($1::text[])',[opids])).rows;
+    check(dispatch.length===1&&dispatch[0].count===0&&attempts.length===1&&attempts[0].count===0,'PROVEN_UNISSUED_DISPATCH_PRESENT');
+    const operationsDigest=campaignHash([...opids].sort());
+    if(proofEvents.length){
+      check(proofEvents.length===1,'PROVEN_UNISSUED_CERTIFICATE_CONFLICT');
+      const {attempt,event}=proofEvents[0],cert=event.operatorCertificate as CampaignProvenUnissuedCertificate;
+      check(event.kind==='not_sent'&&event.retryable===false&&campaignInstant(event.observedAt)&&cert?.kind==='lba-campaign-proven-unissued/1'&&
+        cert.releaseId===b.releaseId&&cert.specHash===c.specHash&&cert.buildSha256===b.buildSha256&&cert.botId===b.botId&&cert.controlEpoch===request.controlEpoch&&
+        cert.audienceDigest===s.audienceDigest&&cert.operationIdsDigest===operationsDigest&&cert.operations===all.length&&cert.dispatchJobs===0&&cert.dispatchAttempts===0&&cert.providerReceipts===0&&
+        cert.predecessorSenderSha256===request.predecessorSenderSha256&&hex(cert.operatorCodeSha256)&&campaignInstant(cert.observedAt)&&event.observedAt===cert.observedAt&&
+        certHash(cert)===cert.certificateSha256&&pilot[0].operationId===attempt.operation_id&&pilot[0].fence===Number(attempt.fence)&&
+        pilot[0].state==='failed'&&pilot[0].lastOutcome==='operator_proven_unissued'&&pilot[0].leaseOwner===null&&pilot[0].leaseUntil===null&&
+        all.filter(j=>j.cohort==='full').every(j=>j.state==='pending'&&j.lastOutcome===null&&j.fence===0&&j.attempts===0&&j.leaseOwner===null&&j.leaseUntil===null),'PROVEN_UNISSUED_CERTIFICATE_INVALID');
+      return {already:true as const,certificate:cert,campaign:c,jobs:all,history,observedAt:backend.observed_at};
+    }
+    check(pilot[0].state==='outcome_unknown'&&pilot[0].lastOutcome==='coordinator_unconfirmed'&&pilot[0].fence>=1&&pilot[0].attempts>=1&&pilot[0].leaseOwner!==null&&
+      pilot[0].leaseUntil!==null&&Date.parse(pilot[0].leaseUntil)<Date.parse(backend.observed_at)&&
+      all.filter(j=>j.cohort==='full').every(j=>j.state==='pending'&&j.lastOutcome===null&&j.fence===0&&j.attempts===0&&j.leaseOwner===null&&j.leaseUntil===null),'PROVEN_UNISSUED_NOT_LOCAL_UNKNOWN');
+    check(history.length>=1&&history.length<=c.spec.maxAttempts&&history.every(a=>a.operation_id===pilot[0].operationId&&decode<any[]>(a.events).every(e=>
+      e?.kind==='dispatching'&&e.reason==null||e?.kind==='local_deferred'&&['coordinator_busy','coordinator_deferred'].includes(e.reason)||e?.kind==='unknown'&&e.reason==='coordinator_unconfirmed')),'PROVEN_UNISSUED_HISTORY_NOT_LOCAL');
+    check(history.some(a=>Number(a.fence)===pilot[0].fence),'PROVEN_UNISSUED_ATTEMPT_MISSING');
+    return {already:false as const,campaign:c,jobs:all,history,observedAt:backend.observed_at,operationsDigest};
+  }
+  try{
+    await client.query("set statement_timeout='3000ms'");await client.query("set lock_timeout='1000ms'");
+    // Idempotent cold starts read an existing verified certificate without
+    // blocking a later campaign's active sender or requiring its hold to clear.
+    await client.query('begin isolation level repeatable read read only');begun=true;
+    const prior=await inspect();await client.query('rollback');begun=false;
+    if(prior.already)return {state:'already_reconciled' as const,certificate:prior.certificate};
+    const until=Date.now()+acquire;
+    while(locks.length!==2&&Date.now()<until){
+      for(const key of ['lba-update-campaign-global-v1',`lba-telegram-dispatch-bot:${b.botId}`]){
+        if((await client.query('select pg_try_advisory_lock(hashtextextended($1,0)) as locked',[key])).rows[0]?.locked===true)locks.push(key);else break;
+      }
+      if(locks.length!==2){while(locks.length)await client.query('select pg_advisory_unlock(hashtextextended($1,0))',[locks.pop()]);await new Promise(r=>setTimeout(r,75));}
+    }
+    check(locks.length===2,'PROVEN_UNISSUED_BUSY');
+    // This new snapshot is AFTER both locks. An earlier snapshot could miss a
+    // just-committed native effect while waiting for the dispatcher to finish.
+    await client.query('begin isolation level repeatable read');begun=true;
+    const current=await inspect();
+    if(current.already){await client.query('rollback');begun=false;return {state:'already_reconciled' as const,certificate:current.certificate};}
+    const bot=(await client.query('select hold_reason,hold_operation from lba_production_telegram_bot_state where bot_id=$1',[b.botId])).rows;
+    check(bot.length===1&&bot[0].hold_reason===null&&bot[0].hold_operation===null,'PROVEN_UNISSUED_BOT_HOLD');
+    const unsigned:Omit<CampaignProvenUnissuedCertificate,'certificateSha256'>={kind:'lba-campaign-proven-unissued/1',releaseId:b.releaseId,specHash:current.campaign.specHash,buildSha256:b.buildSha256,botId:b.botId,
+      controlEpoch:request.controlEpoch,audienceDigest:current.campaign.spec.audienceDigest,operationIdsDigest:current.operationsDigest,operations:current.jobs.length,
+      dispatchJobs:0,dispatchAttempts:0,providerReceipts:0,predecessorSenderSha256:request.predecessorSenderSha256,operatorCodeSha256:request.operatorCodeSha256,observedAt:current.observedAt};
+    const certificate:CampaignProvenUnissuedCertificate={...unsigned,certificateSha256:certHash(unsigned)};
+    const event:CampaignProvenUnissuedEvent={kind:'not_sent',retryable:false,reason:'operator_proven_unissued',observedAt:current.observedAt,operatorCertificate:certificate};
+    const target=current.jobs.find(j=>j.cohort==='pilot')!;
+    // Append; never overwrite the historical unknown/coordinator events.
+    const appended=await client.query('update lba_release_campaign_attempts set events=events||$3::jsonb where operation_id=$1 and fence=$2',[target.operationId,target.fence,JSON.stringify([event])]);
+    check(appended.rowCount===1,'PROVEN_UNISSUED_FENCE_LOST');
+    const resolved:CampaignJob={...target,state:'failed',lastOutcome:'operator_proven_unissued',leaseOwner:null,leaseUntil:null};
+    const saved=await client.query('update lba_release_campaign_jobs set record=$2::jsonb where operation_id=$1',[target.operationId,JSON.stringify(resolved)]);
+    check(saved.rowCount===1,'PROVEN_UNISSUED_FENCE_LOST');
+    await client.query('commit');begun=false;
+    return {state:'reconciled' as const,certificate};
+  }finally{
+    if(begun)try{await client.query('rollback');}catch{tainted=true;}
+    while(locks.length)try{if((await client.query('select pg_advisory_unlock(hashtextextended($1,0)) as unlocked',[locks.pop()])).rows[0]?.unlocked!==true)tainted=true;}catch{tainted=true;}
+    client.release();
+    // Pool is privately owned by the operator helper and is closed after use.
+    if(tainted)campaignFail('PROVEN_UNISSUED_CLIENT_QUARANTINED');
+  }
+}
 export interface CampaignRecipientEligibility {
   /** Lock/read the actual subscription in this transaction. False for missing/opt-out/blocked/paused or wrong bot. */
   enabled(client: CampaignPgClient, recipientRef: string, botId: string, now: string): Promise<boolean>;

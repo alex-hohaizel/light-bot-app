@@ -1,0 +1,61 @@
+{
+  "kind": "lba-campaign-grant-owned-postgres-proof/1",
+  "target": {
+    "database": "lba_test_grant_timing",
+    "port": 55481,
+    "listen": "127.0.0.1",
+    "version": "PostgreSQL 16.15 on aarch64-apple-darwin24.6.0, compiled by Apple clang version 17.0.0 (clang-1700.0.13.5), 64-bit"
+  },
+  "cases": [
+    {
+      "label": "baseline",
+      "fixed": false,
+      "elapsedMs": 2027,
+      "delayedReads": 15,
+      "jobCount": 0,
+      "outcome": {
+        "kind": "unavailable",
+        "reason": "dispatch_legacy_recipient_unverified"
+      },
+      "nativeCalls": 0,
+      "jsonbDigestVerified": false
+    },
+    {
+      "label": "fixed",
+      "fixed": true,
+      "elapsedMs": 3911,
+      "delayedReads": 29,
+      "jobCount": 1,
+      "outcome": {
+        "kind": "deferred",
+        "operationId": "d2fc20b947db164acde9ec02ad8b053a165a177702064855115a9554a2220808",
+        "reason": "earlier_chat_work"
+      },
+      "nativeCalls": 0,
+      "jsonbDigestVerified": true
+    },
+    {
+      "label": "expired",
+      "fixed": true,
+      "elapsedMs": 811,
+      "delayedReads": 6,
+      "jobCount": 0,
+      "outcome": {
+        "kind": "cancelled",
+        "operationId": "db4b52047088dfa143e97d1a4c6581732d807aa3bd7f665ba732624f76e40a11",
+        "reason": "campaign_recipient_revoked",
+        "outcome": {
+          "kind": "not_sent",
+          "retryable": false,
+          "reason": "campaign_recipient_revoked"
+        }
+      },
+      "nativeCalls": 0,
+      "jsonbDigestVerified": false
+    }
+  ],
+  "syntheticOnly": true,
+  "productionDataRead": false,
+  "realTelegramCalls": 0,
+  "originalDispatchUnknownReset": false
+}

@@ -1,4 +1,4 @@
-import {createHmac,randomUUID,timingSafeEqual} from 'node:crypto';
+import {createHash,createHmac,randomUUID,timingSafeEqual} from 'node:crypto';
 import type {LegacyProfileReadQuery} from './profile-reader.ts';
 import {validInstant} from '../../shared/schedule-core.ts';
 
@@ -40,11 +40,12 @@ function request(value:Request,identityKey:'chatId'|'recipientRef'):boolean{retu
  * campaign spec/phase/lease, recipient/chat locks, native intent and receipts.
  * `prepare` is an explicit operator/caller TX write; `resolve` only SELECTs.
  */
-export function createLegacyCampaignRecipients(options:{enabled?:boolean;expectedBotId:typeof LEGACY_CAMPAIGN_BOT_ID;expectedControlEpoch:number;bindingKey:string|Uint8Array}){
+export function createLegacyCampaignRecipients(options:{enabled?:boolean;expectedBotId:typeof LEGACY_CAMPAIGN_BOT_ID;expectedControlEpoch:number;bindingKey:string|Uint8Array;now?:()=>number}){
  if(!options||options.expectedBotId!==LEGACY_CAMPAIGN_BOT_ID||!Number.isSafeInteger(options.expectedControlEpoch)||options.expectedControlEpoch<1||
-  options.enabled!==undefined&&typeof options.enabled!=='boolean'||typeof options.bindingKey!=='string'&&!(options.bindingKey instanceof Uint8Array))return fail('INVALID_OPTIONS');
- const key=Buffer.from(options.bindingKey),enabled=options.enabled===true,expected=options.expectedControlEpoch;
+  options.enabled!==undefined&&typeof options.enabled!=='boolean'||options.now!==undefined&&typeof options.now!=='function'||typeof options.bindingKey!=='string'&&!(options.bindingKey instanceof Uint8Array))return fail('INVALID_OPTIONS');
+ const key=Buffer.from(options.bindingKey),enabled=options.enabled===true,expected=options.expectedControlEpoch,clock=options.now??Date.now;
  if(key.length<32||key.length>4096)return fail('INVALID_OPTIONS');
+ function current(after:string):string|null{try{const ms=clock();return validInstant(after)&&Number.isSafeInteger(ms)&&ms>=Date.parse(after)?new Date(ms).toISOString():null;}catch{return null;}}
  const hmac=(value:unknown)=>createHmac('sha256',key).update(canonical(value)).digest('hex');
  const revision=(value:{recipientRef:string;chatId:string;subscriberDigest:string;createdAt:string})=>hmac({kind:'legacy-campaign-recipient/2',botId:LEGACY_CAMPAIGN_BOT_ID,controlEpoch:expected,...value});
  async function lock(client:LegacyProfileReadQuery,id:string):Promise<string|null>{
@@ -93,7 +94,7 @@ export function createLegacyCampaignRecipients(options:{enabled?:boolean;expecte
     const subscriberDigest=await eligible(client,input.chatId,input.signal);if(!subscriberDigest)return null;
     const rows=(await client.query('select * from lba_legacy_campaign_recipient where bot_id=$1 and chat_id=$2 for update',[LEGACY_CAMPAIGN_BOT_ID,input.chatId])).rows;
     if(rows.length>1||!await sameTransaction(client,transactionId,input.signal))return null;
-    if(rows.length)return subject(rows[0],input.chatId,subscriberDigest,input.now);
+    if(rows.length){const issuedAt=current(input.now);return issuedAt&&!input.signal.aborted?subject(rows[0],input.chatId,subscriberDigest,issuedAt):null;}
     const recipientRef='legacy:'+randomUUID(),createdAt=new Date(Date.parse(input.now)).toISOString();
     const binding=revision({recipientRef,chatId:input.chatId,subscriberDigest,createdAt});
     const inserted=(await client.query(`insert into lba_legacy_campaign_recipient(recipient_ref,bot_id,chat_id,control_epoch,subscriber_digest,binding_revision,created_at,revoked_at)
@@ -102,7 +103,7 @@ export function createLegacyCampaignRecipients(options:{enabled?:boolean;expecte
     // A failure after INSERT is unconfirmed, never a quiet null that a caller
     // could commit as if nothing happened. The caller must roll back its TX.
     if(inserted.length!==1||!await sameTransaction(client,transactionId,input.signal))return fail('PREPARE_UNCONFIRMED');
-    return subject(inserted[0],input.chatId,subscriberDigest,input.now)??fail('PREPARE_UNCONFIRMED');
+    const issuedAt=current(input.now);return issuedAt&&!input.signal.aborted?subject(inserted[0],input.chatId,subscriberDigest,issuedAt)??fail('PREPARE_UNCONFIRMED'):fail('PREPARE_UNCONFIRMED');
    }catch{return fail('PREPARE_UNCONFIRMED');}
   },
   async resolve(client:LegacyProfileReadQuery,input:Request&{recipientRef:string}):Promise<LegacyCampaignRecipientSubject|null>{
@@ -115,8 +116,13 @@ export function createLegacyCampaignRecipients(options:{enabled?:boolean;expecte
     const id=hint[0].chat_id,transactionId=await lock(client,id);if(!transactionId)return null;
     const subscriberDigest=await eligible(client,id,input.signal);if(!subscriberDigest)return null;
     const rows=(await client.query('select * from lba_legacy_campaign_recipient where recipient_ref=$1 and bot_id=$2 and chat_id=$3 for share',[input.recipientRef,LEGACY_CAMPAIGN_BOT_ID,id])).rows;
-    if(rows.length!==1||!await sameTransaction(client,transactionId,input.signal))return null;
-    return subject(rows[0],id,subscriberDigest,input.now);
+    if(rows.length!==1)return null;
+    // Keep the same physical-chat guard under this identity transaction; issue
+    // the one-second subject only AFTER this final authority read and tx check.
+    const chatKey=createHash('sha256').update(JSON.stringify([LEGACY_CAMPAIGN_BOT_ID,id,'private'])).digest('hex');
+    const reach=(await client.query('select owner_id as "ownerId",recipient_kind as "recipientKind",reachability from lba_production_telegram_chat_state where bot_id=$1 and chat_key=$2 for share',[LEGACY_CAMPAIGN_BOT_ID,chatKey])).rows;
+    if(reach.length>1||reach.length===1&&(reach[0].ownerId!==null||reach[0].recipientKind!=='legacy_subscription'||!['unknown','reachable'].includes(reach[0].reachability))||!await sameTransaction(client,transactionId,input.signal))return null;
+    const issuedAt=current(input.now);return issuedAt&&!input.signal.aborted?subject(rows[0],id,subscriberDigest,issuedAt):null;
    }catch{return null;}
   },
  });

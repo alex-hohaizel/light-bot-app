@@ -1,10 +1,10 @@
 {
   "kind": "lba-exact-prebuilt-release/1",
-  "sourceSha256": "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc",
+  "sourceSha256": "768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126",
   "target": "node20",
   "sourceInputs": 315,
   "buildArtifacts": 17,
-  "buildReceiptSha256": "b4c1eb260f048de6949cb76480b7bb45f5c96bf453c8add791f593a9553e8b85",
+  "buildReceiptSha256": "dfabd9949f07cd3d9a0883698e8a1b98ab9de834768eb56d5eb2060f97b99613",
   "files": [
     {
       "path": "app/.replit",
@@ -612,11 +612,11 @@
     },
     {
       "path": "app/dist-production/build-receipt.json",
-      "sha256": "b4c1eb260f048de6949cb76480b7bb45f5c96bf453c8add791f593a9553e8b85"
+      "sha256": "dfabd9949f07cd3d9a0883698e8a1b98ab9de834768eb56d5eb2060f97b99613"
     },
     {
       "path": "app/dist-production/index.cjs",
-      "sha256": "667b24697adb326b7e13eaf434ea03f909b81ce1420eb40f64d3c37eef4ca54a"
+      "sha256": "13a2efc3418e4bd8055c497a79dbf68117e3e552bcd8f03f88e4da0e702a614e"
     },
     {
       "path": "app/dist-production/public/.vite/manifest.json",
@@ -680,7 +680,7 @@
     },
     {
       "path": "app/dist-production/server-metafile.json",
-      "sha256": "57a1634eec7670f834ad7abd80525082871bfdef11d320e2f0461cae505ba13d"
+      "sha256": "e88306cc504d97e40ebbfc10e6c101f4ee1b2d0a46f6b9efe4b9bf981e7a8762"
     },
     {
       "path": "app/package-lock.json",
@@ -880,7 +880,7 @@
     },
     {
       "path": "app/server/production/canonical-runtime.ts",
-      "sha256": "da14bc8d6a70ba8ff7bfd1c469a64fadabc45f1bc5e4a89a35d1a83cd10ebfb1"
+      "sha256": "f189c792c5c583965446dfa469684257dfddf5b8067e8cd8e03b0367876499a4"
     },
     {
       "path": "app/server/production/canonical-schema.ts",
@@ -896,7 +896,7 @@
     },
     {
       "path": "app/server/production/legacy-campaign-recipient.ts",
-      "sha256": "eca5ef5ec5ce2c0c9f9c744a5123e0438d8b555d76247bce9f3bcfcc99f8baaa"
+      "sha256": "338e7132a84ab7be756b8b8f88495d292058ad1bae207248b08fece9bfaa2ed3"
     },
     {
       "path": "app/server/production/legacy-identity-links.ts",
@@ -1052,7 +1052,7 @@
     },
     {
       "path": "app/server/production/telegram-dispatch-eligibility.ts",
-      "sha256": "d0ebc165687fe19f7170a1bed497d18e2726bef49353fe012dba7e6999a95b12"
+      "sha256": "b1020d6faa2977f91f41608c9f1304fafebe860bcc5c7c3172478534b5cf4290"
     },
     {
       "path": "app/server/production/telegram-dispatch.ts",
@@ -1092,7 +1092,7 @@
     },
     {
       "path": "app/server/release/update-campaign-pg.ts",
-      "sha256": "e24d1dea21aea5bd3889d5b9a73704fd03dc1a11d343bcc5c023a08052bf871e"
+      "sha256": "939024a5bf7ced420d77fb3babae063564837b918718e8c0a17397d089a6a74f"
     },
     {
       "path": "app/server/release/update-campaign.ts",

@@ -9627,7 +9627,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc") ? "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126") ? "768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126" : null;
   }
 });
 
@@ -22444,8 +22444,16 @@ function telegramOwnerRecipientRef(ownerId) {
   return "owner:" + sha12(ownerId).slice(0, 40);
 }
 function createSqlTelegramDispatchEligibility(options) {
-  const epoch8 = options.expectedControlEpoch, ttl = options.grantTtlMs ?? 1e3;
-  if (options.expectedBotId !== BOT || !Number.isSafeInteger(epoch8) || epoch8 < 1 || !Number.isInteger(ttl) || ttl < 1 || ttl > 5e3 || options.verifySource !== void 0 && typeof options.verifySource !== "function") throw Error("INVALID_TELEGRAM_SQL_ELIGIBILITY");
+  const epoch8 = options.expectedControlEpoch, ttl = options.grantTtlMs ?? 1e3, clock = options.now ?? Date.now;
+  if (options.expectedBotId !== BOT || !Number.isSafeInteger(epoch8) || epoch8 < 1 || !Number.isInteger(ttl) || ttl < 1 || ttl > 5e3 || options.verifySource !== void 0 && typeof options.verifySource !== "function" || options.now !== void 0 && typeof options.now !== "function") throw Error("INVALID_TELEGRAM_SQL_ELIGIBILITY");
+  function current2(after) {
+    try {
+      const ms = clock();
+      return validInstant(after) && Number.isSafeInteger(ms) && ms >= Date.parse(after) ? new Date(ms).toISOString() : null;
+    } catch {
+      return null;
+    }
+  }
   async function mapping(client2, owner2, expectedSession, emptyReplyAt) {
     const rows = (await client2.query(`select p.owner_id as "ownerId",p.session_id as "sessionId",p.revision,p.state,p.control_epoch as "profileEpoch",o.control_epoch as "originEpoch",o.private_provenance as provenance,o.source_digest as "sourceDigest",b.control_epoch as "bootstrapEpoch",b.session_id as "bootstrapSession",b.origin_kind as "originKind",b.source_digest as "bootstrapDigest" from lba_production_profiles p join lba_production_profile_origins o on o.owner_id=p.owner_id join lba_production_bootstrap_ledger b on b.owner_id=p.owner_id where p.owner_id=$1 for share of p,o,b`, [owner2])).rows;
     if (rows.length !== 1) return null;
@@ -22499,42 +22507,48 @@ function createSqlTelegramDispatchEligibility(options) {
         return { eligible: false, reason: "not_eligible" };
       }
     }
-    let expiresAt = new Date(Date.parse(now) + ttl).toISOString(), proof = null;
+    let bound = Number.POSITIVE_INFINITY, proof = null;
     if (job2.sourceKind === "campaign") {
       if (!job2.payload.campaign) return { eligible: false, reason: "not_eligible" };
-      const current2 = await resolveCampaignOwner({ client: client2, envelope: job2.payload.campaign, now, signal: request3.signal });
-      if (!current2 || current2.ownerId !== job2.ownerId) return { eligible: false, reason: "not_eligible" };
-      expiresAt = new Date(Math.min(Date.parse(expiresAt), Date.parse(current2.expiresAt))).toISOString();
+      const current3 = await resolveCampaignOwner({ client: client2, envelope: job2.payload.campaign, now, signal: request3.signal });
+      if (!current3 || current3.ownerId !== job2.ownerId) return { eligible: false, reason: "not_eligible" };
+      bound = Math.min(bound, Date.parse(current3.expiresAt));
     }
     if (job2.payload.schedule || job2.payload.briefing) {
       proof = await options.verifySource?.(request3) ?? null;
       if (!proof || !text19(proof.sourceRevision) || job2.payload.schedule && proof.sourceRevision !== job2.payload.schedule.source.revision || !validInstant(proof.expiresAt) || Date.parse(proof.expiresAt) <= Date.parse(now)) return { eligible: false, reason: "source_unverified" };
-      expiresAt = new Date(Math.min(Date.parse(expiresAt), Date.parse(proof.expiresAt))).toISOString();
+      bound = Math.min(bound, Date.parse(proof.expiresAt));
     }
+    const issuedAt = current2(now);
+    if (!issuedAt || request3.signal.aborted) return { eligible: false, reason: "not_eligible" };
+    if (bound <= Date.parse(issuedAt)) return { eligible: false, reason: proof ? "source_unverified" : "not_eligible" };
+    const expiresAt = new Date(Math.min(Date.parse(issuedAt) + ttl, bound)).toISOString();
     return { eligible: true, ownerId: job2.ownerId, recipientRef: job2.recipientRef, chatId: value.chatId, chatType: "private", mappingRevision: value.mappingRevision, expiresAt, ...proof ? { sourceRevision: proof.sourceRevision, ...proof.eventProof ? { eventProof: proof.eventProof } : {} } : {} };
   };
   async function campaignLease({ client: client2, envelope, now, signal }) {
     if (signal.aborted || envelope.botId !== BOT || !validInstant(now)) return null;
     const rows = (await client2.query('select c.spec_hash as "specHash",c.record as campaign,j.record as job from lba_release_campaigns c join lba_release_campaign_jobs j on j.release_id=c.release_id where c.release_id=$1 and j.operation_id=$2 for share of c,j', [envelope.releaseId, envelope.operationId])).rows;
-    if (rows.length !== 1) return null;
+    const checkedAt = current2(now);
+    if (rows.length !== 1 || !checkedAt || signal.aborted) return null;
     const c = decoded5(rows[0].campaign), j = decoded5(rows[0].job), spec = c?.spec;
-    if (!c || !j || !spec || c.specHash !== rows[0].specHash || campaignSpecHash(spec) !== c.specHash || !["pilot", "full"].includes(c.phase) || c.phase === "pilot" && j.cohort !== "pilot" || j.state !== "dispatching" || j.botId !== BOT || j.releaseId !== envelope.releaseId || j.recipientRef !== envelope.recipientRef || j.operationId !== envelope.operationId || envelope.operationId !== campaignOperationId(envelope.releaseId, envelope.recipientRef) || !validInstant(j.leaseUntil) || Date.parse(j.leaseUntil) <= Date.parse(now) || !validInstant(spec.expiresAt) || Date.parse(spec.expiresAt) <= Date.parse(now) || ["releaseId", "deploymentId", "buildSha256", "botId", "origin", "text", "appUrl"].some((k) => spec[k] !== envelope[k])) return null;
-    return new Date(Math.min(Date.parse(now) + ttl, Date.parse(j.leaseUntil), Date.parse(spec.expiresAt))).toISOString();
+    if (!c || !j || !spec || c.specHash !== rows[0].specHash || campaignSpecHash(spec) !== c.specHash || !["pilot", "full"].includes(c.phase) || c.phase === "pilot" && j.cohort !== "pilot" || j.state !== "dispatching" || j.botId !== BOT || j.releaseId !== envelope.releaseId || j.recipientRef !== envelope.recipientRef || j.operationId !== envelope.operationId || envelope.operationId !== campaignOperationId(envelope.releaseId, envelope.recipientRef) || !validInstant(j.leaseUntil) || Date.parse(j.leaseUntil) <= Date.parse(checkedAt) || !validInstant(spec.expiresAt) || Date.parse(spec.expiresAt) <= Date.parse(checkedAt) || ["releaseId", "deploymentId", "buildSha256", "botId", "origin", "text", "appUrl"].some((k) => spec[k] !== envelope[k])) return null;
+    return { validUntil: new Date(Math.min(Date.parse(j.leaseUntil), Date.parse(spec.expiresAt))).toISOString(), checkedAt };
   }
   const resolveCampaignOwner = async (request3) => {
-    const expiresAt = await campaignLease(request3);
-    if (!expiresAt) return null;
-    const ownerId = await ownerForRef(request3.client, request3.envelope.recipientRef);
-    return ownerId ? { ownerId, expiresAt } : null;
+    const lease = await campaignLease(request3);
+    if (!lease) return null;
+    const ownerId = await ownerForRef(request3.client, request3.envelope.recipientRef), issuedAt = current2(lease.checkedAt);
+    if (!ownerId || !issuedAt || request3.signal.aborted || Date.parse(lease.validUntil) <= Date.parse(issuedAt)) return null;
+    return { ownerId, expiresAt: new Date(Math.min(Date.parse(issuedAt) + ttl, Date.parse(lease.validUntil))).toISOString() };
   };
   const resolveLegacyCampaignRecipient = async (request3) => {
-    const expiresAt = await campaignLease(request3);
-    if (!expiresAt || !options.legacyRecipients) return null;
-    const subject = await options.legacyRecipients.resolve(request3.client, { recipientRef: request3.envelope.recipientRef, now: request3.now, signal: request3.signal });
-    if (!subject || subject.botId !== BOT || subject.recipientRef !== request3.envelope.recipientRef || !validInstant(subject.expiresAt) || Date.parse(subject.expiresAt) <= Date.parse(request3.now)) return null;
-    const reach = (await request3.client.query('select owner_id as "ownerId",recipient_kind as "recipientKind",reachability from lba_production_telegram_chat_state where bot_id=$1 and chat_key=$2 for share', [BOT, sha12([BOT, subject.chatId, "private"])])).rows;
-    if (reach.length > 1 || reach.length === 1 && (reach[0].ownerId !== null || reach[0].recipientKind !== "legacy_subscription" || !["unknown", "reachable"].includes(reach[0].reachability))) return null;
-    return { ...subject, expiresAt: new Date(Math.min(Date.parse(subject.expiresAt), Date.parse(expiresAt))).toISOString() };
+    const lease = await campaignLease(request3);
+    if (!lease || !options.legacyRecipients) return null;
+    const subject = await options.legacyRecipients.resolve(request3.client, { recipientRef: request3.envelope.recipientRef, now: lease.checkedAt, signal: request3.signal });
+    if (!subject || subject.botId !== BOT || subject.recipientRef !== request3.envelope.recipientRef || !validInstant(subject.expiresAt)) return null;
+    const issuedAt = current2(lease.checkedAt);
+    if (!issuedAt || request3.signal.aborted || Date.parse(subject.expiresAt) <= Date.parse(issuedAt) || Date.parse(lease.validUntil) <= Date.parse(issuedAt)) return null;
+    return { ...subject, expiresAt: new Date(Math.min(Date.parse(issuedAt) + ttl, Date.parse(subject.expiresAt), Date.parse(lease.validUntil))).toISOString() };
   };
   const campaignEligibility = { async enabled(client2, recipientRef, botId, now) {
     if (botId !== BOT || !validInstant(now)) return false;
@@ -22545,10 +22559,10 @@ function createSqlTelegramDispatchEligibility(options) {
     const owner2 = await ownerForRef(client2, recipientRef);
     if (!owner2) return false;
     await client2.query("select pg_advisory_xact_lock(hashtextextended($1,0))", ["lba-production-owner:" + owner2]);
-    const current2 = await mapping(client2, owner2);
-    if (!current2) return false;
+    const current3 = await mapping(client2, owner2);
+    if (!current3) return false;
     try {
-      return globalNotificationPolicy(current2.state.profile.preferences, "telegram").enabled;
+      return globalNotificationPolicy(current3.state.profile.preferences, "telegram").enabled;
     } catch {
       return false;
     }
@@ -23797,9 +23811,17 @@ function request2(value, identityKey) {
   return Boolean(plain16(value) && Object.keys(value).length === 3 && Object.keys(value).every((k) => ["now", "signal", identityKey].includes(k)) && validInstant(value.now) && value.signal && typeof value.signal.aborted === "boolean" && typeof value.signal.addEventListener === "function");
 }
 function createLegacyCampaignRecipients(options) {
-  if (!options || options.expectedBotId !== LEGACY_CAMPAIGN_BOT_ID || !Number.isSafeInteger(options.expectedControlEpoch) || options.expectedControlEpoch < 1 || options.enabled !== void 0 && typeof options.enabled !== "boolean" || typeof options.bindingKey !== "string" && !(options.bindingKey instanceof Uint8Array)) return fail28("INVALID_OPTIONS");
-  const key3 = Buffer.from(options.bindingKey), enabled = options.enabled === true, expected = options.expectedControlEpoch;
+  if (!options || options.expectedBotId !== LEGACY_CAMPAIGN_BOT_ID || !Number.isSafeInteger(options.expectedControlEpoch) || options.expectedControlEpoch < 1 || options.enabled !== void 0 && typeof options.enabled !== "boolean" || options.now !== void 0 && typeof options.now !== "function" || typeof options.bindingKey !== "string" && !(options.bindingKey instanceof Uint8Array)) return fail28("INVALID_OPTIONS");
+  const key3 = Buffer.from(options.bindingKey), enabled = options.enabled === true, expected = options.expectedControlEpoch, clock = options.now ?? Date.now;
   if (key3.length < 32 || key3.length > 4096) return fail28("INVALID_OPTIONS");
+  function current2(after) {
+    try {
+      const ms = clock();
+      return validInstant(after) && Number.isSafeInteger(ms) && ms >= Date.parse(after) ? new Date(ms).toISOString() : null;
+    } catch {
+      return null;
+    }
+  }
   const hmac = (value) => (0, import_node_crypto49.createHmac)("sha256", key3).update(canonical13(value)).digest("hex");
   const revision2 = (value) => hmac({ kind: "legacy-campaign-recipient/2", botId: LEGACY_CAMPAIGN_BOT_ID, controlEpoch: expected, ...value });
   async function lock2(client2, id6) {
@@ -23843,14 +23865,18 @@ function createLegacyCampaignRecipients(options) {
         if (!subscriberDigest) return null;
         const rows = (await client2.query("select * from lba_legacy_campaign_recipient where bot_id=$1 and chat_id=$2 for update", [LEGACY_CAMPAIGN_BOT_ID, input.chatId])).rows;
         if (rows.length > 1 || !await sameTransaction(client2, transactionId, input.signal)) return null;
-        if (rows.length) return subject(rows[0], input.chatId, subscriberDigest, input.now);
+        if (rows.length) {
+          const issuedAt2 = current2(input.now);
+          return issuedAt2 && !input.signal.aborted ? subject(rows[0], input.chatId, subscriberDigest, issuedAt2) : null;
+        }
         const recipientRef = "legacy:" + (0, import_node_crypto49.randomUUID)(), createdAt = new Date(Date.parse(input.now)).toISOString();
         const binding2 = revision2({ recipientRef, chatId: input.chatId, subscriberDigest, createdAt });
         const inserted = (await client2.query(`insert into lba_legacy_campaign_recipient(recipient_ref,bot_id,chat_id,control_epoch,subscriber_digest,binding_revision,created_at,revoked_at)
      values($1,$2,$3,$4,$5,$6,$7,null) on conflict(bot_id,chat_id) do nothing returning *`, [recipientRef, LEGACY_CAMPAIGN_BOT_ID, input.chatId, expected, subscriberDigest, binding2, createdAt])).rows;
         if (!inserted.length) return null;
         if (inserted.length !== 1 || !await sameTransaction(client2, transactionId, input.signal)) return fail28("PREPARE_UNCONFIRMED");
-        return subject(inserted[0], input.chatId, subscriberDigest, input.now) ?? fail28("PREPARE_UNCONFIRMED");
+        const issuedAt = current2(input.now);
+        return issuedAt && !input.signal.aborted ? subject(inserted[0], input.chatId, subscriberDigest, issuedAt) ?? fail28("PREPARE_UNCONFIRMED") : fail28("PREPARE_UNCONFIRMED");
       } catch {
         return fail28("PREPARE_UNCONFIRMED");
       }
@@ -23866,8 +23892,12 @@ function createLegacyCampaignRecipients(options) {
         const subscriberDigest = await eligible3(client2, id6, input.signal);
         if (!subscriberDigest) return null;
         const rows = (await client2.query("select * from lba_legacy_campaign_recipient where recipient_ref=$1 and bot_id=$2 and chat_id=$3 for share", [input.recipientRef, LEGACY_CAMPAIGN_BOT_ID, id6])).rows;
-        if (rows.length !== 1 || !await sameTransaction(client2, transactionId, input.signal)) return null;
-        return subject(rows[0], id6, subscriberDigest, input.now);
+        if (rows.length !== 1) return null;
+        const chatKey = (0, import_node_crypto49.createHash)("sha256").update(JSON.stringify([LEGACY_CAMPAIGN_BOT_ID, id6, "private"])).digest("hex");
+        const reach = (await client2.query('select owner_id as "ownerId",recipient_kind as "recipientKind",reachability from lba_production_telegram_chat_state where bot_id=$1 and chat_key=$2 for share', [LEGACY_CAMPAIGN_BOT_ID, chatKey])).rows;
+        if (reach.length > 1 || reach.length === 1 && (reach[0].ownerId !== null || reach[0].recipientKind !== "legacy_subscription" || !["unknown", "reachable"].includes(reach[0].reachability)) || !await sameTransaction(client2, transactionId, input.signal)) return null;
+        const issuedAt = current2(input.now);
+        return issuedAt && !input.signal.aborted ? subject(rows[0], id6, subscriberDigest, issuedAt) : null;
       } catch {
         return null;
       }
@@ -25421,7 +25451,7 @@ function createCanonicalRuntime(ports) {
   const interactiveCertifiedProof = createCertifiedInteractiveScheduleProof(events, epoch8);
   const morningBriefing = createProductionMorningBriefing({ enabled: policy.notificationSchedulerEnabled, expectedControlEpoch: epoch8, store, events });
   const eventProducer = createProductionEventProducer({ enabled: policy.notificationSchedulerEnabled, expectedControlEpoch: epoch8, pool: pool2, events, morningBriefing, now });
-  const legacyRecipients = ports.accountConfiguration ? createLegacyCampaignRecipients({ enabled: policy.telegramDeliveryEnabled, expectedBotId: PRODUCT_TELEGRAM_IDENTITY.botId, expectedControlEpoch: epoch8, bindingKey: ports.accountConfiguration.bindingKey }) : void 0;
+  const legacyRecipients = ports.accountConfiguration ? createLegacyCampaignRecipients({ enabled: policy.telegramDeliveryEnabled, expectedBotId: PRODUCT_TELEGRAM_IDENTITY.botId, expectedControlEpoch: epoch8, bindingKey: ports.accountConfiguration.bindingKey, now: ms }) : void 0;
   const preflight = createBotAddressPreflight({ store, pool: pool2, flow, now, wait: (ms2) => new Promise((resolve) => setTimeout(resolve, ms2)) });
   const processor = createTelegramProcessor({
     enabled: policy.telegramUpdatesEnabled,
@@ -25437,6 +25467,7 @@ function createCanonicalRuntime(ports) {
     expectedBotId: PRODUCT_TELEGRAM_IDENTITY.botId,
     expectedControlEpoch: epoch8,
     legacyRecipients,
+    now: ms,
     verifySource: (request3) => request3.job.payload.briefing ? morningBriefing.verifyDispatch(request3) : request3.job.payload.message.kind === "notification" ? events.verifyDispatch(request3) : request3.job.payload.message.kind === "schedule" && request3.job.payload.schedule?.deliveryEligible === true ? interactiveCertifiedProof(request3) : ports.verifySource?.(request3) ?? Promise.resolve(null)
   });
   const telegramFetch = async (url, request3) => {
