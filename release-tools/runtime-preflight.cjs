@@ -12,9 +12,9 @@ function check(ok, code) { if (!ok) throw new Error(code); }
 try {
   check(process.argv.length === 2 || (process.argv.length === 3 && process.argv[2] === '--inventory'), 'PREFLIGHT_ARGUMENTS_INVALID');
   check(process.versions.node.split('.')[0] === '20', 'PREFLIGHT_NODE20_REQUIRED');
-  check(sha(fs.readFileSync(entry)) === '2892dd3fef763a13acbb7abdbaba2a5fc1f1dc28a07e2eb9fff4d5ff43367ccb', 'PREFLIGHT_ENTRY_DRIFT');
+  check(sha(fs.readFileSync(entry)) === '63d469a607ae6a5ff354acc8df47d9ae9bee8a15e4de62805ab73038babed306', 'PREFLIGHT_ENTRY_DRIFT');
   const bytes = fs.readFileSync(metaPath);
-  check(sha(bytes) === 'b81f0e68441efa54ea8c94d2f16426c142e2b2fb2599e27a23bd29c3b063a0e2', 'PREFLIGHT_METAFILE_DRIFT');
+  check(sha(bytes) === '56115c707b25f7541b485094907d77e27a6032a90ce897e6b8184f6c7c38f7a0', 'PREFLIGHT_METAFILE_DRIFT');
   const meta = JSON.parse(bytes);
   const outputs = Object.values(meta.outputs);
   check(outputs.length === 1, 'PREFLIGHT_OUTPUT_SHAPE');

@@ -152,12 +152,15 @@ export interface CampaignRecipientEligibility {
 }
 const STATES: DeliveryState[] = ['pending','leased','dispatching','retry_wait','outcome_unknown','sent','cancelled','failed'];
 const TERMINAL: DeliveryState[] = ['sent','cancelled','failed'];
+const HEALTH_PAUSE = 'deployment_health_unverified';
 function decode<T>(value: any): T { return structuredClone(typeof value === 'string' ? JSON.parse(value) : value) as T; }
 function record(row: any): CampaignRecord {
   const c = decode<CampaignRecord>(row?.record);
   if (!c?.spec || c.spec.version !== UPDATE_CAMPAIGN_VERSION || c.spec.releaseId !== row.release_id || c.spec.botId !== row.bot_id ||
       c.specHash !== row.spec_hash || campaignSpecHash(c.spec) !== c.specHash || !['prepared','pilot','full','paused','completed'].includes(c.phase) ||
       !campaignInstant(c.spec.createdAt) || !campaignInstant(c.spec.expiresAt)) return campaignFail('CAMPAIGN_RECORD_INVALID');
+  if (c.resumePhase !== undefined &&
+      (c.phase !== 'paused' || c.pauseReason !== HEALTH_PAUSE || !['pilot','full'].includes(c.resumePhase))) return campaignFail('CAMPAIGN_RECORD_INVALID');
   return c;
 }
 function job(row: any): CampaignJob {
@@ -225,7 +228,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
       if (j.state === 'dispatching') {
         await event(client,j,{kind:'unknown',reason:'dispatch_lease_expired'},now);
         j.state = 'outcome_unknown'; j.lastOutcome = 'dispatch_lease_expired';
-        const c = await load(client, j.releaseId); c.phase = 'paused'; c.pauseReason = 'dispatch_outcome_unknown'; await saveCampaign(client, c);
+        const c = await load(client, j.releaseId); c.phase = 'paused'; c.pauseReason = 'dispatch_outcome_unknown'; delete c.resumePhase; await saveCampaign(client, c);
         // Keep this attempt's fence/worker so a known late positive receipt can resolve it without re-send.
       } else { j.state = 'pending'; j.lastOutcome = 'lease_expired_before_dispatch'; clearLease(j); }
       await saveJob(client, j);
@@ -261,7 +264,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
   async function startPilot(releaseId: string, now: string) {
     nowCheck(now); return tx(async client => {
       let c = await load(client, releaseId); await recoverBot(client, c.spec.botId, now); c = await load(client, releaseId);
-      if (!['prepared','paused','pilot'].includes(c.phase) || Date.parse(now) < Date.parse(c.spec.createdAt) || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client, c.spec.botId)) return null;
+      if (!['prepared','paused','pilot'].includes(c.phase) || c.pauseReason === HEALTH_PAUSE || Date.parse(now) < Date.parse(c.spec.createdAt) || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client, c.spec.botId)) return null;
       c.phase = 'pilot'; c.pauseReason = null; await saveCampaign(client, c); return summaryIn(client, c);
     }).then(value => value ?? campaignFail('CAMPAIGN_PILOT_BLOCKED'));
   }
@@ -269,13 +272,37 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
     nowCheck(now); return tx(async client => {
       let c = await load(client, releaseId); await recoverBot(client, c.spec.botId, now); c = await load(client, releaseId);
       const pilot = (await jobs(client, releaseId)).filter(j => j.cohort === 'pilot');
-      if (!pilot.length || pilot.length !== c.spec.pilotRecipientRefs.length || pilot.some(j => j.state !== 'sent') || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client, c.spec.botId)) return null;
+      if (c.pauseReason === HEALTH_PAUSE || !pilot.length || pilot.length !== c.spec.pilotRecipientRefs.length || pilot.some(j => j.state !== 'sent') || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client, c.spec.botId)) return null;
       if (c.phase !== 'completed') { c.phase = 'full'; c.pauseReason = null; await saveCampaign(client, c); }
       return summaryIn(client, c);
     }).then(value => value ?? campaignFail('CAMPAIGN_PILOT_NOT_CONFIRMED'));
   }
+  async function resumeAfterHealth(releaseId: string, health: DeploymentHealthObservation | null, now: string) {
+    const time = nowCheck(now);
+    return tx(async client => {
+      let c = await load(client, releaseId);
+      await recoverBot(client, c.spec.botId, now);
+      c = await load(client, releaseId);
+      if (c.phase !== 'paused' || c.pauseReason !== HEALTH_PAUSE ||
+          time < Date.parse(c.spec.createdAt) || time >= Date.parse(c.spec.expiresAt) ||
+          !validDeploymentHealth(campaignBinding(c.spec), health, now) || !await noUnknown(client, c.spec.botId)) {
+        return summaryIn(client, c);
+      }
+      let phase = c.resumePhase;
+      if (phase === undefined) {
+        // Older health pauses did not store their phase. Preserve the prior promotion rule for them.
+        const pilot = (await jobs(client, releaseId)).filter(j => j.cohort === 'pilot');
+        phase = pilot.length > 0 && pilot.length === c.spec.pilotRecipientRefs.length && pilot.every(j => j.state === 'sent') ? 'full' : 'pilot';
+      }
+      c.phase = phase;
+      c.pauseReason = null;
+      delete c.resumePhase;
+      await saveCampaign(client, c);
+      return summaryIn(client, c);
+    });
+  }
   async function pause(releaseId: string) {
-    return tx(async client => { const c = await load(client, releaseId); if (c.phase !== 'completed') { c.phase = 'paused'; c.pauseReason = 'operator_paused'; await saveCampaign(client, c); } return summaryIn(client, c); });
+    return tx(async client => { const c = await load(client, releaseId); if (c.phase !== 'completed') { c.phase = 'paused'; c.pauseReason = 'operator_paused'; delete c.resumePhase; await saveCampaign(client, c); } return summaryIn(client, c); });
   }
   const repo: CoordinatedCampaignRepository = {
     async claim(releaseId, workerId, now, leaseSeconds) {
@@ -306,8 +333,13 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
         if (!rows.rows.length) return 'lost'; const j = job(rows.rows[0]);
         if (!sameClaim(c, j, claim) || j.state !== 'leased' || !j.leaseUntil || time >= Date.parse(j.leaseUntil)) return 'lost';
         if (time >= Date.parse(c.spec.expiresAt)) { j.state = 'cancelled'; j.lastOutcome = 'campaign_expired_before_send'; clearLease(j); await saveJob(client, j); return 'cancelled'; }
-        if (!['pilot','full'].includes(c.phase) || c.phase === 'pilot' && j.cohort !== 'pilot' || !validDeploymentHealth(campaignBinding(c.spec), health, now)) {
-          j.state = 'pending'; j.lastOutcome = 'deployment_health_unverified'; clearLease(j); c.phase = 'paused'; c.pauseReason = j.lastOutcome; await saveJob(client, j); await saveCampaign(client, c); return 'health_blocked';
+        if ((c.phase !== 'pilot' && c.phase !== 'full') || c.phase === 'pilot' && j.cohort !== 'pilot') {
+          j.state = 'pending'; j.lastOutcome = 'campaign_phase_changed'; clearLease(j); await saveJob(client, j); return 'lost';
+        }
+        if (!validDeploymentHealth(campaignBinding(c.spec), health, now)) {
+          j.state = 'pending'; j.lastOutcome = HEALTH_PAUSE; clearLease(j); await saveJob(client, j);
+          c.resumePhase = c.phase; c.phase = 'paused'; c.pauseReason = HEALTH_PAUSE; await saveCampaign(client, c);
+          return 'health_blocked';
         }
         // The injected reader must lock the actual current subscription row in this same transaction.
         const enabled = await eligibility.enabled(client, j.recipientRef, c.spec.botId, now);
@@ -341,7 +373,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
         if (j.state === 'outcome_unknown' && outcome.kind !== 'sent' && outcome.kind !== 'unknown') return;
         if (j.state === 'outcome_unknown' && outcome.kind === 'unknown' && j.lastOutcome === outcome.reason) return;
         await event(client,j,outcome,now);
-        if (outcome.kind === 'unknown') { j.state = 'outcome_unknown'; j.lastOutcome = outcome.reason; c.phase = 'paused'; c.pauseReason = 'dispatch_outcome_unknown'; }
+        if (outcome.kind === 'unknown') { j.state = 'outcome_unknown'; j.lastOutcome = outcome.reason; c.phase = 'paused'; c.pauseReason = 'dispatch_outcome_unknown'; delete c.resumePhase; }
         else if (outcome.kind === 'sent') { j.state = 'sent'; j.providerReceipt = outcome.receipt; j.lastOutcome = 'telegram_confirmed'; clearLease(j); }
         else {
           const retry = outcome.kind === 'rate_limited' || outcome.retryable;
@@ -349,7 +381,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
           j.nextAttemptAt = new Date(time + delay * 1000).toISOString();
           j.state = !retry || j.attempts >= c.spec.maxAttempts || Date.parse(j.nextAttemptAt) >= Date.parse(c.spec.expiresAt) ? 'failed' : 'retry_wait';
           j.lastOutcome = outcome.kind; clearLease(j);
-          if (j.cohort === 'pilot' && j.state === 'failed') { c.phase = 'paused'; c.pauseReason = 'pilot_failed'; }
+          if (j.cohort === 'pilot' && j.state === 'failed') { c.phase = 'paused'; c.pauseReason = 'pilot_failed'; delete c.resumePhase; }
         }
         await saveJob(client, j);
         if (c.phase === 'full' && (await jobs(client, j.releaseId)).every(item => TERMINAL.includes(item.state))) { c.phase = 'completed'; c.pauseReason = null; }
@@ -357,7 +389,7 @@ export function createPgUpdateCampaignRepository(pool: CampaignPgPool, eligibili
       });
     },
   };
-  return { ...repo, prepare, startPilot, promote, pause,
+  return { ...repo, prepare, startPilot, promote, resumeAfterHealth, pause,
     summary: (releaseId: string) => tx(async client => summaryIn(client, await load(client, releaseId))),
     attemptHistory: (releaseId: string) => tx(async client => { await load(client,releaseId); return (await client.query('select operation_id,fence,worker_id,spec_hash,events from lba_release_campaign_attempts where release_id=$1 order by operation_id,fence',[releaseId])).rows; }) };
 }

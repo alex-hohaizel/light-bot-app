@@ -2897,7 +2897,7 @@
       "format": "esm"
     },
     "server/release/update-campaign.ts": {
-      "bytes": 17352,
+      "bytes": 17386,
       "imports": [
         {
           "path": "node:crypto",
@@ -3022,7 +3022,7 @@
       "format": "esm"
     },
     "server/release/update-campaign-pg.ts": {
-      "bytes": 32818,
+      "bytes": 34631,
       "imports": [
         {
           "path": "server/release/update-campaign.ts",
@@ -3260,7 +3260,7 @@
       "format": "esm"
     },
     "server/production/release-campaign.ts": {
-      "bytes": 19753,
+      "bytes": 19910,
       "imports": [
         {
           "path": "node:crypto",
@@ -4968,7 +4968,7 @@
           "bytesInOutput": 13947
         },
         "server/release/update-campaign-pg.ts": {
-          "bytesInOutput": 20004
+          "bytesInOutput": 21734
         },
         "server/production/morning-reconciliation.ts": {
           "bytesInOutput": 20887
@@ -4992,7 +4992,7 @@
           "bytesInOutput": 4891
         },
         "server/production/release-campaign.ts": {
-          "bytesInOutput": 18416
+          "bytesInOutput": 18602
         },
         "server/domain/odesa-qualification.ts": {
           "bytesInOutput": 17212
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1800107
+      "bytes": 1802023
     }
   }
 }

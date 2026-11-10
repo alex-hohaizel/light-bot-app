@@ -132,6 +132,50 @@ test('timeout is durable unknown, cannot retry/promote, and only a late same-att
   const audit=await f.repo.attemptHistory('release-v8');assert.deepEqual(audit[0].events.map((x:any)=>x.kind),['dispatching','unknown','sent']);
 });
 
+test('health-only pause resumes full with a terminal excluded pilot and spends no attempt on the failed health check', async () => {
+  const f = fixture();
+  const input = spec();
+  await f.repo.prepare(input, refs);
+  f.db.campaigns.get(input.releaseId).record.phase = 'full';
+  const pilot = f.db.jobs.get(campaignOperationId(input.releaseId, refs[0])).record;
+  Object.assign(pilot, { state: 'failed', lastOutcome: 'provider_403' });
+  const lease = await f.repo.claim(input.releaseId, 'worker-1', f.now(), 60);
+  assert(lease);
+  assert.equal(lease.job.cohort, 'full');
+  assert.equal(await f.repo.begin(lease, null, f.now()), 'health_blocked');
+  assert.equal((await f.repo.summary(input.releaseId)).pauseReason, 'deployment_health_unverified');
+  assert.deepEqual(await f.repo.attemptHistory(input.releaseId), []);
+  await assert.rejects(f.repo.startPilot(input.releaseId, f.now()), /PILOT_BLOCKED/);
+  const health = await f.observer.observe(campaignBinding(input));
+  f.advance(300001);
+  assert.equal((await f.repo.resumeAfterHealth(input.releaseId, health, f.now())).phase, 'paused');
+  const fresh = await f.observer.observe(campaignBinding(input));
+  assert.equal((await f.repo.resumeAfterHealth(input.releaseId, fresh, f.now())).phase, 'full');
+  assert.equal(await f.repo.begin(lease, fresh, f.now()), 'lost');
+  assert.equal((await f.run()).result, 'sent');
+  const summary = await f.repo.summary(input.releaseId);
+  assert.equal(summary.pilotStates.failed, 1);
+  assert.equal(summary.states.sent, 1);
+  assert.equal(f.calls(), 1);
+});
+
+test('a failed health observation after an operator pause releases the old lease and preserves the operator pause', async () => {
+  const f = fixture();
+  const input = spec();
+  await f.repo.prepare(input, refs);
+  await f.repo.startPilot(input.releaseId, f.now());
+  const lease = await f.repo.claim(input.releaseId, 'worker-1', f.now(), 60);
+  assert(lease);
+  await f.repo.pause(input.releaseId);
+  assert.equal(await f.repo.begin(lease, null, f.now()), 'lost');
+  const health = await f.observer.observe(campaignBinding(input));
+  const summary = await f.repo.resumeAfterHealth(input.releaseId, health, f.now());
+  assert.equal(summary.phase, 'paused');
+  assert.equal(summary.pauseReason, 'operator_paused');
+  assert.equal(summary.states.pending, refs.length);
+  assert.deepEqual(await f.repo.attemptHistory(input.releaseId), []);
+});
+
 test('crash before dispatch reclaims a lease with fencing; crash after dispatch becomes unknown and never resends', async () => {
   const f = fixture(); await f.repo.prepare(spec(), refs); await f.repo.startPilot('release-v8', f.now());
   const first = await f.repo.claim('release-v8','worker-old',f.now(),5); assert(first);

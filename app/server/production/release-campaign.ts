@@ -177,10 +177,14 @@ export function createProductionReleaseCampaign(options:{enabled:boolean;configu
     progress=undefined;
    }
    let summary=await repository.summary(c!.releaseId);
+   if(summary.phase==='paused'&&summary.pauseReason==='deployment_health_unverified'){
+    summary=await repository.resumeAfterHealth(c!.releaseId,health,now());
+   }else if(summary.phase!=='paused'&&summary.phase!=='completed'){
+    if(summary.pilotTotal>0&&summary.pilotStates.sent===summary.pilotTotal){if(summary.phase!=='full')summary=await repository.promote(c!.releaseId,now());}
+    else if(summary.phase==='prepared')summary=await repository.startPilot(c!.releaseId,now());
+   }
    if(summary.phase==='completed'){finished=true;return set({state:'completed'});}
-   if(summary.phase==='paused'&&summary.pauseReason!=='deployment_health_unverified')return set({state:'paused',result:summary.pauseReason??'paused'});
-   if(summary.pilotTotal>0&&summary.pilotStates.sent===summary.pilotTotal){if(summary.phase!=='full')summary=await repository.promote(c!.releaseId,now());}
-   else if(summary.phase==='prepared'||summary.phase==='paused')summary=await repository.startPilot(c!.releaseId,now());
+   if(summary.phase==='paused')return set({state:'paused',result:summary.pauseReason??'paused'});
    if(scope.signal.aborted)return set({state:'stopped'});
    const guardedObserver:CampaignHealthObserver={observe:async(b,s)=>{const gate=scopedSignal(scope.signal,s);try{if(gate.signal.aborted)return null;const health=await observer.observe(b,gate.signal);return gate.signal.aborted?null:health;}finally{gate.dispose();}}};
    const guardedDispatcher:Pick<TelegramDispatcher,'dispatchCampaign'>={dispatchCampaign:async(envelope,s):Promise<DispatchRunResult>=>{const gate=scopedSignal(scope.signal,s);try{return gate.signal.aborted?{kind:'cancelled',reason:'release_worker_stopped'}:await options.dispatcher.dispatchCampaign(envelope,gate.signal);}finally{gate.dispose();}}};

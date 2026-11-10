@@ -27,6 +27,7 @@ export interface CampaignRecord {
   specHash: string;
   phase: CampaignPhase;
   pauseReason: string | null;
+  resumePhase?: 'pilot' | 'full';
 }
 export interface CampaignJob {
   operationId: string;

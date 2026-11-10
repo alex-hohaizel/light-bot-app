@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T21:44:07.236Z",
+  "builtAt": "2026-11-10T22:30:34.616Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982",
+  "sourceSha256": "fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -927,7 +927,7 @@
     },
     {
       "path": "server/production/release-campaign.ts",
-      "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      "sha256": "14f19fb45b5f44e0107a55376014ffdc5889431154573c68158324ec673583b7"
     },
     {
       "path": "server/production/replit-identity.ts",
@@ -1035,11 +1035,11 @@
     },
     {
       "path": "server/release/update-campaign-pg.ts",
-      "sha256": "939024a5bf7ced420d77fb3babae063564837b918718e8c0a17397d089a6a74f"
+      "sha256": "a4f65bb236a1f72486aa05c2b2eedc558537d455c290780ad81d4c677817fc4a"
     },
     {
       "path": "server/release/update-campaign.ts",
-      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+      "sha256": "c06a1bbb9596b1b58e3f0ea64460da5d19f806b558e52c207e32a37d66cc6aea"
     },
     {
       "path": "server/replit_integrations/auth/index.ts",
@@ -2189,7 +2189,7 @@
     },
     {
       "path": "server/production/release-campaign.ts",
-      "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      "sha256": "14f19fb45b5f44e0107a55376014ffdc5889431154573c68158324ec673583b7"
     },
     {
       "path": "server/production/replit-identity.ts",
@@ -2297,11 +2297,11 @@
     },
     {
       "path": "server/release/update-campaign-pg.ts",
-      "sha256": "939024a5bf7ced420d77fb3babae063564837b918718e8c0a17397d089a6a74f"
+      "sha256": "a4f65bb236a1f72486aa05c2b2eedc558537d455c290780ad81d4c677817fc4a"
     },
     {
       "path": "server/release/update-campaign.ts",
-      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+      "sha256": "c06a1bbb9596b1b58e3f0ea64460da5d19f806b558e52c207e32a37d66cc6aea"
     },
     {
       "path": "server/replit_integrations/auth/index.ts",
@@ -2548,7 +2548,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "2892dd3fef763a13acbb7abdbaba2a5fc1f1dc28a07e2eb9fff4d5ff43367ccb"
+      "sha256": "63d469a607ae6a5ff354acc8df47d9ae9bee8a15e4de62805ab73038babed306"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2612,7 +2612,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "b81f0e68441efa54ea8c94d2f16426c142e2b2fb2599e27a23bd29c3b063a0e2"
+      "sha256": "56115c707b25f7541b485094907d77e27a6032a90ce897e6b8184f6c7c38f7a0"
     }
   ]
 }

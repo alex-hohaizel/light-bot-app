@@ -1,10 +1,10 @@
 {
   "kind": "lba-exact-prebuilt-release/1",
-  "sourceSha256": "fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982",
+  "sourceSha256": "fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9",
   "target": "node20",
   "sourceInputs": 315,
   "buildArtifacts": 17,
-  "buildReceiptSha256": "ad8a6def065f879edcca30358fe027c29ca0baba7f7148d0d10980ae3f552654",
+  "buildReceiptSha256": "7577f44e13de1e33998c751ed90e8d34a7fb2f049e7c15a9eefb4c22619c109e",
   "files": [
     {
       "path": "app/.replit",
@@ -611,6 +611,78 @@
       "sha256": "1e1c322ec9edcd4c5f11f9982bc29128eb9756746461d5e36c3c5834a36f4b81"
     },
     {
+      "path": "app/dist-production/build-receipt.json",
+      "sha256": "7577f44e13de1e33998c751ed90e8d34a7fb2f049e7c15a9eefb4c22619c109e"
+    },
+    {
+      "path": "app/dist-production/index.cjs",
+      "sha256": "63d469a607ae6a5ff354acc8df47d9ae9bee8a15e4de62805ab73038babed306"
+    },
+    {
+      "path": "app/dist-production/public/.vite/manifest.json",
+      "sha256": "f299de6c957c73e94dc6cfb94e0cfbed98c92c2d8665df6fcda795ed5808fb00"
+    },
+    {
+      "path": "app/dist-production/public/assets/index-BVcW-QNQ.js",
+      "sha256": "1b1bb9e09421ff033b8dabc3c3de04f87a080cfb6d46ea897918b6d4b8575c79"
+    },
+    {
+      "path": "app/dist-production/public/assets/index-DrgIy_mz.js",
+      "sha256": "2af04235ec40852ce8a6294b59a5d79c1c063973262c0f064448671e753683de"
+    },
+    {
+      "path": "app/dist-production/public/assets/index-KbPt7mO_.js",
+      "sha256": "6ac6fbc38573bba8e0245884025a5f7b5552bc3ef7f30f612c9b9b3daca384da"
+    },
+    {
+      "path": "app/dist-production/public/assets/index-chWm5hEl.css",
+      "sha256": "ec3db5d084f5ac5ffa6ae1d006bae3da978eab2d97ea48c6331869695ad4f295"
+    },
+    {
+      "path": "app/dist-production/public/assets/web-DaGWBMZW.js",
+      "sha256": "076a69ff31e5992c1bad2e4aa86cef01882c6e0f7d5d7f43f6ddf76153dafe2f"
+    },
+    {
+      "path": "app/dist-production/public/favicon.png",
+      "sha256": "b6acb73abb0b7e8e808d72c016e81d97860bc7e7e0eb4f06ff76ba1d16a5b04f"
+    },
+    {
+      "path": "app/dist-production/public/fonts/manrope-OFL.txt",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "app/dist-production/public/fonts/manrope.ttf",
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"
+    },
+    {
+      "path": "app/dist-production/public/fonts/onest-OFL.txt",
+      "sha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc"
+    },
+    {
+      "path": "app/dist-production/public/fonts/onest.ttf",
+      "sha256": "966c5c29b4755da84b6854d5c21dd4eaa2420225d0e9874de602de176d4a9f31"
+    },
+    {
+      "path": "app/dist-production/public/icon-512.png",
+      "sha256": "3a67bc1d0a35837096051a3fc3cd3b2ba55790bcdb809c720af1a3864ce85649"
+    },
+    {
+      "path": "app/dist-production/public/index.html",
+      "sha256": "af013d0d121c2ee32b99dfc3eb9b50e1b63efacdb5336d89451fe42bd251f2b0"
+    },
+    {
+      "path": "app/dist-production/public/manifest.json",
+      "sha256": "f9ff2fa09906204e2ab3a29819bb369c5ef294d4824a937ebbecd40c0efd4fb9"
+    },
+    {
+      "path": "app/dist-production/public/sw.js",
+      "sha256": "9b9ba05af76f8e87b4c40b7605d4ff4b898cb2a2e73fbb30e7469d37e38ea686"
+    },
+    {
+      "path": "app/dist-production/server-metafile.json",
+      "sha256": "56115c707b25f7541b485094907d77e27a6032a90ce897e6b8184f6c7c38f7a0"
+    },
+    {
       "path": "app/package-lock.json",
       "sha256": "784c82ca5529b0223ae3037eeb2f36a48791235bac92d125ece53973ed8c8906"
     },
@@ -912,7 +984,7 @@
     },
     {
       "path": "app/server/production/release-campaign.ts",
-      "sha256": "82ef3074267742547fe1e0b1a4eb17442dccbfea3f37e9d786d0b9d065651c42"
+      "sha256": "14f19fb45b5f44e0107a55376014ffdc5889431154573c68158324ec673583b7"
     },
     {
       "path": "app/server/production/replit-identity.ts",
@@ -1020,11 +1092,11 @@
     },
     {
       "path": "app/server/release/update-campaign-pg.ts",
-      "sha256": "939024a5bf7ced420d77fb3babae063564837b918718e8c0a17397d089a6a74f"
+      "sha256": "a4f65bb236a1f72486aa05c2b2eedc558537d455c290780ad81d4c677817fc4a"
     },
     {
       "path": "app/server/release/update-campaign.ts",
-      "sha256": "4e6a68588072d71e5b091b22e1f3e710001eee14f0577179f9e826a1be3d9593"
+      "sha256": "c06a1bbb9596b1b58e3f0ea64460da5d19f806b558e52c207e32a37d66cc6aea"
     },
     {
       "path": "app/server/replit_integrations/auth/index.ts",
@@ -1265,78 +1337,6 @@
     {
       "path": "app/tsconfig.json",
       "sha256": "8274bb525c05258a3de378a73f8d437ad6d0679db17b47ac4e3d13f9f5b008dd"
-    },
-    {
-      "path": "app/dist-production/index.cjs",
-      "sha256": "2892dd3fef763a13acbb7abdbaba2a5fc1f1dc28a07e2eb9fff4d5ff43367ccb"
-    },
-    {
-      "path": "app/dist-production/public/.vite/manifest.json",
-      "sha256": "f299de6c957c73e94dc6cfb94e0cfbed98c92c2d8665df6fcda795ed5808fb00"
-    },
-    {
-      "path": "app/dist-production/public/assets/index-BVcW-QNQ.js",
-      "sha256": "1b1bb9e09421ff033b8dabc3c3de04f87a080cfb6d46ea897918b6d4b8575c79"
-    },
-    {
-      "path": "app/dist-production/public/assets/index-DrgIy_mz.js",
-      "sha256": "2af04235ec40852ce8a6294b59a5d79c1c063973262c0f064448671e753683de"
-    },
-    {
-      "path": "app/dist-production/public/assets/index-KbPt7mO_.js",
-      "sha256": "6ac6fbc38573bba8e0245884025a5f7b5552bc3ef7f30f612c9b9b3daca384da"
-    },
-    {
-      "path": "app/dist-production/public/assets/index-chWm5hEl.css",
-      "sha256": "ec3db5d084f5ac5ffa6ae1d006bae3da978eab2d97ea48c6331869695ad4f295"
-    },
-    {
-      "path": "app/dist-production/public/assets/web-DaGWBMZW.js",
-      "sha256": "076a69ff31e5992c1bad2e4aa86cef01882c6e0f7d5d7f43f6ddf76153dafe2f"
-    },
-    {
-      "path": "app/dist-production/public/favicon.png",
-      "sha256": "b6acb73abb0b7e8e808d72c016e81d97860bc7e7e0eb4f06ff76ba1d16a5b04f"
-    },
-    {
-      "path": "app/dist-production/public/fonts/manrope-OFL.txt",
-      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
-    },
-    {
-      "path": "app/dist-production/public/fonts/manrope.ttf",
-      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"
-    },
-    {
-      "path": "app/dist-production/public/fonts/onest-OFL.txt",
-      "sha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc"
-    },
-    {
-      "path": "app/dist-production/public/fonts/onest.ttf",
-      "sha256": "966c5c29b4755da84b6854d5c21dd4eaa2420225d0e9874de602de176d4a9f31"
-    },
-    {
-      "path": "app/dist-production/public/icon-512.png",
-      "sha256": "3a67bc1d0a35837096051a3fc3cd3b2ba55790bcdb809c720af1a3864ce85649"
-    },
-    {
-      "path": "app/dist-production/public/index.html",
-      "sha256": "af013d0d121c2ee32b99dfc3eb9b50e1b63efacdb5336d89451fe42bd251f2b0"
-    },
-    {
-      "path": "app/dist-production/public/manifest.json",
-      "sha256": "f9ff2fa09906204e2ab3a29819bb369c5ef294d4824a937ebbecd40c0efd4fb9"
-    },
-    {
-      "path": "app/dist-production/public/sw.js",
-      "sha256": "9b9ba05af76f8e87b4c40b7605d4ff4b898cb2a2e73fbb30e7469d37e38ea686"
-    },
-    {
-      "path": "app/dist-production/server-metafile.json",
-      "sha256": "b81f0e68441efa54ea8c94d2f16426c142e2b2fb2599e27a23bd29c3b063a0e2"
-    },
-    {
-      "path": "app/dist-production/build-receipt.json",
-      "sha256": "ad8a6def065f879edcca30358fe027c29ca0baba7f7148d0d10980ae3f552654"
     }
   ]
 }

@@ -9627,7 +9627,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982") ? "fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9") ? "fd4ebd4cb2e0a95defba674d7323b112bb7ae04fb5734bc0b2ac1741abb8daf9" : null;
   }
 });
 
@@ -22623,6 +22623,7 @@ function decode(value) {
 function record5(row3) {
   const c = decode(row3?.record);
   if (!c?.spec || c.spec.version !== UPDATE_CAMPAIGN_VERSION || c.spec.releaseId !== row3.release_id || c.spec.botId !== row3.bot_id || c.specHash !== row3.spec_hash || campaignSpecHash(c.spec) !== c.specHash || !["prepared", "pilot", "full", "paused", "completed"].includes(c.phase) || !campaignInstant(c.spec.createdAt) || !campaignInstant(c.spec.expiresAt)) return campaignFail("CAMPAIGN_RECORD_INVALID");
+  if (c.resumePhase !== void 0 && (c.phase !== "paused" || c.pauseReason !== HEALTH_PAUSE || !["pilot", "full"].includes(c.resumePhase))) return campaignFail("CAMPAIGN_RECORD_INVALID");
   return c;
 }
 function job(row3) {
@@ -22701,6 +22702,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
         const c = await load4(client2, j.releaseId);
         c.phase = "paused";
         c.pauseReason = "dispatch_outcome_unknown";
+        delete c.resumePhase;
         await saveCampaign(client2, c);
       } else {
         j.state = "pending";
@@ -22756,7 +22758,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       let c = await load4(client2, releaseId);
       await recoverBot(client2, c.spec.botId, now);
       c = await load4(client2, releaseId);
-      if (!["prepared", "paused", "pilot"].includes(c.phase) || Date.parse(now) < Date.parse(c.spec.createdAt) || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
+      if (!["prepared", "paused", "pilot"].includes(c.phase) || c.pauseReason === HEALTH_PAUSE || Date.parse(now) < Date.parse(c.spec.createdAt) || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
       c.phase = "pilot";
       c.pauseReason = null;
       await saveCampaign(client2, c);
@@ -22770,7 +22772,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       await recoverBot(client2, c.spec.botId, now);
       c = await load4(client2, releaseId);
       const pilot = (await jobs(client2, releaseId)).filter((j) => j.cohort === "pilot");
-      if (!pilot.length || pilot.length !== c.spec.pilotRecipientRefs.length || pilot.some((j) => j.state !== "sent") || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
+      if (c.pauseReason === HEALTH_PAUSE || !pilot.length || pilot.length !== c.spec.pilotRecipientRefs.length || pilot.some((j) => j.state !== "sent") || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
       if (c.phase !== "completed") {
         c.phase = "full";
         c.pauseReason = null;
@@ -22779,12 +22781,34 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       return summaryIn(client2, c);
     }).then((value) => value ?? campaignFail("CAMPAIGN_PILOT_NOT_CONFIRMED"));
   }
+  async function resumeAfterHealth(releaseId, health, now) {
+    const time3 = nowCheck(now);
+    return tx(async (client2) => {
+      let c = await load4(client2, releaseId);
+      await recoverBot(client2, c.spec.botId, now);
+      c = await load4(client2, releaseId);
+      if (c.phase !== "paused" || c.pauseReason !== HEALTH_PAUSE || time3 < Date.parse(c.spec.createdAt) || time3 >= Date.parse(c.spec.expiresAt) || !validDeploymentHealth(campaignBinding(c.spec), health, now) || !await noUnknown(client2, c.spec.botId)) {
+        return summaryIn(client2, c);
+      }
+      let phase = c.resumePhase;
+      if (phase === void 0) {
+        const pilot = (await jobs(client2, releaseId)).filter((j) => j.cohort === "pilot");
+        phase = pilot.length > 0 && pilot.length === c.spec.pilotRecipientRefs.length && pilot.every((j) => j.state === "sent") ? "full" : "pilot";
+      }
+      c.phase = phase;
+      c.pauseReason = null;
+      delete c.resumePhase;
+      await saveCampaign(client2, c);
+      return summaryIn(client2, c);
+    });
+  }
   async function pause(releaseId) {
     return tx(async (client2) => {
       const c = await load4(client2, releaseId);
       if (c.phase !== "completed") {
         c.phase = "paused";
         c.pauseReason = "operator_paused";
+        delete c.resumePhase;
         await saveCampaign(client2, c);
       }
       return summaryIn(client2, c);
@@ -22841,13 +22865,21 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
           await saveJob(client2, j);
           return "cancelled";
         }
-        if (!["pilot", "full"].includes(c.phase) || c.phase === "pilot" && j.cohort !== "pilot" || !validDeploymentHealth(campaignBinding(c.spec), health, now)) {
+        if (c.phase !== "pilot" && c.phase !== "full" || c.phase === "pilot" && j.cohort !== "pilot") {
           j.state = "pending";
-          j.lastOutcome = "deployment_health_unverified";
+          j.lastOutcome = "campaign_phase_changed";
           clearLease(j);
-          c.phase = "paused";
-          c.pauseReason = j.lastOutcome;
           await saveJob(client2, j);
+          return "lost";
+        }
+        if (!validDeploymentHealth(campaignBinding(c.spec), health, now)) {
+          j.state = "pending";
+          j.lastOutcome = HEALTH_PAUSE;
+          clearLease(j);
+          await saveJob(client2, j);
+          c.resumePhase = c.phase;
+          c.phase = "paused";
+          c.pauseReason = HEALTH_PAUSE;
           await saveCampaign(client2, c);
           return "health_blocked";
         }
@@ -22907,6 +22939,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
           j.lastOutcome = outcome.reason;
           c.phase = "paused";
           c.pauseReason = "dispatch_outcome_unknown";
+          delete c.resumePhase;
         } else if (outcome.kind === "sent") {
           j.state = "sent";
           j.providerReceipt = outcome.receipt;
@@ -22922,6 +22955,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
           if (j.cohort === "pilot" && j.state === "failed") {
             c.phase = "paused";
             c.pauseReason = "pilot_failed";
+            delete c.resumePhase;
           }
         }
         await saveJob(client2, j);
@@ -22938,6 +22972,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
     prepare,
     startPilot,
     promote,
+    resumeAfterHealth,
     pause,
     summary: (releaseId) => tx(async (client2) => summaryIn(client2, await load4(client2, releaseId))),
     attemptHistory: (releaseId) => tx(async (client2) => {
@@ -22946,7 +22981,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
     })
   };
 }
-var UPDATE_CAMPAIGN_SCHEMA_SQL, STATES, TERMINAL, nowCheck, zero, clearLease;
+var UPDATE_CAMPAIGN_SCHEMA_SQL, STATES, TERMINAL, HEALTH_PAUSE, nowCheck, zero, clearLease;
 var init_update_campaign_pg = __esm({
   "server/release/update-campaign-pg.ts"() {
     "use strict";
@@ -22971,6 +23006,7 @@ create index if not exists lba_release_campaign_job_state on lba_release_campaig
 `;
     STATES = ["pending", "leased", "dispatching", "retry_wait", "outcome_unknown", "sent", "cancelled", "failed"];
     TERMINAL = ["sent", "cancelled", "failed"];
+    HEALTH_PAUSE = "deployment_health_unverified";
     nowCheck = (now) => {
       if (!campaignInstant(now)) return campaignFail("INVALID_CAMPAIGN_CLOCK");
       return Date.parse(now);
@@ -24368,14 +24404,18 @@ function createProductionReleaseCampaign(options) {
         progress = void 0;
       }
       let summary = await repository.summary(c.releaseId);
+      if (summary.phase === "paused" && summary.pauseReason === "deployment_health_unverified") {
+        summary = await repository.resumeAfterHealth(c.releaseId, health, now());
+      } else if (summary.phase !== "paused" && summary.phase !== "completed") {
+        if (summary.pilotTotal > 0 && summary.pilotStates.sent === summary.pilotTotal) {
+          if (summary.phase !== "full") summary = await repository.promote(c.releaseId, now());
+        } else if (summary.phase === "prepared") summary = await repository.startPilot(c.releaseId, now());
+      }
       if (summary.phase === "completed") {
         finished = true;
         return set({ state: "completed" });
       }
-      if (summary.phase === "paused" && summary.pauseReason !== "deployment_health_unverified") return set({ state: "paused", result: summary.pauseReason ?? "paused" });
-      if (summary.pilotTotal > 0 && summary.pilotStates.sent === summary.pilotTotal) {
-        if (summary.phase !== "full") summary = await repository.promote(c.releaseId, now());
-      } else if (summary.phase === "prepared" || summary.phase === "paused") summary = await repository.startPilot(c.releaseId, now());
+      if (summary.phase === "paused") return set({ state: "paused", result: summary.pauseReason ?? "paused" });
       if (scope5.signal.aborted) return set({ state: "stopped" });
       const guardedObserver = { observe: async (b, s) => {
         const gate = scopedSignal(scope5.signal, s);
