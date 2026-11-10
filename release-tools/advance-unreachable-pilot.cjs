@@ -234,6 +234,8 @@ var SENDER = "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f";
 var TRANSPORT = "4b3469e5566feb73956f18987c75cc36baf206fd246bc6a02ab04cf4ce7e36b6";
 var SPEC = "25f32d7ce0319b12acc6ffbd4998dc5af4a74373e26b96148c441563e032844d";
 var AUDIENCE = "4998040c6c58df6eab51402e72aa7b6fd34cd18879a81f4a349fdb80223a9a0b";
+var POLICY = "e3119ba1b5c4648e42621148ccfc4f3af84799dad549c3f9e3a17ad9b7179575";
+var ENVIRONMENT = "302a2c28f5b8899c639d4648117a2274da3515504a963c71e3309474789b310d";
 var KIND = "lba-unreachable-pilot-advance/1";
 var hex = (v) => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
 var plain2 = (v) => v && typeof v === "object" && !Array.isArray(v);
@@ -423,15 +425,35 @@ function verify() {
   const app = path.resolve(__dirname, "../app"), v = createRequire(__filename)("./verify-prebuilt.cjs").verify();
   check(v.sourceSha256 === SOURCE, "ADVANCE_SOURCE");
   check(sha(fs.readFileSync(path.join(app, "server/production/telegram-dispatch.ts"))) === SENDER && sha(fs.readFileSync(path.join(app, "server/production/telegram-transport.ts"))) === TRANSPORT, "ADVANCE_SENDER");
+  check(sha(fs.readFileSync(path.join(__dirname, "runtime-policy.cjs"))) === POLICY && sha(fs.readFileSync(path.join(__dirname, "production-environment.cjs"))) === ENVIRONMENT, "ADVANCE_POLICY_DRIFT");
   return { kind: "lba-unreachable-pilot-advance-config/1", sourceSha256: SOURCE, operatorSha256: sha(fs.readFileSync(__filename)), databaseConnected: false, providerCalls: 0 };
+}
+function productionRunGuard() {
+  check(process.env.NODE_ENV === "production" && process.env.LBA_CANONICAL_CONTROL_EPOCH === "1", "ADVANCE_ENVIRONMENT");
+  let n;
+  try {
+    n = JSON.parse(process.env.LBA_RELEASE_NOTICE_CONFIG || "");
+  } catch {
+    fail("ADVANCE_NOTICE");
+  }
+  const keys = ["kind", "releaseId", "deploymentRef", "buildSha256", "authoritySha256", "createdAt", "expiresAt", "controlEpoch", "pilotSize", "maxAttempts"].sort().join("|");
+  check(n !== null && typeof n === "object" && !Array.isArray(n) && Object.getPrototypeOf(n) === Object.prototype && Object.keys(n).sort().join("|") === keys, "ADVANCE_NOTICE");
+  check(n.kind === "lba-release-notice/1" && n.releaseId === RELEASE && n.deploymentRef === DEPLOYMENT && n.buildSha256 === SOURCE && n.authoritySha256 === AUTHORITY && n.controlEpoch === 1 && n.pilotSize === 1 && n.maxAttempts === 3 && n.createdAt === "2026-11-10T12:54:30.870Z" && n.expiresAt === "2026-11-11T12:54:30.870Z", "ADVANCE_NOTICE");
+  createRequire(__filename)("./production-environment.cjs").applyProductionEnvironmentDefaults();
+  let policy;
+  try {
+    policy = createRequire(__filename)("./runtime-policy.cjs").productionRuntimePolicy();
+  } catch {
+    fail("ADVANCE_RUNTIME_POLICY");
+  }
+  check(policy.productProfileMode === "active" && policy.telegramDeliveryEnabled === true && policy.telegramUpdatesEnabled === true && policy.canonicalControlEpoch === 1, "ADVANCE_DELIVERY_POLICY");
 }
 async function run({ apply = false } = {}) {
   let pool;
   try {
     const verified = verify();
+    productionRunGuard();
     check(typeof process.env.DATABASE_URL === "string" && process.env.DATABASE_URL.length > 0, "ADVANCE_DATABASE_CONFIG");
-    const config = JSON.parse(process.env.LBA_RELEASE_NOTICE_CONFIG || "null");
-    check(config?.kind === "lba-release-notice/1" && config.releaseId === RELEASE && config.deploymentRef === DEPLOYMENT && config.buildSha256 === SOURCE && config.authoritySha256 === AUTHORITY && config.controlEpoch === 1, "ADVANCE_AUTHORITY");
     const { Pool } = createRequire(path.resolve(__dirname, "../app/package.json"))("pg");
     pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 1, connectionTimeoutMillis: 5e3, idleTimeoutMillis: 1e3, query_timeout: 4e3 });
     pool.on("error", () => {
