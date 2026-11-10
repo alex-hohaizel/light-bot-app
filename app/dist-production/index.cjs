@@ -9627,7 +9627,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126") ? "768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982") ? "fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982" : null;
   }
 });
 
@@ -21918,6 +21918,35 @@ function createTelegramDispatcher(options) {
       return callbackFactory(request3);
     }
   });
+  async function idleWithoutWork(client2, callback) {
+    try {
+      const schema = (await client2.query(`select
+    to_regclass('lba_production_telegram_callback_acks')::text as "callbackAcks",
+    to_regclass('lba_production_telegram_callback_ack_attempts')::text as "callbackAttempts",
+    to_regclass('lba_production_telegram_inbox')::text as inbox`)).rows[0];
+      if (!schema || !["callbackAcks", "callbackAttempts", "inbox"].every((k) => schema[k] === null || typeof schema[k] === "string")) return false;
+      const callbacks = Boolean(schema.callbackAcks && schema.callbackAttempts && schema.inbox);
+      if (callback && !callbacks || schema.callbackAcks && !callbacks || schema.callbackAttempts && !callbacks) return false;
+      const callbackWork = callbacks ? `or exists(select 1 from lba_production_telegram_callback_acks where bot_id=$1 and state in ('pending','prepared','dispatching','retry_wait','unknown'))
+    or exists(select 1 from lba_production_telegram_callback_ack_attempts where bot_id=$1 and state in ('prepared','dispatching','unknown'))
+    or exists(select 1 from lba_production_telegram_inbox i left join lba_production_telegram_callback_acks a on a.bot_id=i.bot_id and a.update_id=i.update_id
+     where i.bot_id=$1 and i.control_epoch=$2 and i.disposition='accepted' and i.event_kind='callback' and a.update_id is null)` : "";
+      const row3 = (await client2.query(`select (
+    (select count(*) from lba_production_control where id=true)<>1
+    or exists(select 1 from lba_production_control where id=true and (writer_mode is distinct from 'canonical' or control_epoch is distinct from $2))
+    or (select count(*) from lba_production_telegram_bot_state where bot_id=$1)<>1
+    or exists(select 1 from lba_production_telegram_bot_state where bot_id=$1 and (hold_reason is not null or cooldown_until>$3 or next_send_at>$3))
+    or exists(select 1 from lba_production_telegram_dispatch_jobs where bot_id=$1 and state in ('pending','prepared','dispatching','retry_wait','unknown','held'))
+    or exists(select 1 from lba_production_telegram_dispatch_attempts a join lba_production_telegram_dispatch_jobs j on j.operation_id=a.operation_id
+     where j.bot_id=$1 and a.state in ('prepared','dispatching','unknown'))
+    or exists(select 1 from lba_production_profile_outbox where status in ('pending','dispatching','unknown'))
+    ${callbackWork}
+   ) as "needsWork"`, [DISPATCH_BOT_ID, epoch8, now()])).rows[0];
+      return row3?.needsWork === false;
+    } catch {
+      return false;
+    }
+  }
   async function cancel(client2, job2, reason, status2 = "cancelled") {
     await client2.query("update lba_production_telegram_dispatch_jobs set state=$3,last_reason=$4,updated_at=$5 where bot_id=$1 and operation_id=$2", [DISPATCH_BOT_ID, job2.operationId, status2, reason, now()]);
     if (job2.sourceKind === "profile") await client2.query("update lba_production_profile_outbox set status=$4 where id=$1 and owner_id=$2 and control_epoch=$3 and status in ('pending','dispatching')", [job2.sourceId, job2.ownerId, epoch8, status2]);
@@ -22216,6 +22245,7 @@ function createTelegramDispatcher(options) {
     }
     let locked = false, tainted = false;
     try {
+      if (!campaign && await idleWithoutWork(client2, callback)) return { kind: "idle" };
       const lock2 = (await client2.query("select pg_try_advisory_lock(hashtextextended($1,0)) as locked", [dispatchBotLockKey()])).rows[0];
       if (lock2?.locked !== true) return { kind: "busy" };
       locked = true;

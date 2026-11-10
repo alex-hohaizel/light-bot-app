@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T19:36:23.431Z",
+  "builtAt": "2026-11-10T21:44:07.236Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "768f1d605d91d6b917691d1bb9aa9d83d24ac17c3dc15d50127c0939f1476126",
+  "sourceSha256": "fc244e317caf8a738927efa6bc99391ac2599c1ff3b0b3cb9150ded20f7ad982",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -999,7 +999,7 @@
     },
     {
       "path": "server/production/telegram-dispatch.ts",
-      "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+      "sha256": "dc52d97c21310265e9b9f296ce4a3c7fd039ab1223fa8b2f8372b183170483b9"
     },
     {
       "path": "server/production/telegram-identity.ts",
@@ -2261,7 +2261,7 @@
     },
     {
       "path": "server/production/telegram-dispatch.ts",
-      "sha256": "8c8a1aa2817726d491184cece61183b600d3c2014f08870d8faac0c635bcf51f"
+      "sha256": "dc52d97c21310265e9b9f296ce4a3c7fd039ab1223fa8b2f8372b183170483b9"
     },
     {
       "path": "server/production/telegram-identity.ts",
@@ -2548,7 +2548,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "13a2efc3418e4bd8055c497a79dbf68117e3e552bcd8f03f88e4da0e702a614e"
+      "sha256": "2892dd3fef763a13acbb7abdbaba2a5fc1f1dc28a07e2eb9fff4d5ff43367ccb"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2612,7 +2612,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "e88306cc504d97e40ebbfc10e6c101f4ee1b2d0a46f6b9efe4b9bf981e7a8762"
+      "sha256": "b81f0e68441efa54ea8c94d2f16426c142e2b2fb2599e27a23bd29c3b063a0e2"
     }
   ]
 }

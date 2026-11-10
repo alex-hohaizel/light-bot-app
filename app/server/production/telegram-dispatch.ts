@@ -232,6 +232,41 @@ export function createTelegramDispatcher(options:DispatchOptions):TelegramDispat
  }
  const callbackConsumer=createCallbackAckConsumer({epoch,now,maxAgeMs:callbackMaxAge,maxAttempts,retryMs,minBotIntervalMs:minBotMs,transaction:tx,hold,readGrant,
   transport:request=>{if(!callbackFactory)return fail('dispatch_callback_transport_missing');return callbackFactory(request);}});
+ /** A negative hint can avoid the bot-global lock; positive/unknown hints must
+  * enter the unchanged coordinator. This read never admits a provider effect.
+  * Work arriving just after the snapshot is picked up by the next worker tick. */
+ async function idleWithoutWork(client:DispatchClient,callback:boolean):Promise<boolean>{
+  try{
+   // Callback storage remains optional for the standalone profile dispatcher.
+   // Resolve it separately: SQL still resolves absent tables inside CASE arms.
+   const schema=(await client.query(`select
+    to_regclass('lba_production_telegram_callback_acks')::text as "callbackAcks",
+    to_regclass('lba_production_telegram_callback_ack_attempts')::text as "callbackAttempts",
+    to_regclass('lba_production_telegram_inbox')::text as inbox`)).rows[0];
+   if(!schema||!['callbackAcks','callbackAttempts','inbox'].every(k=>schema[k]===null||typeof schema[k]==='string'))return false;
+   const callbacks=Boolean(schema.callbackAcks&&schema.callbackAttempts&&schema.inbox);
+   if(callback&&!callbacks||schema.callbackAcks&&!callbacks||schema.callbackAttempts&&!callbacks)return false;
+   const callbackWork=callbacks?`or exists(select 1 from lba_production_telegram_callback_acks where bot_id=$1 and state in ('pending','prepared','dispatching','retry_wait','unknown'))
+    or exists(select 1 from lba_production_telegram_callback_ack_attempts where bot_id=$1 and state in ('prepared','dispatching','unknown'))
+    or exists(select 1 from lba_production_telegram_inbox i left join lba_production_telegram_callback_acks a on a.bot_id=i.bot_id and a.update_id=i.update_id
+     where i.bot_id=$1 and i.control_epoch=$2 and i.disposition='accepted' and i.event_kind='callback' and a.update_id is null)`:'';
+   const row=(await client.query(`select (
+    (select count(*) from lba_production_control where id=true)<>1
+    or exists(select 1 from lba_production_control where id=true and (writer_mode is distinct from 'canonical' or control_epoch is distinct from $2))
+    or (select count(*) from lba_production_telegram_bot_state where bot_id=$1)<>1
+    or exists(select 1 from lba_production_telegram_bot_state where bot_id=$1 and (hold_reason is not null or cooldown_until>$3 or next_send_at>$3))
+    or exists(select 1 from lba_production_telegram_dispatch_jobs where bot_id=$1 and state in ('pending','prepared','dispatching','retry_wait','unknown','held'))
+    or exists(select 1 from lba_production_telegram_dispatch_attempts a join lba_production_telegram_dispatch_jobs j on j.operation_id=a.operation_id
+     where j.bot_id=$1 and a.state in ('prepared','dispatching','unknown'))
+    or exists(select 1 from lba_production_profile_outbox where status in ('pending','dispatching','unknown'))
+    ${callbackWork}
+   ) as "needsWork"`,[DISPATCH_BOT_ID,epoch,now()])).rows[0];
+   return row?.needsWork===false;
+  }catch{
+   // An unavailable hint is not permission to skip any existing recovery gate.
+   return false;
+  }
+ }
  async function cancel(client:DispatchClient,job:DispatchQueuedJob,reason:string,status:'cancelled'|'not_sent'='cancelled'){
   await client.query('update lba_production_telegram_dispatch_jobs set state=$3,last_reason=$4,updated_at=$5 where bot_id=$1 and operation_id=$2',[DISPATCH_BOT_ID,job.operationId,status,reason,now()]);
   if(job.sourceKind==='profile')await client.query("update lba_production_profile_outbox set status=$4 where id=$1 and owner_id=$2 and control_epoch=$3 and status in ('pending','dispatching')",[job.sourceId,job.ownerId,epoch,status]);
@@ -428,6 +463,7 @@ export function createTelegramDispatcher(options:DispatchOptions):TelegramDispat
   let client:DispatchClient;try{client=await pool.connect();}catch{return {kind:'unavailable',reason:'dispatch_storage_unavailable'};}
   let locked=false,tainted=false;
   try{
+   if(!campaign&&await idleWithoutWork(client,callback))return {kind:'idle'};
    const lock=(await client.query('select pg_try_advisory_lock(hashtextextended($1,0)) as locked',[dispatchBotLockKey()])).rows[0];if(lock?.locked!==true)return {kind:'busy'};locked=true;
    if(campaign){const terminal=await tx(client,()=>terminalCampaign(client,campaign));if(terminal)return terminal;}
    if(await recoverOrphans(client))return {kind:'held',reason:'orphan_dispatch'};

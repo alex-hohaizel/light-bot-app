@@ -2940,7 +2940,7 @@
       "format": "esm"
     },
     "server/production/telegram-dispatch.ts": {
-      "bytes": 67751,
+      "bytes": 70792,
       "imports": [
         {
           "path": "node:crypto",
@@ -4962,7 +4962,7 @@
           "bytesInOutput": 21869
         },
         "server/production/telegram-dispatch.ts": {
-          "bytesInOutput": 65930
+          "bytesInOutput": 68554
         },
         "server/production/telegram-dispatch-eligibility.ts": {
           "bytesInOutput": 13947
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1797483
+      "bytes": 1800107
     }
   }
 }
