@@ -42,6 +42,8 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  now?:()=>number;fetch:typeof fetch;verifySource?:(request:DispatchEligibilityRequest)=>Promise<CurrentDispatchSourceProof|null>;
  authorizePrincipal?:ProductionProfileStoreOptions['authorizePrincipal'];accountConfiguration?:Pick<AccountLinksOptions,'bindingKey'|'miniApp'|'browserWidget'>;
  releaseCampaign?:ReleaseCampaignConfiguration;
+ /** Explicit owner-approved first-release policy; never a 48h evidence claim. */
+ initialLaunchNotifications?:boolean;
  /** Interactive operator lookup has its own explicit composition gate. This
   * does not admit an HTML crawler or qualify data for personal delivery. */
  operatorLookupEnabled?:boolean;
@@ -50,6 +52,7 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  certification?:{rootDirectory:string;registry?:LoadedQualificationRegistry;execution?:'production'|'synthetic_test'}}){
  const {policy,pool}=ports,epoch=policy.canonicalControlEpoch;
  if(policy.productProfileMode!=='active'||!epoch)throw Error('CANONICAL_RUNTIME_CONFIGURATION');
+ if(ports.initialLaunchNotifications!==undefined&&typeof ports.initialLaunchNotifications!=='boolean')throw Error('CANONICAL_RUNTIME_CONFIGURATION');
  if(ports.operatorLookupEnabled!==undefined&&typeof ports.operatorLookupEnabled!=='boolean')throw Error('CANONICAL_RUNTIME_CONFIGURATION');
  const operatorLookupEnabled=ports.operatorLookupEnabled??policy.operatorAddressLookupEnabled??false;
  if(typeof operatorLookupEnabled!=='boolean'||operatorLookupEnabled&&!policy.sourceIngestionEnabled)throw Error('CANONICAL_RUNTIME_CONFIGURATION');
@@ -79,7 +82,7 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  const accounts=ports.accountConfiguration?createAccountLinks({enabled:true,pool,store,expectedControlEpoch:epoch,botId:PRODUCT_TELEGRAM_IDENTITY.botId,botToken:ports.token,now:ms,...ports.accountConfiguration}):undefined;
  const finishVerifiedLogin=accounts?createVerifiedSessionFinalizer({store,accounts,now:()=>Math.floor(ms()/1000)}):undefined;
  const publicAddresses=createOperatorAddressRefresh({operator:operatorLookupEnabled?catalog.operator:undefined,now:ms});
- certification=createProductionScheduleCertification({...(operatorLookupEnabled?{publicAddressRefresh:publicAddresses.refreshOneSavedAddress}:{}),enabled:policy.sourceIngestionEnabled,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false,expectedControlEpoch:epoch,pool,store,sources,catalog,now:ms,
+ certification=createProductionScheduleCertification({...(operatorLookupEnabled?{publicAddressRefresh:publicAddresses.refreshOneSavedAddress}:{}),enabled:policy.sourceIngestionEnabled,initialLaunchNotifications:ports.initialLaunchNotifications??false,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false,expectedControlEpoch:epoch,pool,store,sources,catalog,now:ms,
   ...(operatorLookupEnabled?{operatorCatalog:catalog.operator}:{}),
   ...(ports.certification?.registry?{registry:ports.certification.registry}:{}),...(ports.certification?.execution?{execution:ports.certification.execution}:{})});
  const events=createProductionScheduleEvents({enabled:true,expectedControlEpoch:epoch,store,verifyCurrentSource:request=>certification.verifyCurrentSource(request)});
@@ -152,5 +155,6 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  }
  async function stop(){stopped=true;ready=false;abort.abort();releaseCampaign?.stop();certification.stop();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
  return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,certification,prepare,start,stop,operatorLookupEnabled,
-  health:()=>({ready,started,stopped,workers:{...status},deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&certification.health().admittedSources>0&&certification.health().evidenceMedium==='observed'),scheduleCertificationRequired:true,scheduleCertification:certification.health(),accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}})});
+  health:()=>{const evidence=certification.health();return {ready,started,stopped,workers:{...status},deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&
+   (evidence.admittedSources>0&&evidence.evidenceMedium==='observed'||evidence.configured&&evidence.initialLaunchNotifications&&evidence.launchPolicyCurrent&&evidence.launchPolicy==='lba-owner-approved-initial-launch/1')),scheduleCertificationRequired:true,scheduleCertification:evidence,accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}};}});
 }

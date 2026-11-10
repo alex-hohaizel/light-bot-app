@@ -90,6 +90,24 @@ function knownPolicy(row: Record<string, unknown>, fields: readonly string[]): v
 function hasAddress(row: Record<string, Scalar>): boolean {
   return ['street', 'houseNumber', 'queueId'].some(key => typeof row[key] === 'string' && (row[key] as string).trim().length > 0);
 }
+/** Exact persisted city choices from legacy routes/settings, never an address lookup.
+ * A saved queue retains its historical operator scope; city/oblast namesakes and
+ * unknown operators must not inherit the old catch-all Vinnytsia default.
+ */
+function savedGroup(city: string, queue: string): {operatorId: string; namespace: string; targetId: string} | null {
+  if (city === 'Київ' || city === 'Харків') {
+    if (!/^[1-6]\.[12]$/.test(queue)) return null;
+    return city === 'Київ' ? {operatorId:'dtek-kem',namespace:'yasno:25/902',targetId:queue} :
+      {operatorId:'kharkiv-oe',namespace:'kharkiv:rss',targetId:queue};
+  }
+  if (city === 'Вінниця' || city === 'Одеса') {
+    if (!/^(?:GPV)?[1-6]\.[12]$/.test(queue)) return null;
+    const targetId=queue.startsWith('GPV')?queue:'GPV'+queue;
+    return city === 'Вінниця' ? {operatorId:'vinnytsia-oe',namespace:'voe:vinnytsia',targetId} :
+      {operatorId:'dtek-oem',namespace:'dtek:oem',targetId};
+  }
+  return null;
+}
 /** Stable across SQL row ordering, labels, policy edits and process restarts. */
 export function legacyLiveAddressId(ownerId: string, table: Table, pk: string | number): string {
   text(ownerId, 255, false);
@@ -168,7 +186,10 @@ export function projectLegacyLiveProfile(input: LegacyLiveProfileInput): LegacyP
     const raw=row.raw, localTelegram=Boolean(raw[row.table==='user_locations'?'telegramNotify':row.table==='user_settings'?'telegramNotifications':'enabled']);
     const localPush=row.table==='user_locations'?Boolean(raw.notifyEnabled):row.table==='user_settings'?Boolean(raw.notificationsEnabled):false;
     const city=String(raw.city??''), house=String(raw.houseNumber??''), queue=String(raw.queueId??'');
-    const operatorId='legacy-operator-unresolved', namespace='legacy:'+city, targetId=queue||'legacy-unresolved:'+id;
+    const mapped=savedGroup(city,queue);
+    const {operatorId,namespace,targetId}=mapped??{operatorId:'legacy-operator-unresolved',namespace:'legacy:'+city,targetId:queue||'legacy-unresolved:'+id};
+    // Successful group interpretation is not a blocking projection issue.
+    // Original city/queue provenance remains in raw; binding stays unverified.
     // A label, ordering or consent edit is a profile revision, never a rebind.
     // Keep raw address/group fields and source identity separate from row/CAS provenance.
     const bindingRevision=digest({ownerId:owner,table:row.table,pk:row.pk,

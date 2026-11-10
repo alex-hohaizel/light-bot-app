@@ -66,7 +66,7 @@ export const TECHNICAL_SOURCE_QUARANTINE=Object.freeze({
 /** Explicit opt-in at the real service boundary. No network, jobs, DB or grants are
  * created here. These are local budgets, not invented provider quotas/licenses.
  */
-export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
+export function historicalTechnicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
  const allowed=new Set(['yasno-kem','voe-mirror-vn-progr','mirror-odesa','kharkiv-official-rss']);
  return SOURCE_PROFILES.map(profile=>{
   const quarantine=TECHNICAL_SOURCE_QUARANTINE[profile.sourceId as keyof typeof TECHNICAL_SOURCE_QUARANTINE];
@@ -96,7 +96,7 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
 /** Separate operation/dated local technical-display review. Robots crawler rules
  * are recorded as observed, never relabeled allowed or provider authorization.
  * This grants no personal binding, source qualification, notification or SLA. */
-export function odesaPlanApiOperatingRecord(enabled=false):Readonly<OdesaPlanOperatingRecord>|null {
+export function historicalOdesaPlanApiOperatingRecord(enabled=false):Readonly<OdesaPlanOperatingRecord>|null {
  if(enabled!==true)return null;
  return Object.freeze({kind:'lba-odesa-plan-operating-record/1',sourceId:'dtek-oem-public-plan-ajax',state:'technical_display',
   revisionId:'odesa-browser-api/2026-11-09/typed2hop-fact-update',reviewedAt:'2026-11-09T13:18:05.574Z',validUntil:'2026-11-09T22:00:00Z',
@@ -107,4 +107,66 @@ export function odesaPlanApiOperatingRecord(enabled=false):Readonly<OdesaPlanOpe
   rate:Object.freeze({kind:'local_operating_budget',scope:'origin',minIntervalMs:7500,evidence:'Shared CAS origin budget with address lookup; two requests at >=7.5s start spacing, <=30s deadline, five-minute plan cadence. Local limits only; stop/hold on access rejection.'}),
   cacheTtlMs:300000,maxAgeMs:7200000,cursorStrategy:'previous_kyiv_day_midnight_complete_matrix',
   addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false});
+}
+
+/** Direct owner amendment for the initial launch. It replaces the initial
+ * acceptance method only; it does not assert a provider licence, address proof,
+ * an independent reserve, or a completed48h observation. No imports start IO. */
+export const OWNER_APPROVED_INITIAL_LAUNCH=Object.freeze({
+ kind:'OWNER_APPROVED_INITIAL_LAUNCH/1' as const,
+ authority:'docs/light-bot-app/release-v8/FAST_LAUNCH_OWNER_SCOPE_2026-11-10_UA.md',
+ reviewedAt:'2026-11-10T09:59:00Z',validUntil:'2026-12-10T09:59:00Z',
+ scope:'recurring_current_and_next_kyiv_day_group_plans' as const,
+});
+/** Current runtime registry; the dated historical function above remains an
+ * explicit replay oracle. Expired point comparisons never become a reserve. */
+export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
+ const historical=historicalTechnicalDisplaySourceRegistry(enabled);
+ return historical.map(entry=>{
+  if(!enabled)return entry;
+  const odesa=entry.sourceId==='mirror-odesa';
+  if(odesa){
+   const record:TechnicalDisplayAdmission={sourceId:entry.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/mirror-odesa/recurring-fallback-v1',
+    reviewedAt:OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt,validUntil:OWNER_APPROVED_INITIAL_LAUNCH.validUntil,accessCost:0,
+    costEvidence:'10Nov ordinary anonymous exact GitHub GET returned200 without a key, subscription or payment; point observation, not a future price guarantee.',
+    publicationBasis:{kind:'publisher_public_syndication',evidence:'Baskerville42/outage-data-ua public community relay. Current10Nov source/date/12group matrix verified; official API guest metadata is currently unavailable. No current official semantic comparison or independent upstream confirmation is claimed.'},
+    formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
+    robots:{status:'not_checked',evidence:'Exact raw GitHub JSON endpoint; no newly claimed robots rule or primary-data licence.'},
+    rate:{kind:'local_operating_budget',scope:'origin',minIntervalMs:300000,evidence:'Five-minute shared GitHub origin budget; source cadence and origin reservation are enforced together. Local policy only; honor403/429 and pause unknown access rejection.'},
+    cacheTtlMs:300000,maxAgeMs:7200000,addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false,
+    recurringScope:{kind:'current_and_next_kyiv_day',authority:OWNER_APPROVED_INITIAL_LAUNCH.kind,parserVersion:'odesa-publisher-hour-matrix/1',maxPublicationAgeMs:129600000,emergencyOverlay:'unknown'},
+   };return record;
+  }
+  const vinnytsia=entry.sourceId==='voe-mirror-vn-progr',kharkiv=entry.sourceId==='kharkiv-official-rss';
+  if(!vinnytsia&&!kharkiv)return entry;
+  const profile=SOURCE_PROFILES.find(p=>p.sourceId===entry.sourceId)!;
+  const record:TechnicalDisplayAdmission={
+   sourceId:profile.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/'+profile.sourceId+'/recurring-v2',
+   reviewedAt:OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt,validUntil:OWNER_APPROVED_INITIAL_LAUNCH.validUntil,
+   accessCost:0,costEvidence:vinnytsia?'10Nov anonymous public GitHub JSON GET returned200 without a key, subscription or payment; local observation, not a price guarantee.':'10Nov anonymous official RSS GET returned200 without a key, subscription or payment; local observation, not a price guarantee.',
+   publicationBasis:{kind:vinnytsia?'publisher_public_syndication':'official_public_feed',evidence:vinnytsia?'Owner approved community fallback after official browser-aware TLS client403. vn-progr/gpv-voe-vinnytsia publishes data collected from bezsvitla.com.ua; this is neither the official VOE feed nor independent primary confirmation.':profile.endpoint+' ; official dated12-queue publication, matching title/body date, item origin and RFC publication time checked per capture.'},
+   formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
+   robots:{status:vinnytsia?'not_checked':'not_disallowed',evidence:vinnytsia?'Exact public raw GitHub JSON; no newly claimed robots rule or primary-data licence.':'Reviewed official robots rules do not disallow /uk/rss.xml; ordinary anonymous RSS access, no challenge bypass.'},
+   rate:{kind:'local_operating_budget',scope:'origin',minIntervalMs:vinnytsia?300000:2700000,evidence:'Finite owner-approved local operating budget; no provider quota claim. Honor403/429 and hold unknown access rejection.'},
+   cacheTtlMs:vinnytsia?1200000:2700000,maxAgeMs:vinnytsia?7200000:10800000,
+   addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false,
+   recurringScope:{kind:'current_and_next_kyiv_day',authority:OWNER_APPROVED_INITIAL_LAUNCH.kind,
+    parserVersion:vinnytsia?'vn-progr-hour-matrix/1.0.0':'kharkiv-dated-12-queue/2',
+    maxPublicationAgeMs:vinnytsia?7200000:259200000,emergencyOverlay:'unknown'},
+  };
+  return record;
+ });
+}
+/** Same typed two-hop protocol, renewed finite operating authority. The strict
+ * capture parser still checks current effective dates, publication time, source
+ * identity, body digest, complete matrix and standard native transport. */
+export function odesaPlanApiOperatingRecord(enabled=false):Readonly<OdesaPlanOperatingRecord>|null {
+ const historical=historicalOdesaPlanApiOperatingRecord(enabled);
+ if(!historical)return null;
+ return Object.freeze({...historical,
+  revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/dtek-oem-public-plan-ajax/recurring-current-next-v2',
+  reviewedAt:OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt,validUntil:OWNER_APPROVED_INITIAL_LAUNCH.validUntil,
+  costEvidence:'Owner initial-launch scope renews the observed free anonymous guest API for30days. No key/subscription/payment; current HTTP rejection pauses acquisition. No provider price or licence guarantee.',
+  publicationBasis:Object.freeze({...historical.publicationBasis,evidence:historical.publicationBasis.evidence+'; OWNER_APPROVED_INITIAL_LAUNCH/1 recurring current/next-day parser; historical9Nov capture is protocol evidence, never a freshness renewal.'}),
+ });
 }

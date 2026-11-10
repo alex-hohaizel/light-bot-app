@@ -1,7 +1,7 @@
 import {randomUUID} from 'node:crypto';
 import {load as parseXml} from 'cheerio';
 import {localParts,nextCalendarDate} from '../../shared/schedule-core.ts';
-import {createSourceIntake,SOURCE_PROFILES,type CapturedPublicSourceRaw,type SourceHttpTransport,type SourceIntakeResult,type IntakeCode,type SourceProfile} from './source-intake.ts';
+import {createSourceIntake,technicalPlanSha256,SOURCE_PROFILES,type CapturedPublicSourceRaw,type SourceHttpTransport,type SourceIntakeResult,type IntakeCode,type SourceProfile} from './source-intake.ts';
 import {technicalDisplaySourceRegistry,odesaPlanApiOperatingRecord} from './source-operating-policy.ts';
 import {createOdesaPlanSource,odesaCompletePlanCursor,projectOdesaPlanSnapshot,projectOdesaPlanSnapshotBatch,readOdesaPlanSnapshot,validOdesaPlanOperatingRecord,type OdesaPlanSnapshot} from './odesa-plan-source.ts';
 import {ODESA_PLAN_API_SOURCE} from '../domain/odesa-plan-api-adapter.ts';
@@ -41,6 +41,40 @@ export type SourceServiceCode = IntakeCode | 'SOURCE_SERVICE_DISABLED'|'SOURCE_C
  'SOURCE_STORAGE_UNAVAILABLE'|'SOURCE_WORKER_BUSY'|'SOURCE_LOCAL_BUDGET_DEFERRED'|'SOURCE_ORIGIN_HELD'|
  'SOURCE_NOT_DUE'|'SOURCE_CATALOG_REJECTED'|'SOURCE_PUBLICATION_UNKNOWN'|'SOURCE_WORKER_HELD';
 type Available = Extract<SourceIntakeResult,{state:'available'}>;
+/** A completed guest response with missing required metadata has no pending
+ * API hop. Hold only its origin so another source can still be refreshed. */
+export function odesaPlanFailureScope(error:unknown):{failure:IntakeCode;hold?:'origin'|'worker-and-origin'}{
+ const code=error&&typeof error==='object'&&'code'in error?String(error.code):'';
+ const failure:IntakeCode=['ODESA_TRANSPORT_SOURCE_ACCESS_STOP','ODESA_TRANSPORT_GUEST_META_INVALID'].includes(code)?'SOURCE_ORIGIN_REJECTED':/TIMEOUT|CANCEL|CLOSED|BUDGET_HOOK|DEADLINE/.test(code)?'SOURCE_TIMEOUT':code.startsWith('ODESA_PLAN_API_')?'SOURCE_SCHEMA_REJECTED':'SOURCE_TRANSPORT_FAILED';
+ return {failure,...(failure==='SOURCE_ORIGIN_REJECTED'?{hold:'origin' as const}:failure==='SOURCE_SCHEMA_REJECTED'?{}:{hold:'worker-and-origin' as const})};
+}
+
+/** One selected plan per electrical target/day. Current complete official API
+ * facts take priority; the community relay is a visibly attributed fallback.
+ * Compare plan semantics only, never invent independent upstream confirmation. */
+export function preferPublicSourcePlans(plans:readonly Available[]):Available[]{
+ const result:Available[]=[],odesa=new Map<string,Available[]>();
+ for(const plan of plans){
+  const v=plan.view;
+  if(v.operatorId==='dtek-oem'&&v.namespace==='dtek:oem'&&[ODESA_PLAN_API_SOURCE,'mirror-odesa'].includes(plan.provenance.sourceId)){
+   const key=JSON.stringify([v.operatorId,v.namespace,v.targetId,v.serviceDate]);
+   const group=odesa.get(key)??[];group.push(plan);odesa.set(key,group);
+  }else result.push(plan);
+ }
+ const complete=(p:Available|undefined)=>p?.view.freshness==='current'&&p.view.dayCoverage==='complete'&&['published','possible','no_planned_outages'].includes(p.view.status);
+ for(const candidates of odesa.values()){
+  const primary=candidates.find(p=>p.provenance.sourceId===ODESA_PLAN_API_SOURCE),mirror=candidates.find(p=>p.provenance.sourceId==='mirror-odesa');
+  const selected=complete(primary)?primary:mirror??primary;if(!selected)continue;
+  let notice=selected.view.notice??'';
+  if(complete(primary)&&complete(mirror)&&technicalPlanSha256(primary!.view)!==technicalPlanSha256(mirror!.view))
+   notice+=' Офіційний план має пріоритет; поточні інтервали громадського дзеркала відрізняються.';
+  else if(selected.provenance.sourceId==='mirror-odesa')
+   notice+=' Показано резервне джерело: офіційний план цієї групи й дати зараз недоступний, застарілий або ще не опублікований.';
+  result.push(notice===selected.view.notice?selected:{...selected,view:{...selected.view,notice:notice.trim()}});
+ }
+ return result;
+}
+
 export type SourceRefreshResult = {state:'published';sourceId:string;validatedViews:number;validatedGroups:number;partial:boolean;observedAt:string;
  addressBindingVerified:false;deliveryEligible:false}|{state:'disabled'|'blocked'|'deferred'|'unavailable';code:SourceServiceCode;sourceId?:string};
 export interface PublicTechnicalPlans {
@@ -224,9 +258,7 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
     if(valid.length!==dataset.groupIds.length*dataset.dates.length)throw Error('SOURCE_SCHEMA_REJECTED');
    }
   }catch(error){
-   valid=[];const code=error&&typeof error==='object'&&'code'in error?String(error.code):'';
-   failure=code==='ODESA_TRANSPORT_SOURCE_ACCESS_STOP'?'SOURCE_ORIGIN_REJECTED':/TIMEOUT|CANCEL|CLOSED|BUDGET_HOOK|DEADLINE/.test(code)?'SOURCE_TIMEOUT':code.startsWith('ODESA_PLAN_API_')?'SOURCE_SCHEMA_REJECTED':'SOURCE_TRANSPORT_FAILED';
-   hold=failure==='SOURCE_ORIGIN_REJECTED'?'origin':failure==='SOURCE_SCHEMA_REJECTED'?undefined:'worker-and-origin';
+   valid=[];const rejected=odesaPlanFailureScope(error);failure=rejected.failure;hold=rejected.hold;
   }
   const published=valid.length>0&&capture!==null,finished=new Date(clock()).toISOString();
   const committed=await reservation.finalize({...(hold?{hold}:{}),persist:async q=>{
@@ -297,7 +329,7 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
      ...(!good?{code:'SOURCE_ADMISSION_EXPIRED' as const}:invalidApiState?{code:'SOURCE_STORAGE_UNAVAILABLE' as const}:failure?{code:failure}:{}),lastAttemptAt:instant(s?.last_attempt_at),lastSuccessAt:instant(s?.last_success_at)});
    }
    for(const p of SOURCE_PROFILES.filter(p=>!profiles.some(x=>x.sourceId===p.sourceId)))observations.push({sourceId:p.sourceId,state:'blocked',code:'SOURCE_NOT_ADMITTED',lastAttemptAt:null,lastSuccessAt:null});
-   await c.query('commit');tx=false;return {state:'available',...empty,plans,observations};
+   await c.query('commit');tx=false;return {state:'available',...empty,plans:preferPublicSourcePlans(plans),observations};
   }catch(error){return {state:'unavailable',...empty,code:error instanceof SourceServiceFailure?error.code:'SOURCE_STORAGE_UNAVAILABLE'};}
   finally{if(c){if(tx)await c.query('rollback').catch(()=>{});c.release();}}
  }

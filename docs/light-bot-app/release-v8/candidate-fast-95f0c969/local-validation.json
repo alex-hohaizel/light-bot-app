@@ -1,0 +1,48 @@
+{
+  "kind": "lba-fast-launch-local-validation/1",
+  "sourceSha256": "95f0c9694b861e880087bf642e7830eb89225d1effd96da94359ef98a68bb67a",
+  "requirementsSha256": "c42e94df1ce07123bbd28ded6dc0a85c799f4dd4115a296144c270f40d8797e2",
+  "requirementsRevision": "1.2",
+  "mustCount": 68,
+  "strictTypeScriptExit": 0,
+  "backend": {
+    "passed": 357,
+    "failed": 0,
+    "files": 47,
+    "runtime": "MacNode24.22.2"
+  },
+  "build": {
+    "artifacts": 17,
+    "receiptSha256": "8e949b84163d363b88c5f10434bc1696baf3c455512f8ade481851cd10713607",
+    "target": "node20",
+    "runtime": "MacNode24.22.2"
+  },
+  "independentPg": {
+    "ownCases": 11,
+    "inheritedCases": 13,
+    "syntheticOnly": true,
+    "schemaSha256": "ac35025ad23c1b1b9aebd35594aa5b06e07ab43ba203200622c09d3f81983557",
+    "receiptSha256": "bf5595b842cf44eacd414dcb2595805032b5ec395658fd3064d11ac4c2227aed",
+    "boundary": "Recorded first implementation before Odesa fallback and legacy mapper amendments; unchanged core mechanism proof, not a whole final-source execution."
+  },
+  "groupUI": {
+    "authorChecks": 8,
+    "rootViewedScreenshots": 4,
+    "fixture": "actualReact/routes/store with synthetic SQL seam, not livePostgres/device"
+  },
+  "legacyBridge": {
+    "affectedTests": 54,
+    "canonicalBootstrapRegression": true,
+    "privateR0Repeated": false
+  },
+  "ownerInitialLaunch": true,
+  "parallel48hClaimed": false,
+  "productionDeployed": false,
+  "announcementSent": false,
+  "remainingOperationalInputs": [
+    "actual old production/development fence",
+    "fresh live R1/current accounts and rollback",
+    "activation epoch and exact deployment",
+    "BotFather power-ukraine.net domain (native widget returned invalid)"
+  ]
+}

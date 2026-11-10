@@ -36,10 +36,11 @@ test('global and address policies preserve independent channels, edges and expli
   assert.equal(resolveNotificationPolicy(profile.preferences,parents,'telegram').enabled,false);
   assert.equal(resolveNotificationPolicy(profile.preferences,parents,'push').enabled,false);
 });
-test('all bindings require confirmation: no operator/address verification or delivery grant is inferred from consent',()=>{
+test('saved groups retain known operator scope while address confirmation and delivery admission stay separate',()=>{
   const result=projectLegacyLiveProfile(input());assert.equal(result.profile.preferences.optedIn,true);
   for(const row of result.profile.locations){assert.equal(row.binding.status,'needs_confirmation');assert.equal(row.binding.verifiedAt,null);
-    assert.equal(row.binding.kind,'user_selected_group');assert.equal(row.binding.operatorId,'legacy-operator-unresolved');}
+    assert.equal(row.binding.kind,'user_selected_group');assert.equal(row.binding.operatorId,'vinnytsia-oe');
+    assert.equal(row.binding.namespace,'voe:vinnytsia');assert.equal(row.binding.targetId,'GPV1.1');}
   assert.equal(result.deliveryEligible,false);
 });
 test('row ordering, JSON restart and irrelevant metadata do not change projection; rename changes source digest, not address ID',()=>{

@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {manualGroupOption,manualGroupAddressId} from '../../shared/manual-group.ts';
+import {addressOptionFingerprint} from '../../shared/address-selection.ts';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -86,6 +88,27 @@ test('first bootstrap is exact, private, once only and never mutates legacy rows
  assert.equal(p.calls[1].sql.endsWith('for share'),true);assert(p.calls[2].sql.startsWith('select pg_advisory'));assert(p.data.origins[owner].private.provenance.length===3);assert(!JSON.stringify(first).includes('private_provenance'));assert(!('provenance'in first));
  p.legacy.locations[0].name='Externally changed fixture';const second=await store.snapshot(identity);assert.equal(p.legacyReads,reads);assert.equal(second.sessionId,first.sessionId);assert.equal(second.profile.locations[0].address.label,'Fixture place 1');
  p.legacy=before;assert.deepEqual(p.legacy,before);assert(p.calls.every(q=>!/^\s*(?:insert into|update|delete from) (?:user_settings|user_locations|telegram_subscribers)\b/.test(q.sql)));
+});
+test('known legacy saved groups bootstrap through the canonical store without informational blocking issues',async()=>{
+ for(const [city,operatorId,namespace,prefix] of [
+  ['Київ','dtek-kem','yasno:25/902',''],['Вінниця','vinnytsia-oe','voe:vinnytsia','GPV'],
+  ['Одеса','dtek-oem','dtek:oem','GPV'],['Харків','kharkiv-oe','kharkiv:rss',''],
+ ]){
+  const p=new Port();for(const row of [...p.legacy.settings,...p.legacy.locations])row.city=city;
+  const original=structuredClone(p.legacy),client=await p.pool.connect();
+  await client.query('begin isolation level repeatable read');
+  const read=await selectLegacyLiveProfileInTransaction(client,identity,{now:()=>now});
+  assert.equal(read.status,'ready');assert.deepEqual(read.blockers,[]);assert.deepEqual(read.projection.issues,[]);
+  await client.query('rollback');client.release();
+  const store=p.store(),snapshot=await store.snapshot(identity);
+  assert.deepEqual(snapshot.profile,read.projection.profile);assert.equal(snapshot.profile.locations.length,2);
+  for(const [i,l] of snapshot.profile.locations.entries()){
+   assert.equal(l.binding.operatorId,operatorId);assert.equal(l.binding.namespace,namespace);assert.equal(l.binding.targetId,prefix+original.locations[i].queueId);
+   assert.equal(l.binding.kind,'user_selected_group');assert.equal(l.binding.status,'needs_confirmation');assert.equal(l.binding.verifiedAt,null);
+  }
+  assert.equal(p.data.origins[owner].sourceDigest,read.sourceDigest);assert.equal(p.data.bootstrap[owner].kind,'legacy');
+  assert.deepEqual(p.legacy,original);const reads=p.legacyReads;assert.deepEqual((await store.snapshot(identity)).profile,snapshot.profile);assert.equal(p.legacyReads,reads);
+ }
 });
 test('blocked/incomplete/orphan/empty or conflicting bootstrap never creates canonical state; origin prevents automatic rebootstrap',async()=>{
  for(const alter of [(p:Port)=>{p.legacy.settings[0].telegramChatId='unverified-chat';},(p:Port)=>{p.legacy.settings=[];p.legacy.locations=[];},(p:Port)=>{p.legacy.settings[0].street='Other physical fixture';}]){
@@ -210,6 +233,26 @@ test('same-clock multi-message Bot turns retain revision/ordinal order within th
  const pending=await store.pendingOutbox(identity);assert.deepEqual(pending.map(o=>o.id),[...first.receipt.outboxIds,...second.receipt.outboxIds]);
  const query=p.calls.findLast(c=>c.sql.startsWith('select id,input_id as'))!.sql;assert(query.includes('order by revision,ordinal,id'));assert(query.includes('session_id=(select session_id from lba_production_profiles where owner_id=$1)'));
 });
+test('App manual groups use canonical add/replace CAS and replay while preserving other places, profile policies and the bot draft',async()=>{
+ const p=new Port();let group={id:'manual-app-group',label:'3.1',locality:'Харків',territoryLabel:'АТ «Харківобленерго»',operatorId:'kharkiv-oe',namespace:'kharkiv:gpv',targetId:'3.1',revisionId:'group-binding-1'};
+ const store=p.store({context:()=>({addresses:[option],plans:[],manualGroups:[{...group,privateToken:'MUST_NOT_RETURN'}]})});
+ let before=await store.snapshot(identity);const prefs=structuredClone(before.profile.preferences),places=structuredClone(before.profile.locations);
+ p.data.profiles[owner].state.draft={operation:'add',streetQuery:'Незавершена адреса',label:'Чернетка',confirmed:false};
+ const botDraft=structuredClone(p.data.profiles[owner].state.draft),choice=manualGroupOption(group),mutation={kind:'add',optionId:choice.id,bindingRevisionId:choice.binding.revisionId,selectionFingerprint:addressOptionFingerprint(choice),label:'Моя група',confirmed:true};
+ assert.deepEqual(before.manualGroups,[group]);assert(!before.catalog.some(o=>o.id===group.id));
+ const request=app(before,'manual-app-add',mutation),saved=await store.commitProfileMutation(identity,request);before=saved.snapshot;
+ const manual=before.profile.locations.find(l=>l.address.id===manualGroupAddressId(group))!;
+ assert(manual);assert.equal(manual.binding.kind,'user_selected_group');assert.equal(manual.binding.status,'needs_confirmation');assert.equal(manual.binding.verifiedAt,null);assert.equal(manual.notifications,false);
+ assert.deepEqual(before.profile.preferences,prefs);assert.deepEqual(before.profile.locations.slice(0,places.length),places);assert.deepEqual(p.data.profiles[owner].state.draft,botDraft);
+ assert.equal((await store.commitProfileMutation(identity,request)).replayed,true);assert.equal(p.data.profiles[owner].revision,1);
+ await assert.rejects(store.commitProfileMutation(identity,app({...before,revision:0},'manual-app-old',mutation)),/PROFILE_REVISION_CONFLICT/);
+ group={...group,label:'Оновлена 3.1'};
+ await assert.rejects(store.commitProfileMutation(identity,app(before,'manual-app-drift',mutation)),/PROFILE_SELECTION_CHANGED/);
+ group={...group,label:'3.1',targetId:'3.2',revisionId:'group-binding-2'};const replacement=manualGroupOption(group);
+ before=(await store.commitProfileMutation(identity,app(before,'manual-app-replace',{kind:'replace',addressId:manual.address.id,optionId:group.id,bindingRevisionId:group.revisionId,selectionFingerprint:addressOptionFingerprint(replacement),label:'Інша група',confirmed:true}))).snapshot;
+ assert(!before.profile.locations.some(l=>l.address.id===manual.address.id));assert(before.profile.locations.some(l=>l.address.id===replacement.address.id));assert.deepEqual(before.profile.preferences,prefs);assert.deepEqual(p.data.profiles[owner].state.draft,botDraft);
+});
+
 test('an explicitly selected manual technical group can display its exact current plan without certifying building binding or delivery',async()=>{
  const p=new Port();let patch:Partial<ScheduleView>={};
  const group={id:'manual-fixture-group',label:'Група 1.1',locality:'Fixture locality',territoryLabel:'Fixture territory',operatorId:'fixture-operator',namespace:'fixture:namespace',targetId:'1.1',revisionId:'manual-binding-1'};

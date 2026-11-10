@@ -3,7 +3,8 @@ import type { NotificationPolicy } from './notification-policy.ts';
 export const PRODUCT_CONTRACT_VERSION = 'lba-product/1' as const;
 export type PlanStatus = 'published' | 'no_planned_outages' | 'possible' | 'emergency' |
   'not_published' | 'stale' | 'unavailable' | 'conflict' | 'needs_confirmation';
-export type VerificationLevel = 'catalog' | 'schedule' | 'address' | 'integration';
+/** initial_launch is an owner-approved group-plan grant, never a building proof. */
+export type VerificationLevel = 'catalog' | 'schedule' | 'address' | 'integration' | 'initial_launch';
 export type AddressId = string;
 export interface AddressRecord {
   id: AddressId;

@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createAddressCatalog,ADDRESS_CATALOG_SCHEMA_SQL,ADDRESS_CATALOG_POLICY} from '../../server/production/address-catalog.ts';
 import {collectAddressCapture} from '../../server/production/address-catalog-http.ts';
-import {technicalDisplaySourceRegistry,YASNO_SHARED_ORIGIN_BUDGET_MS} from '../../server/production/source-operating-policy.ts';
+import {historicalTechnicalDisplaySourceRegistry as technicalDisplaySourceRegistry,YASNO_SHARED_ORIGIN_BUDGET_MS} from '../../server/production/source-operating-policy.ts';
 import type {SourceHttpTransport} from '../../server/production/source-intake.ts';
 const url='https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%9A%D1%96%D0%BB%D1%8C%D1%86%D0%B5%D0%B2%D0%B0';
 const now=()=>Date.parse('2026-11-08T21:00:00Z');

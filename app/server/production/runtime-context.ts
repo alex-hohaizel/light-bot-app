@@ -65,7 +65,7 @@ export function createRuntimeDataContext(ports:Ports){
    // so a change from one group to several still requires fresh confirmation.
    const changedAddress=freshIds.has(location.address.id)&&(!matchingAddress||b.namespace==='dtek:oem'&&
     matchingAddress.binding.revisionId!==b.revisionId);
-   const certified=memoryFresh&&!stale&&currentAddress?(current?.certificates??[]).filter(c=>c.ownerId===principal.ownerId&&c.sessionId===state.sessionId&&c.view.addressId===location.address.id&&c.view.addressLabel===location.address.label&&c.view.localityLabel===location.address.locality&&c.view.serviceDate===v.serviceDate&&
+   const certified=memoryFresh&&!stale?(current?.certificates??[]).filter(c=>(currentAddress||c.kind==='lba-certified-schedule/3')&&c.ownerId===principal.ownerId&&c.sessionId===state.sessionId&&c.view.addressId===location.address.id&&c.view.addressLabel===location.address.label&&c.view.localityLabel===location.address.locality&&c.view.serviceDate===v.serviceDate&&
     validInstant(c.issuedAt)&&validInstant(c.expiresAt)&&Date.parse(c.issuedAt)<=now&&now<Date.parse(c.expiresAt)&&scheduleEventDigest(c.binding)===scheduleEventDigest(b)&&
     c.view.source.revision===v.source.revision&&c.view.revisionId===v.revisionId&&c.view.observedAt===v.observedAt&&c.view.status===v.status&&c.view.dayCoverage===v.dayCoverage&&
     c.view.operatorId===v.operatorId&&c.view.namespace===v.namespace&&c.view.targetId===v.targetId&&scheduleEventDigest(c.view.intervals)===scheduleEventDigest(v.intervals)):[];

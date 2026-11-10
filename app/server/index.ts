@@ -117,6 +117,7 @@ app.use((req, res, next) => {
     if(policy.productProfileMode==='active'){
       const {pool}=await import('./db');
       canonicalRuntime=createCanonicalRuntime({pool,policy,token:process.env.TELEGRAM_BOT_TOKEN!,origin:'https://power-ukraine.net',fetch,
+        initialLaunchNotifications:true,
         certification:{rootDirectory:qualificationRootFromEntryDirectory(typeof __dirname==='string'?__dirname:fileURLToPath(new URL('.',import.meta.url)))},
         ...(releaseCampaign?{releaseCampaign}:{}),
         verifySource:createRuntimeSourceProof({expectedControlEpoch:policy.canonicalControlEpoch!,odesaPlanApiEnabled:policy.odesaPlanApiEnabled??false}),authorizePrincipal:ownerAuth!.authorizePrincipal,

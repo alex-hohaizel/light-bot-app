@@ -66,7 +66,7 @@ export function validateScheduleView(view: ScheduleView): void {
   if (!['complete', 'partial', 'none'].includes(view.dayCoverage) || !['current', 'stale', 'unknown'].includes(view.freshness)) throw new Error('UNKNOWN_COVERAGE_OR_FRESHNESS');
   if (!view.revisionId || !view.addressId || !view.operatorId || view.source.accessCost !== 0 ||
       typeof view.synthetic !== 'boolean' || typeof view.deliveryEligible !== 'boolean' || !Array.isArray(view.intervals) ||
-      !['catalog', 'schedule', 'address', 'integration'].includes(view.source.verifiedLevel)) throw new Error('INVALID_ID_OR_COST_OR_TYPE');
+      !['catalog', 'schedule', 'address', 'integration', 'initial_launch'].includes(view.source.verifiedLevel)) throw new Error('INVALID_ID_OR_COST_OR_TYPE');
   if (!validInstant(view.observedAt)) throw new Error('INVALID_OBSERVED_AT');
   if (view.publishedAt !== null && !validInstant(view.publishedAt)) throw new Error('INVALID_PUBLISHED_AT');
   for (const intervals of [view.intervals, ...(view.previousIntervals ? [view.previousIntervals] : [])]) {
@@ -106,9 +106,11 @@ export function scheduleSemantics(view: ScheduleView): string {
 }
 export function canDeliver(view: ScheduleView, binding: AddressBinding, preferences: ProductPreferences, now: string, channel: NotificationChannel = 'telegram'): boolean {
   validateScheduleView(view);
+  const selectedGroup = view.source.verifiedLevel === 'initial_launch' && binding.status === 'needs_confirmation' &&
+    ['user_selected_group', 'operator_group'].includes(binding.kind) && binding.verifiedAt === null;
   if (!validInstant(now) || typeof preferences.optedIn !== 'boolean' || typeof preferences.paused !== 'boolean' ||
       typeof preferences.reminders !== 'boolean' || typeof preferences.quietHours?.enabled !== 'boolean' ||
-      !validInstant(binding.verifiedAt) || (binding.effectiveFrom !== null && !validInstant(binding.effectiveFrom)) ||
+      (!selectedGroup && !validInstant(binding.verifiedAt)) || (binding.effectiveFrom !== null && !validInstant(binding.effectiveFrom)) ||
       (binding.effectiveUntil !== null && !validInstant(binding.effectiveUntil)) || !binding.namespace || !binding.targetId) return false;
   const epoch = Date.parse(now);
   if (!Number.isFinite(epoch) || Date.parse(view.observedAt) > epoch ||
@@ -127,13 +129,13 @@ export function canDeliver(view: ScheduleView, binding: AddressBinding, preferen
     if (start < end ? actual >= start && actual < end : actual >= start || actual < end) return false;
   }
   return Number.isFinite(epoch) && !view.synthetic && view.deliveryEligible && view.freshness === 'current' &&
-    view.source.verifiedLevel === 'integration' &&
+    (view.source.verifiedLevel === 'integration' || selectedGroup) &&
     (view.status === 'emergency' ? view.dayCoverage === 'none' && view.intervals.length === 0 :
       view.dayCoverage === 'complete' && ['published', 'possible', 'no_planned_outages'].includes(view.status)) &&
-    binding.status === 'verified' && ['building', 'connection', 'operator_group'].includes(binding.kind) && binding.addressId === view.addressId &&
-    binding.operatorId === view.operatorId && Boolean(binding.verifiedAt) &&
+    (selectedGroup || binding.status === 'verified' && ['building', 'connection', 'operator_group'].includes(binding.kind)) && binding.addressId === view.addressId &&
+    binding.operatorId === view.operatorId && (selectedGroup || Boolean(binding.verifiedAt)) &&
     view.bindingRevisionId === binding.revisionId && view.namespace === binding.namespace && view.targetId === binding.targetId &&
-    Date.parse(binding.verifiedAt!) <= epoch &&
+    (selectedGroup || Date.parse(binding.verifiedAt!) <= epoch) &&
     (!binding.effectiveFrom || Date.parse(binding.effectiveFrom) <= epoch) &&
     (!binding.effectiveUntil || epoch < Date.parse(binding.effectiveUntil)) && channelEnabled && !preferences.paused;
 }

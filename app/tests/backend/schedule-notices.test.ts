@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {normalizeKharkivRss} from '../../server/domain/kharkiv-adapter.ts';
 import {createSourceIntake,type TechnicalDisplayAdmission} from '../../server/production/source-intake.ts';
-import {technicalDisplaySourceRegistry,KHARKIV_9NOV_PUBLICATION_SCOPE} from '../../server/production/source-operating-policy.ts';
+import {historicalTechnicalDisplaySourceRegistry as technicalDisplaySourceRegistry,KHARKIV_9NOV_PUBLICATION_SCOPE} from '../../server/production/source-operating-policy.ts';
 import {scheduleText} from '../../client/src/product-review/schedule-model.ts';
 import {formatScheduleText} from '../../shared/bot/copy.ts';
 import {parseLivePublicShare} from '../../shared/live-tools.ts';

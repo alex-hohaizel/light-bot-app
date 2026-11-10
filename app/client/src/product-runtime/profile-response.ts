@@ -4,6 +4,7 @@ import type {ProfileRequest} from '../../../shared/profile-mutation.ts';
 import type {ProductSnapshot} from '../../../shared/live-product.ts';
 import {validInstant,validateScheduleView} from '../../../shared/schedule-core.ts';
 import {parseLocationNotificationPolicy,parseNotificationPolicy} from '../../../shared/notification-policy.ts';
+import {parseManualGroups} from '../../../shared/manual-group.ts';
 
 const object=(v:unknown):v is Record<string,any>=>Boolean(v&&typeof v==='object'&&!Array.isArray(v));
 const text=(v:unknown)=>typeof v==='string'&&v.length>0&&v.length<=255;
@@ -33,6 +34,7 @@ export function assertProfileSnapshotResponse(value:unknown,mode:'review'|'live'
   const p=value.profile,ids=new Set<string>(),optionIds=new Set<string>();
   for(const l of p.locations){if(!object(l)||!address(l.address)||!binding(l.binding,l.address.id)||typeof l.notifications!=='boolean'||typeof l.paused!=='boolean'||ids.has(l.address.id))return bad();ids.add(l.address.id);if(l.notificationPolicy!==undefined)parseLocationNotificationPolicy(l.notificationPolicy);}
   if(value.operatorHouseNotices!==undefined)parseOperatorHouseNotices(value.operatorHouseNotices,p.locations);
+  if(value.manualGroups!==undefined)parseManualGroups(value.manualGroups);
   if(p.primaryAddressId!==null&&!ids.has(p.primaryAddressId))return bad();
   const prefs=p.preferences;if(!object(prefs)||!object(prefs.quietHours)||!object(prefs.morningBriefing)||
     [prefs.optedIn,prefs.paused,prefs.reminders,prefs.quietHours.enabled,prefs.morningBriefing.enabled].some(v=>typeof v!=='boolean')||

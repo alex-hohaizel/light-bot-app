@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#18181b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <title>Світло Україна - Графік відключень</title>
+    <meta name="description" content="Графік відключень електроенергії в Україні. Сповіщення про вимкнення та включення світла." />
+    
+    <meta property="og:title" content="Світло Україна" />
+    <meta property="og:description" content="Графік відключень електроенергії для вашої адреси" />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" type="image/png" href="/icon-512.png" />
+    <link rel="apple-touch-icon" href="/icon-512.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        try {
+          var theme = 'light';
+          var tg = window.Telegram && window.Telegram.WebApp;
+          if (tg && tg.initData && tg.initData.length > 0) {
+            theme = tg.colorScheme === 'dark' ? 'dark' : 'light';
+          } else {
+            var raw = localStorage.getItem('voe-schedule-storage-v7');
+            if (raw) {
+              var parsed = JSON.parse(raw);
+              var st = parsed && parsed.state;
+              if (st && st.themeMode === 'dark') theme = 'dark';
+            }
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+          var mc = document.querySelector('meta[name="theme-color"]');
+          if (mc) mc.setAttribute('content', theme === 'light' ? '#f5f5f7' : '#18181b');
+        } catch(e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <style>
+      html[data-theme="light"] body { background-color: #f5f5f7; color: #1c1c1e; }
+      html[data-theme="dark"] body { background-color: #09090b; color: #fafafa; }
+      html body { background-color: #f5f5f7; color: #1c1c1e; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DrgIy_mz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-chWm5hEl.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      var isCapacitorNative = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+      if (!isCapacitorNative && 'serviceWorker' in navigator) {
+        var swRefreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (!swRefreshing) {
+            swRefreshing = true;
+            window.location.reload();
+          }
+        });
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            registrations.forEach(function(reg) {
+              reg.update();
+            });
+          });
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) {
+              reg.update();
+              if (reg.waiting) {
+                reg.waiting.postMessage('SKIP_WAITING');
+              }
+              reg.addEventListener('updatefound', function() {
+                var newWorker = reg.installing;
+                if (newWorker) {
+                  newWorker.addEventListener('statechange', function() {
+                    if (newWorker.state === 'activated') {
+                      if (!swRefreshing) {
+                        swRefreshing = true;
+                        window.location.reload();
+                      }
+                    }
+                  });
+                }
+              });
+            })
+            .catch(function() {});
+        });
+      }
+    </script>
+  </body>
+</html>

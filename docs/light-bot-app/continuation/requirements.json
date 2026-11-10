@@ -1,6 +1,6 @@
 {
   "schema_version": "lba-product-requirements/1",
-  "revision": "1.1",
+  "revision": "1.2",
   "project_id": "g-p-6aee37634784819189b085127be2946b",
   "purpose": "Canonical detailed extension of accepted LBA-01–LBA-11; not a second approval ledger",
   "parent_passport_revision": "1.0",
@@ -63,12 +63,20 @@
       "due_stage": "P1",
       "owner": "data",
       "title": "Підтверджене покриття мінімум чотирьох міст",
-      "acceptance": "Київ, Вінниця, Одеса, Харків та увесь доказовий legacy присутні у coverage matrix; перший реліз не зараховується за один ОСР.",
+      "acceptance": "Київ, Вінниця, Одеса, Харків та увесь доказовий legacy присутні у coverage matrix; перший реліз не зараховується за один ОСР. Початковий реліз: Вінниця може використовувати погоджене громадське дзеркало після невдалої короткої browser-client проби; Харків — підтверджений загальний план груп без гарантії повної адресної точності.",
       "source_ids": [
-        "SRC-PASSPORT"
+        "SRC-PASSPORT",
+        "SRC-OWNER-FAST-LAUNCH-2026-11-10"
       ],
       "implementation_status": "required_pending",
-      "evidence": []
+      "evidence": [],
+      "acceptance_history": [
+        {
+          "revision": "1.1",
+          "acceptance": "Київ, Вінниця, Одеса, Харків та увесь доказовий legacy присутні у coverage matrix; перший реліз не зараховується за один ОСР.",
+          "source_sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+        }
+      ]
     },
     {
       "id": "DATA-04",
@@ -98,12 +106,20 @@
       "due_stage": "P1",
       "owner": "data",
       "title": "Розділити графік і адресну прив’язку",
-      "acceptance": "Окремі verdict catalog/schedule/address/integration з датою, scope та provenance; назва ОСР або наявність JSON не є підтвердженою адресою.",
+      "acceptance": "Окремі verdict catalog/schedule/address/integration з датою, scope та provenance; назва ОСР або наявність JSON не є підтвердженою адресою. Для першого релізу Харкова допустимий явний вибір групи користувачем і загальний датований план; неперевірений будинок має відповідний статус, без вимоги 100% адресного зіставлення.",
       "source_ids": [
-        "SRC-PASSPORT"
+        "SRC-PASSPORT",
+        "SRC-OWNER-FAST-LAUNCH-2026-11-10"
       ],
       "implementation_status": "required_pending",
-      "evidence": []
+      "evidence": [],
+      "acceptance_history": [
+        {
+          "revision": "1.1",
+          "acceptance": "Окремі verdict catalog/schedule/address/integration з датою, scope та provenance; назва ОСР або наявність JSON не є підтвердженою адресою.",
+          "source_sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+        }
+      ]
     },
     {
       "id": "DATA-06",
@@ -176,13 +192,21 @@
       "due_stage": "P1",
       "owner": "data",
       "title": "Предметний допуск даних",
-      "acceptance": "Стартовий метод паспорта:20 різних репрезентативних адрес/ОСР або вичерпний менший вузький scope, ≥48 год спостереженої звірки; є негативні fixtures і журнал ревізій.",
+      "acceptance": "Перший реліз: короткі перевірки актуальної дати/структури плану, репрезентативного вибору групи або адреси, основної взаємодії; негативні fixtures і журнал ревізій. Фіксовані 48 годин та 20 адрес/ОСР не є умовою випуску за прямим рішенням власника. Спостереження й уточнення джерел продовжуються після старту без обов’язкового 48h бар’єра.",
       "source_ids": [
-        "SRC-PASSPORT"
+        "SRC-PASSPORT",
+        "SRC-OWNER-FAST-LAUNCH-2026-11-10"
       ],
       "implementation_status": "required_pending",
       "evidence": [],
-      "basis": "accepted_passport_verification_method_not_verbatim_user"
+      "basis": "direct_owner_fast_launch_amendment_2026_11_10",
+      "acceptance_history": [
+        {
+          "revision": "1.1",
+          "acceptance": "Стартовий метод паспорта:20 різних репрезентативних адрес/ОСР або вичерпний менший вузький scope, ≥48 год спостереженої звірки; є негативні fixtures і журнал ревізій.",
+          "source_sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158"
+        }
+      ]
     },
     {
       "id": "ADDR-01",
@@ -1311,5 +1335,10 @@
         "D-ORIGINAL-TEXT"
       ]
     }
-  ]
+  ],
+  "current_owner_amendment": {
+    "source_id": "SRC-OWNER-FAST-LAUNCH-2026-11-10",
+    "path": "../release-v8/FAST_LAUNCH_OWNER_SCOPE_2026-11-10_UA.md",
+    "scope": "Initial working release; no fixed48h/full-address gate; approvedVinmirror/Khgroupplan; preserve all68 IDs, identity, profiles and honest data states."
+  }
 }

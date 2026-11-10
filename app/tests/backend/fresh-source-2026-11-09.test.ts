@@ -6,7 +6,7 @@ import {normalizeHourMatrix} from '../../server/domain/hour-matrix-adapter.ts';
 import {normalizeYasnoRaw} from '../../server/domain/yasno-adapter.ts';
 import {normalizeKharkivRss} from '../../server/domain/kharkiv-adapter.ts';
 import {createSourceIntake,technicalPlanSha256,type SourceIntakeRequest,type SourceHttpTransport,type TechnicalDisplayAdmission} from '../../server/production/source-intake.ts';
-import {technicalDisplaySourceRegistry,TECHNICAL_SOURCE_REVIEW,ODESA_9NOV_SEMANTIC_SCOPE,HISTORICAL_SOURCE_INCIDENTS} from '../../server/production/source-operating-policy.ts';
+import {historicalTechnicalDisplaySourceRegistry as technicalDisplaySourceRegistry,TECHNICAL_SOURCE_REVIEW,ODESA_9NOV_SEMANTIC_SCOPE,HISTORICAL_SOURCE_INCIDENTS} from '../../server/production/source-operating-policy.ts';
 const root=new URL('../../../docs/light-bot-app/release-v8/source-research-2026-11-09/',import.meta.url);
 const read=(name:string)=>readFileSync(new URL(name,root),'utf8'),hash=(raw:string)=>createHash('sha256').update(raw).digest('hex');
 const observedAt='2026-11-08T23:50:00Z',now=Date.parse(observedAt),date='2026-11-09';

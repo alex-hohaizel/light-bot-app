@@ -1,0 +1,16 @@
+{
+  "name": "Світло Україна",
+  "short_name": "Світло",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#18181b",
+  "description": "Графік відключень електроенергії в Україні",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

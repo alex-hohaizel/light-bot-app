@@ -15,7 +15,7 @@ import {SOURCE_PROFILES} from './source-intake.ts';
 import {technicalDisplaySourceRegistry,odesaPlanApiOperatingRecord} from './source-operating-policy.ts';
 import {ADDRESS_CATALOG_POLICY,type createAddressCatalog} from './address-catalog.ts';
 import {createCurrentRawScheduleVerifier} from './runtime-source-proof.ts';
-import {scheduleEventDigest as digest,collectScheduleRenewalPredecessors,validScheduleCertificateShape,type ScheduleCertificateRecord,type createProductionScheduleEvents,type CertifiedScheduleSourceRequest} from './schedule-events.ts';
+import {scheduleEventDigest as digest,collectScheduleRenewalPredecessors,validInitialLaunchCertificate,validScheduleCertificateShape,type ScheduleCertificateRecord,type createProductionScheduleEvents,type CertifiedScheduleSourceRequest} from './schedule-events.ts';
 import {captureQualificationMorningParts,recordQualificationRevision} from './morning-reconciliation.ts';
 import {ProductionProfileStoreError,type createProductionProfileStore} from './profile-store.ts';
 import type {LegacyProfileReadPool,LegacyProfileReadQuery} from './profile-reader.ts';
@@ -24,7 +24,7 @@ import type {createOperatorAddressRefresh} from './operator-address-refresh.ts';
 import type {DispatchEligibilityRequest} from './telegram-dispatch.ts';
 import type {CurrentDispatchSourceProof} from './telegram-dispatch-eligibility.ts';
 
-import {DEPLOYED_QUALIFICATION_PINS,type PinnedQualificationFile,type DeployedQualificationPin} from './deployed-schedule-qualification.ts';
+import {INITIAL_LAUNCH_NOTIFICATION_POLICY as LAUNCH,DEPLOYED_QUALIFICATION_PINS,type PinnedQualificationFile,type DeployedQualificationPin} from './deployed-schedule-qualification.ts';
 export {DEPLOYED_QUALIFICATION_PINS,type PinnedQualificationFile,type DeployedQualificationPin} from './deployed-schedule-qualification.ts';
 export const QUALIFICATION_CODE_DEPENDENCIES=Object.freeze(["app/package-lock.json","app/package.json","app/server/domain/hour-matrix-adapter.ts","app/server/domain/kharkiv-adapter.ts","app/server/domain/odesa-address-adapter.ts","app/server/domain/odesa-plan-api-adapter.ts","app/server/domain/odesa-qualification.ts","app/server/domain/profile-service.ts","app/server/domain/provider-address-lookup.ts","app/server/domain/provider-wall-time.ts","app/server/domain/public-address-request-identity.ts","app/server/domain/yasno-adapter.ts","app/server/domain/yasno-address-adapter.ts","app/server/production/address-catalog-http.ts","app/server/production/address-catalog.ts","app/server/production/address-flow.ts","app/server/production/bot-address-preflight.ts","app/server/production/canonical-runtime.ts","app/server/production/canonical-schema.ts","app/server/production/event-producer.ts","app/server/production/legacy-campaign-recipient.ts","app/server/production/legacy-profile.ts","app/server/production/morning-briefing.ts","app/server/production/morning-reconciliation.ts","app/server/production/odesa-address-catalog.ts","app/server/production/odesa-address-certification.ts","app/server/production/odesa-plan-source.ts","app/server/production/operator-address-flow.ts","app/server/production/operator-address-refresh.ts","app/server/production/profile-reader.ts","app/server/production/profile-store.ts","app/server/production/provider-address-catalog.ts","app/server/production/public-source-reservation.ts","app/server/production/runtime-context.ts","app/server/production/runtime-source-proof.ts","app/server/production/schedule-certification.ts","app/server/production/schedule-events.ts","app/server/production/source-ingestion.ts","app/server/production/source-intake.ts","app/server/production/source-operating-policy.ts","app/server/production/telegram-callback-ack.ts","app/server/production/telegram-dispatch-eligibility.ts","app/server/production/telegram-dispatch.ts","app/server/production/telegram-transport.ts","app/server/providers/odesa-public-client.ts","app/server/release/update-campaign-pg.ts","app/server/release/update-campaign.ts","app/server/runtime-policy.ts","app/shared/address-index.ts","app/shared/address-selection.ts","app/shared/bot/copy.ts","app/shared/bot/engine.ts","app/shared/bot/types.ts","app/shared/delivery-contract.ts","app/shared/morning-briefing.ts","app/shared/notification-policy.ts","app/shared/operator-house-notice.ts","app/shared/product-contract.ts","app/shared/profile-constraints.ts","app/shared/profile-mutation.ts","app/shared/schedule-binding.ts","app/shared/schedule-core.ts","app/shared/time-label.ts"]);
 /** index.ts passes its actual source or bundled entry directory. Both
@@ -146,7 +146,7 @@ type Catalog=Pick<ReturnType<typeof createAddressCatalog>,'searchStreets'|'searc
 /** Production composition uses the empty deployed registry until actual reviewed
  * evidence is supplied. A branded loaded fixture registry is confined to the
  * explicit synthetic-test composition; plain JSON cannot impersonate either. */
-export function createProductionScheduleCertification(options:{enabled:boolean;odesaPlanApiEnabled?:boolean;expectedControlEpoch:number;pool:LegacyProfileReadPool;store:Store;sources:Sources;catalog:Catalog;
+export function createProductionScheduleCertification(options:{enabled:boolean;initialLaunchNotifications?:boolean;odesaPlanApiEnabled?:boolean;expectedControlEpoch:number;pool:LegacyProfileReadPool;store:Store;sources:Sources;catalog:Catalog;
  now?:()=>number;registry?:LoadedQualificationRegistry;execution?:'production'|'synthetic_test';batchSize?:number;
  publicAddressRefresh?:ReturnType<typeof createOperatorAddressRefresh>['refreshOneSavedAddress'];
  /** Explicit trusted opt-in wiring only. Public refresh already owns acquisition;
@@ -155,6 +155,8 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
  let registry=options.registry??emptyRegistry();const clock=options.now??Date.now,epoch=options.expectedControlEpoch,batch=options.batchSize??20;
  const checkRegistry=(r:LoadedQualificationRegistry)=>{if(!registries.has(r)||r.medium==='synthetic_fixture'&&options.execution!=='synthetic_test')return die('REGISTRY_AUTHORITY_REQUIRED');};checkRegistry(registry);
  if(!Number.isSafeInteger(epoch)||epoch<1||!Number.isInteger(batch)||batch<1||batch>50||typeof options.enabled!=='boolean'||options.publicAddressRefresh!==undefined&&typeof options.publicAddressRefresh!=='function')return die('OPTIONS_INVALID');
+ if(options.initialLaunchNotifications!==undefined&&typeof options.initialLaunchNotifications!=='boolean')return die('OPTIONS_INVALID');
+ const launchEnabled=options.initialLaunchNotifications===true;
  const verifyRaw=createCurrentRawScheduleVerifier({expectedControlEpoch:epoch,odesaPlanApiEnabled:options.odesaPlanApiEnabled??false});let running=false,stopped=false,cursor='',publicRefreshCycle=0,last={state:'disabled',scanned:0,issued:0,replayed:0,pending:0};
  function admission(view:ScheduleView,at:string,addressId:string){const n=Date.parse(at);return registries.get(registry)!.find(a=>a.sourceId===view.source.id&&a.operatorId===view.operatorId&&a.namespace===view.namespace&&a.targetIds.has(view.targetId!)&&(!a.addressIds||a.addressIds.has(addressId))&&Date.parse(a.reviewedAt)<=n&&n<Date.parse(a.validUntil));}
  function rawExpiry(view:ScheduleView){const operating=view.source.id==='dtek-oem-public-plan-ajax'?odesaPlanApiOperatingRecord(options.odesaPlanApiEnabled===true):technicalDisplaySourceRegistry(true).find(a=>a.sourceId===view.source.id);return operating&&operating.state!=='blocked'?Math.min(Date.parse(view.observedAt)+operating.cacheTtlMs,Date.parse(operating.validUntil)):0;}
@@ -189,7 +191,41 @@ export function createProductionScheduleCertification(options:{enabled:boolean;o
   const house=await options.catalog.searchHouses({streetSnapshotId:street.snapshot.id,streetId:Number(ids[1]),query:location.address.house.literal});if(house.state!=='available'||!house.snapshot.items.some(i=>i.id===Number(ids[2])))return;
   await options.catalog.resolveCandidate({streetSnapshotId:street.snapshot.id,houseSnapshotId:house.snapshot.id,streetId:Number(ids[1]),houseId:Number(ids[2])});
  }
+ function launchScope(view:ScheduleView,at:string){return launchEnabled&&validInstant(at)&&Date.parse(LAUNCH.acceptedAt)<=Date.parse(at)&&Date.parse(at)<Date.parse(LAUNCH.validUntil)&&LAUNCH.sources.some(p=>p.sourceId===view.source.id&&p.operatorId===view.operatorId&&p.namespace===view.namespace);}
+ async function issueInitialLaunch(input:{state:BotState;view:ScheduleView;signal:AbortSignal}){
+  if(!options.enabled||stopped||input.signal.aborted)return {kind:'pending'};
+  const hint=input.state,selected=hint.profile.locations.find(l=>l.address.id===input.view.addressId);if(!selected)return {kind:'pending'};
+  const expected={sessionId:hint.sessionId,revision:hint.revision,addressId:selected.address.id,bindingDigest:digest(selected.binding)};
+  return options.store.commitCertifiedBinding(principal(hint.ownerId),expected,async tx=>{
+   const location=tx.state.profile.locations.find(l=>l.address.id===expected.addressId);
+   if(!location||tx.state.ownerId!==hint.ownerId||tx.state.sessionId!==expected.sessionId||tx.state.revision!==expected.revision||digest(location.binding)!==expected.bindingDigest)return die('SELECTION_CHANGED');
+   const binding=structuredClone(location.binding),raw=input.view;
+   if(stopped||input.signal.aborted||!launchScope(raw,tx.serverNow)||binding.status!=='needs_confirmation'||!['user_selected_group','operator_group'].includes(binding.kind)||binding.verifiedAt!==null||binding.operatorId!==raw.operatorId||binding.namespace!==raw.namespace||binding.targetId!==raw.targetId||raw.synthetic!==false||raw.freshness!=='current'||!['published','possible','no_planned_outages'].includes(raw.status)||raw.dayCoverage!=='complete')return {kind:'pending'};
+   const today=localParts(Date.parse(tx.serverNow)).date;if(![today,nextCalendarDate(today)].includes(raw.serviceDate))return {kind:'pending'};
+   const view:ScheduleView={...structuredClone(raw),addressId:location.address.id,addressLabel:location.address.label,localityLabel:location.address.locality,bindingRevisionId:binding.revisionId,source:{...raw.source,verifiedLevel:'initial_launch'},deliveryEligible:true,
+    notice:[raw.notice,'План обраної групи. Відповідність будинку та фактичний стан електропостачання не перевірені.'].filter(Boolean).join('\n')};
+   validateScheduleView(view);const fact=await verifyRaw({client:tx.client,view,now:tx.serverNow,signal:input.signal});
+   if(!fact||fact.sourceRevision!==view.source.revision||fact.addressBindingVerified!==false||fact.deliveryEligible!==false)return {kind:'pending'};
+   const expires=Math.min(Date.parse(LAUNCH.validUntil),rawExpiry(view),dayBounds(view.serviceDate).end,binding.effectiveUntil?Date.parse(binding.effectiveUntil):Infinity),now=Date.parse(tx.serverNow);if(expires<=now)return {kind:'pending'};
+   const id=certificateId({owner:tx.state.ownerId,session:tx.state.sessionId,epoch,view:digest(view),binding:digest(binding),policy:LAUNCH.kind});
+   const existing=(await tx.client.query('select record,record_digest,view_digest,revoked_at,expires_at from lba_production_schedule_certificate where id=$1 for share',[id])).rows;
+   if(existing.length){const old=existing[0];if(existing.length!==1||!validInitialLaunchCertificate(old.record,tx.serverNow)||digest(old.record)!==old.record_digest||old.view_digest!==digest(view)||old.record.ownerId!==tx.state.ownerId||old.record.sessionId!==tx.state.sessionId||digest(old.record.binding)!==digest(binding)||old.revoked_at!==null||Date.parse(iso(old.expires_at))<=now)return die('CERTIFICATE_REPLAY_CONFLICT');return {kind:'replayed',certificateId:id};}
+   const predecessors=await collectScheduleRenewalPredecessors({client:tx.client,state:tx.state,view,now:tx.serverNow,expectedControlEpoch:epoch});
+   const expiresAt=new Date(expires).toISOString(),ref=LAUNCH.authority+'#'+LAUNCH.kind;
+   const record:ScheduleCertificateRecord={kind:'lba-certified-schedule/3',ownerId:tx.state.ownerId,sessionId:tx.state.sessionId,controlEpoch:epoch,issuedAt:tx.serverNow,expiresAt,view,binding,
+    ...(predecessors.length?{renewal:{kind:'lba-pending-intent-renewal/1' as const,profileRevision:tx.state.revision,controlEpoch:epoch,predecessors}}:{}),
+    sourceEvidence:{kind:'accepted_source_revision',sourceId:view.source.id,sourceRevision:view.source.revision,acceptedAt:tx.serverNow,validUntil:expiresAt,evidenceRef:ref},
+    addressEvidence:{kind:'accepted_group_selection',bindingRevisionId:binding.revisionId,bindingDigest:digest(binding),acceptedAt:tx.serverNow,validUntil:expiresAt,evidenceRef:ref},
+    initialLaunchEvidence:{kind:'owner_approved_initial_launch',policyId:LAUNCH.kind,authority:LAUNCH.authority,acceptedAt:LAUNCH.acceptedAt,validUntil:LAUNCH.validUntil,selection:'saved_operator_group',buildingVerified:false,physicalStatus:'unknown'}};
+   if(stopped||input.signal.aborted||!validInitialLaunchCertificate(record,tx.serverNow))return die('ABORTED');
+   await tx.client.query('update lba_production_schedule_certificate set revoked_at=$5 where owner_id=$1 and session_id=$2 and address_id=$3 and (record->\'view\'->>\'serviceDate\'=$4 or binding_revision_id<>$6) and revoked_at is null',[tx.state.ownerId,tx.state.sessionId,view.addressId,view.serviceDate,tx.serverNow,binding.revisionId]);
+   await tx.client.query(`insert into lba_production_schedule_certificate(id,owner_id,session_id,control_epoch,address_id,schedule_revision_id,source_revision,binding_revision_id,view_digest,record_digest,record,issued_at,expires_at)
+    values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11::jsonb,$12,$13)`,[id,tx.state.ownerId,tx.state.sessionId,epoch,view.addressId,view.revisionId,view.source.revision,binding.revisionId,digest(view),digest(record),JSON.stringify(record),tx.serverNow,expiresAt]);
+   if(stopped||input.signal.aborted)return die('ABORTED');return {kind:'issued',certificateId:id};
+  });
+ }
  async function issue(input:{state:BotState;view:ScheduleView;signal:AbortSignal}){
+  if(launchScope(input.view,new Date(clock()).toISOString())&&input.state.profile.locations.some(l=>l.address.id===input.view.addressId&&l.binding.status==='needs_confirmation'))return issueInitialLaunch(input);
   if(!options.enabled||!registry.bundleCount||stopped||input.signal.aborted)return {kind:'pending'};
   if(input.view.source.id==='dtek-oem-public-plan-ajax'&&input.view.synthetic!==false)return {kind:'pending'};
   const hint=input.state,selected=hint.profile.locations.find(l=>l.address.id===input.view.addressId);if(!selected)return {kind:'pending'};
@@ -244,11 +280,11 @@ const r=(await c.query('select raw.capture from lba_public_address_candidate p j
   }finally{c.release();}
  }
  async function runOnce({signal}:{signal:AbortSignal}){
-  if(!options.enabled||!registry.bundleCount&&!options.publicAddressRefresh)return {...last,state:'disabled'};if(stopped||signal.aborted)return {...last,state:'stopped'};if(running)return {...last,state:'busy'};running=true;
+  if(!options.enabled||!registry.bundleCount&&!launchEnabled&&!options.publicAddressRefresh)return {...last,state:'disabled'};if(stopped||signal.aborted)return {...last,state:'stopped'};if(running)return {...last,state:'busy'};running=true;
   try{
    const client=await options.pool.connect();let rows:any[];try{rows=(await client.query('select owner_id,session_id,state from lba_production_profiles where control_epoch=$1 and owner_id>$2 order by owner_id limit $3',[epoch,cursor,batch])).rows;}finally{client.release();}
    if(!rows.length){cursor='';ownerOffset=undefined;return last={state:'observed',scanned:0,issued:0,replayed:0,pending:0};}
-   const cycle=++publicRefreshCycle,plans=registry.bundleCount?await options.sources.readTechnicalPlans():{plans:[]};last={state:'observed',scanned:0,issued:0,replayed:0,pending:0};let visited=0;
+   const cycle=++publicRefreshCycle,plans=registry.bundleCount||launchEnabled?await options.sources.readTechnicalPlans():{plans:[]};last={state:'observed',scanned:0,issued:0,replayed:0,pending:0};let visited=0;
    for(const row of rows){
     if(stopped||signal.aborted)break;let state=restoreBotState(row.state,row.owner_id);if(state.ownerId!==row.owner_id||state.sessionId!==row.session_id)return die('PROFILE_SCOPE_INVALID');
     const locations=state.profile.locations,start=ownerOffset&&ownerOffset.ownerId===row.owner_id?ownerOffset.index:0;
@@ -268,12 +304,12 @@ const r=(await c.query('select raw.capture from lba_public_address_candidate p j
       }
      }catch{/* No source/certificate/profile authority is inferred from a failed refresh. */}
      if(stopped||signal.aborted)return {...last,state:'stopped'};
-     if(!registries.get(registry)!.some(a=>a.operatorId===location.binding.operatorId&&a.namespace===location.binding.namespace&&(!a.addressIds||a.addressIds.has(location.address.id)))){last.pending++;continue;}
+     if(!launchEnabled&&!registries.get(registry)!.some(a=>a.operatorId===location.binding.operatorId&&a.namespace===location.binding.namespace&&(!a.addressIds||a.addressIds.has(location.address.id)))){last.pending++;continue;}
      try{
       // Public network/cache refresh is outside the canonical owner transaction.
-      await refreshAddress(state,location.address.id);const target=await targetHint(location);
+      if(!launchEnabled)await refreshAddress(state,location.address.id);const target=launchEnabled&&location.binding.status==='needs_confirmation'?location.binding.targetId:await targetHint(location);
       const at=new Date(clock()).toISOString(),dates=[localParts(clock()).date,nextCalendarDate(localParts(clock()).date)];
-      const matching=plans.plans.filter(p=>p.view.operatorId===location.binding.operatorId&&p.view.namespace===location.binding.namespace&&p.view.targetId===target&&dates.includes(p.view.serviceDate)&&admission(p.view,at,location.address.id)).slice(0,2);
+      const matching=plans.plans.filter(p=>p.view.operatorId===location.binding.operatorId&&p.view.namespace===location.binding.namespace&&p.view.targetId===target&&dates.includes(p.view.serviceDate)&&(admission(p.view,at,location.address.id)||launchScope(p.view,at))).slice(0,2);
       if(!matching.length){last.pending++;continue;}
       for(const p of matching){
        last.scanned++;const result=await issue({state,view:{...p.view,addressId:location.address.id},signal});
@@ -289,10 +325,12 @@ const r=(await c.query('select raw.capture from lba_public_address_candidate p j
   }finally{running=false;}
  }
  async function readCertifiedProjection(){
-  if(!options.enabled||!registry.bundleCount||stopped)return [];
+  if(!options.enabled||!registry.bundleCount&&!launchEnabled||stopped)return [];
   const client=await options.pool.connect();try{const at=new Date(clock()).toISOString();const rows=(await client.query(`select c.owner_id,c.session_id,c.control_epoch,c.address_id,c.schedule_revision_id,c.binding_revision_id,c.source_revision,c.record,c.record_digest,c.view_digest,c.issued_at,c.expires_at from lba_production_schedule_certificate c join lba_production_profiles p on p.owner_id=c.owner_id and p.session_id=c.session_id
    where c.control_epoch=$1 and p.control_epoch=$1 and c.revoked_at is null and c.issued_at<=$2::timestamptz and c.expires_at>$2::timestamptz order by c.issued_at desc,c.id desc limit 20001`,[epoch,at])).rows;
-   if(rows.length>20000)return die('PROJECTION_LIMIT');return rows.flatMap(r=>{try{const c=r.record as ScheduleCertificateRecord;validateScheduleView(c.view);const a=admission(c.view,at,c.view.addressId),ref=a?'review-sha256:'+a.reviewSha256+'/bundle-sha256:'+a.bundleSha256:null;
+   if(rows.length>20000)return die('PROJECTION_LIMIT');return rows.flatMap<ScheduleCertificateRecord>(r=>{try{const c=r.record as ScheduleCertificateRecord;validateScheduleView(c.view);
+    if(c.kind==='lba-certified-schedule/3')return launchEnabled&&validInitialLaunchCertificate(c,at)&&c.controlEpoch===epoch&&Number(r.control_epoch)===epoch&&c.ownerId===r.owner_id&&c.sessionId===r.session_id&&c.view.addressId===r.address_id&&c.view.revisionId===r.schedule_revision_id&&c.binding.revisionId===r.binding_revision_id&&c.view.source.revision===r.source_revision&&digest(c)===r.record_digest&&digest(c.view)===r.view_digest&&iso(r.issued_at)===c.issuedAt&&iso(r.expires_at)===c.expiresAt&&Date.parse(c.expiresAt)<=rawExpiry(c.view)?[structuredClone(c)]:[];
+    const a=admission(c.view,at,c.view.addressId),ref=a?'review-sha256:'+a.reviewSha256+'/bundle-sha256:'+a.bundleSha256:null;
     if(!validScheduleCertificateShape(c)||c.controlEpoch!==epoch||Number(r.control_epoch)!==epoch||c.ownerId!==r.owner_id||c.sessionId!==r.session_id||c.view.addressId!==r.address_id||c.view.revisionId!==r.schedule_revision_id||c.binding.revisionId!==r.binding_revision_id||c.view.source.revision!==r.source_revision||
      c.view.source.verifiedLevel!=='integration'||c.view.deliveryEligible!==true||c.view.synthetic!==false||c.view.bindingRevisionId!==c.binding.revisionId||c.binding.addressId!==c.view.addressId||c.binding.status!=='verified'||c.binding.kind!=='operator_group'||c.binding.operatorId!==c.view.operatorId||c.binding.namespace!==c.view.namespace||c.binding.targetId!==c.view.targetId||!validInstant(c.binding.verifiedAt)||!validInstant(c.binding.effectiveUntil)||Date.parse(c.binding.verifiedAt)>Date.parse(at)||Date.parse(c.binding.effectiveUntil)<=Date.parse(at)||digest(c)!==r.record_digest||digest(c.view)!==r.view_digest||!a||
      !accepted(c.sourceEvidence,'accepted_source_revision',['sourceId','sourceRevision'],c.issuedAt,c.expiresAt)||!accepted(c.addressEvidence,'accepted_address_binding',['bindingRevisionId','bindingDigest'],c.issuedAt,c.expiresAt)||
@@ -302,6 +340,15 @@ const r=(await c.query('select raw.capture from lba_public_address_candidate p j
   }finally{client.release();}
  }
  async function verifyCurrentSource(request:CertifiedScheduleSourceRequest){
+  if(launchEnabled&&request.view.source.verifiedLevel==='initial_launch'){
+   if(!options.enabled||stopped||request.signal.aborted||request.expectedControlEpoch!==epoch)return null;
+   const rows=(await request.client.query('select record,record_digest from lba_production_schedule_certificate where id=$1 and revoked_at is null for share',[request.certificateId])).rows;
+   const record=rows[0]?.record;if(rows.length!==1||!validInitialLaunchCertificate(record,request.now)||record.controlEpoch!==epoch||rows[0].record_digest!==request.certificateDigest||digest(record)!==request.certificateDigest||digest(record.view)!==digest(request.view)||digest(record.binding)!==digest(request.binding)||Date.parse(record.expiresAt)>rawExpiry(record.view))return null;
+   const profiles=(await request.client.query('select state from lba_production_profiles where owner_id=$1 and session_id=$2 and control_epoch=$3 for share',[record.ownerId,record.sessionId,epoch])).rows;if(profiles.length!==1)return null;
+   let state:BotState;try{state=restoreBotState(profiles[0].state,record.ownerId);}catch{return null;}
+   if(state.ownerId!==record.ownerId||state.sessionId!==record.sessionId||!state.profile.locations.some(l=>l.address.id===record.view.addressId&&digest(l.binding)===digest(record.binding)))return null;
+   return verifyRaw(request);
+  }
   const a=admission(request.view as ScheduleView,request.now,request.view.addressId);if(!options.enabled||stopped||request.expectedControlEpoch!==epoch||!a)return null;
   const rows=(await request.client.query('select record,record_digest from lba_production_schedule_certificate where id=$1 and revoked_at is null for share',[request.certificateId])).rows;
   const record=rows[0]?.record,ref='review-sha256:'+a.reviewSha256+'/bundle-sha256:'+a.bundleSha256;
@@ -314,7 +361,7 @@ const r=(await c.query('select raw.capture from lba_public_address_candidate p j
   const fact=await verifyRaw(request);return admission(request.view as ScheduleView,request.now,request.view.addressId)===a?fact:null;
  }
  return Object.freeze({runOnce,issue,readCertifiedProjection,verifyCurrentSource,stop:()=>{stopped=true;},setRegistry:(r:LoadedQualificationRegistry)=>{checkRegistry(r);registry=r;},
-  health:()=>({configured:options.enabled,admittedSources:registry.bundleCount,evidenceMedium:registry.medium,state:stopped?'stopped':last.state})});
+  health:()=>({configured:options.enabled,admittedSources:registry.bundleCount,initialLaunchNotifications:launchEnabled,launchPolicyCurrent:launchEnabled&&clock()>=Date.parse(LAUNCH.acceptedAt)&&clock()<Date.parse(LAUNCH.validUntil),launchPolicy:launchEnabled?LAUNCH.kind:null,evidenceMedium:registry.medium,state:stopped?'stopped':last.state})});
 }
 
 /** Interactive certified display is separate from notification event/outbox

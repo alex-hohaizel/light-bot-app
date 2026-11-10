@@ -1,0 +1,5027 @@
+{
+  "inputs": {
+    "server/production/product-identity.ts": {
+      "bytes": 286,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/runtime-policy.ts": {
+      "bytes": 8619,
+      "imports": [
+        {
+          "path": "server/production/product-identity.ts",
+          "kind": "import-statement",
+          "original": "./production/product-identity.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/media-fonts.ts": {
+      "bytes": 7307,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:os",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:url",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/auth.ts": {
+      "bytes": 1010,
+      "imports": [
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/user-settings.ts": {
+      "bytes": 2158,
+      "imports": [
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "./auth"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/telegram-subscribers.ts": {
+      "bytes": 1877,
+      "imports": [
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/linked-accounts.ts": {
+      "bytes": 839,
+      "imports": [
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "./auth"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/power-reports.ts": {
+      "bytes": 878,
+      "imports": [
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/user-locations.ts": {
+      "bytes": 1742,
+      "imports": [
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "./auth"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/weekly-digest.ts": {
+      "bytes": 1479,
+      "imports": [
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "./auth"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/models/compare-shares.ts": {
+      "bytes": 437,
+      "imports": [
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/schema.ts": {
+      "bytes": 322,
+      "imports": [
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "./models/auth"
+        },
+        {
+          "path": "shared/models/user-settings.ts",
+          "kind": "import-statement",
+          "original": "./models/user-settings"
+        },
+        {
+          "path": "shared/models/telegram-subscribers.ts",
+          "kind": "import-statement",
+          "original": "./models/telegram-subscribers"
+        },
+        {
+          "path": "shared/models/linked-accounts.ts",
+          "kind": "import-statement",
+          "original": "./models/linked-accounts"
+        },
+        {
+          "path": "shared/models/power-reports.ts",
+          "kind": "import-statement",
+          "original": "./models/power-reports"
+        },
+        {
+          "path": "shared/models/user-locations.ts",
+          "kind": "import-statement",
+          "original": "./models/user-locations"
+        },
+        {
+          "path": "shared/models/weekly-digest.ts",
+          "kind": "import-statement",
+          "original": "./models/weekly-digest"
+        },
+        {
+          "path": "shared/models/compare-shares.ts",
+          "kind": "import-statement",
+          "original": "./models/compare-shares"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/isolated-guard.ts": {
+      "bytes": 8766,
+      "imports": [
+        {
+          "path": "node:net",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:tls",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:http",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:https",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:http2",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:dns",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:dgram",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:child_process",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:worker_threads",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:module",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/db.ts": {
+      "bytes": 515,
+      "imports": [
+        {
+          "path": "drizzle-orm/node-postgres",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "pg",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schema.ts",
+          "kind": "import-statement",
+          "original": "@shared/schema"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/storage.ts": {
+      "bytes": 4008,
+      "imports": [
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "./db"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/user-settings.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/user-settings"
+        },
+        {
+          "path": "shared/models/telegram-subscribers.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/telegram-subscribers"
+        },
+        {
+          "path": "shared/models/linked-accounts.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/linked-accounts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/scraper.ts": {
+      "bytes": 6186,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/scraper-kyiv.ts": {
+      "bytes": 7734,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/scraper-kharkiv.ts": {
+      "bytes": 6171,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/scraper-odesa.ts": {
+      "bytes": 6065,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/replit-identity.ts": {
+      "bytes": 2905,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/replit-session.ts": {
+      "bytes": 2385,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/telegram-init-data.ts": {
+      "bytes": 4564,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/auth-replay.ts": {
+      "bytes": 7936,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/notification-policy.ts": {
+      "bytes": 10178,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/schedule-core.ts": {
+      "bytes": 10496,
+      "imports": [
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "./notification-policy.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/account-links.ts": {
+      "bytes": 39656,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/telegram-init-data.ts",
+          "kind": "import-statement",
+          "original": "../telegram-init-data.ts"
+        },
+        {
+          "path": "server/production/auth-replay.ts",
+          "kind": "import-statement",
+          "original": "./auth-replay.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/replit_integrations/auth/replitAuth.ts": {
+      "bytes": 8360,
+      "imports": [
+        {
+          "path": "openid-client",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "openid-client/passport",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "passport",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "express-session",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "memoizee",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "connect-pg-simple",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "../../db"
+        },
+        {
+          "path": "server/production/replit-identity.ts",
+          "kind": "import-statement",
+          "original": "../../production/replit-identity"
+        },
+        {
+          "path": "server/production/replit-session.ts",
+          "kind": "import-statement",
+          "original": "../../production/replit-session"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "../../isolated-guard"
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "../../production/account-links"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/replit_integrations/auth/storage.ts": {
+      "bytes": 943,
+      "imports": [
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/auth"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "../../db"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/replit_integrations/auth/routes.ts": {
+      "bytes": 665,
+      "imports": [
+        {
+          "path": "server/replit_integrations/auth/storage.ts",
+          "kind": "import-statement",
+          "original": "./storage"
+        },
+        {
+          "path": "server/replit_integrations/auth/replitAuth.ts",
+          "kind": "import-statement",
+          "original": "./replitAuth"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/replit_integrations/auth/index.ts": {
+      "bytes": 178,
+      "imports": [
+        {
+          "path": "server/replit_integrations/auth/replitAuth.ts",
+          "kind": "import-statement",
+          "original": "./replitAuth"
+        },
+        {
+          "path": "server/replit_integrations/auth/storage.ts",
+          "kind": "import-statement",
+          "original": "./storage"
+        },
+        {
+          "path": "server/replit_integrations/auth/routes.ts",
+          "kind": "import-statement",
+          "original": "./routes"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/voe-lookup.ts": {
+      "bytes": 1790,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/storage-locations.ts": {
+      "bytes": 6666,
+      "imports": [
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "./db"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/user-locations.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/user-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "import-statement",
+          "original": "./storage"
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/mobile-auth.ts": {
+      "bytes": 3748,
+      "imports": [
+        {
+          "path": "jsonwebtoken",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/storage-reports.ts": {
+      "bytes": 8115,
+      "imports": [
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "./db"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/models/power-reports.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/power-reports"
+        },
+        {
+          "path": "./isolated-guard",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/routes-digest.ts": {
+      "bytes": 3728,
+      "imports": [
+        {
+          "path": "server/mobile-auth.ts",
+          "kind": "import-statement",
+          "original": "./mobile-auth"
+        },
+        {
+          "path": "./storage-digest",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/storage-reports.ts",
+          "kind": "import-statement",
+          "original": "./storage-reports"
+        },
+        {
+          "path": "./storage-locations",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "./storage",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/telegram-bot.ts": {
+      "bytes": 233435,
+      "imports": [
+        {
+          "path": "fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/scraper.ts",
+          "kind": "import-statement",
+          "original": "./scraper"
+        },
+        {
+          "path": "server/scraper-kyiv.ts",
+          "kind": "import-statement",
+          "original": "./scraper-kyiv"
+        },
+        {
+          "path": "server/scraper-kharkiv.ts",
+          "kind": "import-statement",
+          "original": "./scraper-kharkiv"
+        },
+        {
+          "path": "server/scraper-odesa.ts",
+          "kind": "import-statement",
+          "original": "./scraper-odesa"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "import-statement",
+          "original": "./storage"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard"
+        },
+        {
+          "path": "server/runtime-policy.ts",
+          "kind": "import-statement",
+          "original": "./runtime-policy"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/routes.ts",
+          "kind": "dynamic-import",
+          "original": "./routes"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "canvas",
+          "kind": "dynamic-import",
+          "external": true
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/routes-digest.ts",
+          "kind": "dynamic-import",
+          "original": "./routes-digest"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-reports.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-reports"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "dynamic-import",
+          "original": "./storage"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./storage-locations"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/middleware.ts": {
+      "bytes": 2699,
+      "imports": [
+        {
+          "path": "express-rate-limit",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "helmet",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "compression",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cors",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/isolated-fixtures.ts": {
+      "bytes": 1462,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/product-contract.ts": {
+      "bytes": 5969,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/review-tools.ts": {
+      "bytes": 7326,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/time-label.ts": {
+      "bytes": 429,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/operator-house-notice.ts": {
+      "bytes": 10698,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "./schedule-core.ts"
+        },
+        {
+          "path": "shared/time-label.ts",
+          "kind": "import-statement",
+          "original": "./time-label.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/address-index.ts": {
+      "bytes": 12669,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/address-selection.ts": {
+      "bytes": 2554,
+      "imports": [
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "./address-index.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/profile-constraints.ts": {
+      "bytes": 222,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/bot/copy.ts": {
+      "bytes": 28494,
+      "imports": [
+        {
+          "path": "shared/product-contract.ts",
+          "kind": "import-statement",
+          "original": "../product-contract.ts"
+        },
+        {
+          "path": "shared/time-label.ts",
+          "kind": "import-statement",
+          "original": "../time-label.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/bot/engine.ts": {
+      "bytes": 109086,
+      "imports": [
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../operator-house-notice.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../schedule-core.ts"
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../address-index.ts"
+        },
+        {
+          "path": "shared/address-selection.ts",
+          "kind": "import-statement",
+          "original": "../address-selection.ts"
+        },
+        {
+          "path": "shared/profile-constraints.ts",
+          "kind": "import-statement",
+          "original": "../profile-constraints.ts"
+        },
+        {
+          "path": "shared/time-label.ts",
+          "kind": "import-statement",
+          "original": "../time-label.ts"
+        },
+        {
+          "path": "shared/bot/copy.ts",
+          "kind": "import-statement",
+          "original": "./copy.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../notification-policy.ts"
+        },
+        {
+          "path": "shared/bot/copy.ts",
+          "kind": "import-statement",
+          "original": "./copy.ts"
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../address-index.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/review-fixtures.ts": {
+      "bytes": 1890,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/domain/review-context.ts": {
+      "bytes": 3489,
+      "imports": [
+        {
+          "path": "shared/review-fixtures.ts",
+          "kind": "import-statement",
+          "original": "../../shared/review-fixtures.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/review-tools.ts": {
+      "bytes": 14498,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/review-tools.ts",
+          "kind": "import-statement",
+          "original": "../../shared/review-tools.ts"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "../isolated-guard.ts"
+        },
+        {
+          "path": "server/domain/review-context.ts",
+          "kind": "import-statement",
+          "original": "./review-context.ts"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "../db"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/review-tools-routes.ts": {
+      "bytes": 1978,
+      "imports": [
+        {
+          "path": "shared/review-tools.ts",
+          "kind": "import-statement",
+          "original": "../../shared/review-tools.ts"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "../isolated-guard.ts"
+        },
+        {
+          "path": "server/domain/review-tools.ts",
+          "kind": "dynamic-import",
+          "original": "./review-tools.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/profile-service.ts": {
+      "bytes": 13316,
+      "imports": [
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        },
+        {
+          "path": "shared/profile-constraints.ts",
+          "kind": "import-statement",
+          "original": "../../shared/profile-constraints.ts"
+        },
+        {
+          "path": "shared/address-selection.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-selection.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/bot-session-store.ts": {
+      "bytes": 9811,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "../db"
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "server/domain/review-context.ts",
+          "kind": "import-statement",
+          "original": "./review-context.ts"
+        },
+        {
+          "path": "server/domain/profile-service.ts",
+          "kind": "import-statement",
+          "original": "./profile-service.ts"
+        },
+        {
+          "path": "server/domain/review-tools.ts",
+          "kind": "dynamic-import",
+          "original": "./review-tools.ts"
+        },
+        {
+          "path": "server/domain/review-tools.ts",
+          "kind": "dynamic-import",
+          "original": "./review-tools.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/review-routes.ts": {
+      "bytes": 4629,
+      "imports": [
+        {
+          "path": "shared/product-contract.ts",
+          "kind": "import-statement",
+          "original": "../../shared/product-contract.ts"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "../isolated-guard.ts"
+        },
+        {
+          "path": "server/domain/review-tools-routes.ts",
+          "kind": "import-statement",
+          "original": "./review-tools-routes.ts"
+        },
+        {
+          "path": "server/domain/profile-service.ts",
+          "kind": "import-statement",
+          "original": "./profile-service.ts"
+        },
+        {
+          "path": "server/domain/bot-session-store.ts",
+          "kind": "dynamic-import",
+          "original": "./bot-session-store.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/yasno-adapter.ts": {
+      "bytes": 6234,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/provider-wall-time.ts": {
+      "bytes": 1728,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/hour-matrix-adapter.ts": {
+      "bytes": 14007,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/provider-wall-time.ts",
+          "kind": "import-statement",
+          "original": "./provider-wall-time.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/kharkiv-adapter.ts": {
+      "bytes": 14530,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/captured-address-book.ts": {
+      "bytes": 4687,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/captured-data-routes.ts": {
+      "bytes": 5445,
+      "imports": [
+        {
+          "path": "node:fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/yasno-adapter.ts",
+          "kind": "import-statement",
+          "original": "./yasno-adapter.ts"
+        },
+        {
+          "path": "server/domain/hour-matrix-adapter.ts",
+          "kind": "import-statement",
+          "original": "./hour-matrix-adapter.ts"
+        },
+        {
+          "path": "server/domain/kharkiv-adapter.ts",
+          "kind": "import-statement",
+          "original": "./kharkiv-adapter.ts"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "../isolated-guard.ts"
+        },
+        {
+          "path": "server/domain/captured-address-book.ts",
+          "kind": "import-statement",
+          "original": "./captured-address-book.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/isolated-routes.ts": {
+      "bytes": 4310,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard.ts"
+        },
+        {
+          "path": "server/isolated-fixtures.ts",
+          "kind": "import-statement",
+          "original": "./isolated-fixtures.ts"
+        },
+        {
+          "path": "server/domain/review-routes.ts",
+          "kind": "import-statement",
+          "original": "./domain/review-routes.ts"
+        },
+        {
+          "path": "server/domain/captured-data-routes.ts",
+          "kind": "import-statement",
+          "original": "./domain/captured-data-routes.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-auth-flow.ts": {
+      "bytes": 3030,
+      "imports": [
+        {
+          "path": "server/telegram-init-data.ts",
+          "kind": "import-statement",
+          "original": "../telegram-init-data.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-identity.ts": {
+      "bytes": 2259,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-auth-http.ts": {
+      "bytes": 4892,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/telegram-browser-auth.ts": {
+      "bytes": 6292,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-inbox.ts": {
+      "bytes": 17345,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-inbox-http.ts": {
+      "bytes": 2716,
+      "imports": [
+        {
+          "path": "server/production/telegram-inbox.ts",
+          "kind": "import-statement",
+          "original": "./telegram-inbox.ts"
+        },
+        {
+          "path": "server/production/product-identity.ts",
+          "kind": "import-statement",
+          "original": "./product-identity.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/release/build-identity.ts": {
+      "bytes": 309,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/voe-status.ts": {
+      "bytes": 3910,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/emergency-alerts.ts": {
+      "bytes": 8439,
+      "imports": [
+        {
+          "path": "server/voe-status.ts",
+          "kind": "dynamic-import",
+          "original": "./voe-status"
+        },
+        {
+          "path": "server/scraper-odesa.ts",
+          "kind": "dynamic-import",
+          "original": "./scraper-odesa"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/routes-reports.ts": {
+      "bytes": 5224,
+      "imports": [
+        {
+          "path": "./replit_integrations/auth",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/mobile-auth.ts",
+          "kind": "import-statement",
+          "original": "./mobile-auth"
+        },
+        {
+          "path": "server/storage-reports.ts",
+          "kind": "import-statement",
+          "original": "./storage-reports"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/routes-locations.ts": {
+      "bytes": 10871,
+      "imports": [
+        {
+          "path": "./replit_integrations/auth",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/mobile-auth.ts",
+          "kind": "import-statement",
+          "original": "./mobile-auth"
+        },
+        {
+          "path": "server/storage-locations.ts",
+          "kind": "import-statement",
+          "original": "./storage-locations"
+        },
+        {
+          "path": "server/routes.ts",
+          "kind": "import-statement",
+          "original": "./routes"
+        },
+        {
+          "path": "server/storage-reports.ts",
+          "kind": "import-statement",
+          "original": "./storage-reports"
+        },
+        {
+          "path": "nanoid",
+          "kind": "dynamic-import",
+          "external": true
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "shared/models/compare-shares.ts",
+          "kind": "dynamic-import",
+          "original": "../shared/models/compare-shares"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "shared/models/compare-shares.ts",
+          "kind": "dynamic-import",
+          "original": "../shared/models/compare-shares"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "dynamic-import",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/routes.ts": {
+      "bytes": 108541,
+      "imports": [
+        {
+          "path": "http",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/storage.ts",
+          "kind": "import-statement",
+          "original": "./storage"
+        },
+        {
+          "path": "server/scraper.ts",
+          "kind": "import-statement",
+          "original": "./scraper"
+        },
+        {
+          "path": "server/scraper-kyiv.ts",
+          "kind": "import-statement",
+          "original": "./scraper-kyiv"
+        },
+        {
+          "path": "server/scraper-kharkiv.ts",
+          "kind": "import-statement",
+          "original": "./scraper-kharkiv"
+        },
+        {
+          "path": "server/scraper-odesa.ts",
+          "kind": "import-statement",
+          "original": "./scraper-odesa"
+        },
+        {
+          "path": "server/replit_integrations/auth/index.ts",
+          "kind": "import-statement",
+          "original": "./replit_integrations/auth"
+        },
+        {
+          "path": "fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/voe-lookup.ts",
+          "kind": "import-statement",
+          "original": "./voe-lookup"
+        },
+        {
+          "path": "server/telegram-bot.ts",
+          "kind": "import-statement",
+          "original": "./telegram-bot"
+        },
+        {
+          "path": "server/replit_integrations/auth/index.ts",
+          "kind": "import-statement",
+          "original": "./replit_integrations/auth"
+        },
+        {
+          "path": "server/middleware.ts",
+          "kind": "import-statement",
+          "original": "./middleware"
+        },
+        {
+          "path": "server/mobile-auth.ts",
+          "kind": "import-statement",
+          "original": "./mobile-auth"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard"
+        },
+        {
+          "path": "server/isolated-routes.ts",
+          "kind": "import-statement",
+          "original": "./isolated-routes"
+        },
+        {
+          "path": "server/production/auth-replay.ts",
+          "kind": "import-statement",
+          "original": "./production/auth-replay"
+        },
+        {
+          "path": "server/production/telegram-auth-flow.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-auth-flow"
+        },
+        {
+          "path": "server/production/telegram-identity.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-identity"
+        },
+        {
+          "path": "server/production/telegram-auth-http.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-auth-http"
+        },
+        {
+          "path": "server/production/telegram-browser-auth.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-browser-auth"
+        },
+        {
+          "path": "server/telegram-init-data.ts",
+          "kind": "import-statement",
+          "original": "./telegram-init-data"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "./db"
+        },
+        {
+          "path": "server/production/product-identity.ts",
+          "kind": "import-statement",
+          "original": "./production/product-identity"
+        },
+        {
+          "path": "server/production/telegram-inbox.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-inbox"
+        },
+        {
+          "path": "server/production/telegram-inbox-http.ts",
+          "kind": "import-statement",
+          "original": "./production/telegram-inbox-http"
+        },
+        {
+          "path": "server/runtime-policy.ts",
+          "kind": "import-statement",
+          "original": "./runtime-policy"
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "./production/account-links"
+        },
+        {
+          "path": "server/release/build-identity.ts",
+          "kind": "import-statement",
+          "original": "./release/build-identity"
+        },
+        {
+          "path": "server/emergency-alerts.ts",
+          "kind": "dynamic-import",
+          "original": "./emergency-alerts"
+        },
+        {
+          "path": "server/emergency-alerts.ts",
+          "kind": "dynamic-import",
+          "original": "./emergency-alerts"
+        },
+        {
+          "path": "server/routes-reports.ts",
+          "kind": "dynamic-import",
+          "original": "./routes-reports"
+        },
+        {
+          "path": "server/routes-locations.ts",
+          "kind": "dynamic-import",
+          "original": "./routes-locations"
+        },
+        {
+          "path": "server/routes-digest.ts",
+          "kind": "dynamic-import",
+          "original": "./routes-digest"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/static.ts": {
+      "bytes": 997,
+      "imports": [
+        {
+          "path": "express",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "fs",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/profile-errors.ts": {
+      "bytes": 3169,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/manual-group.ts": {
+      "bytes": 2213,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/product-routes.ts": {
+      "bytes": 19380,
+      "imports": [
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../../shared/operator-house-notice.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/profile-service.ts",
+          "kind": "import-statement",
+          "original": "../domain/profile-service.ts"
+        },
+        {
+          "path": "shared/profile-errors.ts",
+          "kind": "import-statement",
+          "original": "../../shared/profile-errors.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        },
+        {
+          "path": "shared/manual-group.ts",
+          "kind": "import-statement",
+          "original": "../../shared/manual-group.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/product-auth.ts": {
+      "bytes": 961,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/legacy-route-fence.ts": {
+      "bytes": 1551,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/safe-request-log.ts": {
+      "bytes": 839,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/operator-address-refresh.ts": {
+      "bytes": 9775,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../../shared/operator-house-notice.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "client/src/product-review/schedule-model.ts": {
+      "bytes": 12102,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "client/src/product-review/schedule-renderer.tsx": {
+      "bytes": 11852,
+      "imports": [
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/product-contract.ts",
+          "kind": "import-statement",
+          "original": "@shared/product-contract"
+        },
+        {
+          "path": "client/src/product-review/schedule-model.ts",
+          "kind": "import-statement",
+          "original": "./schedule-model"
+        },
+        {
+          "path": "client/src/product-review/schedule-model.ts",
+          "kind": "import-statement",
+          "original": "./schedule-model"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/schedule-binding.ts": {
+      "bytes": 1802,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "./schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "shared/morning-briefing.ts": {
+      "bytes": 7173,
+      "imports": [
+        {
+          "path": "shared/bot/copy.ts",
+          "kind": "import-statement",
+          "original": "./bot/copy.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "./notification-policy.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "./schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/legacy-profile.ts": {
+      "bytes": 17445,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/profile-reader.ts": {
+      "bytes": 15816,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/legacy-profile.ts",
+          "kind": "import-statement",
+          "original": "./legacy-profile.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/profile-store.ts": {
+      "bytes": 55494,
+      "imports": [
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../../shared/operator-house-notice.ts"
+        },
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/manual-group.ts",
+          "kind": "import-statement",
+          "original": "../../shared/manual-group.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/schedule-binding.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-binding.ts"
+        },
+        {
+          "path": "shared/morning-briefing.ts",
+          "kind": "import-statement",
+          "original": "../../shared/morning-briefing.ts"
+        },
+        {
+          "path": "server/domain/profile-service.ts",
+          "kind": "import-statement",
+          "original": "../domain/profile-service.ts"
+        },
+        {
+          "path": "server/production/profile-reader.ts",
+          "kind": "import-statement",
+          "original": "./profile-reader.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/legacy-identity-links.ts": {
+      "bytes": 8876,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/profile-reader.ts",
+          "kind": "import-statement",
+          "original": "./profile-reader.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/source-intake.ts": {
+      "bytes": 36874,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/yasno-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/yasno-adapter.ts"
+        },
+        {
+          "path": "server/domain/hour-matrix-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/hour-matrix-adapter.ts"
+        },
+        {
+          "path": "server/domain/kharkiv-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/kharkiv-adapter.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/deployed-schedule-qualification.ts": {
+      "bytes": 1549,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/production/schedule-events.ts": {
+      "bytes": 49799,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/deployed-schedule-qualification.ts",
+          "kind": "import-statement",
+          "original": "./deployed-schedule-qualification.ts"
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/runtime-context.ts": {
+      "bytes": 8931,
+      "imports": [
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../../shared/operator-house-notice.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/provider-address-lookup.ts": {
+      "bytes": 5593,
+      "imports": [
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/operator-address-flow.ts": {
+      "bytes": 31811,
+      "imports": [
+        {
+          "path": "shared/operator-house-notice.ts",
+          "kind": "import-statement",
+          "original": "../../shared/operator-house-notice.ts"
+        },
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/provider-address-lookup.ts",
+          "kind": "import-statement",
+          "original": "../domain/provider-address-lookup.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/address-flow.ts": {
+      "bytes": 17237,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/production/operator-address-flow.ts",
+          "kind": "import-statement",
+          "original": "./operator-address-flow.ts"
+        },
+        {
+          "path": "server/domain/provider-address-lookup.ts",
+          "kind": "import-statement",
+          "original": "../domain/provider-address-lookup.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/yasno-address-adapter.ts": {
+      "bytes": 15403,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/source-operating-policy.ts": {
+      "bytes": 16665,
+      "imports": [
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/address-catalog-http.ts": {
+      "bytes": 4530,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/public-source-reservation.ts": {
+      "bytes": 17091,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/public-address-request-identity.ts": {
+      "bytes": 4043,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/address-catalog.ts": {
+      "bytes": 26084,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/yasno-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/yasno-address-adapter.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/source-operating-policy.ts",
+          "kind": "import-statement",
+          "original": "./source-operating-policy.ts"
+        },
+        {
+          "path": "server/production/address-catalog-http.ts",
+          "kind": "import-statement",
+          "original": "./address-catalog-http.ts"
+        },
+        {
+          "path": "server/production/public-source-reservation.ts",
+          "kind": "import-statement",
+          "original": "./public-source-reservation.ts"
+        },
+        {
+          "path": "server/domain/public-address-request-identity.ts",
+          "kind": "import-statement",
+          "original": "../domain/public-address-request-identity.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/odesa-address-adapter.ts": {
+      "bytes": 27208,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/hour-matrix-adapter.ts",
+          "kind": "import-statement",
+          "original": "./hour-matrix-adapter.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/odesa-plan-api-adapter.ts": {
+      "bytes": 15450,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/hour-matrix-adapter.ts",
+          "kind": "import-statement",
+          "original": "./hour-matrix-adapter.ts"
+        },
+        {
+          "path": "server/domain/provider-wall-time.ts",
+          "kind": "import-statement",
+          "original": "./provider-wall-time.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/providers/odesa-public-client.ts": {
+      "bytes": 33485,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/odesa-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-address-adapter.ts"
+        },
+        {
+          "path": "server/domain/odesa-plan-api-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-plan-api-adapter.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/odesa-address-catalog.ts": {
+      "bytes": 24171,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        },
+        {
+          "path": "server/domain/odesa-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-address-adapter.ts"
+        },
+        {
+          "path": "server/domain/public-address-request-identity.ts",
+          "kind": "import-statement",
+          "original": "../domain/public-address-request-identity.ts"
+        },
+        {
+          "path": "server/providers/odesa-public-client.ts",
+          "kind": "import-statement",
+          "original": "../providers/odesa-public-client.ts"
+        },
+        {
+          "path": "server/production/public-source-reservation.ts",
+          "kind": "import-statement",
+          "original": "./public-source-reservation.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/provider-address-catalog.ts": {
+      "bytes": 2362,
+      "imports": [
+        {
+          "path": "server/production/address-catalog.ts",
+          "kind": "import-statement",
+          "original": "./address-catalog.ts"
+        },
+        {
+          "path": "server/production/odesa-address-catalog.ts",
+          "kind": "import-statement",
+          "original": "./odesa-address-catalog.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/odesa-plan-source.ts": {
+      "bytes": 15075,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/domain/odesa-plan-api-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-plan-api-adapter.ts"
+        },
+        {
+          "path": "server/providers/odesa-public-client.ts",
+          "kind": "import-statement",
+          "original": "../providers/odesa-public-client.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/source-ingestion.ts": {
+      "bytes": 32750,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/production/source-operating-policy.ts",
+          "kind": "import-statement",
+          "original": "./source-operating-policy.ts"
+        },
+        {
+          "path": "server/production/odesa-plan-source.ts",
+          "kind": "import-statement",
+          "original": "./odesa-plan-source.ts"
+        },
+        {
+          "path": "server/domain/odesa-plan-api-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-plan-api-adapter.ts"
+        },
+        {
+          "path": "server/production/public-source-reservation.ts",
+          "kind": "import-statement",
+          "original": "./public-source-reservation.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/public-http.ts": {
+      "bytes": 1304,
+      "imports": [],
+      "format": "esm"
+    },
+    "shared/live-tools.ts": {
+      "bytes": 15221,
+      "imports": [
+        {
+          "path": "shared/review-tools.ts",
+          "kind": "import-statement",
+          "original": "./review-tools.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "./schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/product-tools.ts": {
+      "bytes": 23393,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/review-tools.ts",
+          "kind": "import-statement",
+          "original": "../../shared/review-tools.ts"
+        },
+        {
+          "path": "shared/schedule-binding.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-binding.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/live-tools.ts",
+          "kind": "import-statement",
+          "original": "../../shared/live-tools.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/bot-tools.ts": {
+      "bytes": 3031,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/bot-address-preflight.ts": {
+      "bytes": 10109,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/domain/provider-address-lookup.ts",
+          "kind": "import-statement",
+          "original": "../domain/provider-address-lookup.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-processor.ts": {
+      "bytes": 30237,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/telegram-inbox.ts",
+          "kind": "import-statement",
+          "original": "./telegram-inbox.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/runtime-identity.ts": {
+      "bytes": 3056,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/telegram-processor.ts",
+          "kind": "import-statement",
+          "original": "./telegram-processor.ts"
+        },
+        {
+          "path": "server/production/product-identity.ts",
+          "kind": "import-statement",
+          "original": "./product-identity.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/release/update-campaign.ts": {
+      "bytes": 17352,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-transport.ts": {
+      "bytes": 30860,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-callback-ack.ts": {
+      "bytes": 21422,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-dispatch.ts": {
+      "bytes": 67751,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/schedule-binding.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-binding.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        },
+        {
+          "path": "server/release/update-campaign.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign.ts"
+        },
+        {
+          "path": "server/production/telegram-transport.ts",
+          "kind": "import-statement",
+          "original": "./telegram-transport.ts"
+        },
+        {
+          "path": "server/production/telegram-callback-ack.ts",
+          "kind": "import-statement",
+          "original": "./telegram-callback-ack.ts"
+        },
+        {
+          "path": "server/production/telegram-callback-ack.ts",
+          "kind": "import-statement",
+          "original": "./telegram-callback-ack.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/telegram-dispatch-eligibility.ts": {
+      "bytes": 14001,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/release/update-campaign.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/release/update-campaign-pg.ts": {
+      "bytes": 20884,
+      "imports": [
+        {
+          "path": "server/release/update-campaign.ts",
+          "kind": "import-statement",
+          "original": "./update-campaign.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/morning-reconciliation.ts": {
+      "bytes": 21220,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/morning-briefing.ts": {
+      "bytes": 31954,
+      "imports": [
+        {
+          "path": "shared/morning-briefing.ts",
+          "kind": "import-statement",
+          "original": "../../shared/morning-briefing.ts"
+        },
+        {
+          "path": "shared/notification-policy.ts",
+          "kind": "import-statement",
+          "original": "../../shared/notification-policy.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        },
+        {
+          "path": "server/production/morning-reconciliation.ts",
+          "kind": "import-statement",
+          "original": "./morning-reconciliation.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/event-producer.ts": {
+      "bytes": 23651,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/legacy-campaign-recipient.ts": {
+      "bytes": 10956,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/canonical-schema.ts": {
+      "bytes": 2248,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/auth-replay.ts",
+          "kind": "import-statement",
+          "original": "./auth-replay.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/production/source-ingestion.ts",
+          "kind": "import-statement",
+          "original": "./source-ingestion.ts"
+        },
+        {
+          "path": "server/production/address-catalog.ts",
+          "kind": "import-statement",
+          "original": "./address-catalog.ts"
+        },
+        {
+          "path": "server/production/address-flow.ts",
+          "kind": "import-statement",
+          "original": "./address-flow.ts"
+        },
+        {
+          "path": "server/production/product-tools.ts",
+          "kind": "import-statement",
+          "original": "./product-tools.ts"
+        },
+        {
+          "path": "server/production/telegram-inbox.ts",
+          "kind": "import-statement",
+          "original": "./telegram-inbox.ts"
+        },
+        {
+          "path": "server/production/telegram-processor.ts",
+          "kind": "import-statement",
+          "original": "./telegram-processor.ts"
+        },
+        {
+          "path": "server/production/telegram-dispatch.ts",
+          "kind": "import-statement",
+          "original": "./telegram-dispatch.ts"
+        },
+        {
+          "path": "server/release/update-campaign-pg.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign-pg.ts"
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "./account-links.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        },
+        {
+          "path": "server/production/telegram-browser-auth.ts",
+          "kind": "import-statement",
+          "original": "./telegram-browser-auth.ts"
+        },
+        {
+          "path": "server/production/morning-briefing.ts",
+          "kind": "import-statement",
+          "original": "./morning-briefing.ts"
+        },
+        {
+          "path": "server/production/event-producer.ts",
+          "kind": "import-statement",
+          "original": "./event-producer.ts"
+        },
+        {
+          "path": "server/production/legacy-campaign-recipient.ts",
+          "kind": "import-statement",
+          "original": "./legacy-campaign-recipient.ts"
+        },
+        {
+          "path": "server/production/morning-reconciliation.ts",
+          "kind": "import-statement",
+          "original": "./morning-reconciliation.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/verified-session.ts": {
+      "bytes": 2642,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "./account-links.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/campaign-dispatch.ts": {
+      "bytes": 5161,
+      "imports": [
+        {
+          "path": "server/release/update-campaign.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign.ts"
+        },
+        {
+          "path": "server/production/telegram-dispatch.ts",
+          "kind": "import-statement",
+          "original": "./telegram-dispatch.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/release-campaign.ts": {
+      "bytes": 19753,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/release/update-campaign.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign.ts"
+        },
+        {
+          "path": "server/release/update-campaign-pg.ts",
+          "kind": "import-statement",
+          "original": "../release/update-campaign-pg.ts"
+        },
+        {
+          "path": "server/production/campaign-dispatch.ts",
+          "kind": "import-statement",
+          "original": "./campaign-dispatch.ts"
+        },
+        {
+          "path": "server/production/telegram-dispatch-eligibility.ts",
+          "kind": "import-statement",
+          "original": "./telegram-dispatch-eligibility.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/domain/odesa-qualification.ts": {
+      "bytes": 18015,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/odesa-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "./odesa-address-adapter.ts"
+        },
+        {
+          "path": "server/domain/hour-matrix-adapter.ts",
+          "kind": "import-statement",
+          "original": "./hour-matrix-adapter.ts"
+        },
+        {
+          "path": "server/domain/odesa-plan-api-adapter.ts",
+          "kind": "import-statement",
+          "original": "./odesa-plan-api-adapter.ts"
+        },
+        {
+          "path": "server/production/odesa-plan-source.ts",
+          "kind": "import-statement",
+          "original": "../production/odesa-plan-source.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/odesa-address-certification.ts": {
+      "bytes": 12567,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/odesa-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-address-adapter.ts"
+        },
+        {
+          "path": "server/domain/public-address-request-identity.ts",
+          "kind": "import-statement",
+          "original": "../domain/public-address-request-identity.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/runtime-source-proof.ts": {
+      "bytes": 10793,
+      "imports": [
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/production/source-operating-policy.ts",
+          "kind": "import-statement",
+          "original": "./source-operating-policy.ts"
+        },
+        {
+          "path": "server/production/odesa-plan-source.ts",
+          "kind": "import-statement",
+          "original": "./odesa-plan-source.ts"
+        },
+        {
+          "path": "server/domain/odesa-plan-api-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-plan-api-adapter.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/schedule-binding.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-binding.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/schedule-certification.ts": {
+      "bytes": 54467,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:fs/promises",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/domain/odesa-qualification.ts",
+          "kind": "import-statement",
+          "original": "../domain/odesa-qualification.ts"
+        },
+        {
+          "path": "server/production/odesa-address-certification.ts",
+          "kind": "import-statement",
+          "original": "./odesa-address-certification.ts"
+        },
+        {
+          "path": "shared/bot/engine.ts",
+          "kind": "import-statement",
+          "original": "../../shared/bot/engine.ts"
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        },
+        {
+          "path": "shared/address-index.ts",
+          "kind": "import-statement",
+          "original": "../../shared/address-index.ts"
+        },
+        {
+          "path": "server/domain/yasno-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/yasno-adapter.ts"
+        },
+        {
+          "path": "server/domain/yasno-address-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/yasno-address-adapter.ts"
+        },
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/production/source-operating-policy.ts",
+          "kind": "import-statement",
+          "original": "./source-operating-policy.ts"
+        },
+        {
+          "path": "server/production/address-catalog.ts",
+          "kind": "import-statement",
+          "original": "./address-catalog.ts"
+        },
+        {
+          "path": "server/production/runtime-source-proof.ts",
+          "kind": "import-statement",
+          "original": "./runtime-source-proof.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        },
+        {
+          "path": "server/production/morning-reconciliation.ts",
+          "kind": "import-statement",
+          "original": "./morning-reconciliation.ts"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/production/deployed-schedule-qualification.ts",
+          "kind": "import-statement",
+          "original": "./deployed-schedule-qualification.ts"
+        },
+        {
+          "path": "server/production/deployed-schedule-qualification.ts",
+          "kind": "import-statement",
+          "original": "./deployed-schedule-qualification.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/canonical-runtime.ts": {
+      "bytes": 17501,
+      "imports": [
+        {
+          "path": "server/production/operator-address-refresh.ts",
+          "kind": "import-statement",
+          "original": "./operator-address-refresh.ts"
+        },
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "sharp",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/media-fonts.ts",
+          "kind": "import-statement",
+          "original": "./media-fonts"
+        },
+        {
+          "path": "client/src/product-review/schedule-renderer.tsx",
+          "kind": "import-statement",
+          "original": "../../client/src/product-review/schedule-renderer.tsx"
+        },
+        {
+          "path": "server/production/profile-store.ts",
+          "kind": "import-statement",
+          "original": "./profile-store.ts"
+        },
+        {
+          "path": "server/production/legacy-identity-links.ts",
+          "kind": "import-statement",
+          "original": "./legacy-identity-links.ts"
+        },
+        {
+          "path": "server/production/runtime-context.ts",
+          "kind": "import-statement",
+          "original": "./runtime-context.ts"
+        },
+        {
+          "path": "server/production/address-flow.ts",
+          "kind": "import-statement",
+          "original": "./address-flow.ts"
+        },
+        {
+          "path": "server/production/provider-address-catalog.ts",
+          "kind": "import-statement",
+          "original": "./provider-address-catalog.ts"
+        },
+        {
+          "path": "server/production/source-ingestion.ts",
+          "kind": "import-statement",
+          "original": "./source-ingestion.ts"
+        },
+        {
+          "path": "server/production/source-intake.ts",
+          "kind": "import-statement",
+          "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/production/public-http.ts",
+          "kind": "import-statement",
+          "original": "./public-http.ts"
+        },
+        {
+          "path": "server/production/product-tools.ts",
+          "kind": "import-statement",
+          "original": "./product-tools.ts"
+        },
+        {
+          "path": "server/production/bot-tools.ts",
+          "kind": "import-statement",
+          "original": "./bot-tools.ts"
+        },
+        {
+          "path": "server/production/bot-address-preflight.ts",
+          "kind": "import-statement",
+          "original": "./bot-address-preflight.ts"
+        },
+        {
+          "path": "server/production/telegram-processor.ts",
+          "kind": "import-statement",
+          "original": "./telegram-processor.ts"
+        },
+        {
+          "path": "server/production/runtime-identity.ts",
+          "kind": "import-statement",
+          "original": "./runtime-identity.ts"
+        },
+        {
+          "path": "server/production/telegram-dispatch.ts",
+          "kind": "import-statement",
+          "original": "./telegram-dispatch.ts"
+        },
+        {
+          "path": "server/production/telegram-dispatch-eligibility.ts",
+          "kind": "import-statement",
+          "original": "./telegram-dispatch-eligibility.ts"
+        },
+        {
+          "path": "server/production/telegram-transport.ts",
+          "kind": "import-statement",
+          "original": "./telegram-transport.ts"
+        },
+        {
+          "path": "server/production/product-identity.ts",
+          "kind": "import-statement",
+          "original": "./product-identity.ts"
+        },
+        {
+          "path": "server/production/canonical-schema.ts",
+          "kind": "import-statement",
+          "original": "./canonical-schema.ts"
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "./account-links.ts"
+        },
+        {
+          "path": "server/production/verified-session.ts",
+          "kind": "import-statement",
+          "original": "./verified-session.ts"
+        },
+        {
+          "path": "server/production/schedule-events.ts",
+          "kind": "import-statement",
+          "original": "./schedule-events.ts"
+        },
+        {
+          "path": "./runtime-source-proof.ts",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/morning-briefing.ts",
+          "kind": "import-statement",
+          "original": "./morning-briefing.ts"
+        },
+        {
+          "path": "server/production/event-producer.ts",
+          "kind": "import-statement",
+          "original": "./event-producer.ts"
+        },
+        {
+          "path": "server/production/legacy-campaign-recipient.ts",
+          "kind": "import-statement",
+          "original": "./legacy-campaign-recipient.ts"
+        },
+        {
+          "path": "server/production/release-campaign.ts",
+          "kind": "import-statement",
+          "original": "./release-campaign.ts"
+        },
+        {
+          "path": "server/production/schedule-certification.ts",
+          "kind": "import-statement",
+          "original": "./schedule-certification.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/product-tools-routes.ts": {
+      "bytes": 4254,
+      "imports": [
+        {
+          "path": "shared/live-tools.ts",
+          "kind": "import-statement",
+          "original": "../../shared/live-tools.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/auth-epoch.ts": {
+      "bytes": 4668,
+      "imports": [
+        {
+          "path": "node:async_hooks",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/account-links.ts",
+          "kind": "import-statement",
+          "original": "./account-links.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/account-links-http.ts": {
+      "bytes": 14638,
+      "imports": [
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production/account-origin.ts": {
+      "bytes": 801,
+      "imports": [],
+      "format": "esm"
+    },
+    "server/isolated-seed.ts": {
+      "bytes": 3086,
+      "imports": [
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "import-statement",
+          "original": "./db"
+        },
+        {
+          "path": "shared/models/auth.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/auth"
+        },
+        {
+          "path": "shared/models/user-settings.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/user-settings"
+        },
+        {
+          "path": "shared/models/user-locations.ts",
+          "kind": "import-statement",
+          "original": "@shared/models/user-locations"
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "server/index.ts": {
+      "bytes": 10249,
+      "imports": [
+        {
+          "path": "express",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/routes.ts",
+          "kind": "import-statement",
+          "original": "./routes"
+        },
+        {
+          "path": "server/static.ts",
+          "kind": "import-statement",
+          "original": "./static"
+        },
+        {
+          "path": "http",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/telegram-bot.ts",
+          "kind": "import-statement",
+          "original": "./telegram-bot"
+        },
+        {
+          "path": "server/replit_integrations/auth/index.ts",
+          "kind": "import-statement",
+          "original": "./replit_integrations/auth"
+        },
+        {
+          "path": "server/middleware.ts",
+          "kind": "import-statement",
+          "original": "./middleware"
+        },
+        {
+          "path": "server/mobile-auth.ts",
+          "kind": "import-statement",
+          "original": "./mobile-auth"
+        },
+        {
+          "path": "server/runtime-policy.ts",
+          "kind": "import-statement",
+          "original": "./runtime-policy"
+        },
+        {
+          "path": "server/release/build-identity.ts",
+          "kind": "import-statement",
+          "original": "./release/build-identity"
+        },
+        {
+          "path": "server/production/product-routes.ts",
+          "kind": "import-statement",
+          "original": "./production/product-routes"
+        },
+        {
+          "path": "server/production/product-auth.ts",
+          "kind": "import-statement",
+          "original": "./production/product-auth"
+        },
+        {
+          "path": "server/production/legacy-route-fence.ts",
+          "kind": "import-statement",
+          "original": "./production/legacy-route-fence"
+        },
+        {
+          "path": "server/isolated-guard.ts",
+          "kind": "import-statement",
+          "original": "./isolated-guard"
+        },
+        {
+          "path": "server/production/safe-request-log.ts",
+          "kind": "import-statement",
+          "original": "./production/safe-request-log"
+        },
+        {
+          "path": "server/production/canonical-runtime.ts",
+          "kind": "import-statement",
+          "original": "./production/canonical-runtime"
+        },
+        {
+          "path": "server/production/address-flow.ts",
+          "kind": "import-statement",
+          "original": "./production/address-flow"
+        },
+        {
+          "path": "server/production/product-tools-routes.ts",
+          "kind": "import-statement",
+          "original": "./production/product-tools-routes"
+        },
+        {
+          "path": "server/production/runtime-source-proof.ts",
+          "kind": "import-statement",
+          "original": "./production/runtime-source-proof"
+        },
+        {
+          "path": "server/production/auth-epoch.ts",
+          "kind": "import-statement",
+          "original": "./production/auth-epoch"
+        },
+        {
+          "path": "server/production/account-links-http.ts",
+          "kind": "import-statement",
+          "original": "./production/account-links-http"
+        },
+        {
+          "path": "server/production/account-origin.ts",
+          "kind": "import-statement",
+          "original": "./production/account-origin"
+        },
+        {
+          "path": "server/production/release-campaign.ts",
+          "kind": "import-statement",
+          "original": "./production/release-campaign"
+        },
+        {
+          "path": "node:url",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "server/production/schedule-certification.ts",
+          "kind": "import-statement",
+          "original": "./production/schedule-certification"
+        },
+        {
+          "path": "server/isolated-seed.ts",
+          "kind": "dynamic-import",
+          "original": "./isolated-seed"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "server/production/legacy-identity-links.ts",
+          "kind": "dynamic-import",
+          "original": "./production/legacy-identity-links"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        },
+        {
+          "path": "server/db.ts",
+          "kind": "dynamic-import",
+          "original": "./db"
+        }
+      ],
+      "format": "esm"
+    },
+    "server/production-entry.ts": {
+      "bytes": 874,
+      "imports": [
+        {
+          "path": "server/runtime-policy.ts",
+          "kind": "import-statement",
+          "original": "./runtime-policy"
+        },
+        {
+          "path": "server/production/media-fonts.ts",
+          "kind": "import-statement",
+          "original": "./production/media-fonts"
+        },
+        {
+          "path": "server/index.ts",
+          "kind": "dynamic-import",
+          "original": "./index"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "dist-production/index.cjs": {
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:os",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:url",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/pg-core",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm/node-postgres",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "pg",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "openid-client",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "openid-client/passport",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "passport",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "express-session",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "memoizee",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "connect-pg-simple",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "canvas",
+          "kind": "dynamic-import",
+          "external": true
+        },
+        {
+          "path": "fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "express-rate-limit",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "helmet",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "compression",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "cors",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "jsonwebtoken",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "nanoid",
+          "kind": "dynamic-import",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "dynamic-import",
+          "external": true
+        },
+        {
+          "path": "fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "express",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "fs",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:util",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:perf_hooks",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "acorn",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:fs/promises",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:path",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "sharp",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:async_hooks",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "drizzle-orm",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "express",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "http",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:url",
+          "kind": "require-call",
+          "external": true
+        }
+      ],
+      "exports": [],
+      "entryPoint": "server/production-entry.ts",
+      "inputs": {
+        "server/production/product-identity.ts": {
+          "bytesInOutput": 240
+        },
+        "server/runtime-policy.ts": {
+          "bytesInOutput": 6868
+        },
+        "server/production/media-fonts.ts": {
+          "bytesInOutput": 6802
+        },
+        "shared/models/auth.ts": {
+          "bytesInOutput": 1164
+        },
+        "shared/models/user-settings.ts": {
+          "bytesInOutput": 2711
+        },
+        "shared/models/telegram-subscribers.ts": {
+          "bytesInOutput": 2474
+        },
+        "shared/models/linked-accounts.ts": {
+          "bytesInOutput": 1050
+        },
+        "shared/models/power-reports.ts": {
+          "bytesInOutput": 1079
+        },
+        "shared/models/user-locations.ts": {
+          "bytesInOutput": 2208
+        },
+        "shared/models/weekly-digest.ts": {
+          "bytesInOutput": 1577
+        },
+        "shared/models/compare-shares.ts": {
+          "bytesInOutput": 731
+        },
+        "shared/schema.ts": {
+          "bytesInOutput": 668
+        },
+        "server/isolated-guard.ts": {
+          "bytesInOutput": 3855
+        },
+        "server/db.ts": {
+          "bytesInOutput": 743
+        },
+        "server/storage.ts": {
+          "bytesInOutput": 4129
+        },
+        "server/scraper.ts": {
+          "bytesInOutput": 4733
+        },
+        "server/scraper-kyiv.ts": {
+          "bytesInOutput": 6646
+        },
+        "server/scraper-kharkiv.ts": {
+          "bytesInOutput": 5446
+        },
+        "server/scraper-odesa.ts": {
+          "bytesInOutput": 5609
+        },
+        "server/production/replit-identity.ts": {
+          "bytesInOutput": 2747
+        },
+        "server/production/replit-session.ts": {
+          "bytesInOutput": 1992
+        },
+        "server/telegram-init-data.ts": {
+          "bytesInOutput": 4205
+        },
+        "server/production/auth-replay.ts": {
+          "bytesInOutput": 7862
+        },
+        "shared/notification-policy.ts": {
+          "bytesInOutput": 8404
+        },
+        "shared/schedule-core.ts": {
+          "bytesInOutput": 9832
+        },
+        "server/production/account-links.ts": {
+          "bytesInOutput": 38149
+        },
+        "server/replit_integrations/auth/replitAuth.ts": {
+          "bytesInOutput": 8996
+        },
+        "server/replit_integrations/auth/storage.ts": {
+          "bytesInOutput": 772
+        },
+        "server/replit_integrations/auth/routes.ts": {
+          "bytesInOutput": 562
+        },
+        "server/replit_integrations/auth/index.ts": {
+          "bytesInOutput": 163
+        },
+        "server/voe-lookup.ts": {
+          "bytesInOutput": 880
+        },
+        "server/storage-locations.ts": {
+          "bytesInOutput": 7227
+        },
+        "server/telegram-bot.ts": {
+          "bytesInOutput": 89398
+        },
+        "server/middleware.ts": {
+          "bytesInOutput": 3366
+        },
+        "server/mobile-auth.ts": {
+          "bytesInOutput": 3348
+        },
+        "server/isolated-fixtures.ts": {
+          "bytesInOutput": 1789
+        },
+        "shared/product-contract.ts": {
+          "bytesInOutput": 4584
+        },
+        "shared/review-tools.ts": {
+          "bytesInOutput": 4837
+        },
+        "shared/time-label.ts": {
+          "bytesInOutput": 500
+        },
+        "shared/operator-house-notice.ts": {
+          "bytesInOutput": 11935
+        },
+        "shared/address-index.ts": {
+          "bytesInOutput": 4514
+        },
+        "shared/address-selection.ts": {
+          "bytesInOutput": 1966
+        },
+        "shared/profile-constraints.ts": {
+          "bytesInOutput": 208
+        },
+        "shared/bot/copy.ts": {
+          "bytesInOutput": 62470
+        },
+        "shared/bot/engine.ts": {
+          "bytesInOutput": 135061
+        },
+        "shared/review-fixtures.ts": {
+          "bytesInOutput": 2223
+        },
+        "server/domain/review-context.ts": {
+          "bytesInOutput": 3905
+        },
+        "server/domain/review-tools.ts": {
+          "bytesInOutput": 15899
+        },
+        "server/domain/review-tools-routes.ts": {
+          "bytesInOutput": 2282
+        },
+        "server/domain/profile-service.ts": {
+          "bytesInOutput": 12611
+        },
+        "server/domain/bot-session-store.ts": {
+          "bytesInOutput": 9962
+        },
+        "server/domain/review-routes.ts": {
+          "bytesInOutput": 5871
+        },
+        "server/domain/yasno-adapter.ts": {
+          "bytesInOutput": 6036
+        },
+        "server/domain/provider-wall-time.ts": {
+          "bytesInOutput": 1377
+        },
+        "server/domain/hour-matrix-adapter.ts": {
+          "bytesInOutput": 14073
+        },
+        "server/domain/kharkiv-adapter.ts": {
+          "bytesInOutput": 16438
+        },
+        "server/domain/captured-address-book.ts": {
+          "bytesInOutput": 4258
+        },
+        "server/domain/captured-data-routes.ts": {
+          "bytesInOutput": 7289
+        },
+        "server/isolated-routes.ts": {
+          "bytesInOutput": 4534
+        },
+        "server/production/telegram-auth-flow.ts": {
+          "bytesInOutput": 2359
+        },
+        "server/production/telegram-identity.ts": {
+          "bytesInOutput": 2143
+        },
+        "server/production/telegram-auth-http.ts": {
+          "bytesInOutput": 4902
+        },
+        "server/production/telegram-browser-auth.ts": {
+          "bytesInOutput": 6167
+        },
+        "server/production/telegram-inbox.ts": {
+          "bytesInOutput": 16077
+        },
+        "server/production/telegram-inbox-http.ts": {
+          "bytesInOutput": 2607
+        },
+        "server/release/build-identity.ts": {
+          "bytesInOutput": 319
+        },
+        "server/voe-status.ts": {
+          "bytesInOutput": 4661
+        },
+        "server/emergency-alerts.ts": {
+          "bytesInOutput": 10032
+        },
+        "server/storage-reports.ts": {
+          "bytesInOutput": 7598
+        },
+        "server/routes-reports.ts": {
+          "bytesInOutput": 5055
+        },
+        "server/routes-locations.ts": {
+          "bytesInOutput": 10924
+        },
+        "server/routes-digest.ts": {
+          "bytesInOutput": 2629
+        },
+        "server/routes.ts": {
+          "bytesInOutput": 106122
+        },
+        "server/static.ts": {
+          "bytesInOutput": 1158
+        },
+        "shared/profile-errors.ts": {
+          "bytesInOutput": 7223
+        },
+        "shared/manual-group.ts": {
+          "bytesInOutput": 2074
+        },
+        "server/production/product-routes.ts": {
+          "bytesInOutput": 22078
+        },
+        "server/production/product-auth.ts": {
+          "bytesInOutput": 768
+        },
+        "server/production/legacy-route-fence.ts": {
+          "bytesInOutput": 1750
+        },
+        "server/production/safe-request-log.ts": {
+          "bytesInOutput": 636
+        },
+        "server/production/operator-address-refresh.ts": {
+          "bytesInOutput": 8969
+        },
+        "client/src/product-review/schedule-model.ts": {
+          "bytesInOutput": 17561
+        },
+        "client/src/product-review/schedule-renderer.tsx": {
+          "bytesInOutput": 12239
+        },
+        "shared/schedule-binding.ts": {
+          "bytesInOutput": 1692
+        },
+        "shared/morning-briefing.ts": {
+          "bytesInOutput": 7148
+        },
+        "server/production/legacy-profile.ts": {
+          "bytesInOutput": 14730
+        },
+        "server/production/profile-reader.ts": {
+          "bytesInOutput": 13137
+        },
+        "server/production/profile-store.ts": {
+          "bytesInOutput": 51670
+        },
+        "server/production/legacy-identity-links.ts": {
+          "bytesInOutput": 8666
+        },
+        "server/production/source-intake.ts": {
+          "bytesInOutput": 30924
+        },
+        "server/production/deployed-schedule-qualification.ts": {
+          "bytesInOutput": 1133
+        },
+        "server/production/schedule-events.ts": {
+          "bytesInOutput": 46363
+        },
+        "server/production/runtime-context.ts": {
+          "bytesInOutput": 8470
+        },
+        "server/domain/provider-address-lookup.ts": {
+          "bytesInOutput": 5221
+        },
+        "server/production/operator-address-flow.ts": {
+          "bytesInOutput": 32213
+        },
+        "server/production/address-flow.ts": {
+          "bytesInOutput": 17248
+        },
+        "server/domain/yasno-address-adapter.ts": {
+          "bytesInOutput": 12658
+        },
+        "server/production/source-operating-policy.ts": {
+          "bytesInOutput": 16857
+        },
+        "server/production/address-catalog-http.ts": {
+          "bytesInOutput": 4160
+        },
+        "server/production/public-source-reservation.ts": {
+          "bytesInOutput": 14979
+        },
+        "server/domain/public-address-request-identity.ts": {
+          "bytesInOutput": 3310
+        },
+        "server/production/address-catalog.ts": {
+          "bytesInOutput": 24526
+        },
+        "server/domain/odesa-address-adapter.ts": {
+          "bytesInOutput": 20416
+        },
+        "server/domain/odesa-plan-api-adapter.ts": {
+          "bytesInOutput": 14124
+        },
+        "server/providers/odesa-public-client.ts": {
+          "bytesInOutput": 26152
+        },
+        "server/production/odesa-address-catalog.ts": {
+          "bytesInOutput": 23797
+        },
+        "server/production/provider-address-catalog.ts": {
+          "bytesInOutput": 1935
+        },
+        "server/production/odesa-plan-source.ts": {
+          "bytesInOutput": 13301
+        },
+        "server/production/source-ingestion.ts": {
+          "bytesInOutput": 31648
+        },
+        "server/production/public-http.ts": {
+          "bytesInOutput": 1340
+        },
+        "shared/live-tools.ts": {
+          "bytesInOutput": 14976
+        },
+        "server/production/product-tools.ts": {
+          "bytesInOutput": 24167
+        },
+        "server/production/bot-tools.ts": {
+          "bytesInOutput": 3683
+        },
+        "server/production/bot-address-preflight.ts": {
+          "bytesInOutput": 10637
+        },
+        "server/production/telegram-processor.ts": {
+          "bytesInOutput": 29496
+        },
+        "server/production/runtime-identity.ts": {
+          "bytesInOutput": 2866
+        },
+        "server/release/update-campaign.ts": {
+          "bytesInOutput": 7913
+        },
+        "server/production/telegram-transport.ts": {
+          "bytesInOutput": 22523
+        },
+        "server/production/telegram-callback-ack.ts": {
+          "bytesInOutput": 21869
+        },
+        "server/production/telegram-dispatch.ts": {
+          "bytesInOutput": 65930
+        },
+        "server/production/telegram-dispatch-eligibility.ts": {
+          "bytesInOutput": 13347
+        },
+        "server/release/update-campaign-pg.ts": {
+          "bytesInOutput": 20004
+        },
+        "server/production/morning-reconciliation.ts": {
+          "bytesInOutput": 20887
+        },
+        "server/production/morning-briefing.ts": {
+          "bytesInOutput": 31771
+        },
+        "server/production/event-producer.ts": {
+          "bytesInOutput": 21655
+        },
+        "server/production/legacy-campaign-recipient.ts": {
+          "bytesInOutput": 9707
+        },
+        "server/production/canonical-schema.ts": {
+          "bytesInOutput": 1740
+        },
+        "server/production/verified-session.ts": {
+          "bytesInOutput": 2175
+        },
+        "server/production/campaign-dispatch.ts": {
+          "bytesInOutput": 4891
+        },
+        "server/production/release-campaign.ts": {
+          "bytesInOutput": 18416
+        },
+        "server/domain/odesa-qualification.ts": {
+          "bytesInOutput": 17208
+        },
+        "server/production/odesa-address-certification.ts": {
+          "bytesInOutput": 11619
+        },
+        "server/production/runtime-source-proof.ts": {
+          "bytesInOutput": 9219
+        },
+        "server/production/schedule-certification.ts": {
+          "bytesInOutput": 56967
+        },
+        "server/production/canonical-runtime.ts": {
+          "bytesInOutput": 16853
+        },
+        "server/production/product-tools-routes.ts": {
+          "bytesInOutput": 4548
+        },
+        "server/production/auth-epoch.ts": {
+          "bytesInOutput": 4568
+        },
+        "server/production/account-links-http.ts": {
+          "bytesInOutput": 15150
+        },
+        "server/production/account-origin.ts": {
+          "bytesInOutput": 829
+        },
+        "server/isolated-seed.ts": {
+          "bytesInOutput": 3550
+        },
+        "server/index.ts": {
+          "bytesInOutput": 10077
+        },
+        "server/production-entry.ts": {
+          "bytesInOutput": 449
+        }
+      },
+      "bytes": 1791604
+    }
+  }
+}

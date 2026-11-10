@@ -7,6 +7,9 @@ import {createBotState} from '../../shared/bot/engine.ts';
 import {projectLegacyLiveProfile} from '../../server/production/legacy-profile.ts';
 import type {LegacyLiveProfileRead,VerifiedLegacyPrincipal} from '../../server/production/profile-reader.ts';
 import {assertProfileSnapshotResponse} from '../../client/src/product-runtime/profile-response.ts';
+import {manualGroupOption} from '../../shared/manual-group.ts';
+import {addressOptionFingerprint} from '../../shared/address-selection.ts';
+import type {ManualGroup} from '../../shared/bot/types.ts';
 
 const owner='fixture-live-owner',now='2026-11-08T18:00:00Z',releaseId='a'.repeat(64);
 const principal:VerifiedLegacyPrincipal={kind:'verified_server_principal',ownerId:owner,verified:true};
@@ -43,8 +46,18 @@ class Port {
   if(q.startsWith('insert into lba_production_profile_inbox(')){tx.inbox[who+'|'+values[1]]={inputDigest:values[2],receipt:JSON.parse(values[3])};return result([],1);}
   throw Error('PRIVATE_UNEXPECTED_SQL');
  },release(){}};}};
- store(context:{addresses:any[];plans:any[]}={addresses:[],plans:[]}){return createProductionProfileStore({pool:this.pool,enabled:true,expectedControlEpoch:9,now:()=>now,context:()=>context});}
+ store(context:{addresses:any[];plans:any[];manualGroups?:ManualGroup[]}={addresses:[],plans:[]}){return createProductionProfileStore({pool:this.pool,enabled:true,expectedControlEpoch:9,now:()=>now,context:()=>context});}
 }
+test('live manual group list and explicit save use the existing authenticated fingerprint and canonical receipt route',async()=>{
+ const group={id:'group:fixture-kh-3.1',label:'3.1',locality:'Харків',territoryLabel:'АТ «Харківобленерго»',operatorId:'kharkiv-oe',namespace:'kharkiv:gpv',targetId:'3.1',revisionId:'manual-binding-1'},p=new Port();
+ const h=new Harness({mode:'active',releaseId,authenticate,store:p.store({addresses:[],plans:[],manualGroups:[{...group,privateToken:'MUST_NOT_RETURN'} as ManualGroup]})});
+ const initial=await h.call();assert.equal(initial.status,200);assert.deepEqual(initial.body.manualGroups,[group]);assertProfileSnapshotResponse(initial.body,'live');
+ const option=manualGroupOption(group),body={id:'manual-web-save',expectedSessionId:initial.body.sessionId,expectedRevision:initial.body.revision,mutation:{kind:'add',optionId:option.id,bindingRevisionId:option.binding.revisionId,selectionFingerprint:addressOptionFingerprint(option),label:'Моя група',confirmed:true}};
+ const missing=await h.call('POST','/api/product/profile',{body:{...body,mutation:{...body.mutation,selectionFingerprint:undefined}}});assert.equal(missing.status,409);assert.equal(missing.body.code,'PROFILE_SELECTION_REQUIRED');
+ const saved=await h.call('POST','/api/product/profile',{body});assert.equal(saved.status,200);assert.equal(saved.body.profile.locations.at(-1).binding.kind,'user_selected_group');assert.equal(saved.body.profile.locations.at(-1).binding.status,'needs_confirmation');assert.equal(saved.body.receipt.inputId,'app:manual-web-save');
+ assert.equal((await h.call('POST','/api/product/profile',{body})).body.replayed,true);assert.equal((await h.call()).body.profile.locations.at(-1).address.label,'Моя група');
+ for(const groups of [[{...group,label:3}],[group,group]])assert.throws(()=>assertProfileSnapshotResponse({...initial.body,manualGroups:groups},'live'));
+});
 test('only the explicit server gate exposes the known v2 address capability',async()=>{
  for(const enabled of [false,true]){
   const p=new Port(),h=new Harness({mode:'active',releaseId,authenticate,store:p.store(),operatorLookupEnabled:enabled});

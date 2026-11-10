@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createSourceIngestion,discoverPublicSourceGroups,SOURCE_INGESTION_SCHEMA_SQL} from '../../server/production/source-ingestion.ts';
 import {createSourceIntake,SOURCE_PROFILES,type SourceHttpTransport} from '../../server/production/source-intake.ts';
-import {technicalDisplaySourceRegistry} from '../../server/production/source-operating-policy.ts';
+import {historicalTechnicalDisplaySourceRegistry as technicalDisplaySourceRegistry} from '../../server/production/source-operating-policy.ts';
 const dir=new URL('../../../docs/light-bot-app/release-v8/data-current-2026-11-08/',import.meta.url);
 const now=()=>Date.parse('2026-11-08T19:40:00Z');
 const body=(raw:string)=>({async *[Symbol.asyncIterator](){yield Buffer.from(raw);}});
@@ -16,14 +16,14 @@ test('service construction/default disabled and unknown/direct/obsolete sources 
  const service=createSourceIngestion({pool,transport,now,expectedControlEpoch:7});
  assert.equal((await service.refreshOnce()).state,'disabled');assert.equal((await service.readTechnicalPlans()).state,'disabled');assert.equal((await service.readCatalog()).state,'disabled');
  const enabled=createSourceIngestion({pool,transport,now,expectedControlEpoch:7,enabled:true});
- for(const id of ['dtek-oem-official','voe-mirror-vn-progr','voe-mirror-olnet93','yasno-dnem','yasno-cek','https://evil.test']){const r=await enabled.refreshOnce(id);assert(r.state!=='published');assert.equal(r.code,'SOURCE_NOT_ADMITTED');}
+ for(const id of ['dtek-oem-official','voe-mirror-olnet93','yasno-dnem','yasno-cek','https://evil.test']){const r=await enabled.refreshOnce(id);assert(r.state!=='published');assert.equal(r.code,'SOURCE_NOT_ADMITTED');}
  assert.equal(db,0);assert.equal(http,0);assert(!/user_settings|user_locations|telegram_subscribers|linked_accounts|users\b/i.test(SOURCE_INGESTION_SCHEMA_SQL));
 });
-test('9Nov mirror readmission is not retroactive at8Nov clock: validcontrol boundary rejects expired admission before any HTTP or reservation',async()=>{
+test('current recurring source scopes are not retroactive at8Nov',async()=>{
  const queries:string[]=[];let db=0,http=0,released=false;
  const client={async query(sql:string){queries.push(sql);return {rows:sql.includes('pg_try_advisory_lock')?[{locked:true}]:sql.includes('from lba_production_control')?[{control_epoch:7,writer_mode:'canonical'}]:[],rowCount:0};},release(){released=true;}};
  const service=createSourceIngestion({enabled:true,expectedControlEpoch:7,now,pool:{async connect(){db++;return client;}},transport:async()=>{http++;throw Error('NO_RETROACTIVE_GET');}});
- for(const sourceId of ['mirror-odesa','kharkiv-official-rss']){const result=await service.refreshOnce(sourceId);assert(result.state!=='published');assert.equal(result.code,'SOURCE_ADMISSION_EXPIRED');}assert.equal(db,2);assert.equal(http,0);assert(released);
+ for(const sourceId of ['mirror-odesa','voe-mirror-vn-progr','kharkiv-official-rss']){const result=await service.refreshOnce(sourceId);assert(result.state!=='published');assert.equal(result.code,'SOURCE_ADMISSION_EXPIRED');}assert.equal(db,3);assert.equal(http,0);assert(released);
  assert(queries.some(sql=>sql.includes('from lba_production_control')));assert(queries.includes('rollback'));assert(!queries.some(sql=>sql.startsWith('insert into lba_public_source_run')));
 });
 test('service requires explicit epoch, bounded transport and clock, and creates no ambient clients',()=>{

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createSourceIntake,type TechnicalDisplayAdmission} from '../../server/production/source-intake.ts';
-import {technicalDisplaySourceRegistry,TECHNICAL_SOURCE_REVIEW} from '../../server/production/source-operating-policy.ts';
+import {historicalTechnicalDisplaySourceRegistry as technicalDisplaySourceRegistry,TECHNICAL_SOURCE_REVIEW} from '../../server/production/source-operating-policy.ts';
 const now=Date.parse(TECHNICAL_SOURCE_REVIEW.reviewedAt)+1000;
 const raw=readFileSync(new URL('../../../docs/light-bot-app/release-v8/data-current-2026-11-08/yasno-kem.json',import.meta.url));
 test('technical operating decision stays disabled by default and never invents provider rights/quota or personal delivery',()=>{

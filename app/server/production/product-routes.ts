@@ -8,6 +8,7 @@ import {validInstant,validateScheduleView} from '../../shared/schedule-core.ts';
 import {parseProfileRequest} from '../domain/profile-service.ts';
 import {profileErrorMessage} from '../../shared/profile-errors.ts';
 import {parseLocationNotificationPolicy,parseNotificationPolicy} from '../../shared/notification-policy.ts';
+import {parseManualGroups} from '../../shared/manual-group.ts';
 import type {LegacyLiveProfileRead,VerifiedLegacyPrincipal} from './profile-reader.ts';
 import type {createProductionProfileStore,ProductionProfileSnapshot,ProductionProfileReceipt} from './profile-store.ts';
 
@@ -88,7 +89,7 @@ function activeSnapshot(value:ProductionProfileSnapshot,owner:string,releaseId:s
   if(value?.runtime!=='production'||value.profile?.id!==owner||!text(value.sessionId)||!Number.isSafeInteger(value.revision)||value.revision<0||!validInstant(value.serverNow)||!Array.isArray(value.catalog)||!Array.isArray(value.plans))return fail();
   const p=profile(value.profile),needsConfirmation=p.locations.some(l=>l.binding.status!=='verified'||l.binding.kind==='user_selected_group');
   const operatorHouseNotices=value.operatorHouseNotices===undefined?undefined:parseOperatorHouseNotices(value.operatorHouseNotices,p.locations).filter(n=>currentOperatorHouseNotice(n,value.serverNow));
-  return {...(operatorHouseNotices!==undefined?{operatorHouseNotices}:{}),profile:p,sessionId:value.sessionId,revision:value.revision,catalog:value.catalog.map(option),plans:value.plans.map(plan),simulationOnly:false,serverNow:value.serverNow,releaseId,
+  return {...(operatorHouseNotices!==undefined?{operatorHouseNotices}:{}),...(value.manualGroups!==undefined?{manualGroups:parseManualGroups(value.manualGroups)}:{}),profile:p,sessionId:value.sessionId,revision:value.revision,catalog:value.catalog.map(option),plans:value.plans.map(plan),simulationOnly:false,serverNow:value.serverNow,releaseId,
     capabilities:{profileMutations:true,tools:toolsEnabled,...(operatorLookupEnabled?{addressLookupV2:['dtek:oem'] as Array<'dtek:oem'>}:{})},migration:needsConfirmation
       ?{status:'needs_confirmation',message:'Профіль збережено. Для частини адрес потрібно підтвердити прив’язку до графіків.'}
       :{status:'ready',message:p.locations.length?'Налаштування профілю доступні для змін.':'Профіль створено. Додайте адресу, щоб переглядати свій план.'}};

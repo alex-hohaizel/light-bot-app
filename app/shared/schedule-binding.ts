@@ -12,8 +12,8 @@ export function planMatchesDisplay(view:ScheduleView,binding:AddressBinding,now:
     binding.effectiveFrom&&Date.parse(binding.effectiveFrom)>Date.parse(now)||binding.effectiveUntil&&Date.parse(binding.effectiveUntil)<=Date.parse(now))return false;
   if(binding.status==='verified'&&binding.verifiedAt!==null&&Date.parse(binding.verifiedAt)<=Date.parse(now)&&['building','connection','operator_group'].includes(binding.kind))return true;
   const today=localParts(Date.parse(now)).date;
-  return ['user_selected_group','operator_group'].includes(binding.kind)&&binding.status==='needs_confirmation'&&view.deliveryEligible===false&&
-   ['schedule','address','integration'].includes(view.source.verifiedLevel)&&[today,nextCalendarDate(today)].includes(view.serviceDate)&&
+  return ['user_selected_group','operator_group'].includes(binding.kind)&&binding.status==='needs_confirmation'&&(view.deliveryEligible===false||view.source.verifiedLevel==='initial_launch')&&
+   ['schedule','address','integration','initial_launch'].includes(view.source.verifiedLevel)&&[today,nextCalendarDate(today)].includes(view.serviceDate)&&
    (view.freshness==='current'||view.freshness==='stale'&&view.status==='stale');
  }catch{return false;}
 }

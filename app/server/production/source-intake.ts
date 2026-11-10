@@ -25,12 +25,12 @@ export const SOURCE_PROFILES: readonly SourceProfile[] = Object.freeze([
   { sourceId: 'yasno-kem', name: 'YASNO · Київські електромережі', region: 'kyiv', operatorId: 'dtek-kem', namespace: 'yasno:25/902', parserNamespace: 'yasno:25/902', parser: 'yasno', endpoint: 'https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages', researchBlocker: 'Systematic reuse/rate admission and exact binding pending.' },
   { sourceId: 'yasno-dnem', name: 'YASNO · Дніпровські електромережі', region: 'dnipropetrovsk', operatorId: 'dtek-dnem', namespace: 'yasno:3/301', parserNamespace: 'yasno:3/301', parser: 'yasno', endpoint: 'https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/301/planned-outages', researchBlocker: 'Separate DSO; systematic reuse/rate admission and exact binding pending.' },
   { sourceId: 'yasno-cek', name: 'YASNO · ЦЕК', region: 'dnipropetrovsk', operatorId: 'cek', namespace: 'yasno:3/303', parserNamespace: 'yasno:3/303', parser: 'yasno', endpoint: 'https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/303/planned-outages', researchBlocker: 'Separate DSO; systematic reuse/rate admission and exact binding pending.' },
-  { sourceId: 'voe-mirror-vn-progr', name: 'Вінниця · громадське дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:vn-progr', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Unofficial mirror; reuse/rate and primary comparison pending.' },
+  { sourceId: 'voe-mirror-vn-progr', name: 'Вінниця · громадське дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:vn-progr', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Community mirror collecting bezsvitla.com.ua. Explicit owner initial-launch operating opt-in required; address binding, official accuracy and independent reserve remain unverified.' },
   { sourceId: 'voe-mirror-olnet93', name: 'Вінниця · резервне дзеркало', region: 'vinnytsia', operatorId: 'vinnytsia-oe', namespace: 'voe:vinnytsia', parserNamespace: 'voe:olnet93', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/olnet93/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json', researchBlocker: 'Observed obsolete 2025 payload; not a current fallback. Reuse/rate pending.' },
   { sourceId: 'dtek-oem-public-plan-ajax', name: 'ДТЕК Одеські електромережі · JSON-план', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-api', parser: 'odesa_plan_api', endpoint: 'https://www.dtek-oem.com.ua/ua/ajax', researchBlocker: 'Typed guest API requires separate explicit operating opt-in and two-hop capture. Official publication/binding/20-address/48h and independent fallback qualification remain separate; HTML access-stop unchanged.' },
   { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: '9Nov current robots wildcardDisallow:/ confirmed by raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991. HTML200 proves plan availability, not automation permission. No repeated scraping or challenge bypass.', automationBlocked: true },
-  { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: '9Nov official/mirror288cell point comparison admits only matched date/target semantics; changed plans need new comparison. Independent fallback,48h and exact binding remain unverified.' },
-  { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Single dated plan verified; systematic reuse/rate and exact binding pending.' },
+  { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: 'Community relay requires explicit finite owner initial-launch fallback scope; current primary equivalence, independent upstream,48h and exact house binding are not claimed. Historical9Nov comparison remains dated.' },
+  { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Official dated group plans need explicit finite recurring parser policy. Manual group selection does not certify a house or current emergency overlay.' },
 ].map(profile => Object.freeze(profile)) as SourceProfile[]);
 
 type ContractSourceAdmission = {
@@ -69,6 +69,11 @@ export interface TechnicalDisplayAdmission {
   readonly parallel48hAccepted:false;readonly independentFallbackVerified:false;
   /** A point comparison admits only the compared date/target semantics. Raw
    * collector metadata may change; a changed plan needs a new comparison. */
+  readonly recurringScope?:{
+    readonly kind:'current_and_next_kyiv_day';readonly authority:'OWNER_APPROVED_INITIAL_LAUNCH/1';
+    readonly parserVersion:'vn-progr-hour-matrix/1.0.0'|'kharkiv-dated-12-queue/2'|'odesa-publisher-hour-matrix/1';
+    readonly maxPublicationAgeMs:number;readonly emergencyOverlay:'unknown';
+  };
   readonly semanticScope?:{
     readonly serviceDate:string;
     readonly comparisonSha256:string;readonly officialRawSha256:string;readonly mirrorRawSha256:string;
@@ -201,14 +206,20 @@ function validateAdmission(entry: SourceAdmission): void {
       !integer(entry.cacheTtlMs,1000,3600000)||!integer(entry.maxAgeMs,entry.cacheTtlMs,86400000)||entry.addressBindingVerified!==false||entry.deliveryEligible!==false||
       entry.parallel48hAccepted!==false||entry.independentFallbackVerified!==false)throw Error('INVALID_TECHNICAL_SOURCE_ADMISSION');
     const scope=entry.semanticScope,hash64=(v:unknown)=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
-    if(entry.sourceId==='mirror-odesa'){
+    if(entry.sourceId==='mirror-odesa'&&!entry.recurringScope){
       const targets=Array.from({length:6},(_,i)=>[`GPV${i+1}.1`,`GPV${i+1}.2`]).flat();
       if(!scope||!/^\d{4}-\d{2}-\d{2}$/.test(scope.serviceDate)||!hash64(scope.comparisonSha256)||!hash64(scope.officialRawSha256)||!hash64(scope.mirrorRawSha256)||
         !scope.targetPlanSha256s||Object.keys(scope.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(scope.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
       try{calendarDate(scope.serviceDate);}catch{throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');}
     }else if(scope!==undefined)throw Error('INVALID_TECHNICAL_SOURCE_SCOPE');
     const publication=entry.publicationScope;
-    if(entry.sourceId==='kharkiv-official-rss'){
+    const recurring=entry.recurringScope;
+    if(recurring!==undefined){
+      const expected=entry.sourceId==='voe-mirror-vn-progr'?'vn-progr-hour-matrix/1.0.0':entry.sourceId==='kharkiv-official-rss'?'kharkiv-dated-12-queue/2':entry.sourceId==='mirror-odesa'?'odesa-publisher-hour-matrix/1':null;
+      if(!expected||recurring.kind!=='current_and_next_kyiv_day'||recurring.authority!=='OWNER_APPROVED_INITIAL_LAUNCH/1'||recurring.parserVersion!==expected||recurring.emergencyOverlay!=='unknown'||
+        !integer(recurring.maxPublicationAgeMs,1000,259200000)||Date.parse(entry.validUntil)-Date.parse(entry.reviewedAt)>30*86400000||scope!==undefined||publication!==undefined)throw Error('INVALID_TECHNICAL_RECURRING_SCOPE');
+    }
+    if(entry.sourceId==='kharkiv-official-rss'&&!recurring){
       const targets=Array.from({length:6},(_,i)=>[`${i+1}.1`,`${i+1}.2`]).flat();
       if(!publication||!validInstant(publication.publishedAt)||!/^https:\/\/oblenergo\.kharkiv\.ua\/uk\/node\/\d+$/.test(publication.itemUrl)||
         !hash64(publication.rawCaptureSha256)||!hash64(publication.noticeSha256)||!publication.targetPlanSha256s||Object.keys(publication.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(publication.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
@@ -346,11 +357,20 @@ export function createSourceIntake(options: {
         if (days.length !== 1) return fail('SOURCE_SCHEMA_REJECTED');
         view = normalizeYasnoRaw(raw.raw, days[0], { ...context, namespace: profile.parserNamespace as 'yasno:25/902' | 'yasno:3/301' | 'yasno:3/303' });
       } else if (profile.parser === 'hour_matrix') {
+        if(entry.state==='technical_display'&&['vn-progr-hour-matrix/1.0.0','odesa-publisher-hour-matrix/1'].includes(entry.recurringScope?.parserVersion??'')){
+          const payload=JSON.parse(raw.raw);if(payload?.meta?.schemaVersion!=='1.0.0')return fail('SOURCE_SCHEMA_REJECTED');
+        }
         view = normalizeHourMatrix(raw.raw, { ...context, namespace: profile.parserNamespace as 'voe:vn-progr' | 'voe:olnet93' | 'dtek:oem' | 'dtek:oem-mirror' });
-      } else view = normalizeKharkivRss(raw.raw, { ...context, operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss' });
+      } else view = normalizeKharkivRss(raw.raw, { ...context, operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss',...(entry.state==='technical_display'&&entry.recurringScope?.parserVersion==='kharkiv-dated-12-queue/2'?{publicationPolicy:'dated_12_queue_recurring_v2' as const}:{}) });
       if (!view.publishedAt || view.operatorId !== request.operatorId || view.namespace !== request.namespace || view.targetId !== request.targetId ||
           view.serviceDate !== request.serviceDate || view.source.revision !== raw.rawSha256) return fail('SOURCE_SCHEMA_REJECTED');
       validateScheduleView(view);
+      if(entry.state==='technical_display'&&entry.recurringScope){
+        const recurring=entry.recurringScope;
+        if(![currentDate,nextCalendarDate(currentDate)].includes(request.serviceDate)||time-Date.parse(view.publishedAt)>recurring.maxPublicationAgeMs)return fail('SOURCE_UPDATE_UNCONFIRMED');
+        if(profile.sourceId==='mirror-odesa')view={...view,notice:'Резервний план із громадського дзеркала Baskerville42/outage-data-ua. Можливі затримка або відмінності від офіційного плану ДТЕК Одеські електромережі; актуальну відповідність джерел не підтверджено. Групу обрано вручну; відповідність будинку та фактичне живлення не підтверджені.'};
+        if(profile.sourceId==='voe-mirror-vn-progr')view={...view,notice:'Громадське дзеркало vn-progr, яке збирає дані bezsvitla.com.ua. Можливі затримка або відмінності від плану Вінницяобленерго. Групу обрано вручну; відповідність будинку та фактичне живлення не підтверджені.'};
+      }
       if(entry.state==='technical_display'&&entry.semanticScope){
         const scope=entry.semanticScope;
         if(request.serviceDate!==scope.serviceDate||!Object.hasOwn(scope.targetPlanSha256s,request.targetId)||
@@ -362,7 +382,7 @@ export function createSourceIntake(options: {
           !Object.hasOwn(scope.targetPlanSha256s,request.targetId)||technicalPlanSha256(view)!==scope.targetPlanSha256s[request.targetId]||sha(view.notice??'')!==scope.noticeSha256)
           return fail('SOURCE_SCHEMA_REJECTED');
       }
-    } catch { return fail('SOURCE_SCHEMA_REJECTED'); }
+    } catch(error) { if(error instanceof IntakeFailure)throw error;return fail('SOURCE_SCHEMA_REJECTED'); }
     return { state: 'available', cache: cacheState, view, provenance: { sourceId: profile.sourceId, admissionRevisionId: entry.revisionId,
       requestedUrl: profile.endpoint, responseUrl: raw.responseUrl, rawSha256: raw.rawSha256, rawBytes: raw.rawBytes,
       observedAt: raw.observedAt, publishedAt: view.publishedAt!, transport: 'injected_http',

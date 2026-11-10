@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {INITIAL_LAUNCH_NOTIFICATION_POLICY as LAUNCH} from './deployed-schedule-qualification.ts';
 import type {AddressBinding,ScheduleEvent,ScheduleView} from '../../shared/product-contract.ts';
 import type {BotState} from '../../shared/bot/types.ts';
 import {handleScheduleEvent} from '../../shared/bot/engine.ts';
@@ -48,15 +49,23 @@ create table if not exists lba_production_schedule_outbox_proof (
 `;
 
 interface AcceptedEvidence {evidenceRef:string;acceptedAt:string;validUntil:string}
-export interface ScheduleCertificateRecord {
- kind:'lba-certified-schedule/1'|'lba-certified-schedule/2';ownerId:string;sessionId:string;controlEpoch:number;issuedAt:string;expiresAt:string;
+interface ScheduleCertificateBase {
+ ownerId:string;sessionId:string;controlEpoch:number;issuedAt:string;expiresAt:string;
  view:ScheduleView;binding:AddressBinding;
  sourceEvidence:AcceptedEvidence&{kind:'accepted_source_revision';sourceId:string;sourceRevision:string};
- addressEvidence:AcceptedEvidence&{kind:'accepted_address_binding';bindingRevisionId:string;bindingDigest:string};
- parallel48hEvidence:{kind:'accepted_parallel_48h';sourceId:string;operatorId:string;namespace:string;targetId:string;
-  startedAt:string;finishedAt:string;acceptedAt:string;evidenceRef:string};
  renewal?:ScheduleRenewalMarker;
 }
+export type ScheduleCertificateRecord=ScheduleCertificateBase&({
+ kind:'lba-certified-schedule/1'|'lba-certified-schedule/2';
+ addressEvidence:AcceptedEvidence&{kind:'accepted_address_binding';bindingRevisionId:string;bindingDigest:string};
+ parallel48hEvidence:{kind:'accepted_parallel_48h';sourceId:string;operatorId:string;namespace:string;targetId:string;startedAt:string;finishedAt:string;acceptedAt:string;evidenceRef:string};
+ initialLaunchEvidence?:never;
+}|{
+ kind:'lba-certified-schedule/3';
+ addressEvidence:AcceptedEvidence&{kind:'accepted_group_selection';bindingRevisionId:string;bindingDigest:string};
+ parallel48hEvidence?:never;
+ initialLaunchEvidence:{kind:'owner_approved_initial_launch';policyId:typeof LAUNCH.kind;authority:typeof LAUNCH.authority;acceptedAt:string;validUntil:string;selection:'saved_operator_group';buildingVerified:false;physicalStatus:'unknown'};
+});
 export interface ScheduleRenewalPredecessor {outboxId:string;eventId:string;certificateId:string;certificateDigest:string;inputDigest:string;viewDigest:string;payloadDigest:string;intentDeadline:string}
 export interface ScheduleRenewalMarker {kind:'lba-pending-intent-renewal/1';profileRevision:number;controlEpoch:number;predecessors:ScheduleRenewalPredecessor[]}
 /** Server-only descriptor. It is never accepted from an HTTP/bot input body. */
@@ -91,7 +100,8 @@ export function validScheduleCertificateShape(v:unknown):v is ScheduleCertificat
  const fields=['kind','ownerId','sessionId','controlEpoch','issuedAt','expiresAt','view','binding','sourceEvidence','addressEvidence','parallel48hEvidence'];
  if(!plain(v))return false;
  if(v.kind==='lba-certified-schedule/1')return closed(v,fields);
- if(v.kind!=='lba-certified-schedule/2'||!closed(v,[...fields,'renewal']))return false;
+ if(v.kind==='lba-certified-schedule/3'){const launchFields=fields.filter(k=>k!=='parallel48hEvidence').concat('initialLaunchEvidence');if(!closed(v,v.renewal===undefined?launchFields:[...launchFields,'renewal']))return false;if(v.renewal===undefined)return true;}
+ else if(v.kind!=='lba-certified-schedule/2'||!closed(v,[...fields,'renewal']))return false;
  const r=v.renewal;if(!closed(r,['kind','profileRevision','controlEpoch','predecessors'])||r.kind!=='lba-pending-intent-renewal/1'||!int(r.profileRevision)||!epoch(r.controlEpoch,Number(v.controlEpoch))||!Array.isArray(r.predecessors)||r.predecessors.length<1||r.predecessors.length>32)return false;
  return new Set(r.predecessors.map(p=>plain(p)?p.outboxId:null)).size===r.predecessors.length&&r.predecessors.every(p=>closed(p,['outboxId','eventId','certificateId','certificateDigest','inputDigest','viewDigest','payloadDigest','intentDeadline'])&&uuid(p.outboxId)&&uuid(p.certificateId)&&text(p.eventId,128)&&validInstant(p.intentDeadline)&&[p.certificateDigest,p.inputDigest,p.viewDigest,p.payloadDigest].every(hash));
 }
@@ -105,6 +115,24 @@ function canonical(v:unknown,depth=0):string {
 }
 /** Same canonical hash is used by the separate operator certification process. */
 export const scheduleEventDigest=(v:unknown):string=>createHash('sha256').update(canonical(v)).digest('hex');
+/** A record cannot choose its own policy or assert a verified building. Runtime
+ * source proof is deliberately separate and remains required at event/send time. */
+export function validInitialLaunchCertificate(record:ScheduleCertificateRecord,now:string):boolean{
+ try{
+  if(record.kind!=='lba-certified-schedule/3'||!validScheduleCertificateShape(record)||!validInstant(now))return false;
+  const {view,binding,initialLaunchEvidence:e,sourceEvidence:s,addressEvidence:a}=record,n=Date.parse(now),end=Date.parse(record.expiresAt);
+  validateScheduleView(view);
+  if(!closed(e,['kind','policyId','authority','acceptedAt','validUntil','selection','buildingVerified','physicalStatus'])||e.kind!=='owner_approved_initial_launch'||e.policyId!==LAUNCH.kind||e.authority!==LAUNCH.authority||e.acceptedAt!==LAUNCH.acceptedAt||e.validUntil!==LAUNCH.validUntil||e.selection!=='saved_operator_group'||e.buildingVerified!==false||e.physicalStatus!=='unknown'||
+   n<Date.parse(LAUNCH.acceptedAt)||n>=Date.parse(LAUNCH.validUntil)||!validInstant(record.issuedAt)||!validInstant(record.expiresAt)||Date.parse(record.issuedAt)<Date.parse(LAUNCH.acceptedAt)||Date.parse(record.issuedAt)>n||end<=n||end>Date.parse(LAUNCH.validUntil)||end>dayBounds(view.serviceDate).end||
+   !LAUNCH.sources.some(p=>p.sourceId===view.source.id&&p.operatorId===view.operatorId&&p.namespace===view.namespace)||
+   view.synthetic!==false||view.deliveryEligible!==true||view.source.verifiedLevel!=='initial_launch'||view.freshness!=='current'||!['published','possible','no_planned_outages'].includes(view.status)||view.dayCoverage!=='complete'||Date.parse(view.observedAt)>n||
+   binding.status!=='needs_confirmation'||!['user_selected_group','operator_group'].includes(binding.kind)||binding.verifiedAt!==null||binding.addressId!==view.addressId||binding.revisionId!==view.bindingRevisionId||binding.operatorId!==view.operatorId||binding.namespace!==view.namespace||binding.targetId!==view.targetId||
+   binding.effectiveFrom!==null&&(!validInstant(binding.effectiveFrom)||Date.parse(binding.effectiveFrom)>n)||binding.effectiveUntil!==null&&(!validInstant(binding.effectiveUntil)||end>Date.parse(binding.effectiveUntil))||
+   !evidence(s,'accepted_source_revision',n,end,['sourceId','sourceRevision'])||s.evidenceRef!==LAUNCH.authority+'#'+LAUNCH.kind||s.sourceId!==view.source.id||s.sourceRevision!==view.source.revision||Date.parse(s.acceptedAt)<Date.parse(view.observedAt)||Date.parse(s.acceptedAt)>Date.parse(record.issuedAt)||
+   !evidence(a,'accepted_group_selection',n,end,['bindingRevisionId','bindingDigest'])||a.evidenceRef!==s.evidenceRef||a.bindingRevisionId!==binding.revisionId||a.bindingDigest!==scheduleEventDigest(binding)||Date.parse(a.acceptedAt)>Date.parse(record.issuedAt))return false;
+  return true;
+ }catch{return false;}
+}
 function scope(view:ScheduleView):string{return scheduleEventDigest({addressId:view.addressId,operatorId:view.operatorId,namespace:view.namespace??null,
  targetId:view.targetId??null,bindingRevisionId:view.bindingRevisionId??null,serviceDate:view.serviceDate});}
 function occurrence(view:ScheduleView,event:ScheduleEvent):string{return scheduleEventDigest({scope:scope(view),edge:event.reminder!.edge,
@@ -146,6 +174,7 @@ async function certificate(client:LegacyProfileReadQuery,state:BotState,view:Sch
   !validInstant(record.issuedAt)||!validInstant(record.expiresAt)||instant(row.issued_at)!==instant(record.issuedAt)||instant(row.expires_at)!==instant(record.expiresAt)||
   Date.parse(record.issuedAt)>n||Date.parse(record.expiresAt)<=n||Date.parse(record.issuedAt)>=Date.parse(record.expiresAt)||
   row.view_digest!==scheduleEventDigest(view)||!hash(row.record_digest)||scheduleEventDigest(record)!==row.record_digest||scheduleEventDigest(record.view)!==scheduleEventDigest(view)||scheduleEventDigest(record.binding)!==scheduleEventDigest(binding))return null;
+ if(record.kind==='lba-certified-schedule/3')return validInitialLaunchCertificate(record,now)?{id:row.id as string,digest:row.record_digest as string,expiresAt:record.expiresAt,binding:structuredClone(binding),record:structuredClone(record)}:null;
  const end=Date.parse(record.expiresAt),s=record.sourceEvidence,a=record.addressEvidence,p=record.parallel48hEvidence;
  if(!evidence(s,'accepted_source_revision',n,end,['sourceId','sourceRevision'])||s.sourceId!==view.source.id||s.sourceRevision!==view.source.revision||
   !evidence(a,'accepted_address_binding',n,end,['bindingRevisionId','bindingDigest'])||a.bindingRevisionId!==binding.revisionId||a.bindingDigest!==scheduleEventDigest(binding)||
@@ -188,13 +217,13 @@ async function sealedIntent(client:LegacyProfileReadQuery,state:BotState,id:stri
   p.payload_digest!==scheduleEventDigest(o.payload)||scheduleEventDigest(o.payload.schedule)!==input.viewDigest||receipt.outcome!=='notification_committed'||receipt.certificateId!==c.id||receipt.outboxIds.length!==1||receipt.outboxIds[0]!==id||receipt.recordedAt!==at||
   !validScheduleCertificateShape(r)||!hash(c.record_digest)||scheduleEventDigest(r)!==c.record_digest||scheduleEventDigest(r.view)!==input.viewDigest||r.ownerId!==state.ownerId||r.sessionId!==state.sessionId||r.controlEpoch!==expected||
   c.address_id!==input.view.addressId||c.schedule_revision_id!==input.view.revisionId||c.source_revision!==input.view.source.revision||c.binding_revision_id!==input.view.bindingRevisionId||r.binding.revisionId!==input.view.bindingRevisionId||r.binding.addressId!==input.view.addressId||
-  r.binding.kind!=='operator_group'||r.binding.status!=='verified'||r.binding.operatorId!==input.view.operatorId||r.binding.namespace!==input.view.namespace||r.binding.targetId!==input.view.targetId||
+  (r.kind!=='lba-certified-schedule/3'&&(r.binding.kind!=='operator_group'||r.binding.status!=='verified'))||r.binding.operatorId!==input.view.operatorId||r.binding.namespace!==input.view.namespace||r.binding.targetId!==input.view.targetId||
   !validInstant(r.issuedAt)||!validInstant(r.expiresAt)||instant(c.issued_at)!==r.issuedAt||instant(c.expires_at)!==r.expiresAt||Date.parse(r.issuedAt)>Date.parse(at)||Date.parse(at)>=Date.parse(r.expiresAt)||
-  !validInstant(r.binding.verifiedAt)||Date.parse(r.binding.verifiedAt!)>Date.parse(r.issuedAt)||!validInstant(r.binding.effectiveUntil)||Date.parse(r.expiresAt)>Date.parse(r.binding.effectiveUntil!)||
+  (r.kind==='lba-certified-schedule/3'?!validInitialLaunchCertificate(r,at):(!validInstant(r.binding.verifiedAt)||Date.parse(r.binding.verifiedAt!)>Date.parse(r.issuedAt)||!validInstant(r.binding.effectiveUntil)||Date.parse(r.expiresAt)>Date.parse(r.binding.effectiveUntil!)))||
   !evidence(r.sourceEvidence,'accepted_source_revision',Date.parse(at),Date.parse(r.expiresAt),['sourceId','sourceRevision'])||r.sourceEvidence.sourceId!==input.view.source.id||r.sourceEvidence.sourceRevision!==input.view.source.revision||
-  !evidence(r.addressEvidence,'accepted_address_binding',Date.parse(at),Date.parse(r.expiresAt),['bindingRevisionId','bindingDigest'])||r.addressEvidence.bindingRevisionId!==r.binding.revisionId||r.addressEvidence.bindingDigest!==scheduleEventDigest(r.binding)||
+  (r.kind!=='lba-certified-schedule/3'&&(!evidence(r.addressEvidence,'accepted_address_binding',Date.parse(at),Date.parse(r.expiresAt),['bindingRevisionId','bindingDigest'])||r.addressEvidence.bindingRevisionId!==r.binding.revisionId||r.addressEvidence.bindingDigest!==scheduleEventDigest(r.binding)||
   !closed(r.parallel48hEvidence,['kind','sourceId','operatorId','namespace','targetId','startedAt','finishedAt','acceptedAt','evidenceRef'])||r.parallel48hEvidence.kind!=='accepted_parallel_48h'||r.parallel48hEvidence.sourceId!==input.view.source.id||r.parallel48hEvidence.operatorId!==input.view.operatorId||r.parallel48hEvidence.namespace!==input.view.namespace||r.parallel48hEvidence.targetId!==input.view.targetId||
-  !validInstant(r.parallel48hEvidence.startedAt)||!validInstant(r.parallel48hEvidence.finishedAt)||!validInstant(r.parallel48hEvidence.acceptedAt)||Date.parse(r.parallel48hEvidence.finishedAt)-Date.parse(r.parallel48hEvidence.startedAt)<48*3600000||Date.parse(r.parallel48hEvidence.finishedAt)>Date.parse(r.parallel48hEvidence.acceptedAt)||Date.parse(r.parallel48hEvidence.acceptedAt)>Date.parse(r.issuedAt))return null;
+  !validInstant(r.parallel48hEvidence.startedAt)||!validInstant(r.parallel48hEvidence.finishedAt)||!validInstant(r.parallel48hEvidence.acceptedAt)||Date.parse(r.parallel48hEvidence.finishedAt)-Date.parse(r.parallel48hEvidence.startedAt)<48*3600000||Date.parse(r.parallel48hEvidence.finishedAt)>Date.parse(r.parallel48hEvidence.acceptedAt)||Date.parse(r.parallel48hEvidence.acceptedAt)>Date.parse(r.issuedAt))))return null;
  // Ordinary alerts have an existing service-day boundary, not a per-message
  // TTL. Certificate expiry is authority TTL, never an invented intent deadline.
  // For reminders the immutable commit minute supplies the original due window;

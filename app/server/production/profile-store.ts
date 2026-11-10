@@ -1,7 +1,8 @@
 import {parseOperatorHouseNotices,currentOperatorHouseNotice,type AddressOperatorHouseNotice} from '../../shared/operator-house-notice.ts';
 import {createHash,randomUUID} from 'node:crypto';
 import {createBotState,handleBotInput,handleScheduleEvent,restoreBotState} from '../../shared/bot/engine.ts';
-import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState,BotAction} from '../../shared/bot/types.ts';
+import type {AddressOption,BotContext,BotInput,BotMessage,BotProfile,BotState,BotAction,ManualGroup} from '../../shared/bot/types.ts';
+import {manualGroupOption,parseManualGroups} from '../../shared/manual-group.ts';
 import type {ScheduleView,ScheduleEvent,AddressBinding} from '../../shared/product-contract.ts';
 import {validInstant,validateScheduleView,localParts,nextCalendarDate} from '../../shared/schedule-core.ts';
 import {planMatchesDisplay} from '../../shared/schedule-binding.ts';
@@ -50,7 +51,7 @@ create index if not exists lba_production_profile_outbox_pending on lba_producti
 
 export interface ProductionProfileSnapshot {
   runtime:'production';profile:BotProfile;sessionId:string;revision:number;serverNow:string;
-  catalog:AddressOption[];plans:ScheduleView[];operatorHouseNotices?:AddressOperatorHouseNotice[];
+  catalog:AddressOption[];plans:ScheduleView[];operatorHouseNotices?:AddressOperatorHouseNotice[];manualGroups?:ManualGroup[];
 }
 export interface ProductionProfileReceipt {
   runtime:'production';id:string;inputId:string;channel:'app'|'bot';committed:true;
@@ -261,6 +262,10 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
     if(!plain(raw)||!Array.isArray(raw.addresses)||!Array.isArray(raw.plans)||raw.addresses.length>10000||raw.plans.length>20000)return fail('PRODUCTION_CONTEXT_INVALID');
     const copy=structuredClone(raw),optionIds=new Set<string>();
     for(const option of copy.addresses){if(!bounded(option.id)||optionIds.has(option.id)||!bounded(option.address?.id,255)||option.binding?.addressId!==option.address.id||!bounded(option.binding.revisionId)|| (option as AddressOption&{synthetic?:boolean}).synthetic===true)return fail('PRODUCTION_CATALOG_INVALID');optionIds.add(option.id);}
+    if(copy.manualGroups!==undefined){
+      try{copy.manualGroups=parseManualGroups(copy.manualGroups);}catch{return fail('PRODUCTION_CONTEXT_INVALID');}
+      for(const group of copy.manualGroups){const option=manualGroupOption(group);if(optionIds.has(option.id)||!bounded(option.address.id,255))return fail('PRODUCTION_CONTEXT_INVALID');optionIds.add(option.id);}
+    }
     const plans=copy.plans.flatMap(view=>{
       try{validateScheduleView(view);}catch{return [];}
       const location=current.profile.locations.find(l=>l.address.id===view.addressId),binding=location?.binding;
@@ -268,13 +273,13 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
       const exact=Boolean(binding&&view.synthetic===false&&view.source.accessCost===0&&planMatchesDisplay(view,binding,now));
       const qualifier=binding?.kind==='user_selected_group'?'План обраної вручну групи. Прив’язку будинку ще потрібно підтвердити.':
         'Це план групи, яку довідник указав для обраного будинку. Відповідність будинку ще потребує перевірки.';
-      return exact?[unconfirmed?{...view,deliveryEligible:false,notice:[...new Set([view.notice,qualifier].filter(Boolean))].join('\n')}:view]:[];
+      return exact?[unconfirmed&&view.source.verifiedLevel!=='initial_launch'?{...view,deliveryEligible:false,notice:[...new Set([view.notice,qualifier].filter(Boolean))].join('\n')}:view]:[];
     });
     let notices:AddressOperatorHouseNotice[]|undefined;
     if(copy.operatorHouseNotices!==undefined){try{notices=parseOperatorHouseNotices(copy.operatorHouseNotices,[...current.profile.locations,...copy.addresses]).filter(n=>currentOperatorHouseNotice(n,now));}catch{return fail('PRODUCTION_CONTEXT_INVALID');}}
     return {...copy,actorId:p.ownerId,now,plans,...(notices!==undefined?{operatorHouseNotices:notices}:{})};
   }
-  const snapshot=(current:BotState,ctx:BotContext):ProductionProfileSnapshot=>({runtime:'production',profile:structuredClone(current.profile),sessionId:current.sessionId,revision:current.revision,serverNow:ctx.now,catalog:structuredClone(ctx.addresses),plans:structuredClone(ctx.plans),...(ctx.operatorHouseNotices!==undefined?{operatorHouseNotices:structuredClone(ctx.operatorHouseNotices.filter(n=>current.profile.locations.some(l=>l.address.id===n.addressId)))}:{})});
+  const snapshot=(current:BotState,ctx:BotContext):ProductionProfileSnapshot=>({runtime:'production',profile:structuredClone(current.profile),sessionId:current.sessionId,revision:current.revision,serverNow:ctx.now,catalog:structuredClone(ctx.addresses),plans:structuredClone(ctx.plans),...(ctx.manualGroups!==undefined?{manualGroups:structuredClone(ctx.manualGroups)}:{}),...(ctx.operatorHouseNotices!==undefined?{operatorHouseNotices:structuredClone(ctx.operatorHouseNotices.filter(n=>current.profile.locations.some(l=>l.address.id===n.addressId)))}:{})});
   async function replay(client:LegacyProfileReadClient,owner:string,inputId:string,inputDigest:string):Promise<ProductionProfileReceipt|null>{
     const previous=await client.query(SELECT_INBOX,[owner,inputId]);if(previous.rows.length>1)return fail('PRODUCTION_STORED_RECEIPT_INVALID');if(!previous.rows.length)return null;
     if(previous.rows[0].inputDigest!==inputDigest)return fail('PRODUCTION_INPUT_ID_CONFLICT');
@@ -487,7 +492,7 @@ export function createProductionProfileStore(options:ProductionProfileStoreOptio
       return transaction(identity,async(client,p)=>{
         const oldReceipt=await replay(client,p.ownerId,inputId,inputDigest),current=await state(client,p),now=clock(),ctx=await context(p,current,now);
         if(oldReceipt)return {snapshot:snapshot(current,ctx),receipt:oldReceipt,replayed:true};
-        const result=applyProfileMutation(current,request,ctx.addresses);
+        const result=applyProfileMutation(current,request,[...ctx.addresses,...(ctx.manualGroups??[]).map(manualGroupOption)]);
         const receipt=await persist(client,p,current,result.state,inputId,inputDigest,'app',now,[],result.cancelledAddresses,null);
         return {snapshot:snapshot(result.state,await context(p,result.state,now)),receipt,replayed:false};
       });

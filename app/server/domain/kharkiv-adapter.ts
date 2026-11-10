@@ -15,6 +15,8 @@ export interface KharkivRssContext {
   source: SourceReference;
   freshness: 'current' | 'stale' | 'unknown';
   synthetic: boolean;
+  /** Versioned owner scope: a general group plan, with unknown emergency overlay. */
+  publicationPolicy?: 'dated_12_queue_recurring_v2';
 }
 const MONTHS = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
 const EXPECTED_QUEUES = Array.from({ length: 6 }, (_, i) => [`${i + 1}.1`, `${i + 1}.2`]).flat();
@@ -90,20 +92,25 @@ export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext)
   const title = `У Харківській області ${Number(dayText)} ${MONTHS[Number(monthText) - 1]} діятимуть графіки погодинних відключень`;
   const feed = load(rawBody, { xmlMode: true });
   if (feed('rss > channel').length !== 1) throw new Error('RSS_CHANNEL_MISSING');
-  const matches = feed('rss > channel > item').toArray().filter(item => feed(item).children('title').text().trim() === title);
+  if(context.publicationPolicy!==undefined&&context.publicationPolicy!=='dated_12_queue_recurring_v2')throw new Error('RSS_PUBLICATION_POLICY_UNKNOWN');
+  const recurring=context.publicationPolicy==='dated_12_queue_recurring_v2';
+  const acceptedTitles=recurring?[title,`У Харківській області ${Number(dayText)} ${MONTHS[Number(monthText) - 1]} діятимуть погодинні відключення`]:[title];
+  const matches = feed('rss > channel > item').toArray().filter(item => acceptedTitles.includes(feed(item).children('title').text().trim()));
   if (matches.length !== 1) throw new Error('DATED_PLAN_MISSING_OR_AMBIGUOUS');
   const item = feed(matches[0]), link = item.children('link').text().trim();
   if (!/^https:\/\/oblenergo\.kharkiv\.ua\/uk\/node\/\d+$/.test(link)) throw new Error('RSS_UNTRUSTED_ITEM_ORIGIN');
   const publishedAt = rfcPublication(item.children('pubDate').text().trim());
   if (Date.parse(publishedAt) > Date.parse(context.observedAt) || Date.parse(publishedAt) < bounds.start - 72 * 3600_000 || Date.parse(publishedAt) >= bounds.end) throw new Error('RSS_PUBLICATION_OUTSIDE_SERVICE_WINDOW');
   // Keep announcement time separate from effective day and territory. This
-  // holds projection for review; it does not invent an all-region emergency.
+  // historical policy holds projection for review. The initial-launch policy
+  // retains the group plan with an explicit unknown-overlay caveat.
+  let currentEmergencyBulletin=false;
   for (const candidate of feed('rss > channel > item').toArray()) {
     if (candidate === matches[0]) continue;
     const other = feed(candidate);
     let time: string; try { time = rfcPublication(other.children('pubDate').text().trim()); } catch { continue; }
     if (Date.parse(time) <= Date.parse(context.observedAt) && emergencyBulletinNeedsReview(other.children('title').text(), other.children('description').text(), time, context.serviceDate))
-      throw new Error('RSS_CURRENT_EMERGENCY_REQUIRES_SCOPED_REVIEW');
+      {if(!recurring)throw new Error('RSS_CURRENT_EMERGENCY_REQUIRES_SCOPED_REVIEW');currentEmergencyBulletin=true;}
   }
   const body = load(item.children('description').text());
   body('script,style').remove();
@@ -145,7 +152,7 @@ export function normalizeKharkivRss(rawBody: string, context: KharkivRssContext)
     serviceDate: context.serviceDate, timezone: 'Europe/Kyiv', status: freshness === 'stale' ? 'stale' : 'published', dayCoverage: 'complete',
     intervals: table.get(context.targetId)!, source: { ...context.source, url: link, revision: rawHash },
     publishedAt, observedAt: context.observedAt, freshness, synthetic: context.synthetic, deliveryEligible: false,
-    notice: 'Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні.',
+    notice: recurring ? (currentEmergencyBulletin?'ОСР опублікував повідомлення про аварійні обмеження. Їхній вплив на обрану групу та фактичне живлення не підтверджено. ':'')+'Загальний план групи; час орієнтовний через перемикання. Групу обрано вручну; відповідність будинку не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися.' : 'Час у плані групи орієнтовний через перемикання; відповідність вашому будинку ще не підтверджена. Поточний аварійний стан групи не підтверджено; фактичне живлення може відрізнятися. Сповіщення про цей план поки недоступні.',
   };
   for (const intervals of table.values()) validateScheduleView({ ...base, intervals });
   return base;
