@@ -39,7 +39,7 @@ create index if not exists lba_public_source_plan_raw on lba_public_source_plan(
 `;
 export type SourceServiceCode = IntakeCode | 'SOURCE_SERVICE_DISABLED'|'SOURCE_CONTROL_REJECTED'|'SOURCE_EPOCH_CONFLICT'|
  'SOURCE_STORAGE_UNAVAILABLE'|'SOURCE_WORKER_BUSY'|'SOURCE_LOCAL_BUDGET_DEFERRED'|'SOURCE_ORIGIN_HELD'|
- 'SOURCE_NOT_DUE'|'SOURCE_CATALOG_REJECTED'|'SOURCE_PUBLICATION_UNKNOWN'|'SOURCE_WORKER_HELD';
+ 'SOURCE_NOT_DUE'|'SOURCE_CATALOG_REJECTED'|'SOURCE_PUBLICATION_UNKNOWN'|'SOURCE_WORKER_HELD'|'SOURCE_RESERVATION_RECOVERED';
 type Available = Extract<SourceIntakeResult,{state:'available'}>;
 /** A completed guest response with missing required metadata has no pending
  * API hop. Hold only its origin so another source can still be refreshed. */
@@ -158,10 +158,31 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
    ['RESERVATION_COMMIT_UNKNOWN','RESERVATION_TOKEN_CONFLICT','RESERVATION_CLOSED','RESERVATION_DEADLINE','RESERVATION_ABORTED'].includes(result.code)?'SOURCE_PUBLICATION_UNKNOWN':'SOURCE_STORAGE_UNAVAILABLE';
   return {state:['SOURCE_WORKER_HELD','SOURCE_ORIGIN_HELD','SOURCE_LOCAL_BUDGET_DEFERRED'].includes(code)?'deferred':'unavailable',code,...(sourceId?{sourceId}:{})};
  }
+ async function recoverExpiredRun():Promise<boolean>{
+  const result=await reservations.reconcileExpiredZeroHop(async(q,marker)=>{
+   const runs=(await q.query(`select id,source_id,control_epoch,started_at,finished_at,code
+    from lba_public_source_run where status='started' order by id limit 2 for update`)).rows;
+   if(runs.length!==1)return false;
+   const run=runs[0],profile=profiles.find(p=>p.sourceId===run.source_id);
+   if(run.id!==marker.reservationToken||Number(run.control_epoch)!==marker.controlEpoch||
+      new Date(run.started_at).getTime()!==Date.parse(marker.reservedAt)||run.finished_at!==null||run.code!==null||
+      !profile||origin(profile)!==marker.origin||(profile.sourceId===ODESA_PLAN_API_SOURCE?2:1)!==marker.expectedMaxHops)return false;
+   const raw=(await q.query('select 1 from lba_public_source_raw where run_id=$1 limit 1',[run.id])).rows;
+   if(raw.length)return false;
+   const state=(await q.query('select 1 from lba_public_source_state where source_id=$1 and last_attempt_at=$2 for update',[run.source_id,marker.reservedAt])).rows;
+   if(state.length!==1)return false;
+   const retired=await q.query(`update lba_public_source_run set status='rejected',finished_at=$2,code='SOURCE_UPDATE_UNCONFIRMED'
+    where id=$1 and status='started' and finished_at is null`,[run.id,marker.finishedAt]);
+   const marked=await q.query("update lba_public_source_state set last_failure='SOURCE_UPDATE_UNCONFIRMED' where source_id=$1 and last_attempt_at=$2",[run.source_id,marker.reservedAt]);
+   if(retired.rowCount!==1||marked.rowCount!==1)return fail('SOURCE_PUBLICATION_UNKNOWN');
+   return true;
+  });
+  return result.state==='recovered';
+ }
  async function refreshOnce(sourceId?:string):Promise<SourceRefreshResult>{
   if(options.enabled!==true)return {state:'disabled',code:'SOURCE_SERVICE_DISABLED'};
   if(sourceId!==undefined&&(typeof sourceId!=='string'||!profiles.some(p=>p.sourceId===sourceId)))return {state:'blocked',code:'SOURCE_NOT_ADMITTED'};
-  let p:SourceProfile|undefined;
+  let p:SourceProfile|undefined,deferred:SourceServiceCode='SOURCE_NOT_DUE',hasPossibleReservation=false;
   try{
    const time=clock(),c=await options.pool.connect();let tx=false;
    try{
@@ -174,16 +195,19 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
      const stamp=(id:string)=>{const r=states.find(s=>s.source_id===id);return r?new Date(r.last_attempt_at).getTime():0;};return stamp(a.sourceId)-stamp(b.sourceId)||a.sourceId.localeCompare(b.sourceId);
     });
     if(!due.length)return fail('SOURCE_ADMISSION_EXPIRED');
-    let deferred:SourceServiceCode='SOURCE_NOT_DUE';
     p=due.find(x=>{
      const o=origins.find(r=>r.origin===origin(x));
      if(o?.uncertain===true||o?.hold_reason){deferred='SOURCE_ORIGIN_HELD';return false;}
      if(o&&new Date(o.next_attempt_at).getTime()>time){deferred='SOURCE_LOCAL_BUDGET_DEFERRED';return false;}
      const s=states.find(r=>r.source_id===x.sourceId);return !s||time-new Date(s.last_attempt_at).getTime()>=entry(x.sourceId).cacheTtlMs;
     });
+    hasPossibleReservation=!p&&origins.some(o=>o.uncertain===true&&typeof o.hold_reason==='string'&&o.hold_reason.startsWith('{'));
     await c.query('commit');tx=false;
-    if(!p)return {state:'deferred',code:deferred,...(sourceId?{sourceId}:{})};
    }finally{if(tx)await c.query('rollback').catch(()=>{});c.release();}
+   if(!p){
+    if(hasPossibleReservation&&await recoverExpiredRun())return {state:'deferred',code:'SOURCE_RESERVATION_RECOVERED'};
+    return {state:'deferred',code:deferred,...(sourceId?{sourceId}:{})};
+   }
    const chosen=p,abort=new AbortController();let runId='',reserveFailure:SourceServiceCode|undefined;
    const reserved=await reservations.reserve({origin:origin(chosen),expectedMaxHops:chosen.sourceId===ODESA_PLAN_API_SOURCE?2:1,minIntervalMs:interval(chosen),...(chosen.sourceId===ODESA_PLAN_API_SOURCE?{strictEightPerMinute:true}:{}),deadlineMs:30000,signal:abort.signal,
     persist:async(q,receipt)=>{
@@ -197,7 +221,10 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
      await q.query(`insert into lba_public_source_state(source_id,last_attempt_at) values($1,$2) on conflict(source_id) do update set last_attempt_at=excluded.last_attempt_at`,[chosen.sourceId,receipt.reservedAt]);
      await q.query(`insert into lba_public_source_run(id,source_id,control_epoch,started_at,status) values($1,$2,$3,$4,'started')`,[runId,chosen.sourceId,options.expectedControlEpoch,receipt.reservedAt]);
     }});
-   if(reserved.state!=='reserved')return reserveFailure?{state:reserveFailure==='SOURCE_NOT_DUE'?'deferred':'unavailable',code:reserveFailure,sourceId:chosen.sourceId}:reservationRejected(reserved,chosen.sourceId);
+   if(reserved.state!=='reserved'){
+    if(reserved.code==='RESERVATION_WORKER_HELD'&&await recoverExpiredRun())return {state:'deferred',code:'SOURCE_RESERVATION_RECOVERED'};
+    return reserveFailure?{state:reserveFailure==='SOURCE_NOT_DUE'?'deferred':'unavailable',code:reserveFailure,sourceId:chosen.sourceId}:reservationRejected(reserved,chosen.sourceId);
+   }
    if(chosen.sourceId===ODESA_PLAN_API_SOURCE)return refreshOdesaPlan(chosen,reserved.reservation,abort,runId);
    let status:number|undefined,retry:string|undefined;
    const intake=freshIntake(async req=>{

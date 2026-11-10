@@ -288,7 +288,7 @@
       "format": "esm"
     },
     "server/db.ts": {
-      "bytes": 515,
+      "bytes": 867,
       "imports": [
         {
           "path": "drizzle-orm/node-postgres",
@@ -1158,7 +1158,7 @@
       "format": "esm"
     },
     "shared/bot/engine.ts": {
-      "bytes": 109086,
+      "bytes": 109576,
       "imports": [
         {
           "path": "shared/operator-house-notice.ts",
@@ -2451,7 +2451,7 @@
       "format": "esm"
     },
     "server/production/public-source-reservation.ts": {
-      "bytes": 17091,
+      "bytes": 20382,
       "imports": [
         {
           "path": "node:crypto",
@@ -2700,7 +2700,7 @@
       "format": "esm"
     },
     "server/production/source-ingestion.ts": {
-      "bytes": 32750,
+      "bytes": 34883,
       "imports": [
         {
           "path": "node:crypto",
@@ -3500,7 +3500,7 @@
       "format": "esm"
     },
     "server/production/canonical-runtime.ts": {
-      "bytes": 17515,
+      "bytes": 17966,
       "imports": [
         {
           "path": "server/production/operator-address-refresh.ts",
@@ -4644,7 +4644,7 @@
           "bytesInOutput": 3855
         },
         "server/db.ts": {
-          "bytesInOutput": 743
+          "bytesInOutput": 942
         },
         "server/storage.ts": {
           "bytesInOutput": 4129
@@ -4737,7 +4737,7 @@
           "bytesInOutput": 62470
         },
         "shared/bot/engine.ts": {
-          "bytesInOutput": 135069
+          "bytesInOutput": 135845
         },
         "shared/review-fixtures.ts": {
           "bytesInOutput": 2223
@@ -4902,7 +4902,7 @@
           "bytesInOutput": 4160
         },
         "server/production/public-source-reservation.ts": {
-          "bytesInOutput": 14979
+          "bytesInOutput": 18119
         },
         "server/domain/public-address-request-identity.ts": {
           "bytesInOutput": 3313
@@ -4929,7 +4929,7 @@
           "bytesInOutput": 13301
         },
         "server/production/source-ingestion.ts": {
-          "bytesInOutput": 31648
+          "bytesInOutput": 33923
         },
         "server/production/public-http.ts": {
           "bytesInOutput": 1340
@@ -5007,7 +5007,7 @@
           "bytesInOutput": 56967
         },
         "server/production/canonical-runtime.ts": {
-          "bytesInOutput": 16875
+          "bytesInOutput": 17244
         },
         "server/production/product-tools-routes.ts": {
           "bytesInOutput": 4548
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1803759
+      "bytes": 1810518
     }
   }
 }

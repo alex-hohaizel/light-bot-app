@@ -1,45 +1,45 @@
 {
-  "../node_modules/@capacitor/local-notifications/dist/esm/index.js": {
-    "file": "assets/index-BVcW-QNQ.js",
+  "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/index.js": {
+    "file": "assets/index-Db_wyjpm.js",
     "name": "index",
-    "src": "../node_modules/@capacitor/local-notifications/dist/esm/index.js",
+    "src": "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/index.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ],
     "dynamicImports": [
-      "../node_modules/@capacitor/local-notifications/dist/esm/web.js"
+      "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/web.js"
     ]
   },
-  "../node_modules/@capacitor/local-notifications/dist/esm/web.js": {
-    "file": "assets/web-DaGWBMZW.js",
+  "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/web.js": {
+    "file": "assets/web-ld0al3J4.js",
     "name": "web",
-    "src": "../node_modules/@capacitor/local-notifications/dist/esm/web.js",
+    "src": "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/web.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
-  "../node_modules/@capacitor/push-notifications/dist/esm/index.js": {
-    "file": "assets/index-KbPt7mO_.js",
+  "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/push-notifications/dist/esm/index.js": {
+    "file": "assets/index-KQ-raXic.js",
     "name": "index",
-    "src": "../node_modules/@capacitor/push-notifications/dist/esm/index.js",
+    "src": "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/push-notifications/dist/esm/index.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
   "index.html": {
-    "file": "assets/index-DrgIy_mz.js",
+    "file": "assets/index-Dx81xqIP.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "../node_modules/@capacitor/push-notifications/dist/esm/index.js",
-      "../node_modules/@capacitor/local-notifications/dist/esm/index.js"
+      "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/push-notifications/dist/esm/index.js",
+      "../../../notice-deadline-release-20261111/app/node_modules/@capacitor/local-notifications/dist/esm/index.js"
     ],
     "css": [
-      "assets/index-chWm5hEl.css"
+      "assets/index-OFrbO1yc.css"
     ]
   }
 }

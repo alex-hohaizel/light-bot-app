@@ -10,7 +10,7 @@ import {selectVerifiedLegacySubscriberMappings} from './legacy-identity-links.ts
 import {createRuntimeDataContext} from './runtime-context.ts';
 import {createProductAddressFlow} from './address-flow.ts';
 import {createProviderAddressCatalog} from './provider-address-catalog.ts';
-import {createSourceIngestion} from './source-ingestion.ts';
+import {createSourceIngestion,type SourceRefreshResult} from './source-ingestion.ts';
 import {SOURCE_PROFILES} from './source-intake.ts';
 import {publicSourceTransport} from './public-http.ts';
 import {createProductionTools,invalidateProductionToolShares} from './product-tools.ts';
@@ -123,6 +123,7 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  if(ports.releaseCampaign&&(!policy.telegramDeliveryEnabled||!legacyRecipients))throw Error('CANONICAL_RELEASE_CAMPAIGN_CONFIGURATION_REQUIRED');
  let ready=false,started=false,stopped=false;const timers=new Set<ReturnType<typeof setTimeout>>(),running=new Set<Promise<unknown>>(),abort=new AbortController();
  const status={context:'waiting',source:'waiting',processor:'waiting',delivery:'waiting',callbacks:'waiting',notifications:'waiting',certification:'waiting',releaseCampaign:releaseCampaign?'waiting':'disabled'};
+ let lastSourceRefresh: Pick<SourceRefreshResult,'state'> & {code?:string;sourceId?:string} | null = null;
  async function prepare(){
   if(started||stopped)throw Error('CANONICAL_RUNTIME_STATE');
   ready=false;status.context='waiting';
@@ -139,13 +140,18 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
   if(!ports.certification?.registry)certification.setRegistry(await loadDeployedQualificationRegistry({rootDirectory:ports.certification?.rootDirectory??''}));
   await flow.refreshOwned();await data.refresh();ready=true;status.context='ready';
  }
- function loop(name:keyof typeof status,delay:number,operation:()=>Promise<unknown>){
-  const tick=()=>{if(stopped)return;const task=operation().then(result=>{status[name]=result&&typeof result==='object'?'observed':'ready';},()=>{status[name]='unavailable';})
+ function loop<T>(name:keyof typeof status,delay:number,operation:()=>Promise<T>,resultStatus?:(result:T)=>string){
+  const tick=()=>{if(stopped)return;const task=operation().then(result=>{status[name]=resultStatus?.(result)??(result&&typeof result==='object'?'observed':'ready');},()=>{status[name]='unavailable';})
    .finally(()=>{running.delete(task);if(!stopped){const timer=setTimeout(()=>{timers.delete(timer);tick();},delay);timers.add(timer);}});running.add(task);};tick();
  }
  function start(){if(!ready||started||stopped)throw Error('CANONICAL_RUNTIME_NOT_PREPARED');started=true;
   loop('context',5000,async()=>{await flow.refreshOwned();await data.refresh();});
-  if(policy.sourceIngestionEnabled)loop('source',1000,async()=>{const result=await sources.refreshOnce();await data.refresh(true);return result;});
+  if(policy.sourceIngestionEnabled)loop('source',1000,async()=>{
+   const result=await sources.refreshOnce();
+   lastSourceRefresh={state:result.state,...('code'in result?{code:result.code}:{}),...(result.sourceId?{sourceId:result.sourceId}:{})};
+   if(result.state==='published')await data.refresh(true);
+   return result;
+  },result=>result.state);
   if(policy.sourceIngestionEnabled)loop('certification',5000,async()=>{const result=await certification.runOnce({signal:abort.signal});await data.refresh(true);return result;});
   if(policy.telegramUpdatesEnabled)loop('processor',250,()=>processor.processNext());
   if(policy.notificationSchedulerEnabled)loop('notifications',1000,()=>eventProducer.runOnce({signal:abort.signal}));
@@ -155,6 +161,6 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  }
  async function stop(){stopped=true;ready=false;abort.abort();releaseCampaign?.stop();certification.stop();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
  return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,certification,prepare,start,stop,operatorLookupEnabled,
-  health:()=>{const evidence=certification.health();return {ready,started,stopped,workers:{...status},deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&
+  health:()=>{const evidence=certification.health();return {ready,started,stopped,workers:{...status},sourceRefresh:lastSourceRefresh?{...lastSourceRefresh}:null,deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&
    (evidence.admittedSources>0&&evidence.evidenceMedium==='observed'||evidence.configured&&evidence.initialLaunchNotifications&&evidence.launchPolicyCurrent&&evidence.launchPolicy==='lba-owner-approved-initial-launch/1')),scheduleCertificationRequired:true,scheduleCertification:evidence,accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}};}});
 }

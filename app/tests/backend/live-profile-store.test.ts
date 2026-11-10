@@ -256,10 +256,15 @@ test('App manual groups use canonical add/replace CAS and replay while preservin
 test('an explicitly selected manual technical group can display its exact current plan without certifying building binding or delivery',async()=>{
  const p=new Port();let patch:Partial<ScheduleView>={};
  const group={id:'manual-fixture-group',label:'Група 1.1',locality:'Fixture locality',territoryLabel:'Fixture territory',operatorId:'fixture-operator',namespace:'fixture:namespace',targetId:'1.1',revisionId:'manual-binding-1'};
- const store=p.store({context:({state})=>{const manual=state.profile.locations.find(l=>l.binding.revisionId===group.revisionId);return {addresses:[option],manualGroups:[group],plans:manual?[plan({addressId:manual.address.id,addressLabel:manual.address.label,bindingRevisionId:group.revisionId,...patch})]:[]};}});
- await store.snapshot(identity);await store.commitBotInput(identity,{input:{id:'manual-menu',kind:'command',text:'/queue'}});
+ const store=p.store({context:({state})=>{const manual=state.profile.locations.find(l=>l.binding.revisionId===group.revisionId);return {addresses:[option],addressCatalogStatus:'unavailable',manualGroups:[group],plans:manual?[plan({addressId:manual.address.id,addressLabel:manual.address.label,bindingRevisionId:group.revisionId,...patch})]:[]};}});
+ const before=await store.snapshot(identity);
+ await store.commitBotInput(identity,{input:{id:'manual-add',kind:'command',text:'/add'}});
+ const fallback=(await store.pendingOutbox(identity)).find(o=>o.inputId==='bot:manual-add')?.message.buttons.find(b=>b.label==='Обрати групу графіка вручну');
+ assert(fallback);
+ await store.commitBotInput(identity,{input:{id:'manual-menu',kind:'callback',callbackId:fallback.callbackId}});
  const button=(await store.pendingOutbox(identity)).flatMap(o=>o.message.buttons).find(b=>b.label.includes('1.1'))!;assert(button);
  const picked=await store.commitBotInput(identity,{input:{id:'manual-pick',kind:'callback',callbackId:button.callbackId}}),manual=picked.snapshot.profile.locations.find(l=>l.binding.revisionId===group.revisionId)!;
+ assert.deepEqual(picked.snapshot.profile.locations.slice(0,-1),before.profile.locations);
  assert.equal(manual.binding.kind,'user_selected_group');assert.equal(manual.binding.status,'needs_confirmation');assert.equal(manual.notifications,false);assert.equal(picked.snapshot.plans.length,1);assert.equal(picked.snapshot.plans[0].deliveryEligible,false);
  await store.commitBotInput(identity,{input:{id:'manual-plan-display',kind:'command',text:'/start'}});
  const shown=(await store.pendingOutbox(identity)).find(o=>o.inputId==='bot:manual-plan-display'&&o.message.kind==='schedule');assert(shown?.schedule);assert.equal(shown.schedule.deliveryEligible,false);assert.match(shown.schedule.notice??'',/вручну/);

@@ -641,6 +641,10 @@ var init_db = __esm({
       );
     }
     pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    pool.on("error", (error2) => {
+      const code = error2.code && /^[A-Z0-9]{5}$/.test(error2.code) ? error2.code : "UNKNOWN";
+      console.error("LBA_DATABASE_IDLE_CLIENT_ERROR", code);
+    });
     db = (0, import_node_postgres.drizzle)(pool, { schema: schema_exports });
   }
 });
@@ -5847,7 +5851,11 @@ function handleBotInput(previous, input, context2) {
   const isV2 = () => Boolean(state.draft?.providerV2);
   const directoriesV2 = () => Array.isArray(context2.providerDirectoriesV2) ? context2.providerDirectoriesV2.filter((d) => d && d.id === "dtek:oem" && d.namespace === "dtek:oem" && d.operatorId === "dtek-oem" && d.territoryId === "source:dtek:oem" && d.localitySelection === "required" && v2Text(d.label) && context2.providerDirectoriesV2.filter((x) => x?.id === d.id).length === 1) : [];
   const catalogUnavailable = () => !isV2() && !providerDirectory() && (context2.addressCatalogStatus === "loading" || context2.addressCatalogStatus === "unavailable");
-  const showCatalogUnavailable = () => message(context2.addressCatalogStatus === "loading" ? "\u041E\u043D\u043E\u0432\u043B\u044E\u0454\u043C\u043E \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0417\u0430\u0447\u0435\u043A\u0430\u0439\u0442\u0435 \u0442\u0440\u043E\u0445\u0438 \u0439 \u043F\u043E\u0432\u0442\u043E\u0440\u0456\u0442\u044C \u0432\u0438\u0431\u0456\u0440. \u0427\u0435\u0440\u043D\u0435\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E; \u043D\u043E\u0432\u0443 \u0430\u0434\u0440\u0435\u0441\u0443 \u0449\u0435 \u043D\u0435 \u0434\u043E\u0434\u0430\u043D\u043E." : "\u0422\u0438\u043C\u0447\u0430\u0441\u043E\u0432\u043E \u043D\u0435 \u0432\u0434\u0430\u043B\u043E\u0441\u044F \u043E\u0442\u0440\u0438\u043C\u0430\u0442\u0438 \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0426\u0435 \u043D\u0435 \u043E\u0437\u043D\u0430\u0447\u0430\u0454, \u0449\u043E \u0432\u0430\u0448\u043E\u0433\u043E \u0431\u0443\u0434\u0438\u043D\u043A\u0443 \u043D\u0435\u043C\u0430\u0454. \u0427\u0435\u0440\u043D\u0435\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E \u2014 \u043F\u043E\u0432\u0442\u043E\u0440\u0456\u0442\u044C \u0432\u0438\u0431\u0456\u0440 \u043F\u0456\u0437\u043D\u0456\u0448\u0435.", wizardNav());
+  const addAddressNavigation = () => [
+    ...state.draft?.operation === "add" ? [commandButton("\u041E\u0431\u0440\u0430\u0442\u0438 \u0433\u0440\u0443\u043F\u0443 \u0433\u0440\u0430\u0444\u0456\u043A\u0430 \u0432\u0440\u0443\u0447\u043D\u0443", "/queue")] : [],
+    ...wizardNav()
+  ];
+  const showCatalogUnavailable = (allowGroupChoice = false) => message(context2.addressCatalogStatus === "loading" ? "\u041E\u043D\u043E\u0432\u043B\u044E\u0454\u043C\u043E \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0417\u0430\u0447\u0435\u043A\u0430\u0439\u0442\u0435 \u0442\u0440\u043E\u0445\u0438 \u0439 \u043F\u043E\u0432\u0442\u043E\u0440\u0456\u0442\u044C \u0432\u0438\u0431\u0456\u0440. \u0427\u0435\u0440\u043D\u0435\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E; \u043D\u043E\u0432\u0443 \u0430\u0434\u0440\u0435\u0441\u0443 \u0449\u0435 \u043D\u0435 \u0434\u043E\u0434\u0430\u043D\u043E." : "\u0422\u0438\u043C\u0447\u0430\u0441\u043E\u0432\u043E \u043D\u0435 \u0432\u0434\u0430\u043B\u043E\u0441\u044F \u043E\u0442\u0440\u0438\u043C\u0430\u0442\u0438 \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0426\u0435 \u043D\u0435 \u043E\u0437\u043D\u0430\u0447\u0430\u0454, \u0449\u043E \u0432\u0430\u0448\u043E\u0433\u043E \u0431\u0443\u0434\u0438\u043D\u043A\u0443 \u043D\u0435\u043C\u0430\u0454. \u0427\u0435\u0440\u043D\u0435\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E \u2014 \u043F\u043E\u0432\u0442\u043E\u0440\u0456\u0442\u044C \u0432\u0438\u0431\u0456\u0440 \u043F\u0456\u0437\u043D\u0456\u0448\u0435.", allowGroupChoice ? addAddressNavigation() : wizardNav());
   const draftStage = (stage) => {
     state.stage = stage;
     if (state.draft) state.draft.resumeStage = stage;
@@ -6266,7 +6274,7 @@ ${NOTIFICATION_COPY.invalid}`;
       return;
     }
     if (catalogUnavailable() && !(stage === "locality" && (directories().length || directoriesV2().length))) {
-      showCatalogUnavailable();
+      showCatalogUnavailable(stage === "locality");
       return;
     }
     if (stage === "locality") {
@@ -6288,7 +6296,7 @@ ${NOTIFICATION_COPY.invalid}`;
       const empty3 = context2.addressCatalogStatus === "loading" ? "\u041E\u043D\u043E\u0432\u043B\u044E\u0454\u043C\u043E \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0421\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0442\u0440\u043E\u0445\u0438 \u043F\u0456\u0437\u043D\u0456\u0448\u0435; \u0447\u0435\u0440\u043D\u0435\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E." : context2.addressCatalogStatus === "unavailable" ? "\u041D\u0435 \u0432\u0434\u0430\u043B\u043E\u0441\u044F \u043E\u0442\u0440\u0438\u043C\u0430\u0442\u0438 \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A \u0430\u0434\u0440\u0435\u0441. \u0426\u0435 \u043D\u0435 \u043E\u0437\u043D\u0430\u0447\u0430\u0454, \u0449\u043E \u0432\u0430\u0448\u043E\u0457 \u0430\u0434\u0440\u0435\u0441\u0438 \u043D\u0435\u043C\u0430\u0454. \u0421\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0456\u0437\u043D\u0456\u0448\u0435 \u0430\u0431\u043E \u0432\u0456\u0434\u043A\u0440\u0438\u0439\u0442\u0435 \u0434\u043E\u043F\u043E\u043C\u043E\u0433\u0443." : state.draft.localityQuery ? "\u041D\u0435 \u0437\u043D\u0430\u0439\u0448\u043B\u0438 \u0442\u0430\u043A\u043E\u0433\u043E \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u043E\u0433\u043E \u043F\u0443\u043D\u043A\u0442\u0443 \u0432 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E\u043C\u0443 \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A\u0443. \u041F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u043D\u0430\u0437\u0432\u0443 \u0430\u0431\u043E \u0432\u0432\u0435\u0434\u0456\u0442\u044C \u0457\u0457 \u0431\u0435\u0437 \u0441\u043A\u043E\u0440\u043E\u0447\u0435\u043D\u043D\u044F." : BOT_COPY.engineText064;
       message(all.length ? `${COPY.locality}
 \u041C\u043E\u0436\u043D\u0430 \u0442\u0430\u043A\u043E\u0436 \u0432\u0432\u0435\u0441\u0442\u0438 \u043D\u0430\u0437\u0432\u0443 \u0442\u0435\u043A\u0441\u0442\u043E\u043C.${all.length > ADDRESS_PAGE_SIZE ? `
-\u0421\u0442\u043E\u0440\u0456\u043D\u043A\u0430 ${page + 1} \u0437 ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ""}` : empty3, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map((o) => button(o.label, { kind: o.v2 ? "provider_v2_directory" : "locality", value: o.value })), ...pageButtons("locality", page, all.length), ...wizardNav()]);
+\u0421\u0442\u043E\u0440\u0456\u043D\u043A\u0430 ${page + 1} \u0437 ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ""}` : empty3, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map((o) => button(o.label, { kind: o.v2 ? "provider_v2_directory" : "locality", value: o.value })), ...pageButtons("locality", page, all.length), ...addAddressNavigation()]);
       if (ambiguous.size) message("\u0404 \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u0456 \u043F\u0443\u043D\u043A\u0442\u0438 \u0437 \u043E\u0434\u043D\u0430\u043A\u043E\u0432\u043E\u044E \u043D\u0430\u0437\u0432\u043E\u044E, \u0430 \u0432 \u0434\u043E\u0432\u0456\u0434\u043D\u0438\u043A\u0443 \u0431\u0440\u0430\u043A\u0443\u0454 \u0440\u0430\u0439\u043E\u043D\u0443 \u0447\u0438 \u0433\u0440\u043E\u043C\u0430\u0434\u0438, \u0449\u043E\u0431 \u0457\u0445 \u0440\u043E\u0437\u0440\u0456\u0437\u043D\u0438\u0442\u0438. \u0423\u0442\u043E\u0447\u043D\u0456\u0442\u044C \u043F\u043E\u0432\u043D\u0443 \u0430\u0434\u0440\u0435\u0441\u0443 \u0432 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u0430. \u0417\u0430 \u0441\u0430\u043C\u043E\u044E \u043D\u0430\u0437\u0432\u043E\u044E \u0433\u0440\u0430\u0444\u0456\u043A \u043D\u0435 \u043F\u0456\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0454\u043C\u043E.", wizardNav());
     } else if (stage === "street_choice") renderStreetMatches();
     else if (stage === "street") message(providerDirectory() || isV2() ? "\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u0432\u0443\u043B\u0438\u0446\u0456. \u042F\u043A\u0449\u043E \u0437\u0430 \u0441\u0442\u0430\u0440\u043E\u044E \u043D\u0430\u0437\u0432\u043E\u044E \u043D\u0456\u0447\u043E\u0433\u043E \u043D\u0435\u043C\u0430\u0454, \u0441\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0442\u0435\u043F\u0435\u0440\u0456\u0448\u043D\u044E." : COPY.street, wizardNav());
@@ -6584,8 +6592,9 @@ ${house ? `${house}
         state.stage = "manual_group";
         const groups2 = context2.manualGroups || [], page = boundedPage(state.catalogPage, groups2.length);
         state.catalogPage = page;
-        message(`${BOT_COPY.engineText085}${groups2.length > ADDRESS_PAGE_SIZE ? `
-\u0421\u0442\u043E\u0440\u0456\u043D\u043A\u0430 ${page + 1} \u0437 ${Math.ceil(groups2.length / ADDRESS_PAGE_SIZE)}.` : ""}`, [...groups2.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map((g) => button(`${g.locality} \xB7 ${g.label}`, { kind: "manual_group", value: g.id })), ...pageButtons("manual_group", page, groups2.length), commandButton(BOT_COPY.engineText086, "/add"), commandButton("\u041D\u0430\u0437\u0430\u0434", "/back")]);
+        const groupText = groups2.length ? BOT_COPY.engineText085 : "\u0417\u0430\u0440\u0430\u0437 \u043D\u0435\u043C\u0430\u0454 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0438\u0445 \u0433\u0440\u0443\u043F \u0433\u0440\u0430\u0444\u0456\u043A\u0430. \u0421\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0456\u0437\u043D\u0456\u0448\u0435.";
+        message(`${groupText}${groups2.length > ADDRESS_PAGE_SIZE ? `
+\u0421\u0442\u043E\u0440\u0456\u043D\u043A\u0430 ${page + 1} \u0437 ${Math.ceil(groups2.length / ADDRESS_PAGE_SIZE)}.` : ""}`, [...groups2.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map((g) => button(`${g.locality} \xB7 ${g.label}`, { kind: "manual_group", value: g.id })), ...pageButtons("manual_group", page, groups2.length), commandButton(BOT_COPY.engineText086, state.draft?.operation === "add" ? "/draft" : "/add"), commandButton("\u041D\u0430\u0437\u0430\u0434", "/back")]);
         break;
       }
       case "/share": {
@@ -9627,7 +9636,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27") ? "9be789cb0afe4099a8bac4d19a728ea8290e4e146df5c23769f6554f79d6eb27" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("ab7e3b1babeaea7b72db5dc1518b03ede8a51665792c9b7389fdafac7dee8788") ? "ab7e3b1babeaea7b72db5dc1518b03ede8a51665792c9b7389fdafac7dee8788" : null;
   }
 });
 
@@ -17212,6 +17221,17 @@ function validOrigin(value) {
     return false;
   }
 }
+function zeroHopMarker(encoded, epoch8) {
+  if (typeof encoded !== "string" || encoded.length > 2048 || !encoded.startsWith("{")) return null;
+  let marker;
+  try {
+    marker = JSON.parse(encoded);
+  } catch {
+    return null;
+  }
+  if (!marker || typeof marker !== "object" || Object.keys(marker).length !== 11 || marker.kind !== "lba-public-source-reservation" || marker.version !== 1 || marker.epoch !== epoch8 || marker.hops !== 0 || !validOrigin(marker.origin) || typeof marker.token !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(marker.token) || !safeInteger(marker.reservedAtMs, 0, 8639999e9) || !safeInteger(marker.deadlineAtMs, marker.reservedAtMs + 1, marker.reservedAtMs + 3e4) || !safeInteger(marker.maxHops, 1, 4) || !safeInteger(marker.intervalMs, 1e3, 864e5) || marker.nextHopAtMs !== marker.reservedAtMs || (marker.maxHops - 1) * marker.intervalMs >= 3e4) return null;
+  return marker;
+}
 function createPublicSourceReservationGuard(options) {
   if (!options?.pool || typeof options.pool.connect !== "function" || !safeInteger(options.expectedControlEpoch, 1, Number.MAX_SAFE_INTEGER)) throw Error("INVALID_RESERVATION_INPUT");
   const pool2 = options.pool, epoch8 = options.expectedControlEpoch;
@@ -17321,7 +17341,39 @@ function createPublicSourceReservationGuard(options) {
       denied("RESERVATION_CALLBACK_FAILED", "unavailable");
     }
   }
-  return { async reserve(input) {
+  async function reconcileExpiredZeroHop(retire) {
+    if (typeof retire !== "function") return { state: "blocked", code: "INVALID_RESERVATION_INPUT" };
+    try {
+      return await transaction(import_node_perf_hooks.performance.now() + 5e3, void 0, async (q) => {
+        await control(q);
+        const workers = (await q.query("select uncertain,hold_reason from lba_public_source_worker where id=true for update")).rows;
+        const worker = workers[0], encoded = worker?.hold_reason;
+        const marker = workers.length === 1 && worker.uncertain === true ? zeroHopMarker(encoded, epoch8) : null;
+        if (!marker) return { state: "unchanged" };
+        const rows = (await q.query("select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update", [marker.origin])).rows;
+        const origin = rows[0], next = new Date(origin?.next_attempt_at).getTime();
+        if (rows.length !== 1 || origin.uncertain !== true || origin.hold_reason !== encoded || !Number.isFinite(next) || next < marker.reservedAtMs + marker.maxHops * marker.intervalMs) return { state: "unchanged" };
+        const now = await dbTime(q);
+        if (now < marker.deadlineAtMs) return { state: "unchanged" };
+        const run = {
+          reservationToken: marker.token,
+          origin: marker.origin,
+          controlEpoch: epoch8,
+          reservedAt: iso2(marker.reservedAtMs),
+          expectedMaxHops: marker.maxHops,
+          finishedAt: iso2(now)
+        };
+        if (!await retire(q, run)) return { state: "unchanged" };
+        const releaseWorker = await q.query("update lba_public_source_worker set uncertain=false,hold_reason=null where id=true and uncertain=true and hold_reason=$1", [encoded]);
+        const releaseOrigin = await q.query("update lba_public_source_origin set uncertain=false,hold_reason=null where origin=$1 and uncertain=true and hold_reason=$2", [marker.origin, encoded]);
+        if (releaseWorker.rowCount !== 1 || releaseOrigin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+        return { state: "recovered" };
+      });
+    } catch (error2) {
+      return failure2(error2);
+    }
+  }
+  return { reconcileExpiredZeroHop, async reserve(input) {
     const duration = input?.deadlineMs ?? 3e4;
     if (!validOrigin(input?.origin) || !safeInteger(input?.expectedMaxHops, 1, 4) || !safeInteger(input?.minIntervalMs, 1e3, 864e5) || input.strictEightPerMinute !== void 0 && typeof input.strictEightPerMinute !== "boolean" || input.strictEightPerMinute === true && input.minIntervalMs < 7500 || !safeInteger(duration, 1, 3e4) || (input.expectedMaxHops - 1) * input.minIntervalMs >= duration || !input.signal || typeof input.signal.addEventListener !== "function" || input.persist !== void 0 && typeof input.persist !== "function") return { state: "blocked", code: "INVALID_RESERVATION_INPUT" };
     input = { ...input };
@@ -19734,10 +19786,29 @@ function createSourceService(options, planSource, fixtureMode) {
     const code = result2.code === "RESERVATION_CONTROL_REJECTED" ? "SOURCE_CONTROL_REJECTED" : result2.code === "RESERVATION_EPOCH_CONFLICT" ? "SOURCE_EPOCH_CONFLICT" : result2.code === "RESERVATION_WORKER_HELD" ? "SOURCE_WORKER_HELD" : result2.code === "RESERVATION_ORIGIN_HELD" ? "SOURCE_ORIGIN_HELD" : result2.code === "RESERVATION_LOCAL_BUDGET_DEFERRED" ? "SOURCE_LOCAL_BUDGET_DEFERRED" : ["RESERVATION_COMMIT_UNKNOWN", "RESERVATION_TOKEN_CONFLICT", "RESERVATION_CLOSED", "RESERVATION_DEADLINE", "RESERVATION_ABORTED"].includes(result2.code) ? "SOURCE_PUBLICATION_UNKNOWN" : "SOURCE_STORAGE_UNAVAILABLE";
     return { state: ["SOURCE_WORKER_HELD", "SOURCE_ORIGIN_HELD", "SOURCE_LOCAL_BUDGET_DEFERRED"].includes(code) ? "deferred" : "unavailable", code, ...sourceId ? { sourceId } : {} };
   }
+  async function recoverExpiredRun() {
+    const result2 = await reservations.reconcileExpiredZeroHop(async (q, marker) => {
+      const runs = (await q.query(`select id,source_id,control_epoch,started_at,finished_at,code
+    from lba_public_source_run where status='started' order by id limit 2 for update`)).rows;
+      if (runs.length !== 1) return false;
+      const run = runs[0], profile2 = profiles.find((p) => p.sourceId === run.source_id);
+      if (run.id !== marker.reservationToken || Number(run.control_epoch) !== marker.controlEpoch || new Date(run.started_at).getTime() !== Date.parse(marker.reservedAt) || run.finished_at !== null || run.code !== null || !profile2 || origin(profile2) !== marker.origin || (profile2.sourceId === ODESA_PLAN_API_SOURCE ? 2 : 1) !== marker.expectedMaxHops) return false;
+      const raw = (await q.query("select 1 from lba_public_source_raw where run_id=$1 limit 1", [run.id])).rows;
+      if (raw.length) return false;
+      const state = (await q.query("select 1 from lba_public_source_state where source_id=$1 and last_attempt_at=$2 for update", [run.source_id, marker.reservedAt])).rows;
+      if (state.length !== 1) return false;
+      const retired = await q.query(`update lba_public_source_run set status='rejected',finished_at=$2,code='SOURCE_UPDATE_UNCONFIRMED'
+    where id=$1 and status='started' and finished_at is null`, [run.id, marker.finishedAt]);
+      const marked = await q.query("update lba_public_source_state set last_failure='SOURCE_UPDATE_UNCONFIRMED' where source_id=$1 and last_attempt_at=$2", [run.source_id, marker.reservedAt]);
+      if (retired.rowCount !== 1 || marked.rowCount !== 1) return fail20("SOURCE_PUBLICATION_UNKNOWN");
+      return true;
+    });
+    return result2.state === "recovered";
+  }
   async function refreshOnce(sourceId) {
     if (options.enabled !== true) return { state: "disabled", code: "SOURCE_SERVICE_DISABLED" };
     if (sourceId !== void 0 && (typeof sourceId !== "string" || !profiles.some((p2) => p2.sourceId === sourceId))) return { state: "blocked", code: "SOURCE_NOT_ADMITTED" };
-    let p;
+    let p, deferred = "SOURCE_NOT_DUE", hasPossibleReservation = false;
     try {
       const time3 = clock(), c = await options.pool.connect();
       let tx = false;
@@ -19756,7 +19827,6 @@ function createSourceService(options, planSource, fixtureMode) {
           return stamp3(a.sourceId) - stamp3(b.sourceId) || a.sourceId.localeCompare(b.sourceId);
         });
         if (!due.length) return fail20("SOURCE_ADMISSION_EXPIRED");
-        let deferred = "SOURCE_NOT_DUE";
         p = due.find((x) => {
           const o = origins.find((r) => r.origin === origin(x));
           if (o?.uncertain === true || o?.hold_reason) {
@@ -19770,13 +19840,17 @@ function createSourceService(options, planSource, fixtureMode) {
           const s = states.find((r) => r.source_id === x.sourceId);
           return !s || time3 - new Date(s.last_attempt_at).getTime() >= entry(x.sourceId).cacheTtlMs;
         });
+        hasPossibleReservation = !p && origins.some((o) => o.uncertain === true && typeof o.hold_reason === "string" && o.hold_reason.startsWith("{"));
         await c.query("commit");
         tx = false;
-        if (!p) return { state: "deferred", code: deferred, ...sourceId ? { sourceId } : {} };
       } finally {
         if (tx) await c.query("rollback").catch(() => {
         });
         c.release();
+      }
+      if (!p) {
+        if (hasPossibleReservation && await recoverExpiredRun()) return { state: "deferred", code: "SOURCE_RESERVATION_RECOVERED" };
+        return { state: "deferred", code: deferred, ...sourceId ? { sourceId } : {} };
       }
       const chosen = p, abort = new AbortController();
       let runId = "", reserveFailure;
@@ -19806,7 +19880,10 @@ function createSourceService(options, planSource, fixtureMode) {
           await q.query(`insert into lba_public_source_run(id,source_id,control_epoch,started_at,status) values($1,$2,$3,$4,'started')`, [runId, chosen.sourceId, options.expectedControlEpoch, receipt4.reservedAt]);
         }
       });
-      if (reserved.state !== "reserved") return reserveFailure ? { state: reserveFailure === "SOURCE_NOT_DUE" ? "deferred" : "unavailable", code: reserveFailure, sourceId: chosen.sourceId } : reservationRejected(reserved, chosen.sourceId);
+      if (reserved.state !== "reserved") {
+        if (reserved.code === "RESERVATION_WORKER_HELD" && await recoverExpiredRun()) return { state: "deferred", code: "SOURCE_RESERVATION_RECOVERED" };
+        return reserveFailure ? { state: reserveFailure === "SOURCE_NOT_DUE" ? "deferred" : "unavailable", code: reserveFailure, sourceId: chosen.sourceId } : reservationRejected(reserved, chosen.sourceId);
+      }
       if (chosen.sourceId === ODESA_PLAN_API_SOURCE) return refreshOdesaPlan(chosen, reserved.reservation, abort, runId);
       let status2, retry;
       const intake = freshIntake(async (req) => {
@@ -25620,6 +25697,7 @@ function createCanonicalRuntime(ports) {
   let ready = false, started = false, stopped = false;
   const timers = /* @__PURE__ */ new Set(), running = /* @__PURE__ */ new Set(), abort = new AbortController();
   const status2 = { context: "waiting", source: "waiting", processor: "waiting", delivery: "waiting", callbacks: "waiting", notifications: "waiting", certification: "waiting", releaseCampaign: releaseCampaign ? "waiting" : "disabled" };
+  let lastSourceRefresh = null;
   async function prepare() {
     if (started || stopped) throw Error("CANONICAL_RUNTIME_STATE");
     ready = false;
@@ -25652,11 +25730,11 @@ function createCanonicalRuntime(ports) {
     ready = true;
     status2.context = "ready";
   }
-  function loop(name, delay, operation) {
+  function loop(name, delay, operation, resultStatus) {
     const tick = () => {
       if (stopped) return;
       const task = operation().then((result2) => {
-        status2[name] = result2 && typeof result2 === "object" ? "observed" : "ready";
+        status2[name] = resultStatus?.(result2) ?? (result2 && typeof result2 === "object" ? "observed" : "ready");
       }, () => {
         status2[name] = "unavailable";
       }).finally(() => {
@@ -25682,9 +25760,10 @@ function createCanonicalRuntime(ports) {
     });
     if (policy.sourceIngestionEnabled) loop("source", 1e3, async () => {
       const result2 = await sources.refreshOnce();
-      await data.refresh(true);
+      lastSourceRefresh = { state: result2.state, ..."code" in result2 ? { code: result2.code } : {}, ...result2.sourceId ? { sourceId: result2.sourceId } : {} };
+      if (result2.state === "published") await data.refresh(true);
       return result2;
-    });
+    }, (result2) => result2.state);
     if (policy.sourceIngestionEnabled) loop("certification", 5e3, async () => {
       const result2 = await certification.runOnce({ signal: abort.signal });
       await data.refresh(true);
@@ -25730,7 +25809,7 @@ function createCanonicalRuntime(ports) {
     operatorLookupEnabled,
     health: () => {
       const evidence4 = certification.health();
-      return { ready, started, stopped, workers: { ...status2 }, deliveryReady: Boolean(ready && started && policy.telegramDeliveryEnabled), notificationsReady: Boolean(ready && started && policy.notificationSchedulerEnabled && policy.telegramDeliveryEnabled && (evidence4.admittedSources > 0 && evidence4.evidenceMedium === "observed" || evidence4.configured && evidence4.initialLaunchNotifications && evidence4.launchPolicyCurrent && evidence4.launchPolicy === "lba-owner-approved-initial-launch/1")), scheduleCertificationRequired: true, scheduleCertification: evidence4, accountLinksReady: Boolean(policy.accountLinksEnabled && accounts2 && (ports.accountConfiguration?.miniApp || ports.accountConfiguration?.browserWidget)), authEpochReady: Boolean(ports.authorizePrincipal && accounts2), releaseCampaign: releaseCampaign?.health() ?? { configured: false, state: "disabled" } };
+      return { ready, started, stopped, workers: { ...status2 }, sourceRefresh: lastSourceRefresh ? { ...lastSourceRefresh } : null, deliveryReady: Boolean(ready && started && policy.telegramDeliveryEnabled), notificationsReady: Boolean(ready && started && policy.notificationSchedulerEnabled && policy.telegramDeliveryEnabled && (evidence4.admittedSources > 0 && evidence4.evidenceMedium === "observed" || evidence4.configured && evidence4.initialLaunchNotifications && evidence4.launchPolicyCurrent && evidence4.launchPolicy === "lba-owner-approved-initial-launch/1")), scheduleCertificationRequired: true, scheduleCertification: evidence4, accountLinksReady: Boolean(policy.accountLinksEnabled && accounts2 && (ports.accountConfiguration?.miniApp || ports.accountConfiguration?.browserWidget)), authEpochReady: Boolean(ports.authorizePrincipal && accounts2), releaseCampaign: releaseCampaign?.health() ?? { configured: false, state: "disabled" } };
     }
   });
 }

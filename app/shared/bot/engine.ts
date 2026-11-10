@@ -185,9 +185,13 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
   const isV2=()=>Boolean(state.draft?.providerV2);
   const directoriesV2=()=>Array.isArray(context.providerDirectoriesV2)?context.providerDirectoriesV2.filter(d=>d&&d.id==='dtek:oem'&&d.namespace==='dtek:oem'&&d.operatorId==='dtek-oem'&&d.territoryId==='source:dtek:oem'&&d.localitySelection==='required'&&v2Text(d.label)&&context.providerDirectoriesV2!.filter(x=>x?.id===d.id).length===1):[];
   const catalogUnavailable=()=>!isV2()&&!providerDirectory()&&(context.addressCatalogStatus==='loading'||context.addressCatalogStatus==='unavailable');
-  const showCatalogUnavailable=()=>message(context.addressCatalogStatus==='loading'
+  const addAddressNavigation = () => [
+    ...(state.draft?.operation === 'add' ? [commandButton('Обрати групу графіка вручну', '/queue')] : []),
+    ...wizardNav(),
+  ];
+  const showCatalogUnavailable=(allowGroupChoice = false)=>message(context.addressCatalogStatus==='loading'
     ?'Оновлюємо довідник адрес. Зачекайте трохи й повторіть вибір. Чернетку збережено; нову адресу ще не додано.'
-    :'Тимчасово не вдалося отримати довідник адрес. Це не означає, що вашого будинку немає. Чернетку збережено — повторіть вибір пізніше.',wizardNav());
+    :'Тимчасово не вдалося отримати довідник адрес. Це не означає, що вашого будинку немає. Чернетку збережено — повторіть вибір пізніше.',allowGroupChoice ? addAddressNavigation() : wizardNav());
   const draftStage = (stage: BotStage) => { state.stage = stage; if (state.draft) state.draft.resumeStage = stage; };
   const scopedOptions = () => context.addresses.filter(o => !state.draft?.locality ||
     (o.address.territoryId === state.draft.territoryId && (state.draft.localityId
@@ -459,7 +463,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
     if (!state.draft) { renderHome(); return; }
     draftStage(stage);
     if(stage==='provider_locality'&&isV2()){renderV2('localities');return;}
-    if(catalogUnavailable()&&!(stage==='locality'&&(directories().length||directoriesV2().length))){showCatalogUnavailable();return;}
+    if(catalogUnavailable()&&!(stage==='locality'&&(directories().length||directoriesV2().length))){showCatalogUnavailable(stage==='locality');return;}
     if (stage === 'locality') {
       const seen = new Set<string>();
       const choices = context.addresses.filter(o=>!state.draft?.localityQuery||[o.address.locality,...(o.address.localityAliases??[])].some(name=>localityMatchesQuery(name,state.draft!.localityQuery!,'contains')))
@@ -475,7 +479,7 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       const all=[...providerChoices,...providerChoicesV2,...distinct.map(o=>({label:localityLabel(o),value:localityKey(o),v2:false}))];
       const page = boundedPage(state.catalogPage, all.length); state.catalogPage = page;
       const empty=context.addressCatalogStatus==='loading'?'Оновлюємо довідник адрес. Спробуйте трохи пізніше; чернетку збережено.':context.addressCatalogStatus==='unavailable'?'Не вдалося отримати довідник адрес. Це не означає, що вашої адреси немає. Спробуйте пізніше або відкрийте допомогу.':state.draft.localityQuery?'Не знайшли такого населеного пункту в доступному довіднику. Перевірте назву або введіть її без скорочення.':BOT_COPY.engineText064;
-      message(all.length ? `${COPY.locality}\nМожна також ввести назву текстом.${all.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ''}` : empty, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(o => button(o.label, { kind:o.v2?'provider_v2_directory':'locality', value:o.value })), ...pageButtons('locality', page,all.length), ...wizardNav()]);
+      message(all.length ? `${COPY.locality}\nМожна також ввести назву текстом.${all.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(all.length / ADDRESS_PAGE_SIZE)}.` : ''}` : empty, [...all.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(o => button(o.label, { kind:o.v2?'provider_v2_directory':'locality', value:o.value })), ...pageButtons('locality', page,all.length), ...addAddressNavigation()]);
       if(ambiguous.size)message('Є населені пункти з однаковою назвою, а в довіднику бракує району чи громади, щоб їх розрізнити. Уточніть повну адресу в оператора. За самою назвою графік не підставляємо.',wizardNav());
     } else if (stage === 'street_choice') renderStreetMatches();
     else if (stage === 'street') message(providerDirectory()||isV2()?'Введіть назву вулиці. Якщо за старою назвою нічого немає, спробуйте теперішню.':COPY.street, wizardNav());
@@ -620,7 +624,8 @@ export function handleBotInput(previous: BotState, input: BotInput, context: Bot
       case '/minimum': state.stage = 'minimum_duration'; message(BOT_COPY.engineText083, wizardNav()); break;
       case '/queue': {
         state.stage = 'manual_group'; const groups = context.manualGroups || [], page = boundedPage(state.catalogPage, groups.length); state.catalogPage = page;
-        message(`${BOT_COPY.engineText085}${groups.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(groups.length / ADDRESS_PAGE_SIZE)}.` : ''}`, [...groups.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(g => button(`${g.locality} · ${g.label}`, { kind: 'manual_group', value: g.id })), ...pageButtons('manual_group', page, groups.length), commandButton(BOT_COPY.engineText086, '/add'), commandButton('Назад', '/back')]); break;
+        const groupText = groups.length ? BOT_COPY.engineText085 : 'Зараз немає доступних груп графіка. Спробуйте пізніше.';
+        message(`${groupText}${groups.length > ADDRESS_PAGE_SIZE ? `\nСторінка ${page + 1} з ${Math.ceil(groups.length / ADDRESS_PAGE_SIZE)}.` : ''}`, [...groups.slice(page * ADDRESS_PAGE_SIZE, (page + 1) * ADDRESS_PAGE_SIZE).map(g => button(`${g.locality} · ${g.label}`, { kind: 'manual_group', value: g.id })), ...pageButtons('manual_group', page, groups.length), commandButton(BOT_COPY.engineText086, state.draft?.operation==='add'?'/draft':'/add'), commandButton('Назад', '/back')]); break;
       }
       case '/share': { const l = location(); if (l) { action('prepare_share', { addressId: l.address.id }); message(BOT_COPY.engineText088, navigation()); } else renderAddresses(); break; }
       case '/compare': action('open_app', { value: 'compare' }); message(BOT_COPY.engineText089, navigation()); break;
