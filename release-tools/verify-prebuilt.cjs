@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const ROOT=path.resolve(__dirname,'..'),EXPECTED_SOURCE='f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e',EXPECTED_MANIFEST='7f2de828888c0c66cdaa28090f16fa9a0ad6cd3749f8d9acd249971b8b418626';
+const ROOT=path.resolve(__dirname,'..'),EXPECTED_SOURCE='ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc',EXPECTED_MANIFEST='7891d7138db23532fa2f07f18edb1592fd46890fc7ed82b0da1ed00aba1a40fb';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 function verify(){
  const bytes=fs.readFileSync(path.join(__dirname,'artifacts.json'));if(sha(bytes)!==EXPECTED_MANIFEST)throw Error('RELEASE_MANIFEST_DRIFT');

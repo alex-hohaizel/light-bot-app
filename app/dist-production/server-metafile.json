@@ -17,7 +17,7 @@
       "format": "esm"
     },
     "server/production/media-fonts.ts": {
-      "bytes": 7307,
+      "bytes": 8701,
       "imports": [
         {
           "path": "node:crypto",
@@ -4611,7 +4611,7 @@
           "bytesInOutput": 6868
         },
         "server/production/media-fonts.ts": {
-          "bytesInOutput": 6802
+          "bytesInOutput": 8506
         },
         "shared/models/auth.ts": {
           "bytesInOutput": 1164
@@ -5034,7 +5034,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1793906
+      "bytes": 1795610
     }
   }
 }

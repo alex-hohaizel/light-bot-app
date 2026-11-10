@@ -163,9 +163,15 @@ var init_runtime_policy = __esm({
 function fontDirectory() {
   return typeof __dirname === "string" ? import_node_path.default.resolve(__dirname, "public", "fonts") : import_node_path.default.resolve((0, import_node_url.fileURLToPath)(new URL("../../client/public/fonts/", import_meta.url)));
 }
-function checkAssets(directory4) {
+function checkAssets(directory4, workingCopy = false) {
   try {
-    if (directory4.length > 4096 || !(0, import_node_fs.lstatSync)(directory4).isDirectory() || (0, import_node_fs.lstatSync)(directory4).isSymbolicLink() || (0, import_node_fs.readdirSync)(directory4).sort().join("\n") !== ASSETS.map((a) => a.name).sort().join("\n")) throw new MediaFontError("MEDIA_FONT_ASSET_MISMATCH");
+    if (directory4.length > 4096 || !(0, import_node_fs.lstatSync)(directory4).isDirectory() || (0, import_node_fs.lstatSync)(directory4).isSymbolicLink()) throw new MediaFontError("MEDIA_FONT_ASSET_MISMATCH");
+    const entries = (0, import_node_fs.readdirSync)(directory4);
+    if (entries.filter((name) => !(workingCopy && name === ".uuid")).sort().join("\n") !== ASSETS.map((a) => a.name).sort().join("\n")) throw new MediaFontError("MEDIA_FONT_ASSET_MISMATCH");
+    if (workingCopy && entries.includes(".uuid")) {
+      const file = import_node_path.default.join(directory4, ".uuid"), stat = (0, import_node_fs.lstatSync)(file);
+      if (!stat.isFile() || stat.isSymbolicLink() || stat.size < 36 || stat.size > 37 || import_node_path.default.dirname((0, import_node_fs.realpathSync)(file)) !== (0, import_node_fs.realpathSync)(directory4) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\n?$/i.test((0, import_node_fs.readFileSync)(file, "utf8"))) throw new MediaFontError("MEDIA_FONT_ASSET_MISMATCH");
+    }
   } catch (error2) {
     if (error2 instanceof MediaFontError) throw error2;
     throw new MediaFontError("MEDIA_FONT_ASSETS_UNAVAILABLE");
@@ -188,8 +194,9 @@ function requireBundledMediaFontsReady() {
   checkAssets(fontDirectory());
   if (!configured) throw new MediaFontError("MEDIA_FONT_NOT_READY");
   try {
-    const directory4 = import_node_path.default.dirname(configured.configPath), config = (0, import_node_fs.lstatSync)(configured.configPath), cache2 = (0, import_node_fs.lstatSync)(import_node_path.default.join(directory4, "cache")), root = (0, import_node_fs.lstatSync)(directory4);
-    if (process.env.FONTCONFIG_FILE !== configured.configPath || process.env.FONTCONFIG_PATH !== directory4 || process.env.PANGOCAIRO_BACKEND !== "fontconfig" || !config.isFile() || config.isSymbolicLink() || config.size > 65536 || (config.mode & 511) !== 384 || !root.isDirectory() || root.isSymbolicLink() || (root.mode & 511) !== 448 || !cache2.isDirectory() || cache2.isSymbolicLink() || (cache2.mode & 511) !== 448 || sha((0, import_node_fs.readFileSync)(configured.configPath)) !== configured.configurationSha256) throw new MediaFontError("MEDIA_FONT_CONFIGURATION_CHANGED");
+    const directory4 = import_node_path.default.dirname(configured.configPath), config = (0, import_node_fs.lstatSync)(configured.configPath), cache2 = (0, import_node_fs.lstatSync)(import_node_path.default.join(directory4, "cache")), root = (0, import_node_fs.lstatSync)(directory4), fonts = import_node_path.default.join(directory4, "fonts"), fontRoot = (0, import_node_fs.lstatSync)(fonts);
+    if (process.env.FONTCONFIG_FILE !== configured.configPath || process.env.FONTCONFIG_PATH !== directory4 || process.env.PANGOCAIRO_BACKEND !== "fontconfig" || !config.isFile() || config.isSymbolicLink() || config.size > 65536 || (config.mode & 511) !== 384 || !root.isDirectory() || root.isSymbolicLink() || (root.mode & 511) !== 448 || !fontRoot.isDirectory() || fontRoot.isSymbolicLink() || (fontRoot.mode & 511) !== 448 || import_node_path.default.dirname((0, import_node_fs.realpathSync)(fonts)) !== (0, import_node_fs.realpathSync)(directory4) || !cache2.isDirectory() || cache2.isSymbolicLink() || (cache2.mode & 511) !== 448 || sha((0, import_node_fs.readFileSync)(configured.configPath)) !== configured.configurationSha256) throw new MediaFontError("MEDIA_FONT_CONFIGURATION_CHANGED");
+    checkAssets(fonts, true);
   } catch (error2) {
     if (error2 instanceof MediaFontError) throw error2;
     throw new MediaFontError("MEDIA_FONT_CONFIGURATION_CHANGED");
@@ -209,9 +216,18 @@ function prepareBundledMediaFonts() {
     (0, import_node_fs.chmodSync)(privateDirectory, 448);
     const cacheDirectory = import_node_path.default.join(privateDirectory, "cache");
     (0, import_node_fs.mkdirSync)(cacheDirectory, { mode: 448 });
+    const workingFonts = import_node_path.default.join(privateDirectory, "fonts");
+    (0, import_node_fs.mkdirSync)(workingFonts, { mode: 448 });
+    for (const asset of ASSETS) {
+      const bytes = (0, import_node_fs.readFileSync)(import_node_path.default.join(directory4, asset.name));
+      if (bytes.byteLength !== asset.bytes || sha(bytes) !== asset.sha256) throw new MediaFontError("MEDIA_FONT_ASSET_MISMATCH");
+      (0, import_node_fs.writeFileSync)(import_node_path.default.join(workingFonts, asset.name), bytes, { mode: 384, flag: "wx" });
+    }
+    checkAssets(directory4);
+    checkAssets(workingFonts);
     const configPath = import_node_path.default.join(privateDirectory, "fonts.conf");
     const content = `<?xml version="1.0"?>
-<fontconfig><dir>${xml((0, import_node_fs.realpathSync)(directory4))}</dir><cachedir>${xml(cacheDirectory)}</cachedir><config><rescan><int>0</int></rescan></config><alias binding="strong"><family>sans-serif</family><prefer><family>Onest</family></prefer></alias></fontconfig>
+<fontconfig><dir>${xml((0, import_node_fs.realpathSync)(workingFonts))}</dir><cachedir>${xml(cacheDirectory)}</cachedir><config><rescan><int>0</int></rescan></config><alias binding="strong"><family>sans-serif</family><prefer><family>Onest</family></prefer></alias></fontconfig>
 `;
     (0, import_node_fs.writeFileSync)(configPath, content, { encoding: "utf8", mode: 384, flag: "wx" });
     changedEnvironment = true;
@@ -9611,7 +9627,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e") ? "f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc") ? "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc" : null;
   }
 });
 

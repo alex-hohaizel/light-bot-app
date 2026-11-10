@@ -38,10 +38,19 @@ function fontDirectory():string {
  return typeof __dirname==='string'?path.resolve(__dirname,'public','fonts'):
   path.resolve(fileURLToPath(new URL('../../client/public/fonts/',import.meta.url)));
 }
-function checkAssets(directory:string):void {
+function checkAssets(directory:string,workingCopy=false):void {
  try{
-  if(directory.length>4096||!lstatSync(directory).isDirectory()||lstatSync(directory).isSymbolicLink()||
-   readdirSync(directory).sort().join('\n')!==ASSETS.map(a=>a.name).sort().join('\n'))throw new MediaFontError('MEDIA_FONT_ASSET_MISMATCH');
+  if(directory.length>4096||!lstatSync(directory).isDirectory()||lstatSync(directory).isSymbolicLink())throw new MediaFontError('MEDIA_FONT_ASSET_MISMATCH');
+  const entries=readdirSync(directory);
+  if(entries.filter(name=>!(workingCopy&&name==='.uuid')).sort().join('\n')!==ASSETS.map(a=>a.name).sort().join('\n'))throw new MediaFontError('MEDIA_FONT_ASSET_MISMATCH');
+  // Fontconfig may create its UUID in its writable font directory. This one
+  // bounded non-font metadata file is allowed only beside private copies.
+  if(workingCopy&&entries.includes('.uuid')){
+   const file=path.join(directory,'.uuid'),stat=lstatSync(file);
+   if(!stat.isFile()||stat.isSymbolicLink()||stat.size<36||stat.size>37||
+    path.dirname(realpathSync(file))!==realpathSync(directory)||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\n?$/i.test(readFileSync(file,'utf8')))throw new MediaFontError('MEDIA_FONT_ASSET_MISMATCH');
+  }
  }catch(error){if(error instanceof MediaFontError)throw error;throw new MediaFontError('MEDIA_FONT_ASSETS_UNAVAILABLE');}
  for(const asset of ASSETS){
   let bytes:Buffer;
@@ -63,12 +72,14 @@ export function requireBundledMediaFontsReady():MediaFontConfiguration {
  checkAssets(fontDirectory());
  if(!configured)throw new MediaFontError('MEDIA_FONT_NOT_READY');
  try{
-  const directory=path.dirname(configured.configPath),config=lstatSync(configured.configPath),cache=lstatSync(path.join(directory,'cache')),root=lstatSync(directory);
+  const directory=path.dirname(configured.configPath),config=lstatSync(configured.configPath),cache=lstatSync(path.join(directory,'cache')),root=lstatSync(directory),fonts=path.join(directory,'fonts'),fontRoot=lstatSync(fonts);
   if(process.env.FONTCONFIG_FILE!==configured.configPath||process.env.FONTCONFIG_PATH!==directory||process.env.PANGOCAIRO_BACKEND!=='fontconfig'||
    !config.isFile()||config.isSymbolicLink()||config.size>65536||(config.mode&0o777)!==0o600||
    !root.isDirectory()||root.isSymbolicLink()||(root.mode&0o777)!==0o700||
+   !fontRoot.isDirectory()||fontRoot.isSymbolicLink()||(fontRoot.mode&0o777)!==0o700||path.dirname(realpathSync(fonts))!==realpathSync(directory)||
    !cache.isDirectory()||cache.isSymbolicLink()||(cache.mode&0o777)!==0o700||
    sha(readFileSync(configured.configPath))!==configured.configurationSha256)throw new MediaFontError('MEDIA_FONT_CONFIGURATION_CHANGED');
+  checkAssets(fonts,true);
  }catch(error){if(error instanceof MediaFontError)throw error;throw new MediaFontError('MEDIA_FONT_CONFIGURATION_CHANGED');}
  return configured;
 }
@@ -86,8 +97,15 @@ export function prepareBundledMediaFonts():MediaFontConfiguration {
  try{
   privateDirectory=mkdtempSync(path.join(tmpdir(),'lba-media-fonts-v1-'));chmodSync(privateDirectory,0o700);
   const cacheDirectory=path.join(privateDirectory,'cache');mkdirSync(cacheDirectory,{mode:0o700});
+  const workingFonts=path.join(privateDirectory,'fonts');mkdirSync(workingFonts,{mode:0o700});
+  for(const asset of ASSETS){
+   const bytes=readFileSync(path.join(directory,asset.name));
+   if(bytes.byteLength!==asset.bytes||sha(bytes)!==asset.sha256)throw new MediaFontError('MEDIA_FONT_ASSET_MISMATCH');
+   writeFileSync(path.join(workingFonts,asset.name),bytes,{mode:0o600,flag:'wx'});
+  }
+  checkAssets(directory);checkAssets(workingFonts);
   const configPath=path.join(privateDirectory,'fonts.conf');
-  const content=`<?xml version="1.0"?>\n<fontconfig><dir>${xml(realpathSync(directory))}</dir><cachedir>${xml(cacheDirectory)}</cachedir><config><rescan><int>0</int></rescan></config><alias binding="strong"><family>sans-serif</family><prefer><family>Onest</family></prefer></alias></fontconfig>\n`;
+  const content=`<?xml version="1.0"?>\n<fontconfig><dir>${xml(realpathSync(workingFonts))}</dir><cachedir>${xml(cacheDirectory)}</cachedir><config><rescan><int>0</int></rescan></config><alias binding="strong"><family>sans-serif</family><prefer><family>Onest</family></prefer></alias></fontconfig>\n`;
   writeFileSync(configPath,content,{encoding:'utf8',mode:0o600,flag:'wx'});
   changedEnvironment=true;
   process.env.FONTCONFIG_FILE=configPath;process.env.FONTCONFIG_PATH=privateDirectory;process.env.PANGOCAIRO_BACKEND='fontconfig';

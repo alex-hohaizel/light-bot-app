@@ -1,0 +1,28 @@
+{
+  "kind": "lba-font-isolation-author/1",
+  "recordedAt": "2026-11-10T17:56:52.673765+00:00",
+  "sourceSha256": "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc",
+  "sourceInputs": 315,
+  "buildArtifacts": 17,
+  "buildReceiptSha256": "b4c1eb260f048de6949cb76480b7bb45f5c96bf453c8add791f593a9553e8b85",
+  "manifestSha256": "7891d7138db23532fa2f07f18edb1592fd46890fc7ed82b0da1ed00aba1a40fb",
+  "sourceDiff": [
+    "server/production/media-fonts.ts"
+  ],
+  "packageLockUnchanged": true,
+  "clientAssetsUnchanged": true,
+  "strictTypescriptExit": 0,
+  "backendTests": {
+    "passed": 370,
+    "failed": 0,
+    "skipped": 0
+  },
+  "buildExit": 0,
+  "productionCauseUuidConfirmed": false,
+  "productionBootFixed": false,
+  "migrationRepeated": false,
+  "runtimePreflightSha256": "38887e2b692283ad9a3e4a9649182eb4f35a9abe829a42039f125576d88eb720",
+  "moduleDiagnosticSha256": "7e8cf8b84b6a21c260f839f1a72d7eeb2782e8e01f5669aa5fc8ad531d0f52a1",
+  "native": "pending",
+  "publish": "pending"
+}

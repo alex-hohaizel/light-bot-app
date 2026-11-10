@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T17:04:03.718Z",
+  "builtAt": "2026-11-10T17:56:12.126Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e",
+  "sourceSha256": "ab0a12bc69fe45961941367d8263ae40e89e9cb8330c24b419e276abd08f65fc",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -855,7 +855,7 @@
     },
     {
       "path": "server/production/media-fonts.ts",
-      "sha256": "e255b6159c4fedfa2bf5e69d935f9245149d62f404afe55821b5a1d1e65fa173"
+      "sha256": "d424e86d6f1261feb09dab715454a223dfea0e5cef6e917bd616361d95659e1b"
     },
     {
       "path": "server/production/morning-briefing.ts",
@@ -2117,7 +2117,7 @@
     },
     {
       "path": "server/production/media-fonts.ts",
-      "sha256": "e255b6159c4fedfa2bf5e69d935f9245149d62f404afe55821b5a1d1e65fa173"
+      "sha256": "d424e86d6f1261feb09dab715454a223dfea0e5cef6e917bd616361d95659e1b"
     },
     {
       "path": "server/production/morning-briefing.ts",
@@ -2548,7 +2548,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "2204d7f065bac0714bb9bf884bdad283b87df27a73b0e5f9475a7825a86163f0"
+      "sha256": "667b24697adb326b7e13eaf434ea03f909b81ce1420eb40f64d3c37eef4ca54a"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2612,7 +2612,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "127bdcff052115d5a68160b6ff2a47981ecca6c3f9aceff52372b5f7ad2968ad"
+      "sha256": "57a1634eec7670f834ad7abd80525082871bfdef11d320e2f0461cae505ba13d"
     }
   ]
 }
