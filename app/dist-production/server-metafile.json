@@ -47,6 +47,11 @@
       ],
       "format": "esm"
     },
+    "server/production/startup-diagnostic.ts": {
+      "bytes": 1918,
+      "imports": [],
+      "format": "esm"
+    },
     "shared/models/auth.ts": {
       "bytes": 1010,
       "imports": [
@@ -3906,7 +3911,7 @@
       "format": "esm"
     },
     "server/production-entry.ts": {
-      "bytes": 874,
+      "bytes": 1129,
       "imports": [
         {
           "path": "server/runtime-policy.ts",
@@ -3917,6 +3922,11 @@
           "path": "server/production/media-fonts.ts",
           "kind": "import-statement",
           "original": "./production/media-fonts"
+        },
+        {
+          "path": "server/production/startup-diagnostic.ts",
+          "kind": "import-statement",
+          "original": "./production/startup-diagnostic"
         },
         {
           "path": "server/index.ts",
@@ -4658,7 +4668,7 @@
           "bytesInOutput": 1992
         },
         "server/telegram-init-data.ts": {
-          "bytesInOutput": 4205
+          "bytesInOutput": 4209
         },
         "server/production/auth-replay.ts": {
           "bytesInOutput": 7862
@@ -4727,7 +4737,7 @@
           "bytesInOutput": 62470
         },
         "shared/bot/engine.ts": {
-          "bytesInOutput": 135061
+          "bytesInOutput": 135069
         },
         "shared/review-fixtures.ts": {
           "bytesInOutput": 2223
@@ -4742,7 +4752,7 @@
           "bytesInOutput": 2282
         },
         "server/domain/profile-service.ts": {
-          "bytesInOutput": 12611
+          "bytesInOutput": 12615
         },
         "server/domain/bot-session-store.ts": {
           "bytesInOutput": 9962
@@ -4850,7 +4860,7 @@
           "bytesInOutput": 7148
         },
         "server/production/legacy-profile.ts": {
-          "bytesInOutput": 14730
+          "bytesInOutput": 14740
         },
         "server/production/profile-reader.ts": {
           "bytesInOutput": 13137
@@ -4874,7 +4884,7 @@
           "bytesInOutput": 8470
         },
         "server/domain/provider-address-lookup.ts": {
-          "bytesInOutput": 5221
+          "bytesInOutput": 5227
         },
         "server/production/operator-address-flow.ts": {
           "bytesInOutput": 32213
@@ -4895,19 +4905,19 @@
           "bytesInOutput": 14979
         },
         "server/domain/public-address-request-identity.ts": {
-          "bytesInOutput": 3310
+          "bytesInOutput": 3313
         },
         "server/production/address-catalog.ts": {
           "bytesInOutput": 24526
         },
         "server/domain/odesa-address-adapter.ts": {
-          "bytesInOutput": 20416
+          "bytesInOutput": 20426
         },
         "server/domain/odesa-plan-api-adapter.ts": {
-          "bytesInOutput": 14124
+          "bytesInOutput": 14128
         },
         "server/providers/odesa-public-client.ts": {
-          "bytesInOutput": 26152
+          "bytesInOutput": 26154
         },
         "server/production/odesa-address-catalog.ts": {
           "bytesInOutput": 23797
@@ -4985,7 +4995,7 @@
           "bytesInOutput": 18416
         },
         "server/domain/odesa-qualification.ts": {
-          "bytesInOutput": 17208
+          "bytesInOutput": 17212
         },
         "server/production/odesa-address-certification.ts": {
           "bytesInOutput": 11619
@@ -5018,10 +5028,13 @@
           "bytesInOutput": 10077
         },
         "server/production-entry.ts": {
-          "bytesInOutput": 449
+          "bytesInOutput": 656
+        },
+        "server/production/startup-diagnostic.ts": {
+          "bytesInOutput": 1965
         }
       },
-      "bytes": 1791604
+      "bytes": 1793906
     }
   }
 }

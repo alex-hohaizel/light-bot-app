@@ -1,0 +1,70 @@
+[
+  {
+    "path": "index.cjs",
+    "unchanged": false
+  },
+  {
+    "path": "public/.vite/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "public/assets/index-BVcW-QNQ.js",
+    "unchanged": true
+  },
+  {
+    "path": "public/assets/index-DrgIy_mz.js",
+    "unchanged": true
+  },
+  {
+    "path": "public/assets/index-KbPt7mO_.js",
+    "unchanged": true
+  },
+  {
+    "path": "public/assets/index-chWm5hEl.css",
+    "unchanged": true
+  },
+  {
+    "path": "public/assets/web-DaGWBMZW.js",
+    "unchanged": true
+  },
+  {
+    "path": "public/favicon.png",
+    "unchanged": true
+  },
+  {
+    "path": "public/fonts/manrope-OFL.txt",
+    "unchanged": true
+  },
+  {
+    "path": "public/fonts/manrope.ttf",
+    "unchanged": true
+  },
+  {
+    "path": "public/fonts/onest-OFL.txt",
+    "unchanged": true
+  },
+  {
+    "path": "public/fonts/onest.ttf",
+    "unchanged": true
+  },
+  {
+    "path": "public/icon-512.png",
+    "unchanged": true
+  },
+  {
+    "path": "public/index.html",
+    "unchanged": true
+  },
+  {
+    "path": "public/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "public/sw.js",
+    "unchanged": true
+  },
+  {
+    "path": "server-metafile.json",
+    "unchanged": false
+  }
+]

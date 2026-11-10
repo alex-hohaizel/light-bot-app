@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T15:56:25.073Z",
+  "builtAt": "2026-11-10T17:04:03.718Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee",
+  "sourceSha256": "f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -775,7 +775,7 @@
     },
     {
       "path": "server/production-entry.ts",
-      "sha256": "867b7595da78cc297bb5f612fec1d4f1bf6954a5d31e58b3af765201c1bacd36"
+      "sha256": "9785b1dc0570946d30f9db5cf1d99b2524a654de84b473b52f8ee1bc394d8e25"
     },
     {
       "path": "server/production/account-links-http.ts",
@@ -972,6 +972,10 @@
     {
       "path": "server/production/source-operating-policy.ts",
       "sha256": "88711560911574a50b8926537500837e24287e4344a5a2a175a78b707a4d0c7d"
+    },
+    {
+      "path": "server/production/startup-diagnostic.ts",
+      "sha256": "3fa0beaba88ef31cbdcffb175ffdeb265dd0c40d9d6f1f6a6dede04deae3f447"
     },
     {
       "path": "server/production/telegram-auth-flow.ts",
@@ -2033,7 +2037,7 @@
     },
     {
       "path": "server/production-entry.ts",
-      "sha256": "867b7595da78cc297bb5f612fec1d4f1bf6954a5d31e58b3af765201c1bacd36"
+      "sha256": "9785b1dc0570946d30f9db5cf1d99b2524a654de84b473b52f8ee1bc394d8e25"
     },
     {
       "path": "server/production/account-links-http.ts",
@@ -2230,6 +2234,10 @@
     {
       "path": "server/production/source-operating-policy.ts",
       "sha256": "88711560911574a50b8926537500837e24287e4344a5a2a175a78b707a4d0c7d"
+    },
+    {
+      "path": "server/production/startup-diagnostic.ts",
+      "sha256": "3fa0beaba88ef31cbdcffb175ffdeb265dd0c40d9d6f1f6a6dede04deae3f447"
     },
     {
       "path": "server/production/telegram-auth-flow.ts",
@@ -2540,7 +2548,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "8160b292120a76a74cea532b2f1827ca57fdf73459618b7727f5842cef5053fb"
+      "sha256": "2204d7f065bac0714bb9bf884bdad283b87df27a73b0e5f9475a7825a86163f0"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2604,7 +2612,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "84d0123abff4b86b91bc362aafb142ed1871f8ef87db2e8247f202b35431b911"
+      "sha256": "127bdcff052115d5a68160b6ff2a47981ecca6c3f9aceff52372b5f7ad2968ad"
     }
   ]
 }

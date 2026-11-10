@@ -1481,7 +1481,7 @@ function verifyTelegramInitData(raw, token, options) {
   const value = user;
   if (!Number.isSafeInteger(value.id) || Number(value.id) <= 0 || value.is_bot === true) return deny();
   if (typeof value.first_name !== "string" || !value.first_name.trim() || value.first_name.length > 256) return deny();
-  for (const field of ["last_name", "photo_url"]) if (value[field] !== void 0 && (typeof value[field] !== "string" || String(value[field]).length > 2048)) return deny();
+  for (const field2 of ["last_name", "photo_url"]) if (value[field2] !== void 0 && (typeof value[field2] !== "string" || String(value[field2]).length > 2048)) return deny();
   return {
     id: String(value.id),
     firstName: value.first_name,
@@ -6099,7 +6099,7 @@ ${house}`;
       try {
         const channel = stage === "location_push" ? "push" : "telegram", policy = resolveNotificationPolicy(state.profile.preferences, l, channel);
         const raw = l.notificationPolicy?.channels[channel];
-        const lead = (field) => `${policy[field] === 0 ? "\u0432\u0438\u043C\u043A\u043D\u0435\u043D\u043E" : formatMinutesDuration(policy[field])}${raw?.[field] === void 0 ? " \xB7 \u044F\u043A \u0443 \u043A\u0430\u043D\u0430\u043B\u0456" : " \xB7 \u0434\u043B\u044F \u0446\u0456\u0454\u0457 \u0430\u0434\u0440\u0435\u0441\u0438"}`;
+        const lead = (field2) => `${policy[field2] === 0 ? "\u0432\u0438\u043C\u043A\u043D\u0435\u043D\u043E" : formatMinutesDuration(policy[field2])}${raw?.[field2] === void 0 ? " \xB7 \u044F\u043A \u0443 \u043A\u0430\u043D\u0430\u043B\u0456" : " \xB7 \u0434\u043B\u044F \u0446\u0456\u0454\u0457 \u0430\u0434\u0440\u0435\u0441\u0438"}`;
         summary += `
 
 ${channel === "push" ? "Push" : "Telegram"} \xB7 ${l.address.label}
@@ -7197,7 +7197,7 @@ ${COPY.house}`, wizardNav());
       }
     } else if (["reminder_off_time", "reminder_on_time", "push_off_time", "push_on_time"].includes(state.stage)) {
       const channel = state.stage.startsWith("push") ? "push" : "telegram";
-      const field = state.stage.endsWith("off_time") ? "beforeOffMinutes" : "beforeOnMinutes";
+      const field2 = state.stage.endsWith("off_time") ? "beforeOffMinutes" : "beforeOnMinutes";
       const local = typeof state.policyAddressId === "string";
       const target = local ? state.profile.locations.find((item) => item.address.id === state.policyAddressId) : void 0;
       const inherit = textKey(text26) === "\u044F\u043A \u0443 \u043A\u0430\u043D\u0430\u043B\u0456";
@@ -7212,12 +7212,12 @@ ${COPY.house}`, wizardNav());
             version: "lba-notification-policy/1",
             channels: { telegram: { enabled: target.notifications }, push: { enabled: false } }
           };
-          if (inherit) delete target.notificationPolicy.channels[channel][field];
-          else target.notificationPolicy.channels[channel][field] = Number(text26);
+          if (inherit) delete target.notificationPolicy.channels[channel][field2];
+          else target.notificationPolicy.channels[channel][field2] = Number(text26);
         } else {
           const prefs = state.profile.preferences;
           prefs.notificationPolicy = prefs.notificationPolicy ? parseNotificationPolicy(prefs.notificationPolicy) : defaultNotificationPolicy(prefs);
-          prefs.notificationPolicy.channels[channel][field] = Number(text26);
+          prefs.notificationPolicy.channels[channel][field2] = Number(text26);
         }
         const parent = parentStage();
         mutate();
@@ -7784,7 +7784,7 @@ function preferencePatch(value) {
   keys2(patch, ["optedIn", "paused", "reminders", "remindBeforeMinutes", "quietHours", "morningBriefing", "minimumOutageMinutes", "notificationPolicy"]);
   if (!Object.keys(patch).length) invalid4();
   const parsed = {};
-  for (const field of ["optedIn", "paused", "reminders"]) if (Object.hasOwn(patch, field)) parsed[field] = boolean5(patch[field]);
+  for (const field2 of ["optedIn", "paused", "reminders"]) if (Object.hasOwn(patch, field2)) parsed[field2] = boolean5(patch[field2]);
   if (Object.hasOwn(patch, "remindBeforeMinutes")) parsed.remindBeforeMinutes = integer6(patch.remindBeforeMinutes, 0, 1440);
   if (Object.hasOwn(patch, "minimumOutageMinutes")) parsed.minimumOutageMinutes = integer6(patch.minimumOutageMinutes, 0, 86400);
   if (Object.hasOwn(patch, "notificationPolicy")) {
@@ -9611,7 +9611,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee") ? "52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e") ? "f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e" : null;
   }
 });
 
@@ -14004,13 +14004,13 @@ function projectLegacyLiveProfile(input) {
     tgEnabled = false;
     issue("legacy_endpoint_thresholds_disagree", ["telegram_subscribers.notifyBeforeOff", "telegram_subscribers.notifyBeforeOn"]);
   }
-  if (source2 && subscribers2.some((row3) => timingFields.some((field) => row3.raw[field] !== source2[field]))) {
+  if (source2 && subscribers2.some((row3) => timingFields.some((field2) => row3.raw[field2] !== source2[field2]))) {
     tgEnabled = false;
-    issue("legacy_global_rules_disagree", timingFields.map((field) => "telegram_subscribers." + field));
+    issue("legacy_global_rules_disagree", timingFields.map((field2) => "telegram_subscribers." + field2));
   }
   const carriers = locations.length ? locations : settings && hasAddress(settings.raw) ? [settings] : subscribers2.filter((row3) => hasAddress(row3.raw));
   const carrier = carriers[0]?.table ?? null;
-  const addressKey = (row3) => digest(["city", "street", "houseNumber", "queueId"].map((field) => row3.raw[field] ?? ""));
+  const addressKey = (row3) => digest(["city", "street", "houseNumber", "queueId"].map((field2) => row3.raw[field2] ?? ""));
   const carrierRows = new Set(carriers), carrierKeys = new Set(carriers.map(addressKey));
   const otherAddresses = provenance.filter((row3) => !carrierRows.has(row3) && hasAddress(row3.raw) && !carrierKeys.has(addressKey(row3)));
   if (otherAddresses.length) issue("legacy_address_carriers_differ", otherAddresses.map((row3) => row3.table + ":" + row3.pk));
@@ -14026,7 +14026,7 @@ function projectLegacyLiveProfile(input) {
       ownerId: owner2,
       table: row3.table,
       pk: row3.pk,
-      ...Object.fromEntries(addressFields.map((field) => [field, raw[field]])),
+      ...Object.fromEntries(addressFields.map((field2) => [field2, raw[field2]])),
       operatorId,
       namespace,
       targetId
@@ -15920,10 +15920,10 @@ function query(value, minimum) {
 function parseProviderAddressLookupV2(value) {
   try {
     if (value === null || typeof value !== "object" || import_node_util2.types.isProxy(value) || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return invalid5();
-    const names = Reflect.ownKeys(value);
-    if (names.length < 7 || names.length > 11 || names.some((k) => typeof k !== "string")) return invalid5();
+    const names2 = Reflect.ownKeys(value);
+    if (names2.length < 7 || names2.length > 11 || names2.some((k) => typeof k !== "string")) return invalid5();
     const descriptors = Object.getOwnPropertyDescriptors(value), record6 = /* @__PURE__ */ Object.create(null);
-    for (const name of names) {
+    for (const name of names2) {
       if (typeof name !== "string") return invalid5();
       const descriptor = descriptors[name];
       if (!descriptor || !Object.hasOwn(descriptor, "value")) return invalid5();
@@ -15947,7 +15947,7 @@ function parseProviderAddressLookupV2(value) {
       default:
         return invalid5();
     }
-    if (names.some((k) => typeof k !== "string" || ![...required, ...optional2].includes(k)) || required.some((k) => !Object.hasOwn(record6, k))) return invalid5();
+    if (names2.some((k) => typeof k !== "string" || ![...required, ...optional2].includes(k)) || required.some((k) => !Object.hasOwn(record6, k))) return invalid5();
     if (record6.schemaVersion !== "lba-address-lookup/2" || record6.directoryId !== "dtek:oem" || typeof record6.id !== "string" || record6.id.length < 1 || record6.id.length > 96 || /[^A-Za-z0-9_.:-]/u.test(record6.id) || !text14(record6.expectedSessionId, 128) || !Number.isSafeInteger(record6.expectedRevision) || record6.expectedRevision < 0) return invalid5();
     const base = {
       schemaVersion: "lba-address-lookup/2",
@@ -17475,8 +17475,8 @@ function invalid6() {
 function closed7(value, keys7) {
   if (!value || typeof value !== "object" || import_node_util5.types.isProxy(value) || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value))) invalid6();
   const descriptors = Object.getOwnPropertyDescriptors(value);
-  const names = Reflect.ownKeys(value);
-  if (names.length !== keys7.length || names.some((k) => typeof k !== "string" || !keys7.includes(k)) || keys7.some((k) => !descriptors[k] || !("value" in descriptors[k]))) invalid6();
+  const names2 = Reflect.ownKeys(value);
+  if (names2.length !== keys7.length || names2.some((k) => typeof k !== "string" || !keys7.includes(k)) || keys7.some((k) => !descriptors[k] || !("value" in descriptors[k]))) invalid6();
 }
 function literal3(value, maximum, empty3 = false) {
   if (typeof value !== "string" || value.length > maximum || !empty3 && !value.trim() || /[\u0000-\u001f\u007f]/.test(value) || Buffer.from(value, "utf8").toString("utf8") !== value) invalid6();
@@ -18010,8 +18010,8 @@ function uniqueJson(raw) {
     const node = pending.pop();
     if (!node || typeof node !== "object") continue;
     if (node.type === "ObjectExpression") {
-      const names = node.properties.map((p) => p.key.value);
-      if (new Set(names).size !== names.length || names.some((k) => ["__proto__", "constructor", "prototype"].includes(String(k)))) fail17("DUPLICATE_OR_UNSAFE_SOURCE_KEY");
+      const names2 = node.properties.map((p) => p.key.value);
+      if (new Set(names2).size !== names2.length || names2.some((k) => ["__proto__", "constructor", "prototype"].includes(String(k)))) fail17("DUPLICATE_OR_UNSAFE_SOURCE_KEY");
     }
     for (const child of Object.values(node)) if (Array.isArray(child)) pending.push(...child);
     else if (child && typeof child === "object") pending.push(child);
@@ -18120,8 +18120,8 @@ function houses(value, observedAt) {
     literal4(name, 100);
     keys4(row3, HOUSE_KEYS);
     if (typeof row3.type !== "string" || row3.type.length > 20 || row3.voluntarily !== null || row3.cek !== null || !Array.isArray(row3.sub_type_reason) || !row3.sub_type_reason.length || row3.sub_type_reason.length > 12 || row3.sub_type_reason.some((g) => typeof g !== "string" || !/^GPV[1-6]\.[12]$/.test(g)) || new Set(row3.sub_type_reason).size !== row3.sub_type_reason.length) fail17("UNKNOWN_HOUSE_OR_GROUP_ENUM");
-    for (const [field, max] of [["type", 20], ["sub_type", 500], ["start_date", 40], ["end_date", 40]])
-      if (typeof row3[field] !== "string" || row3[field].length > max || /[\u0000-\u001f\u007f]/.test(row3[field]) || Buffer.from(row3[field]).toString("utf8") !== row3[field]) fail17("UNKNOWN_HOUSE_SCHEMA");
+    for (const [field2, max] of [["type", 20], ["sub_type", 500], ["start_date", 40], ["end_date", 40]])
+      if (typeof row3[field2] !== "string" || row3[field2].length > max || /[\u0000-\u001f\u007f]/.test(row3[field2]) || Buffer.from(row3[field2]).toString("utf8") !== row3[field2]) fail17("UNKNOWN_HOUSE_SCHEMA");
     const raw = {
       sub_type: row3.sub_type,
       start_date: row3.start_date,
@@ -18379,8 +18379,8 @@ function uniqueJson2(raw) {
     const node = pending.pop();
     if (!node || typeof node !== "object") continue;
     if (node.type === "ObjectExpression") {
-      const names = node.properties.map((p) => p.key.value);
-      if (new Set(names).size !== names.length || names.some((key3) => ["__proto__", "constructor", "prototype"].includes(String(key3)))) fail18("DUPLICATE_OR_UNSAFE_KEY");
+      const names2 = node.properties.map((p) => p.key.value);
+      if (new Set(names2).size !== names2.length || names2.some((key3) => ["__proto__", "constructor", "prototype"].includes(String(key3)))) fail18("DUPLICATE_OR_UNSAFE_KEY");
     }
     for (const child of Object.values(node)) if (Array.isArray(child)) pending.push(...child);
     else if (child && typeof child === "object") pending.push(child);
@@ -19073,7 +19073,7 @@ var init_odesa_public_client = __esm({
     CSRF_PARAM = "_csrf-dtek-oem";
     sha8 = (v) => (0, import_node_crypto34.createHash)("sha256").update(v, "utf8").digest("hex");
     plain9 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
-    only = (v, names) => plain9(v) && Object.keys(v).every((k) => names.includes(k));
+    only = (v, names2) => plain9(v) && Object.keys(v).every((k) => names2.includes(k));
     challenge = /cf-chl-|\/cdn-cgi\/challenge-platform|<title[^>]*>\s*(?:just a moment|attention required|checking your browser)|id=["']challenge-(?:form|running)|captcha-delivery\.com/i;
     realFetch = globalThis.fetch.bind(globalThis);
     OdesaTransportError = class extends Error {
@@ -24408,8 +24408,8 @@ function parseOdesaQualificationJson(raw) {
     if (!node || typeof node !== "object") continue;
     if (node.type === "Literal" && (typeof node.value === "number" && !Number.isFinite(node.value) || typeof node.value === "string" && Buffer.from(node.value, "utf8").toString("utf8") !== node.value)) return fail30("JSON_INVALID");
     if (node.type === "ObjectExpression") {
-      const names = node.properties.map((p) => p.key.value);
-      if (new Set(names).size !== names.length || names.some((k) => ["__proto__", "constructor", "prototype"].includes(String(k)))) return fail30("JSON_DUPLICATE_OR_UNSAFE_KEY");
+      const names2 = node.properties.map((p) => p.key.value);
+      if (new Set(names2).size !== names2.length || names2.some((k) => ["__proto__", "constructor", "prototype"].includes(String(k)))) return fail30("JSON_DUPLICATE_OR_UNSAFE_KEY");
     }
     for (const child of Object.values(node)) if (Array.isArray(child)) pending.push(...child);
     else if (child && typeof child === "object") pending.push(child);
@@ -26361,6 +26361,35 @@ var init_index = __esm({
 // server/production-entry.ts
 init_runtime_policy();
 init_media_fonts();
+
+// server/production/startup-diagnostic.ts
+var codes = /* @__PURE__ */ new Set(["MODULE_NOT_FOUND", "ERR_MODULE_NOT_FOUND", "ERR_REQUIRE_ESM", "ERR_REQUIRE_ASYNC_MODULE", "ERR_DLOPEN_FAILED", "ERR_UNKNOWN_FILE_EXTENSION", "ERR_INVALID_ARG_TYPE", "ERR_INVALID_URL", "ENOENT", "EACCES", "EPERM", "ENOTDIR", "ECONNREFUSED", "ETIMEDOUT", "ENOTFOUND", "EADDRINUSE"]);
+var names = /* @__PURE__ */ new Set(["Error", "TypeError", "ReferenceError", "SyntaxError", "RangeError", "URIError", "AggregateError", "RuntimePolicyError"]);
+var packages = ["canvas", "sharp", "nanoid", "openid-client", "express", "pg", "@resvg/resvg-js"];
+var libraries = ["libcairo.so.2", "libuuid.so.1", "libpango-1.0.so.0", "libpangocairo-1.0.so.0", "libstdc++.so.6", "libvips.so.42", "libvips-cpp.so.42"];
+function field(error2, key3) {
+  try {
+    if (error2 !== null && (typeof error2 === "object" || typeof error2 === "function")) {
+      const v = Reflect.get(error2, key3);
+      if (typeof v === "string") return v;
+    }
+  } catch {
+  }
+  return "";
+}
+function safeStartupDiagnostic(error2) {
+  const code = field(error2, "code"), name = field(error2, "name"), message = field(error2, "message"), stack = field(error2, "stack");
+  const frames = [];
+  for (const m of stack.matchAll(/\b(index\.cjs|production-entry\.(?:ts|js)):(\d{1,6}):(\d{1,6})\b/g)) {
+    const line = Number(m[2]), column = Number(m[3]);
+    if (line > 0 && line <= 2e5 && column > 0 && column <= 2e5) frames.push({ file: m[1], line, column });
+    if (frames.length === 6) break;
+  }
+  const packageHint = packages.find((p) => message.includes(`/node_modules/${p}/`) || message.includes(`Cannot find module '${p}'`) || message.includes(`Cannot find package '${p}'`)) ?? null;
+  return Object.freeze({ phase: "module-import", name: names.has(name) ? name : "UnknownError", code: codes.has(code) ? code : "UNKNOWN", packageHint, libraryHint: libraries.find((v) => message.includes(v)) ?? null, abiMismatch: message.includes("NODE_MODULE_VERSION"), frames });
+}
+
+// server/production-entry.ts
 productionRuntimePolicy();
 try {
   prepareBundledMediaFonts();
@@ -26368,7 +26397,10 @@ try {
   if (!(error2 instanceof MediaFontError) || error2.code !== "MEDIA_FONT_CONFIGURATION_FAILED") throw error2;
   console.warn("LBA_MEDIA_FONTS_UNAVAILABLE_TEXT_ONLY");
 }
-void Promise.resolve().then(() => (init_index(), index_exports)).catch(() => {
-  console.error("LBA_PRODUCTION_START_FAILED");
+void Promise.resolve().then(() => (init_index(), index_exports)).catch((error2) => {
+  try {
+    console.error("LBA_PRODUCTION_START_FAILED", JSON.stringify({ runtime: { node: process.version, platform: process.platform, arch: process.arch, abi: process.versions.modules }, failure: safeStartupDiagnostic(error2) }));
+  } catch {
+  }
   process.exitCode = 1;
 });

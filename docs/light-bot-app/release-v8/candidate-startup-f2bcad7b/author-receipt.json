@@ -1,0 +1,27 @@
+{
+  "kind": "lba-startup-diagnostic-author/1",
+  "recordedAt": "2026-11-10T17:04:43.469511+00:00",
+  "sourceSha256": "f2bcad7b420c8c46f9d8a4dbd2b7adf41f6b939b819478befbcc7209b32fd83e",
+  "sourceInputs": 315,
+  "buildArtifacts": 17,
+  "buildReceiptSha256": "028b9397386039c74b8f1a0ecc233c212d0739d150f904867fddb0cada10dd35",
+  "manifestSha256": "7f2de828888c0c66cdaa28090f16fa9a0ad6cd3749f8d9acd249971b8b418626",
+  "sourceDiff": [
+    "server/production-entry.ts",
+    "server/production/startup-diagnostic.ts"
+  ],
+  "dependencyChanges": false,
+  "clientAssetsUnchanged": true,
+  "strictTypescriptExit": 0,
+  "backendTests": {
+    "pass": 363,
+    "fail": 0,
+    "skip": 0
+  },
+  "localBuildExit": 0,
+  "productionRuntimeFixed": false,
+  "nativeBuild": "pending",
+  "publication": "pending",
+  "migrationRepeated": false,
+  "privateDataRead": false
+}

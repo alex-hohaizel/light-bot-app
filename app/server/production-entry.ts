@@ -1,5 +1,6 @@
 import {productionRuntimePolicy} from './runtime-policy';
 import {prepareBundledMediaFonts,MediaFontError} from './production/media-fonts';
+import {safeStartupDiagnostic} from './production/startup-diagnostic';
 
 // This boundary runs before importing any DB, auth, legacy bot, routes or server.
 // Invalid configuration cannot create a pool, generate fallback JWT credentials,
@@ -11,7 +12,7 @@ try{prepareBundledMediaFonts();}catch(error){
   if(!(error instanceof MediaFontError)||error.code!=='MEDIA_FONT_CONFIGURATION_FAILED')throw error;
   console.warn('LBA_MEDIA_FONTS_UNAVAILABLE_TEXT_ONLY');
 }
-void import('./index').catch(() => {
-  console.error('LBA_PRODUCTION_START_FAILED');
+void import('./index').catch((error:unknown) => {
+  try{console.error('LBA_PRODUCTION_START_FAILED',JSON.stringify({runtime:{node:process.version,platform:process.platform,arch:process.arch,abi:process.versions.modules},failure:safeStartupDiagnostic(error)}));}catch{}
   process.exitCode = 1;
 });
