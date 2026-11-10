@@ -9611,7 +9611,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("95f0c9694b861e880087bf642e7830eb89225d1effd96da94359ef98a68bb67a") ? "95f0c9694b861e880087bf642e7830eb89225d1effd96da94359ef98a68bb67a" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee") ? "52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee" : null;
   }
 });
 

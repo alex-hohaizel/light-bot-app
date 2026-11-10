@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T10:43:46.849Z",
+  "builtAt": "2026-11-10T15:56:25.073Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "95f0c9694b861e880087bf642e7830eb89225d1effd96da94359ef98a68bb67a",
+  "sourceSha256": "52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -627,11 +627,11 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "fbc0cda9d58161a247397139127825be50a830d535568339db6f741386d3453b"
+      "sha256": "784c82ca5529b0223ae3037eeb2f36a48791235bac92d125ece53973ed8c8906"
     },
     {
       "path": "package.json",
-      "sha256": "47a410bad6a6c9984b2afe572c6f0c46f0b33489fa74dfde1fab101866cf024a"
+      "sha256": "f544ec27c34c021b4e468882c2ea00bb17d21f5baec182cb604c864df18751a4"
     },
     {
       "path": "script/build-production.ts",
@@ -1885,11 +1885,11 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "fbc0cda9d58161a247397139127825be50a830d535568339db6f741386d3453b"
+      "sha256": "784c82ca5529b0223ae3037eeb2f36a48791235bac92d125ece53973ed8c8906"
     },
     {
       "path": "package.json",
-      "sha256": "47a410bad6a6c9984b2afe572c6f0c46f0b33489fa74dfde1fab101866cf024a"
+      "sha256": "f544ec27c34c021b4e468882c2ea00bb17d21f5baec182cb604c864df18751a4"
     },
     {
       "path": "script/build-production.ts",
@@ -2540,11 +2540,11 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "abd01f01e750ab09dfb4ba347d44181c428921e2a6193e0cf5ed330bd5e697d2"
+      "sha256": "8160b292120a76a74cea532b2f1827ca57fdf73459618b7727f5842cef5053fb"
     },
     {
       "path": "public/.vite/manifest.json",
-      "sha256": "209cc145162722a20084f5dff4bc975630ce9364fb4675641b1eef4b2b83acfa"
+      "sha256": "f299de6c957c73e94dc6cfb94e0cfbed98c92c2d8665df6fcda795ed5808fb00"
     },
     {
       "path": "public/assets/index-BVcW-QNQ.js",

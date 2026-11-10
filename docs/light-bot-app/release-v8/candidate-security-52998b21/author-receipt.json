@@ -1,0 +1,148 @@
+{
+  "kind": "lba-targeted-security-release-author-receipt/1",
+  "recordedAt": "2026-11-10T16:00:04.503647+00:00",
+  "owner": "/root/security_dependency_release",
+  "scope": "W2 only; security dependencies and exact new build bindings",
+  "sourceSha256": "52998b21428048da5dc78c998f0db2a8c254023b85d5af4095b05e53375da1ee",
+  "baseSourceSha256": "95f0c9694b861e880087bf642e7830eb89225d1effd96da94359ef98a68bb67a",
+  "productionInputs": 314,
+  "unchangedNonDependencyInputs": 312,
+  "changedProductionInputs": [
+    "package-lock.json",
+    "package.json"
+  ],
+  "requirementsSha256": "c42e94df1ce07123bbd28ded6dc0a85c799f4dd4115a296144c270f40d8797e2",
+  "mustCount": 68,
+  "runtime": {
+    "node": "v24.22.2",
+    "npm": "10.8.2",
+    "target": "node20"
+  },
+  "checks": {
+    "fullNpmCiExit": 0,
+    "installScriptsEnabled": true,
+    "strictTypeScriptExit": 0,
+    "backend": {
+      "runner": "node --import tsx --test tests/backend/*.test.ts",
+      "passed": 357,
+      "failed": 0,
+      "skipped": 0,
+      "files": 47
+    },
+    "buildExit": 0,
+    "sourceBeforeAfterEqual": true,
+    "buildArtifacts": 17,
+    "prebuiltVerifierExit": 0,
+    "launchVerifyExit": 0,
+    "applicationExecuted": false,
+    "databaseConnected": false
+  },
+  "audit": {
+    "exit": 1,
+    "critical": 0,
+    "high": 24,
+    "moderate": 7,
+    "low": 6,
+    "autoFix": false
+  },
+  "securityVersions": {
+    "tar": "7.5.22",
+    "@capacitor/android": "8.4.3",
+    "@capacitor/ios": "8.4.3",
+    "@capacitor/core": "8.4.3",
+    "proxy-addr": "2.0.8"
+  },
+  "advisoryConflict": "Initial official cached Capacitor8.3.5 fix remains affected per current npm range>=8.3.5<8.4.3; exact8.4.3 verifiednonaffected,8.5.0regressionnotchosen. Historical431and4df retained/notfinal.",
+  "buildReceiptSha256": "bf38d6aa43b9f721f9dad2074a507ea5f7948336049d759c9cd53d4c55911c68",
+  "artifactManifestSha256": "b6d8fa4a6100b39b662ec44c222fbbf241cbaf5e407161e742f4f5be96ab6ab7",
+  "serverOnlyBuildSourceConstantChanged": true,
+  "assetDiff": {
+    "removedAssetPaths": [],
+    "addedAssetPaths": [],
+    "changedSamePathAssets": [
+      "index.cjs",
+      "public/.vite/manifest.json"
+    ],
+    "unchangedAssets": [
+      "public/assets/index-BVcW-QNQ.js",
+      "public/assets/index-DrgIy_mz.js",
+      "public/assets/index-KbPt7mO_.js",
+      "public/assets/index-chWm5hEl.css",
+      "public/assets/web-DaGWBMZW.js",
+      "public/favicon.png",
+      "public/fonts/manrope-OFL.txt",
+      "public/fonts/manrope.ttf",
+      "public/fonts/onest-OFL.txt",
+      "public/fonts/onest.ttf",
+      "public/icon-512.png",
+      "public/index.html",
+      "public/manifest.json",
+      "public/sw.js",
+      "server-metafile.json"
+    ]
+  },
+  "W1ProductionInputsUnchanged": true,
+  "sourceEditsStopped": true,
+  "productionWrites": 0,
+  "nativeOrGitActions": 0,
+  "publication": false,
+  "send": false,
+  "evidence": [
+    {
+      "path": "npm-ci.log",
+      "sha256": "b9e8cab2a3caf6648de0056593cfe85509215a2f47b62cdd7651111b514753ef"
+    },
+    {
+      "path": "strict-typescript.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend-tests.log",
+      "sha256": "77578ab9713273eb2facb3cfda527a3e3413d450f9913d33aefab20112fe49ef"
+    },
+    {
+      "path": "build-production.log",
+      "sha256": "9ac2a6634489b5521846c577b96a5d70326d0d5fd229ca344217d0ade46e3b4b"
+    },
+    {
+      "path": "audit.json",
+      "sha256": "07b7f0a38468a460e5925385d461aea76238967217a0d76c05f39c2ac9c225ea"
+    },
+    {
+      "path": "audit-critical-summary.json",
+      "sha256": "393a9768bd68a9fa3d55a33d618ff916ac95626607d80632c728951609ed5260"
+    },
+    {
+      "path": "dependency-diff.json",
+      "sha256": "d97c323ec5fe50371ce8ba31644e24b6c4aed8adb2694a37ee22ac8b75a2caf9"
+    },
+    {
+      "path": "asset-diff.json",
+      "sha256": "a6ca69ad3e0d8886acef08d8d74fa5cd847cdbaf1602afbad2f9e95196c1adc8"
+    },
+    {
+      "path": "source-freeze.json",
+      "sha256": "85233e557f67c43733a6df574abbd56a36f75ff63649e471ad32d7e0ff8e3d6c"
+    },
+    {
+      "path": "publication-files.json",
+      "sha256": "d7902d1d0b02fb0db77c93773ed9ca00e044da490c3dcd370c8536940af16cb3"
+    },
+    {
+      "path": "critical-patch-registry-metadata.json",
+      "sha256": "c86df01a9921f0ab6d944ba3402530204dc99bd53955dfdce528f9c9bc7c9e6f"
+    },
+    {
+      "path": "critical-patch-843-registry-metadata.json",
+      "sha256": "031c1beca29459753a51218c4dd7ceb7938e018860f8beadea089205584ba288"
+    },
+    {
+      "path": "targeted-bulk-advisories.json",
+      "sha256": "2ede449fab81daf32fca71456865736ad18e51936c49f942c878ccff0c8935d3"
+    },
+    {
+      "path": "dependency-tree.json",
+      "sha256": "afba250081473a1e7626252fb75d13c564168b6f7378040920d1595df2cc8889"
+    }
+  ]
+}

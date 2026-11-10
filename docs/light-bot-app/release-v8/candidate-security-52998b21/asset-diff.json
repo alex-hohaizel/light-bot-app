@@ -1,0 +1,25 @@
+{
+  "removedAssetPaths": [],
+  "addedAssetPaths": [],
+  "changedSamePathAssets": [
+    "index.cjs",
+    "public/.vite/manifest.json"
+  ],
+  "unchangedAssets": [
+    "public/assets/index-BVcW-QNQ.js",
+    "public/assets/index-DrgIy_mz.js",
+    "public/assets/index-KbPt7mO_.js",
+    "public/assets/index-chWm5hEl.css",
+    "public/assets/web-DaGWBMZW.js",
+    "public/favicon.png",
+    "public/fonts/manrope-OFL.txt",
+    "public/fonts/manrope.ttf",
+    "public/fonts/onest-OFL.txt",
+    "public/fonts/onest.ttf",
+    "public/icon-512.png",
+    "public/index.html",
+    "public/manifest.json",
+    "public/sw.js",
+    "server-metafile.json"
+  ]
+}

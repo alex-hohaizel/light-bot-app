@@ -18,12 +18,12 @@
     "local": "node ../tools/local-runtime/run.mjs"
   },
   "dependencies": {
-    "@capacitor/android": "^8.1.0",
+    "@capacitor/android": "8.4.3",
     "@capacitor/app": "^8.0.1",
     "@capacitor/cli": "^7.5.0",
-    "@capacitor/core": "^8.1.0",
+    "@capacitor/core": "8.4.3",
     "@capacitor/haptics": "^8.0.0",
-    "@capacitor/ios": "^8.1.0",
+    "@capacitor/ios": "8.4.3",
     "@capacitor/local-notifications": "^8.0.1",
     "@capacitor/push-notifications": "^8.0.1",
     "@capacitor/splash-screen": "^8.0.1",
@@ -151,6 +151,9 @@
   "overrides": {
     "@esbuild-kit/core-utils": {
       "esbuild": "^0.25.0"
+    },
+    "@capacitor/cli": {
+      "tar": "7.5.22"
     }
   }
 }

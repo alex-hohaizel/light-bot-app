@@ -1,0 +1,70 @@
+{
+  "kind": "lba-security-dependency-diff/1",
+  "changedPackages": [
+    {
+      "path": "",
+      "oldVersion": "1.0.0",
+      "newVersion": "1.0.0",
+      "changedFields": [
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@capacitor/android",
+      "oldVersion": "8.1.0",
+      "newVersion": "8.4.3",
+      "changedFields": [
+        "integrity",
+        "peerDependencies",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/@capacitor/core",
+      "oldVersion": "8.1.0",
+      "newVersion": "8.4.3",
+      "changedFields": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/@capacitor/ios",
+      "oldVersion": "8.1.0",
+      "newVersion": "8.4.3",
+      "changedFields": [
+        "integrity",
+        "peerDependencies",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/proxy-addr",
+      "oldVersion": "2.0.7",
+      "newVersion": "2.0.8",
+      "changedFields": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/tar",
+      "oldVersion": "7.5.16",
+      "newVersion": "7.5.22",
+      "changedFields": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    }
+  ],
+  "packageCountBefore": 1049,
+  "packageCountAfter": 1049,
+  "allOtherLockEntriesUnchanged": true,
+  "noCliMajorUpgrade": true,
+  "noRegistryOrFirewallChange": true
+}
