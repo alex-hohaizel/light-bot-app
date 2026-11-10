@@ -9,6 +9,7 @@ import { defaultNotificationPolicy, parseLocationNotificationPolicy, parseNotifi
 import { clearDraft, loadDraft, saveDraft } from './ux-drafts';
 import { readNotificationForm as readForm, readNotificationLocations as readLocations, sameDraftValue as same,
   parseNotificationDraft, type NotificationForm as Form } from './notification-draft';
+import './notification-policy.css';
 const CHANNEL_NAMES = { telegram: 'Telegram', push: 'Push у застосунку' };
 interface EditorProps {
   profile: BotProfile; revision: number; sessionId: string; blocked: boolean; lastMutationId: string; focusAddressId?: string;
@@ -88,7 +89,7 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
       await mutate({ kind: 'preferences', patch: { notificationPolicy: policy, paused: form.paused,
         quietHours: form.quiet, morningBriefing: form.briefing, minimumOutageMinutes: form.minimum } });
       setDirty(false);
-      setNotice('Зміну передано. Результат збереження показано у стані спільного профілю.');
+      setNotice('Налаштування сповіщень збережено.');
     } catch (error) { setError(error instanceof Error ? error.message : 'Збереження ще не підтверджено.'); }
   }
   async function saveLocation(id: string) {
@@ -96,7 +97,7 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
     try {
       if (localConflicts.includes(id) || !same(readLocations(profile)[id], baseline.current.locations[id])) throw new Error('Налаштування адреси вже змінилися. Завантажте актуальні значення.');
       await mutate({ kind: 'location', addressId: id, notificationPolicy: parseLocationNotificationPolicy(locations[id]) }); setDirtyLocations(current => current.filter(value => value !== id));
-      setNotice('Зміну адреси передано. Результат збереження показано у стані спільного профілю.');
+      setNotice('Налаштування сповіщень для цієї адреси збережено.');
     }
     catch (error) { setError(error instanceof Error ? error.message : 'Збереження ще не підтверджено.'); }
   }
@@ -104,16 +105,16 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
   const selectedPolicy = selectedLocation && locations[selectedLocation.address.id];
   const lead = (minutes: number) => minutes === 0 ? 'вимкнено' : 'за '+durationLabel(minutes);
   const channelSummary = (value: ChannelNotificationPolicy) => `${value.enabled ? 'Дозволено' : 'Згоду вимкнено'} · нагадування ${value.remindersEnabled ? 'увімкнені' : 'вимкнені'} · перед вимкненням ${lead(value.beforeOffMinutes)} · перед відновленням ${lead(value.beforeOnMinutes)}`;
-  return <section data-testid="notification-policy-editor">
+  return <section className="pr-notification-policy" data-testid="notification-policy-editor">
     <div className="pr-section-intro"><div><h2>Сповіщення у вашому ритмі.</h2><p>Спочатку оберіть канал або адресу. Сповіщення надходитимуть за адресами, для яких підтверджено графік.</p></div></div>
     {error && <div role="alert" className="pr-status-notice pr-warning">{error}</div>}
     {notice && <p role="status" className="pr-field-note">{notice}</p>}
     {(dirty || dirtyLocations.length > 0) && <div className="pr-draft-banner" role="status"><span>Є незбережені зміни. Збережіть їх, щоб застосувати налаштування.</span><button className="pr-text-button" onClick={() => { reloadGlobal(); for (const id of dirtyLocations) reloadLocation(id); clearDraft('notifications'); }}>Відкинути чернетку сповіщень</button></div>}
     <nav className="pr-policy-navigation" aria-label="Групи сповіщень">
-      <button className={area === 'summary' ? 'is-active' : ''} onClick={() => setArea('summary')}>Огляд</button>
-      <button className={area === 'channel' ? 'is-active' : ''} onClick={() => setArea('channel')}>Канали</button>
-      <button className={area === 'address' ? 'is-active' : ''} onClick={() => setArea('address')}>Для адреси</button>
-      <button className={area === 'advanced' ? 'is-active' : ''} onClick={() => setArea('advanced')}>Тиша й додаткове</button>
+      <button type="button" aria-pressed={area === 'summary'} className={area === 'summary' ? 'is-active' : ''} onClick={() => setArea('summary')}>Огляд</button>
+      <button type="button" aria-pressed={area === 'channel'} className={area === 'channel' ? 'is-active' : ''} onClick={() => setArea('channel')}>Канали</button>
+      <button type="button" aria-pressed={area === 'address'} className={area === 'address' ? 'is-active' : ''} onClick={() => setArea('address')}>Для адреси</button>
+      <button type="button" aria-pressed={area === 'advanced'} className={area === 'advanced' ? 'is-active' : ''} onClick={() => setArea('advanced')}>Тиша й додаткове</button>
     </nav>
     {area === 'summary' && <div className="pr-policy-summary">
       {(['telegram', 'push'] as const).map(name => <button key={name} className="pr-panel pr-summary-card" onClick={() => { setChannel(name); setArea('channel'); }}><strong>{CHANNEL_NAMES[name]}</strong><span>{channelSummary(form.policy.channels[name])}</span><small>Змінити цей канал</small></button>)}
@@ -122,7 +123,7 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
     </div>}
     {conflict && <div role="alert" className="pr-status-notice pr-warning">Налаштування змінилися в іншому вікні або боті. Чернетку збережено; збереження заблоковано, щоб не перезаписати нові значення. <button onClick={reloadGlobal}>Завантажити актуальні налаштування</button></div>}
     {(area === 'channel' || area === 'advanced') && <fieldset disabled={blocked} className="pr-panel pr-settings-panel">
-      {area === 'channel' ? <><div className="pr-segmented" role="group" aria-label="Канал сповіщень">{(['telegram', 'push'] as const).map(name => <button key={name} className={channel === name ? 'is-active' : ''} onClick={() => setChannel(name)}>{CHANNEL_NAMES[name]}</button>)}</div>
+      {area === 'channel' ? <><div className="pr-segmented" role="group" aria-label="Канал сповіщень">{(['telegram', 'push'] as const).map(name => <button key={name} type="button" aria-pressed={channel === name} className={channel === name ? 'is-active' : ''} onClick={() => setChannel(name)}>{CHANNEL_NAMES[name]}</button>)}</div>
         <GlobalChannel name={channel} value={form.policy.channels[channel]} onChange={value => update({ policy: { ...form.policy, channels: { ...form.policy.channels, [channel]: value } } })} />
         <p className="pr-policy-effective">Підсумок: {channelSummary(form.policy.channels[channel])}.</p></> : <>
         <h3>Тиша, пауза й ранковий огляд</h3>
@@ -151,7 +152,7 @@ function NotificationPolicyForm({ profile, revision, sessionId, blocked, mutate,
         <h3>{selectedLocation.address.label}{selectedLocation.paused ? ' · адреса на паузі' : ''}</h3>
         <p className="pr-field-note">Адресна згода не вмикає загальну згоду каналу. Час не змінює згоду. Прив’язка будинку перевіряється окремо.</p>
         {localConflicts.includes(addressId) && <div role="alert" className="pr-status-notice pr-warning">Налаштування адреси змінилися. Чернетка не перезапише нові значення. <button onClick={() => reloadLocation(addressId)}>Завантажити актуальні значення адреси</button></div>}
-        <div className="pr-segmented" role="group" aria-label="Канал для адреси">{(['telegram', 'push'] as const).map(name => <button key={name} className={channel === name ? 'is-active' : ''} onClick={() => setChannel(name)}>{CHANNEL_NAMES[name]}</button>)}</div>
+        <div className="pr-segmented" role="group" aria-label="Канал для адреси">{(['telegram', 'push'] as const).map(name => <button key={name} type="button" aria-pressed={channel === name} className={channel === name ? 'is-active' : ''} onClick={() => setChannel(name)}>{CHANNEL_NAMES[name]}</button>)}</div>
         <div className="pr-policy-channel"><Toggle title={`${CHANNEL_NAMES[channel]} · ${selectedLocation.address.label}`} checked={selectedPolicy.channels[channel].enabled} onChange={enabled => localChange(addressId, channel, { ...selectedPolicy.channels[channel], enabled })} />
           <div className="pr-policy-fields">{(['beforeOffMinutes','beforeOnMinutes'] as const).map(field=><DurationField key={field} label={`${selectedLocation.address.label} · ${CHANNEL_NAMES[channel]} · ${field==='beforeOffMinutes'?'перед вимкненням':'перед відновленням'}`} value={selectedPolicy.channels[channel][field]} allowInherit inheritValue={form.policy.channels[channel][field]} onChange={n=>{const next={...selectedPolicy.channels[channel]};if(n===undefined)delete next[field];else next[field]=n;localChange(addressId,channel,next);}}/>)}</div>
           <p className="pr-field-note">Оберіть «Як у каналі» для загального часу. 0 год 0 хв вимикає лише цей тип нагадування.</p>

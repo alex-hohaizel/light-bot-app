@@ -1,0 +1,236 @@
+/* Scoped to this editor; all surfaces and states inherit the accepted theme. */
+.pr-app section.pr-notification-policy {
+  min-width: 0;
+}
+
+.pr-app section.pr-notification-policy button {
+  min-height: 44px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-navigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 20px 0 24px;
+  padding: 6px;
+  border: 1px solid var(--pr-line);
+  border-radius: 18px;
+  background: var(--pr-paper);
+  box-shadow: var(--pr-shadow);
+}
+
+.pr-app section.pr-notification-policy .pr-policy-navigation > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--pr-muted);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.35;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-navigation > button.is-active {
+  border-color: var(--pr-accent);
+  background: var(--pr-accent-soft);
+  color: var(--pr-accent);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--pr-accent);
+}
+
+.pr-app section.pr-notification-policy .pr-policy-navigation > button:focus-visible {
+  outline: 3px solid var(--pr-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .pr-app section.pr-notification-policy .pr-policy-navigation > button:not(.is-active):hover {
+    border-color: var(--pr-line);
+    background: var(--pr-accent-soft);
+    color: var(--pr-ink);
+  }
+}
+
+@media (min-width: 640px) {
+  .pr-app section.pr-notification-policy .pr-policy-navigation {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.pr-app section.pr-notification-policy .pr-policy-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.pr-app section.pr-notification-policy .pr-summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  min-width: 0;
+  min-height: 164px;
+  padding: 20px;
+  border: 1px solid var(--pr-line);
+  background: var(--pr-paper);
+  color: var(--pr-ink);
+  box-shadow: var(--pr-shadow);
+  text-align: left;
+  line-height: 1.6;
+}
+
+.pr-app section.pr-notification-policy .pr-summary-card > strong {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.pr-app section.pr-notification-policy .pr-summary-card > span {
+  color: var(--pr-muted);
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.pr-app section.pr-notification-policy .pr-summary-card > small {
+  margin-top: auto;
+  padding-top: 5px;
+  color: var(--pr-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.pr-app section.pr-notification-policy > .pr-settings-panel {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+}
+
+.pr-app section.pr-notification-policy .pr-settings-panel > fieldset {
+  min-width: 0;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  border: 0;
+  border-top: 1px solid var(--pr-line);
+}
+
+.pr-app section.pr-notification-policy .pr-context-picker {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  color: var(--pr-muted);
+  font-size: 12px;
+}
+
+.pr-app section.pr-notification-policy .pr-context-picker > select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+}
+
+.pr-app section.pr-notification-policy .pr-segmented {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  margin: 12px 0 4px;
+}
+
+.pr-app section.pr-notification-policy .pr-segmented > button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-channel {
+  min-width: 0;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-fields {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-fields > .pr-duration-field {
+  margin: 0;
+}
+
+.pr-app section.pr-notification-policy .pr-policy-effective {
+  margin: 16px 0 4px;
+  padding: 14px;
+  border: 1px solid var(--pr-line);
+  border-radius: 12px;
+  background: var(--pr-bg);
+  color: var(--pr-ink);
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.pr-app section.pr-notification-policy .pr-settings-panel > details {
+  margin-top: 14px;
+  border-top: 1px solid var(--pr-line);
+}
+
+.pr-app section.pr-notification-policy .pr-settings-panel > details > summary {
+  min-height: 44px;
+  padding: 12px 0;
+  color: var(--pr-ink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  list-style-position: inside;
+  cursor: pointer;
+}
+
+.pr-app section.pr-notification-policy .pr-settings-panel > details > summary::marker {
+  color: var(--pr-accent);
+}
+
+.pr-app section.pr-notification-policy .pr-settings-panel > .pr-primary,
+.pr-app section.pr-notification-policy .pr-settings-panel > fieldset > .pr-primary {
+  margin-top: 20px;
+}
+
+.pr-app section.pr-notification-policy .pr-summary-card:focus-visible,
+.pr-app section.pr-notification-policy .pr-segmented > button:focus-visible,
+.pr-app section.pr-notification-policy .pr-settings-panel > details > summary:focus-visible {
+  outline: 3px solid var(--pr-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .pr-app section.pr-notification-policy .pr-summary-card:hover {
+    border-color: var(--pr-accent);
+  }
+}
+
+@media (min-width: 760px) {
+  .pr-app section.pr-notification-policy .pr-policy-summary,
+  .pr-app section.pr-notification-policy .pr-policy-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pr-app[data-motion="off"] section.pr-notification-policy .pr-policy-navigation > button {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-app section.pr-notification-policy .pr-policy-navigation > button {
+    transition: none;
+  }
+}

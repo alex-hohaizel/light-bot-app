@@ -1,0 +1,15 @@
+# LIGHT BOT APP — кандидат 6639d711
+
+Source SHA256: 6639d711010e74042c39c8ca1fccbc706e5c7b59575b3eb72a0452140e83f2bc,310 production inputs. Пакет продовжує приватний c19e7970d398d55e3cfa4d5eff24f692cfddc3e5, не замінює погоджений продукт новим шаблоном.
+
+У картках поточного стану й наступної події є час відновлення/вимкнення та залишок у годинах і хвилинах, із датою/часом розрахунку. Застарілі, суперечливі, неповні та непідтверджені дані зберігають явну невизначеність. Для переходів часу збережені точні ISO instants,23/25-годинні доби й пояснення переведення годинника; написи шкали не накладаються. Порожні картки не повторюють однакові заголовки. Денна/м’яка синьо-сіра нічна палітра, Onest/Manrope, «Адресний пульт», «Спільна доба» та анімації збережені.
+
+Редактор сповіщень має оформлені розділи, картки, видимий вибір і keyboardfocus,44–48px controls. Природне підтвердження збереження стоїть після перевіреного await mutate; логіка durable pending/чернеток/конфліктів не замінена. Відновлено оригінальні публічні icon/favicon та manifest із правильною1024×1024 metadata; HTML дозволяє масштабування користувачем. Нова ідентичність або іконка не створювалися.
+
+На точних локальних bytes: TypeScript exit0, production build exit0/17, targeted29PASS. Незалежні перевірки часових контрактів/нових3repairs/координат і окремий UI source review пройдені з явним обліком дозволених empty-card differences. ActualMac PNG та bounded320/390 day/night UI зафіксовано окремими доказами. Це не proof фізичних Android/iOS/Telegram, live auth чи Node20 runtime цієї ревізії. Старий321 Node20 proof лишається прив’язаним до6f6; на новому staging потрібний свіжий42-file portable запуск із11новими card regressions.
+
+Усі68 must незмінні. Реальних source admissions0; production ще не оновлено, розсилка не виконана. Відкриті primary-доступ Вінниці, точні прив’язки Харкова,20адрес/ОСР або доказовий менший scope,48h/control/fallback, actualprovider/domain/device та freshproductionR1/fence/taildelta/rollback. Погодження на повний реліз чинне, технічні prerequisites не замінені дозволом. Після локального source freeze операторський bootstrap ще потребує точного нового source/build binding; його старий6f6 proof не переприв’язано.
+
+ZIP містить source,42backend tests, незмінні requirements, source manifest і локальний build receipt. Не включено початковий ZIP Replit, секрети, cookies/rawCSRF, приватні owner captures, production records/subscribers, резервні копії, ключі або приватні журнали. Оригінальні публічні icon/favicon звірено з початковим source; icon/manifest додатково збігаються з публічними bytes чинного сайту. Portable fixtures23 використовуються окремо із перевіреного приватного commit36abfd34dd766630cf79c4ffb325693a333876b1; старі raw fixtures лишаються лише локальними.
+
+Пакет призначений для isolatedstaging у чинному Replit6cdd42ed-6051-42d1-bea6-d73e9f98682d. Зберегти active-root5, поточні settings/webhook/DB/domain/deployment та чинного PowerUkraineBot. Наявність цього пакета сама не запускає App, production або campaign.
