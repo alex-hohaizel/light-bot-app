@@ -8645,18 +8645,18 @@ function minute(clock) {
 }
 function emergencyBulletinNeedsReview(title, description, publication, serviceDate) {
   const plain23 = (0, import_cheerio2.load)(description).text().replace(/\s+/g, " ").toLocaleLowerCase("uk-UA");
-  const heading = title.toLocaleLowerCase("uk-UA"), publicationDate = localParts(Date.parse(publication)).date;
-  const emergency = /аварійн[\p{L}]*\s+(?:відключ|знеструм|режим)/iu;
+  const heading2 = title.toLocaleLowerCase("uk-UA"), publicationDate = localParts(Date.parse(publication)).date;
+  const emergency2 = /аварійн[\p{L}]*\s+(?:відключ|знеструм|режим)/iu;
   const operative = /(?:застосовуються|застосовано|застосовані|запроваджуються|запроваджено|запроваджені|вводяться|введено|введені|діють|діятимуть|будуть\s+(?:діяти|застосовані|введені|запроваджені)|не\s+(?:(?:було|були)\s+)?скасован(?:о|і)|залишаються\s+(?:чинними|в\s+дії))/iu;
   const conditional = /(?:якщо|у разі|в разі|можуть|може|як підготуватися|що робити,? коли)/iu;
   const localTerritory = /харківськ[\p{L}]*|харківщин[\p{L}]*|(?:у|в) харкові|(?:^|[^\p{L}])харків(?:$|[^\p{L}])/iu;
   const otherTerritory = /ки(?:єв|їв)[\p{L}]*|одес[\p{L}]*|вінниц[\p{L}]*|дніпр[\p{L}]*|львів[\p{L}]*|полтав[\p{L}]*|сумськ[\p{L}]*|чернігів[\p{L}]*|житомир[\p{L}]*|черкас[\p{L}]*|хмельниц[\p{L}]*|тернопіл[\p{L}]*|івано-франків[\p{L}]*|закарпат[\p{L}]*|чернів[\p{L}]*|рівнен[\p{L}]*|волин[\p{L}]*|миколаїв[\p{L}]*|херсон[\p{L}]*|запорі[\p{L}]*|донецьк[\p{L}]*|луган[\p{L}]*|кіровоград[\p{L}]*|крим[\p{L}]*/iu;
   const sentences = plain23.split(/[!?]\s*|\.(?!\d)\s*/u).filter(Boolean);
   for (const sentence of sentences) {
-    if (!emergency.test(sentence) || !operative.test(sentence) || conditional.test(sentence)) continue;
+    if (!emergency2.test(sentence) || !operative.test(sentence) || conditional.test(sentence)) continue;
     const affirmative = [...sentence.matchAll(new RegExp(operative.source, "giu"))].some((match) => !/не(?:\s+(?:було|були|будуть|буде))?\s*$/u.test(sentence.slice(0, match.index)));
     if (!affirmative) continue;
-    const scope5 = `${heading} ${sentence}`;
+    const scope5 = `${heading2} ${sentence}`;
     if (!localTerritory.test(scope5) && otherTerritory.test(scope5)) continue;
     const dates = [];
     for (const match of scope5.matchAll(new RegExp(`(\\d{1,2})\\s+(${MONTHS.join("|")})(?:\\s+(\\d{4}))?`, "gu"))) {
@@ -8731,8 +8731,8 @@ function normalizeKharkivRss(rawBody, context2) {
   body("br").replaceWith("\n");
   body("p,div").append("\n");
   const text26 = body.root().text().split("\n").map((line) => line.replace(/\s+/g, " ").trim()).filter(Boolean).join("\n");
-  const weekdays = ["\u043D\u0435\u0434\u0456\u043B\u044E", "\u043F\u043E\u043D\u0435\u0434\u0456\u043B\u043E\u043A", "\u0432\u0456\u0432\u0442\u043E\u0440\u043E\u043A", "\u0441\u0435\u0440\u0435\u0434\u0443", "\u0447\u0435\u0442\u0432\u0435\u0440", "\u043F\u2019\u044F\u0442\u043D\u0438\u0446\u044E", "\u0441\u0443\u0431\u043E\u0442\u0443"];
-  const weekday = weekdays[(/* @__PURE__ */ new Date(`${context2.serviceDate}T12:00:00Z`)).getUTCDay()];
+  const weekdays2 = ["\u043D\u0435\u0434\u0456\u043B\u044E", "\u043F\u043E\u043D\u0435\u0434\u0456\u043B\u043E\u043A", "\u0432\u0456\u0432\u0442\u043E\u0440\u043E\u043A", "\u0441\u0435\u0440\u0435\u0434\u0443", "\u0447\u0435\u0442\u0432\u0435\u0440", "\u043F\u2019\u044F\u0442\u043D\u0438\u0446\u044E", "\u0441\u0443\u0431\u043E\u0442\u0443"];
+  const weekday = weekdays2[(/* @__PURE__ */ new Date(`${context2.serviceDate}T12:00:00Z`)).getUTCDay()];
   const expectedIntro = `\u0443 ${weekday}, ${Number(dayText)} ${MONTHS[Number(monthText) - 1]}, \u0437 00:00 \u0434\u043E 24:00`;
   if (!text26.toLocaleLowerCase("uk-UA").replace(/'/g, "\u2019").includes(expectedIntro)) throw new Error("RSS_BODY_DATE_CONFLICT");
   if (/скасован|аварійн|не діятим|не будуть діяти/iu.test(text26)) throw new Error("RSS_PLAN_WITHDRAWN_OR_OVERLAY_REQUIRES_REVIEW");
@@ -9636,7 +9636,7 @@ var BUILD_SOURCE_SHA256;
 var init_build_identity = __esm({
   "server/release/build-identity.ts"() {
     "use strict";
-    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("ab7e3b1babeaea7b72db5dc1518b03ede8a51665792c9b7389fdafac7dee8788") ? "ab7e3b1babeaea7b72db5dc1518b03ede8a51665792c9b7389fdafac7dee8788" : null;
+    BUILD_SOURCE_SHA256 = /^[a-f0-9]{64}$/.test("e8192cabd37d56addc9111fed9faea13b53f34f8da4d45322e1b9b932a2391f0") ? "e8192cabd37d56addc9111fed9faea13b53f34f8da4d45322e1b9b932a2391f0" : null;
   }
 });
 
@@ -10866,13 +10866,13 @@ function streetTypesCompatible(queryType, dataType) {
 }
 function findQueueByHouse(streetName, houseNumber, city = "\u0412\u0456\u043D\u043D\u0438\u0446\u044F") {
   const houseData = city === "\u0425\u0430\u0440\u043A\u0456\u0432" ? loadKharkivHouseQueueData() : loadHouseQueueData();
-  const normalize4 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
-  const normalizedStreet = normalize4(streetName);
+  const normalize5 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
+  const normalizedStreet = normalize5(streetName);
   const normalizedHouse = houseNumber.replace(/\s/g, "").toLowerCase();
   const fullNames = city === "\u0425\u0430\u0440\u043A\u0456\u0432" ? {} : loadStreetFullNames();
   const queryType = extractStreetType(streetName);
   for (const [street, entries] of Object.entries(houseData)) {
-    const normStreet = normalize4(street);
+    const normStreet = normalize5(street);
     const isExact = normStreet === normalizedStreet;
     if (!isExact) {
       if (!stemMatch(normStreet, normalizedStreet)) continue;
@@ -10955,11 +10955,11 @@ function findQueuesForStreet(streetName) {
   const query4 = streetName.toLowerCase().trim();
   const cleanQuery = query4.replace(/вулиця\s*/i, "").replace(/провулок\s*/i, "").replace(/бульвар\s*/i, "").replace(/проспект\s*/i, "").replace(/площа\s*/i, "").replace(/шосе\s*/i, "").trim();
   if (cleanQuery.length < 2) return [];
-  const normalize4 = (s) => s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim();
-  const normalizedQuery = normalize4(cleanQuery);
+  const normalize5 = (s) => s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim();
+  const normalizedQuery = normalize5(cleanQuery);
   const results = [];
   for (const entry of data) {
-    const entryNorm = normalize4(entry.s);
+    const entryNorm = normalize5(entry.s);
     if (entryNorm === normalizedQuery) {
       results.push({ street: entry.s, queues: entry.q, score: 100 });
       continue;
@@ -11109,14 +11109,14 @@ function searchLocalStreets(query4) {
 }
 function searchLocalHouses(streetName, query4) {
   const houseData = loadHouseQueueData();
-  const normalize4 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
-  const normalizedStreet = normalize4(bareFromFull(streetName));
+  const normalize5 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
+  const normalizedStreet = normalize5(bareFromFull(streetName));
   const q = query4.trim().toLowerCase();
   const queryType = extractStreetType(streetName);
   const fullNamesData = loadStreetFullNames();
   const allHouses = [];
   for (const [street, entries] of Object.entries(houseData)) {
-    const normalizedKey = normalize4(street);
+    const normalizedKey = normalize5(street);
     const isExactish = normalizedKey === normalizedStreet || normalizedStreet.endsWith(normalizedKey) || normalizedKey.endsWith(normalizedStreet) || normalizedStreet.includes(normalizedKey) || normalizedKey.includes(normalizedStreet);
     if (!isExactish) {
       if (!stemMatch(normalizedKey, normalizedStreet)) continue;
@@ -11136,7 +11136,7 @@ function searchLocalHouses(streetName, query4) {
   }
   const streetData = loadStreetQueueData();
   for (const entry of streetData) {
-    const entryNorm = normalize4(entry.s);
+    const entryNorm = normalize5(entry.s);
     const isExact = entryNorm === normalizedStreet;
     if (isExact) return [];
     if (stemMatch(entryNorm, normalizedStreet)) {
@@ -11522,11 +11522,11 @@ function searchKharkivStreets(query4) {
 }
 function searchKharkivHouses(streetName, query4) {
   const houseData = loadKharkivHouseQueueData();
-  const normalize4 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
-  const normalizedStreet = normalize4(streetName);
+  const normalize5 = (s) => stripStreetType(s.toLowerCase().replace(/[.'`'\u2019\u0027]/g, "").replace(/\s+/g, " ").trim());
+  const normalizedStreet = normalize5(streetName);
   const q = query4.trim().toLowerCase();
   for (const [street, entries] of Object.entries(houseData)) {
-    if (normalize4(street) !== normalizedStreet) continue;
+    if (normalize5(street) !== normalizedStreet) continue;
     const houses2 = Array.from(new Set(entries.map((e) => e.house)));
     houses2.sort((a, b) => a.localeCompare(b, void 0, { numeric: true, sensitivity: "base" }));
     if (!q) return houses2;
@@ -13846,7 +13846,7 @@ function handleMorningBriefing(state, packet, context2) {
     }
   }
   const date2 = new Intl.DateTimeFormat("uk-UA", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Kyiv" }).format(/* @__PURE__ */ new Date(packet.serviceDate + "T12:00:00Z"));
-  const heading = "\u0420\u0430\u043D\u043A\u043E\u0432\u0438\u0439 \u043E\u0433\u043B\u044F\u0434 \xB7 " + date2, body = sections.join("\n\n"), text26 = heading + "\n\n" + body;
+  const heading2 = "\u0420\u0430\u043D\u043A\u043E\u0432\u0438\u0439 \u043E\u0433\u043B\u044F\u0434 \xB7 " + date2, body = sections.join("\n\n"), text26 = heading2 + "\n\n" + body;
   const make = (value, i) => ({ id: packet.id + ":" + i, kind: "notification", text: value, buttons: [], commitBarrier: "none" });
   if (text26.length <= 4096) {
     const primary = packet.entries.find((e) => e.addressId === packet.primaryAddressId) ?? packet.entries[0];
@@ -13854,7 +13854,7 @@ function handleMorningBriefing(state, packet, context2) {
   }
   const parts = chunks(body, 3300);
   if (parts.length > 100) throw Error("MORNING_BRIEFING_TOO_LARGE");
-  return { messages: parts.map((part, i) => make(heading + " \xB7 \u0447\u0430\u0441\u0442\u0438\u043D\u0430 " + (i + 1) + " \u0437 " + parts.length + "\n\n" + part, i)) };
+  return { messages: parts.map((part, i) => make(heading2 + " \xB7 \u0447\u0430\u0441\u0442\u0438\u043D\u0430 " + (i + 1) + " \u0437 " + parts.length + "\n\n" + part, i)) };
 }
 var timePattern, clean, closed3, minute2, dueCache, clockFormatter;
 var init_morning_briefing = __esm({
@@ -15018,6 +15018,222 @@ var init_legacy_identity_links = __esm({
   }
 });
 
+// server/domain/kharkiv-telegram-adapter.ts
+function matchingDate(text26, serviceDate) {
+  const [year, month, day] = serviceDate.split("-");
+  const textualDates = new RegExp("(?<!\\d)(\\d{1,2})\\s+(" + months.join("|") + ")(?!\\p{L})(?:\\s+(\\d{4})(?!\\d))?", "gu");
+  for (const match of text26.matchAll(textualDates)) {
+    if (Number(match[1]) === Number(day) && match[2] === months[Number(month) - 1] && (!match[3] || match[3] === year)) return true;
+  }
+  for (const match of text26.matchAll(/(?<!\d)(\d{1,2})[./](\d{1,2})[./](\d{4})(?!\d)/gu)) {
+    if (Number(match[1]) === Number(day) && Number(match[2]) === Number(month) && match[3] === year) return true;
+  }
+  for (const match of text26.matchAll(/(?:^|[^\p{L}])(?:на|за|від|відключень)\s+(\d{1,2})[./](\d{1,2})(?![./\d])/gu)) {
+    if (Number(match[1]) === Number(day) && Number(match[2]) === Number(month)) return true;
+  }
+  return new RegExp("(?<!\\d)" + serviceDate + "(?!\\d)", "u").test(text26);
+}
+function toMinute(clock) {
+  if (clock === "24:00") return 1440;
+  if (!/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(clock)) throw new Error("TELEGRAM_INTERVAL_CLOCK");
+  const [hour2, minute3] = clock.split(":").map(Number);
+  return hour2 * 60 + minute3;
+}
+function readQueueTable(lines, startOfDay) {
+  const table = /* @__PURE__ */ new Map();
+  let footer = false;
+  for (const line of lines) {
+    if (publicFooter.some((pattern) => pattern.test(line))) {
+      footer = true;
+      continue;
+    }
+    const row3 = /^([1-6]\.[12])\s+(.+)$/u.exec(line);
+    if (footer || !row3 || table.has(row3[1])) throw new Error("TELEGRAM_QUEUE_DUPLICATE_OR_UNKNOWN");
+    let previousEnd = 0;
+    const intervals = [];
+    for (const range of row3[2].split(";")) {
+      const pair = /^(\d{2}:\d{2})\s*[-–—]\s*(\d{2}:\d{2})$/u.exec(range.trim());
+      if (!pair) throw new Error("TELEGRAM_INTERVAL_FORMAT");
+      const start = toMinute(pair[1]), end = toMinute(pair[2]);
+      if (start >= end || start < previousEnd) throw new Error("TELEGRAM_INTERVAL_OVERLAP_OR_ORDER");
+      intervals.push({
+        startsAt: new Date(startOfDay + start * 6e4).toISOString(),
+        endsAt: new Date(startOfDay + end * 6e4).toISOString(),
+        startLocal: pair[1],
+        endLocal: pair[2],
+        kind: "planned_outage"
+      });
+      previousEnd = end;
+    }
+    table.set(row3[1], intervals);
+  }
+  if (table.size !== KHARKIV_TELEGRAM_QUEUE_IDS.length) throw new Error("TELEGRAM_INCOMPLETE_QUEUE_TABLE");
+  return table;
+}
+function findLatestBulletin(rawBody, serviceDate, observedAt, dayStart, dayEnd) {
+  const feed = (0, import_cheerio3.load)(rawBody);
+  const candidates = [];
+  const seenIds = /* @__PURE__ */ new Set();
+  for (const message of feed(".tgme_widget_message[data-post]").toArray()) {
+    const post = feed(message);
+    const id6 = /^kharkivenergy\/([1-9]\d{0,14})$/u.exec(post.attr("data-post") ?? "")?.[1];
+    if (!id6) continue;
+    const body = post.find(".tgme_widget_message_text");
+    if (!body.length) continue;
+    body.find("script,style").remove();
+    body.find("br").replaceWith("\n");
+    body.find("p,div").append("\n");
+    const lines = body.text().split("\n").map((line) => line.replace(/\s+/gu, " ").trim()).filter(Boolean);
+    const text26 = lines.join(" ").toLocaleLowerCase("uk-UA").replace(/['ʼ]/gu, "\u2019");
+    const operativePlan = hourlyPlan.test(text26) || lines.some((line) => heading.test(line) || planHeadline.test(line)) || scheduleTopic.test(text26) && (planChange.test(text26) || planStart.test(text26));
+    const operativeEmergency = emergency.test(text26) && emergencyStart.test(text26);
+    if (!operativePlan && !operativeEmergency) continue;
+    const dateLink = post.find(".tgme_widget_message_date");
+    const times = dateLink.find("time[datetime]");
+    const timestamp9 = times.attr("datetime");
+    const explicitlyDated = matchingDate(text26, serviceDate);
+    const relativeDay = new RegExp("(?:^|[^\\p{L}])\u0437\u0430\u0432\u0442\u0440\u0430(?!\\p{L})", "u").test(text26) ? "tomorrow" : new RegExp("(?:^|[^\\p{L}])\u0441\u044C\u043E\u0433\u043E\u0434\u043D\u0456(?!\\p{L})", "u").test(text26) ? "today" : null;
+    if (!explicitlyDated && !(relativeDay && planChange.test(text26))) continue;
+    if (!validInstant(timestamp9)) throw new Error("TELEGRAM_PUBLICATION_FORMAT");
+    const published = Date.parse(timestamp9);
+    if (published < dayStart - 72 * 36e5 || published >= dayEnd) continue;
+    if (!explicitlyDated) {
+      const publicationDate = localParts(published).date;
+      const effectiveDate = relativeDay === "tomorrow" ? nextCalendarDate(publicationDate) : publicationDate;
+      if (effectiveDate !== serviceDate) continue;
+    }
+    const link = "https://t.me/kharkivenergy/" + id6;
+    if (published > observedAt) throw new Error("TELEGRAM_PUBLICATION_AFTER_OBSERVATION");
+    if (body.length !== 1 || dateLink.length !== 1 || times.length !== 1 || dateLink.attr("href") !== link || post.find(".tgme_widget_message_forwarded_from").length) throw new Error("TELEGRAM_UNTRUSTED_MESSAGE");
+    if (seenIds.has(id6)) throw new Error("TELEGRAM_DATED_PLAN_AMBIGUOUS");
+    seenIds.add(id6);
+    candidates.push({ link, publishedAt: new Date(published).toISOString(), lines });
+  }
+  candidates.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  if (!candidates.length) throw new Error("TELEGRAM_DATED_PLAN_MISSING");
+  if (candidates[0].publishedAt === candidates[1]?.publishedAt) throw new Error("TELEGRAM_DATED_PLAN_AMBIGUOUS");
+  return candidates[0];
+}
+function readTelegramPlan(rawBody, serviceDate, observedAt) {
+  const bounds = dayBounds(serviceDate);
+  if (bounds.minutes !== 1440) throw new Error("DST_TELEGRAM_CLOCK_REQUIRES_OFFSET_POLICY");
+  const latest = findLatestBulletin(rawBody, serviceDate, observedAt, bounds.start, bounds.end);
+  const text26 = latest.lines.join(" ").toLocaleLowerCase("uk-UA").replace(/['ʼ]/gu, "\u2019");
+  if (planWithdrawal.test(text26)) throw new Error("TELEGRAM_PLAN_WITHDRAWN");
+  if (emergency.test(text26)) throw new Error("TELEGRAM_EMERGENCY_OVERLAY_REQUIRES_REVIEW");
+  const [year, month, day] = serviceDate.split("-");
+  const weekday = weekdays[(/* @__PURE__ */ new Date(serviceDate + "T12:00:00Z")).getUTCDay()];
+  const date2 = "\u0443 " + weekday + ", " + Number(day) + " " + months[Number(month) - 1];
+  const fullDay = new RegExp(date2 + "(?: " + year + "(?: \u0440\u043E\u043A\u0443)?)?, \u0437 00:00 \u0434\u043E 24:00", "u");
+  if (!fullDay.test(text26)) throw new Error("TELEGRAM_BODY_DATE_OR_COVERAGE_CONFLICT");
+  const headingIndex = latest.lines.findIndex((line) => heading.test(line));
+  if (headingIndex < 1 || !hourlyPlan.test(latest.lines.slice(0, headingIndex).join(" "))) {
+    throw new Error("TELEGRAM_PLAN_SEMANTICS_NOT_RECOGNIZED");
+  }
+  const table = readQueueTable(latest.lines.slice(headingIndex + 1), bounds.start);
+  return { latest, table };
+}
+function normalize3(rawBody, context2, readPlan) {
+  if (context2.namespace !== "kharkiv:rss" || context2.operatorId !== "kharkiv-oe" || context2.source.id !== KHARKIV_TELEGRAM_SOURCE || context2.source.url !== KHARKIV_TELEGRAM_ENDPOINT) {
+    throw new Error("TELEGRAM_OPERATOR_NAMESPACE_OR_ORIGIN_MISMATCH");
+  }
+  if (typeof rawBody !== "string" || Buffer.byteLength(rawBody, "utf8") > 2e6 || /<!ENTITY|<!DOCTYPE[^>]*\[/iu.test(rawBody)) {
+    throw new Error("TELEGRAM_BODY_INVALID");
+  }
+  const rawHash = sha2562(rawBody);
+  if (context2.source.revision !== rawHash) throw new Error("RAW_SOURCE_HASH_MISMATCH");
+  if (!["catalog", "schedule"].includes(context2.source.verifiedLevel)) throw new Error("PARSER_CANNOT_CERTIFY_ADDRESS_OR_INTEGRATION");
+  if (context2.publicationPolicy !== void 0 && context2.publicationPolicy !== "dated_12_queue_recurring_v2") throw new Error("TELEGRAM_PUBLICATION_POLICY_UNKNOWN");
+  if (!validInstant(context2.observedAt)) throw new Error("INVALID_OBSERVED_AT");
+  if (!KHARKIV_TELEGRAM_QUEUE_IDS.includes(context2.targetId)) throw new Error("TARGET_NOT_FOUND");
+  const serviceDate = calendarDate(context2.serviceDate);
+  const observedAt = Date.parse(context2.observedAt);
+  const { latest, table } = readPlan(rawBody, serviceDate, observedAt);
+  const observationDate = localParts(observedAt).date;
+  const freshness = [observationDate, nextCalendarDate(observationDate)].includes(serviceDate) ? context2.freshness : "stale";
+  const view = {
+    contractVersion: "lba-product/1",
+    revisionId: "kharkiv-telegram:" + sha2562(JSON.stringify([latest.link, latest.publishedAt, latest.lines, context2.targetId, serviceDate])),
+    addressId: context2.addressId,
+    addressLabel: context2.addressLabel,
+    localityLabel: context2.localityLabel,
+    operatorId: context2.operatorId,
+    namespace: context2.namespace,
+    targetId: context2.targetId,
+    serviceDate,
+    timezone: "Europe/Kyiv",
+    status: freshness === "stale" ? "stale" : "published",
+    dayCoverage: "complete",
+    intervals: table.get(context2.targetId).map((interval) => ({ ...interval })),
+    source: { ...context2.source, url: latest.link, revision: rawHash },
+    publishedAt: latest.publishedAt,
+    observedAt: context2.observedAt,
+    freshness,
+    synthetic: context2.synthetic,
+    deliveryEligible: false,
+    notice: "\u0417\u0430\u0433\u0430\u043B\u044C\u043D\u0438\u0439 \u043F\u043B\u0430\u043D \u0433\u0440\u0443\u043F\u0438. \u0427\u0430\u0441 \u043E\u0440\u0456\u0454\u043D\u0442\u043E\u0432\u043D\u0438\u0439 \u0447\u0435\u0440\u0435\u0437 \u043F\u0435\u0440\u0435\u043C\u0438\u043A\u0430\u043D\u043D\u044F. \u0413\u0440\u0443\u043F\u0443 \u043E\u0431\u0440\u0430\u043D\u043E \u0432\u0440\u0443\u0447\u043D\u0443. \u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456\u0441\u0442\u044C \u0431\u0443\u0434\u0438\u043D\u043A\u0443 \u0442\u0430 \u043F\u043E\u0442\u043E\u0447\u043D\u0456 \u0430\u0432\u0430\u0440\u0456\u0439\u043D\u0456 \u0432\u0456\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044F \u043D\u0435 \u043F\u0456\u0434\u0442\u0432\u0435\u0440\u0434\u0436\u0435\u043D\u043E."
+  };
+  validateScheduleView(view);
+  return view;
+}
+function createKharkivTelegramNormalizer() {
+  let lastBody;
+  let lastObservation;
+  const byDate = /* @__PURE__ */ new Map();
+  const readPlan = (rawBody, serviceDate, observedAt) => {
+    if (rawBody !== lastBody || observedAt !== lastObservation) {
+      byDate.clear();
+      lastBody = rawBody;
+      lastObservation = observedAt;
+    }
+    let result2 = byDate.get(serviceDate);
+    if (!result2) {
+      try {
+        result2 = readTelegramPlan(rawBody, serviceDate, observedAt);
+      } catch (error2) {
+        if (!(error2 instanceof Error)) throw error2;
+        result2 = error2;
+      }
+      if (byDate.size === 2) byDate.delete(byDate.keys().next().value);
+      byDate.set(serviceDate, result2);
+    }
+    if (result2 instanceof Error) throw new Error(result2.message);
+    return result2;
+  };
+  return (rawBody, context2) => normalize3(rawBody, context2, readPlan);
+}
+var import_node_crypto22, import_cheerio3, KHARKIV_TELEGRAM_ENDPOINT, KHARKIV_TELEGRAM_SOURCE, KHARKIV_TELEGRAM_QUEUE_IDS, months, weekdays, scheduleTopic, planChange, planStart, planHeadline, emergencyStart, heading, hourlyPlan, planWithdrawal, emergency, publicFooter, sha2562;
+var init_kharkiv_telegram_adapter = __esm({
+  "server/domain/kharkiv-telegram-adapter.ts"() {
+    "use strict";
+    import_node_crypto22 = require("node:crypto");
+    import_cheerio3 = require("cheerio");
+    init_schedule_core();
+    KHARKIV_TELEGRAM_ENDPOINT = "https://t.me/s/kharkivenergy";
+    KHARKIV_TELEGRAM_SOURCE = "kharkiv-official-telegram";
+    KHARKIV_TELEGRAM_QUEUE_IDS = Object.freeze(
+      Array.from({ length: 6 }, (_, index5) => [`${index5 + 1}.1`, `${index5 + 1}.2`]).flat()
+    );
+    months = ["\u0441\u0456\u0447\u043D\u044F", "\u043B\u044E\u0442\u043E\u0433\u043E", "\u0431\u0435\u0440\u0435\u0437\u043D\u044F", "\u043A\u0432\u0456\u0442\u043D\u044F", "\u0442\u0440\u0430\u0432\u043D\u044F", "\u0447\u0435\u0440\u0432\u043D\u044F", "\u043B\u0438\u043F\u043D\u044F", "\u0441\u0435\u0440\u043F\u043D\u044F", "\u0432\u0435\u0440\u0435\u0441\u043D\u044F", "\u0436\u043E\u0432\u0442\u043D\u044F", "\u043B\u0438\u0441\u0442\u043E\u043F\u0430\u0434\u0430", "\u0433\u0440\u0443\u0434\u043D\u044F"];
+    weekdays = ["\u043D\u0435\u0434\u0456\u043B\u044E", "\u043F\u043E\u043D\u0435\u0434\u0456\u043B\u043E\u043A", "\u0432\u0456\u0432\u0442\u043E\u0440\u043E\u043A", "\u0441\u0435\u0440\u0435\u0434\u0443", "\u0447\u0435\u0442\u0432\u0435\u0440", "\u043F\u2019\u044F\u0442\u043D\u0438\u0446\u044E", "\u0441\u0443\u0431\u043E\u0442\u0443"];
+    scheduleTopic = /(?:графік[\p{L}]* (?:погодинних )?відключень|погодинн[\p{L}]* відключ[\p{L}]*|гпв|години відсутності електропостачання)/iu;
+    planChange = /(?:скасов[\p{L}]*|скасован[\p{L}]*|скасув[\p{L}]*|скасували|змін[\p{L}]*|оновл[\p{L}]*|коригув[\p{L}]*|скориг[\p{L}]*|уточнен[\p{L}]*|не діятим|не будуть діяти)/iu;
+    planStart = /(?:будуть діяти|діятимуть|будуть застосовуватися|запроваджуються|запроваджено)/iu;
+    planHeadline = new RegExp("^[^\\p{L}]*(?:\u0433\u0440\u0430\u0444\u0456\u043A[\\p{L}]* (?:\u043F\u043E\u0433\u043E\u0434\u0438\u043D\u043D\u0438\u0445 )?\u0432\u0456\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u044C|\u043F\u043E\u0433\u043E\u0434\u0438\u043D\u043D[\\p{L}]* \u0432\u0456\u0434\u043A\u043B\u044E\u0447[\\p{L}]*|\u0433\u043F\u0432)(?!\\p{L})", "iu");
+    emergencyStart = /(?:діють|застосовано|запроваджено|введено|застосовуються|запроваджуються|вводяться)/iu;
+    heading = /^години відсутності електропостачання по чергам\/підчергам з урахуванням часу на перемикання \(орієнтовно\):$/iu;
+    hourlyPlan = /у харківській області (?:будуть діяти|діятимуть) графіки погодинних відключень/iu;
+    planWithdrawal = /(?:скасовано|скасовані|скасовуються|скасували|не діятим|не будуть діяти|призупинен)/iu;
+    emergency = /аварійн[\p{L}]*\s+(?:відключ|знеструм|режим|обмежен)/iu;
+    publicFooter = [
+      /^перелік адрес за чергами\s*[-–—]\s*тут\.?$/iu,
+      /^[^\p{L}]*для промисловості та бізнесу з \d{2}:\d{2} до \d{2}:\d{2} діятимуть графіки обмеження потужності \(гоп\)\.?$/iu,
+      /^[^\p{L}]*ситуація в енергосистемі постійно змінюється, тож слідкуйте за оновленнями на офіційних ресурсах ["«]харківобленерго["»]\.?$/iu
+    ];
+    sha2562 = (text26) => (0, import_node_crypto22.createHash)("sha256").update(text26, "utf8").digest("hex");
+  }
+});
+
 // server/production/source-intake.ts
 function technicalPlanSha256(view) {
   const status2 = view.status === "stale" ? view.dayCoverage === "none" ? "not_published" : view.intervals.some((i) => i.kind === "planned_outage") ? "published" : view.intervals.length ? "possible" : "no_planned_outages" : view.status;
@@ -15039,8 +15255,8 @@ function validateAdmission(entry) {
   }
   if (entry.state === "technical_display") {
     const profile2 = SOURCE_PROFILES.find((p) => p.sourceId === entry.sourceId);
-    const official = profile2.parser === "yasno" || profile2.parser === "kharkiv_rss";
-    if (!evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) || Date.parse(entry.validUntil) <= Date.parse(entry.reviewedAt) || entry.accessCost !== 0 || !evidence(entry.costEvidence) || entry.publicationBasis?.kind !== (official ? "official_public_feed" : "publisher_public_syndication") || !evidence(entry.publicationBasis.evidence) || entry.formalPrimaryDataLicense !== "not_observed" || entry.providerQuota !== "not_published_in_reviewed_sources" || !["not_disallowed", "unreadable_html", "not_checked"].includes(entry.robots?.status) || !evidence(entry.robots.evidence) || entry.robots.status === "unreadable_html" && profile2.parser !== "yasno" || entry.robots.status === "not_checked" && official || entry.rate?.kind !== "local_operating_budget" || entry.rate.scope !== "origin" || !evidence(entry.rate.evidence) || !integer10(entry.rate.minIntervalMs, 1e3, 864e5) || !integer10(entry.cacheTtlMs, 1e3, 36e5) || !integer10(entry.maxAgeMs, entry.cacheTtlMs, 864e5) || entry.addressBindingVerified !== false || entry.deliveryEligible !== false || entry.parallel48hAccepted !== false || entry.independentFallbackVerified !== false) throw Error("INVALID_TECHNICAL_SOURCE_ADMISSION");
+    const official = profile2.parser === "yasno" || profile2.parser === "kharkiv_rss" || profile2.parser === "kharkiv_telegram";
+    if (!evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) || Date.parse(entry.validUntil) <= Date.parse(entry.reviewedAt) || entry.accessCost !== 0 || !evidence(entry.costEvidence) || entry.publicationBasis?.kind !== (official ? "official_public_feed" : "publisher_public_syndication") || !evidence(entry.publicationBasis.evidence) || entry.formalPrimaryDataLicense !== "not_observed" || entry.providerQuota !== "not_published_in_reviewed_sources" || !["not_disallowed", "unreadable_html", "not_checked"].includes(entry.robots?.status) || !evidence(entry.robots.evidence) || entry.robots.status === "unreadable_html" && profile2.parser !== "yasno" || entry.robots.status === "not_checked" && official && profile2.parser !== "kharkiv_telegram" || entry.rate?.kind !== "local_operating_budget" || entry.rate.scope !== "origin" || !evidence(entry.rate.evidence) || !integer10(entry.rate.minIntervalMs, 1e3, 864e5) || !integer10(entry.cacheTtlMs, 1e3, 36e5) || !integer10(entry.maxAgeMs, entry.cacheTtlMs, 864e5) || entry.addressBindingVerified !== false || entry.deliveryEligible !== false || entry.parallel48hAccepted !== false || entry.independentFallbackVerified !== false) throw Error("INVALID_TECHNICAL_SOURCE_ADMISSION");
     const scope5 = entry.semanticScope, hash64 = (v) => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
     if (entry.sourceId === "mirror-odesa" && !entry.recurringScope) {
       const targets = Array.from({ length: 6 }, (_, i) => [`GPV${i + 1}.1`, `GPV${i + 1}.2`]).flat();
@@ -15054,7 +15270,7 @@ function validateAdmission(entry) {
     const publication = entry.publicationScope;
     const recurring = entry.recurringScope;
     if (recurring !== void 0) {
-      const expected = entry.sourceId === "voe-mirror-vn-progr" ? "vn-progr-hour-matrix/1.0.0" : entry.sourceId === "kharkiv-official-rss" ? "kharkiv-dated-12-queue/2" : entry.sourceId === "mirror-odesa" ? "odesa-publisher-hour-matrix/1" : null;
+      const expected = entry.sourceId === "voe-mirror-vn-progr" ? "vn-progr-hour-matrix/1.0.0" : entry.sourceId === "kharkiv-official-rss" ? "kharkiv-dated-12-queue/2" : entry.sourceId === KHARKIV_TELEGRAM_SOURCE ? "kharkiv-telegram-12-queue/1" : entry.sourceId === "mirror-odesa" ? "odesa-publisher-hour-matrix/1" : null;
       if (!expected || recurring.kind !== "current_and_next_kyiv_day" || recurring.authority !== "OWNER_APPROVED_INITIAL_LAUNCH/1" || recurring.parserVersion !== expected || recurring.emergencyOverlay !== "unknown" || !integer10(recurring.maxPublicationAgeMs, 1e3, 2592e5) || Date.parse(entry.validUntil) - Date.parse(entry.reviewedAt) > 30 * 864e5 || scope5 !== void 0 || publication !== void 0) throw Error("INVALID_TECHNICAL_RECURRING_SCOPE");
     }
     if (entry.sourceId === "kharkiv-official-rss" && !recurring) {
@@ -15066,7 +15282,7 @@ function validateAdmission(entry) {
         throw Error("INVALID_TECHNICAL_PUBLICATION_SCOPE");
       }
       if (Date.parse(publication.publishedAt) > Date.parse(entry.reviewedAt)) throw Error("INVALID_TECHNICAL_PUBLICATION_SCOPE");
-    } else if (publication !== void 0) throw Error("INVALID_TECHNICAL_PUBLICATION_SCOPE");
+    } else if (publication !== void 0 || entry.sourceId === KHARKIV_TELEGRAM_SOURCE && !recurring) throw Error("INVALID_TECHNICAL_PUBLICATION_SCOPE");
     return;
   }
   if (entry.state !== "admitted" || !evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) || Date.parse(entry.validUntil) <= Date.parse(entry.reviewedAt) || entry.accessCost !== 0 || !evidence(entry.costEvidence) || entry.license?.systematicReuse !== "allowed" || !evidence(entry.license.evidence) || entry.automation?.robots !== "allowed" || !evidence(entry.automation.evidence) || entry.rate?.allowed !== true || entry.rate.scope !== "origin" || !evidence(entry.rate.evidence) || !integer10(entry.rate.minIntervalMs, 1e3, 864e5) || !integer10(entry.cacheTtlMs, 1e3, 36e5) || !integer10(entry.maxAgeMs, entry.cacheTtlMs, 864e5)) throw new Error("INVALID_SOURCE_ADMISSION");
@@ -15085,6 +15301,7 @@ function createSourceIntake(options) {
     }
   }
   const captures2 = /* @__PURE__ */ new Map();
+  const normalizeKharkivTelegram = createKharkivTelegramNormalizer();
   const cache2 = /* @__PURE__ */ new Map(), inFlight = /* @__PURE__ */ new Map(), nextAttempt = /* @__PURE__ */ new Map();
   let active = 0, lastClock = -Infinity;
   function clock() {
@@ -15209,6 +15426,8 @@ function createSourceIntake(options) {
           if (payload?.meta?.schemaVersion !== "1.0.0") return fail11("SOURCE_SCHEMA_REJECTED");
         }
         view = normalizeHourMatrix(raw.raw, { ...context2, namespace: profile2.parserNamespace });
+      } else if (profile2.parser === "kharkiv_telegram") {
+        view = normalizeKharkivTelegram(raw.raw, { ...context2, operatorId: "kharkiv-oe", namespace: "kharkiv:rss" });
       } else view = normalizeKharkivRss(raw.raw, { ...context2, operatorId: "kharkiv-oe", namespace: "kharkiv:rss", ...entry.state === "technical_display" && entry.recurringScope?.parserVersion === "kharkiv-dated-12-queue/2" ? { publicationPolicy: "dated_12_queue_recurring_v2" } : {} });
       if (!view.publishedAt || view.operatorId !== request3.operatorId || view.namespace !== request3.namespace || view.targetId !== request3.targetId || view.serviceDate !== request3.serviceDate || view.source.revision !== raw.rawSha256) return fail11("SOURCE_SCHEMA_REJECTED");
       validateScheduleView(view);
@@ -15258,7 +15477,7 @@ function createSourceIntake(options) {
     if (!profile2) return fail11("UNKNOWN_SOURCE");
     if (profile2.parser === "odesa_plan_api") return fail11("SOURCE_NOT_ADMITTED");
     if (request3.operatorId !== profile2.operatorId || request3.namespace !== profile2.namespace) return fail11("SOURCE_SCOPE_MISMATCH");
-    if (typeof request3.serviceDate !== "string" || typeof request3.targetId !== "string" || !(profile2.parser === "hour_matrix" ? /^GPV[1-6]\.[12]$/ : profile2.parser === "kharkiv_rss" ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request3.targetId)) return fail11("INVALID_REQUEST");
+    if (typeof request3.serviceDate !== "string" || typeof request3.targetId !== "string" || !(profile2.parser === "hour_matrix" ? /^GPV[1-6]\.[12]$/ : profile2.parser === "kharkiv_rss" || profile2.parser === "kharkiv_telegram" ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request3.targetId)) return fail11("INVALID_REQUEST");
     try {
       calendarDate(request3.serviceDate);
     } catch {
@@ -15333,15 +15552,16 @@ function createSourceIntake(options) {
     }
   });
 }
-var import_node_crypto22, SOURCE_PROFILES, IntakeFailure, fail11, evidence, integer10, sha4, intakeCodes, header;
+var import_node_crypto23, SOURCE_PROFILES, IntakeFailure, fail11, evidence, integer10, sha4, intakeCodes, header;
 var init_source_intake = __esm({
   "server/production/source-intake.ts"() {
     "use strict";
-    import_node_crypto22 = require("node:crypto");
+    import_node_crypto23 = require("node:crypto");
     init_schedule_core();
     init_yasno_adapter();
     init_hour_matrix_adapter();
     init_kharkiv_adapter();
+    init_kharkiv_telegram_adapter();
     SOURCE_PROFILES = Object.freeze([
       { sourceId: "yasno-kem", name: "YASNO \xB7 \u041A\u0438\u0457\u0432\u0441\u044C\u043A\u0456 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043C\u0435\u0440\u0435\u0436\u0456", region: "kyiv", operatorId: "dtek-kem", namespace: "yasno:25/902", parserNamespace: "yasno:25/902", parser: "yasno", endpoint: "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages", researchBlocker: "Systematic reuse/rate admission and exact binding pending." },
       { sourceId: "yasno-dnem", name: "YASNO \xB7 \u0414\u043D\u0456\u043F\u0440\u043E\u0432\u0441\u044C\u043A\u0456 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043C\u0435\u0440\u0435\u0436\u0456", region: "dnipropetrovsk", operatorId: "dtek-dnem", namespace: "yasno:3/301", parserNamespace: "yasno:3/301", parser: "yasno", endpoint: "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/301/planned-outages", researchBlocker: "Separate DSO; systematic reuse/rate admission and exact binding pending." },
@@ -15351,7 +15571,8 @@ var init_source_intake = __esm({
       { sourceId: "dtek-oem-public-plan-ajax", name: "\u0414\u0422\u0415\u041A \u041E\u0434\u0435\u0441\u044C\u043A\u0456 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043C\u0435\u0440\u0435\u0436\u0456 \xB7 JSON-\u043F\u043B\u0430\u043D", region: "odesa", operatorId: "dtek-oem", namespace: "dtek:oem", parserNamespace: "dtek:oem-api", parser: "odesa_plan_api", endpoint: "https://www.dtek-oem.com.ua/ua/ajax", researchBlocker: "Typed guest API requires separate explicit operating opt-in and two-hop capture. Official publication/binding/20-address/48h and independent fallback qualification remain separate; HTML access-stop unchanged." },
       { sourceId: "dtek-oem-official", name: "\u0414\u0422\u0415\u041A \u041E\u0434\u0435\u0441\u044C\u043A\u0456 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043C\u0435\u0440\u0435\u0436\u0456", region: "odesa", operatorId: "dtek-oem", namespace: "dtek:oem", parserNamespace: "dtek:oem", parser: "hour_matrix", endpoint: "https://www.dtek-oem.com.ua/ua/shutdowns", researchBlocker: "9Nov current robots wildcardDisallow:/ confirmed by raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991. HTML200 proves plan availability, not automation permission. No repeated scraping or challenge bypass.", automationBlocked: true },
       { sourceId: "mirror-odesa", name: "\u041E\u0434\u0435\u0441\u0430 \xB7 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0435 \u0434\u0437\u0435\u0440\u043A\u0430\u043B\u043E \u0433\u0440\u0430\u0444\u0456\u043A\u0456\u0432", region: "odesa", operatorId: "dtek-oem", namespace: "dtek:oem", parserNamespace: "dtek:oem-mirror", parser: "hour_matrix", endpoint: "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json", researchBlocker: "Community relay requires explicit finite owner initial-launch fallback scope; current primary equivalence, independent upstream,48h and exact house binding are not claimed. Historical9Nov comparison remains dated." },
-      { sourceId: "kharkiv-official-rss", name: "\u0425\u0430\u0440\u043A\u0456\u0432\u043E\u0431\u043B\u0435\u043D\u0435\u0440\u0433\u043E \xB7 \u043E\u0444\u0456\u0446\u0456\u0439\u043D\u0438\u0439 RSS", region: "kharkiv", operatorId: "kharkiv-oe", namespace: "kharkiv:rss", parserNamespace: "kharkiv:rss", parser: "kharkiv_rss", endpoint: "https://oblenergo.kharkiv.ua/uk/rss.xml", researchBlocker: "Official dated group plans need explicit finite recurring parser policy. Manual group selection does not certify a house or current emergency overlay." }
+      { sourceId: "kharkiv-official-rss", name: "\u0425\u0430\u0440\u043A\u0456\u0432\u043E\u0431\u043B\u0435\u043D\u0435\u0440\u0433\u043E \xB7 \u043E\u0444\u0456\u0446\u0456\u0439\u043D\u0438\u0439 RSS", region: "kharkiv", operatorId: "kharkiv-oe", namespace: "kharkiv:rss", parserNamespace: "kharkiv:rss", parser: "kharkiv_rss", endpoint: "https://oblenergo.kharkiv.ua/uk/rss.xml", researchBlocker: "Official dated group plans need explicit finite recurring parser policy. Manual group selection does not certify a house or current emergency overlay." },
+      { sourceId: KHARKIV_TELEGRAM_SOURCE, name: "\u0425\u0430\u0440\u043A\u0456\u0432\u043E\u0431\u043B\u0435\u043D\u0435\u0440\u0433\u043E \xB7 \u043E\u0444\u0456\u0446\u0456\u0439\u043D\u0438\u0439 \u043A\u0430\u043D\u0430\u043B", region: "kharkiv", operatorId: "kharkiv-oe", namespace: "kharkiv:rss", parserNamespace: "kharkiv:rss", parser: "kharkiv_telegram", endpoint: KHARKIV_TELEGRAM_ENDPOINT, researchBlocker: "Only dated complete group plans from the official public operator channel are in scope." }
     ].map((profile2) => Object.freeze(profile2)));
     IntakeFailure = class extends Error {
       code;
@@ -15365,7 +15586,7 @@ var init_source_intake = __esm({
     };
     evidence = (v) => typeof v === "string" && v.trim().length > 0 && v.length <= 2048;
     integer10 = (n, min, max) => Number.isSafeInteger(n) && n >= min && n <= max;
-    sha4 = (value) => (0, import_node_crypto22.createHash)("sha256").update(value).digest("hex");
+    sha4 = (value) => (0, import_node_crypto23.createHash)("sha256").update(value).digest("hex");
     intakeCodes = /* @__PURE__ */ new Set(["SOURCE_UPDATE_UNCONFIRMED", "UNKNOWN_SOURCE", "INVALID_REQUEST", "SOURCE_SCOPE_MISMATCH", "SOURCE_NOT_ADMITTED", "SOURCE_ADMISSION_EXPIRED", "SOURCE_CLOCK_INVALID", "SOURCE_BUSY", "SOURCE_RATE_LIMITED", "SOURCE_RATE_LIMIT_UNVERIFIED", "SOURCE_TIMEOUT", "SOURCE_TRANSPORT_FAILED", "SOURCE_HTTP_REJECTED", "SOURCE_ORIGIN_REJECTED", "SOURCE_BODY_LIMIT", "SOURCE_CONTENT_TYPE_REJECTED", "SOURCE_UTF8_REJECTED", "SOURCE_ENCODING_REJECTED", "SOURCE_SCHEMA_REJECTED"]);
     header = (headers, name) => Object.entries(headers).find(([key3]) => key3.toLowerCase() === name)?.[1];
   }
@@ -15753,11 +15974,11 @@ function createProductionScheduleEvents(options) {
     }
   });
 }
-var import_node_crypto23, SCHEDULE_EVENTS_SCHEMA_SQL, plain7, text13, uuid2, hash3, int, epoch, instant2, fail12, scheduleEventDigest;
+var import_node_crypto24, SCHEDULE_EVENTS_SCHEMA_SQL, plain7, text13, uuid2, hash3, int, epoch, instant2, fail12, scheduleEventDigest;
 var init_schedule_events = __esm({
   "server/production/schedule-events.ts"() {
     "use strict";
-    import_node_crypto23 = require("node:crypto");
+    import_node_crypto24 = require("node:crypto");
     init_deployed_schedule_qualification();
     init_engine();
     init_schedule_core();
@@ -15805,7 +16026,7 @@ create table if not exists lba_production_schedule_outbox_proof (
     fail12 = (suffix) => {
       throw new ProductionProfileStoreError("PRODUCTION_SCHEDULE_EVENT_" + suffix);
     };
-    scheduleEventDigest = (v) => (0, import_node_crypto23.createHash)("sha256").update(canonical7(v)).digest("hex");
+    scheduleEventDigest = (v) => (0, import_node_crypto24.createHash)("sha256").update(canonical7(v)).digest("hex");
   }
 });
 
@@ -15898,20 +16119,34 @@ function createRuntimeDataContext(ports) {
     const currentCatalog = Boolean(memoryFresh && current2?.catalog.state === "available" && freshIds.size);
     return { addresses, plans, operatorHouseNotices, manualGroups: [...groups2.values()], operatorLabels: ports.operatorLabels, addressCatalogStatus: currentCatalog ? "ready" : "unavailable", maxAddresses: 20 };
   }
-  return Object.freeze({ refresh, forProfile });
+  function publicScheduleCoverage() {
+    const now = ports.now(), today = localParts(now).date, dates = [today, nextCalendarDate(today)];
+    if (!generation || generation.plans.state !== "available" || now < generation.at || now - generation.at > 3e4) return { asOf: null, today, sources: [] };
+    const counts = /* @__PURE__ */ new Map();
+    for (const plan2 of generation.plans.plans) {
+      const { view, provenance } = plan2;
+      if (!dates.includes(view.serviceDate) || view.freshness !== "current" || view.dayCoverage !== "complete") continue;
+      const id6 = JSON.stringify([provenance.sourceId, view.serviceDate]);
+      const count5 = counts.get(id6) ?? { sourceId: provenance.sourceId, date: view.serviceDate, groups: 0 };
+      count5.groups++;
+      counts.set(id6, count5);
+    }
+    return { asOf: new Date(generation.at).toISOString(), today, sources: [...counts.values()] };
+  }
+  return Object.freeze({ refresh, forProfile, publicScheduleCoverage });
 }
-var import_node_crypto24, cities, key;
+var import_node_crypto25, cities, key;
 var init_runtime_context = __esm({
   "server/production/runtime-context.ts"() {
     "use strict";
     init_operator_house_notice();
     init_schedule_core();
-    import_node_crypto24 = require("node:crypto");
+    import_node_crypto25 = require("node:crypto");
     init_schedule_core();
     init_source_intake();
     init_schedule_events();
     cities = { kyiv: "\u041A\u0438\u0457\u0432", vinnytsia: "\u0412\u0456\u043D\u043D\u0438\u0446\u044F", odesa: "\u041E\u0434\u0435\u0441\u0430", kharkiv: "\u0425\u0430\u0440\u043A\u0456\u0432", dnipropetrovsk: "\u0414\u043D\u0456\u043F\u0440\u043E\u043F\u0435\u0442\u0440\u043E\u0432\u0441\u044C\u043A\u0430 \u043E\u0431\u043B\u0430\u0441\u0442\u044C" };
-    key = (v) => (0, import_node_crypto24.createHash)("sha256").update(JSON.stringify(v)).digest("hex");
+    key = (v) => (0, import_node_crypto25.createHash)("sha256").update(JSON.stringify(v)).digest("hex");
   }
 });
 
@@ -16303,7 +16538,7 @@ function createOperatorAddressFlow(options) {
     } catch {
       return fail13("ADDRESS_FLOW_INVALID_INPUT");
     }
-    const digest6 = (0, import_node_crypto25.createHash)("sha256").update(canonical8(r)).digest("hex"), scope5 = { sessionId: r.expectedSessionId, revision: r.expectedRevision };
+    const digest6 = (0, import_node_crypto26.createHash)("sha256").update(canonical8(r)).digest("hex"), scope5 = { sessionId: r.expectedSessionId, revision: r.expectedRevision };
     const reservation = await options.store.withLockedProfile(identity3, scope5, async ({ client: client2, state, serverNow }) => {
       const old = await row3(client2, identity3.ownerId, state.sessionId), saved = old ? savedState(old.state) : empty(), receipt4 = await requestRow(client2, identity3.ownerId, state.sessionId, r.id);
       if (receipt4 && receipt4.inputDigest !== digest6 || old?.operationId === r.id && old.inputDigest !== digest6) return fail13("ADDRESS_FLOW_INPUT_ID_CONFLICT");
@@ -16438,12 +16673,12 @@ function createOperatorAddressFlow(options) {
   }
   return Object.freeze({ lookup, forProfile });
 }
-var import_node_crypto25, import_node_util3, directory2, TTL2, rejectedCodes, obj, uuid4, fail13, canonical8, clone2, empty;
+var import_node_crypto26, import_node_util3, directory2, TTL2, rejectedCodes, obj, uuid4, fail13, canonical8, clone2, empty;
 var init_operator_address_flow = __esm({
   "server/production/operator-address-flow.ts"() {
     "use strict";
     init_operator_house_notice();
-    import_node_crypto25 = require("node:crypto");
+    import_node_crypto26 = require("node:crypto");
     import_node_util3 = require("node:util");
     init_schedule_core();
     init_provider_address_lookup();
@@ -16546,7 +16781,7 @@ function createProductAddressFlow(options) {
       }
       return operatorFlow.lookup(identity3, raw);
     }
-    const request3 = parse2(raw), digest6 = (0, import_node_crypto26.createHash)("sha256").update(canonical9(request3)).digest("hex");
+    const request3 = parse2(raw), digest6 = (0, import_node_crypto27.createHash)("sha256").update(canonical9(request3)).digest("hex");
     const scope5 = { sessionId: request3.expectedSessionId, revision: request3.expectedRevision };
     const reservation = await options.store.withLockedProfile(identity3, scope5, async ({ client: client2, state, serverNow }) => {
       const old = await row3(client2, identity3.ownerId, state.sessionId), saved = old ? copy(old.state) : empty2();
@@ -16659,11 +16894,11 @@ function registerProductAddressRoutes(app2, ports) {
     }
   });
 }
-var import_node_crypto26, import_node_util4, OWNED_ADDRESS_LOOKUP_SCHEMA_SQL, directory3, obj2, id, integer11, uuid5, fail14, canonical9, empty2, copy;
+var import_node_crypto27, import_node_util4, OWNED_ADDRESS_LOOKUP_SCHEMA_SQL, directory3, obj2, id, integer11, uuid5, fail14, canonical9, empty2, copy;
 var init_address_flow = __esm({
   "server/production/address-flow.ts"() {
     "use strict";
-    import_node_crypto26 = require("node:crypto");
+    import_node_crypto27 = require("node:crypto");
     import_node_util4 = require("node:util");
     init_address_index();
     init_schedule_core();
@@ -16897,11 +17132,11 @@ function buildYasnoAddressCandidate(input) {
     }
   };
 }
-var import_node_crypto27, import_acorn2, ORIGIN, PREFIX, SOURCE, YASNO_KYIV_ADDRESS_SCOPE, isObject, sha5, positiveId;
+var import_node_crypto28, import_acorn2, ORIGIN, PREFIX, SOURCE, YASNO_KYIV_ADDRESS_SCOPE, isObject, sha5, positiveId;
 var init_yasno_address_adapter = __esm({
   "server/domain/yasno-address-adapter.ts"() {
     "use strict";
-    import_node_crypto27 = require("node:crypto");
+    import_node_crypto28 = require("node:crypto");
     import_acorn2 = require("acorn");
     init_address_index();
     init_schedule_core();
@@ -16910,7 +17145,7 @@ var init_yasno_address_adapter = __esm({
     SOURCE = "yasno-public-address-v2";
     YASNO_KYIV_ADDRESS_SCOPE = Object.freeze({ operatorId: "dtek-kem", namespace: "yasno:25/902", regionId: 25, dsoId: 902 });
     isObject = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value));
-    sha5 = (value) => (0, import_node_crypto27.createHash)("sha256").update(value).digest("hex");
+    sha5 = (value) => (0, import_node_crypto28.createHash)("sha256").update(value).digest("hex");
     positiveId = (value) => typeof value === "number" && Number.isSafeInteger(value) && value > 0;
   }
 });
@@ -16980,6 +17215,30 @@ function technicalDisplaySourceRegistry(enabled = false) {
   const historical = historicalTechnicalDisplaySourceRegistry(enabled);
   return historical.map((entry) => {
     if (!enabled) return entry;
+    if (entry.sourceId === KHARKIV_TELEGRAM_SOURCE) {
+      const record7 = {
+        sourceId: entry.sourceId,
+        state: "technical_display",
+        revisionId: OWNER_APPROVED_INITIAL_LAUNCH.kind + "/kharkiv-official-telegram/dated-12-queue-v1",
+        reviewedAt: "2026-11-11T00:40:00Z",
+        validUntil: OWNER_APPROVED_INITIAL_LAUNCH.validUntil,
+        accessCost: 0,
+        costEvidence: "Ordinary 11 November anonymous HTTPS GET of the public channel returned 200 without a Telegram account, key or subscription.",
+        publicationBasis: { kind: "official_public_feed", evidence: "Kharkivoblenergo public channel @kharkivenergy, post 2348. The 11 November 2026 local day and 12 groups were verified against the original publication." },
+        formalPrimaryDataLicense: "not_observed",
+        providerQuota: "not_published_in_reviewed_sources",
+        robots: { status: "not_checked", evidence: "Public channel preview path only. No credential, session, redirect or anti-bot workaround." },
+        rate: { kind: "local_operating_budget", scope: "origin", minIntervalMs: 27e5, evidence: "One anonymous channel preview per 45 minutes; honor provider access and rate limits." },
+        cacheTtlMs: 27e5,
+        maxAgeMs: 108e5,
+        addressBindingVerified: false,
+        deliveryEligible: false,
+        parallel48hAccepted: false,
+        independentFallbackVerified: false,
+        recurringScope: { kind: "current_and_next_kyiv_day", authority: OWNER_APPROVED_INITIAL_LAUNCH.kind, parserVersion: "kharkiv-telegram-12-queue/1", maxPublicationAgeMs: 1296e5, emergencyOverlay: "unknown" }
+      };
+      return record7;
+    }
     const odesa = entry.sourceId === "mirror-odesa";
     if (odesa) {
       const record7 = {
@@ -17011,7 +17270,7 @@ function technicalDisplaySourceRegistry(enabled = false) {
     const record6 = {
       sourceId: profile2.sourceId,
       state: "technical_display",
-      revisionId: OWNER_APPROVED_INITIAL_LAUNCH.kind + "/" + profile2.sourceId + "/recurring-v2",
+      revisionId: OWNER_APPROVED_INITIAL_LAUNCH.kind + "/" + profile2.sourceId + (vinnytsia ? "/recurring-v3" : "/recurring-v2"),
       reviewedAt: OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt,
       validUntil: OWNER_APPROVED_INITIAL_LAUNCH.validUntil,
       accessCost: 0,
@@ -17031,7 +17290,9 @@ function technicalDisplaySourceRegistry(enabled = false) {
         kind: "current_and_next_kyiv_day",
         authority: OWNER_APPROVED_INITIAL_LAUNCH.kind,
         parserVersion: vinnytsia ? "vn-progr-hour-matrix/1.0.0" : "kharkiv-dated-12-queue/2",
-        maxPublicationAgeMs: vinnytsia ? 72e5 : 2592e5,
+        // An unchanged, dated plan can still apply throughout its service day.
+        // Observation freshness is governed separately by cacheTtlMs/maxAgeMs.
+        maxPublicationAgeMs: vinnytsia ? 1296e5 : 2592e5,
         emergencyOverlay: "unknown"
       }
     };
@@ -17055,6 +17316,7 @@ var init_source_operating_policy = __esm({
   "server/production/source-operating-policy.ts"() {
     "use strict";
     init_source_intake();
+    init_kharkiv_telegram_adapter();
     YASNO_SHARED_ORIGIN_BUDGET_MS = 1e3;
     TECHNICAL_SOURCE_REVIEW = Object.freeze({
       reviewedAt: "2026-11-08T19:25:59Z",
@@ -17182,7 +17444,7 @@ async function collectAddressCapture(input) {
         contentType,
         observedAt: new Date(input.now()).toISOString(),
         rawBody,
-        rawSha256: (0, import_node_crypto28.createHash)("sha256").update(bytes).digest("hex")
+        rawSha256: (0, import_node_crypto29.createHash)("sha256").update(bytes).digest("hex")
       } };
     } catch {
       return controller.signal.aborted ? failure("ADDRESS_TIMEOUT", true, true) : failure("ADDRESS_TRANSPORT_FAILED");
@@ -17201,11 +17463,11 @@ async function collectAddressCapture(input) {
     controller.abort();
   }
 }
-var import_node_crypto28, MAX_BYTES, failure;
+var import_node_crypto29, MAX_BYTES, failure;
 var init_address_catalog_http = __esm({
   "server/production/address-catalog-http.ts"() {
     "use strict";
-    import_node_crypto28 = require("node:crypto");
+    import_node_crypto29 = require("node:crypto");
     MAX_BYTES = 25e4;
     failure = (code, hold = false, workerHold = false) => ({ ok: false, code, hold, workerHold });
   }
@@ -17221,7 +17483,7 @@ function validOrigin(value) {
     return false;
   }
 }
-function zeroHopMarker(encoded, epoch8) {
+function readMarker(encoded, epoch8, version) {
   if (typeof encoded !== "string" || encoded.length > 2048 || !encoded.startsWith("{")) return null;
   let marker;
   try {
@@ -17229,7 +17491,7 @@ function zeroHopMarker(encoded, epoch8) {
   } catch {
     return null;
   }
-  if (!marker || typeof marker !== "object" || Object.keys(marker).length !== 11 || marker.kind !== "lba-public-source-reservation" || marker.version !== 1 || marker.epoch !== epoch8 || marker.hops !== 0 || !validOrigin(marker.origin) || typeof marker.token !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(marker.token) || !safeInteger(marker.reservedAtMs, 0, 8639999e9) || !safeInteger(marker.deadlineAtMs, marker.reservedAtMs + 1, marker.reservedAtMs + 3e4) || !safeInteger(marker.maxHops, 1, 4) || !safeInteger(marker.intervalMs, 1e3, 864e5) || marker.nextHopAtMs !== marker.reservedAtMs || (marker.maxHops - 1) * marker.intervalMs >= 3e4) return null;
+  if (!marker || typeof marker !== "object" || Object.keys(marker).length !== 11 || marker.kind !== "lba-public-source-reservation" || marker.version !== version || marker.epoch !== epoch8 || !validOrigin(marker.origin) || typeof marker.token !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(marker.token) || !safeInteger(marker.reservedAtMs, 0, 8639999e9) || !safeInteger(marker.deadlineAtMs, marker.reservedAtMs + 1, marker.reservedAtMs + 3e4) || !safeInteger(marker.maxHops, 1, 4) || !safeInteger(marker.intervalMs, 1e3, 864e5) || !safeInteger(marker.hops, 0, marker.maxHops) || (marker.hops === 0 ? marker.nextHopAtMs !== marker.reservedAtMs : !safeInteger(marker.nextHopAtMs, marker.reservedAtMs + marker.hops * marker.intervalMs, marker.deadlineAtMs + marker.intervalMs - 1)) || (marker.maxHops - 1) * marker.intervalMs >= 3e4) return null;
   return marker;
 }
 function createPublicSourceReservationGuard(options) {
@@ -17282,8 +17544,11 @@ function createPublicSourceReservationGuard(options) {
       }
       await q.query("begin");
       tx = true;
-      const timeout = Math.min(1e3, remaining());
-      await q.query("select set_config('statement_timeout',$1,true),set_config('lock_timeout',$1,true),set_config('idle_in_transaction_session_timeout',$1,true)", [String(timeout)]);
+      const available = remaining();
+      await q.query(
+        "select set_config('statement_timeout',$1,true),set_config('lock_timeout',$1,true),set_config('idle_in_transaction_session_timeout',$2,true)",
+        [String(Math.min(1e3, available)), String(Math.min(5e3, available))]
+      );
       const result2 = await bounded3(body(q));
       remaining();
       if (destroy) denied("RESERVATION_STORAGE_UNAVAILABLE", "unavailable");
@@ -17323,16 +17588,25 @@ function createPublicSourceReservationGuard(options) {
     if (!safeInteger(ms, 0, 8639999e9)) denied("RESERVATION_STORAGE_UNAVAILABLE", "unavailable");
     return ms;
   }
-  async function locked(q, origin) {
-    const worker = (await q.query("select uncertain,hold_reason from lba_public_source_worker where id=true for update")).rows;
-    const origins = (await q.query("select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update", [origin])).rows;
-    if (worker.length !== 1 || origins.length !== 1) denied("RESERVATION_TOKEN_CONFLICT");
-    return { worker: worker[0], origin: origins[0] };
+  async function workerRow(q, lock2) {
+    const rows = (await q.query("select uncertain,hold_reason from lba_public_source_worker where id=true for " + lock2)).rows;
+    if (rows.length !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+    return rows[0];
   }
-  async function owned(q, origin, encoded) {
+  async function originRow(q, origin) {
+    return (await q.query("select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update", [origin])).rows[0];
+  }
+  function workerAllows(row3, origin, version) {
+    if (row3.uncertain === false && row3.hold_reason === null) return true;
+    if (version !== 2 || row3.uncertain !== true) return false;
+    const legacy = readMarker(row3.hold_reason, epoch8, 1);
+    return legacy !== null && legacy.origin !== origin;
+  }
+  async function owned(q, marker, encoded) {
     await control(q);
-    const rows = await locked(q, origin);
-    if (rows.worker.uncertain !== true || rows.origin.uncertain !== true || rows.worker.hold_reason !== encoded || rows.origin.hold_reason !== encoded) denied("RESERVATION_TOKEN_CONFLICT");
+    const worker = await workerRow(q, marker.version === 1 ? "update" : "share"), origin = await originRow(q, marker.origin);
+    const workerOwned = marker.version === 1 ? worker.uncertain === true && worker.hold_reason === encoded : workerAllows(worker, marker.origin, marker.version);
+    if (!workerOwned || origin?.uncertain !== true || origin.hold_reason !== encoded) denied("RESERVATION_TOKEN_CONFLICT");
   }
   async function persist(q, callback, receipt4) {
     if (callback) try {
@@ -17341,64 +17615,73 @@ function createPublicSourceReservationGuard(options) {
       denied("RESERVATION_CALLBACK_FAILED", "unavailable");
     }
   }
-  async function reconcileExpiredZeroHop(retire) {
+  async function reconcileExpiredSourceRun(origin, retire) {
     if (typeof retire !== "function") return { state: "blocked", code: "INVALID_RESERVATION_INPUT" };
     try {
       return await transaction(import_node_perf_hooks.performance.now() + 5e3, void 0, async (q) => {
         await control(q);
-        const workers = (await q.query("select uncertain,hold_reason from lba_public_source_worker where id=true for update")).rows;
-        const worker = workers[0], encoded = worker?.hold_reason;
-        const marker = workers.length === 1 && worker.uncertain === true ? zeroHopMarker(encoded, epoch8) : null;
-        if (!marker) return { state: "unchanged" };
-        const rows = (await q.query("select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update", [marker.origin])).rows;
-        const origin = rows[0], next = new Date(origin?.next_attempt_at).getTime();
-        if (rows.length !== 1 || origin.uncertain !== true || origin.hold_reason !== encoded || !Number.isFinite(next) || next < marker.reservedAtMs + marker.maxHops * marker.intervalMs) return { state: "unchanged" };
+        const worker = await workerRow(q, origin === void 0 ? "update" : "share");
+        if (origin !== void 0 && !workerAllows(worker, origin, 2)) return { state: "unchanged" };
+        const legacy = origin === void 0 && worker.uncertain === true ? readMarker(worker.hold_reason, epoch8, 1) : null;
+        const lockedOrigin = origin ?? legacy?.origin;
+        if (lockedOrigin === void 0) return { state: "unchanged" };
+        const row3 = await originRow(q, lockedOrigin), encoded = row3?.hold_reason;
+        const marker = legacy ?? readMarker(encoded, epoch8, 2);
+        const next = new Date(row3?.next_attempt_at).getTime();
+        if (!marker || marker.origin !== lockedOrigin || row3?.uncertain !== true || origin === void 0 && (!legacy || encoded !== worker.hold_reason) || !Number.isFinite(next) || next < marker.reservedAtMs + marker.maxHops * marker.intervalMs) return { state: "unchanged" };
         const now = await dbTime(q);
-        if (now < marker.deadlineAtMs) return { state: "unchanged" };
+        if (now < marker.deadlineAtMs || marker.hops > 0 && (marker.maxHops !== 1 || next < marker.nextHopAtMs || now < next)) return { state: "unchanged" };
         const run = {
           reservationToken: marker.token,
           origin: marker.origin,
           controlEpoch: epoch8,
           reservedAt: iso2(marker.reservedAtMs),
           expectedMaxHops: marker.maxHops,
+          grantedHops: marker.hops,
           finishedAt: iso2(now)
         };
         if (!await retire(q, run)) return { state: "unchanged" };
-        const releaseWorker = await q.query("update lba_public_source_worker set uncertain=false,hold_reason=null where id=true and uncertain=true and hold_reason=$1", [encoded]);
+        if (legacy) {
+          const releaseWorker = await q.query("update lba_public_source_worker set uncertain=false,hold_reason=null where id=true and uncertain=true and hold_reason=$1", [encoded]);
+          if (releaseWorker.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+        }
         const releaseOrigin = await q.query("update lba_public_source_origin set uncertain=false,hold_reason=null where origin=$1 and uncertain=true and hold_reason=$2", [marker.origin, encoded]);
-        if (releaseWorker.rowCount !== 1 || releaseOrigin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+        if (releaseOrigin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
         return { state: "recovered" };
       });
     } catch (error2) {
       return failure2(error2);
     }
   }
-  return { reconcileExpiredZeroHop, async reserve(input) {
+  return { reconcileExpiredSourceRun, async reserve(input) {
     const duration = input?.deadlineMs ?? 3e4;
-    if (!validOrigin(input?.origin) || !safeInteger(input?.expectedMaxHops, 1, 4) || !safeInteger(input?.minIntervalMs, 1e3, 864e5) || input.strictEightPerMinute !== void 0 && typeof input.strictEightPerMinute !== "boolean" || input.strictEightPerMinute === true && input.minIntervalMs < 7500 || !safeInteger(duration, 1, 3e4) || (input.expectedMaxHops - 1) * input.minIntervalMs >= duration || !input.signal || typeof input.signal.addEventListener !== "function" || input.persist !== void 0 && typeof input.persist !== "function") return { state: "blocked", code: "INVALID_RESERVATION_INPUT" };
+    if (!validOrigin(input?.origin) || input.scope !== void 0 && input.scope !== "origin" || !safeInteger(input?.expectedMaxHops, 1, 4) || !safeInteger(input?.minIntervalMs, 1e3, 864e5) || input.strictEightPerMinute !== void 0 && typeof input.strictEightPerMinute !== "boolean" || input.strictEightPerMinute === true && input.minIntervalMs < 7500 || !safeInteger(duration, 1, 3e4) || (input.expectedMaxHops - 1) * input.minIntervalMs >= duration || !input.signal || typeof input.signal.addEventListener !== "function" || input.persist !== void 0 && typeof input.persist !== "function") return { state: "blocked", code: "INVALID_RESERVATION_INPUT" };
     input = { ...input };
+    const version = input.scope === "origin" ? 2 : 1;
     const deadline = import_node_perf_hooks.performance.now() + duration;
     let marker, encoded, receipt4;
     try {
       ({ marker, encoded, receipt: receipt4 } = await transaction(deadline, input.signal, async (q) => {
         await control(q);
         await q.query("insert into lba_public_source_worker(id,uncertain,hold_reason) values(true,false,null) on conflict(id) do nothing");
-        const workers = (await q.query("select uncertain,hold_reason from lba_public_source_worker where id=true for update")).rows;
-        if (workers.length !== 1 || workers[0].uncertain !== false || workers[0].hold_reason !== null) denied("RESERVATION_WORKER_HELD");
+        const worker = await workerRow(q, version === 1 ? "update" : "share");
+        if (!workerAllows(worker, input.origin, version)) denied("RESERVATION_WORKER_HELD");
         await q.query("insert into lba_public_source_origin(origin,next_attempt_at,uncertain,hold_reason) values($1,'epoch',false,null) on conflict(origin) do nothing", [input.origin]);
-        const row3 = (await q.query("select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update", [input.origin])).rows[0];
+        const row3 = await originRow(q, input.origin);
         if (!row3 || row3.uncertain !== false || row3.hold_reason !== null) denied("RESERVATION_ORIGIN_HELD");
         const now = await dbTime(q), next = new Date(row3.next_attempt_at).getTime();
         if (!Number.isFinite(next)) denied("RESERVATION_STORAGE_UNAVAILABLE", "unavailable");
         if (next > now) denied("RESERVATION_LOCAL_BUDGET_DEFERRED", "deferred", iso2(next));
+        const remaining = Math.floor(deadline - import_node_perf_hooks.performance.now());
+        if (remaining < 1) denied("RESERVATION_DEADLINE", "cancelled");
         const m = {
           kind: "lba-public-source-reservation",
-          version: 1,
-          token: (0, import_node_crypto29.randomUUID)(),
+          version,
+          token: (0, import_node_crypto30.randomUUID)(),
           epoch: epoch8,
           origin: input.origin,
           reservedAtMs: now,
-          deadlineAtMs: now + Math.max(0, Math.floor(deadline - import_node_perf_hooks.performance.now())),
+          deadlineAtMs: now + remaining,
           maxHops: input.expectedMaxHops,
           intervalMs: input.minIntervalMs,
           hops: 0,
@@ -17413,7 +17696,7 @@ function createPublicSourceReservationGuard(options) {
           minIntervalMs: m.intervalMs,
           operationDeadlineAt: iso2(m.deadlineAtMs)
         });
-        await q.query("update lba_public_source_worker set uncertain=true,hold_reason=$1 where id=true", [text26]);
+        if (version === 1) await q.query("update lba_public_source_worker set uncertain=true,hold_reason=$1 where id=true", [text26]);
         await q.query("update lba_public_source_origin set uncertain=true,hold_reason=$2,next_attempt_at=$3 where origin=$1", [m.origin, text26, iso2(now + m.maxHops * m.intervalMs)]);
         await persist(q, input.persist, r);
         return { marker: m, encoded: text26, receipt: r };
@@ -17455,16 +17738,19 @@ function createPublicSourceReservationGuard(options) {
         try {
           for (; ; ) {
             const step = await transaction(deadline, signal, async (q) => {
-              await owned(q, marker.origin, encoded);
+              await owned(q, marker, encoded);
               const now = await dbTime(q);
               if (now >= marker.deadlineAtMs) denied("RESERVATION_DEADLINE", "cancelled");
               if (marker.hops >= marker.maxHops) denied("RESERVATION_HOP_LIMIT");
               const waitMs = Math.max(marker.nextHopAtMs - now, Math.ceil(lastConfirmedGrantAt + marker.intervalMs - import_node_perf_hooks.performance.now()));
               if (waitMs > 0) return { waitMs };
               const next = { ...marker, hops: marker.hops + 1, nextHopAtMs: now + marker.intervalMs }, text26 = JSON.stringify(next);
-              const worker = await q.query("update lba_public_source_worker set hold_reason=$2 where id=true and uncertain=true and hold_reason=$1", [encoded, text26]);
+              if (version === 1) {
+                const worker = await q.query("update lba_public_source_worker set hold_reason=$2 where id=true and uncertain=true and hold_reason=$1", [encoded, text26]);
+                if (worker.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+              }
               const origin = await q.query("update lba_public_source_origin set hold_reason=$3,next_attempt_at=greatest(next_attempt_at,$4) where origin=$1 and uncertain=true and hold_reason=$2", [marker.origin, encoded, text26, iso2(now + marker.intervalMs)]);
-              if (worker.rowCount !== 1 || origin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+              if (origin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
               return { next, text: text26, now };
             });
             if ("waitMs" in step) {
@@ -17490,13 +17776,16 @@ function createPublicSourceReservationGuard(options) {
         closed18 = true;
         try {
           await transaction(deadline, void 0, async (q) => {
-            await owned(q, marker.origin, encoded);
+            await owned(q, marker, encoded);
             const now = await dbTime(q);
             if (now >= marker.deadlineAtMs) denied("RESERVATION_DEADLINE", "cancelled");
             await persist(q, finish.persist, receipt4);
-            const worker = await q.query("update lba_public_source_worker set uncertain=$2,hold_reason=$3 where id=true and uncertain=true and hold_reason=$1", [encoded, finish.hold === "worker-and-origin", finish.hold === "worker-and-origin" ? HOLD_WORKER : null]);
+            if (version === 1) {
+              const worker = await q.query("update lba_public_source_worker set uncertain=$2,hold_reason=$3 where id=true and uncertain=true and hold_reason=$1", [encoded, finish.hold === "worker-and-origin", finish.hold === "worker-and-origin" ? HOLD_WORKER : null]);
+              if (worker.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+            }
             const origin = await q.query("update lba_public_source_origin set uncertain=$3,hold_reason=$4,next_attempt_at=greatest(next_attempt_at,$5) where origin=$1 and uncertain=true and hold_reason=$2", [marker.origin, encoded, Boolean(finish.hold), finish.hold ? HOLD_ORIGIN : null, iso2(now + Math.max(marker.intervalMs, finish.retryAfterMs ?? 0))]);
-            if (worker.rowCount !== 1 || origin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
+            if (origin.rowCount !== 1) denied("RESERVATION_TOKEN_CONFLICT");
           });
           return { state: "finalized", held: Boolean(finish.hold) };
         } catch (error2) {
@@ -17508,11 +17797,11 @@ function createPublicSourceReservationGuard(options) {
     return { state: "reserved", reservation };
   } };
 }
-var import_node_crypto29, import_node_perf_hooks, Denied, denied, failure2, safeInteger, iso2, HOLD_ORIGIN, HOLD_WORKER;
+var import_node_crypto30, import_node_perf_hooks, Denied, denied, failure2, safeInteger, iso2, HOLD_ORIGIN, HOLD_WORKER;
 var init_public_source_reservation = __esm({
   "server/production/public-source-reservation.ts"() {
     "use strict";
-    import_node_crypto29 = require("node:crypto");
+    import_node_crypto30 = require("node:crypto");
     import_node_perf_hooks = require("node:perf_hooks");
     Denied = class extends Error {
       code;
@@ -17590,16 +17879,16 @@ function odesaPublicAddressRequestIdentity(value) {
     keyRevision: "lba-public-address-request/2"
   });
 }
-var import_node_crypto30, import_node_util5, OEM, YASNO, YASNO_PATH, hash4, PublicAddressRequestIdentityError;
+var import_node_crypto31, import_node_util5, OEM, YASNO, YASNO_PATH, hash4, PublicAddressRequestIdentityError;
 var init_public_address_request_identity = __esm({
   "server/domain/public-address-request-identity.ts"() {
     "use strict";
-    import_node_crypto30 = require("node:crypto");
+    import_node_crypto31 = require("node:crypto");
     import_node_util5 = require("node:util");
     OEM = "https://www.dtek-oem.com.ua/ua/ajax";
     YASNO = "https://app.yasno.ua";
     YASNO_PATH = "/api/blackout-service/public/shutdowns/addresses/v2/";
-    hash4 = (value) => (0, import_node_crypto30.createHash)("sha256").update(value, "utf8").digest("hex");
+    hash4 = (value) => (0, import_node_crypto31.createHash)("sha256").update(value, "utf8").digest("hex");
     PublicAddressRequestIdentityError = class extends Error {
       code = "ADDRESS_PUBLIC_REQUEST_IDENTITY_INVALID";
       constructor() {
@@ -17799,7 +18088,7 @@ function createAddressCatalog(input) {
       }
     }
     const finished = await reserved.reservation.finalize({
-      ...!outcome.ok && outcome.hold ? { hold: outcome.workerHold ? "worker-and-origin" : "origin" } : {},
+      ...!outcome.ok && outcome.hold ? { hold: "origin" } : {},
       ...!outcome.ok && outcome.retryAfterMs !== void 0 ? { retryAfterMs: outcome.retryAfterMs } : {},
       persist: async (c) => {
         if (captured) {
@@ -17953,11 +18242,11 @@ function createAddressCatalog(input) {
   }
   return Object.freeze({ searchStreets, searchHouses, resolveCandidate, readSnapshot, readCandidates });
 }
-var import_node_crypto31, ADDRESS_CATALOG_SCHEMA_SQL, ADDRESS_CATALOG_POLICY, PREFIX2, Failure, plain8, id2, uuid6, sha6, instant3, reject, endpoint;
+var import_node_crypto32, ADDRESS_CATALOG_SCHEMA_SQL, ADDRESS_CATALOG_POLICY, PREFIX2, Failure, plain8, id2, uuid6, sha6, instant3, reject, endpoint;
 var init_address_catalog = __esm({
   "server/production/address-catalog.ts"() {
     "use strict";
-    import_node_crypto31 = require("node:crypto");
+    import_node_crypto32 = require("node:crypto");
     init_yasno_address_adapter();
     init_schedule_core();
     init_source_operating_policy();
@@ -18011,7 +18300,7 @@ create index if not exists lba_public_address_capture_observed on lba_public_add
     plain8 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
     id2 = (v) => Number.isSafeInteger(v) && Number(v) > 0;
     uuid6 = (v) => typeof v === "string" && /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(v);
-    sha6 = (v) => (0, import_node_crypto31.createHash)("sha256").update(v).digest("hex");
+    sha6 = (v) => (0, import_node_crypto32.createHash)("sha256").update(v).digest("hex");
     instant3 = (v) => {
       const n = v instanceof Date ? v.getTime() : typeof v === "string" ? Date.parse(v) : NaN;
       if (!Number.isFinite(n)) return fail16("ADDRESS_STORAGE_UNAVAILABLE");
@@ -18367,11 +18656,11 @@ function candidateFromRecord(selection2, response, row3, proofs, basis) {
     }
   };
 }
-var import_node_crypto32, import_acorn3, AJAX, SOURCE2, ODESA_ADDRESS_ADAPTER_VERSION, ODESA_MAPPING_ADAPTER_VERSION, ODESA_SCOPE, hash5, object5, OdesaSourceError, HOUSE_KEYS, FLAGS, STABILIZATION, EMERGENCY;
+var import_node_crypto33, import_acorn3, AJAX, SOURCE2, ODESA_ADDRESS_ADAPTER_VERSION, ODESA_MAPPING_ADAPTER_VERSION, ODESA_SCOPE, hash5, object5, OdesaSourceError, HOUSE_KEYS, FLAGS, STABILIZATION, EMERGENCY;
 var init_odesa_address_adapter = __esm({
   "server/domain/odesa-address-adapter.ts"() {
     "use strict";
-    import_node_crypto32 = require("node:crypto");
+    import_node_crypto33 = require("node:crypto");
     import_acorn3 = require("acorn");
     init_schedule_core();
     init_hour_matrix_adapter();
@@ -18380,7 +18669,7 @@ var init_odesa_address_adapter = __esm({
     ODESA_ADDRESS_ADAPTER_VERSION = "odesa-house-report/3";
     ODESA_MAPPING_ADAPTER_VERSION = "odesa-address-mapping/1";
     ODESA_SCOPE = Object.freeze({ operatorId: "dtek-oem", namespace: "dtek:oem" });
-    hash5 = (value) => (0, import_node_crypto32.createHash)("sha256").update(value, "utf8").digest("hex");
+    hash5 = (value) => (0, import_node_crypto33.createHash)("sha256").update(value, "utf8").digest("hex");
     object5 = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value));
     OdesaSourceError = class extends Error {
       code;
@@ -18471,7 +18760,7 @@ function validateCapture(capture2, policy) {
   const proof = { kind: "odesa-plan-api-proof/1", adapterVersion: ODESA_PLAN_API_ADAPTER, sourceId: ODESA_PLAN_API_SOURCE, operation: "checkDisconUpdate", method: "POST", requestUrl: AJAX2, request: { update: capture2.request.update }, observedAt: capture2.observedAt, rawSha256: capture2.rawSha256, queryProvenance: "collector_supplied_not_authenticated_by_adapter", requestScopeEchoedBySource: false, transportAuthenticatedByAdapter: false, publicationProvenance: "fact.update_only", sourceAdmission: false, deliveryEligible: false };
   return { payload, proof };
 }
-function normalize3(capture2, context2) {
+function normalize4(capture2, context2) {
   return normalizeHourMatrix(capture2.rawBody, { ...context2, namespace: "dtek:oem-api", operatorId: "dtek-oem", observedAt: capture2.observedAt, source: source(capture2) });
 }
 function read(capture2, policy) {
@@ -18521,7 +18810,7 @@ function read(capture2, policy) {
     }
   }
   try {
-    for (const serviceDate of dates) for (const targetId of groups) normalize3(capture2, { targetId, addressId: "source-group:" + targetId, addressLabel: "\u041F\u043B\u0430\u043D \u0433\u0440\u0443\u043F\u0438 " + targetId.replace("GPV", ""), localityLabel: "\u041E\u0434\u0435\u0441\u044C\u043A\u0430 \u043E\u0431\u043B\u0430\u0441\u0442\u044C", serviceDate, freshness: "unknown", synthetic: false });
+    for (const serviceDate of dates) for (const targetId of groups) normalize4(capture2, { targetId, addressId: "source-group:" + targetId, addressLabel: "\u041F\u043B\u0430\u043D \u0433\u0440\u0443\u043F\u0438 " + targetId.replace("GPV", ""), localityLabel: "\u041E\u0434\u0435\u0441\u044C\u043A\u0430 \u043E\u0431\u043B\u0430\u0441\u0442\u044C", serviceDate, freshness: "unknown", synthetic: false });
   } catch (error2) {
     if (error2 instanceof OdesaPlanApiError) throw error2;
     fail18("MATRIX_REJECTED");
@@ -18551,7 +18840,7 @@ function projectPlanContext(capture2, context2, dataset) {
   if (![dataset.sourceDate, nextCalendarDate(dataset.sourceDate)].includes(context2.serviceDate)) fail18("SERVICE_DATE_NOT_IN_SOURCE_SCOPE");
   if (!dataset.dates.includes(context2.serviceDate)) return { ...common2, state: "not_published", reason: "date_not_published" };
   try {
-    return { state: "available", view: normalize3(capture2, context2), proof: dataset.proof, sourceAdmission: false, deliveryEligible: false };
+    return { state: "available", view: normalize4(capture2, context2), proof: dataset.proof, sourceAdmission: false, deliveryEligible: false };
   } catch {
     return fail18("MATRIX_REJECTED");
   }
@@ -18575,11 +18864,11 @@ function normalizeOdesaPlanApiBatch(capture2, contexts, policy) {
     return { ...result2, proof: structuredClone(result2.proof) };
   });
 }
-var import_node_crypto33, import_acorn4, ODESA_PLAN_API_SOURCE, ODESA_PLAN_API_ADAPTER, AJAX2, sha7, groups, object6, OdesaPlanApiError, source;
+var import_node_crypto34, import_acorn4, ODESA_PLAN_API_SOURCE, ODESA_PLAN_API_ADAPTER, AJAX2, sha7, groups, object6, OdesaPlanApiError, source;
 var init_odesa_plan_api_adapter = __esm({
   "server/domain/odesa-plan-api-adapter.ts"() {
     "use strict";
-    import_node_crypto33 = require("node:crypto");
+    import_node_crypto34 = require("node:crypto");
     import_acorn4 = require("acorn");
     init_schedule_core();
     init_hour_matrix_adapter();
@@ -18587,7 +18876,7 @@ var init_odesa_plan_api_adapter = __esm({
     ODESA_PLAN_API_SOURCE = "dtek-oem-public-plan-ajax";
     ODESA_PLAN_API_ADAPTER = "odesa-plan-api/1";
     AJAX2 = "https://www.dtek-oem.com.ua/ua/ajax";
-    sha7 = (raw) => (0, import_node_crypto33.createHash)("sha256").update(raw, "utf8").digest("hex");
+    sha7 = (raw) => (0, import_node_crypto34.createHash)("sha256").update(raw, "utf8").digest("hex");
     groups = Object.freeze(Array.from({ length: 6 }, (_, i) => [`GPV${i + 1}.1`, `GPV${i + 1}.2`]).flat());
     object6 = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value) && [Object.prototype, null].includes(Object.getPrototypeOf(value)));
     OdesaPlanApiError = class extends Error {
@@ -18940,7 +19229,7 @@ function create(fetchPort, clock, monotonic, limits, origin, mode, beforeHop) {
     }
   }
   function bootstrap(s, html) {
-    const $ = (0, import_cheerio3.load)(html);
+    const $ = (0, import_cheerio4.load)(html);
     const meta = (name) => {
       const e = $('meta[name="' + name + '"]');
       if (e.length !== 1) stop("GUEST_META_INVALID");
@@ -19126,20 +19415,20 @@ function create(fetchPort, clock, monotonic, limits, origin, mode, beforeHop) {
     }
   });
 }
-var import_node_crypto34, import_node_perf_hooks2, import_cheerio3, HOME, AJAX3, ORIGIN2, CSRF_PARAM, sha8, plain9, only, challenge, realFetch, OdesaTransportError, DEFAULTS, productionOrigin, internalResults;
+var import_node_crypto35, import_node_perf_hooks2, import_cheerio4, HOME, AJAX3, ORIGIN2, CSRF_PARAM, sha8, plain9, only, challenge, realFetch, OdesaTransportError, DEFAULTS, productionOrigin, internalResults;
 var init_odesa_public_client = __esm({
   "server/providers/odesa-public-client.ts"() {
     "use strict";
-    import_node_crypto34 = require("node:crypto");
+    import_node_crypto35 = require("node:crypto");
     import_node_perf_hooks2 = require("node:perf_hooks");
-    import_cheerio3 = require("cheerio");
+    import_cheerio4 = require("cheerio");
     init_odesa_address_adapter();
     init_odesa_plan_api_adapter();
     HOME = "https://www.dtek-oem.com.ua/ua";
     AJAX3 = "https://www.dtek-oem.com.ua/ua/ajax";
     ORIGIN2 = "https://www.dtek-oem.com.ua";
     CSRF_PARAM = "_csrf-dtek-oem";
-    sha8 = (v) => (0, import_node_crypto34.createHash)("sha256").update(v, "utf8").digest("hex");
+    sha8 = (v) => (0, import_node_crypto35.createHash)("sha256").update(v, "utf8").digest("hex");
     plain9 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
     only = (v, names2) => plain9(v) && Object.keys(v).every((k) => names2.includes(k));
     challenge = /cf-chl-|\/cdn-cgi\/challenge-platform|<title[^>]*>\s*(?:just a moment|attention required|checking your browser)|id=["']challenge-(?:form|running)|captcha-delivery\.com/i;
@@ -19330,7 +19619,7 @@ function create2(options, factory, fixtures) {
       return reservationError(reserved);
     }
     const receipt4 = reserved.reservation.receipt;
-    let result2, sourceFailure = false, workerHold = false, client2;
+    let result2, sourceFailure = false, client2;
     try {
       client2 = factory(async (descriptor, signal) => {
         const granted = await reserved.reservation.beforeHop({ origin: new URL(descriptor.url).origin }, signal);
@@ -19342,15 +19631,14 @@ function create2(options, factory, fixtures) {
       result2 = { id: receipt4.reservationToken, capture: structuredClone(capture2), mode: intake.mode };
       current2(result2);
       validate(result2);
-    } catch (error2) {
+    } catch {
       result2 = void 0;
       sourceFailure = true;
-      workerHold = Boolean(error2 && typeof error2 === "object" && "code" in error2 && ["ODESA_TRANSPORT_TIMEOUT", "ODESA_TRANSPORT_CANCELLED", "ODESA_TRANSPORT_CLOSED"].includes(String(error2.code)));
     } finally {
       client2?.close();
     }
     const envelope = result2 ? { kind: "lba-odesa-address-capture/1", mode: result2.mode, reservationToken: result2.id, capture: result2.capture } : void 0;
-    const finalized = await reserved.reservation.finalize({ ...sourceFailure ? { hold: workerHold ? "worker-and-origin" : "origin" } : {}, persist: async (q, r) => {
+    const finalized = await reserved.reservation.finalize({ ...sourceFailure ? { hold: "origin" } : {}, persist: async (q, r) => {
       await q.query(`insert into lba_public_address_query(request_key,request_url,last_attempt_at,last_failure) values($1,$2,$3,$4)
     on conflict(request_key) do update set last_attempt_at=excluded.last_attempt_at,last_failure=excluded.last_failure`, [key3, AJAX4, r.reservedAt, result2 ? null : "ADDRESS_SOURCE_UNAVAILABLE"]);
       if (result2) {
@@ -19502,11 +19790,11 @@ function create2(options, factory, fixtures) {
   }
   return Object.freeze({ searchLocalities, searchStreets, searchHouses, resolveCandidate, readCandidates });
 }
-var import_node_crypto35, import_node_util6, ORIGIN3, AJAX4, TTL3, MAX_QUERIES, MAX_CAPTURES, MAX_CANDIDATES, MAX_ODESA_BYTES, sha9, Refused, uuid7, reject2, identity, asOptions;
+var import_node_crypto36, import_node_util6, ORIGIN3, AJAX4, TTL3, MAX_QUERIES, MAX_CAPTURES, MAX_CANDIDATES, MAX_ODESA_BYTES, sha9, Refused, uuid7, reject2, identity, asOptions;
 var init_odesa_address_catalog = __esm({
   "server/production/odesa-address-catalog.ts"() {
     "use strict";
-    import_node_crypto35 = require("node:crypto");
+    import_node_crypto36 = require("node:crypto");
     import_node_util6 = require("node:util");
     init_schedule_core();
     init_address_index();
@@ -19521,7 +19809,7 @@ var init_odesa_address_catalog = __esm({
     MAX_CAPTURES = 4096;
     MAX_CANDIDATES = 512;
     MAX_ODESA_BYTES = 64 * 1024 * 1024;
-    sha9 = (value) => (0, import_node_crypto35.createHash)("sha256").update(value).digest("hex");
+    sha9 = (value) => (0, import_node_crypto36.createHash)("sha256").update(value).digest("hex");
     Refused = class extends Error {
       constructor(code, retryAt) {
         super(code);
@@ -19677,18 +19965,18 @@ function acquisition(factory, fixture) {
     return snapshot3;
   } });
 }
-var import_node_crypto36, ODESA_PLAN_ORIGIN, HOME2, AJAX5, sha10, plain10, uuid8, evidence3, createOdesaPlanSource;
+var import_node_crypto37, ODESA_PLAN_ORIGIN, HOME2, AJAX5, sha10, plain10, uuid8, evidence3, createOdesaPlanSource;
 var init_odesa_plan_source = __esm({
   "server/production/odesa-plan-source.ts"() {
     "use strict";
-    import_node_crypto36 = require("node:crypto");
+    import_node_crypto37 = require("node:crypto");
     init_schedule_core();
     init_odesa_plan_api_adapter();
     init_odesa_public_client();
     ODESA_PLAN_ORIGIN = "https://www.dtek-oem.com.ua";
     HOME2 = ODESA_PLAN_ORIGIN + "/ua";
     AJAX5 = HOME2 + "/ajax";
-    sha10 = (v) => (0, import_node_crypto36.createHash)("sha256").update(v, "utf8").digest("hex");
+    sha10 = (v) => (0, import_node_crypto37.createHash)("sha256").update(v, "utf8").digest("hex");
     plain10 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
     uuid8 = (v) => typeof v === "string" && /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(v);
     evidence3 = (v) => typeof v === "string" && v.length > 0 && v.length <= 2048 && !/[\p{Cc}\p{Cf}]/u.test(v);
@@ -19703,14 +19991,18 @@ function odesaPlanFailureScope(error2) {
   return { failure: failure3, ...failure3 === "SOURCE_ORIGIN_REJECTED" ? { hold: "origin" } : failure3 === "SOURCE_SCHEMA_REJECTED" ? {} : { hold: "worker-and-origin" } };
 }
 function preferPublicSourcePlans(plans) {
-  const result2 = [], odesa = /* @__PURE__ */ new Map();
+  const result2 = [], odesa = /* @__PURE__ */ new Map(), kharkiv = /* @__PURE__ */ new Map();
   for (const plan2 of plans) {
     const v = plan2.view;
+    const key3 = JSON.stringify([v.operatorId, v.namespace, v.targetId, v.serviceDate]);
     if (v.operatorId === "dtek-oem" && v.namespace === "dtek:oem" && [ODESA_PLAN_API_SOURCE, "mirror-odesa"].includes(plan2.provenance.sourceId)) {
-      const key3 = JSON.stringify([v.operatorId, v.namespace, v.targetId, v.serviceDate]);
       const group = odesa.get(key3) ?? [];
       group.push(plan2);
       odesa.set(key3, group);
+    } else if (v.operatorId === "kharkiv-oe" && v.namespace === "kharkiv:rss" && ["kharkiv-official-rss", KHARKIV_TELEGRAM_SOURCE].includes(plan2.provenance.sourceId)) {
+      const group = kharkiv.get(key3) ?? [];
+      group.push(plan2);
+      kharkiv.set(key3, group);
     } else result2.push(plan2);
   }
   const complete = (p) => p?.view.freshness === "current" && p.view.dayCoverage === "complete" && ["published", "possible", "no_planned_outages"].includes(p.view.status);
@@ -19725,6 +20017,10 @@ function preferPublicSourcePlans(plans) {
       notice2 += " \u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0440\u0435\u0437\u0435\u0440\u0432\u043D\u0435 \u0434\u0436\u0435\u0440\u0435\u043B\u043E: \u043E\u0444\u0456\u0446\u0456\u0439\u043D\u0438\u0439 \u043F\u043B\u0430\u043D \u0446\u0456\u0454\u0457 \u0433\u0440\u0443\u043F\u0438 \u0439 \u0434\u0430\u0442\u0438 \u0437\u0430\u0440\u0430\u0437 \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0438\u0439, \u0437\u0430\u0441\u0442\u0430\u0440\u0456\u043B\u0438\u0439 \u0430\u0431\u043E \u0449\u0435 \u043D\u0435 \u043E\u043F\u0443\u0431\u043B\u0456\u043A\u043E\u0432\u0430\u043D\u0438\u0439.";
     result2.push(notice2 === selected.view.notice ? selected : { ...selected, view: { ...selected.view, notice: notice2.trim() } });
   }
+  for (const candidates of kharkiv.values()) {
+    const ordered = [...candidates].sort((a, b) => Number(complete(b)) - Number(complete(a)) || Date.parse(b.provenance.publishedAt) - Date.parse(a.provenance.publishedAt) || a.provenance.sourceId.localeCompare(b.provenance.sourceId));
+    result2.push(ordered[0]);
+  }
   return result2;
 }
 function discoverPublicSourceGroups(profile2, raw) {
@@ -19738,10 +20034,11 @@ function discoverPublicSourceGroups(profile2, raw) {
     if (!record4(value) || !record4(value.fact) || !record4(value.fact.data)) return fail20("SOURCE_CATALOG_REJECTED");
     for (const day of Object.values(value.fact.data)) if (record4(day)) ids.push(...Object.keys(day).filter((k) => /^GPV[1-6]\.[12]$/.test(k)));
   } else if (profile2.parser === "odesa_plan_api") return fail20("SOURCE_CATALOG_REJECTED");
+  else if (profile2.parser === "kharkiv_telegram") return [...KHARKIV_TELEGRAM_QUEUE_IDS];
   else {
-    const $ = (0, import_cheerio4.load)(raw, { xml: true });
+    const $ = (0, import_cheerio5.load)(raw, { xml: true });
     $("item description").each((_i, node) => {
-      const body = (0, import_cheerio4.load)($(node).text());
+      const body = (0, import_cheerio5.load)($(node).text());
       body("script,style").remove();
       body("br").replaceWith("\n");
       body("p,div").append("\n");
@@ -19760,6 +20057,7 @@ function createSourceService(options, planSource, fixtureMode) {
   const allowed = [...registry.filter((e) => e.state !== "blocked"), ...planAdmission ? [planAdmission] : []], profiles = SOURCE_PROFILES.filter((p) => allowed.some((e) => e.sourceId === p.sourceId));
   const entry = (id6) => allowed.find((e) => e.sourceId === id6);
   const origin = (p) => new URL(p.endpoint).origin;
+  const origins = [...new Set(profiles.map(origin))];
   const interval = (p) => Math.max(...profiles.filter((x) => origin(x) === origin(p)).map((x) => entry(x.sourceId).rate.minIntervalMs));
   const freshIntake = (transport = options.transport) => createSourceIntake({ registry, transport, now: clock, limits: { maxConcurrent: 1, timeoutMs: options.timeoutMs ?? 8e3 } });
   let lastClock = -Infinity;
@@ -19786,13 +20084,15 @@ function createSourceService(options, planSource, fixtureMode) {
     const code = result2.code === "RESERVATION_CONTROL_REJECTED" ? "SOURCE_CONTROL_REJECTED" : result2.code === "RESERVATION_EPOCH_CONFLICT" ? "SOURCE_EPOCH_CONFLICT" : result2.code === "RESERVATION_WORKER_HELD" ? "SOURCE_WORKER_HELD" : result2.code === "RESERVATION_ORIGIN_HELD" ? "SOURCE_ORIGIN_HELD" : result2.code === "RESERVATION_LOCAL_BUDGET_DEFERRED" ? "SOURCE_LOCAL_BUDGET_DEFERRED" : ["RESERVATION_COMMIT_UNKNOWN", "RESERVATION_TOKEN_CONFLICT", "RESERVATION_CLOSED", "RESERVATION_DEADLINE", "RESERVATION_ABORTED"].includes(result2.code) ? "SOURCE_PUBLICATION_UNKNOWN" : "SOURCE_STORAGE_UNAVAILABLE";
     return { state: ["SOURCE_WORKER_HELD", "SOURCE_ORIGIN_HELD", "SOURCE_LOCAL_BUDGET_DEFERRED"].includes(code) ? "deferred" : "unavailable", code, ...sourceId ? { sourceId } : {} };
   }
-  async function recoverExpiredRun() {
-    const result2 = await reservations.reconcileExpiredZeroHop(async (q, marker) => {
+  async function recoverExpiredRun(reservationOrigin) {
+    const result2 = await reservations.reconcileExpiredSourceRun(reservationOrigin, async (q, marker) => {
+      const sourceIds = profiles.filter((p) => origin(p) === marker.origin).map((p) => p.sourceId);
+      if (!sourceIds.length) return false;
       const runs = (await q.query(`select id,source_id,control_epoch,started_at,finished_at,code
-    from lba_public_source_run where status='started' order by id limit 2 for update`)).rows;
+    from lba_public_source_run where status='started' and source_id=any($1::text[]) order by id limit 2 for update`, [sourceIds])).rows;
       if (runs.length !== 1) return false;
       const run = runs[0], profile2 = profiles.find((p) => p.sourceId === run.source_id);
-      if (run.id !== marker.reservationToken || Number(run.control_epoch) !== marker.controlEpoch || new Date(run.started_at).getTime() !== Date.parse(marker.reservedAt) || run.finished_at !== null || run.code !== null || !profile2 || origin(profile2) !== marker.origin || (profile2.sourceId === ODESA_PLAN_API_SOURCE ? 2 : 1) !== marker.expectedMaxHops) return false;
+      if (run.id !== marker.reservationToken || Number(run.control_epoch) !== marker.controlEpoch || new Date(run.started_at).getTime() !== Date.parse(marker.reservedAt) || run.finished_at !== null || run.code !== null || !profile2 || origin(profile2) !== marker.origin || (profile2.sourceId === ODESA_PLAN_API_SOURCE ? 2 : 1) !== marker.expectedMaxHops || marker.grantedHops > 0 && profile2.sourceId === ODESA_PLAN_API_SOURCE) return false;
       const raw = (await q.query("select 1 from lba_public_source_raw where run_id=$1 limit 1", [run.id])).rows;
       if (raw.length) return false;
       const state = (await q.query("select 1 from lba_public_source_state where source_id=$1 and last_attempt_at=$2 for update", [run.source_id, marker.reservedAt])).rows;
@@ -19805,10 +20105,10 @@ function createSourceService(options, planSource, fixtureMode) {
     });
     return result2.state === "recovered";
   }
-  async function refreshOnce(sourceId) {
+  async function refreshOnce(sourceId, sourceOrigin, signal = new AbortController().signal) {
     if (options.enabled !== true) return { state: "disabled", code: "SOURCE_SERVICE_DISABLED" };
     if (sourceId !== void 0 && (typeof sourceId !== "string" || !profiles.some((p2) => p2.sourceId === sourceId))) return { state: "blocked", code: "SOURCE_NOT_ADMITTED" };
-    let p, deferred = "SOURCE_NOT_DUE", hasPossibleReservation = false;
+    let p, deferred = "SOURCE_NOT_DUE", heldOrigins = [];
     try {
       const time3 = clock(), c = await options.pool.connect();
       let tx = false;
@@ -19817,9 +20117,9 @@ function createSourceService(options, planSource, fixtureMode) {
         tx = true;
         await control(c, false);
         const states = (await c.query("select source_id,last_attempt_at from lba_public_source_state")).rows;
-        const origins = (await c.query("select origin,next_attempt_at,uncertain,hold_reason from lba_public_source_origin")).rows;
-        if (states.some((s) => typeof s.source_id !== "string" || !Number.isFinite(new Date(s.last_attempt_at).getTime())) || origins.some((o) => typeof o.origin !== "string" || typeof o.uncertain !== "boolean" || !Number.isFinite(new Date(o.next_attempt_at).getTime()) || o.hold_reason !== null && typeof o.hold_reason !== "string")) return fail20("SOURCE_STORAGE_UNAVAILABLE");
-        const due = profiles.filter((x) => sourceId === void 0 || x.sourceId === sourceId).filter((x) => admitted(x, time3)).sort((a, b) => {
+        const origins2 = (await c.query("select origin,next_attempt_at,uncertain,hold_reason from lba_public_source_origin")).rows;
+        if (states.some((s) => typeof s.source_id !== "string" || !Number.isFinite(new Date(s.last_attempt_at).getTime())) || origins2.some((o) => typeof o.origin !== "string" || typeof o.uncertain !== "boolean" || !Number.isFinite(new Date(o.next_attempt_at).getTime()) || o.hold_reason !== null && typeof o.hold_reason !== "string")) return fail20("SOURCE_STORAGE_UNAVAILABLE");
+        const due = profiles.filter((x) => (sourceId === void 0 || x.sourceId === sourceId) && (sourceOrigin === void 0 || origin(x) === sourceOrigin)).filter((x) => admitted(x, time3)).sort((a, b) => {
           const stamp3 = (id6) => {
             const r = states.find((s) => s.source_id === id6);
             return r ? new Date(r.last_attempt_at).getTime() : 0;
@@ -19828,7 +20128,7 @@ function createSourceService(options, planSource, fixtureMode) {
         });
         if (!due.length) return fail20("SOURCE_ADMISSION_EXPIRED");
         p = due.find((x) => {
-          const o = origins.find((r) => r.origin === origin(x));
+          const o = origins2.find((r) => r.origin === origin(x));
           if (o?.uncertain === true || o?.hold_reason) {
             deferred = "SOURCE_ORIGIN_HELD";
             return false;
@@ -19840,7 +20140,7 @@ function createSourceService(options, planSource, fixtureMode) {
           const s = states.find((r) => r.source_id === x.sourceId);
           return !s || time3 - new Date(s.last_attempt_at).getTime() >= entry(x.sourceId).cacheTtlMs;
         });
-        hasPossibleReservation = !p && origins.some((o) => o.uncertain === true && typeof o.hold_reason === "string" && o.hold_reason.startsWith("{"));
+        if (!p) heldOrigins = origins2.filter((o) => due.some((x) => origin(x) === o.origin) && o.uncertain === true && typeof o.hold_reason === "string" && o.hold_reason.startsWith("{")).map((o) => o.origin);
         await c.query("commit");
         tx = false;
       } finally {
@@ -19849,18 +20149,19 @@ function createSourceService(options, planSource, fixtureMode) {
         c.release();
       }
       if (!p) {
-        if (hasPossibleReservation && await recoverExpiredRun()) return { state: "deferred", code: "SOURCE_RESERVATION_RECOVERED" };
+        if (heldOrigins.length && (await recoverExpiredRun() || (await Promise.all(heldOrigins.map((value) => recoverExpiredRun(value)))).some(Boolean))) return { state: "deferred", code: "SOURCE_RESERVATION_RECOVERED" };
         return { state: "deferred", code: deferred, ...sourceId ? { sourceId } : {} };
       }
-      const chosen = p, abort = new AbortController();
+      const chosen = p;
       let runId = "", reserveFailure;
       const reserved = await reservations.reserve({
         origin: origin(chosen),
+        scope: "origin",
         expectedMaxHops: chosen.sourceId === ODESA_PLAN_API_SOURCE ? 2 : 1,
         minIntervalMs: interval(chosen),
         ...chosen.sourceId === ODESA_PLAN_API_SOURCE ? { strictEightPerMinute: true } : {},
         deadlineMs: 3e4,
-        signal: abort.signal,
+        signal,
         persist: async (q, receipt4) => {
           if (!admitted(chosen, clock())) {
             reserveFailure = "SOURCE_ADMISSION_EXPIRED";
@@ -19884,12 +20185,13 @@ function createSourceService(options, planSource, fixtureMode) {
         if (reserved.code === "RESERVATION_WORKER_HELD" && await recoverExpiredRun()) return { state: "deferred", code: "SOURCE_RESERVATION_RECOVERED" };
         return reserveFailure ? { state: reserveFailure === "SOURCE_NOT_DUE" ? "deferred" : "unavailable", code: reserveFailure, sourceId: chosen.sourceId } : reservationRejected(reserved, chosen.sourceId);
       }
-      if (chosen.sourceId === ODESA_PLAN_API_SOURCE) return refreshOdesaPlan(chosen, reserved.reservation, abort, runId);
+      if (chosen.sourceId === ODESA_PLAN_API_SOURCE) return refreshOdesaPlan(chosen, reserved.reservation, signal, runId);
       let status2, retry;
       const intake = freshIntake(async (req) => {
-        const permission = await reserved.reservation.beforeHop({ origin: origin(chosen) }, abort.signal);
-        if (permission.state !== "granted") throw Error("SOURCE_DURABLE_PERMISSION_DENIED");
-        const response = await options.transport(req);
+        const requestSignal = AbortSignal.any([signal, req.signal]);
+        const permission = await reserved.reservation.beforeHop({ origin: origin(chosen) }, requestSignal);
+        if (permission.state !== "granted" || requestSignal.aborted) throw Error("SOURCE_DURABLE_PERMISSION_DENIED");
+        const response = await options.transport({ ...req, signal: requestSignal });
         status2 = response.status;
         retry = Object.entries(response.headers).find(([k]) => k.toLowerCase() === "retry-after")?.[1];
         return response;
@@ -19911,13 +20213,13 @@ function createSourceService(options, planSource, fixtureMode) {
       }
       const published = valid.length > 0 && capture2 !== null;
       const retryMs = typeof retry === "string" && /^[1-9]\d{0,4}$/.test(retry) && Number(retry) <= 86400 ? Number(retry) * 1e3 : null;
-      const hold = status2 === 403 || status2 === 429 && retryMs === null || failure3 === "SOURCE_ORIGIN_REJECTED";
+      const hold = status2 === 403 || status2 === 429 && retryMs === null || failure3 === "SOURCE_ORIGIN_REJECTED" || failure3 === "SOURCE_TIMEOUT";
       const committed = await reserved.reservation.finalize({
-        ...failure3 === "SOURCE_TIMEOUT" ? { hold: "worker-and-origin" } : hold ? { hold: "origin" } : {},
+        ...hold ? { hold: "origin" } : {},
         ...status2 === 429 && retryMs !== null ? { retryAfterMs: retryMs } : {},
         persist: async (q) => {
           if (published) {
-            const rawId = (0, import_node_crypto37.randomUUID)();
+            const rawId = (0, import_node_crypto38.randomUUID)();
             await q.query("insert into lba_public_source_raw(id,run_id,source_id,observed_at,snapshot) values($1,$2,$3,$4,$5::jsonb)", [rawId, runId, chosen.sourceId, capture2.observedAt, JSON.stringify(capture2)]);
             for (const v of valid) await q.query(`insert into lba_public_source_plan(source_id,target_id,service_date,raw_id) values($1,$2,$3,$4)
        on conflict(source_id,target_id,service_date) do update set raw_id=excluded.raw_id`, [chosen.sourceId, v.view.targetId, v.view.serviceDate, rawId]);
@@ -19944,13 +20246,13 @@ function createSourceService(options, planSource, fixtureMode) {
       return unavailable(error2, p?.sourceId);
     }
   }
-  async function refreshOdesaPlan(chosen, reservation, abort, runId) {
+  async function refreshOdesaPlan(chosen, reservation, signal, runId) {
     if (!planAdmission) return { state: "blocked", sourceId: chosen.sourceId, code: "SOURCE_NOT_ADMITTED" };
     let capture2 = null, valid = [], failure3, hold;
     const today = localParts(clock()).date;
     try {
-      capture2 = await planSource.acquire({ cursor: odesaCompletePlanCursor(new Date(clock()).toISOString()), signal: abort.signal, reservationToken: runId, controlEpoch: options.expectedControlEpoch, admission: planAdmission, now: () => new Date(clock()).toISOString(), beforeHop: async (_descriptor, signal) => {
-        const permission = await reservation.beforeHop({ origin: origin(chosen) }, signal);
+      capture2 = await planSource.acquire({ cursor: odesaCompletePlanCursor(new Date(clock()).toISOString()), signal, reservationToken: runId, controlEpoch: options.expectedControlEpoch, admission: planAdmission, now: () => new Date(clock()).toISOString(), beforeHop: async (_descriptor, signal2) => {
+        const permission = await reservation.beforeHop({ origin: origin(chosen) }, signal2);
         if (permission.state !== "granted") throw Error("SOURCE_DURABLE_PERMISSION_DENIED");
       } });
       if (capture2.reservationToken !== runId || capture2.controlEpoch !== options.expectedControlEpoch || capture2.mode !== (fixtureMode ? "fixture_unverified" : "standard_fetch_https")) throw Error("SOURCE_SCOPE_MISMATCH");
@@ -19978,7 +20280,7 @@ function createSourceService(options, planSource, fixtureMode) {
         const encoded = JSON.stringify(capture2), usage = (await q.query("select count(*)::int as count,coalesce(sum(octet_length(snapshot::text)),0)::text as bytes from lba_public_source_raw")).rows;
         const size = (await q.query("select octet_length($1::jsonb::text)::int as bytes", [encoded])).rows;
         if (usage.length !== 1 || size.length !== 1 || !/^\d+$/.test(String(usage[0].count)) || !/^\d+$/.test(String(usage[0].bytes)) || !/^\d+$/.test(String(size[0].bytes)) || Number(usage[0].count) >= 2048 || Number(usage[0].bytes) + Number(size[0].bytes) > 67108864) throw Error("SOURCE_RAW_CAPACITY");
-        const rawId = (0, import_node_crypto37.randomUUID)();
+        const rawId = (0, import_node_crypto38.randomUUID)();
         await q.query("insert into lba_public_source_raw(id,run_id,source_id,observed_at,snapshot) values($1,$2,$3,$4,$5::jsonb)", [rawId, runId, chosen.sourceId, capture2.observedAt, encoded]);
         for (const v of valid) await q.query("insert into lba_public_source_plan(source_id,target_id,service_date,raw_id) values($1,$2,$3,$4)", [chosen.sourceId, v.view.targetId, v.view.serviceDate, rawId]);
         await q.query("update lba_public_source_state set last_success_at=$2,last_failure=null where source_id=$1", [chosen.sourceId, capture2.observedAt]);
@@ -20000,8 +20302,14 @@ function createSourceService(options, planSource, fixtureMode) {
       await c.query("begin isolation level repeatable read read only");
       tx = true;
       await control(c, false);
-      const rows = (await c.query(`select p.source_id,p.target_id,p.service_date::text,r.snapshot,r.id as raw_id,r.source_id as raw_source_id,r.run_id,r.observed_at as raw_observed_at,g.source_id as run_source_id,g.control_epoch as run_control_epoch,g.status as run_status,g.started_at as run_started_at,g.finished_at as run_finished_at from lba_public_source_plan p join lba_public_source_raw r on r.id=p.raw_id join lba_public_source_run g on g.id=r.run_id order by p.source_id,p.target_id,p.service_date limit 2049`)).rows;
+      const rows = (await c.query(`select p.source_id,p.target_id,p.service_date::text,
+    case when row_number() over(partition by p.raw_id order by p.source_id,p.target_id,p.service_date)=1 then r.snapshot end as snapshot,
+    r.id as raw_id,r.source_id as raw_source_id,r.run_id,r.observed_at as raw_observed_at,g.source_id as run_source_id,
+    g.control_epoch as run_control_epoch,g.status as run_status,g.started_at as run_started_at,g.finished_at as run_finished_at
+    from lba_public_source_plan p join lba_public_source_raw r on r.id=p.raw_id join lba_public_source_run g on g.id=r.run_id
+    order by p.source_id,p.target_id,p.service_date limit 2049`)).rows;
       if (rows.length > 2048) return fail20("SOURCE_CATALOG_REJECTED");
+      const snapshots = new Map(rows.filter((row3) => row3.raw_id && row3.snapshot).map((row3) => [row3.raw_id, row3.snapshot]));
       const states = (await c.query("select source_id,last_attempt_at,last_success_at,last_failure from lba_public_source_state")).rows;
       const plans = [], observations = [], intake = freshIntake(), today = localParts(time3).date;
       for (const p of profiles) {
@@ -20011,7 +20319,7 @@ function createSourceService(options, planSource, fixtureMode) {
         const apiGroups = /* @__PURE__ */ new Map();
         for (const row3 of rows.filter((r) => r.source_id === p.sourceId)) {
           if (![today, nextCalendarDate(today)].includes(row3.service_date)) continue;
-          const snapshot3 = row3.snapshot;
+          const snapshot3 = row3.snapshot ?? snapshots.get(row3.raw_id);
           const failedAfterObservation = Boolean(failure3) && snapshot3 && Date.parse(snapshot3.observedAt) < new Date(s.last_attempt_at).getTime();
           const stale = Boolean(failedAfterObservation) || !snapshot3 || time3 - Date.parse(snapshot3.observedAt) > entry(p.sourceId).cacheTtlMs || p.sourceId === ODESA_PLAN_API_SOURCE && new Date(s?.last_success_at).getTime() > Date.parse(snapshot3?.observedAt);
           const flags = { stale, ...failure3 && failedAfterObservation ? { refreshFailure: failure3 } : {} };
@@ -20069,19 +20377,23 @@ function createSourceService(options, planSource, fixtureMode) {
     }
     return { state: result2.state, ...result2.code ? { code: result2.code } : {}, groups: groups2, addressBindingVerified: false, deliveryEligible: false };
   }
-  return Object.freeze({ refreshOnce, readTechnicalPlans, readCatalog });
+  async function refreshOrigins(signal, onResult) {
+    await Promise.all(origins.map(async (value) => onResult(await refreshOnce(void 0, value, signal))));
+  }
+  return Object.freeze({ refreshOnce: (sourceId) => refreshOnce(sourceId), refreshOrigins, readTechnicalPlans, readCatalog });
 }
-var import_node_crypto37, import_cheerio4, SOURCE_INGESTION_SCHEMA_SQL, SourceServiceFailure, fail20, int2, record4, INTAKE_CODES, safeCode, createSourceIngestion;
+var import_node_crypto38, import_cheerio5, SOURCE_INGESTION_SCHEMA_SQL, SourceServiceFailure, fail20, int2, record4, INTAKE_CODES, safeCode, createSourceIngestion;
 var init_source_ingestion = __esm({
   "server/production/source-ingestion.ts"() {
     "use strict";
-    import_node_crypto37 = require("node:crypto");
-    import_cheerio4 = require("cheerio");
+    import_node_crypto38 = require("node:crypto");
+    import_cheerio5 = require("cheerio");
     init_schedule_core();
     init_source_intake();
     init_source_operating_policy();
     init_odesa_plan_source();
     init_odesa_plan_api_adapter();
+    init_kharkiv_telegram_adapter();
     init_public_source_reservation();
     SOURCE_INGESTION_SCHEMA_SQL = `
 create table if not exists lba_public_source_worker (
@@ -20133,7 +20445,8 @@ create index if not exists lba_public_source_plan_raw on lba_public_source_plan(
 function publicSourceTransport(fetchPort) {
   return async (request3) => {
     const u = new URL(request3.url);
-    if (!["https://app.yasno.ua", "https://raw.githubusercontent.com", "https://www.dtek-oem.com.ua", "https://oblenergo.kharkiv.ua"].includes(u.origin) || u.username || u.password || u.hash || request3.method !== "GET" || request3.credentials !== "omit" || request3.redirect !== "error") throw Error("PUBLIC_SOURCE_TRANSPORT_SCOPE");
+    const allowed = ["https://app.yasno.ua", "https://raw.githubusercontent.com", "https://www.dtek-oem.com.ua", "https://oblenergo.kharkiv.ua"].includes(u.origin) || u.href === KHARKIV_TELEGRAM_ENDPOINT;
+    if (!allowed || u.username || u.password || u.hash || request3.method !== "GET" || request3.credentials !== "omit" || request3.redirect !== "error") throw Error("PUBLIC_SOURCE_TRANSPORT_SCOPE");
     const response = await fetchPort(request3.url, { method: "GET", redirect: "error", credentials: "omit", headers: { accept: "application/json, application/xml;q=0.9, text/plain;q=0.8, text/html;q=0.7", "accept-encoding": "identity" }, signal: request3.signal });
     const body = (async function* () {
       if (!response.body) return;
@@ -20156,6 +20469,7 @@ function publicSourceTransport(fetchPort) {
 var init_public_http = __esm({
   "server/production/public-http.ts"() {
     "use strict";
+    init_kharkiv_telegram_adapter();
   }
 });
 
@@ -20451,7 +20765,7 @@ function createProductionTools(options) {
     if (action.kind === "report") {
       const location = state.profile.locations.find((l) => l.address.id === action.addressId);
       if (!location) return fail21("LIVE_TOOLS_ADDRESS_NOT_OWNED");
-      await client2.query("insert into lba_production_tools_reports(id,owner_id,session_id,address_id,binding_fingerprint,label,locality,value,recorded_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9)", [(0, import_node_crypto38.randomUUID)(), state.ownerId, state.sessionId, location.address.id, liveShareScopeFingerprint(location), text16(location.address.label), text16(location.address.locality, 4096, true), action.value, serverNow]);
+      await client2.query("insert into lba_production_tools_reports(id,owner_id,session_id,address_id,binding_fingerprint,label,locality,value,recorded_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9)", [(0, import_node_crypto39.randomUUID)(), state.ownerId, state.sessionId, location.address.id, liveShareScopeFingerprint(location), text16(location.address.label), text16(location.address.locality, 4096, true), action.value, serverNow]);
     } else if (action.kind === "share") {
       const date2 = localParts(Date.parse(serverNow)).date;
       if (![date2, nextCalendarDate(date2)].includes(action.serviceDate)) return fail21("LIVE_TOOLS_DATE_OUT_OF_RANGE");
@@ -20460,7 +20774,7 @@ function createProductionTools(options) {
         if (!l) return fail21("LIVE_TOOLS_ADDRESS_NOT_OWNED");
         return l;
       });
-      shareToken = (0, import_node_crypto38.randomBytes)(24).toString("hex");
+      shareToken = (0, import_node_crypto39.randomBytes)(24).toString("hex");
       const expiresAt = new Date(Date.parse(serverNow) + action.ttlDays * 864e5).toISOString();
       const pub = parseLivePublicShare({ runtime: "production", mode: "saved_plan", serviceDate: action.serviceDate, createdAt: serverNow, expiresAt, places: locations.map((l) => publicPlace(l, context2, action.serviceDate, serverNow)) });
       await client2.query("insert into lba_production_tools_shares(token,owner_id,session_id,service_date,created_at,expires_at,private_scope,public_snapshot) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb)", [shareToken, state.ownerId, state.sessionId, action.serviceDate, serverNow, expiresAt, JSON.stringify(locations.map((l) => ({ addressId: l.address.id, fingerprint: liveShareScopeFingerprint(l) }))), JSON.stringify(pub)]);
@@ -20573,11 +20887,11 @@ function createProductionTools(options) {
     commitActionInTransaction
   });
 }
-var import_node_crypto38, PRODUCTION_TOOLS_SCHEMA_SQL, ProductionToolsError, fail21, hash6, canonical10, inputDigest, decoded2, SELECT_RECEIPT2;
+var import_node_crypto39, PRODUCTION_TOOLS_SCHEMA_SQL, ProductionToolsError, fail21, hash6, canonical10, inputDigest, decoded2, SELECT_RECEIPT2;
 var init_product_tools = __esm({
   "server/production/product-tools.ts"() {
     "use strict";
-    import_node_crypto38 = require("node:crypto");
+    import_node_crypto39 = require("node:crypto");
     init_engine();
     init_review_tools();
     init_schedule_binding();
@@ -20612,7 +20926,7 @@ create index if not exists lba_production_tools_shares_owner on lba_production_t
     fail21 = (code) => {
       throw new ProductionToolsError(code);
     };
-    hash6 = (v) => (0, import_node_crypto38.createHash)("sha256").update(v).digest("hex");
+    hash6 = (v) => (0, import_node_crypto39.createHash)("sha256").update(v).digest("hex");
     canonical10 = (v) => v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? "[" + v.map(canonical10).join(",") + "]" : "{" + Object.keys(v).sort().map((k) => JSON.stringify(k) + ":" + canonical10(v[k])).join(",") + "}";
     inputDigest = (r) => hash6(canonical10(r));
     decoded2 = (v) => {
@@ -20634,7 +20948,7 @@ function createBotToolActions(options) {
   return async (input) => {
     const handledKeys = [], messages = structuredClone(input.messages);
     for (const action of input.actions) {
-      const id6 = "bottool:" + (0, import_node_crypto39.createHash)("sha256").update(action.idempotencyKey).digest("hex");
+      const id6 = "bottool:" + (0, import_node_crypto40.createHash)("sha256").update(action.idempotencyKey).digest("hex");
       if (action.type === "record_power_report" || action.type === "prepare_share") {
         if (!action.addressId) throw Error("PRODUCTION_EFFECT_HANDLER_INVALID");
         const command = action.type === "record_power_report" ? { kind: "report", addressId: action.addressId, value: action.value } : { kind: "share", addressIds: [action.addressId], ttlDays: 1, serviceDate: localParts(Date.parse(input.serverNow)).date };
@@ -20657,11 +20971,11 @@ function createBotToolActions(options) {
     return { handledKeys, messages };
   };
 }
-var import_node_crypto39;
+var import_node_crypto40;
 var init_bot_tools = __esm({
   "server/production/bot-tools.ts"() {
     "use strict";
-    import_node_crypto39 = require("node:crypto");
+    import_node_crypto40 = require("node:crypto");
     init_schedule_core();
   }
 });
@@ -20697,7 +21011,7 @@ function createBotAddressPreflight(ports) {
       let performed = false, selectionChanged = false;
       async function lookup(operation, fields) {
         performed = true;
-        const id6 = (v2 ? "botlookupv2:" : "botlookup:") + (0, import_node_crypto40.createHash)("sha256").update(JSON.stringify(v2 ? ["lba-address-lookup/2", "dtek:oem", input.id, session2, revision2, operation, fields] : [input.id, session2, revision2, operation, fields])).digest("hex");
+        const id6 = (v2 ? "botlookupv2:" : "botlookup:") + (0, import_node_crypto41.createHash)("sha256").update(JSON.stringify(v2 ? ["lba-address-lookup/2", "dtek:oem", input.id, session2, revision2, operation, fields] : [input.id, session2, revision2, operation, fields])).digest("hex");
         const query4 = { ...v2 ? { schemaVersion: "lba-address-lookup/2", directoryId: "dtek:oem" } : {}, id: id6, expectedSessionId: session2, expectedRevision: revision2, operation, ...fields };
         const invoke = async () => {
           try {
@@ -20803,11 +21117,11 @@ function createBotAddressPreflight(ports) {
     }
   });
 }
-var import_node_crypto40;
+var import_node_crypto41;
 var init_bot_address_preflight = __esm({
   "server/production/bot-address-preflight.ts"() {
     "use strict";
-    import_node_crypto40 = require("node:crypto");
+    import_node_crypto41 = require("node:crypto");
     init_engine();
     init_address_index();
     init_profile_store();
@@ -20952,7 +21266,7 @@ function createTelegramProcessor(options) {
         const high = (await client2.query("select max(update_id)::text as high from lba_production_telegram_processing where bot_id=$1 and chat_key=$2 and control_epoch=$3 and dispatch_started_at is not null", [TELEGRAM_INBOX_BOT_ID, work.chatKey, epoch8])).rows[0]?.high;
         if (high !== null && high !== void 0 && BigInt(work.updateId) < BigInt(high)) return held(client2, src, job2, "LATE_UPDATE");
         if (job2 && Number(job2.attempts) >= maxAttempts && job2.ownerId === null) return held(client2, src, job2, "RETRY_EXHAUSTED");
-        const leaseToken = (0, import_node_crypto41.randomUUID)(), generation = job2 ? Number(job2.generation) + 1 : 1;
+        const leaseToken = (0, import_node_crypto42.randomUUID)(), generation = job2 ? Number(job2.generation) + 1 : 1;
         if (!integer12(generation, 1)) return fail22("PROCESSOR_STORAGE_UNAVAILABLE");
         if (job2) await client2.query("update lba_production_telegram_processing set status='leased',lease_token=$3,generation=$4,lease_until=clock_timestamp()+($5::int*interval '1 millisecond'),attempts=attempts+1,last_error=null,updated_at=clock_timestamp() where bot_id=$1 and update_id=$2", [TELEGRAM_INBOX_BOT_ID, work.updateId, leaseToken, generation, leaseMs]);
         else await client2.query(`insert into lba_production_telegram_processing(bot_id,update_id,chat_key,control_epoch,ingress_sha256,input_sha256,status,lease_token,generation,lease_until,attempts,created_at,updated_at) values($1,$2,$3,$4,$5,$6,'leased',$7,1,clock_timestamp()+($8::int*interval '1 millisecond'),1,clock_timestamp(),clock_timestamp())`, [TELEGRAM_INBOX_BOT_ID, work.updateId, work.chatKey, epoch8, work.ingressSha, work.inputSha, leaseToken, leaseMs]);
@@ -21090,11 +21404,11 @@ function createTelegramProcessor(options) {
     }
   });
 }
-var import_node_crypto41, TELEGRAM_PROCESSOR_VERSION, TELEGRAM_PROCESSOR_SCHEMA_SQL, ProcessorRefusal, fail22, plain11, text17, id3, integer12, canonical11, hash7, keys5, instant5, CHAT, SOURCE_FIELDS, JOB_FIELDS, JOB, SOURCE3, HEAD, CANDIDATES;
+var import_node_crypto42, TELEGRAM_PROCESSOR_VERSION, TELEGRAM_PROCESSOR_SCHEMA_SQL, ProcessorRefusal, fail22, plain11, text17, id3, integer12, canonical11, hash7, keys5, instant5, CHAT, SOURCE_FIELDS, JOB_FIELDS, JOB, SOURCE3, HEAD, CANDIDATES;
 var init_telegram_processor = __esm({
   "server/production/telegram-processor.ts"() {
     "use strict";
-    import_node_crypto41 = require("node:crypto");
+    import_node_crypto42 = require("node:crypto");
     init_schedule_core();
     init_telegram_inbox();
     TELEGRAM_PROCESSOR_VERSION = "lba-telegram-processor/1";
@@ -21135,7 +21449,7 @@ create table if not exists lba_production_telegram_processor_scan (
     id3 = (v) => typeof v === "string" && /^[1-9]\d{0,15}$/.test(v) && Number.isSafeInteger(Number(v)) && Number(v) <= 2 ** 52 - 1;
     integer12 = (v, min, max = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && Number(v) >= min && Number(v) <= max;
     canonical11 = (v) => v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? "[" + v.map(canonical11).join(",") + "]" : "{" + Object.keys(v).sort().map((k) => JSON.stringify(k) + ":" + canonical11(v[k])).join(",") + "}";
-    hash7 = (v) => (0, import_node_crypto41.createHash)("sha256").update(canonical11(v)).digest("hex");
+    hash7 = (v) => (0, import_node_crypto42.createHash)("sha256").update(canonical11(v)).digest("hex");
     keys5 = (v, allowed, required = allowed) => Object.keys(v).every((k) => allowed.includes(k)) && required.every((k) => Object.hasOwn(v, k));
     instant5 = (v) => {
       const s = v instanceof Date ? v.toISOString() : v;
@@ -21174,17 +21488,17 @@ function createIngressOwnerResolver(expectedControlEpoch, options = {}) {
    and private_input->>'actorTelegramId'=$3 and private_input->>'chatId'=$3
    order by update_id desc limit 1 for share`, [PRODUCT_TELEGRAM_IDENTITY.botId, expectedControlEpoch, actor]);
     if (proof.rows.length !== 1) return { status: "missing" };
-    const owner2 = (0, import_node_crypto42.randomUUID)();
+    const owner2 = (0, import_node_crypto43.randomUUID)();
     await client2.query("insert into users(id) values($1)", [owner2]);
-    await client2.query("insert into linked_accounts(id,user_id,provider,provider_id,display_name) values($1,$2,'telegram',$3,'Telegram')", [(0, import_node_crypto42.randomUUID)(), owner2, actor]);
+    await client2.query("insert into linked_accounts(id,user_id,provider,provider_id,display_name) values($1,$2,'telegram',$3,'Telegram')", [(0, import_node_crypto43.randomUUID)(), owner2, actor]);
     return resolveCurrentTelegramOwner(client2, actor);
   };
 }
-var import_node_crypto42, verifyRuntimeEmptyAccount;
+var import_node_crypto43, verifyRuntimeEmptyAccount;
 var init_runtime_identity = __esm({
   "server/production/runtime-identity.ts"() {
     "use strict";
-    import_node_crypto42 = require("node:crypto");
+    import_node_crypto43 = require("node:crypto");
     init_telegram_processor();
     init_product_identity();
     verifyRuntimeEmptyAccount = async (input) => {
@@ -21195,7 +21509,7 @@ var init_runtime_identity = __esm({
         kind: "verified_empty_account",
         ownerId: input.principal.ownerId,
         accountState: "existing_empty",
-        accountRevisionId: "users:" + (0, import_node_crypto42.createHash)("sha256").update(canonical17).digest("hex"),
+        accountRevisionId: "users:" + (0, import_node_crypto43.createHash)("sha256").update(canonical17).digest("hex"),
         evidenceRef: "users-primary-key/same-transaction",
         legacySourceDigest: input.legacySourceDigest,
         verifiedAt: input.serverNow
@@ -21212,7 +21526,7 @@ function campaignId(value) {
   return typeof value === "string" && /^[A-Za-z0-9_.:-]{1,160}$/.test(value);
 }
 function campaignHash(value) {
-  return (0, import_node_crypto43.createHash)("sha256").update(JSON.stringify(value)).digest("hex");
+  return (0, import_node_crypto44.createHash)("sha256").update(JSON.stringify(value)).digest("hex");
 }
 function campaignOperationId(releaseId, recipientRef) {
   if (!campaignId(releaseId) || !campaignId(recipientRef)) return campaignFail("INVALID_CAMPAIGN_ID");
@@ -21275,11 +21589,11 @@ function checkedClaim(claim, options) {
   if (!campaign || !spec || campaignSpecHash(spec) !== campaign.specHash || spec.releaseId !== options.releaseId || !j || j.releaseId !== spec.releaseId || j.botId !== spec.botId || !campaignId(j.recipientRef) || j.operationId !== campaignOperationId(spec.releaseId, j.recipientRef) || j.state !== "leased" || j.leaseOwner !== options.workerId || c.workerId !== options.workerId || c.fence !== j.fence || !Number.isSafeInteger(j.fence) || j.fence < 1 || !campaignInstant(j.leaseUntil) || !Number.isSafeInteger(j.attempts) || j.attempts < 0 || j.attempts >= spec.maxAttempts || !["pilot", "full"].includes(campaign.phase) || j.cohort !== (spec.pilotRecipientRefs.includes(j.recipientRef) ? "pilot" : "full")) return campaignFail("INVALID_CAMPAIGN_CLAIM");
   return c;
 }
-var import_node_crypto43, UPDATE_CAMPAIGN_VERSION, UPDATE_ANNOUNCEMENT_UA, CampaignError, campaignFail, plain12, exactKeys, checkedCampaignClaim;
+var import_node_crypto44, UPDATE_CAMPAIGN_VERSION, UPDATE_ANNOUNCEMENT_UA, CampaignError, campaignFail, plain12, exactKeys, checkedCampaignClaim;
 var init_update_campaign = __esm({
   "server/release/update-campaign.ts"() {
     "use strict";
-    import_node_crypto43 = require("node:crypto");
+    import_node_crypto44 = require("node:crypto");
     UPDATE_CAMPAIGN_VERSION = "lba-update-campaign/1";
     UPDATE_ANNOUNCEMENT_UA = "\u041C\u0438 \u043E\u043D\u043E\u0432\u0438\u043B\u0438 \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u043D\u043E\u043A \u0456 \u0431\u043E\u0442\u0430. \u0423 \u043D\u0430\u0439\u0431\u043B\u0438\u0436\u0447\u0456 \u0434\u043D\u0456 \u0437\u2019\u044F\u0432\u043B\u044F\u0442\u044C\u0441\u044F \u0449\u0435 \u043A\u0456\u043B\u044C\u043A\u0430 \u043E\u043D\u043E\u0432\u043B\u0435\u043D\u044C \u0456 \u043F\u043E\u043A\u0440\u0430\u0449\u0435\u043D\u044C. \u041F\u043E\u043A\u0438 \u0442\u0440\u0438\u0432\u0430\u0454 \u043E\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u044F, \u043C\u043E\u0436\u043B\u0438\u0432\u0456 \u0442\u0438\u043C\u0447\u0430\u0441\u043E\u0432\u0456 \u0437\u0431\u043E\u0457 \u0432 \u0440\u043E\u0431\u043E\u0442\u0456 \u0433\u0440\u0430\u0444\u0456\u043A\u0456\u0432 \u0456 \u0441\u043F\u043E\u0432\u0456\u0449\u0435\u043D\u044C. \u042F\u043A\u0449\u043E \u043F\u043E\u043C\u0456\u0442\u0438\u0442\u0435 \u043D\u0435\u0442\u043E\u0447\u043D\u0456\u0441\u0442\u044C, \u043F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0456\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0456\u044E \u0432 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u0430 \u043C\u0435\u0440\u0435\u0436\u0456.";
     CampaignError = class extends Error {
@@ -21386,7 +21700,7 @@ function createTelegramTransport(options) {
     if (JSON.stringify(payload).includes(token)) return refuse("telegram_sensitive_payload_rejected");
     let bytes, contentType;
     if (photo) {
-      const boundary = `lba${(0, import_node_crypto44.randomBytes)(16).toString("hex")}`, parts = [];
+      const boundary = `lba${(0, import_node_crypto45.randomBytes)(16).toString("hex")}`, parts = [];
       for (const [key3, value] of Object.entries(payload)) parts.push(Buffer.from(`--${boundary}\r
 Content-Disposition: form-data; name="${key3}"\r
 \r
@@ -21593,11 +21907,11 @@ Content-Type: image/png\r
   };
   return Object.freeze(transport);
 }
-var import_node_crypto44, EXPECTED_TELEGRAM_USERNAME, object7, only2, id4, integer13, numericId, text18, sha11, notSent, unknown, Refusal, refuse;
+var import_node_crypto45, EXPECTED_TELEGRAM_USERNAME, object7, only2, id4, integer13, numericId, text18, sha11, notSent, unknown, Refusal, refuse;
 var init_telegram_transport = __esm({
   "server/production/telegram-transport.ts"() {
     "use strict";
-    import_node_crypto44 = require("node:crypto");
+    import_node_crypto45 = require("node:crypto");
     init_schedule_core();
     EXPECTED_TELEGRAM_USERNAME = "PowerUkraineBot";
     object7 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
@@ -21606,7 +21920,7 @@ var init_telegram_transport = __esm({
     integer13 = (v, min = 1, max = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && Number(v) >= min && Number(v) <= max;
     numericId = (v, signed = false) => typeof v === "string" && (signed ? /^-?[1-9]\d{0,15}$/ : /^[1-9]\d{0,15}$/).test(v) && integer13(Math.abs(Number(v)), 1, 2 ** 52 - 1);
     text18 = (v, max, empty3 = false) => typeof v === "string" && (empty3 || v.trim().length > 0) && v.length <= max && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f\ud800-\udfff]/u.test(v);
-    sha11 = (v) => (0, import_node_crypto44.createHash)("sha256").update(v).digest("hex");
+    sha11 = (v) => (0, import_node_crypto45.createHash)("sha256").update(v).digest("hex");
     notSent = (reason) => ({ kind: "not_sent", retryable: false, reason });
     unknown = (reason) => ({ kind: "unknown", reason });
     Refusal = class extends Error {
@@ -21777,11 +22091,11 @@ function createCallbackAckConsumer(p) {
   }
   return Object.freeze({ recoverOrphans, dispatchNext });
 }
-var import_node_crypto45, CALLBACK_ACK_BOT_ID, TELEGRAM_CALLBACK_ACK_SCHEMA_SQL, hash8, object8, exact, integer14, numeric, instant6, decoded3, fail23, notSent2, unknown2, callbackAckOperationId, SOURCE4;
+var import_node_crypto46, CALLBACK_ACK_BOT_ID, TELEGRAM_CALLBACK_ACK_SCHEMA_SQL, hash8, object8, exact, integer14, numeric, instant6, decoded3, fail23, notSent2, unknown2, callbackAckOperationId, SOURCE4;
 var init_telegram_callback_ack = __esm({
   "server/production/telegram-callback-ack.ts"() {
     "use strict";
-    import_node_crypto45 = require("node:crypto");
+    import_node_crypto46 = require("node:crypto");
     init_schedule_core();
     CALLBACK_ACK_BOT_ID = "8577497098";
     TELEGRAM_CALLBACK_ACK_SCHEMA_SQL = `
@@ -21801,7 +22115,7 @@ create table if not exists lba_production_telegram_callback_ack_attempts (
  primary key(bot_id,update_id,fence),foreign key(bot_id,update_id) references lba_production_telegram_callback_acks(bot_id,update_id)
 );
 `;
-    hash8 = (value) => (0, import_node_crypto45.createHash)("sha256").update(value).digest("hex");
+    hash8 = (value) => (0, import_node_crypto46.createHash)("sha256").update(value).digest("hex");
     object8 = (v) => Boolean(v && typeof v === "object" && !Array.isArray(v) && [Object.prototype, null].includes(Object.getPrototypeOf(v)));
     exact = (v, keys7) => Object.keys(v).length === keys7.length && Object.keys(v).every((k) => keys7.includes(k));
     integer14 = (v, min = 0, max = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && Number(v) >= min && Number(v) <= max;
@@ -22449,11 +22763,11 @@ function createTelegramDispatcher(options) {
   };
   return Object.freeze(dispatcher);
 }
-var import_node_crypto46, DISPATCH_BOT_ID, DISPATCH_VERSION, TELEGRAM_DISPATCH_SCHEMA_SQL, legacyJob, plain13, id5, integer15, hashPattern, canonical12, hash9, profileDispatchOperationId, dispatchPayloadDigest, dispatchBotLockKey, notSent3, unknown3, safeOutcome, DispatchError, fail24, date, decoded4, JOB_COLUMNS;
+var import_node_crypto47, DISPATCH_BOT_ID, DISPATCH_VERSION, TELEGRAM_DISPATCH_SCHEMA_SQL, legacyJob, plain13, id5, integer15, hashPattern, canonical12, hash9, profileDispatchOperationId, dispatchPayloadDigest, dispatchBotLockKey, notSent3, unknown3, safeOutcome, DispatchError, fail24, date, decoded4, JOB_COLUMNS;
 var init_telegram_dispatch = __esm({
   "server/production/telegram-dispatch.ts"() {
     "use strict";
-    import_node_crypto46 = require("node:crypto");
+    import_node_crypto47 = require("node:crypto");
     init_engine();
     init_schedule_core();
     init_schedule_binding();
@@ -22518,7 +22832,7 @@ end $lba_subject$;
     integer15 = (v, min = 0, max = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && Number(v) >= min && Number(v) <= max;
     hashPattern = /^[a-f0-9]{64}$/;
     canonical12 = (v) => v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? "[" + v.map(canonical12).join(",") + "]" : "{" + Object.keys(v).sort().map((k) => JSON.stringify(k) + ":" + canonical12(v[k])).join(",") + "}";
-    hash9 = (v) => (0, import_node_crypto46.createHash)("sha256").update(canonical12(v)).digest("hex");
+    hash9 = (v) => (0, import_node_crypto47.createHash)("sha256").update(canonical12(v)).digest("hex");
     profileDispatchOperationId = (outboxId) => hash9([DISPATCH_VERSION, DISPATCH_BOT_ID, "profile", outboxId]);
     dispatchPayloadDigest = (payload) => hash9(payload);
     dispatchBotLockKey = () => `lba-telegram-dispatch-bot:${DISPATCH_BOT_ID}`;
@@ -22682,17 +22996,17 @@ function createSqlTelegramDispatchEligibility(options) {
   } };
   return Object.freeze({ resolveEligibility, resolveCampaignOwner, campaignEligibility, ...options.legacyRecipients ? { resolveLegacyCampaignRecipient } : {} });
 }
-var import_node_crypto47, BOT, sha12, text19, numeric2, decoded5;
+var import_node_crypto48, BOT, sha12, text19, numeric2, decoded5;
 var init_telegram_dispatch_eligibility = __esm({
   "server/production/telegram-dispatch-eligibility.ts"() {
     "use strict";
-    import_node_crypto47 = require("node:crypto");
+    import_node_crypto48 = require("node:crypto");
     init_engine();
     init_notification_policy();
     init_schedule_core();
     init_update_campaign();
     BOT = "8577497098";
-    sha12 = (v) => (0, import_node_crypto47.createHash)("sha256").update(JSON.stringify(v)).digest("hex");
+    sha12 = (v) => (0, import_node_crypto48.createHash)("sha256").update(JSON.stringify(v)).digest("hex");
     text19 = (v, max = 255) => typeof v === "string" && v.length > 0 && v.length <= max && !/[\u0000-\u001f\u007f]/.test(v);
     numeric2 = (v) => text19(v, 16) && /^[1-9]\d{0,15}$/.test(v) && Number.isSafeInteger(Number(v)) && Number(v) <= 2 ** 52 - 1;
     decoded5 = (v) => typeof v === "string" ? JSON.parse(v) : v;
@@ -22734,7 +23048,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       client2.release();
     }
   }
-  async function load4(client2, releaseId) {
+  async function load5(client2, releaseId) {
     if (!campaignId(releaseId)) return campaignFail("INVALID_CAMPAIGN_ID");
     const rows = await client2.query("select * from lba_release_campaigns where release_id=$1 for update", [releaseId]);
     if (!rows.rows.length) return campaignFail("CAMPAIGN_NOT_FOUND");
@@ -22782,7 +23096,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
         await event(client2, j, { kind: "unknown", reason: "dispatch_lease_expired" }, now);
         j.state = "outcome_unknown";
         j.lastOutcome = "dispatch_lease_expired";
-        const c = await load4(client2, j.releaseId);
+        const c = await load5(client2, j.releaseId);
         c.phase = "paused";
         c.pauseReason = "dispatch_outcome_unknown";
         delete c.resumePhase;
@@ -22838,9 +23152,9 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
   async function startPilot(releaseId, now) {
     nowCheck(now);
     return tx(async (client2) => {
-      let c = await load4(client2, releaseId);
+      let c = await load5(client2, releaseId);
       await recoverBot(client2, c.spec.botId, now);
-      c = await load4(client2, releaseId);
+      c = await load5(client2, releaseId);
       if (!["prepared", "paused", "pilot"].includes(c.phase) || c.pauseReason === HEALTH_PAUSE || Date.parse(now) < Date.parse(c.spec.createdAt) || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
       c.phase = "pilot";
       c.pauseReason = null;
@@ -22851,9 +23165,9 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
   async function promote(releaseId, now) {
     nowCheck(now);
     return tx(async (client2) => {
-      let c = await load4(client2, releaseId);
+      let c = await load5(client2, releaseId);
       await recoverBot(client2, c.spec.botId, now);
-      c = await load4(client2, releaseId);
+      c = await load5(client2, releaseId);
       const pilot = (await jobs(client2, releaseId)).filter((j) => j.cohort === "pilot");
       if (c.pauseReason === HEALTH_PAUSE || !pilot.length || pilot.length !== c.spec.pilotRecipientRefs.length || pilot.some((j) => j.state !== "sent") || Date.parse(now) >= Date.parse(c.spec.expiresAt) || !await noUnknown(client2, c.spec.botId)) return null;
       if (c.phase !== "completed") {
@@ -22867,9 +23181,9 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
   async function resumeAfterHealth(releaseId, health, now) {
     const time3 = nowCheck(now);
     return tx(async (client2) => {
-      let c = await load4(client2, releaseId);
+      let c = await load5(client2, releaseId);
       await recoverBot(client2, c.spec.botId, now);
-      c = await load4(client2, releaseId);
+      c = await load5(client2, releaseId);
       if (c.phase !== "paused" || c.pauseReason !== HEALTH_PAUSE || time3 < Date.parse(c.spec.createdAt) || time3 >= Date.parse(c.spec.expiresAt) || !validDeploymentHealth(campaignBinding(c.spec), health, now) || !await noUnknown(client2, c.spec.botId)) {
         return summaryIn(client2, c);
       }
@@ -22887,7 +23201,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
   }
   async function pause(releaseId) {
     return tx(async (client2) => {
-      const c = await load4(client2, releaseId);
+      const c = await load5(client2, releaseId);
       if (c.phase !== "completed") {
         c.phase = "paused";
         c.pauseReason = "operator_paused";
@@ -22902,9 +23216,9 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       const time3 = nowCheck(now);
       if (!campaignId(workerId) || !Number.isInteger(leaseSeconds) || leaseSeconds < 5 || leaseSeconds > 300) return campaignFail("INVALID_CAMPAIGN_WORKER");
       return tx(async (client2) => {
-        let c = await load4(client2, releaseId);
+        let c = await load5(client2, releaseId);
         await recoverBot(client2, c.spec.botId, now);
-        c = await load4(client2, releaseId);
+        c = await load5(client2, releaseId);
         if (!["pilot", "full"].includes(c.phase) || time3 < Date.parse(c.spec.createdAt)) return null;
         const active = await botJobs(client2, c.spec.botId);
         if (active.some((j) => j.state === "outcome_unknown" || ["leased", "dispatching"].includes(j.state) && j.leaseUntil !== null && Date.parse(j.leaseUntil) > time3 || j.lastOutcome === "rate_limited" && Date.parse(j.nextAttemptAt) > time3)) return null;
@@ -22937,7 +23251,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
     async begin(claim, health, now) {
       const time3 = nowCheck(now);
       return tx(async (client2) => {
-        const c = await load4(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
+        const c = await load5(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
         if (!rows.rows.length) return "lost";
         const j = job(rows.rows[0]);
         if (!sameClaim(c, j, claim) || j.state !== "leased" || !j.leaseUntil || time3 >= Date.parse(j.leaseUntil)) return "lost";
@@ -22986,7 +23300,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
       const time3 = nowCheck(now);
       if (!deferral || !["coordinator_busy", "coordinator_deferred"].includes(deferral.reason) || !campaignInstant(deferral.retryAt) || Date.parse(deferral.retryAt) <= time3 || Date.parse(deferral.retryAt) - time3 > 864e5) return campaignFail("INVALID_CAMPAIGN_LOCAL_DEFERRAL");
       return tx(async (client2) => {
-        const c = await load4(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
+        const c = await load5(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
         if (rows.rows.length !== 1) return "lost";
         const j = job(rows.rows[0]);
         if (!sameClaim(c, j, claim) || j.state !== "dispatching" || !j.leaseUntil || time3 >= Date.parse(j.leaseUntil) || j.attempts !== claim.job.attempts + 1) return "lost";
@@ -23009,7 +23323,7 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
     async finish(claim, value, now) {
       const time3 = nowCheck(now), outcome = checkedCampaignOutcome(value);
       return tx(async (client2) => {
-        const c = await load4(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
+        const c = await load5(client2, claim.job.releaseId), rows = await client2.query("select * from lba_release_campaign_jobs where operation_id=$1 for update", [claim.job.operationId]);
         if (!rows.rows.length) return campaignFail("CAMPAIGN_FENCE_LOST");
         const j = job(rows.rows[0]);
         if (j.state === "sent" && j.fence === claim.fence && c.specHash === claim.campaign.specHash && outcome.kind === "sent" && outcome.receipt === j.providerReceipt) return;
@@ -23057,9 +23371,9 @@ function createPgUpdateCampaignRepository(pool2, eligibility) {
     promote,
     resumeAfterHealth,
     pause,
-    summary: (releaseId) => tx(async (client2) => summaryIn(client2, await load4(client2, releaseId))),
+    summary: (releaseId) => tx(async (client2) => summaryIn(client2, await load5(client2, releaseId))),
     attemptHistory: (releaseId) => tx(async (client2) => {
-      await load4(client2, releaseId);
+      await load5(client2, releaseId);
       return (await client2.query("select operation_id,fence,worker_id,spec_hash,events from lba_release_campaign_attempts where release_id=$1 order by operation_id,fence", [releaseId])).rows;
     })
   };
@@ -23606,7 +23920,7 @@ create table if not exists lba_production_morning_briefing_outbox_proof (
 // server/production/event-producer.ts
 function createProductionEventProducer(options) {
   const batch = options?.batchSize ?? 50, maxEvents = options?.maxEvents ?? 100, leaseMs = options?.leaseMs ?? 3e4;
-  const expected = options?.expectedControlEpoch, worker = options?.workerId ?? "events:" + (0, import_node_crypto48.randomUUID)();
+  const expected = options?.expectedControlEpoch, worker = options?.workerId ?? "events:" + (0, import_node_crypto49.randomUUID)();
   if (!options || typeof options.pool?.connect !== "function" || typeof options.events?.commit !== "function" || !integer17(expected, 1, Number.MAX_SAFE_INTEGER) || options.enabled !== void 0 && typeof options.enabled !== "boolean" || options.now !== void 0 && typeof options.now !== "function" || !text21(worker, 128) || options.morningBriefing !== void 0 && typeof options.morningBriefing?.commit !== "function" || !integer17(batch, 1, 200) || !integer17(maxEvents, 1, 1e3) || !integer17(leaseMs, 1e3, 6e4)) return fail27("INVALID_OPTIONS");
   const enabled = options.enabled === true, pool2 = options.pool, events = options.events, morning = options.morningBriefing;
   const clock = () => {
@@ -23644,7 +23958,7 @@ function createProductionEventProducer(options) {
   }
   async function acquire() {
     return transaction(async (client2) => {
-      const token = (0, import_node_crypto48.randomUUID)();
+      const token = (0, import_node_crypto49.randomUUID)();
       const selected = (await client2.query("select *,expires_at>clock_timestamp() as active from lba_production_event_producer_lease where id=true for update skip locked")).rows;
       if (selected.length > 1) return fail27("LEASE_INVALID");
       if (selected[0]?.active === true) return null;
@@ -23887,11 +24201,11 @@ function createProductionEventProducer(options) {
   }
   return Object.freeze({ runOnce, start, stop: stop2 });
 }
-var import_node_crypto48, EVENT_PRODUCER_SCHEMA_SQL, plain15, text21, hash11, integer17, epoch3, fail27, scope2, occurrence2, initial;
+var import_node_crypto49, EVENT_PRODUCER_SCHEMA_SQL, plain15, text21, hash11, integer17, epoch3, fail27, scope2, occurrence2, initial;
 var init_event_producer = __esm({
   "server/production/event-producer.ts"() {
     "use strict";
-    import_node_crypto48 = require("node:crypto");
+    import_node_crypto49 = require("node:crypto");
     init_engine();
     init_schedule_core();
     init_schedule_events();
@@ -23971,7 +24285,7 @@ function createLegacyCampaignRecipients(options) {
       return null;
     }
   }
-  const hmac = (value) => (0, import_node_crypto49.createHmac)("sha256", key3).update(canonical13(value)).digest("hex");
+  const hmac = (value) => (0, import_node_crypto50.createHmac)("sha256", key3).update(canonical13(value)).digest("hex");
   const revision2 = (value) => hmac({ kind: "legacy-campaign-recipient/2", botId: LEGACY_CAMPAIGN_BOT_ID, controlEpoch: expected, ...value });
   async function lock2(client2, id6) {
     const rows = (await client2.query("select pg_advisory_xact_lock(hashtextextended($1,0)),txid_current()::text as transaction_id", ["lba:identity:telegram:" + id6])).rows;
@@ -24018,7 +24332,7 @@ function createLegacyCampaignRecipients(options) {
           const issuedAt2 = current2(input.now);
           return issuedAt2 && !input.signal.aborted ? subject(rows[0], input.chatId, subscriberDigest, issuedAt2) : null;
         }
-        const recipientRef = "legacy:" + (0, import_node_crypto49.randomUUID)(), createdAt = new Date(Date.parse(input.now)).toISOString();
+        const recipientRef = "legacy:" + (0, import_node_crypto50.randomUUID)(), createdAt = new Date(Date.parse(input.now)).toISOString();
         const binding2 = revision2({ recipientRef, chatId: input.chatId, subscriberDigest, createdAt });
         const inserted = (await client2.query(`insert into lba_legacy_campaign_recipient(recipient_ref,bot_id,chat_id,control_epoch,subscriber_digest,binding_revision,created_at,revoked_at)
      values($1,$2,$3,$4,$5,$6,$7,null) on conflict(bot_id,chat_id) do nothing returning *`, [recipientRef, LEGACY_CAMPAIGN_BOT_ID, input.chatId, expected, subscriberDigest, binding2, createdAt])).rows;
@@ -24042,7 +24356,7 @@ function createLegacyCampaignRecipients(options) {
         if (!subscriberDigest) return null;
         const rows = (await client2.query("select * from lba_legacy_campaign_recipient where recipient_ref=$1 and bot_id=$2 and chat_id=$3 for share", [input.recipientRef, LEGACY_CAMPAIGN_BOT_ID, id6])).rows;
         if (rows.length !== 1) return null;
-        const chatKey = (0, import_node_crypto49.createHash)("sha256").update(JSON.stringify([LEGACY_CAMPAIGN_BOT_ID, id6, "private"])).digest("hex");
+        const chatKey = (0, import_node_crypto50.createHash)("sha256").update(JSON.stringify([LEGACY_CAMPAIGN_BOT_ID, id6, "private"])).digest("hex");
         const reach = (await client2.query('select owner_id as "ownerId",recipient_kind as "recipientKind",reachability from lba_production_telegram_chat_state where bot_id=$1 and chat_key=$2 for share', [LEGACY_CAMPAIGN_BOT_ID, chatKey])).rows;
         if (reach.length > 1 || reach.length === 1 && (reach[0].ownerId !== null || reach[0].recipientKind !== "legacy_subscription" || !["unknown", "reachable"].includes(reach[0].reachability)) || !await sameTransaction(client2, transactionId, input.signal)) return null;
         const issuedAt = current2(input.now);
@@ -24053,11 +24367,11 @@ function createLegacyCampaignRecipients(options) {
     }
   });
 }
-var import_node_crypto49, LEGACY_CAMPAIGN_BOT_ID, LEGACY_CAMPAIGN_RECIPIENT_SCHEMA_SQL, plain16, chat, ref, hex, epoch4, instant8, fail28, sameHex;
+var import_node_crypto50, LEGACY_CAMPAIGN_BOT_ID, LEGACY_CAMPAIGN_RECIPIENT_SCHEMA_SQL, plain16, chat, ref, hex, epoch4, instant8, fail28, sameHex;
 var init_legacy_campaign_recipient = __esm({
   "server/production/legacy-campaign-recipient.ts"() {
     "use strict";
-    import_node_crypto49 = require("node:crypto");
+    import_node_crypto50 = require("node:crypto");
     init_schedule_core();
     LEGACY_CAMPAIGN_BOT_ID = "8577497098";
     LEGACY_CAMPAIGN_RECIPIENT_SCHEMA_SQL = `
@@ -24077,16 +24391,16 @@ create table if not exists lba_legacy_campaign_recipient (
     fail28 = (reason) => {
       throw Error("LEGACY_CAMPAIGN_RECIPIENT_" + reason);
     };
-    sameHex = (a, b) => hex(a) && (0, import_node_crypto49.timingSafeEqual)(Buffer.from(a, "hex"), Buffer.from(b, "hex"));
+    sameHex = (a, b) => hex(a) && (0, import_node_crypto50.timingSafeEqual)(Buffer.from(a, "hex"), Buffer.from(b, "hex"));
   }
 });
 
 // server/production/canonical-schema.ts
-var import_node_crypto50, CANONICAL_SCHEMA_SQL, CANONICAL_SCHEMA_SHA256, CANONICAL_REQUIRED_RELATIONS;
+var import_node_crypto51, CANONICAL_SCHEMA_SQL, CANONICAL_SCHEMA_SHA256, CANONICAL_REQUIRED_RELATIONS;
 var init_canonical_schema = __esm({
   "server/production/canonical-schema.ts"() {
     "use strict";
-    import_node_crypto50 = require("node:crypto");
+    import_node_crypto51 = require("node:crypto");
     init_auth_replay();
     init_profile_store();
     init_source_ingestion();
@@ -24124,7 +24438,7 @@ var init_canonical_schema = __esm({
       LEGACY_CAMPAIGN_RECIPIENT_SCHEMA_SQL,
       MORNING_RECONCILIATION_SCHEMA_SQL
     ].join("\n");
-    CANONICAL_SCHEMA_SHA256 = (0, import_node_crypto50.createHash)("sha256").update(CANONICAL_SCHEMA_SQL).digest("hex");
+    CANONICAL_SCHEMA_SHA256 = (0, import_node_crypto51.createHash)("sha256").update(CANONICAL_SCHEMA_SQL).digest("hex");
     CANONICAL_REQUIRED_RELATIONS = Object.freeze([...CANONICAL_SCHEMA_SQL.matchAll(/create table if not exists ([a-z_][a-z0-9_]*)\s*\(/gi)].map((match) => match[1]));
   }
 });
@@ -24149,15 +24463,15 @@ function createVerifiedSessionFinalizer(ports) {
     if (verifiedAt > now || now - verifiedAt > 30) return;
     await ports.accounts.recordVerifiedLogin(
       { kind: "verified_server_principal", verified: true, ownerId: owner2, webSessionId: req.sessionID, authEpoch },
-      { receiptId: (0, import_node_crypto51.randomUUID)(), provider: provider2, providerId, verifiedAt: new Date(verifiedAt * 1e3).toISOString(), validUntil: new Date(Math.min(verifiedAt + 900, req.user.expires_at) * 1e3).toISOString() }
+      { receiptId: (0, import_node_crypto52.randomUUID)(), provider: provider2, providerId, verifiedAt: new Date(verifiedAt * 1e3).toISOString(), validUntil: new Date(Math.min(verifiedAt + 900, req.user.expires_at) * 1e3).toISOString() }
     );
   };
 }
-var import_node_crypto51;
+var import_node_crypto52;
 var init_verified_session = __esm({
   "server/production/verified-session.ts"() {
     "use strict";
-    import_node_crypto51 = require("node:crypto");
+    import_node_crypto52 = require("node:crypto");
     init_account_links();
   }
 });
@@ -24360,7 +24674,7 @@ function createProductionReleaseCampaign(options) {
   const binding2 = c ? releaseCampaignBinding(c) : null;
   const repository = createPgUpdateCampaignRepository(options.pool, options.eligibility);
   const observer = options.healthObserver ?? createReleaseCampaignHealthObserver({ fetch: options.fetch, now: ms });
-  const workerId = "release-notice:" + (0, import_node_crypto52.randomUUID)(), shutdown = new AbortController();
+  const workerId = "release-notice:" + (0, import_node_crypto53.randomUUID)(), shutdown = new AbortController();
   let busy = false, stopped = false, finished = false;
   let progress;
   let observation = { state: enabled ? "waiting_health" : "disabled" };
@@ -24553,11 +24867,11 @@ function createProductionReleaseCampaign(options) {
     observation: () => structuredClone(observation)
   });
 }
-var import_node_crypto52, import_node_perf_hooks3, RELEASE_NOTICE_ORIGIN, RELEASE_NOTICE_BOT_ID, RELEASE_NOTICE_AUTHORITY_SHA256, plain17, hex2, exact2, safeChat, owner, decoded6, fail29;
+var import_node_crypto53, import_node_perf_hooks3, RELEASE_NOTICE_ORIGIN, RELEASE_NOTICE_BOT_ID, RELEASE_NOTICE_AUTHORITY_SHA256, plain17, hex2, exact2, safeChat, owner, decoded6, fail29;
 var init_release_campaign = __esm({
   "server/production/release-campaign.ts"() {
     "use strict";
-    import_node_crypto52 = require("node:crypto");
+    import_node_crypto53 = require("node:crypto");
     import_node_perf_hooks3 = require("node:perf_hooks");
     init_update_campaign();
     init_update_campaign_pg();
@@ -24740,11 +25054,11 @@ async function loadReviewedOdesaQualification(input) {
   }
   return { sourceId: b.sourceId, operatorId: b.operatorId, namespace: b.namespace, reviewedAt: b.reviewedAt, validUntil: b.validUntil, medium: b.medium, addressIds: b.coverage.kind === "exact_addresses" ? new Set(targets.keys()) : null, targetIds: new Set(targets.values()), startedAt: new Date(Math.min(...all)).toISOString(), finishedAt: new Date(Math.max(...all)).toISOString() };
 }
-var import_node_crypto53, import_acorn5, API, PAGE, MIRROR, plain18, closed14, text22, hex3, hash12, canonical14, equal, fail30, scope3, pin, json;
+var import_node_crypto54, import_acorn5, API, PAGE, MIRROR, plain18, closed14, text22, hex3, hash12, canonical14, equal, fail30, scope3, pin, json;
 var init_odesa_qualification = __esm({
   "server/domain/odesa-qualification.ts"() {
     "use strict";
-    import_node_crypto53 = require("node:crypto");
+    import_node_crypto54 = require("node:crypto");
     import_acorn5 = require("acorn");
     init_odesa_address_adapter();
     init_hour_matrix_adapter();
@@ -24758,7 +25072,7 @@ var init_odesa_qualification = __esm({
     closed14 = (v, keys7) => plain18(v) && Object.keys(v).length === keys7.length && keys7.every((k) => Object.hasOwn(v, k));
     text22 = (v) => typeof v === "string" && v.length > 0 && v.length <= 2048 && !/[\u0000-\u001f\u007f]/.test(v);
     hex3 = (v) => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
-    hash12 = (v) => (0, import_node_crypto53.createHash)("sha256").update(v).digest("hex");
+    hash12 = (v) => (0, import_node_crypto54.createHash)("sha256").update(v).digest("hex");
     canonical14 = (v) => v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? "[" + v.map(canonical14).join(",") + "]" : "{" + Object.keys(v).sort().map((k) => JSON.stringify(k) + ":" + canonical14(v[k])).join(",") + "}";
     equal = (a, b) => canonical14(a) === canonical14(b);
     fail30 = (code) => {
@@ -24852,11 +25166,11 @@ async function readOdesaAddressTargetHint(input) {
     return null;
   }
 }
-var import_node_crypto54, AJAX6, TTL4, plain19, closed15, uuid10, canonical15, same2, digest5, iso3, epoch5;
+var import_node_crypto55, AJAX6, TTL4, plain19, closed15, uuid10, canonical15, same2, digest5, iso3, epoch5;
 var init_odesa_address_certification = __esm({
   "server/production/odesa-address-certification.ts"() {
     "use strict";
-    import_node_crypto54 = require("node:crypto");
+    import_node_crypto55 = require("node:crypto");
     init_odesa_address_adapter();
     init_public_address_request_identity();
     init_schedule_core();
@@ -24867,7 +25181,7 @@ var init_odesa_address_certification = __esm({
     uuid10 = (v) => typeof v === "string" && /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(v);
     canonical15 = (v) => v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? "[" + v.map(canonical15).join(",") + "]" : "{" + Object.keys(v).sort().map((k) => JSON.stringify(k) + ":" + canonical15(v[k])).join(",") + "}";
     same2 = (a, b) => canonical15(a) === canonical15(b);
-    digest5 = (v) => (0, import_node_crypto54.createHash)("sha256").update(canonical15(v)).digest("hex");
+    digest5 = (v) => (0, import_node_crypto55.createHash)("sha256").update(canonical15(v)).digest("hex");
     iso3 = (v) => v instanceof Date ? v.toISOString() : v;
     epoch5 = (v, expected) => Boolean((typeof v === "number" && Number.isSafeInteger(v) || typeof v === "string" && /^[1-9]\d{0,15}$/.test(v)) && Number(v) === expected);
   }
@@ -25499,11 +25813,11 @@ function createCertifiedInteractiveScheduleProof(events, expectedControlEpoch) {
     return cert ? { sourceRevision: view.source.revision, expiresAt: cert.expiresAt } : null;
   };
 }
-var import_node_crypto55, import_promises, import_node_path4, QUALIFICATION_CODE_DEPENDENCIES, plain21, hex4, text23, closed16, sha13, die, scope4, iso4, accepted, registries, emptyRegistry, certificateId, principal6;
+var import_node_crypto56, import_promises, import_node_path4, QUALIFICATION_CODE_DEPENDENCIES, plain21, hex4, text23, closed16, sha13, die, scope4, iso4, accepted, registries, emptyRegistry, certificateId, principal6;
 var init_schedule_certification = __esm({
   "server/production/schedule-certification.ts"() {
     "use strict";
-    import_node_crypto55 = require("node:crypto");
+    import_node_crypto56 = require("node:crypto");
     import_promises = require("node:fs/promises");
     import_node_path4 = __toESM(require("node:path"), 1);
     init_odesa_qualification();
@@ -25527,7 +25841,7 @@ var init_schedule_certification = __esm({
     hex4 = (v) => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
     text23 = (v) => typeof v === "string" && v.length > 0 && v.length <= 2048 && !/[\u0000-\u001f\u007f]/.test(v);
     closed16 = (v, keys7) => plain21(v) && Object.keys(v).length === keys7.length && keys7.every((k) => Object.hasOwn(v, k));
-    sha13 = (b) => (0, import_node_crypto55.createHash)("sha256").update(b).digest("hex");
+    sha13 = (b) => (0, import_node_crypto56.createHash)("sha256").update(b).digest("hex");
     die = (code) => {
       throw new ProductionProfileStoreError("SCHEDULE_CERTIFICATION_" + code);
     };
@@ -25658,7 +25972,7 @@ function createCanonicalRuntime(ports) {
     enabled: policy.telegramDeliveryEnabled,
     expectedBotId: PRODUCT_TELEGRAM_IDENTITY.botId,
     expectedControlEpoch: epoch8,
-    workerId: "canonical:" + (0, import_node_crypto56.randomUUID)(),
+    workerId: "canonical:" + (0, import_node_crypto57.randomUUID)(),
     pool: pool2,
     now,
     ...eligibility,
@@ -25758,12 +26072,11 @@ function createCanonicalRuntime(ports) {
       await flow.refreshOwned();
       await data.refresh();
     });
-    if (policy.sourceIngestionEnabled) loop("source", 1e3, async () => {
-      const result2 = await sources.refreshOnce();
+    if (policy.sourceIngestionEnabled) loop("source", 5e3, () => sources.refreshOrigins(abort.signal, async (result2) => {
+      status2.source = result2.state;
       lastSourceRefresh = { state: result2.state, ..."code" in result2 ? { code: result2.code } : {}, ...result2.sourceId ? { sourceId: result2.sourceId } : {} };
       if (result2.state === "published") await data.refresh(true);
-      return result2;
-    }, (result2) => result2.state);
+    }), () => status2.source);
     if (policy.sourceIngestionEnabled) loop("certification", 5e3, async () => {
       const result2 = await certification.runOnce({ signal: abort.signal });
       await data.refresh(true);
@@ -25809,16 +26122,16 @@ function createCanonicalRuntime(ports) {
     operatorLookupEnabled,
     health: () => {
       const evidence4 = certification.health();
-      return { ready, started, stopped, workers: { ...status2 }, sourceRefresh: lastSourceRefresh ? { ...lastSourceRefresh } : null, deliveryReady: Boolean(ready && started && policy.telegramDeliveryEnabled), notificationsReady: Boolean(ready && started && policy.notificationSchedulerEnabled && policy.telegramDeliveryEnabled && (evidence4.admittedSources > 0 && evidence4.evidenceMedium === "observed" || evidence4.configured && evidence4.initialLaunchNotifications && evidence4.launchPolicyCurrent && evidence4.launchPolicy === "lba-owner-approved-initial-launch/1")), scheduleCertificationRequired: true, scheduleCertification: evidence4, accountLinksReady: Boolean(policy.accountLinksEnabled && accounts2 && (ports.accountConfiguration?.miniApp || ports.accountConfiguration?.browserWidget)), authEpochReady: Boolean(ports.authorizePrincipal && accounts2), releaseCampaign: releaseCampaign?.health() ?? { configured: false, state: "disabled" } };
+      return { ready, started, stopped, workers: { ...status2 }, sourceRefresh: lastSourceRefresh ? { ...lastSourceRefresh } : null, publicScheduleCoverage: data.publicScheduleCoverage(), deliveryReady: Boolean(ready && started && policy.telegramDeliveryEnabled), notificationsReady: Boolean(ready && started && policy.notificationSchedulerEnabled && policy.telegramDeliveryEnabled && (evidence4.admittedSources > 0 && evidence4.evidenceMedium === "observed" || evidence4.configured && evidence4.initialLaunchNotifications && evidence4.launchPolicyCurrent && evidence4.launchPolicy === "lba-owner-approved-initial-launch/1")), scheduleCertificationRequired: true, scheduleCertification: evidence4, accountLinksReady: Boolean(policy.accountLinksEnabled && accounts2 && (ports.accountConfiguration?.miniApp || ports.accountConfiguration?.browserWidget)), authEpochReady: Boolean(ports.authorizePrincipal && accounts2), releaseCampaign: releaseCampaign?.health() ?? { configured: false, state: "disabled" } };
     }
   });
 }
-var import_node_crypto56, import_sharp;
+var import_node_crypto57, import_sharp;
 var init_canonical_runtime = __esm({
   "server/production/canonical-runtime.ts"() {
     "use strict";
     init_operator_address_refresh();
-    import_node_crypto56 = require("node:crypto");
+    import_node_crypto57 = require("node:crypto");
     import_sharp = __toESM(require("sharp"), 1);
     init_media_fonts();
     init_schedule_renderer();

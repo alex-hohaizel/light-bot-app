@@ -1,5 +1,6 @@
 import type {OdesaPlanOperatingRecord} from './odesa-plan-source.ts';
 import {SOURCE_PROFILES,type SourceAdmission,type TechnicalDisplayAdmission} from './source-intake.ts';
+import {KHARKIV_TELEGRAM_SOURCE} from '../domain/kharkiv-telegram-adapter.ts';
 
 /** Shared by plan ingestion and public address lookup, never a provider quota. */
 export const YASNO_SHARED_ORIGIN_BUDGET_MS=1000;
@@ -124,6 +125,20 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
  const historical=historicalTechnicalDisplaySourceRegistry(enabled);
  return historical.map(entry=>{
   if(!enabled)return entry;
+  if(entry.sourceId===KHARKIV_TELEGRAM_SOURCE){
+   const record:TechnicalDisplayAdmission={
+    sourceId:entry.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/kharkiv-official-telegram/dated-12-queue-v1',
+    reviewedAt:'2026-11-11T00:40:00Z',validUntil:OWNER_APPROVED_INITIAL_LAUNCH.validUntil,accessCost:0,
+    costEvidence:'Ordinary 11 November anonymous HTTPS GET of the public channel returned 200 without a Telegram account, key or subscription.',
+    publicationBasis:{kind:'official_public_feed',evidence:'Kharkivoblenergo public channel @kharkivenergy, post 2348. The 11 November 2026 local day and 12 groups were verified against the original publication.'},
+    formalPrimaryDataLicense:'not_observed',providerQuota:'not_published_in_reviewed_sources',
+    robots:{status:'not_checked',evidence:'Public channel preview path only. No credential, session, redirect or anti-bot workaround.'},
+    rate:{kind:'local_operating_budget',scope:'origin',minIntervalMs:2700000,evidence:'One anonymous channel preview per 45 minutes; honor provider access and rate limits.'},
+    cacheTtlMs:2700000,maxAgeMs:10800000,addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false,
+    recurringScope:{kind:'current_and_next_kyiv_day',authority:OWNER_APPROVED_INITIAL_LAUNCH.kind,parserVersion:'kharkiv-telegram-12-queue/1',maxPublicationAgeMs:129600000,emergencyOverlay:'unknown'},
+   };
+   return record;
+  }
   const odesa=entry.sourceId==='mirror-odesa';
   if(odesa){
    const record:TechnicalDisplayAdmission={sourceId:entry.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/mirror-odesa/recurring-fallback-v1',
@@ -141,7 +156,7 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
   if(!vinnytsia&&!kharkiv)return entry;
   const profile=SOURCE_PROFILES.find(p=>p.sourceId===entry.sourceId)!;
   const record:TechnicalDisplayAdmission={
-   sourceId:profile.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/'+profile.sourceId+'/recurring-v2',
+   sourceId:profile.sourceId,state:'technical_display',revisionId:OWNER_APPROVED_INITIAL_LAUNCH.kind+'/'+profile.sourceId+(vinnytsia?'/recurring-v3':'/recurring-v2'),
    reviewedAt:OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt,validUntil:OWNER_APPROVED_INITIAL_LAUNCH.validUntil,
    accessCost:0,costEvidence:vinnytsia?'10Nov anonymous public GitHub JSON GET returned200 without a key, subscription or payment; local observation, not a price guarantee.':'10Nov anonymous official RSS GET returned200 without a key, subscription or payment; local observation, not a price guarantee.',
    publicationBasis:{kind:vinnytsia?'publisher_public_syndication':'official_public_feed',evidence:vinnytsia?'Owner approved community fallback after official browser-aware TLS client403. vn-progr/gpv-voe-vinnytsia publishes data collected from bezsvitla.com.ua; this is neither the official VOE feed nor independent primary confirmation.':profile.endpoint+' ; official dated12-queue publication, matching title/body date, item origin and RFC publication time checked per capture.'},
@@ -152,7 +167,9 @@ export function technicalDisplaySourceRegistry(enabled=false):SourceAdmission[]{
    addressBindingVerified:false,deliveryEligible:false,parallel48hAccepted:false,independentFallbackVerified:false,
    recurringScope:{kind:'current_and_next_kyiv_day',authority:OWNER_APPROVED_INITIAL_LAUNCH.kind,
     parserVersion:vinnytsia?'vn-progr-hour-matrix/1.0.0':'kharkiv-dated-12-queue/2',
-    maxPublicationAgeMs:vinnytsia?7200000:259200000,emergencyOverlay:'unknown'},
+    // An unchanged, dated plan can still apply throughout its service day.
+    // Observation freshness is governed separately by cacheTtlMs/maxAgeMs.
+    maxPublicationAgeMs:vinnytsia?129600000:259200000,emergencyOverlay:'unknown'},
   };
   return record;
  });

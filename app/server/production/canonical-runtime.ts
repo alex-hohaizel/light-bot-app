@@ -146,12 +146,11 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  }
  function start(){if(!ready||started||stopped)throw Error('CANONICAL_RUNTIME_NOT_PREPARED');started=true;
   loop('context',5000,async()=>{await flow.refreshOwned();await data.refresh();});
-  if(policy.sourceIngestionEnabled)loop('source',1000,async()=>{
-   const result=await sources.refreshOnce();
+  if(policy.sourceIngestionEnabled)loop('source',5000,()=>sources.refreshOrigins(abort.signal,async result=>{
+   status.source=result.state;
    lastSourceRefresh={state:result.state,...('code'in result?{code:result.code}:{}),...(result.sourceId?{sourceId:result.sourceId}:{})};
    if(result.state==='published')await data.refresh(true);
-   return result;
-  },result=>result.state);
+  }),()=>status.source);
   if(policy.sourceIngestionEnabled)loop('certification',5000,async()=>{const result=await certification.runOnce({signal:abort.signal});await data.refresh(true);return result;});
   if(policy.telegramUpdatesEnabled)loop('processor',250,()=>processor.processNext());
   if(policy.notificationSchedulerEnabled)loop('notifications',1000,()=>eventProducer.runOnce({signal:abort.signal}));
@@ -161,6 +160,6 @@ export function createCanonicalRuntime(ports:{pool:LegacyProfileReadPool;policy:
  }
  async function stop(){stopped=true;ready=false;abort.abort();releaseCampaign?.stop();certification.stop();for(const timer of timers)clearTimeout(timer);timers.clear();await Promise.allSettled([...running]);await eventProducer.stop();}
  return Object.freeze({store,flow,tools,accounts,finishVerifiedLogin,events,morningBriefing,eventProducer,legacyRecipients,sources,catalog,processor,dispatcher,eligibility,releaseCampaign,certification,prepare,start,stop,operatorLookupEnabled,
-  health:()=>{const evidence=certification.health();return {ready,started,stopped,workers:{...status},sourceRefresh:lastSourceRefresh?{...lastSourceRefresh}:null,deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&
+  health:()=>{const evidence=certification.health();return {ready,started,stopped,workers:{...status},sourceRefresh:lastSourceRefresh?{...lastSourceRefresh}:null,publicScheduleCoverage:data.publicScheduleCoverage(),deliveryReady:Boolean(ready&&started&&policy.telegramDeliveryEnabled),notificationsReady:Boolean(ready&&started&&policy.notificationSchedulerEnabled&&policy.telegramDeliveryEnabled&&
    (evidence.admittedSources>0&&evidence.evidenceMedium==='observed'||evidence.configured&&evidence.initialLaunchNotifications&&evidence.launchPolicyCurrent&&evidence.launchPolicy==='lba-owner-approved-initial-launch/1')),scheduleCertificationRequired:true,scheduleCertification:evidence,accountLinksReady:Boolean(policy.accountLinksEnabled&&accounts&&(ports.accountConfiguration?.miniApp||ports.accountConfiguration?.browserWidget)),authEpochReady:Boolean(ports.authorizePrincipal&&accounts),releaseCampaign:releaseCampaign?.health()??{configured:false,state:'disabled'}};}});
 }

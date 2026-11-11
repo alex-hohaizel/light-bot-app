@@ -5,6 +5,7 @@ import {createSourceIntake,technicalPlanSha256,SOURCE_PROFILES,type CapturedPubl
 import {technicalDisplaySourceRegistry,odesaPlanApiOperatingRecord} from './source-operating-policy.ts';
 import {createOdesaPlanSource,odesaCompletePlanCursor,projectOdesaPlanSnapshot,projectOdesaPlanSnapshotBatch,readOdesaPlanSnapshot,validOdesaPlanOperatingRecord,type OdesaPlanSnapshot} from './odesa-plan-source.ts';
 import {ODESA_PLAN_API_SOURCE} from '../domain/odesa-plan-api-adapter.ts';
+import {KHARKIV_TELEGRAM_QUEUE_IDS,KHARKIV_TELEGRAM_SOURCE} from '../domain/kharkiv-telegram-adapter.ts';
 import type {LegacyProfileReadPool,LegacyProfileReadClient,LegacyProfileReadQuery} from './profile-reader.ts';
 import {createPublicSourceReservationGuard,type SourceReservationFailure} from './public-source-reservation.ts';
 
@@ -49,16 +50,16 @@ export function odesaPlanFailureScope(error:unknown):{failure:IntakeCode;hold?:'
  return {failure,...(failure==='SOURCE_ORIGIN_REJECTED'?{hold:'origin' as const}:failure==='SOURCE_SCHEMA_REJECTED'?{}:{hold:'worker-and-origin' as const})};
 }
 
-/** One selected plan per electrical target/day. Current complete official API
- * facts take priority; the community relay is a visibly attributed fallback.
- * Compare plan semantics only, never invent independent upstream confirmation. */
+/** Select one plan per target/day across equivalent feeds. */
 export function preferPublicSourcePlans(plans:readonly Available[]):Available[]{
- const result:Available[]=[],odesa=new Map<string,Available[]>();
+ const result:Available[]=[],odesa=new Map<string,Available[]>(),kharkiv=new Map<string,Available[]>();
  for(const plan of plans){
   const v=plan.view;
+  const key=JSON.stringify([v.operatorId,v.namespace,v.targetId,v.serviceDate]);
   if(v.operatorId==='dtek-oem'&&v.namespace==='dtek:oem'&&[ODESA_PLAN_API_SOURCE,'mirror-odesa'].includes(plan.provenance.sourceId)){
-   const key=JSON.stringify([v.operatorId,v.namespace,v.targetId,v.serviceDate]);
    const group=odesa.get(key)??[];group.push(plan);odesa.set(key,group);
+  }else if(v.operatorId==='kharkiv-oe'&&v.namespace==='kharkiv:rss'&&['kharkiv-official-rss',KHARKIV_TELEGRAM_SOURCE].includes(plan.provenance.sourceId)){
+   const group=kharkiv.get(key)??[];group.push(plan);kharkiv.set(key,group);
   }else result.push(plan);
  }
  const complete=(p:Available|undefined)=>p?.view.freshness==='current'&&p.view.dayCoverage==='complete'&&['published','possible','no_planned_outages'].includes(p.view.status);
@@ -71,6 +72,12 @@ export function preferPublicSourcePlans(plans:readonly Available[]):Available[]{
   else if(selected.provenance.sourceId==='mirror-odesa')
    notice+=' Показано резервне джерело: офіційний план цієї групи й дати зараз недоступний, застарілий або ще не опублікований.';
   result.push(notice===selected.view.notice?selected:{...selected,view:{...selected.view,notice:notice.trim()}});
+ }
+ for(const candidates of kharkiv.values()){
+  const ordered=[...candidates].sort((a,b)=>Number(complete(b))-Number(complete(a))||
+   Date.parse(b.provenance.publishedAt)-Date.parse(a.provenance.publishedAt)||
+   a.provenance.sourceId.localeCompare(b.provenance.sourceId));
+  result.push(ordered[0]);
  }
  return result;
 }
@@ -107,6 +114,7 @@ export function discoverPublicSourceGroups(profile:SourceProfile,raw:string):str
   if(!record(value)||!record(value.fact)||!record(value.fact.data))return fail('SOURCE_CATALOG_REJECTED');
   for(const day of Object.values(value.fact.data))if(record(day))ids.push(...Object.keys(day).filter(k=>/^GPV[1-6]\.[12]$/.test(k)));
  }else if(profile.parser==='odesa_plan_api')return fail('SOURCE_CATALOG_REJECTED');
+ else if(profile.parser==='kharkiv_telegram')return [...KHARKIV_TELEGRAM_QUEUE_IDS];
  else{
   const $=parseXml(raw,{xml:true});
   $('item description').each((_i,node)=>{
@@ -135,6 +143,7 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
  const allowed=[...registry.filter(e=>e.state!=='blocked'),...(planAdmission?[planAdmission]:[])],profiles=SOURCE_PROFILES.filter(p=>allowed.some(e=>e.sourceId===p.sourceId));
  const entry=(id:string)=>allowed.find(e=>e.sourceId===id)!;
  const origin=(p:SourceProfile)=>new URL(p.endpoint).origin;
+ const origins=[...new Set(profiles.map(origin))];
  const interval=(p:SourceProfile)=>Math.max(...profiles.filter(x=>origin(x)===origin(p)).map(x=>entry(x.sourceId).rate.minIntervalMs));
  // Validate intake options even when the service is disabled. It remains inert.
  const freshIntake=(transport:SourceHttpTransport=options.transport)=>createSourceIntake({registry,transport,now:clock,limits:{maxConcurrent:1,timeoutMs:options.timeoutMs??8000}});
@@ -158,15 +167,18 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
    ['RESERVATION_COMMIT_UNKNOWN','RESERVATION_TOKEN_CONFLICT','RESERVATION_CLOSED','RESERVATION_DEADLINE','RESERVATION_ABORTED'].includes(result.code)?'SOURCE_PUBLICATION_UNKNOWN':'SOURCE_STORAGE_UNAVAILABLE';
   return {state:['SOURCE_WORKER_HELD','SOURCE_ORIGIN_HELD','SOURCE_LOCAL_BUDGET_DEFERRED'].includes(code)?'deferred':'unavailable',code,...(sourceId?{sourceId}:{})};
  }
- async function recoverExpiredRun():Promise<boolean>{
-  const result=await reservations.reconcileExpiredZeroHop(async(q,marker)=>{
+ async function recoverExpiredRun(reservationOrigin?:string):Promise<boolean>{
+  const result=await reservations.reconcileExpiredSourceRun(reservationOrigin,async(q,marker)=>{
+   const sourceIds=profiles.filter(p=>origin(p)===marker.origin).map(p=>p.sourceId);
+   if(!sourceIds.length)return false;
    const runs=(await q.query(`select id,source_id,control_epoch,started_at,finished_at,code
-    from lba_public_source_run where status='started' order by id limit 2 for update`)).rows;
+    from lba_public_source_run where status='started' and source_id=any($1::text[]) order by id limit 2 for update`,[sourceIds])).rows;
    if(runs.length!==1)return false;
    const run=runs[0],profile=profiles.find(p=>p.sourceId===run.source_id);
    if(run.id!==marker.reservationToken||Number(run.control_epoch)!==marker.controlEpoch||
       new Date(run.started_at).getTime()!==Date.parse(marker.reservedAt)||run.finished_at!==null||run.code!==null||
-      !profile||origin(profile)!==marker.origin||(profile.sourceId===ODESA_PLAN_API_SOURCE?2:1)!==marker.expectedMaxHops)return false;
+      !profile||origin(profile)!==marker.origin||(profile.sourceId===ODESA_PLAN_API_SOURCE?2:1)!==marker.expectedMaxHops||
+      marker.grantedHops>0&&profile.sourceId===ODESA_PLAN_API_SOURCE)return false;
    const raw=(await q.query('select 1 from lba_public_source_raw where run_id=$1 limit 1',[run.id])).rows;
    if(raw.length)return false;
    const state=(await q.query('select 1 from lba_public_source_state where source_id=$1 and last_attempt_at=$2 for update',[run.source_id,marker.reservedAt])).rows;
@@ -179,10 +191,10 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
   });
   return result.state==='recovered';
  }
- async function refreshOnce(sourceId?:string):Promise<SourceRefreshResult>{
+ async function refreshOnce(sourceId?:string,sourceOrigin?:string,signal=new AbortController().signal):Promise<SourceRefreshResult>{
   if(options.enabled!==true)return {state:'disabled',code:'SOURCE_SERVICE_DISABLED'};
   if(sourceId!==undefined&&(typeof sourceId!=='string'||!profiles.some(p=>p.sourceId===sourceId)))return {state:'blocked',code:'SOURCE_NOT_ADMITTED'};
-  let p:SourceProfile|undefined,deferred:SourceServiceCode='SOURCE_NOT_DUE',hasPossibleReservation=false;
+  let p:SourceProfile|undefined,deferred:SourceServiceCode='SOURCE_NOT_DUE',heldOrigins:string[]=[];
   try{
    const time=clock(),c=await options.pool.connect();let tx=false;
    try{
@@ -191,7 +203,7 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
     const origins=(await c.query('select origin,next_attempt_at,uncertain,hold_reason from lba_public_source_origin')).rows;
     if(states.some(s=>typeof s.source_id!=='string'||!Number.isFinite(new Date(s.last_attempt_at).getTime()))||
      origins.some(o=>typeof o.origin!=='string'||typeof o.uncertain!=='boolean'||!Number.isFinite(new Date(o.next_attempt_at).getTime())||o.hold_reason!==null&&typeof o.hold_reason!=='string'))return fail('SOURCE_STORAGE_UNAVAILABLE');
-    const due=profiles.filter(x=>sourceId===undefined||x.sourceId===sourceId).filter(x=>admitted(x,time)).sort((a,b)=>{
+    const due=profiles.filter(x=>(sourceId===undefined||x.sourceId===sourceId)&&(sourceOrigin===undefined||origin(x)===sourceOrigin)).filter(x=>admitted(x,time)).sort((a,b)=>{
      const stamp=(id:string)=>{const r=states.find(s=>s.source_id===id);return r?new Date(r.last_attempt_at).getTime():0;};return stamp(a.sourceId)-stamp(b.sourceId)||a.sourceId.localeCompare(b.sourceId);
     });
     if(!due.length)return fail('SOURCE_ADMISSION_EXPIRED');
@@ -201,15 +213,15 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
      if(o&&new Date(o.next_attempt_at).getTime()>time){deferred='SOURCE_LOCAL_BUDGET_DEFERRED';return false;}
      const s=states.find(r=>r.source_id===x.sourceId);return !s||time-new Date(s.last_attempt_at).getTime()>=entry(x.sourceId).cacheTtlMs;
     });
-    hasPossibleReservation=!p&&origins.some(o=>o.uncertain===true&&typeof o.hold_reason==='string'&&o.hold_reason.startsWith('{'));
+    if(!p)heldOrigins=origins.filter(o=>due.some(x=>origin(x)===o.origin)&&o.uncertain===true&&typeof o.hold_reason==='string'&&o.hold_reason.startsWith('{')).map(o=>o.origin);
     await c.query('commit');tx=false;
    }finally{if(tx)await c.query('rollback').catch(()=>{});c.release();}
    if(!p){
-    if(hasPossibleReservation&&await recoverExpiredRun())return {state:'deferred',code:'SOURCE_RESERVATION_RECOVERED'};
+    if(heldOrigins.length&&(await recoverExpiredRun()||(await Promise.all(heldOrigins.map(value=>recoverExpiredRun(value)))).some(Boolean)))return {state:'deferred',code:'SOURCE_RESERVATION_RECOVERED'};
     return {state:'deferred',code:deferred,...(sourceId?{sourceId}:{})};
    }
-   const chosen=p,abort=new AbortController();let runId='',reserveFailure:SourceServiceCode|undefined;
-   const reserved=await reservations.reserve({origin:origin(chosen),expectedMaxHops:chosen.sourceId===ODESA_PLAN_API_SOURCE?2:1,minIntervalMs:interval(chosen),...(chosen.sourceId===ODESA_PLAN_API_SOURCE?{strictEightPerMinute:true}:{}),deadlineMs:30000,signal:abort.signal,
+   const chosen=p;let runId='',reserveFailure:SourceServiceCode|undefined;
+   const reserved=await reservations.reserve({origin:origin(chosen),scope:'origin',expectedMaxHops:chosen.sourceId===ODESA_PLAN_API_SOURCE?2:1,minIntervalMs:interval(chosen),...(chosen.sourceId===ODESA_PLAN_API_SOURCE?{strictEightPerMinute:true}:{}),deadlineMs:30000,signal,
     persist:async(q,receipt)=>{
      // Recheck source cadence after acquiring the shared worker/origin rows.
      // No session identity, advisory lock, provider IO or user wait in this TX.
@@ -225,12 +237,13 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
     if(reserved.code==='RESERVATION_WORKER_HELD'&&await recoverExpiredRun())return {state:'deferred',code:'SOURCE_RESERVATION_RECOVERED'};
     return reserveFailure?{state:reserveFailure==='SOURCE_NOT_DUE'?'deferred':'unavailable',code:reserveFailure,sourceId:chosen.sourceId}:reservationRejected(reserved,chosen.sourceId);
    }
-   if(chosen.sourceId===ODESA_PLAN_API_SOURCE)return refreshOdesaPlan(chosen,reserved.reservation,abort,runId);
+   if(chosen.sourceId===ODESA_PLAN_API_SOURCE)return refreshOdesaPlan(chosen,reserved.reservation,signal,runId);
    let status:number|undefined,retry:string|undefined;
    const intake=freshIntake(async req=>{
-    const permission=await reserved.reservation.beforeHop({origin:origin(chosen)},abort.signal);
-    if(permission.state!=='granted')throw Error('SOURCE_DURABLE_PERMISSION_DENIED');
-    const response=await options.transport(req);status=response.status;retry=Object.entries(response.headers).find(([k])=>k.toLowerCase()==='retry-after')?.[1];return response;
+    const requestSignal=AbortSignal.any([signal,req.signal]);
+    const permission=await reserved.reservation.beforeHop({origin:origin(chosen)},requestSignal);
+    if(permission.state!=='granted'||requestSignal.aborted)throw Error('SOURCE_DURABLE_PERMISSION_DENIED');
+    const response=await options.transport({...req,signal:requestSignal});status=response.status;retry=Object.entries(response.headers).find(([k])=>k.toLowerCase()==='retry-after')?.[1];return response;
    });
    const today=localParts(clock()).date,tomorrow=nextCalendarDate(today),seed=chosen.parser==='hour_matrix'?'GPV1.1':'1.1';
    const bootstrap=await intake.load(request(chosen,seed,today)),capture=intake.snapshotRaw(chosen.sourceId);
@@ -243,9 +256,9 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
    }
    const published=valid.length>0&&capture!==null;
    const retryMs=typeof retry==='string'&&/^[1-9]\d{0,4}$/.test(retry)&&Number(retry)<=86400?Number(retry)*1000:null;
-   const hold=status===403||status===429&&retryMs===null||failure==='SOURCE_ORIGIN_REJECTED';
+   const hold=status===403||status===429&&retryMs===null||failure==='SOURCE_ORIGIN_REJECTED'||failure==='SOURCE_TIMEOUT';
    const committed=await reserved.reservation.finalize({
-    ...(failure==='SOURCE_TIMEOUT'?{hold:'worker-and-origin' as const}:hold?{hold:'origin' as const}:{}),
+    ...(hold?{hold:'origin' as const}:{}),
     ...(status===429&&retryMs!==null?{retryAfterMs:retryMs}:{}),
     persist:async q=>{
      if(published){
@@ -266,12 +279,12 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
   }catch(error){return unavailable(error,p?.sourceId);}
  }
 
- async function refreshOdesaPlan(chosen:SourceProfile,reservation:Extract<Awaited<ReturnType<typeof reservations.reserve>>,{state:'reserved'}>['reservation'],abort:AbortController,runId:string):Promise<SourceRefreshResult>{
+ async function refreshOdesaPlan(chosen:SourceProfile,reservation:Extract<Awaited<ReturnType<typeof reservations.reserve>>,{state:'reserved'}>['reservation'],signal:AbortSignal,runId:string):Promise<SourceRefreshResult>{
   if(!planAdmission)return {state:'blocked',sourceId:chosen.sourceId,code:'SOURCE_NOT_ADMITTED'};
   let capture:OdesaPlanSnapshot|null=null,valid:Available[]=[],failure:IntakeCode|undefined,hold:'origin'|'worker-and-origin'|undefined;
   const today=localParts(clock()).date;
   try{
-   capture=await planSource.acquire({cursor:odesaCompletePlanCursor(new Date(clock()).toISOString()),signal:abort.signal,reservationToken:runId,controlEpoch:options.expectedControlEpoch,admission:planAdmission,now:()=>new Date(clock()).toISOString(),beforeHop:async(_descriptor,signal)=>{
+   capture=await planSource.acquire({cursor:odesaCompletePlanCursor(new Date(clock()).toISOString()),signal,reservationToken:runId,controlEpoch:options.expectedControlEpoch,admission:planAdmission,now:()=>new Date(clock()).toISOString(),beforeHop:async(_descriptor,signal)=>{
     const permission=await reservation.beforeHop({origin:origin(chosen)},signal);if(permission.state!=='granted')throw Error('SOURCE_DURABLE_PERMISSION_DENIED');
    }});
    if(capture.reservationToken!==runId||capture.controlEpoch!==options.expectedControlEpoch||capture.mode!==(fixtureMode?'fixture_unverified':'standard_fetch_https'))throw Error('SOURCE_SCOPE_MISMATCH');
@@ -315,8 +328,14 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
   let c:LegacyProfileReadClient|undefined,tx=false;
   try{
    const time=clock();c=await options.pool.connect();await c.query('begin isolation level repeatable read read only');tx=true;await control(c,false);
-   const rows=(await c.query(`select p.source_id,p.target_id,p.service_date::text,r.snapshot,r.id as raw_id,r.source_id as raw_source_id,r.run_id,r.observed_at as raw_observed_at,g.source_id as run_source_id,g.control_epoch as run_control_epoch,g.status as run_status,g.started_at as run_started_at,g.finished_at as run_finished_at from lba_public_source_plan p join lba_public_source_raw r on r.id=p.raw_id join lba_public_source_run g on g.id=r.run_id order by p.source_id,p.target_id,p.service_date limit 2049`)).rows;
+   const rows=(await c.query(`select p.source_id,p.target_id,p.service_date::text,
+    case when row_number() over(partition by p.raw_id order by p.source_id,p.target_id,p.service_date)=1 then r.snapshot end as snapshot,
+    r.id as raw_id,r.source_id as raw_source_id,r.run_id,r.observed_at as raw_observed_at,g.source_id as run_source_id,
+    g.control_epoch as run_control_epoch,g.status as run_status,g.started_at as run_started_at,g.finished_at as run_finished_at
+    from lba_public_source_plan p join lba_public_source_raw r on r.id=p.raw_id join lba_public_source_run g on g.id=r.run_id
+    order by p.source_id,p.target_id,p.service_date limit 2049`)).rows;
    if(rows.length>2048)return fail('SOURCE_CATALOG_REJECTED');
+   const snapshots=new Map(rows.filter(row=>row.raw_id&&row.snapshot).map(row=>[row.raw_id,row.snapshot]));
    const states=(await c.query('select source_id,last_attempt_at,last_success_at,last_failure from lba_public_source_state')).rows;
    const plans:Available[]=[],observations:PublicTechnicalPlans['observations']=[],intake=freshIntake(),today=localParts(time).date;
    for(const p of profiles){
@@ -327,7 +346,7 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
     for(const row of rows.filter(r=>r.source_id===p.sourceId)){
      // Old dated plans remain technical history, never current-day schedules.
      if(![today,nextCalendarDate(today)].includes(row.service_date))continue;
-     const snapshot=row.snapshot as CapturedPublicSourceRaw|OdesaPlanSnapshot;
+     const snapshot=(row.snapshot??snapshots.get(row.raw_id)) as CapturedPublicSourceRaw|OdesaPlanSnapshot;
      const failedAfterObservation=Boolean(failure)&&snapshot&&Date.parse(snapshot.observedAt)<new Date(s.last_attempt_at).getTime();
      const stale=Boolean(failedAfterObservation)||!snapshot||time-Date.parse(snapshot.observedAt)>entry(p.sourceId).cacheTtlMs||p.sourceId===ODESA_PLAN_API_SOURCE&&new Date(s?.last_success_at).getTime()>Date.parse(snapshot?.observedAt);
      const flags={stale,...(failure&&failedAfterObservation?{refreshFailure:failure}:{})};
@@ -370,5 +389,8 @@ function createSourceService(options:SourceIngestionOptions,planSource:ReturnTyp
   }
   return {state:result.state,...(result.code?{code:result.code}:{}),groups,addressBindingVerified:false,deliveryEligible:false};
  }
- return Object.freeze({refreshOnce,readTechnicalPlans,readCatalog});
+ async function refreshOrigins(signal:AbortSignal,onResult:(result:SourceRefreshResult)=>Promise<void>){
+  await Promise.all(origins.map(async value=>onResult(await refreshOnce(undefined,value,signal))));
+ }
+ return Object.freeze({refreshOnce:(sourceId?:string)=>refreshOnce(sourceId),refreshOrigins,readTechnicalPlans,readCatalog});
 }

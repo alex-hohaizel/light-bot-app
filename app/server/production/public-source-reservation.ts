@@ -33,10 +33,10 @@ export interface PublicSourceReservation {
  finalize(options?:SourceFinalizeOptions):Promise<{state:'finalized';held:boolean}|SourceReservationFailure>;
 }
 export type SourceReserveResult={state:'reserved';reservation:PublicSourceReservation}|SourceReservationFailure;
-type ExpiredZeroHopReservation=Pick<SourceReservationReceipt,'reservationToken'|'origin'|'controlEpoch'|'reservedAt'|'expectedMaxHops'>&{finishedAt:string};
+type ExpiredSourceReservation=Pick<SourceReservationReceipt,'reservationToken'|'origin'|'controlEpoch'|'reservedAt'|'expectedMaxHops'>&{finishedAt:string;grantedHops:number};
 type SourceReconciliationResult={state:'recovered'|'unchanged'}|SourceReservationFailure;
 
-type Marker={kind:'lba-public-source-reservation';version:1;token:string;epoch:number;origin:string;
+type Marker={kind:'lba-public-source-reservation';version:1|2;token:string;epoch:number;origin:string;
  reservedAtMs:number;deadlineAtMs:number;maxHops:number;intervalMs:number;hops:number;nextHopAtMs:number};
 class Denied extends Error {
  readonly code:SourceReservationCode;readonly state:SourceReservationFailure['state'];readonly retryAt?:string;
@@ -55,15 +55,17 @@ function validOrigin(value:unknown):value is string {
 const HOLD_ORIGIN='lba-public-source-origin-held:v1';
 const HOLD_WORKER='lba-public-source-worker-held:v1';
 
-function zeroHopMarker(encoded:unknown,epoch:number):Marker|null {
+function readMarker(encoded:unknown,epoch:number,version:Marker['version']):Marker|null {
  if(typeof encoded!=='string'||encoded.length>2048||!encoded.startsWith('{'))return null;
  let marker:Marker;
  try{marker=JSON.parse(encoded);}catch{return null;}
  if(!marker||typeof marker!=='object'||Object.keys(marker).length!==11||marker.kind!=='lba-public-source-reservation'||
-    marker.version!==1||marker.epoch!==epoch||marker.hops!==0||!validOrigin(marker.origin)||
+    marker.version!==version||marker.epoch!==epoch||!validOrigin(marker.origin)||
     typeof marker.token!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(marker.token)||
     !safeInteger(marker.reservedAtMs,0,8_639_999_000_000_000)||!safeInteger(marker.deadlineAtMs,marker.reservedAtMs+1,marker.reservedAtMs+30_000)||
-    !safeInteger(marker.maxHops,1,4)||!safeInteger(marker.intervalMs,1000,86_400_000)||marker.nextHopAtMs!==marker.reservedAtMs||
+    !safeInteger(marker.maxHops,1,4)||!safeInteger(marker.intervalMs,1000,86_400_000)||!safeInteger(marker.hops,0,marker.maxHops)||
+    (marker.hops===0?marker.nextHopAtMs!==marker.reservedAtMs:
+      !safeInteger(marker.nextHopAtMs,marker.reservedAtMs+marker.hops*marker.intervalMs,marker.deadlineAtMs+marker.intervalMs-1))||
     (marker.maxHops-1)*marker.intervalMs>=30_000)return null;
  return marker;
 }
@@ -71,7 +73,7 @@ function zeroHopMarker(encoded:unknown,epoch:number):Marker|null {
 /** Reuses the existing worker/origin/control tables. It does not create schema,
  * fetch, admit a source, authenticate callers or mint delivery.
  * Origin is a fixed trusted server-profile input, NOT an HTTP allowlist.
- * All writers must be switched together after the old worker has drained.
+ * Feed reservations use the same origin row as legacy address reservations.
  * No backend-session identity or session/advisory lock is required.
  */
 export function createPublicSourceReservationGuard(options:{pool:SourceReservationPool;expectedControlEpoch:number}) {
@@ -98,8 +100,9 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
    remaining();const connecting=pool.connect();
    try{client=await bounded(connecting);}catch(error){void connecting.then(c=>c.release(true),()=>{});throw error;}
    await q.query('begin');tx=true;
-   const timeout=Math.min(1000,remaining());
-   await q.query("select set_config('statement_timeout',$1,true),set_config('lock_timeout',$1,true),set_config('idle_in_transaction_session_timeout',$1,true)",[String(timeout)]);
+   const available=remaining();
+   await q.query("select set_config('statement_timeout',$1,true),set_config('lock_timeout',$1,true),set_config('idle_in_transaction_session_timeout',$2,true)",
+    [String(Math.min(1000,available)),String(Math.min(5000,available))]);
    const result=await bounded(body(q));remaining();
    // A callback must not turn a caught SQL failure into a successful reserve.
    // PostgreSQL can answer COMMIT with command=ROLLBACK for an aborted TX.
@@ -124,56 +127,74 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
   const ms=typeof value==='string'&&/^\d{1,16}$/.test(value)?Number(value):value;
   if(!safeInteger(ms,0,8_639_999_000_000_000))denied('RESERVATION_STORAGE_UNAVAILABLE','unavailable');return ms;
  }
- async function locked(q:SourceReservationQuery,origin:string){
-  const worker=(await q.query('select uncertain,hold_reason from lba_public_source_worker where id=true for update')).rows;
-  const origins=(await q.query('select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update',[origin])).rows;
-  if(worker.length!==1||origins.length!==1)denied('RESERVATION_TOKEN_CONFLICT');return {worker:worker[0],origin:origins[0]};
+ async function workerRow(q:SourceReservationQuery,lock:'share'|'update'){
+  const rows=(await q.query('select uncertain,hold_reason from lba_public_source_worker where id=true for '+lock)).rows;
+  if(rows.length!==1)denied('RESERVATION_TOKEN_CONFLICT');
+  return rows[0];
  }
- async function owned(q:SourceReservationQuery,origin:string,encoded:string){
-  await control(q);const rows=await locked(q,origin);
-  if(rows.worker.uncertain!==true||rows.origin.uncertain!==true||rows.worker.hold_reason!==encoded||rows.origin.hold_reason!==encoded)denied('RESERVATION_TOKEN_CONFLICT');
+ async function originRow(q:SourceReservationQuery,origin:string){
+  return (await q.query('select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update',[origin])).rows[0];
+ }
+ function workerAllows(row:{uncertain:boolean;hold_reason:string|null},origin:string,version:Marker['version']){
+  if(row.uncertain===false&&row.hold_reason===null)return true;
+  if(version!==2||row.uncertain!==true)return false;
+  const legacy=readMarker(row.hold_reason,epoch,1);
+  return legacy!==null&&legacy.origin!==origin;
+ }
+ async function owned(q:SourceReservationQuery,marker:Marker,encoded:string){
+  await control(q);
+  const worker=await workerRow(q,marker.version===1?'update':'share'),origin=await originRow(q,marker.origin);
+  const workerOwned=marker.version===1?worker.uncertain===true&&worker.hold_reason===encoded:workerAllows(worker,marker.origin,marker.version);
+  if(!workerOwned||origin?.uncertain!==true||origin.hold_reason!==encoded)denied('RESERVATION_TOKEN_CONFLICT');
  }
  async function persist(q:SourceReservationQuery,callback:((q:SourceReservationQuery,r:SourceReservationReceipt)=>Promise<void>)|undefined,receipt:SourceReservationReceipt){
   if(callback)try{await callback(q,receipt);}catch{denied('RESERVATION_CALLBACK_FAILED','unavailable');}
  }
 
- /** A known zero-hop reservation cannot have reached the provider. Require
-  * the caller's linked run retirement before releasing either marker. */
- async function reconcileExpiredZeroHop(retire:(q:SourceReservationQuery,run:ExpiredZeroHopReservation)=>Promise<boolean>):Promise<SourceReconciliationResult>{
+ /** Retire only an exact feed run after its lease ends. An interrupted
+  * single public GET also waits for the durable provider cooldown. */
+ async function reconcileExpiredSourceRun(origin:string|undefined,retire:(q:SourceReservationQuery,run:ExpiredSourceReservation)=>Promise<boolean>):Promise<SourceReconciliationResult>{
   if(typeof retire!=='function')return {state:'blocked',code:'INVALID_RESERVATION_INPUT'};
   try{return await transaction(performance.now()+5_000,undefined,async q=>{
    await control(q);
-   const workers=(await q.query('select uncertain,hold_reason from lba_public_source_worker where id=true for update')).rows;
-   const worker=workers[0],encoded=worker?.hold_reason;
-   const marker=workers.length===1&&worker.uncertain===true?zeroHopMarker(encoded,epoch):null;
-   if(!marker)return {state:'unchanged'};
-   const rows=(await q.query('select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update',[marker.origin])).rows;
-   const origin=rows[0],next=new Date(origin?.next_attempt_at).getTime();
-   if(rows.length!==1||origin.uncertain!==true||origin.hold_reason!==encoded||
+   const worker=await workerRow(q,origin===undefined?'update':'share');
+   if(origin!==undefined&&!workerAllows(worker,origin,2))return {state:'unchanged'};
+   const legacy=origin===undefined&&worker.uncertain===true?readMarker(worker.hold_reason,epoch,1):null;
+   const lockedOrigin=origin??legacy?.origin;
+   if(lockedOrigin===undefined)return {state:'unchanged'};
+   const row=await originRow(q,lockedOrigin),encoded=row?.hold_reason;
+   const marker=legacy??readMarker(encoded,epoch,2);
+   const next=new Date(row?.next_attempt_at).getTime();
+   if(!marker||marker.origin!==lockedOrigin||row?.uncertain!==true||
+      (origin===undefined&&(!legacy||encoded!==worker.hold_reason))||
       !Number.isFinite(next)||next<marker.reservedAtMs+marker.maxHops*marker.intervalMs)return {state:'unchanged'};
    const now=await dbTime(q);
-   if(now<marker.deadlineAtMs)return {state:'unchanged'};
+   if(now<marker.deadlineAtMs||marker.hops>0&&(marker.maxHops!==1||next<marker.nextHopAtMs||now<next))return {state:'unchanged'};
    const run={reservationToken:marker.token,origin:marker.origin,controlEpoch:epoch,reservedAt:iso(marker.reservedAtMs),
-    expectedMaxHops:marker.maxHops,finishedAt:iso(now)};
+    expectedMaxHops:marker.maxHops,grantedHops:marker.hops,finishedAt:iso(now)};
    if(!await retire(q,run))return {state:'unchanged'};
-   const releaseWorker=await q.query('update lba_public_source_worker set uncertain=false,hold_reason=null where id=true and uncertain=true and hold_reason=$1',[encoded]);
+   if(legacy){
+    const releaseWorker=await q.query('update lba_public_source_worker set uncertain=false,hold_reason=null where id=true and uncertain=true and hold_reason=$1',[encoded]);
+    if(releaseWorker.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+   }
    const releaseOrigin=await q.query('update lba_public_source_origin set uncertain=false,hold_reason=null where origin=$1 and uncertain=true and hold_reason=$2',[marker.origin,encoded]);
-   if(releaseWorker.rowCount!==1||releaseOrigin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+   if(releaseOrigin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
    return {state:'recovered'};
   });}catch(error){return failure(error);}
  }
 
- return {reconcileExpiredZeroHop,async reserve(input:{origin:string;expectedMaxHops:number;minIntervalMs:number;strictEightPerMinute?:boolean;deadlineMs?:number;signal:AbortSignal;
+ return {reconcileExpiredSourceRun,async reserve(input:{origin:string;scope?:'origin';expectedMaxHops:number;minIntervalMs:number;strictEightPerMinute?:boolean;deadlineMs?:number;signal:AbortSignal;
   persist?:(transaction:SourceReservationQuery,receipt:SourceReservationReceipt)=>Promise<void>}):Promise<SourceReserveResult>{
   const duration=input?.deadlineMs??30_000;
   // Existing reviewed single-hop profiles include 1000/600000/2700000ms.
   // Strict 8/60 callers opt into the additional >=7500ms guard; neither limit
   // is a claim about provider quota or admission.
-  if(!validOrigin(input?.origin)||!safeInteger(input?.expectedMaxHops,1,4)||!safeInteger(input?.minIntervalMs,1000,86_400_000)||
+  if(!validOrigin(input?.origin)||input.scope!==undefined&&input.scope!=='origin'||!safeInteger(input?.expectedMaxHops,1,4)||!safeInteger(input?.minIntervalMs,1000,86_400_000)||
    input.strictEightPerMinute!==undefined&&typeof input.strictEightPerMinute!=='boolean'||input.strictEightPerMinute===true&&input.minIntervalMs<7500||
    !safeInteger(duration,1,30_000)||(input.expectedMaxHops-1)*input.minIntervalMs>=duration||!input.signal||typeof input.signal.addEventListener!=='function'||
    input.persist!==undefined&&typeof input.persist!=='function')return {state:'blocked',code:'INVALID_RESERVATION_INPUT'};
   input={...input};
+  const version:Marker['version']=input.scope==='origin'?2:1;
   // Wall deadline includes connection/row-lock work and waiting; DB clock is
   // authoritative for durable eligibility. No test/env clock override exists.
   const deadline=performance.now()+duration;
@@ -182,19 +203,21 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
    ({marker,encoded,receipt}=await transaction(deadline,input.signal,async q=>{
     await control(q);
     await q.query('insert into lba_public_source_worker(id,uncertain,hold_reason) values(true,false,null) on conflict(id) do nothing');
-    const workers=(await q.query('select uncertain,hold_reason from lba_public_source_worker where id=true for update')).rows;
-    if(workers.length!==1||workers[0].uncertain!==false||workers[0].hold_reason!==null)denied('RESERVATION_WORKER_HELD');
+    const worker=await workerRow(q,version===1?'update':'share');
+    if(!workerAllows(worker,input.origin,version))denied('RESERVATION_WORKER_HELD');
     await q.query("insert into lba_public_source_origin(origin,next_attempt_at,uncertain,hold_reason) values($1,'epoch',false,null) on conflict(origin) do nothing",[input.origin]);
-    const row=(await q.query('select next_attempt_at,uncertain,hold_reason from lba_public_source_origin where origin=$1 for update',[input.origin])).rows[0];
+    const row=await originRow(q,input.origin);
     if(!row||row.uncertain!==false||row.hold_reason!==null)denied('RESERVATION_ORIGIN_HELD');
     const now=await dbTime(q),next=new Date(row.next_attempt_at).getTime();
     if(!Number.isFinite(next))denied('RESERVATION_STORAGE_UNAVAILABLE','unavailable');
     if(next>now)denied('RESERVATION_LOCAL_BUDGET_DEFERRED','deferred',iso(next));
-    const m:Marker={kind:'lba-public-source-reservation',version:1,token:randomUUID(),epoch,origin:input.origin,reservedAtMs:now,
-     deadlineAtMs:now+Math.max(0,Math.floor(deadline-performance.now())),maxHops:input.expectedMaxHops,intervalMs:input.minIntervalMs,hops:0,nextHopAtMs:now};
+    const remaining=Math.floor(deadline-performance.now());
+    if(remaining<1)denied('RESERVATION_DEADLINE','cancelled');
+    const m:Marker={kind:'lba-public-source-reservation',version,token:randomUUID(),epoch,origin:input.origin,reservedAtMs:now,
+     deadlineAtMs:now+remaining,maxHops:input.expectedMaxHops,intervalMs:input.minIntervalMs,hops:0,nextHopAtMs:now};
     const text=JSON.stringify(m),r=Object.freeze({reservationToken:m.token,origin:m.origin,controlEpoch:epoch,reservedAt:iso(now),
      expectedMaxHops:m.maxHops,minIntervalMs:m.intervalMs,operationDeadlineAt:iso(m.deadlineAtMs)});
-    await q.query('update lba_public_source_worker set uncertain=true,hold_reason=$1 where id=true',[text]);
+    if(version===1)await q.query('update lba_public_source_worker set uncertain=true,hold_reason=$1 where id=true',[text]);
     await q.query('update lba_public_source_origin set uncertain=true,hold_reason=$2,next_attempt_at=$3 where origin=$1',[m.origin,text,iso(now+m.maxHops*m.intervalMs)]);
     await persist(q,input.persist,r);return {marker:m,encoded:text,receipt:r};
    }));
@@ -218,7 +241,7 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
     try{
      for(;;){
       const step=await transaction<{waitMs:number}|{next:Marker;text:string;now:number}>(deadline,signal,async q=>{
-       await owned(q,marker.origin,encoded);const now=await dbTime(q);
+       await owned(q,marker,encoded);const now=await dbTime(q);
        if(now>=marker.deadlineAtMs)denied('RESERVATION_DEADLINE','cancelled');
        if(marker.hops>=marker.maxHops)denied('RESERVATION_HOP_LIMIT');
        // Also space confirmed permissions locally: a slow previous COMMIT must
@@ -226,9 +249,12 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
        const waitMs=Math.max(marker.nextHopAtMs-now,Math.ceil(lastConfirmedGrantAt+marker.intervalMs-performance.now()));
        if(waitMs>0)return {waitMs} as const;
        const next={...marker,hops:marker.hops+1,nextHopAtMs:now+marker.intervalMs},text=JSON.stringify(next);
-       const worker=await q.query('update lba_public_source_worker set hold_reason=$2 where id=true and uncertain=true and hold_reason=$1',[encoded,text]);
+       if(version===1){
+        const worker=await q.query('update lba_public_source_worker set hold_reason=$2 where id=true and uncertain=true and hold_reason=$1',[encoded,text]);
+        if(worker.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+       }
        const origin=await q.query('update lba_public_source_origin set hold_reason=$3,next_attempt_at=greatest(next_attempt_at,$4) where origin=$1 and uncertain=true and hold_reason=$2',[marker.origin,encoded,text,iso(now+marker.intervalMs)]);
-       if(worker.rowCount!==1||origin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+       if(origin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
        return {next,text,now} as const;
       });
       if('waitMs' in step){await wait(step.waitMs,signal);continue;}
@@ -247,12 +273,15 @@ export function createPublicSourceReservationGuard(options:{pool:SourceReservati
     closed=true;
     try{
      await transaction(deadline,undefined,async q=>{
-      await owned(q,marker.origin,encoded);const now=await dbTime(q);
+      await owned(q,marker,encoded);const now=await dbTime(q);
       if(now>=marker.deadlineAtMs)denied('RESERVATION_DEADLINE','cancelled');
       await persist(q,finish.persist,receipt);
-      const worker=await q.query('update lba_public_source_worker set uncertain=$2,hold_reason=$3 where id=true and uncertain=true and hold_reason=$1',[encoded,finish.hold==='worker-and-origin',finish.hold==='worker-and-origin'?HOLD_WORKER:null]);
+      if(version===1){
+       const worker=await q.query('update lba_public_source_worker set uncertain=$2,hold_reason=$3 where id=true and uncertain=true and hold_reason=$1',[encoded,finish.hold==='worker-and-origin',finish.hold==='worker-and-origin'?HOLD_WORKER:null]);
+       if(worker.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+      }
       const origin=await q.query('update lba_public_source_origin set uncertain=$3,hold_reason=$4,next_attempt_at=greatest(next_attempt_at,$5) where origin=$1 and uncertain=true and hold_reason=$2',[marker.origin,encoded,Boolean(finish.hold),finish.hold?HOLD_ORIGIN:null,iso(now+Math.max(marker.intervalMs,finish.retryAfterMs??0))]);
-      if(worker.rowCount!==1||origin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
+      if(origin.rowCount!==1)denied('RESERVATION_TOKEN_CONFLICT');
      });
      return {state:'finalized',held:Boolean(finish.hold)};
     }catch(error){return failure(error);}

@@ -127,7 +127,7 @@ function create(options:Options,factory:(hook:OdesaBeforeHop)=>OdesaPublicClient
      on conflict(request_key) do update set last_attempt_at=excluded.last_attempt_at`,[key,AJAX,receipt.reservedAt]);
    }});
   if(reserved.state!=='reserved'){if(raced&&reserved.code==='RESERVATION_CALLBACK_FAILED')return {row:raced,cache:'hit' as const};if(capacity)fail('ADDRESS_CACHE_CAPACITY');return reservationError(reserved);}
-  const receipt=reserved.reservation.receipt;let result:Row|undefined,sourceFailure=false,workerHold=false,client:OdesaPublicClient|undefined;
+  const receipt=reserved.reservation.receipt;let result:Row|undefined,sourceFailure=false,client:OdesaPublicClient|undefined;
   try{
    // Record public request intent only. No guest values are visible to SQL.
    // persist is finalized together with the immutable result below; the durable
@@ -138,10 +138,9 @@ function create(options:Options,factory:(hook:OdesaBeforeHop)=>OdesaPublicClient
    const intake=getOdesaInternalIntake(output),capture=operation==='getStreets'?intake?.captures.catalog:intake?.captures.houses;
    if(!intake||!capture||intake.mode!=='standard_fetch_https'&&!(fixtures&&intake.mode==='fixture_unverified')||!fixtures&&!isNativeOdesaPublicResult(output))fail('ADDRESS_SOURCE_UNAVAILABLE');
    result={id:receipt.reservationToken,capture:structuredClone(capture),mode:intake.mode};current(result);validate(result);
-  }catch(error){result=undefined;sourceFailure=true;workerHold=Boolean(error&&typeof error==='object'&&'code'in error&&
-   ['ODESA_TRANSPORT_TIMEOUT','ODESA_TRANSPORT_CANCELLED','ODESA_TRANSPORT_CLOSED'].includes(String(error.code)));}finally{client?.close();}
+  }catch{result=undefined;sourceFailure=true;}finally{client?.close();}
   const envelope=result?{kind:'lba-odesa-address-capture/1',mode:result.mode,reservationToken:result.id,capture:result.capture}:undefined;
-  const finalized=await reserved.reservation.finalize({...(sourceFailure?{hold:workerHold?'worker-and-origin' as const:'origin' as const}:{}),persist:async(q,r)=>{
+  const finalized=await reserved.reservation.finalize({...(sourceFailure?{hold:'origin' as const}:{}),persist:async(q,r)=>{
    await q.query(`insert into lba_public_address_query(request_key,request_url,last_attempt_at,last_failure) values($1,$2,$3,$4)
     on conflict(request_key) do update set last_attempt_at=excluded.last_attempt_at,last_failure=excluded.last_failure`,[key,AJAX,r.reservedAt,result?null:'ADDRESS_SOURCE_UNAVAILABLE']);
    if(result){

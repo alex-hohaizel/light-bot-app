@@ -4,8 +4,9 @@ import { calendarDate, localParts, nextCalendarDate, validInstant, validateSched
 import { normalizeYasnoRaw } from '../domain/yasno-adapter.ts';
 import { normalizeHourMatrix } from '../domain/hour-matrix-adapter.ts';
 import { normalizeKharkivRss } from '../domain/kharkiv-adapter.ts';
+import { KHARKIV_TELEGRAM_ENDPOINT, KHARKIV_TELEGRAM_SOURCE, createKharkivTelegramNormalizer } from '../domain/kharkiv-telegram-adapter.ts';
 
-type Parser = 'yasno' | 'hour_matrix' | 'kharkiv_rss' | 'odesa_plan_api';
+type Parser = 'yasno' | 'hour_matrix' | 'kharkiv_rss' | 'kharkiv_telegram' | 'odesa_plan_api';
 export interface SourceProfile {
   readonly sourceId: string;
   readonly name: string;
@@ -31,6 +32,7 @@ export const SOURCE_PROFILES: readonly SourceProfile[] = Object.freeze([
   { sourceId: 'dtek-oem-official', name: 'ДТЕК Одеські електромережі', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem', parser: 'hour_matrix', endpoint: 'https://www.dtek-oem.com.ua/ua/shutdowns', researchBlocker: '9Nov current robots wildcardDisallow:/ confirmed by raw76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991. HTML200 proves plan availability, not automation permission. No repeated scraping or challenge bypass.', automationBlocked: true },
   { sourceId: 'mirror-odesa', name: 'Одеса · відкрите дзеркало графіків', region: 'odesa', operatorId: 'dtek-oem', namespace: 'dtek:oem', parserNamespace: 'dtek:oem-mirror', parser: 'hour_matrix', endpoint: 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json', researchBlocker: 'Community relay requires explicit finite owner initial-launch fallback scope; current primary equivalence, independent upstream,48h and exact house binding are not claimed. Historical9Nov comparison remains dated.' },
   { sourceId: 'kharkiv-official-rss', name: 'Харківобленерго · офіційний RSS', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_rss', endpoint: 'https://oblenergo.kharkiv.ua/uk/rss.xml', researchBlocker: 'Official dated group plans need explicit finite recurring parser policy. Manual group selection does not certify a house or current emergency overlay.' },
+  { sourceId: KHARKIV_TELEGRAM_SOURCE, name: 'Харківобленерго · офіційний канал', region: 'kharkiv', operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss', parserNamespace: 'kharkiv:rss', parser: 'kharkiv_telegram', endpoint: KHARKIV_TELEGRAM_ENDPOINT, researchBlocker: 'Only dated complete group plans from the official public operator channel are in scope.' },
 ].map(profile => Object.freeze(profile)) as SourceProfile[]);
 
 type ContractSourceAdmission = {
@@ -71,7 +73,7 @@ export interface TechnicalDisplayAdmission {
    * collector metadata may change; a changed plan needs a new comparison. */
   readonly recurringScope?:{
     readonly kind:'current_and_next_kyiv_day';readonly authority:'OWNER_APPROVED_INITIAL_LAUNCH/1';
-    readonly parserVersion:'vn-progr-hour-matrix/1.0.0'|'kharkiv-dated-12-queue/2'|'odesa-publisher-hour-matrix/1';
+    readonly parserVersion:'vn-progr-hour-matrix/1.0.0'|'kharkiv-dated-12-queue/2'|'kharkiv-telegram-12-queue/1'|'odesa-publisher-hour-matrix/1';
     readonly maxPublicationAgeMs:number;readonly emergencyOverlay:'unknown';
   };
   readonly semanticScope?:{
@@ -196,12 +198,12 @@ function validateAdmission(entry: SourceAdmission): void {
   if (entry.state === 'blocked') { if (!evidence(entry.reason)) throw new Error('INVALID_SOURCE_ADMISSION'); return; }
   if(entry.state==='technical_display'){
     const profile=SOURCE_PROFILES.find(p=>p.sourceId===entry.sourceId)!;
-    const official=profile.parser==='yasno'||profile.parser==='kharkiv_rss';
+    const official=profile.parser==='yasno'||profile.parser==='kharkiv_rss'||profile.parser==='kharkiv_telegram';
     if(!evidence(entry.revisionId)||!validInstant(entry.reviewedAt)||!validInstant(entry.validUntil)||Date.parse(entry.validUntil)<=Date.parse(entry.reviewedAt)||
       entry.accessCost!==0||!evidence(entry.costEvidence)||entry.publicationBasis?.kind!==(official?'official_public_feed':'publisher_public_syndication')||!evidence(entry.publicationBasis.evidence)||
       entry.formalPrimaryDataLicense!=='not_observed'||entry.providerQuota!=='not_published_in_reviewed_sources'||
       !['not_disallowed','unreadable_html','not_checked'].includes(entry.robots?.status)||!evidence(entry.robots.evidence)||
-      entry.robots.status==='unreadable_html'&&profile.parser!=='yasno'||entry.robots.status==='not_checked'&&official||
+      entry.robots.status==='unreadable_html'&&profile.parser!=='yasno'||entry.robots.status==='not_checked'&&official&&profile.parser!=='kharkiv_telegram'||
       entry.rate?.kind!=='local_operating_budget'||entry.rate.scope!=='origin'||!evidence(entry.rate.evidence)||!integer(entry.rate.minIntervalMs,1000,86400000)||
       !integer(entry.cacheTtlMs,1000,3600000)||!integer(entry.maxAgeMs,entry.cacheTtlMs,86400000)||entry.addressBindingVerified!==false||entry.deliveryEligible!==false||
       entry.parallel48hAccepted!==false||entry.independentFallbackVerified!==false)throw Error('INVALID_TECHNICAL_SOURCE_ADMISSION');
@@ -215,7 +217,7 @@ function validateAdmission(entry: SourceAdmission): void {
     const publication=entry.publicationScope;
     const recurring=entry.recurringScope;
     if(recurring!==undefined){
-      const expected=entry.sourceId==='voe-mirror-vn-progr'?'vn-progr-hour-matrix/1.0.0':entry.sourceId==='kharkiv-official-rss'?'kharkiv-dated-12-queue/2':entry.sourceId==='mirror-odesa'?'odesa-publisher-hour-matrix/1':null;
+      const expected=entry.sourceId==='voe-mirror-vn-progr'?'vn-progr-hour-matrix/1.0.0':entry.sourceId==='kharkiv-official-rss'?'kharkiv-dated-12-queue/2':entry.sourceId===KHARKIV_TELEGRAM_SOURCE?'kharkiv-telegram-12-queue/1':entry.sourceId==='mirror-odesa'?'odesa-publisher-hour-matrix/1':null;
       if(!expected||recurring.kind!=='current_and_next_kyiv_day'||recurring.authority!=='OWNER_APPROVED_INITIAL_LAUNCH/1'||recurring.parserVersion!==expected||recurring.emergencyOverlay!=='unknown'||
         !integer(recurring.maxPublicationAgeMs,1000,259200000)||Date.parse(entry.validUntil)-Date.parse(entry.reviewedAt)>30*86400000||scope!==undefined||publication!==undefined)throw Error('INVALID_TECHNICAL_RECURRING_SCOPE');
     }
@@ -225,7 +227,7 @@ function validateAdmission(entry: SourceAdmission): void {
         !hash64(publication.rawCaptureSha256)||!hash64(publication.noticeSha256)||!publication.targetPlanSha256s||Object.keys(publication.targetPlanSha256s).length!==targets.length||targets.some(target=>!hash64(publication.targetPlanSha256s[target])))throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
       try{calendarDate(publication.serviceDate);}catch{throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');}
       if(Date.parse(publication.publishedAt)>Date.parse(entry.reviewedAt))throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
-    }else if(publication!==undefined)throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
+    }else if(publication!==undefined||entry.sourceId===KHARKIV_TELEGRAM_SOURCE&&!recurring)throw Error('INVALID_TECHNICAL_PUBLICATION_SCOPE');
     return;
   }
   if (entry.state !== 'admitted' || !evidence(entry.revisionId) || !validInstant(entry.reviewedAt) || !validInstant(entry.validUntil) ||
@@ -259,6 +261,7 @@ export function createSourceIntake(options: {
     }
   }
   const captures = new Map<string, CapturedPublicSourceRaw>();
+  const normalizeKharkivTelegram = createKharkivTelegramNormalizer();
   const cache = new Map<string, RawResponse>(), inFlight = new Map<string, Promise<RawResponse>>(),
     nextAttempt = new Map<string, number>();
   let active = 0, lastClock = -Infinity;
@@ -361,6 +364,8 @@ export function createSourceIntake(options: {
           const payload=JSON.parse(raw.raw);if(payload?.meta?.schemaVersion!=='1.0.0')return fail('SOURCE_SCHEMA_REJECTED');
         }
         view = normalizeHourMatrix(raw.raw, { ...context, namespace: profile.parserNamespace as 'voe:vn-progr' | 'voe:olnet93' | 'dtek:oem' | 'dtek:oem-mirror' });
+      } else if(profile.parser==='kharkiv_telegram') {
+        view = normalizeKharkivTelegram(raw.raw, { ...context, operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss' });
       } else view = normalizeKharkivRss(raw.raw, { ...context, operatorId: 'kharkiv-oe', namespace: 'kharkiv:rss',...(entry.state==='technical_display'&&entry.recurringScope?.parserVersion==='kharkiv-dated-12-queue/2'?{publicationPolicy:'dated_12_queue_recurring_v2' as const}:{}) });
       if (!view.publishedAt || view.operatorId !== request.operatorId || view.namespace !== request.namespace || view.targetId !== request.targetId ||
           view.serviceDate !== request.serviceDate || view.source.revision !== raw.rawSha256) return fail('SOURCE_SCHEMA_REJECTED');
@@ -396,7 +401,7 @@ export function createSourceIntake(options: {
     if(profile.parser==='odesa_plan_api')return fail('SOURCE_NOT_ADMITTED');
     if (request.operatorId !== profile.operatorId || request.namespace !== profile.namespace) return fail('SOURCE_SCOPE_MISMATCH');
     if (typeof request.serviceDate !== 'string' || typeof request.targetId !== 'string' ||
-        !(profile.parser === 'hour_matrix' ? /^GPV[1-6]\.[12]$/ : profile.parser === 'kharkiv_rss' ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request.targetId)) return fail('INVALID_REQUEST');
+        !(profile.parser === 'hour_matrix' ? /^GPV[1-6]\.[12]$/ : profile.parser === 'kharkiv_rss' || profile.parser === 'kharkiv_telegram' ? /^[1-6]\.[12]$/ : /^\d+\.\d+$/).test(request.targetId)) return fail('INVALID_REQUEST');
     try { calendarDate(request.serviceDate); } catch { return fail('INVALID_REQUEST'); }
     return profile;
   }

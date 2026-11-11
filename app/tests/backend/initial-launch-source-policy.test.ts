@@ -20,9 +20,9 @@ test('owner initial-launch operating policy is explicit, finite30days, inert by 
  assert(technicalDisplaySourceRegistry().every(e=>e.state==='blocked'));assert.equal(odesaPlanApiOperatingRecord(),null);
  assert.equal(Date.parse(OWNER_APPROVED_INITIAL_LAUNCH.validUntil)-Date.parse(OWNER_APPROVED_INITIAL_LAUNCH.reviewedAt),30*86400000);
  const entries=technicalDisplaySourceRegistry(true);
- assert.deepEqual(entries.filter(e=>e.state!=='blocked').map(e=>e.sourceId).sort(),['kharkiv-official-rss','mirror-odesa','voe-mirror-vn-progr','yasno-kem']);
+ assert.deepEqual(entries.filter(e=>e.state!=='blocked').map(e=>e.sourceId).sort(),['kharkiv-official-rss','kharkiv-official-telegram','mirror-odesa','voe-mirror-vn-progr','yasno-kem']);
  for(const sourceId of ['voe-mirror-olnet93','dtek-oem-official'])assert.equal(entries.find(e=>e.sourceId===sourceId)?.state,'blocked');
- for(const sourceId of ['voe-mirror-vn-progr','kharkiv-official-rss']){
+ for(const sourceId of ['voe-mirror-vn-progr','kharkiv-official-rss','kharkiv-official-telegram']){
   const e=entries.find(e=>e.sourceId===sourceId) as TechnicalDisplayAdmission;
   assert.equal(e.recurringScope?.authority,OWNER_APPROVED_INITIAL_LAUNCH.kind);assert.equal(e.publicationScope,undefined);
   assert.equal(e.parallel48hAccepted,false);assert.equal(e.addressBindingVerified,false);assert.equal(e.deliveryEligible,false);assert.equal(e.independentFallbackVerified,false);
@@ -47,7 +47,11 @@ test('current VN cannot refresh stale data by changing collector metadata and re
  for(const body of [mutate(vn,v=>{v.meta.schemaVersion='9.0.0';}),mutate(vn,v=>{delete v.meta;}),mutate(vn,v=>{v.fact.data[String(v.fact.today)]['GPV6.2']['24']='unknown';}),mutate(vn,v=>{v.regionId='odesa';})]){
   const r=await reader(body).load(request());assert.equal(r.state,'unavailable');if(r.state!=='available')assert.equal(r.code,'SOURCE_SCHEMA_REJECTED');
  }
- const old=mutate(vn,v=>{v.fact.update='09.11.2026 10:00';v.lastUpdated=Math.floor(time/1000);});
+ const evening=mutate(vn,v=>{v.fact.update='09.11.2026 22:46';});
+ const current=await reader(evening).load(request());
+ assert.equal(current.state,'available');
+ if(current.state==='available')assert.equal(current.view.freshness,'current');
+ const old=mutate(vn,v=>{v.fact.update='08.11.2026 10:00';v.lastUpdated=Math.floor(time/1000);});
  const stale=await reader(old).load(request());assert.equal(stale.state,'unavailable');if(stale.state!=='available')assert.equal(stale.code,'SOURCE_UPDATE_UNCONFIRMED');
  for(const date of ['2026-11-09','2026-11-12'])assert.notEqual((await reader().load(request('voe-mirror-vn-progr',date))).state,'available');
  let gets=0;const expired=createSourceIntake({registry:technicalDisplaySourceRegistry(true),now:()=>Date.parse(OWNER_APPROVED_INITIAL_LAUNCH.validUntil),transport:async()=>{gets++;throw Error('expired');}});

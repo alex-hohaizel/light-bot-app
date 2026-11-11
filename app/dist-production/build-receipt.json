@@ -1,6 +1,6 @@
 {
   "kind": "lba-production-build/1",
-  "builtAt": "2026-11-10T23:53:28.995Z",
+  "builtAt": "2026-11-11T00:52:22.084Z",
   "target": "node20",
   "buildNode": "v24.22.2",
   "toolVersions": {
@@ -19,7 +19,7 @@
   "isolatedDefine": false,
   "configFile": false,
   "envFilesLoaded": false,
-  "sourceSha256": "ab7e3b1babeaea7b72db5dc1518b03ede8a51665792c9b7389fdafac7dee8788",
+  "sourceSha256": "e8192cabd37d56addc9111fed9faea13b53f34f8da4d45322e1b9b932a2391f0",
   "sourceBefore": [
     {
       "path": ".replit",
@@ -670,6 +670,10 @@
       "sha256": "69bdaef79e310b6d8a9a66cf957d18c60bea2d1d8522e09e241d4f447dcc988c"
     },
     {
+      "path": "server/domain/kharkiv-telegram-adapter.ts",
+      "sha256": "f5917a4e096d08f634aa9674e1e3f595420b19f98fc8ea502cc873d138b597c7"
+    },
+    {
       "path": "server/domain/legacy-migration.ts",
       "sha256": "c8e946a5dc222ff1d7f39d2a2b6378b429aabcdb610f123f14d1a7325c803768"
     },
@@ -795,7 +799,7 @@
     },
     {
       "path": "server/production/address-catalog.ts",
-      "sha256": "f7b09f4afc13aa74317554a84dbdc3c8f28645f13f00f1fca1e570a223ada804"
+      "sha256": "35da6c4bd3638d045606fbb24e0423d6692f5645a6360fa8649a648b4020b383"
     },
     {
       "path": "server/production/address-flow.ts",
@@ -823,7 +827,7 @@
     },
     {
       "path": "server/production/canonical-runtime.ts",
-      "sha256": "9bc2068d00ebb7daed8c13ea369672164265c73b36e8b1c804cc9bf3fdd4b338"
+      "sha256": "c99f8ba0f6f3c89c94f0cd204b2e2099cb9592dd88c96855f11650dc8315e36f"
     },
     {
       "path": "server/production/canonical-schema.ts",
@@ -867,7 +871,7 @@
     },
     {
       "path": "server/production/odesa-address-catalog.ts",
-      "sha256": "fed41c40153d188b018a4b227137cf385b91fa073c5844f66d9f123e8a50b77a"
+      "sha256": "95d58b0d86a555ef8fe17ab952f73c501343642a2149156edb5d97f6bbdb0d1a"
     },
     {
       "path": "server/production/odesa-address-certification.ts",
@@ -919,11 +923,11 @@
     },
     {
       "path": "server/production/public-http.ts",
-      "sha256": "c4831516a37ad4f7bed095403c806c89c1014e274ef809a13fec9995e86148c0"
+      "sha256": "5232f68478fa3f535e446f4ec705f188f60d59bb034cba290fe6c5769922b55e"
     },
     {
       "path": "server/production/public-source-reservation.ts",
-      "sha256": "3131926586c4c83da14b271857f1c1c73584d1f3e27cf982edb3cca01d67d778"
+      "sha256": "5520be800f7d7c56e698d435dc1595c051bddcc4f233e89c9d39de79514533f6"
     },
     {
       "path": "server/production/release-campaign.ts",
@@ -939,7 +943,7 @@
     },
     {
       "path": "server/production/runtime-context.ts",
-      "sha256": "897aaf4d454f99ced71353a8dae5f545dc07b6f08f9768df2ba95ae585704515"
+      "sha256": "fa934aa1a83a9e9b7bc77ac54eec61c300ba366af242a4a8dd22b02ac3617b4f"
     },
     {
       "path": "server/production/runtime-identity.ts",
@@ -963,15 +967,15 @@
     },
     {
       "path": "server/production/source-ingestion.ts",
-      "sha256": "7ce120d04ad7ba0862cdc5a2d4fbc2d638e0e731b6a7468284ef475800e1c7de"
+      "sha256": "d2470dc4ebd2a0b764ce1af3314dd019a67f860cd792e3f9a50036004a5507b1"
     },
     {
       "path": "server/production/source-intake.ts",
-      "sha256": "f7e6783caf81bdb445a314484e1eaea81f88504703c4c81005a0cd5a34558a15"
+      "sha256": "3467e087f6e20dc4e0038fe124495d394bbbd56febbe3541892aa9912dacc91c"
     },
     {
       "path": "server/production/source-operating-policy.ts",
-      "sha256": "88711560911574a50b8926537500837e24287e4344a5a2a175a78b707a4d0c7d"
+      "sha256": "151e94f43be7bd5acbd42fce4a45b15d0df69790050c3a857396d11a3b9b9f7c"
     },
     {
       "path": "server/production/startup-diagnostic.ts",
@@ -1932,6 +1936,10 @@
       "sha256": "69bdaef79e310b6d8a9a66cf957d18c60bea2d1d8522e09e241d4f447dcc988c"
     },
     {
+      "path": "server/domain/kharkiv-telegram-adapter.ts",
+      "sha256": "f5917a4e096d08f634aa9674e1e3f595420b19f98fc8ea502cc873d138b597c7"
+    },
+    {
       "path": "server/domain/legacy-migration.ts",
       "sha256": "c8e946a5dc222ff1d7f39d2a2b6378b429aabcdb610f123f14d1a7325c803768"
     },
@@ -2057,7 +2065,7 @@
     },
     {
       "path": "server/production/address-catalog.ts",
-      "sha256": "f7b09f4afc13aa74317554a84dbdc3c8f28645f13f00f1fca1e570a223ada804"
+      "sha256": "35da6c4bd3638d045606fbb24e0423d6692f5645a6360fa8649a648b4020b383"
     },
     {
       "path": "server/production/address-flow.ts",
@@ -2085,7 +2093,7 @@
     },
     {
       "path": "server/production/canonical-runtime.ts",
-      "sha256": "9bc2068d00ebb7daed8c13ea369672164265c73b36e8b1c804cc9bf3fdd4b338"
+      "sha256": "c99f8ba0f6f3c89c94f0cd204b2e2099cb9592dd88c96855f11650dc8315e36f"
     },
     {
       "path": "server/production/canonical-schema.ts",
@@ -2129,7 +2137,7 @@
     },
     {
       "path": "server/production/odesa-address-catalog.ts",
-      "sha256": "fed41c40153d188b018a4b227137cf385b91fa073c5844f66d9f123e8a50b77a"
+      "sha256": "95d58b0d86a555ef8fe17ab952f73c501343642a2149156edb5d97f6bbdb0d1a"
     },
     {
       "path": "server/production/odesa-address-certification.ts",
@@ -2181,11 +2189,11 @@
     },
     {
       "path": "server/production/public-http.ts",
-      "sha256": "c4831516a37ad4f7bed095403c806c89c1014e274ef809a13fec9995e86148c0"
+      "sha256": "5232f68478fa3f535e446f4ec705f188f60d59bb034cba290fe6c5769922b55e"
     },
     {
       "path": "server/production/public-source-reservation.ts",
-      "sha256": "3131926586c4c83da14b271857f1c1c73584d1f3e27cf982edb3cca01d67d778"
+      "sha256": "5520be800f7d7c56e698d435dc1595c051bddcc4f233e89c9d39de79514533f6"
     },
     {
       "path": "server/production/release-campaign.ts",
@@ -2201,7 +2209,7 @@
     },
     {
       "path": "server/production/runtime-context.ts",
-      "sha256": "897aaf4d454f99ced71353a8dae5f545dc07b6f08f9768df2ba95ae585704515"
+      "sha256": "fa934aa1a83a9e9b7bc77ac54eec61c300ba366af242a4a8dd22b02ac3617b4f"
     },
     {
       "path": "server/production/runtime-identity.ts",
@@ -2225,15 +2233,15 @@
     },
     {
       "path": "server/production/source-ingestion.ts",
-      "sha256": "7ce120d04ad7ba0862cdc5a2d4fbc2d638e0e731b6a7468284ef475800e1c7de"
+      "sha256": "d2470dc4ebd2a0b764ce1af3314dd019a67f860cd792e3f9a50036004a5507b1"
     },
     {
       "path": "server/production/source-intake.ts",
-      "sha256": "f7e6783caf81bdb445a314484e1eaea81f88504703c4c81005a0cd5a34558a15"
+      "sha256": "3467e087f6e20dc4e0038fe124495d394bbbd56febbe3541892aa9912dacc91c"
     },
     {
       "path": "server/production/source-operating-policy.ts",
-      "sha256": "88711560911574a50b8926537500837e24287e4344a5a2a175a78b707a4d0c7d"
+      "sha256": "151e94f43be7bd5acbd42fce4a45b15d0df69790050c3a857396d11a3b9b9f7c"
     },
     {
       "path": "server/production/startup-diagnostic.ts",
@@ -2548,7 +2556,7 @@
   "assets": [
     {
       "path": "index.cjs",
-      "sha256": "edf72503bd869447a789b0dac1c1bc4eee0479a68ada80a24bf97f201a203efa"
+      "sha256": "eebdbeab47aa8f3a90c86674d5afd75f3257a9e9168e5817a6ab9fdf59665d15"
     },
     {
       "path": "public/.vite/manifest.json",
@@ -2612,7 +2620,7 @@
     },
     {
       "path": "server-metafile.json",
-      "sha256": "dac2df187e7ae152267016bac6ed983b7a0bacbc5e3f78c1bae260b3fa7b7537"
+      "sha256": "2a0a6a23e67286c329f08d730fccb710eef6eadc60a506cb2ff378c9c94486ef"
     }
   ]
 }

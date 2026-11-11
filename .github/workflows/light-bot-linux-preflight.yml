@@ -1,0 +1,42 @@
+name: LIGHT BOT APP Linux preflight
+
+on:
+  push:
+    branches:
+      - 'codex/lba-source-isolation-*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: light-bot-linux-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    if: github.repository == 'alex-hohaizel/light-bot-app'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Check out the candidate commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Get the exact Linux x64 Node distribution
+        shell: bash
+        run: |
+          archive=node-v20.20.0-linux-x64.tar.xz
+          cd "$RUNNER_TEMP"
+          curl --proto '=https' --tlsv1.2 --fail --silent --show-error --retry 2 \
+            --output "$archive" "https://nodejs.org/dist/v20.20.0/$archive"
+          printf '%s  %s\n' '4f48b52acf42130844a3a75e94da0e9629009d09e4101b2304895c24f3fbe609' "$archive" | sha256sum --check --strict
+          tar -xJf "$archive"
+          printf '%s\n' "$RUNNER_TEMP/node-v20.20.0-linux-x64/bin" >> "$GITHUB_PATH"
+      - name: Install locked dependencies and smoke-test exact prebuilt files
+        shell: bash
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^codex/lba-source-isolation-[0-9a-f]{8}$ ]]
+          [[ "$(git rev-parse HEAD)" == "$GITHUB_SHA" ]]
+          printf 'candidate_commit=%s\n' "$GITHUB_SHA"
+          bash .github/scripts/light-bot-linux-preflight.sh "$GITHUB_WORKSPACE"

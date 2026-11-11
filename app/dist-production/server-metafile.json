@@ -2206,8 +2206,29 @@
       ],
       "format": "esm"
     },
+    "server/domain/kharkiv-telegram-adapter.ts": {
+      "bytes": 14285,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "cheerio",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "shared/schedule-core.ts",
+          "kind": "import-statement",
+          "original": "../../shared/schedule-core.ts"
+        }
+      ],
+      "format": "esm"
+    },
     "server/production/source-intake.ts": {
-      "bytes": 36874,
+      "bytes": 37939,
       "imports": [
         {
           "path": "node:crypto",
@@ -2233,6 +2254,11 @@
           "path": "server/domain/kharkiv-adapter.ts",
           "kind": "import-statement",
           "original": "../domain/kharkiv-adapter.ts"
+        },
+        {
+          "path": "server/domain/kharkiv-telegram-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/kharkiv-telegram-adapter.ts"
         }
       ],
       "format": "esm"
@@ -2274,7 +2300,7 @@
       "format": "esm"
     },
     "server/production/runtime-context.ts": {
-      "bytes": 8931,
+      "bytes": 9781,
       "imports": [
         {
           "path": "shared/operator-house-notice.ts",
@@ -2429,12 +2455,17 @@
       "format": "esm"
     },
     "server/production/source-operating-policy.ts": {
-      "bytes": 16665,
+      "bytes": 18420,
       "imports": [
         {
           "path": "server/production/source-intake.ts",
           "kind": "import-statement",
           "original": "./source-intake.ts"
+        },
+        {
+          "path": "server/domain/kharkiv-telegram-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/kharkiv-telegram-adapter.ts"
         }
       ],
       "format": "esm"
@@ -2451,7 +2482,7 @@
       "format": "esm"
     },
     "server/production/public-source-reservation.ts": {
-      "bytes": 20382,
+      "bytes": 21572,
       "imports": [
         {
           "path": "node:crypto",
@@ -2483,7 +2514,7 @@
       "format": "esm"
     },
     "server/production/address-catalog.ts": {
-      "bytes": 26084,
+      "bytes": 26036,
       "imports": [
         {
           "path": "node:crypto",
@@ -2612,7 +2643,7 @@
       "format": "esm"
     },
     "server/production/odesa-address-catalog.ts": {
-      "bytes": 24171,
+      "bytes": 23925,
       "imports": [
         {
           "path": "node:crypto",
@@ -2700,7 +2731,7 @@
       "format": "esm"
     },
     "server/production/source-ingestion.ts": {
-      "bytes": 34883,
+      "bytes": 36620,
       "imports": [
         {
           "path": "node:crypto",
@@ -2738,6 +2769,11 @@
           "original": "../domain/odesa-plan-api-adapter.ts"
         },
         {
+          "path": "server/domain/kharkiv-telegram-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/kharkiv-telegram-adapter.ts"
+        },
+        {
           "path": "server/production/public-source-reservation.ts",
           "kind": "import-statement",
           "original": "./public-source-reservation.ts"
@@ -2746,8 +2782,14 @@
       "format": "esm"
     },
     "server/production/public-http.ts": {
-      "bytes": 1304,
-      "imports": [],
+      "bytes": 1446,
+      "imports": [
+        {
+          "path": "server/domain/kharkiv-telegram-adapter.ts",
+          "kind": "import-statement",
+          "original": "../domain/kharkiv-telegram-adapter.ts"
+        }
+      ],
       "format": "esm"
     },
     "shared/live-tools.ts": {
@@ -3500,7 +3542,7 @@
       "format": "esm"
     },
     "server/production/canonical-runtime.ts": {
-      "bytes": 17966,
+      "bytes": 18030,
       "imports": [
         {
           "path": "server/production/operator-address-refresh.ts",
@@ -4321,6 +4363,16 @@
           "external": true
         },
         {
+          "path": "cheerio",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
           "path": "node:crypto",
           "kind": "require-call",
           "external": true
@@ -4770,7 +4822,7 @@
           "bytesInOutput": 14073
         },
         "server/domain/kharkiv-adapter.ts": {
-          "bytesInOutput": 16438
+          "bytesInOutput": 16444
         },
         "server/domain/captured-address-book.ts": {
           "bytesInOutput": 4258
@@ -4857,7 +4909,7 @@
           "bytesInOutput": 1692
         },
         "shared/morning-briefing.ts": {
-          "bytesInOutput": 7148
+          "bytesInOutput": 7151
         },
         "server/production/legacy-profile.ts": {
           "bytesInOutput": 14740
@@ -4871,8 +4923,11 @@
         "server/production/legacy-identity-links.ts": {
           "bytesInOutput": 8666
         },
+        "server/domain/kharkiv-telegram-adapter.ts": {
+          "bytesInOutput": 15112
+        },
         "server/production/source-intake.ts": {
-          "bytesInOutput": 30924
+          "bytesInOutput": 31984
         },
         "server/production/deployed-schedule-qualification.ts": {
           "bytesInOutput": 1133
@@ -4881,7 +4936,7 @@
           "bytesInOutput": 46363
         },
         "server/production/runtime-context.ts": {
-          "bytesInOutput": 8470
+          "bytesInOutput": 9398
         },
         "server/domain/provider-address-lookup.ts": {
           "bytesInOutput": 5227
@@ -4896,19 +4951,19 @@
           "bytesInOutput": 12658
         },
         "server/production/source-operating-policy.ts": {
-          "bytesInOutput": 16857
+          "bytesInOutput": 18741
         },
         "server/production/address-catalog-http.ts": {
           "bytesInOutput": 4160
         },
         "server/production/public-source-reservation.ts": {
-          "bytesInOutput": 18119
+          "bytesInOutput": 19355
         },
         "server/domain/public-address-request-identity.ts": {
           "bytesInOutput": 3313
         },
         "server/production/address-catalog.ts": {
-          "bytesInOutput": 24526
+          "bytesInOutput": 24483
         },
         "server/domain/odesa-address-adapter.ts": {
           "bytesInOutput": 20426
@@ -4920,7 +4975,7 @@
           "bytesInOutput": 26154
         },
         "server/production/odesa-address-catalog.ts": {
-          "bytesInOutput": 23797
+          "bytesInOutput": 23531
         },
         "server/production/provider-address-catalog.ts": {
           "bytesInOutput": 1935
@@ -4929,10 +4984,10 @@
           "bytesInOutput": 13301
         },
         "server/production/source-ingestion.ts": {
-          "bytesInOutput": 33923
+          "bytesInOutput": 35859
         },
         "server/production/public-http.ts": {
-          "bytesInOutput": 1340
+          "bytesInOutput": 1446
         },
         "shared/live-tools.ts": {
           "bytesInOutput": 14976
@@ -5007,7 +5062,7 @@
           "bytesInOutput": 56967
         },
         "server/production/canonical-runtime.ts": {
-          "bytesInOutput": 17244
+          "bytesInOutput": 17309
         },
         "server/production/product-tools-routes.ts": {
           "bytesInOutput": 4548
@@ -5034,7 +5089,7 @@
           "bytesInOutput": 1965
         }
       },
-      "bytes": 1810518
+      "bytes": 1832591
     }
   }
 }

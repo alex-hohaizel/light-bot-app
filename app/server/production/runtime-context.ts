@@ -81,5 +81,18 @@ export function createRuntimeDataContext(ports:Ports){
   const currentCatalog=Boolean(memoryFresh&&current?.catalog.state==='available'&&freshIds.size);
   return {addresses,plans,operatorHouseNotices,manualGroups:[...groups.values()],operatorLabels:ports.operatorLabels,addressCatalogStatus:currentCatalog?'ready':'unavailable',maxAddresses:20};
  }
- return Object.freeze({refresh,forProfile});
+ function publicScheduleCoverage(){
+  const now=ports.now(),today=localParts(now).date,dates=[today,nextCalendarDate(today)];
+  if(!generation||generation.plans.state!=='available'||now<generation.at||now-generation.at>30_000)return {asOf:null,today,sources:[]};
+  const counts=new Map<string,{sourceId:string;date:string;groups:number}>();
+  for(const plan of generation.plans.plans){
+   const {view,provenance}=plan;
+   if(!dates.includes(view.serviceDate)||view.freshness!=='current'||view.dayCoverage!=='complete')continue;
+   const id=JSON.stringify([provenance.sourceId,view.serviceDate]);
+   const count=counts.get(id)??{sourceId:provenance.sourceId,date:view.serviceDate,groups:0};
+   count.groups++;counts.set(id,count);
+  }
+  return {asOf:new Date(generation.at).toISOString(),today,sources:[...counts.values()]};
+ }
+ return Object.freeze({refresh,forProfile,publicScheduleCoverage});
 }

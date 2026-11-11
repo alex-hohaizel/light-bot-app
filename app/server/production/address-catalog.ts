@@ -202,7 +202,7 @@ export function createAddressCatalog(input:{enabled?:boolean;expectedControlEpoc
    catch(e){semanticFailure=e instanceof Failure&&e.code==='ADDRESS_ADMISSION_EXPIRED'?'ADDRESS_ADMISSION_EXPIRED':'ADDRESS_SCHEMA_REJECTED';captured=undefined;}
   }
   const finished=await reserved.reservation.finalize({
-   ...(!outcome.ok&&outcome.hold?{hold:outcome.workerHold?'worker-and-origin' as const:'origin' as const}:{}),
+   ...(!outcome.ok&&outcome.hold?{hold:'origin' as const}:{}),
    ...(!outcome.ok&&outcome.retryAfterMs!==undefined?{retryAfterMs:outcome.retryAfterMs}:{}),
    persist:async c=>{
     if(captured){
