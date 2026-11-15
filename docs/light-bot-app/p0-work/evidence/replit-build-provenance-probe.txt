@@ -1,0 +1,20 @@
+Прочитаю лише build logs зазначеного build і перевірю збережений текст попереднього маніфесту, без перерахунку хешів. Runtime-логи та застосунок не чіпатиму.
+
+Висновок bounded probe
+
+Виконано лише підтриманий read-only виклик:
+
+getDeploymentBuild({
+  buildId: "9f7e9359-5129-4dea-a595-25f6b1db9d1e",
+  skipLogs: false
+})
+
+Отримано: success=true, build status success, поле build.logs — порожній масив, 0 записів.
+
+Авторитетний full Git SHA/source provenance: unknown. У відповіді немає рядків build logs, з яких це можна встановити.
+Явний deployment→DB resource binding: unknown. Отримана відповідь його не підтверджує.
+Безпечне джерело доказу: відповідь зазначеного getDeploymentBuild, поля build.id, build.status, build.logs; номер рядка відсутній, оскільки журнал порожній.
+Обмеження: порожня відповідь не доводить, що журнал ніколи не існував або що provenance/binding відсутні в інших системах. Цей probe не закрив обидві невизначеності; подальша перевірка через отримані build logs blocked через відсутність записів.
+
+Runtime/request/user logs не читалися; build/restart/deploy та зміни не виконувалися.
+

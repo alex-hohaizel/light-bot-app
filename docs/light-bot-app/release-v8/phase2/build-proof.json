@@ -1,0 +1,36 @@
+{
+  "kind": "lba-v8-phase2-build-proof/1",
+  "actor": "/root",
+  "observedAt": "2026-11-08T18:43:17.352373+00:00",
+  "source_fingerprint": "e95beebe9c8daad0e55acf8505f9d21d6e5d9ce5043616c2510a82756a829be4",
+  "source_entries": 229,
+  "sourceDrift": [],
+  "assets": 14,
+  "buildNode": "v24.22.2",
+  "target": "node20",
+  "build_receipt_sha256": "ac04841e938ab7ab8016325100d01b98a3c731fdc0492fa23e91ee9261e06548",
+  "build_effect_probe": {
+    "networkOrServerAttempts": 0,
+    "guard": "Same process; direct Node strip-types avoids tsx CLI IPC. Not an OS sandbox."
+  },
+  "backendTests": {
+    "pass": 186,
+    "fail": 0,
+    "scope": "backend/*.test.ts; not all68 acceptance"
+  },
+  "typecheck": "full pass",
+  "earlierAttempts": [
+    {
+      "attempt": "npm/tsx CLI sandbox",
+      "result": "EPERM on loader IPC before product build; direct Node strip-types route used"
+    },
+    {
+      "attempt": "guard file creation",
+      "result": "incorrect working-directory-relative path; corrected before guarded build"
+    }
+  ],
+  "applicationStarted": false,
+  "productionWrites": 0,
+  "messagesSent": 0,
+  "releaseReady": false
+}

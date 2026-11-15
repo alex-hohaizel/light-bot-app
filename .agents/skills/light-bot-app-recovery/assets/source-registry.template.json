@@ -1,0 +1,22 @@
+{
+  "schema_version": "lba-source-registry/1",
+  "project_id": "replace-project-id",
+  "sources": [
+    {
+      "id": "replace-source-id",
+      "operator_id": "replace-operator-id",
+      "territory": "replace-territory-scope",
+      "capability": "catalog",
+      "cost": "free",
+      "status": "candidate",
+      "source_url": "https://example.invalid/operator",
+      "service_date": "2030-01-01",
+      "source_revision": "unobserved",
+      "schedule_state": "waiting",
+      "terms_review": "pending",
+      "address_binding": "unknown",
+      "notifications_enabled": false,
+      "evidence": []
+    }
+  ]
+}

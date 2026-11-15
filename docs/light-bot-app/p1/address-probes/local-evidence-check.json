@@ -1,0 +1,41 @@
+{
+  "actor": "/root/public_address_probe",
+  "result": "pass",
+  "checked_at_utc": "2026-11-07T14:07:32.916105+00:00",
+  "checks": [
+    "request_budget20",
+    "direct_GET19",
+    "no_auth_cookies",
+    "direct_gap_at_least1_2s",
+    "hash:kyiv-revutskogo-street.json",
+    "hash:kyiv-revutskogo-houses-12.json",
+    "hash:kyiv-revutskogo-12a-group.json",
+    "hash:kyiv-revutskogo-12slash1-group.json",
+    "hash:kyiv-revutskogo-all-houses.json",
+    "hash:kyiv-old-peremohy-street.json",
+    "hash:kyiv-beresteiskyi-street.json",
+    "hash:kyiv-beresteiskyi-avenue-houses-12.json",
+    "hash:kyiv-revutskogo-house1-group.json",
+    "hash:kyiv-revutskogo-2v-group.json",
+    "hash:kyiv-revutskogo-2h-group.json",
+    "hash:kyiv-revutskogo-4a-group.json",
+    "hash:kyiv-revutskogo-5slash7-group.json",
+    "hash:kyiv-revutskogo-6slash8-group.json",
+    "hash:kyiv-beresteiskyi-12-group.json",
+    "hash:kyiv-beresteiskyi-121a-group.json",
+    "hash:kyiv-beresteiskyi-121b-group.json",
+    "hash:kyiv-beresteiskyi-128slash2-group.json",
+    "12distinct_provider_address_candidates",
+    "7technical_groups",
+    "all_targets_in_pinned_schedule",
+    "no_certification_or_notifications",
+    "noexact12_not_nearest",
+    "empty_query_not_exhaustive",
+    "one_street_multiple_groups",
+    "same_group_doesnot_merge_houses",
+    "avenue_lane_different_streetids"
+  ],
+  "limits": [
+    "Capturedpublicevidence consistency/negativecases only; not independentOSR/20representative/48h/integration acceptance."
+  ]
+}

@@ -1,0 +1,792 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Read-only projection of native project claims; not an approval or execution certificate",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mode",
+    "domain",
+    "source",
+    "project_id",
+    "goal",
+    "scope",
+    "workflow_status",
+    "pause",
+    "current_work",
+    "pending_work",
+    "recorded_completed_work",
+    "pending_decisions",
+    "recorded_decisions",
+    "open_requirements",
+    "unknown_effects",
+    "evidence_axes",
+    "gaps",
+    "recorded_completion",
+    "next_action",
+    "native_gate_checked",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "atelier-status-view/1"
+    },
+    "mode": {
+      "const": "read_only_projection"
+    },
+    "domain": {
+      "enum": [
+        "foundry",
+        "game",
+        "app",
+        "chatbot_round",
+        "chatbot_blueprint"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "path",
+        "project_root",
+        "sha256",
+        "native_schema",
+        "revision",
+        "record_integrity"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "project_root": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "native_schema": {
+          "type": "string"
+        },
+        "revision": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "record_integrity": {
+          "enum": [
+            "snapshot_and_journal_match",
+            "no_native_snapshot_signature"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "project_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "goal": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scope": {
+      "type": "string"
+    },
+    "workflow_status": {
+      "enum": [
+        "paused",
+        "recorded_cancelled",
+        "recorded_completed",
+        "active",
+        "waiting_decision",
+        "planned",
+        "unresolved",
+        "blocked"
+      ]
+    },
+    "pause": {
+      "type": "object",
+      "required": [
+        "active",
+        "reason"
+      ],
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "current_work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "pending_work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "recorded_completed_work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "pending_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "recorded_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "open_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "unknown_effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recorded_status",
+          "scope",
+          "stage",
+          "summary",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_status": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "evidence_axes": {
+      "type": "object",
+      "required": [
+        "specification",
+        "code",
+        "integration",
+        "device",
+        "human"
+      ],
+      "properties": {
+        "specification": {
+          "type": "object",
+          "required": [
+            "status",
+            "records",
+            "live_or_human_truth_certified"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "recorded_pass",
+                "recorded_failed",
+                "recorded_pending",
+                "recorded_unresolved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "recorded_result"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "recorded_result": {
+                    "type": "string"
+                  },
+                  "record_type": {
+                    "const": "assessment"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "live_or_human_truth_certified": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "code": {
+          "type": "object",
+          "required": [
+            "status",
+            "records",
+            "live_or_human_truth_certified"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "recorded_pass",
+                "recorded_failed",
+                "recorded_pending",
+                "recorded_unresolved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "recorded_result"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "recorded_result": {
+                    "type": "string"
+                  },
+                  "record_type": {
+                    "const": "assessment"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "live_or_human_truth_certified": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "integration": {
+          "type": "object",
+          "required": [
+            "status",
+            "records",
+            "live_or_human_truth_certified"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "recorded_pass",
+                "recorded_failed",
+                "recorded_pending",
+                "recorded_unresolved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "recorded_result"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "recorded_result": {
+                    "type": "string"
+                  },
+                  "record_type": {
+                    "const": "assessment"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "live_or_human_truth_certified": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "device": {
+          "type": "object",
+          "required": [
+            "status",
+            "records",
+            "live_or_human_truth_certified"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "recorded_pass",
+                "recorded_failed",
+                "recorded_pending",
+                "recorded_unresolved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "recorded_result"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "recorded_result": {
+                    "type": "string"
+                  },
+                  "record_type": {
+                    "const": "assessment"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "live_or_human_truth_certified": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "human": {
+          "type": "object",
+          "required": [
+            "status",
+            "records",
+            "live_or_human_truth_certified"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "recorded_pass",
+                "recorded_failed",
+                "recorded_pending",
+                "recorded_unresolved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "recorded_result"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "recorded_result": {
+                    "type": "string"
+                  },
+                  "record_type": {
+                    "const": "assessment"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "live_or_human_truth_certified": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recorded_completion": {
+      "type": "object",
+      "required": [
+        "status",
+        "stage",
+        "scope"
+      ],
+      "properties": {
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "native_gate_checked": {
+      "const": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,154 @@
+{
+  "actor": "/root",
+  "scope": "One public read per URL; no repeated scraper, protected bypass, credentials, personal profiles or production effects",
+  "records": [
+    {
+      "id": "yasno-kem",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:25.549098+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Etag": "\"1c78461e\"",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "max-age=300, public"
+      },
+      "sha256": "1edabe64f243b1b4be983846a9d2277af22411da9e90d49d43497ae0d8b469ec",
+      "bytes": 26792,
+      "body_file": "yasno-kem.json"
+    },
+    {
+      "id": "yasno-robots",
+      "url": "https://app.yasno.ua/robots.txt",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:26.149716+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Content-Type": "text/html",
+        "Cache-Control": "no-cache, no-store"
+      },
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes": 212,
+      "body_file": "yasno-robots.txt"
+    },
+    {
+      "id": "voe-mirror-vn-progr",
+      "url": "https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:26.569072+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Cache-Control": "max-age=300",
+        "Content-Type": "text/plain; charset=utf-8",
+        "ETag": "\"752596faf4797ae71f58aa0f0572e103d48f066b92e2e8359399dc6c956f8821\""
+      },
+      "sha256": "a35c40c1d091e474ab62d79ecbe33830e9459a3c290fceae896eaef86fc819e8",
+      "bytes": 14974,
+      "body_file": "voe-mirror-vn-progr.txt"
+    },
+    {
+      "id": "voe-mirror-license",
+      "url": "https://api.github.com/repos/vn-progr/gpv-voe-vinnytsia/license",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:26.881647+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 404,
+      "error": "HTTP_REJECTED"
+    },
+    {
+      "id": "odesa-mirror",
+      "url": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:27.240271+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Cache-Control": "max-age=300",
+        "Content-Type": "text/plain; charset=utf-8",
+        "ETag": "\"178ffceb7fcbc6a147ebc5d193689f5e647febf1b5d12c28afcfb2064a3a40a9\""
+      },
+      "sha256": "78b66a32be1eed1c97f99c7b0549784ad07436472f8e0aa076dadf0145c46314",
+      "bytes": 61709,
+      "body_file": "odesa-mirror.txt"
+    },
+    {
+      "id": "odesa-mirror-license",
+      "url": "https://api.github.com/repos/Baskerville42/outage-data-ua/license",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:27.465486+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "public, max-age=60, s-maxage=60",
+        "ETag": "W/\"417fe096dfef0e150c5a96d23e8b1dd18a92ccaea11304a6bfccabba27b13433\"",
+        "Last-Modified": "Sun, 08 Nov 2026 17:38:14 GMT"
+      },
+      "sha256": "417fe096dfef0e150c5a96d23e8b1dd18a92ccaea11304a6bfccabba27b13433",
+      "bytes": 3029,
+      "body_file": "odesa-mirror-license.json"
+    },
+    {
+      "id": "odesa-robots",
+      "url": "https://www.dtek-oem.com.ua/robots.txt",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:27.883016+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Etag": "\"5f9ac1b7-101\"",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "max-age=0, must-revalidate"
+      },
+      "sha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "bytes": 257,
+      "body_file": "odesa-robots.txt"
+    },
+    {
+      "id": "kharkiv-rss",
+      "url": "https://oblenergo.kharkiv.ua/uk/rss.xml",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:28.359053+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Content-Type": "application/rss+xml; charset=utf-8",
+        "Cache-Control": "max-age=2700, public",
+        "last-modified": "Sat, 07 Nov 2026 18:33:49 GMT",
+        "etag": "W/\"1794076429\""
+      },
+      "sha256": "86fa99e05ed01496ddcfdfd31dfeb7b9c7a7c445263c661a6ed62b2375a951b1",
+      "bytes": 51249,
+      "body_file": "kharkiv-rss.txt"
+    },
+    {
+      "id": "kharkiv-robots",
+      "url": "https://oblenergo.kharkiv.ua/robots.txt",
+      "method": "GET",
+      "observedAt": "2026-11-08T17:38:28.678258+00:00",
+      "requests": 1,
+      "maxBytes": 2000000,
+      "httpStatus": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "last-modified": "Wed, 27 Mar 2024 11:00:18 GMT",
+        "Cache-Control": "public, max-age=14400, must-revalidate, proxy-revalidate",
+        "etag": "W/\"6603fc42-6aa\""
+      },
+      "sha256": "2a787f20489a257692bad5f16ae5ceb28876cd38d8d9cde9c84a2d3835e30bab",
+      "bytes": 1706,
+      "body_file": "kharkiv-robots.txt"
+    }
+  ]
+}

@@ -1,0 +1,1201 @@
+{
+  "schema_version": "lba-source-registry/1",
+  "project_id": "light-bot-app",
+  "projection": "P1 research; does not replace canonical project evidence or grant permissions",
+  "observed_date_europe_kyiv": "2026-11-07",
+  "status_definition": {
+    "verified": "Only explicitly named verified_scope; never implicit production/territory delivery."
+  },
+  "sources": [
+    {
+      "id": "yasno-kem",
+      "operator_id": "dtek-kem",
+      "territory": "Kyiv city",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+      "service_date": "2026-11-07",
+      "source_revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current 2026-11-07 plan; 60 technical keys; tomorrow WaitingForSchedule.",
+      "blocker": "Exact fresh building binding, reuse/rate contract, independent comparison and 48h observation not certified.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/yasno-kem.json",
+          "sha256": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:33.806503+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "yasno-public-street-search",
+      "operator_id": "dtek-kem",
+      "territory": "Kyiv city",
+      "capability": "catalog",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "One public street search returned id/value JSON.",
+      "source_url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+      "service_date": null,
+      "source_revision": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "One public street search returned id/value JSON.",
+      "blocker": "Verified only for street-catalog GET; no house or electrical binding demonstrated.",
+      "observation": "capability-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/yasno-public-street-search.json",
+          "sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:57:50.399844+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "yasno-dnem",
+      "operator_id": "dtek-dnem",
+      "territory": "Dnipropetrovsk oblast / own DSO",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/301/planned-outages",
+      "service_date": "2026-11-07",
+      "source_revision": "7d9564329f29bae8bed30db6a58aee575d7e618174991f038249472d3540c25a",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current 2026-11-07 plan; 12 keys. Tomorrow full NotPlanned slot under WaitingForSchedule.",
+      "blocker": "Reuse/rate contract, address fixture set, semantics independent comparison and 48h pending.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/yasno-dnem.json",
+          "sha256": "7d9564329f29bae8bed30db6a58aee575d7e618174991f038249472d3540c25a",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:33.807005+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "yasno-cek",
+      "operator_id": "cek",
+      "territory": "Dnipropetrovsk oblast / CEK own DSO",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/3/dsos/303/planned-outages",
+      "service_date": "2026-11-07",
+      "source_revision": "dd3398e36f60c982e6bb84facd6e37bc269d634621a5bc0afd7d09ea9453b0db",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current 2026-11-07 plan; 12 keys; separate from DTEK DnEM.",
+      "blocker": "Same pending gates as DnEM; never infer operator by oblast alone.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/yasno-cek.json",
+          "sha256": "dd3398e36f60c982e6bb84facd6e37bc269d634621a5bc0afd7d09ea9453b0db",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:33.807208+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "voe-mirror-vn-progr",
+      "operator_id": "vinnytsia-oe",
+      "territory": "Vinnytsia oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://raw.githubusercontent.com/vn-progr/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json",
+      "service_date": "2026-11-07",
+      "source_revision": "f7fa56944c2074c905833da3d7e93fe83dcb22b6d5f21251914cedc623dc9df4",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public mirror service date 2026-11-07; source update 14:46 Kyiv.",
+      "blocker": "Unofficial transport; primary/current address comparison and systematic reuse rights not certified.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/voe-mirror-vn-progr.json",
+          "sha256": "f7fa56944c2074c905833da3d7e93fe83dcb22b6d5f21251914cedc623dc9df4",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:33.807375+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "voe-mirror-olnet93",
+      "operator_id": "vinnytsia-oe",
+      "territory": "Vinnytsia oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "blocked",
+      "verified_scope": null,
+      "source_url": "https://raw.githubusercontent.com/olnet93/gpv-voe-vinnytsia/main/data/Vinnytsiaoblenerho.json",
+      "service_date": null,
+      "source_revision": "60c641528efd8c2ca924288b66917c721fe5673280f511131137ac188342130d",
+      "schedule_state": "stale",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "HTTP200 parsed/ok but service date 2025-12-14.",
+      "blocker": "Stale by nearly 11 months; never eligible as current fallback.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/voe-mirror-olnet93.json",
+          "sha256": "60c641528efd8c2ca924288b66917c721fe5673280f511131137ac188342130d",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:34.015345+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "voe-official",
+      "operator_id": "vinnytsia-oe",
+      "territory": "Vinnytsia oblast",
+      "capability": "address",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "blocked",
+      "verified_scope": null,
+      "source_url": "https://disconnection.voe.com.ua/",
+      "service_date": null,
+      "source_revision": "unobserved",
+      "schedule_state": "unavailable",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "HTTP403; no challenge bypass attempted.",
+      "blocker": "Public direct data route and exact binding not obtained.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": null,
+          "sha256": null,
+          "http_status": 403,
+          "observed_at_utc": "2026-11-07T12:49:34.021983+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "dtek-kem-official",
+      "operator_id": "dtek-kem",
+      "territory": "Kyiv city",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "blocked",
+      "verified_scope": null,
+      "source_url": "https://www.dtek-kem.com.ua/ua/shutdowns",
+      "service_date": null,
+      "source_revision": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "schedule_state": "unavailable",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "HTTP200 is only 212-byte Incapsula shell.",
+      "blocker": "No public schedule payload through this request; no bypass.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/dtek-kem-official.txt",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:34.030450+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "dtek-krem-official",
+      "operator_id": "dtek-krem",
+      "territory": "Kyiv oblast excluding Kyiv city",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "blocked",
+      "verified_scope": null,
+      "source_url": "https://www.dtek-krem.com.ua/ua/shutdowns",
+      "service_date": null,
+      "source_revision": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "schedule_state": "unavailable",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "HTTP200 is only 212-byte Incapsula shell.",
+      "blocker": "No demonstrated direct plan/address route.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/dtek-krem-official.txt",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:23.791077+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "dtek-oem-official",
+      "operator_id": "dtek-oem",
+      "territory": "Odesa oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "blocked",
+      "verified_scope": null,
+      "source_url": "https://www.dtek-oem.com.ua/ua/shutdowns",
+      "service_date": "2026-11-07",
+      "source_revision": "a47e042acc1926189793fe7aa755dab2e0a85568706c66592fdb82c7b2537b7a",
+      "schedule_state": "unknown",
+      "terms_review": "automation_disallowed_by_robots",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Single public GET contained current structured fact/preset and explicit half-hour legend.",
+      "blocker": "robots.txt User-agent:* Disallow:/; do not schedule repeated scraper until allowed route established.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/dtek-oem-official.txt",
+          "sha256": "a47e042acc1926189793fe7aa755dab2e0a85568706c66592fdb82c7b2537b7a",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:34.064191+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "mirror-odesa",
+      "operator_id": "dtek-oem",
+      "territory": "Odesa oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/odesa.json",
+      "service_date": "2026-11-07",
+      "source_revision": "0d4d9aa7f44e300d5f1da38edb4fe176edc91bda0a9435e7db8100346e3160a1",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current 2026-11-07 public mirror, 12 groups; operator update14:41.",
+      "blocker": "Same upstream as official; not independent; reuse and exact address-binding pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/mirror-odesa.json",
+          "sha256": "0d4d9aa7f44e300d5f1da38edb4fe176edc91bda0a9435e7db8100346e3160a1",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:25.247789+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "mirror-kyiv",
+      "operator_id": "dtek-kem",
+      "territory": "Kyiv city",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv.json",
+      "service_date": "2026-11-07",
+      "source_revision": "7588235d3480f2fc7059cc8df8e111656e8f3fe745992c339b5a127648365656",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current 2026-11-07 mirror,60 technical keys; operator update13:33.",
+      "blocker": "Same upstream as YASNO/DTEK; requires exact building binding and rights.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/mirror-kyiv.json",
+          "sha256": "7588235d3480f2fc7059cc8df8e111656e8f3fe745992c339b5a127648365656",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:25.426374+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "mirror-kyiv-region",
+      "operator_id": "dtek-krem",
+      "territory": "Kyiv oblast excluding Kyiv city",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json",
+      "service_date": "2026-11-07",
+      "source_revision": "07f981b46830a1333648c93cee401b5230e332d639cbd13dff52fbbf6cd20704",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current public mirror with 2026-11-07 service date.",
+      "blocker": "Not city-Kyiv namespace; direct comparison, address binding and rights pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/mirror-kyiv-region.json",
+          "sha256": "07f981b46830a1333648c93cee401b5230e332d639cbd13dff52fbbf6cd20704",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:25.403408+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "kharkiv-official-rss",
+      "operator_id": "kharkiv-oe",
+      "territory": "Kharkiv oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "Official RSS item13883458 has full12-queue plan for2026-11-07; derived intervals retained.",
+      "source_url": "https://oblenergo.kharkiv.ua/uk/rss.xml",
+      "service_date": "2026-11-07",
+      "source_revision": "89673cbe60ca87f88cfa03069d8d90b05b85079b220fb7125ec5d2019c76db91",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Official RSS item13883458 has full12-queue plan for2026-11-07; derived intervals retained.",
+      "blocker": "Verified only as single dated public plan. Integration, rights/rate, exact building and48h pending.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/kharkiv-official-rss.txt",
+          "sha256": "89673cbe60ca87f88cfa03069d8d90b05b85079b220fb7125ec5d2019c76db91",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.402386+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "kharkiv-official-channel",
+      "operator_id": "kharkiv-oe",
+      "territory": "Kharkiv oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://t.me/s/kharkivenergy",
+      "service_date": null,
+      "source_revision": "0555545196d3e972d3e49d5b4917b51ab832bbfe6d1c2e3f0837fc23ebd8bea6",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public channel post2324 has same daily plan; emergency activation/cancellation separately present.",
+      "blocker": "Same OSR origin; overlay precedence/versioning and edited posts need validation.",
+      "observation": "probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/kharkiv-official-channel.txt",
+          "sha256": "0555545196d3e972d3e49d5b4917b51ab832bbfe6d1c2e3f0837fc23ebd8bea6",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:49:34.206738+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "kharkiv-public-address-post",
+      "operator_id": "kharkiv-oe",
+      "territory": "Kharkiv oblast",
+      "capability": "address",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://t.me/s/kharkivenergy/1445",
+      "service_date": null,
+      "source_revision": "8bd54e775b53e76327ac85707156095cbd7703c314921b5afa38104b5135ee41",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public post1445 lists address/queue PDF191.5KB; bytes not downloadable in retained web preview.",
+      "blocker": "PDF body/date/revision and current exact bindings not verified. Preview is not address certification.",
+      "observation": "capability-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/kharkiv-public-address-post.txt",
+          "sha256": "8bd54e775b53e76327ac85707156095cbd7703c314921b5afa38104b5135ee41",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:57:50.560852+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "mykolaiv-official-api",
+      "operator_id": "mykolaiv-oe",
+      "territory": "Mykolaiv oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "Current2026-11-07 JSON joined248 rows to12 queues and48 time slots; OFF/PROBABLY_OFF observed.",
+      "source_url": "https://off.energy.mk.ua/api/v2/schedule/active",
+      "service_date": "2026-11-07",
+      "source_revision": "6e31a619d1ceaaf7925a96819573225a55529020cc199032c0b918962832cae5",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Current2026-11-07 JSON joined248 rows to12 queues and48 time slots; OFF/PROBABLY_OFF observed.",
+      "blocker": "Verified single response/vocabulary only; missing-row, queue-enabled and revision semantics, rights/rate, binding and48h pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/mykolaiv-official-api.json",
+          "sha256": "6e31a619d1ceaaf7925a96819573225a55529020cc199032c0b918962832cae5",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:23.791589+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "mykolaiv-public-district-catalog",
+      "operator_id": "mykolaiv-oe",
+      "territory": "Mykolaiv oblast",
+      "capability": "catalog",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "Public filii district JSON GET succeeds.",
+      "source_url": "https://off.energy.mk.ua/api/addr/filii",
+      "service_date": null,
+      "source_revision": "b4f3c72c7c3f855f86cc30f0f0db66591c45678268b7423bcb89940f5ced3ea8",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public filii district JSON GET succeeds.",
+      "blocker": "Not a house/GPV binding; remaining hierarchical joins unprobed.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/mykolaiv-public-district-catalog.json",
+          "sha256": "b4f3c72c7c3f855f86cc30f0f0db66591c45678268b7423bcb89940f5ced3ea8",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.402186+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "lviv-official-api",
+      "operator_id": "lviv-oe",
+      "territory": "Lviv oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://api.loe.lviv.ua/api/menus?page=1&type=photo-grafic",
+      "service_date": null,
+      "source_revision": "c5b345e2b671d7368f84eea84c609874ea66e55c32c7d589ffc9fb99807f0d4b",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Today/Tomorrow imageURL empty; archive exists.",
+      "blocker": "No current published plan demonstrated; empty is not no_outages. API/operator association and reuse/rate pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/lviv-official-api.json",
+          "sha256": "c5b345e2b671d7368f84eea84c609874ea66e55c32c7d589ffc9fb99807f0d4b",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:23.791791+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "volyn-official-image-metadata",
+      "operator_id": "volyn-oe",
+      "territory": "Volyn oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://api-voe-poweron.inneti.net/api/options?option_key%5B%5D=pw_gpv_image_today&option_key%5B%5D=pw_gpv_image_tomorrow",
+      "service_date": null,
+      "source_revision": "0cf3b03e03edf988b9de0c9e73c24324fd0de871c0c3d5167b5f32973588ae12",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Today/Tomorrow value empty; metadata modified2026-10-19.",
+      "blocker": "No current plan; no_outages inference forbidden. Rights/rate/source association pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/volyn-official-image-metadata.json",
+          "sha256": "0cf3b03e03edf988b9de0c9e73c24324fd0de871c0c3d5167b5f32973588ae12",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:23.791974+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "zakarpattia-official-image-metadata",
+      "operator_id": "zakarpattia-oe",
+      "territory": "Zakarpattia oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://api-outage-zakarpat-energy.inneti.net/api/options?option_key%5B%5D=pw_gpv_image_today&option_key%5B%5D=pw_gpv_image_tomorrow",
+      "service_date": null,
+      "source_revision": "2d66dfa81eb677d0e025e9afbebe1b9c7f759a4cba5d3790f9be7d628267904c",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Today/Tomorrow value empty; metadata modified2026-06-30.",
+      "blocker": "No current plan; empty state and rights/rate/source association pending.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/zakarpattia-official-image-metadata.json",
+          "sha256": "2d66dfa81eb677d0e025e9afbebe1b9c7f759a4cba5d3790f9be7d628267904c",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.042051+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "zhytomyr-official",
+      "operator_id": "zhytomyr-oe",
+      "territory": "Zhytomyr oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.ztoe.com.ua/unhooking-search.php",
+      "service_date": null,
+      "source_revision": "bfbf005a6f9d73db0a939e03744b604e31ddc5f47af5cea3de50be5957d777c2",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Official HTML HTTP200 includes07.11.2026.",
+      "blocker": "Current schedule region/table/date association and address binding not parsed or certified.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/zhytomyr-official.txt",
+          "sha256": "bfbf005a6f9d73db0a939e03744b604e31ddc5f47af5cea3de50be5957d777c2",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.054263+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "poltava-official",
+      "operator_id": "poltava-oe",
+      "territory": "Poltava oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.poe.pl.ua/disconnection/power-outages/",
+      "service_date": null,
+      "source_revision": "ab323d5486eec4fc74c7e032946eed7e7b13b2345f95c87077496c515ea34954",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public HTTP200 page; this response does not prove current service date.",
+      "blocker": "Need specific current hourly-plan source, POST contract if applicable and allowed reuse.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/poltava-official.txt",
+          "sha256": "ab323d5486eec4fc74c7e032946eed7e7b13b2345f95c87077496c515ea34954",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.223216+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "cherkasy-official-api",
+      "operator_id": "cherkasy-oe",
+      "territory": "Cherkasy oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.cherkasyoblenergo.com/api/v1/posts/main?lang=uk&limit=20",
+      "service_date": null,
+      "source_revision": "65d6aa5f50adbbcb640b197d176b82ae0973e7c5d776a1bce9b5de0ec8d73569",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public CMS JSON lists7Nov schedule updates and later emergency posts.",
+      "blocker": "Need chosen post detail body; naive newest-post selection conflates emergencies and hourly schedule.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/cherkasy-official-api.json",
+          "sha256": "65d6aa5f50adbbcb640b197d176b82ae0973e7c5d776a1bce9b5de0ec8d73569",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.227175+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "chernivtsi-official",
+      "operator_id": "chernivtsi-oe",
+      "territory": "Chernivtsi oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://oblenergo.cv.ua/shutdowns/",
+      "service_date": null,
+      "source_revision": "2b5e32becdd835359889674062f002e779aa3fc39a787571dfe65f4c76bcb073",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Official HTML HTTP200 includes07.11.2026.",
+      "blocker": "Table/legend and today-vs-tomorrow scope not parsed or certified.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/chernivtsi-official.txt",
+          "sha256": "2b5e32becdd835359889674062f002e779aa3fc39a787571dfe65f4c76bcb073",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.483861+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "chernihiv-official-channel",
+      "operator_id": "chernihiv-oe",
+      "territory": "Chernihiv oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://t.me/s/chernigivoblenergo",
+      "service_date": null,
+      "source_revision": "09b6c71ebfe5c46b1f94c914b1cdb58a191753e8d836196064b34b0c65c86059",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public channel has current7Nov dated posts.",
+      "blocker": "Image plan extraction/OCR validation and current binding not done.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/chernihiv-official-channel.txt",
+          "sha256": "09b6c71ebfe5c46b1f94c914b1cdb58a191753e8d836196064b34b0c65c86059",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.577829+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "zaporizhzhia-official",
+      "operator_id": "zaporizhzhia-oe",
+      "territory": "Zaporizhzhia oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.zoe.com.ua/outage/",
+      "service_date": null,
+      "source_revision": "9fd7242d72447ddabc92c1602acceed093503afe079c6a82b44dcb583b309ccd",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public outage landing page HTTP200.",
+      "blocker": "Specific current daily post/date/interval body not fetched; landing reachability only.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/zaporizhzhia-official.txt",
+          "sha256": "9fd7242d72447ddabc92c1602acceed093503afe079c6a82b44dcb583b309ccd",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.652903+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "khmelnytskyi-official",
+      "operator_id": "khmelnytskyi-oe",
+      "territory": "Khmelnytskyi oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://hoe.com.ua/page/pogodinni-vidkljuchennja",
+      "service_date": null,
+      "source_revision": "21a6ee83b2c187087319caf8743797eb7280a9a2e1f9f96643a42c114fc35e55",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public hourly-outage landing HTTP200.",
+      "blocker": "Daily image/date and XLSX address version need targeted probe.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/khmelnytskyi-official.txt",
+          "sha256": "21a6ee83b2c187087319caf8743797eb7280a9a2e1f9f96643a42c114fc35e55",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.821121+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "rivne-official",
+      "operator_id": "rivne-oe",
+      "territory": "Rivne oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.roe.vsei.ua/disconnections",
+      "service_date": null,
+      "source_revision": "97f85929ff3fd98bde0fd594ad18f8450b94327e93effd9f0a4b781e1e05c7fb",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public page contains07.11.2026 among mixed date tokens.",
+      "blocker": "Current-day section, daily intervals and PDF address version not parsed.",
+      "observation": "additional-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/rivne-official.txt",
+          "sha256": "97f85929ff3fd98bde0fd594ad18f8450b94327e93effd9f0a4b781e1e05c7fb",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:53:24.985789+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "sumy-official-news",
+      "operator_id": "sumy-oe",
+      "territory": "Sumy oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://www.soe.com.ua/press-service/news",
+      "service_date": null,
+      "source_revision": "f51729972efa982c2b5ffee64e597130cfb4b0652be6e0d56df6fe7e32d3f46f",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public news page contains7Nov posts.",
+      "blocker": "Specific date/revision-bound image and legend need validation; protected API not bypassed.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/sumy-official-news.txt",
+          "sha256": "f51729972efa982c2b5ffee64e597130cfb4b0652be6e0d56df6fe7e32d3f46f",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.620411+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "prykarpattia-public-queue-plan",
+      "operator_id": "prykarpattia-oe",
+      "territory": "Ivano-Frankivsk oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://be-svitlo.oe.if.ua/schedule-by-queue?queue=1.1",
+      "service_date": null,
+      "source_revision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "One public queue1.1 GET returned[].",
+      "blocker": "Only onequeue probed; empty is unknown/waiting, not all-region no_outages.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/prykarpattia-public-queue-plan.json",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.620846+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "kirovohrad-public-channel",
+      "operator_id": "kirovohrad-oe",
+      "territory": "Kirovohrad oblast",
+      "capability": "schedule",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "candidate",
+      "verified_scope": null,
+      "source_url": "https://t.me/s/SvitloKropyvnytskyiMisto",
+      "service_date": null,
+      "source_revision": "deab625e145298fac0e514a51f89ba09d3edf2f5e57995755aef34044b091140",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public operator-related channel has7Nov plans/changes.",
+      "blocker": "Operator-channel association, full-vs-delta semantics and address route need proof.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/kirovohrad-public-channel.txt",
+          "sha256": "deab625e145298fac0e514a51f89ba09d3edf2f5e57995755aef34044b091140",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.634157+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "ternopil-public-city-catalog",
+      "operator_id": "ternopil-oe",
+      "territory": "Ternopil oblast",
+      "capability": "catalog",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "Public exact city search returns Ternopil id1032 and community.",
+      "source_url": "https://api-poweron.toe.com.ua/api/pw_cities?pagination=false&name=%D0%A2%D0%B5%D1%80%D0%BD%D0%BE%D0%BF%D1%96%D0%BB%D1%8C",
+      "service_date": null,
+      "source_revision": "98a1e08cb44791fb9ff060d1881707c46254e46b56703a2add19f95e3f1acd4f",
+      "schedule_state": "unknown",
+      "terms_review": "pending_for_systematic_product_reuse",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Public exact city search returns Ternopil id1032 and community.",
+      "blocker": "Catalog only; no schedule or actual building binding; frontend-specific headers not reproduced.",
+      "observation": "semantic-probe-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/ternopil-public-city-catalog.json",
+          "sha256": "98a1e08cb44791fb9ff060d1881707c46254e46b56703a2add19f95e3f1acd4f",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T12:59:21.697184+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    },
+    {
+      "id": "kyiv-address-dataset-metadata",
+      "operator_id": "kyiv-municipality",
+      "territory": "Kyiv city",
+      "capability": "catalog",
+      "cost": "free",
+      "cost_evidence": {
+        "probe_access_fee": 0,
+        "account_created": false,
+        "ongoing_product_quota_or_contract": "not_certified"
+      },
+      "status": "verified",
+      "verified_scope": "Official address dataset expressly free for personal/commercial reuse; metadata5Nov; CSV period12Oct.",
+      "source_url": "https://data.kyivcity.gov.ua/dataset/adresnyi-reiestr-aparat",
+      "service_date": null,
+      "source_revision": "10f1e29d7621a1b896590feedc99eec375adeb2006c6f5b8b54bc2107d0e1088",
+      "schedule_state": "unknown",
+      "terms_review": "explicit_free_municipal_statement",
+      "address_binding": "not_certified",
+      "notifications_enabled": false,
+      "demonstrated": "Official address dataset expressly free for personal/commercial reuse; metadata5Nov; CSV period12Oct.",
+      "blocker": "Verified catalog/license statement only; no electrical feeder binding. Exact OpenData attribution and field minimization required.",
+      "observation": "address-metadata-observations.json",
+      "evidence": [
+        {
+          "path": "fixtures/kyiv-address-dataset-metadata.txt",
+          "sha256": "10f1e29d7621a1b896590feedc99eec375adeb2006c6f5b8b54bc2107d0e1088",
+          "http_status": 200,
+          "observed_at_utc": "2026-11-07T13:01:53.627481+00:00"
+        }
+      ],
+      "integration_status": "not_integrated_by_this_research",
+      "48h_observation": "not_run",
+      "representative_addresses_verified": 0
+    }
+  ]
+}

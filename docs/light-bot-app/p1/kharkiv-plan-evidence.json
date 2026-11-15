@@ -1,0 +1,166 @@
+{
+  "kind": "lba-structured-public-plan-facts/1",
+  "operator_id": "kharkiv-oe",
+  "territory": "Kharkiv oblast; includes Kharkiv, not Kyiv district of city as separate OSR",
+  "service_date": "2026-11-07",
+  "timezone": "Europe/Kyiv",
+  "kind_of_evidence": "plan_not_observed_power",
+  "published_at": "Fri, 06 Nov 2026 18:00:03 +0000",
+  "source_url": "https://oblenergo.kharkiv.ua/uk/node/13883458",
+  "source_fixture": "fixtures/kharkiv-official-rss.txt",
+  "source_sha256": "89673cbe60ca87f88cfa03069d8d90b05b85079b220fb7125ec5d2019c76db91",
+  "source_revision": "RSS item URL + pubDate + raw body hash; edited-post handling still required",
+  "schedule_state": "schedule",
+  "intervals_offline": {
+    "1.1": [
+      {
+        "start_minute": 210,
+        "end_minute": 360
+      },
+      {
+        "start_minute": 420,
+        "end_minute": 630
+      },
+      {
+        "start_minute": 840,
+        "end_minute": 1260
+      }
+    ],
+    "1.2": [
+      {
+        "start_minute": 420,
+        "end_minute": 630
+      },
+      {
+        "start_minute": 840,
+        "end_minute": 1260
+      }
+    ],
+    "2.1": [
+      {
+        "start_minute": 360,
+        "end_minute": 630
+      },
+      {
+        "start_minute": 840,
+        "end_minute": 1260
+      }
+    ],
+    "2.2": [
+      {
+        "start_minute": 360,
+        "end_minute": 630
+      },
+      {
+        "start_minute": 840,
+        "end_minute": 1260
+      }
+    ],
+    "3.1": [
+      {
+        "start_minute": 0,
+        "end_minute": 210
+      },
+      {
+        "start_minute": 420,
+        "end_minute": 840
+      },
+      {
+        "start_minute": 1050,
+        "end_minute": 1440
+      }
+    ],
+    "3.2": [
+      {
+        "start_minute": 0,
+        "end_minute": 210
+      },
+      {
+        "start_minute": 420,
+        "end_minute": 840
+      },
+      {
+        "start_minute": 1050,
+        "end_minute": 1440
+      }
+    ],
+    "4.1": [
+      {
+        "start_minute": 0,
+        "end_minute": 210
+      },
+      {
+        "start_minute": 1050,
+        "end_minute": 1440
+      }
+    ],
+    "4.2": [
+      {
+        "start_minute": 0,
+        "end_minute": 210
+      },
+      {
+        "start_minute": 1050,
+        "end_minute": 1440
+      }
+    ],
+    "5.1": [
+      {
+        "start_minute": 0,
+        "end_minute": 420
+      },
+      {
+        "start_minute": 630,
+        "end_minute": 1050
+      },
+      {
+        "start_minute": 1260,
+        "end_minute": 1320
+      }
+    ],
+    "5.2": [
+      {
+        "start_minute": 210,
+        "end_minute": 420
+      },
+      {
+        "start_minute": 630,
+        "end_minute": 1050
+      },
+      {
+        "start_minute": 1260,
+        "end_minute": 1320
+      }
+    ],
+    "6.1": [
+      {
+        "start_minute": 210,
+        "end_minute": 420
+      },
+      {
+        "start_minute": 630,
+        "end_minute": 1050
+      },
+      {
+        "start_minute": 1260,
+        "end_minute": 1440
+      }
+    ],
+    "6.2": [
+      {
+        "start_minute": 210,
+        "end_minute": 420
+      },
+      {
+        "start_minute": 630,
+        "end_minute": 1050
+      },
+      {
+        "start_minute": 1260,
+        "end_minute": 1440
+      }
+    ]
+  },
+  "notice": "Switching times are approximate in operator publication; emergency overlays must be separately versioned.",
+  "address_binding": "not demonstrated by this plan"
+}

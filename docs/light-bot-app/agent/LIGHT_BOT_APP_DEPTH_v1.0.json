@@ -1,0 +1,1001 @@
+{
+  "schema_version": "foundry-depth/2",
+  "is_template": false,
+  "toolkit_version": "2.3.0",
+  "current_runtime_schema": "1.0.0",
+  "maturity": "M1",
+  "subject": {
+    "blueprint_id": "lba-recovery-agent",
+    "blueprint_revision": 1,
+    "blueprint_sha256": "493a4a454ccc9784297d3448e73263177c0d61d8ccf32e58b53f34add13adcd5",
+    "authority_source": "Очікує явного погодження паспорта v1.0 у LIGHT BOT APP [WORK]"
+  },
+  "requirements": [
+    {
+      "id": "LBA-01",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити наявний продукт",
+      "owner": "director",
+      "acceptance": "Відтворюваний ізольований запуск, exact source і карта Replit→GitHub→Mac.",
+      "negative_case": "Невідомий runtime чи production-зв'язок блокує залежну міграцію; окремі поверхні мають окремі докази.",
+      "due_gate": "P0",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-02",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Підключити надійні графіки",
+      "owner": "data",
+      "acceptance": "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов.",
+      "negative_case": "Історичний, суперечливий чи невалідний графік не відкриває push.",
+      "due_gate": "P1",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-03",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Точно зіставити адреси",
+      "owner": "data",
+      "acceptance": "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені.",
+      "negative_case": "Неоднозначність, застаріла київська черга або кілька вводів не призначають чужий графік.",
+      "due_gate": "P2",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-04",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити профілі",
+      "owner": "legacy",
+      "acceptance": "Dry-run із per-record reconciliation, ідемпотентним повтором і перевіреним rollback.",
+      "negative_case": "Профіль без доведеної прив’язки лишається винятком; вигадана прив’язка, витік або staging push у live блокують реліз.",
+      "due_gate": "P4",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-05",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Зробити керованого бота",
+      "owner": "chatbot",
+      "acceptance": "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю.",
+      "negative_case": "Дубль update/event, stale callback, блокування, outage джерела й ambiguous send не створюють хибний або повторний push.",
+      "due_gate": "P4",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-06",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Відновити веб і Mini App",
+      "owner": "app",
+      "acceptance": "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних.",
+      "negative_case": "Підроблений, застарілий чи повторний initData та доступ до чужого профілю відхиляються.",
+      "due_gate": "P4",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-07",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Зробити інформативний графік",
+      "owner": "app",
+      "acceptance": "HTML/SVG/PNG/текст мають однакові інтервали, час, легенду, дату й freshness.",
+      "negative_case": "Півгодини, перехід доби, темна тема, вузький екран і fallback перевірені; shared cache не містить точної адреси.",
+      "due_gate": "P4",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-08",
+      "source": "LBA-BRIEF-001 / 0.1, § 8; https://chatgpt.com/library?file_id=libfile_5de96faac95481918c7b8867fa6f9696&account_id=personal",
+      "verbatim": "Забезпечити наступний реліз і супровід",
+      "owner": "director",
+      "acceptance": "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back.",
+      "negative_case": "Провал QA, невідомий попередній ефект або брак production-grant закриває rollout.",
+      "due_gate": "P5",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-09",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Без платных апі",
+      "owner": "data",
+      "acceptance": "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви.",
+      "negative_case": "Trial або неперевірена безплатність не отримує допуск.",
+      "due_gate": "P1",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-10",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Регіони як мінімум ті, що вже є, якщо можливо, то додати всі можливі, для котрих можна підтвердити релевантність данних на сьогодні",
+      "owner": "data",
+      "acceptance": "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму.",
+      "negative_case": "Область, місто, ОСР, черга та будинок не зливаються; непідтверджені регіони мають явний blocker, expiry знімає допуск.",
+      "due_gate": "P4",
+      "applicability": "applicable"
+    },
+    {
+      "id": "LBA-11",
+      "source": "LIGHT BOT APP [WORK], відповідь власника від 07.11.2026, пункти 1–3",
+      "verbatim": "Доступ до бота і всі інші доступи в мене є",
+      "owner": "director",
+      "acceptance": "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією.",
+      "negative_case": "Доступ не породжує production-grant; секрети й PII не передаються у чат, пакет чи GitHub.",
+      "due_gate": "P0",
+      "applicability": "applicable"
+    }
+  ],
+  "systems": [
+    {
+      "id": "S-SOURCE",
+      "owner": "data",
+      "purpose": "Збирати лише доказовий графік і source provenance.",
+      "input_contract": "Джерело ОСР, територія, умови, fetched_at, дата дії, стан, fixtures.",
+      "output_contract": "SourceEvidence, ScheduleRevision, можливий/підтверджений статус, expiry.",
+      "invariants": "Свіжість і покриття незалежні; платний source виключено.",
+      "depends_on": []
+    },
+    {
+      "id": "S-ADDRESS",
+      "owner": "data",
+      "purpose": "Нормалізувати адресу й окремо доводити прив’язку.",
+      "input_contract": "Регіон, населений пункт, aliases, номер/корпус, ОСР, address або queue evidence.",
+      "output_contract": "AddressBinding зі status verified_address, verified_group, candidate, unavailable.",
+      "invariants": "Збіг назви не доводить ОСР/чергу; кожен binding має pin й evidence.",
+      "depends_on": [
+        "S-SOURCE"
+      ]
+    },
+    {
+      "id": "S-MIGRATION",
+      "owner": "legacy",
+      "purpose": "Зберегти профілі, обробити винятки й перевірити restore.",
+      "input_contract": "Точний source/deployment/DB, дозволений backup або fixture, staging, old IDs.",
+      "output_contract": "MigrationLedger, per-record reconciliation, rollback receipt.",
+      "invariants": "Ніякої передачі raw export/PII за межами дозволу; виняток не створює binding.",
+      "depends_on": [
+        "S-ADDRESS"
+      ]
+    },
+    {
+      "id": "S-AUTH",
+      "owner": "director",
+      "purpose": "Підтвердити principal, права й спільну ідентичність.",
+      "input_contract": "Telegram initData або звірений web login, перевірена сесія, ownership.",
+      "output_contract": "Незмінний user principal, authz decision та audit-safe ID.",
+      "invariants": "HMAC/check timestamp/anti-replay для Mini App; доступ до чужих даних відхилено.",
+      "depends_on": [
+        "S-MIGRATION"
+      ]
+    },
+    {
+      "id": "S-CHANNELS",
+      "owner": "app",
+      "purpose": "Один графік у трьох клієнтах; безпечне надсилання Telegram.",
+      "input_contract": "Verified schedule/binding, profile, outbox/event, allow list.",
+      "output_contract": "ScheduleView HTML/SVG/PNG/text, receipt, evidence й fallback.",
+      "invariants": "No stale/ambiguous send; planned і possible різні; shared cache не містить точної адреси.",
+      "depends_on": [
+        "S-ADDRESS",
+        "S-AUTH"
+      ]
+    },
+    {
+      "id": "S-OPS",
+      "owner": "director",
+      "purpose": "Керувати передачами, випуском, відновленням і покриттям.",
+      "input_contract": "Current commit, tests, authority, evidence, health, metrics, readiness.",
+      "output_contract": "Checkpoint, rollout grant/receipt, regional flag або rollback.",
+      "invariants": "Unknown effects reconcile перед retry; production effect за точним grant.",
+      "depends_on": [
+        "S-CHANNELS"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "R-LEGACY",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-11"
+      ],
+      "state_ids": [
+        "F-GATE"
+      ],
+      "input_contract": "Точний Replit snapshot, GitHub commit і read-only поверхні.",
+      "steps": [
+        "Звірити артефакти, runtime та production DB linkage; записати P0, межі права й наступний крок."
+      ],
+      "output_contract": "LegacyInventory/Checkpoint",
+      "oracle": "Відтворюваний запуск в ізоляції; чинні доступи власника окремо від capability.",
+      "failure_policy": "Відсутність evidence блокує залежний крок; owner grant на raw backup/production changes окремо."
+    },
+    {
+      "id": "R-FREE",
+      "requirement_ids": [
+        "LBA-02",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "state_ids": [
+        "F-SOURCE",
+        "F-SCHEDULE"
+      ],
+      "input_contract": "ОСР/zone/source, право і вартість доступу, effective date, data body.",
+      "steps": [
+        "Перевірити attribution, terms, free usage і чинність; відрізнити date/HTTP від evidence графіка; призначити expiry."
+      ],
+      "output_contract": "SourceEvidence, dated capability verdict",
+      "oracle": "Звірити з первинним оператором і повторити пробу зі стабільним fixture.",
+      "failure_policy": "Paid/trial, ambiguous terms, stale/conflict — не activate; повторна сертифікація."
+    },
+    {
+      "id": "R-ADDRESS",
+      "requirement_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-10"
+      ],
+      "state_ids": [
+        "F-SOURCE",
+        "F-BINDING"
+      ],
+      "input_contract": "City/oblast, alias, номер/корпус, оператор і групова/адресна проба.",
+      "steps": [
+        "Нормалізувати, звірити точний building/connection ID; повернути адресний чи груповий status лише за доказом."
+      ],
+      "output_contract": "AddressBinding або пояснений conflict",
+      "oracle": "Стара/нова назви, межі ОСР і два вводи дають відтворюваний результат.",
+      "failure_policy": "Неоднозначність = no auto-link; group-only не оголошується coverage адрес."
+    },
+    {
+      "id": "R-IMPORT",
+      "requirement_ids": [
+        "LBA-04",
+        "LBA-11"
+      ],
+      "state_ids": [
+        "F-BINDING",
+        "F-PROFILE",
+        "F-GATE"
+      ],
+      "input_contract": "Дозволений backup, schema, fixture mapping, role isolation.",
+      "steps": [
+        "Dry-run, звірити профілі/підписників/локації, відмітити винятки, перевірити повтор і restore."
+      ],
+      "output_contract": "MigrationLedger та redacted QA",
+      "oracle": "Кількість і кожен запис пояснено; rollback ідентичний; seed provenance окремо.",
+      "failure_policy": "Невідоме зберегти без фіктивної адреси, outbound і production mutation блокувати."
+    },
+    {
+      "id": "R-AUTH",
+      "requirement_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-11"
+      ],
+      "state_ids": [
+        "F-AUTH",
+        "F-PROFILE"
+      ],
+      "input_contract": "Telegram payload/web session, owner claim та requested resource.",
+      "steps": [
+        "Перевірити підпис, timestamp/replay, сесію і ownership; звірити target bot identity."
+      ],
+      "output_contract": "AuthorizedPrincipal або відмова",
+      "oracle": "Підробка, прострочення, повтор, invalid role та чужа адреса мають відмову.",
+      "failure_policy": "Fail closed без логування token/initData чи адреси."
+    },
+    {
+      "id": "R-SEND",
+      "requirement_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05"
+      ],
+      "state_ids": [
+        "F-BINDING",
+        "F-SCHEDULE",
+        "F-OUTBOX"
+      ],
+      "input_contract": "Свіжий verified binding, revision diff, підписка і доступність каналу.",
+      "steps": [
+        "Розрахувати diff, opt-in/out, дедуп ключ і durable outbox; retry/reconcile за receipt."
+      ],
+      "output_contract": "NotificationIntent та receipt",
+      "oracle": "Повтор тієї самої події не дублює push; stale/blocked/outcome_unknown мають негативні fixtures.",
+      "failure_policy": "Непідтверджена прив’язка або schedule не надсилається; unknown delivery спочатку reconcile."
+    },
+    {
+      "id": "R-VIEW",
+      "requirement_ids": [
+        "LBA-06",
+        "LBA-07"
+      ],
+      "state_ids": [
+        "F-SCHEDULE",
+        "F-VIEW",
+        "F-AUTH"
+      ],
+      "input_contract": "ScheduleRevision, permission, locale, видимість і формат.",
+      "steps": [
+        "Один view model, timezone/local date, інтервали, source time, status, accessibility та fallback."
+      ],
+      "output_contract": "Веб/Mini App, Telegram-картка і текстова альтернатива",
+      "oracle": "Візуальні/текстові оракули узгоджують півгодини, midnight, possible, freshness.",
+      "failure_policy": "Чужа адреса/PII не з’являються; unavailable позначено явно."
+    },
+    {
+      "id": "R-OPS",
+      "requirement_ids": [
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "state_ids": [
+        "F-SOURCE",
+        "F-GATE",
+        "F-OUTBOX"
+      ],
+      "input_contract": "Exact commit, scope/owner grant, readiness, health/coverage.",
+      "steps": [
+        "Перевірити gate, відкрити тільки підтверджені ОСР, stop/rollback/read-back, запланувати freshness recheck."
+      ],
+      "output_contract": "Release candidate, receipt і checkpoint",
+      "oracle": "QA, permissions, real effects, verification/rollback і observation окремі.",
+      "failure_policy": "Не робити external action за однією згодою на агента; rollback або regional disable при drift."
+    }
+  ],
+  "state_fields": [
+    {
+      "id": "F-SOURCE",
+      "type": "SourceEvidence",
+      "authority": "data",
+      "persistence": "Repo source registry, datetime UTC + local effective date",
+      "consistency_group": "source/revision/territory",
+      "migration": "Legacy upstream only labeled candidate",
+      "recovery_oracle": "Порівняти pin URL/body digest, timestamp, raw fixture і OSR zone."
+    },
+    {
+      "id": "F-SCHEDULE",
+      "type": "ScheduleRevision",
+      "authority": "data",
+      "persistence": "Immutable per normalized version + raw provenance",
+      "consistency_group": "source/territory/date",
+      "migration": "Old normalized snapshots historical until recertified",
+      "recovery_oracle": "Exact intervals/dedup/hash/expiry, Kyiv time."
+    },
+    {
+      "id": "F-BINDING",
+      "type": "AddressBinding",
+      "authority": "data",
+      "persistence": "Versioned registry; protected profile relation",
+      "consistency_group": "building/connection/operator/profile",
+      "migration": "Legacy queue retains history; exact remap or exception",
+      "recovery_oracle": "Golden fixtures verify aliases, corpus, boundaries and drift."
+    },
+    {
+      "id": "F-PROFILE",
+      "type": "ProfileMigrationLedger",
+      "authority": "legacy",
+      "persistence": "Authorized DB only; redacted report",
+      "consistency_group": "profile/location/subscriber crosswalk",
+      "migration": "Per-record status mapped/retained exception/reconciled; seed provenance separate",
+      "recovery_oracle": "Double dry-run, counts and protected per-record proof, rollback."
+    },
+    {
+      "id": "F-AUTH",
+      "type": "PrincipalAndAuthz",
+      "authority": "director",
+      "persistence": "Short-lived authenticated session; audit-safe claims only",
+      "consistency_group": "principal/role/ownership",
+      "migration": "Unproven alias/link prompts reauthorization",
+      "recovery_oracle": "HMAC, freshness/replay, own/foreign and invalid session fixtures."
+    },
+    {
+      "id": "F-OUTBOX",
+      "type": "NotificationIntentAndReceipt",
+      "authority": "chatbot",
+      "persistence": "Durable idempotent outbox and receipt in protected store",
+      "consistency_group": "recipient/event/revision/channel",
+      "migration": "Legacy opt-in/out and Telegram identity preserve; no live push in staging",
+      "recovery_oracle": "Dedupe, opt-out, blocked, retry, unknown outcome reconciliation."
+    },
+    {
+      "id": "F-VIEW",
+      "type": "ScheduleView",
+      "authority": "app",
+      "persistence": "Source-bound cache by revision/status/timezone; no shared PII",
+      "consistency_group": "revision/date/representation/locale",
+      "migration": "Retire unsafe legacy cache keys",
+      "recovery_oracle": "Visual and textual oracles for intervals/status and fallback."
+    },
+    {
+      "id": "F-GATE",
+      "type": "ScopeAndCheckpoint",
+      "authority": "director",
+      "persistence": "Versioned project log and exact refs",
+      "consistency_group": "commit/scope/authority/effect",
+      "migration": "Old Work findings seed facts with original provenance",
+      "recovery_oracle": "Read-back target/commit/effect; strict no stale or implicit approval."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "D-LEGACY",
+      "tool": "GitHub read у Work, Replit source-only inventory у дозволеному середовищі",
+      "operation": "Підтвердити exact lineage і P0",
+      "environment": "Work → Codex",
+      "status": "configured",
+      "evidence_ids": []
+    },
+    {
+      "id": "D-SOURCES",
+      "tool": "Офіційні сайти, публічний web read/відтворювані probe CLI",
+      "operation": "Верифікувати дату, вартість, умови й маршрут ОСР",
+      "environment": "Work / Codex ізоляція",
+      "status": "descriptor_seen",
+      "evidence_ids": []
+    },
+    {
+      "id": "D-SLICE",
+      "tool": "App/ChatBot Atelier, staging fixture, CLI перевірки",
+      "operation": "Скласти shared contracts і ризиковий E2E зріз",
+      "environment": "Codex staging",
+      "status": "candidate",
+      "evidence_ids": []
+    },
+    {
+      "id": "D-MIGRATE",
+      "tool": "Міграційний код, staging DB, reviewer",
+      "operation": "Dry-run, повтор, per-record reconciliation і rollback",
+      "environment": "Ізольований Codex staging",
+      "status": "candidate",
+      "evidence_ids": []
+    },
+    {
+      "id": "D-ROLLOUT",
+      "tool": "GitHub/Codex, Bot API, DB та deploy зі scoped grants",
+      "operation": "Перевірити release, read-back і супровід",
+      "environment": "Staging; production після окремої authority",
+      "status": "candidate",
+      "evidence_ids": []
+    }
+  ],
+  "operations": [
+    {
+      "id": "O-LEGACY",
+      "capability_id": "D-LEGACY",
+      "recipe_id": "RECIPE-LEGACY",
+      "consumer_id": "director",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-RECOVERY"
+      ],
+      "parameter_bindings": [
+        {
+          "requirement_id": "LBA-01",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Відтворюваний ізольований запуск, exact source і карта Replit→GitHub→Mac."
+        },
+        {
+          "requirement_id": "LBA-11",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+        }
+      ]
+    },
+    {
+      "id": "O-SOURCES",
+      "capability_id": "D-SOURCES",
+      "recipe_id": "RECIPE-SOURCES",
+      "consumer_id": "data",
+      "requirement_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "output_ids": [
+        "A-SOURCES"
+      ],
+      "parameter_bindings": [
+        {
+          "requirement_id": "LBA-02",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов."
+        },
+        {
+          "requirement_id": "LBA-03",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені."
+        },
+        {
+          "requirement_id": "LBA-09",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви."
+        },
+        {
+          "requirement_id": "LBA-10",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму."
+        }
+      ]
+    },
+    {
+      "id": "O-SLICE",
+      "capability_id": "D-SLICE",
+      "recipe_id": "RECIPE-SLICE",
+      "consumer_id": "director",
+      "requirement_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "output_ids": [
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-BOT-HANDOFF",
+        "A-SLICE"
+      ],
+      "parameter_bindings": [
+        {
+          "requirement_id": "LBA-02",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов."
+        },
+        {
+          "requirement_id": "LBA-03",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені."
+        },
+        {
+          "requirement_id": "LBA-05",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю."
+        },
+        {
+          "requirement_id": "LBA-06",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних."
+        },
+        {
+          "requirement_id": "LBA-07",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "HTML/SVG/PNG/текст мають однакові інтервали, час, легенду, дату й freshness."
+        }
+      ]
+    },
+    {
+      "id": "O-MIGRATE",
+      "capability_id": "D-MIGRATE",
+      "recipe_id": "RECIPE-MIGRATE",
+      "consumer_id": "legacy",
+      "requirement_ids": [
+        "LBA-04",
+        "LBA-08",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-DRYRUN",
+        "A-QA"
+      ],
+      "parameter_bindings": [
+        {
+          "requirement_id": "LBA-04",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Dry-run із per-record reconciliation, ідемпотентним повтором і перевіреним rollback."
+        },
+        {
+          "requirement_id": "LBA-08",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back."
+        },
+        {
+          "requirement_id": "LBA-11",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+        }
+      ]
+    },
+    {
+      "id": "O-ROLLOUT",
+      "capability_id": "D-ROLLOUT",
+      "recipe_id": "RECIPE-ROLLOUT",
+      "consumer_id": "director",
+      "requirement_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "parameter_bindings": [
+        {
+          "requirement_id": "LBA-05",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю."
+        },
+        {
+          "requirement_id": "LBA-06",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних."
+        },
+        {
+          "requirement_id": "LBA-08",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back."
+        },
+        {
+          "requirement_id": "LBA-09",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви."
+        },
+        {
+          "requirement_id": "LBA-10",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму."
+        },
+        {
+          "requirement_id": "LBA-11",
+          "field": "applicable_acceptance",
+          "status": "supported_not_tested",
+          "consumption_check": "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+        }
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "RECIPE-LEGACY",
+      "input_ids": [
+        "LBA-01",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-RECOVERY"
+      ],
+      "consumer_id": "director",
+      "operation_ids": [
+        "O-LEGACY"
+      ],
+      "steps": [
+        "Звірити exact inputs, approvals і dependency gates.",
+        "Підтвердити exact lineage і P0",
+        "Зафіксувати proof, відхилення й наступний крок."
+      ],
+      "validators": [
+        "Відтворюваний ізольований запуск, exact source і карта Replit→GitHub→Mac.",
+        "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+      ],
+      "repair_policy": "Діагностувати точну невдалу властивість; виправити зачеплений артефакт і повторити залежні перевірки."
+    },
+    {
+      "id": "RECIPE-SOURCES",
+      "input_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-09",
+        "LBA-10"
+      ],
+      "output_ids": [
+        "A-SOURCES"
+      ],
+      "consumer_id": "data",
+      "operation_ids": [
+        "O-SOURCES"
+      ],
+      "steps": [
+        "Звірити exact inputs, approvals і dependency gates.",
+        "Верифікувати дату, вартість, умови й маршрут ОСР",
+        "Зафіксувати proof, відхилення й наступний крок."
+      ],
+      "validators": [
+        "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов.",
+        "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені.",
+        "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви.",
+        "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму."
+      ],
+      "repair_policy": "Діагностувати точну невдалу властивість; виправити зачеплений артефакт і повторити залежні перевірки."
+    },
+    {
+      "id": "RECIPE-SLICE",
+      "input_ids": [
+        "LBA-02",
+        "LBA-03",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07"
+      ],
+      "output_ids": [
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-BOT-HANDOFF",
+        "A-SLICE"
+      ],
+      "consumer_id": "director",
+      "operation_ids": [
+        "O-SLICE"
+      ],
+      "steps": [
+        "Звірити exact inputs, approvals і dependency gates.",
+        "Скласти shared contracts і ризиковий E2E зріз",
+        "Зафіксувати proof, відхилення й наступний крок."
+      ],
+      "validators": [
+        "Для кожного ввімкненого ОСР є первинне джерело, дата даних, freshness, пріоритет, fixtures і контроль відмов.",
+        "Стара і чинна назва приводять до підтвердженого building/connection ID. Адресний і груповий докази відокремлені.",
+        "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю.",
+        "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних.",
+        "HTML/SVG/PNG/текст мають однакові інтервали, час, легенду, дату й freshness."
+      ],
+      "repair_policy": "Діагностувати точну невдалу властивість; виправити зачеплений артефакт і повторити залежні перевірки."
+    },
+    {
+      "id": "RECIPE-MIGRATE",
+      "input_ids": [
+        "LBA-04",
+        "LBA-08",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-DRYRUN",
+        "A-QA"
+      ],
+      "consumer_id": "legacy",
+      "operation_ids": [
+        "O-MIGRATE"
+      ],
+      "steps": [
+        "Звірити exact inputs, approvals і dependency gates.",
+        "Dry-run, повтор, per-record reconciliation і rollback",
+        "Зафіксувати proof, відхилення й наступний крок."
+      ],
+      "validators": [
+        "Dry-run із per-record reconciliation, ідемпотентним повтором і перевіреним rollback.",
+        "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back.",
+        "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+      ],
+      "repair_policy": "Діагностувати точну невдалу властивість; виправити зачеплений артефакт і повторити залежні перевірки."
+    },
+    {
+      "id": "RECIPE-ROLLOUT",
+      "input_ids": [
+        "LBA-05",
+        "LBA-06",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "output_ids": [
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "consumer_id": "director",
+      "operation_ids": [
+        "O-ROLLOUT"
+      ],
+      "steps": [
+        "Звірити exact inputs, approvals і dependency gates.",
+        "Перевірити release, read-back і супровід",
+        "Зафіксувати proof, відхилення й наступний крок."
+      ],
+      "validators": [
+        "Staging підтверджує start/settings, вибір адреси, opt-in/out, dedupe та retry; старий бот лишається ціллю.",
+        "Веб, Mini App та бот показують однакову ревізію, входи і права перевірені, UX пройдено на мобільних.",
+        "CI/staging, метрики, operator runbook, exact handoff, grant, rollback та read-back.",
+        "Умови доступу і використання підтверджені; у runtime відсутні платні API й резерви.",
+        "Київ, Вінниця, Одеса й Харків лишаються must разом з іншими фактично підтвердженими в P0 legacy територіями; для решти є датовані докази та статус режиму.",
+        "Власницьке підтвердження збережено; readiness перевіряється перед точною операцією."
+      ],
+      "repair_policy": "Діагностувати точну невдалу властивість; виправити зачеплений артефакт і повторити залежні перевірки."
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "A-SKILL",
+      "path": "skills/light-bot-app-recovery/SKILL.md",
+      "owner": "director",
+      "kind": "skill",
+      "acceptance": "Один entry з routing, scopes, checkpoints і межами повноважень, після build approval.",
+      "status": "planned"
+    },
+    {
+      "id": "A-RECOVERY",
+      "path": "docs/light-bot-app/legacy-inventory.md",
+      "owner": "legacy",
+      "kind": "inventory",
+      "acceptance": "Exact source/commit, P0, зв’язок deployment і DB, права, відкриті прогалини.",
+      "status": "planned"
+    },
+    {
+      "id": "A-SOURCES",
+      "path": "docs/light-bot-app/source-registry.json",
+      "owner": "data",
+      "kind": "registry",
+      "acceptance": "ОСР, зона, джерело, спостереження, дата дії, умови, свіжість і доказ типу прив’язки.",
+      "status": "planned"
+    },
+    {
+      "id": "A-CONTRACTS",
+      "path": "docs/light-bot-app/shared-contracts.json",
+      "owner": "director",
+      "kind": "shared_contract",
+      "acceptance": "Контракти ScheduleRevision, AddressBinding, ідентичності, auth, event і view.",
+      "status": "planned"
+    },
+    {
+      "id": "A-APP-HANDOFF",
+      "path": "docs/light-bot-app/app-handoff.json",
+      "owner": "app",
+      "kind": "component_handoff",
+      "acceptance": "Межі App, schema IDs, exact proof і return binding.",
+      "status": "planned"
+    },
+    {
+      "id": "A-BOT-HANDOFF",
+      "path": "docs/light-bot-app/chatbot-handoff.json",
+      "owner": "chatbot",
+      "kind": "component_handoff",
+      "acceptance": "Межі ChatBot, schema IDs, exact proof і return binding.",
+      "status": "planned"
+    },
+    {
+      "id": "A-SLICE",
+      "path": "docs/light-bot-app/slice-evidence.md",
+      "owner": "qa",
+      "kind": "evidence",
+      "acceptance": "Сценарій зрізу, ревізія, positive/negative results.",
+      "status": "planned"
+    },
+    {
+      "id": "A-BUILD",
+      "path": "docs/light-bot-app/integration-checkpoint.md",
+      "owner": "director",
+      "kind": "checkpoint",
+      "acceptance": "Exact commit, paths, build, tests і відтворювані fixtures.",
+      "status": "planned"
+    },
+    {
+      "id": "A-DRYRUN",
+      "path": "docs/light-bot-app/migration-dry-run.md",
+      "owner": "legacy",
+      "kind": "report",
+      "acceptance": "Деперсоналізована per-record звірка, винятки, replay та rollback.",
+      "status": "planned"
+    },
+    {
+      "id": "A-QA",
+      "path": "docs/light-bot-app/release-qa.md",
+      "owner": "qa",
+      "kind": "evidence",
+      "acceptance": "Незалежні source/CI/staging/device/owner verdicts та blockers.",
+      "status": "planned"
+    },
+    {
+      "id": "A-ROLLOUT",
+      "path": "docs/light-bot-app/release-runbook.md",
+      "owner": "director",
+      "kind": "runbook",
+      "acceptance": "Точний grant, pre/post, stop, rollback, dedupe, reconciliation.",
+      "status": "planned"
+    },
+    {
+      "id": "A-OPERATIONS",
+      "path": "docs/light-bot-app/support-runbook.md",
+      "owner": "director",
+      "kind": "runbook",
+      "acceptance": "Freshness, circuit breaker, source re-certification та межі моніторингу.",
+      "status": "planned"
+    }
+  ],
+  "evidence": [],
+  "modules": [
+    {
+      "id": "M-DIRECTOR",
+      "name": "light-bot-app-recovery",
+      "path": "skills/light-bot-app-recovery",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-02",
+        "LBA-03",
+        "LBA-04",
+        "LBA-05",
+        "LBA-06",
+        "LBA-07",
+        "LBA-08",
+        "LBA-09",
+        "LBA-10",
+        "LBA-11"
+      ],
+      "inherited_contracts": [
+        {
+          "kind": "core",
+          "path": "skills/light-bot-app-recovery/references/cross-domain-core.md",
+          "sha256": "0c22e6274709bc3714321172d315b49a9f7c31ec1b1dd3251fae2ee86ffe63b7",
+          "source_relative": "references/cross-domain-core.md",
+          "status": "planned_verbatim_copy_after_approval"
+        },
+        {
+          "kind": "domain",
+          "path": "skills/light-bot-app-recovery/references/domain-model-2.md",
+          "sha256": "549eb5b0754c25a3ab4547d9f4501bfecca1b48daf4779cd26dca2f02494d2d2",
+          "source_relative": "references/domain-model-2.md",
+          "status": "planned_verbatim_copy_after_approval"
+        },
+        {
+          "kind": "production",
+          "path": "skills/light-bot-app-recovery/references/production-recipes-2.md",
+          "sha256": "cb149c705baf16bfd3c6ef084aa6d0dcf2eacd0aa346e11af7b8381aa79cdc56",
+          "source_relative": "references/production-recipes-2.md",
+          "status": "planned_verbatim_copy_after_approval"
+        },
+        {
+          "kind": "evaluation",
+          "path": "skills/light-bot-app-recovery/references/depth-evaluation-2.md",
+          "sha256": "e28bbb26f266c4702498fa97aced0b6b4f9f151125e31244e120b8224d9e4767",
+          "source_relative": "references/depth-evaluation-2.md",
+          "status": "planned_verbatim_copy_after_approval"
+        }
+      ],
+      "status": "planned_after_owner_approval"
+    }
+  ],
+  "assemblies": [
+    {
+      "id": "ASSEMBLY-SLICE",
+      "consumer_id": "director",
+      "scenario": "Тестова адреса зі старою назвою, підтвердження будинку, нова ревізія і узгоджені бот/веб/Mini App.",
+      "expected_result": "Єдина ревізія, один дозволений staging push, negative stale/alias/dedupe checks.",
+      "artifact_ids": [
+        "A-CONTRACTS",
+        "A-APP-HANDOFF",
+        "A-BOT-HANDOFF",
+        "A-SLICE"
+      ],
+      "required_evidence_ids": []
+    },
+    {
+      "id": "ASSEMBLY-RELEASE",
+      "consumer_id": "director",
+      "scenario": "Репетиція імпорту, відкату і контрольований реліз.",
+      "expected_result": "Звірка кожного профілю; coverage вердикт; effects, QA і product release окремі.",
+      "artifact_ids": [
+        "A-DRYRUN",
+        "A-QA",
+        "A-ROLLOUT",
+        "A-OPERATIONS"
+      ],
+      "required_evidence_ids": []
+    }
+  ],
+  "evidence_status": "Передбудівельний дизайн. Склад і checks визначені; outputs, докази виконання та успадковані файли матеріалізуються після погодження."
+}

@@ -1,0 +1,1984 @@
+{
+  "kind": "lba-v8-private-source-transfer/2",
+  "status": "preparation_only_not_release_ready",
+  "source_root_head": "4eeb1df7e51eb02ad15701bb6e247047105de439",
+  "recipient_replit": "6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+  "branch": "codex/release-v8-preparation",
+  "requirements_sha256": "8c0cf1a5d37694dab25715f6d5a321aaeb9c6bb0d515fc020bad33e3c3b62158",
+  "source_fingerprint": "e95beebe9c8daad0e55acf8505f9d21d6e5d9ce5043616c2510a82756a829be4",
+  "files": [
+    {
+      "path": "app/.gitignore",
+      "sha256": "2b9c52cb3eaf29a6d5d6c4210e68efeede8b24a24e90b17cb852c21e7ef118f5",
+      "bytes": 98
+    },
+    {
+      "path": "app/.replit",
+      "sha256": "65d7fbc4b277fbd6280755eb6dc7adaadf1b2cb507850a43c19cf074d61c0d83",
+      "bytes": 1462
+    },
+    {
+      "path": "app/LOCAL_RUN_UA.md",
+      "sha256": "2f5fea8cb9741758fe8a380669ab93f12106330283cebedb202f7319c7614483",
+      "bytes": 8637
+    },
+    {
+      "path": "app/capacitor.config.ts",
+      "sha256": "ff49321670b90891935599bdf9e3aa3b4b402807acbea7f484bcbc57d5587550",
+      "bytes": 1027
+    },
+    {
+      "path": "app/client/index.html",
+      "sha256": "b693021e7a8968714b9aa7339498771ea872d59a0256a28fff6539519f492177",
+      "bytes": 4478
+    },
+    {
+      "path": "app/client/public/fonts/manrope-OFL.txt",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "bytes": 4387
+    },
+    {
+      "path": "app/client/public/fonts/manrope.ttf",
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "bytes": 164700
+    },
+    {
+      "path": "app/client/public/fonts/onest-OFL.txt",
+      "sha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc",
+      "bytes": 4384
+    },
+    {
+      "path": "app/client/public/fonts/onest.ttf",
+      "sha256": "966c5c29b4755da84b6854d5c21dd4eaa2420225d0e9874de602de176d4a9f31",
+      "bytes": 193056
+    },
+    {
+      "path": "app/client/public/sw.js",
+      "sha256": "9b9ba05af76f8e87b4c40b7605d4ff4b898cb2a2e73fbb30e7469d37e38ea686",
+      "bytes": 1619
+    },
+    {
+      "path": "app/client/src/App.tsx",
+      "sha256": "d6e403f147a18d6a416b08d086ff6044c7380b9fc1cfd767f83381c8de66f3e5",
+      "bytes": 17632
+    },
+    {
+      "path": "app/client/src/bot-review/BotReview.tsx",
+      "sha256": "a036312be601fdc0d12dcb3576cbafb322acb80248eb813dec769ebea7cb3dd5",
+      "bytes": 10927
+    },
+    {
+      "path": "app/client/src/bot-review/bot-review.css",
+      "sha256": "a7e02a467d81963fdc1d16d8d6ac08f3e86fa5134fd7326f87ff942c1273a999",
+      "bytes": 7237
+    },
+    {
+      "path": "app/client/src/components/CompareSheet.tsx",
+      "sha256": "001afb9788b55bdaac50f80857f14c0dc9475b5f4cc7e614bcb0a95efa92b3bb",
+      "bytes": 33169
+    },
+    {
+      "path": "app/client/src/components/Dashboard.tsx",
+      "sha256": "34383224fcea066ccce7fb2403b97b653e1ebed597ea43672d159abc0ae5bdf6",
+      "bytes": 53054
+    },
+    {
+      "path": "app/client/src/components/LocationManager.tsx",
+      "sha256": "3b598d6939f623fb8fd41961f1df31386c111add28fee6478d9b54658f65fdaa",
+      "bytes": 59716
+    },
+    {
+      "path": "app/client/src/components/LocationPrioritizer.tsx",
+      "sha256": "a237e20f218ec4d0eb7f19366771a74e96e4c1ab4a216ae16784c558388b3440",
+      "bytes": 10229
+    },
+    {
+      "path": "app/client/src/components/MultiLocationStatus.tsx",
+      "sha256": "71642e7b497a327c6d221ab1691cd554f720fa2c2ad93fe2a7bd78316a8715c0",
+      "bytes": 4223
+    },
+    {
+      "path": "app/client/src/components/PowerReportCard.tsx",
+      "sha256": "8836f240abc03a9d79b34023a6e5796da77ac58c3036d7729faa964dad6b0ebb",
+      "bytes": 27800
+    },
+    {
+      "path": "app/client/src/components/Settings.tsx",
+      "sha256": "eed934fbea6ddab7d5dc2af76f5d233f9cf84a8895034bf5e711759b3d34ed4d",
+      "bytes": 63709
+    },
+    {
+      "path": "app/client/src/components/ThemeToggle.tsx",
+      "sha256": "8917419cb49fafd83c2d3cdaae73eec807f15efa5989e90af238d621b97d33f4",
+      "bytes": 4129
+    },
+    {
+      "path": "app/client/src/components/Timeline.tsx",
+      "sha256": "633de9e922483f236f806a3ac7cf2903b22ac36c61d334a3baf31055b1a636cf",
+      "bytes": 4605
+    },
+    {
+      "path": "app/client/src/components/WeeklyDigestCard.tsx",
+      "sha256": "0e8f49c3e55e317b9008af98183adb1fd10e1bfcef728ec061d707f7b13482f3",
+      "bytes": 8548
+    },
+    {
+      "path": "app/client/src/components/ui/accordion.tsx",
+      "sha256": "dcbfb3243a26096fc3e5f54039ccb5c4c23d9bb79a4d5846b4be75bf912f07d9",
+      "bytes": 2001
+    },
+    {
+      "path": "app/client/src/components/ui/alert-dialog.tsx",
+      "sha256": "311bede35f785d7b1ecd7398986757e26409d1049352a94ccf83586b8603c92d",
+      "bytes": 4419
+    },
+    {
+      "path": "app/client/src/components/ui/alert.tsx",
+      "sha256": "5950ac01377e7eedc94b00eb3fee678745e4cc1a72b5343867f0733d07db6660",
+      "bytes": 1598
+    },
+    {
+      "path": "app/client/src/components/ui/aspect-ratio.tsx",
+      "sha256": "08b0aa0b05efc573c7d63363c03e83d4b101bfeb54140764e96ddea30659cfcc",
+      "bytes": 140
+    },
+    {
+      "path": "app/client/src/components/ui/avatar.tsx",
+      "sha256": "e78b35ed76c67d8ff50603fbe0dfa4fe600097bd860d89e65beea3e16683dad8",
+      "bytes": 1419
+    },
+    {
+      "path": "app/client/src/components/ui/badge.tsx",
+      "sha256": "3c339f439797dba9b3872a9d89db42420ffd900504b4e0b27e9dad51e87bc41c",
+      "bytes": 1522
+    },
+    {
+      "path": "app/client/src/components/ui/breadcrumb.tsx",
+      "sha256": "c3d3dcb0d82fc5e91d8830bac7fead905686fe876f1f42c3ed872bb0a6b6584e",
+      "bytes": 2712
+    },
+    {
+      "path": "app/client/src/components/ui/button-group.tsx",
+      "sha256": "e3716d270e9ef6457b5cd29464ae00194abc8093c08ebf726c9204d7a69231d9",
+      "bytes": 2209
+    },
+    {
+      "path": "app/client/src/components/ui/button.tsx",
+      "sha256": "9a9edf4fda319623ee228d5cb26ac31dd008dcfd5c57dbafe3b7d768e59e50ca",
+      "bytes": 2356
+    },
+    {
+      "path": "app/client/src/components/ui/calendar.tsx",
+      "sha256": "787a19c855cf2b826942d25440b63150c45094154c6a40e95abdb4109298b8b4",
+      "bytes": 7569
+    },
+    {
+      "path": "app/client/src/components/ui/card.tsx",
+      "sha256": "525c4bb2c051987be64df0e92e1d90174912b219bf541e24ffbc4a3406de49e8",
+      "bytes": 1828
+    },
+    {
+      "path": "app/client/src/components/ui/carousel.tsx",
+      "sha256": "5a4ff73c804e86c873382da80c453f1399006326ef042fb984c24162ec86666e",
+      "bytes": 6210
+    },
+    {
+      "path": "app/client/src/components/ui/chart.tsx",
+      "sha256": "b40d1236f168c746b228adec6bc4e9d196ea362a7910878f161d3c359a013b89",
+      "bytes": 10763
+    },
+    {
+      "path": "app/client/src/components/ui/checkbox.tsx",
+      "sha256": "ac389a574651c8bedffc10f80674c5fc2f02ab81291a5f4ad9c587d1f775fdce",
+      "bytes": 1031
+    },
+    {
+      "path": "app/client/src/components/ui/collapsible.tsx",
+      "sha256": "f4cdd104de29928bfcd40b865c7d08eed9157a537fbb8b5e6d0921f02b63cc04",
+      "bytes": 329
+    },
+    {
+      "path": "app/client/src/components/ui/command.tsx",
+      "sha256": "5a57ebc119f2357b097098d22865d45de8fda623ee88fe98b99999838c13633b",
+      "bytes": 4887
+    },
+    {
+      "path": "app/client/src/components/ui/context-menu.tsx",
+      "sha256": "5369fc82c51df067aec2934f5e711aaf9e3f745ed7baadd7ba4b77397dee2a1b",
+      "bytes": 7406
+    },
+    {
+      "path": "app/client/src/components/ui/dialog.tsx",
+      "sha256": "f9c982ed8114c253c6ca738043d3f455e89c6d65569e90c9415776d6b4d6be14",
+      "bytes": 3835
+    },
+    {
+      "path": "app/client/src/components/ui/drawer.tsx",
+      "sha256": "47ff6248307a4ac09bf7e00181a2a29f9f846691092e04cad03e15d749bc249b",
+      "bytes": 3007
+    },
+    {
+      "path": "app/client/src/components/ui/dropdown-menu.tsx",
+      "sha256": "dc109123ecd59af01d07aa9f3a8e8a7085bd3f337388c5369799ab1ce6c2d45f",
+      "bytes": 7606
+    },
+    {
+      "path": "app/client/src/components/ui/empty.tsx",
+      "sha256": "9f975582a0290dbc7ce6efa3b36b376a4c3f07863026c3b74c1e73cb0023acb8",
+      "bytes": 2396
+    },
+    {
+      "path": "app/client/src/components/ui/field.tsx",
+      "sha256": "e463611ab049c5e9b1c61691d239e05970ead7b577a191b3f80aa6f8ffccada9",
+      "bytes": 6044
+    },
+    {
+      "path": "app/client/src/components/ui/form.tsx",
+      "sha256": "d50adf86568f76246f0f319c9e1e858627475563f6c1e38f5df7d4ee23958559",
+      "bytes": 4175
+    },
+    {
+      "path": "app/client/src/components/ui/hover-card.tsx",
+      "sha256": "00f9086b1412843e04e01d31d2fab00a25d65d789d1a382e41f01b1f3c167c3b",
+      "bytes": 1237
+    },
+    {
+      "path": "app/client/src/components/ui/input-group.tsx",
+      "sha256": "e9dad28bc940ca29714312d6c75d83bfe63f0cf7f9a384d2a2969a00a1d79700",
+      "bytes": 4971
+    },
+    {
+      "path": "app/client/src/components/ui/input-otp.tsx",
+      "sha256": "7c4799e3597f2780c09a39a1391b921fa16eaedd0476457492af734f58e2ec98",
+      "bytes": 2143
+    },
+    {
+      "path": "app/client/src/components/ui/input.tsx",
+      "sha256": "6299a6a387dc55e528aec4342deaea0b83f1ea3a365c135a31a18ee55334f441",
+      "bytes": 768
+    },
+    {
+      "path": "app/client/src/components/ui/item.tsx",
+      "sha256": "90983640aa7cfef8217422347d8e14825cf55137c76369decacf440767f03188",
+      "bytes": 4494
+    },
+    {
+      "path": "app/client/src/components/ui/kbd.tsx",
+      "sha256": "0c025e7736d435f563bfb44105e562629672799eb1f35cbf194148d06cd1a9f7",
+      "bytes": 862
+    },
+    {
+      "path": "app/client/src/components/ui/label.tsx",
+      "sha256": "2eac8fbb04002c42b0fbc4062d20d131e421796eaf65c37d2049e29e42ecbc5a",
+      "bytes": 724
+    },
+    {
+      "path": "app/client/src/components/ui/menubar.tsx",
+      "sha256": "def61eb2c47c9ec319423471f4ca20045e99549958211cacf832e4ede769e484",
+      "bytes": 8608
+    },
+    {
+      "path": "app/client/src/components/ui/navigation-menu.tsx",
+      "sha256": "a06d96a582ac207ffcd38445d773c05e841d646efb185b5e9b65f73e5bd388c7",
+      "bytes": 5124
+    },
+    {
+      "path": "app/client/src/components/ui/pagination.tsx",
+      "sha256": "9506dbd19ddd0c2810d1c9668a3f01606e39d9bf33ddc43329523c03bf629012",
+      "bytes": 2751
+    },
+    {
+      "path": "app/client/src/components/ui/popover.tsx",
+      "sha256": "04cf38bf94abd3fe1b51e90227e6e235ca74776f6fc6af718bfc149e7424f582",
+      "bytes": 1342
+    },
+    {
+      "path": "app/client/src/components/ui/progress.tsx",
+      "sha256": "6b3b4b69a1cb361076174892e9a96e1a09020307616965ef89f2f7e2495b57a9",
+      "bytes": 792
+    },
+    {
+      "path": "app/client/src/components/ui/radio-group.tsx",
+      "sha256": "9ba7808b7404cdf2159c81883a39290033bc4308f2978eb80797c92b87421301",
+      "bytes": 1410
+    },
+    {
+      "path": "app/client/src/components/ui/resizable.tsx",
+      "sha256": "70d1e35a5fb0897af7063cdd841d8ed636e1c332ef7ea6469f0f175a5a93dddf",
+      "bytes": 1723
+    },
+    {
+      "path": "app/client/src/components/ui/scroll-area.tsx",
+      "sha256": "d7d02600effca55d0dcadce8c09c97ebddda3a19c5fa1d52dc9f6f727b26c6b1",
+      "bytes": 1642
+    },
+    {
+      "path": "app/client/src/components/ui/select.tsx",
+      "sha256": "3d93ae07a8f3fe121ba60f4439e26bd7859f247eb8bfcafcf4b4a8a069888eec",
+      "bytes": 5745
+    },
+    {
+      "path": "app/client/src/components/ui/separator.tsx",
+      "sha256": "c956c4cca4b8442fa9314d6079b9f975e1ee39d5804aaf2966990f6258ac342a",
+      "bytes": 756
+    },
+    {
+      "path": "app/client/src/components/ui/sheet.tsx",
+      "sha256": "363f8e06aa5b53c6475f445117f60fa9294be79e9e4f1f5bf70886800188124e",
+      "bytes": 4280
+    },
+    {
+      "path": "app/client/src/components/ui/sidebar.tsx",
+      "sha256": "b023ff6245be1930e152a18c6aaa2b6dd1a11df7b05fcf41bbe483968bfb1c39",
+      "bytes": 21846
+    },
+    {
+      "path": "app/client/src/components/ui/skeleton.tsx",
+      "sha256": "87608e7cc815ad3d88e0b9de6c402bb37b58ea1b38636cf69709da1baff6e334",
+      "bytes": 266
+    },
+    {
+      "path": "app/client/src/components/ui/slider.tsx",
+      "sha256": "234e38fef59169bd02d8f5b56ca02e5ec13a0bd6846c328927b924e1299f7fb0",
+      "bytes": 1037
+    },
+    {
+      "path": "app/client/src/components/ui/sonner.tsx",
+      "sha256": "771ab8637d27384c3ed030ba3be01a07b90c791c294eae06646250f8e81bc49e",
+      "bytes": 894
+    },
+    {
+      "path": "app/client/src/components/ui/spinner.tsx",
+      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9",
+      "bytes": 331
+    },
+    {
+      "path": "app/client/src/components/ui/switch.tsx",
+      "sha256": "ba5867cd3145af1290edd80bb56d4b6d61c6331aa8ef96ae0b85487f4499feaf",
+      "bytes": 1148
+    },
+    {
+      "path": "app/client/src/components/ui/table.tsx",
+      "sha256": "a4a6972c2d47d465d7f02c1dc4a6cbfeda7a97e46479c1b0cebdaf26bf9b497a",
+      "bytes": 2859
+    },
+    {
+      "path": "app/client/src/components/ui/tabs.tsx",
+      "sha256": "6f74706bc6b53f9e4bcebb5e7ab8743b616aef181edc7758b8ee905f9b2fdcd7",
+      "bytes": 1877
+    },
+    {
+      "path": "app/client/src/components/ui/textarea.tsx",
+      "sha256": "ec7c92aaed80f6923a7caa4bfe4eead395b50a7001504fd7fbb0b9381804dae9",
+      "bytes": 649
+    },
+    {
+      "path": "app/client/src/components/ui/toast.tsx",
+      "sha256": "99f9f4a3e897f71d89b01c6772b2f5db51b888cecb2c8214fb2c2dbb2b3e6356",
+      "bytes": 4845
+    },
+    {
+      "path": "app/client/src/components/ui/toaster.tsx",
+      "sha256": "1348f1a1f9820e2f1394b93cecc156a7e22f03636ab9270753985549aae2be74",
+      "bytes": 772
+    },
+    {
+      "path": "app/client/src/components/ui/toggle-group.tsx",
+      "sha256": "dba95ead40d163af6959198ded9853a2cc9282b2cb534980f99937a65edf4e2d",
+      "bytes": 1753
+    },
+    {
+      "path": "app/client/src/components/ui/toggle.tsx",
+      "sha256": "955fa1bb97505b7a8bba3f7cff1991035a9afa0e1113f5d598147e6369dbf44b",
+      "bytes": 1486
+    },
+    {
+      "path": "app/client/src/components/ui/tooltip.tsx",
+      "sha256": "ce6afa34fb9dae51053a863b4c3f7c6e55f3da23b00149f31a8e4402bc963be0",
+      "bytes": 1267
+    },
+    {
+      "path": "app/client/src/data-review/DataReview.tsx",
+      "sha256": "eb908348abc1aa270c82524a12731f4d17fc750ecda8070e0f2d644798fa1928",
+      "bytes": 4603
+    },
+    {
+      "path": "app/client/src/hooks/use-auth.ts",
+      "sha256": "0ab183ba5a48dc00820a2aea7cbe5647b750f9fa46df4753799be0814f1daf4b",
+      "bytes": 1091
+    },
+    {
+      "path": "app/client/src/hooks/use-mobile.tsx",
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
+      "bytes": 565
+    },
+    {
+      "path": "app/client/src/hooks/use-toast.ts",
+      "sha256": "5aab0623ee24bddf9420c259a23a06996292e38ea70eccbac2715516f6d01a0b",
+      "bytes": 3895
+    },
+    {
+      "path": "app/client/src/hooks/useAuth.ts",
+      "sha256": "bf70c5c0630deb53f963bd1c6a9831b7dbf6333db75d06310cfc0a14100bb51d",
+      "bytes": 740
+    },
+    {
+      "path": "app/client/src/hooks/useTheme.ts",
+      "sha256": "0bb37d9d7d3428efea032b189cf0d88a7ede640d9b96b101edfa4f84c8fead40",
+      "bytes": 4722
+    },
+    {
+      "path": "app/client/src/index.css",
+      "sha256": "6da4bbea31cc75cd0e9512eaa0ffddacc3d5bf1b5625360edf809656eced6e18",
+      "bytes": 2579
+    },
+    {
+      "path": "app/client/src/lib/auth-utils.ts",
+      "sha256": "ca5de7a04a552ff400ae7d47dec3b45258a6a69158c6f8d49fc5650e1b09525d",
+      "bytes": 517
+    },
+    {
+      "path": "app/client/src/lib/capacitor.ts",
+      "sha256": "428c5be98a39ca81e799cf5c45d8d558596ad5285c7916be840f77883fc49a9a",
+      "bytes": 430
+    },
+    {
+      "path": "app/client/src/lib/native-notifications.ts",
+      "sha256": "d985d70eccf9cd41077ed7c13cfec82b4a81e86ba9c52051de66959f0cbc90f3",
+      "bytes": 6345
+    },
+    {
+      "path": "app/client/src/lib/notifications.ts",
+      "sha256": "62461f6f940198fc5606c41f5dad707727c80e007f835b74968167318c5689dd",
+      "bytes": 3915
+    },
+    {
+      "path": "app/client/src/lib/queryClient.ts",
+      "sha256": "4e32b4e5cf93a98c307883ed253a7edc4b309e2a299472c1b121626c1594b726",
+      "bytes": 1383
+    },
+    {
+      "path": "app/client/src/lib/schedule-service.ts",
+      "sha256": "6a761b601f5aab7da86b884fc6eb5e080362b6e7e1d062fd14723a72376a0fab",
+      "bytes": 4814
+    },
+    {
+      "path": "app/client/src/lib/settings-sync.ts",
+      "sha256": "df5f74638549ab2989040f64246ad3fdf7b849e707449bdeec8ecb10c514d4fb",
+      "bytes": 9532
+    },
+    {
+      "path": "app/client/src/lib/store.ts",
+      "sha256": "152fe0ae526259553a87d890f02a137fdd93af59ef7fb9881480ba6353cb3cb3",
+      "bytes": 15637
+    },
+    {
+      "path": "app/client/src/lib/sync-state.ts",
+      "sha256": "4b03e54eb3fa03eabcaeec792bb19b052d30894baf061e834be4e53705460679",
+      "bytes": 559
+    },
+    {
+      "path": "app/client/src/lib/telegram-webapp.ts",
+      "sha256": "394644fda9fbc52329cc28c0d5a49c02af9fabf17491f8b0b5533bab9d31b9c4",
+      "bytes": 3108
+    },
+    {
+      "path": "app/client/src/lib/utils.ts",
+      "sha256": "7c8c3dfc0cdd370d44932828eb067ef771c8fe7996693221d5d4b90af6d54f2d",
+      "bytes": 166
+    },
+    {
+      "path": "app/client/src/main.tsx",
+      "sha256": "507dd664a870c7e183dbf83ed001aadd3cd21b1bb9ce9743074e41096e2d71f1",
+      "bytes": 439
+    },
+    {
+      "path": "app/client/src/pages/ComparePage.tsx",
+      "sha256": "e4695ce3e8a7a0db545c775e4997322b641757830cd30a751a94b59baea3a3cc",
+      "bytes": 26244
+    },
+    {
+      "path": "app/client/src/pages/LoginPage.tsx",
+      "sha256": "c7e597792e51a23c98b3c4425970f1b59565802295dbedef516fb525d0b5dcc7",
+      "bytes": 12449
+    },
+    {
+      "path": "app/client/src/pages/SharePage.tsx",
+      "sha256": "185225ed26cf0383ea4cd9d34cec92a0ac29b6bde9932806a4a414bc52bf5186",
+      "bytes": 26405
+    },
+    {
+      "path": "app/client/src/pages/not-found.tsx",
+      "sha256": "718a41bd05a163d1db32480aba013f5fe754894e656b6542a8e4b302275b172e",
+      "bytes": 711
+    },
+    {
+      "path": "app/client/src/product-review/AddressEditor.tsx",
+      "sha256": "b173af8c9b0007fdda039b9300c60033e7909e84359e25094a6bc1e2db93898d",
+      "bytes": 14290
+    },
+    {
+      "path": "app/client/src/product-review/AddressList.tsx",
+      "sha256": "39736daa073b4a4795b0b526946de39e333f896b98924de6ed3510256556e5aa",
+      "bytes": 5294
+    },
+    {
+      "path": "app/client/src/product-review/Building.tsx",
+      "sha256": "9d55ffa4075f4dface929702d3a3790983c00b44be7e8ad8daae0c43400e9ed2",
+      "bytes": 4681
+    },
+    {
+      "path": "app/client/src/product-review/DistrictDashboard.tsx",
+      "sha256": "a8606d91139c7e8d7cc713d401fcafa1d3110bb10bcf1a705f16ea24371b5d57",
+      "bytes": 14017
+    },
+    {
+      "path": "app/client/src/product-review/DurationField.tsx",
+      "sha256": "5498848aff3f5dcd5bf22a4f63a906c9dbef38ba85792cbd03f01e821ce92c5d",
+      "bytes": 1604
+    },
+    {
+      "path": "app/client/src/product-review/LabelEditor.tsx",
+      "sha256": "8b710f92efcdd914912bc11911879f394571475e71c9d3b0752e1594fc30f24a",
+      "bytes": 4114
+    },
+    {
+      "path": "app/client/src/product-review/Modal.tsx",
+      "sha256": "bb9953680291797b6bdaf518050e71e99bd71394e72505821112c4fa903fb2d5",
+      "bytes": 826
+    },
+    {
+      "path": "app/client/src/product-review/NotificationPolicyEditor.tsx",
+      "sha256": "9ffd2971a884aae1a6d612e465c424ed67e29c170ee56b82a3dc399305dafee7",
+      "bytes": 21321
+    },
+    {
+      "path": "app/client/src/product-review/PlanWindow.tsx",
+      "sha256": "29e1bc4a2eddb47b50fd7bbc358539de1cbd22794fc3f875940684a4ec5e5553",
+      "bytes": 2837
+    },
+    {
+      "path": "app/client/src/product-review/ProductReview.tsx",
+      "sha256": "6ad995c12671f9d59795a49f5812873636196ae99ad1c4a3cc55eab6033a3624",
+      "bytes": 33397
+    },
+    {
+      "path": "app/client/src/product-review/ProductTools.tsx",
+      "sha256": "ac9df25e8dcac856f75807895e7de7353311ad10ab99e7e7e986f679f80bd437",
+      "bytes": 15454
+    },
+    {
+      "path": "app/client/src/product-review/SharedDayComparison.tsx",
+      "sha256": "29a95074142a7fbbbf8bdd759f2b130e5c3afe15a1bc4965a84d97372749ad2e",
+      "bytes": 11248
+    },
+    {
+      "path": "app/client/src/product-review/district.css",
+      "sha256": "2ed74ff7700cb5ba03704a8dbecd79773207e0eb9862219da62dcbfb1e4f74d0",
+      "bytes": 24121
+    },
+    {
+      "path": "app/client/src/product-review/examples.ts",
+      "sha256": "fd8f68d57b698605a7c0fbec28281b119e77998a6b05edee524b7bc20c891e08",
+      "bytes": 3481
+    },
+    {
+      "path": "app/client/src/product-review/notification-draft.ts",
+      "sha256": "38fd91358bbb547f7b6786fe7537876c1fa66d4f4c87d2302ab38d39cc094950",
+      "bytes": 3716
+    },
+    {
+      "path": "app/client/src/product-review/operational.test.ts",
+      "sha256": "ee8f4da596ef6ebb8edd090cdde1706e01279b1a1c016b1ad6040def7f3563f5",
+      "bytes": 6007
+    },
+    {
+      "path": "app/client/src/product-review/operational.ts",
+      "sha256": "1d8253ae4f72da7dee02e9930ccff88503be24026629d0480edcc3239a88ece9",
+      "bytes": 9318
+    },
+    {
+      "path": "app/client/src/product-review/product-review.css",
+      "sha256": "d8b919b34cbe993507ff1ade4b60eda3a1cb3603a6587e79c24b6d778a61ac85",
+      "bytes": 43644
+    },
+    {
+      "path": "app/client/src/product-review/runtime-clock.ts",
+      "sha256": "2213ef69bf7b77197b70b17767e9d4bdff9a1123abcab2aa0a4df1745e0850b4",
+      "bytes": 2098
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.test.ts",
+      "sha256": "23b4c33c6734f604b2a259b01f470b3c6f68dc9155a73f595ddbe007fbd31f93",
+      "bytes": 5149
+    },
+    {
+      "path": "app/client/src/product-review/schedule-model.ts",
+      "sha256": "7576fda5be76c462c871995830ad685e152315f8ca89a79dffd2825fc984a7bf",
+      "bytes": 8283
+    },
+    {
+      "path": "app/client/src/product-review/schedule-renderer.tsx",
+      "sha256": "0a38de0c531cfa6060151dd9dacc0b6cb69c9196ba829aaad4a3555ecf768271",
+      "bytes": 9422
+    },
+    {
+      "path": "app/client/src/product-review/use-telegram-shell.ts",
+      "sha256": "78ba895e3c45dc058d53ece4bfa946079d251773167c655b4e304ca34715ee07",
+      "bytes": 1742
+    },
+    {
+      "path": "app/client/src/product-review/ux-drafts.ts",
+      "sha256": "f894ceed70304f30e19b41fbeccfe435fbc430faf8b7e89dc2516e972c70e276",
+      "bytes": 4343
+    },
+    {
+      "path": "app/client/src/product-review/view-preferences.ts",
+      "sha256": "fee8fe31be9b59e93d4359b4eb6c95971e3047bff117f257bec82ea1c541e07a",
+      "bytes": 1604
+    },
+    {
+      "path": "app/client/src/product-runtime/LiveProduct.tsx",
+      "sha256": "77db15037add3ff4344301761d49625b8f09b531041e90a314881bc0c6895616",
+      "bytes": 1606
+    },
+    {
+      "path": "app/client/src/product-runtime/ProductRuntime.tsx",
+      "sha256": "b2dadad770a3a1f344b523905a6405a03b88f5123c141244d300ba11de095c41",
+      "bytes": 7422
+    },
+    {
+      "path": "app/client/src/product-runtime/pending-request.test.ts",
+      "sha256": "3775dfbaa947df543e035502d06e2072f33c0f19bea0c2d7a65a184334552508",
+      "bytes": 1570
+    },
+    {
+      "path": "app/client/src/product-runtime/pending-request.ts",
+      "sha256": "113e0c2423bc64459d3fd37c05ca2911a1efe083aa65e128046c3f3c02133196",
+      "bytes": 2509
+    },
+    {
+      "path": "app/components.json",
+      "sha256": "34396b963d1cede6248bdb6c7b32672b51e731b327002ebc27615edf21004fde",
+      "bytes": 451
+    },
+    {
+      "path": "app/drizzle.config.ts",
+      "sha256": "db80922910a890344195617c17acd664cd9b922973f607a5c6fdc0c749b4476a",
+      "bytes": 325
+    },
+    {
+      "path": "app/drizzle.isolated.config.ts",
+      "sha256": "a6947466bd095a99075926c5ed114efb4c261097ce7889408871a590b8f8665c",
+      "bytes": 525
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "9dd389cadb2eb8f6c58d003fca8cf53321906fc002b3e532b4d269b02a0ab470",
+      "bytes": 96
+    },
+    {
+      "path": "app/package-lock.json",
+      "sha256": "fbc0cda9d58161a247397139127825be50a830d535568339db6f741386d3453b",
+      "bytes": 547364
+    },
+    {
+      "path": "app/package.json",
+      "sha256": "47a410bad6a6c9984b2afe572c6f0c46f0b33489fa74dfde1fab101866cf024a",
+      "bytes": 5262
+    },
+    {
+      "path": "app/postcss.config.js",
+      "sha256": "190c877db466995bf1482f4a16abd06e04a89ede3119341e2a86ff96e1737b27",
+      "bytes": 80
+    },
+    {
+      "path": "app/pyproject.toml",
+      "sha256": "2b1814d65b821d6e722b82e770d923f40b2b56f7f1198e3fa246e19d3f565777",
+      "bytes": 299
+    },
+    {
+      "path": "app/script/build-isolated.ts",
+      "sha256": "3116aae49589c76fd31a11fc4411ffb489b4a6992c093241b0853943050428cf",
+      "bytes": 1816
+    },
+    {
+      "path": "app/script/build-production.ts",
+      "sha256": "c200fc8fe7b2de53e7ff1a69d700289f51b594efadbb7f2f25a64cf58ab3b6a6",
+      "bytes": 4774
+    },
+    {
+      "path": "app/script/build.ts",
+      "sha256": "35df8bf9d4c1aad8cdff54df8108bbc964a853bbc29538ec0ec6e1b1a9b0d54f",
+      "bytes": 1417
+    },
+    {
+      "path": "app/scripts/post-merge.sh",
+      "sha256": "858bb038ee7f709625c8e6674264061ed659dc78b3da28a909fb93c00c5afe9a",
+      "bytes": 51
+    },
+    {
+      "path": "app/server/db.ts",
+      "sha256": "dc66b7291c0f7a884c2ba93db8603e29a87ab064d57f96c353997a9344de1b8d",
+      "bytes": 515
+    },
+    {
+      "path": "app/server/domain/bot-session-store.ts",
+      "sha256": "702c62e01c6ae6adb8de63f577a2d975b767c632e923717705eb1cfa452984db",
+      "bytes": 9811
+    },
+    {
+      "path": "app/server/domain/captured-address-book.ts",
+      "sha256": "fbf0d1481f644f398d09b48dbf8d249b0bd83ad86e952312983baf5e4b3ea12b",
+      "bytes": 4687
+    },
+    {
+      "path": "app/server/domain/captured-data-routes.ts",
+      "sha256": "8ab827fbeb5545c2d414cb766475b4a2833a80ac1b2c27d31dc82e8731e38062",
+      "bytes": 5445
+    },
+    {
+      "path": "app/server/domain/delivery-repository.ts",
+      "sha256": "7cac7484362a4e271e0ddf8119712c089b9b958aaca3ed282781a9c03c4b10f2",
+      "bytes": 19641
+    },
+    {
+      "path": "app/server/domain/delivery-worker.ts",
+      "sha256": "48d2c10adb00fa4518cb89b2c0aecfc12ff9030b0d2481a37c8da1e5a64bacbb",
+      "bytes": 8698
+    },
+    {
+      "path": "app/server/domain/hour-matrix-adapter.ts",
+      "sha256": "9613ad262d13367221581786cb0bbee70caaf2dd8b767ab20c1f22f6afb88d23",
+      "bytes": 12090
+    },
+    {
+      "path": "app/server/domain/kharkiv-adapter.ts",
+      "sha256": "aac6fb95fc174278671f45d0028d7b713b0eefe778f09b23b25a6738a65845a6",
+      "bytes": 8217
+    },
+    {
+      "path": "app/server/domain/legacy-migration.ts",
+      "sha256": "c8e946a5dc222ff1d7f39d2a2b6378b429aabcdb610f123f14d1a7325c803768",
+      "bytes": 26693
+    },
+    {
+      "path": "app/server/domain/legacy-policy-adapter.ts",
+      "sha256": "c4aa7d885bccfdd24b36669f786bf2ac9e5141dd69c771625d91b4d15a6695a8",
+      "bytes": 12520
+    },
+    {
+      "path": "app/server/domain/profile-service.ts",
+      "sha256": "0c5e6b7871a3e45d83e39aba10449486fad937c3a0711b6a15e4d98574e9cfc4",
+      "bytes": 12855
+    },
+    {
+      "path": "app/server/domain/review-context.ts",
+      "sha256": "8767bdb8d204c41d97cfd3febb5142dc32e1b613faa9bc4504d3a9f9d1c121d7",
+      "bytes": 3489
+    },
+    {
+      "path": "app/server/domain/review-routes.ts",
+      "sha256": "8d92515ed4399221f035675daee70946453bae8b29171d6ce44f6b2a7722f45e",
+      "bytes": 4629
+    },
+    {
+      "path": "app/server/domain/review-tools-routes.ts",
+      "sha256": "7da9a6ade6b95f5da39c78b313ee4f39597badf66629c4ddb74f4223db6e320c",
+      "bytes": 1978
+    },
+    {
+      "path": "app/server/domain/review-tools.ts",
+      "sha256": "ca966739e0e62fede7e87e2f0f39e521562dfca472e875957bc3189cda2166c1",
+      "bytes": 14498
+    },
+    {
+      "path": "app/server/domain/schedule-event-store.ts",
+      "sha256": "ddf641274542066ab5e0efd59358885d45f22a708a3933671d3b8c2cea4a7d5a",
+      "bytes": 17917
+    },
+    {
+      "path": "app/server/domain/yasno-adapter.ts",
+      "sha256": "7bb10656b745dbe9adccb2aef0e3eba2d0dc22521192cfb3662a87b5410da0ef",
+      "bytes": 5557
+    },
+    {
+      "path": "app/server/domain/yasno-address-adapter.ts",
+      "sha256": "fa0b571dbe9ac34c9c3ef0ab7304bcef37f7604ca3316e76994f29a30fc08ef9",
+      "bytes": 13474
+    },
+    {
+      "path": "app/server/emergency-alerts.ts",
+      "sha256": "e73d1136f55fe8baa7f11aaa3b6d340d6bde55ebb41e19243fe64f204537fae0",
+      "bytes": 8439
+    },
+    {
+      "path": "app/server/index.ts",
+      "sha256": "ee4c69f65b9ebab3bfdebe040e0d4a8c1cd5e034b1680d1e9201ffe25019bd9b",
+      "bytes": 5715
+    },
+    {
+      "path": "app/server/isolated-entry.ts",
+      "sha256": "6b7df548f42826fd0720faff230919a61778590e578c066f3e55adde95ed6850",
+      "bytes": 677
+    },
+    {
+      "path": "app/server/isolated-fixtures.ts",
+      "sha256": "f16a2025a66991cd670d29bccfb14b0e523b8f6246e5a835b4ffb1bff5e26286",
+      "bytes": 1462
+    },
+    {
+      "path": "app/server/isolated-guard.ts",
+      "sha256": "e3c991aeeebb43fdbb49a2e1b745e1218fddc25ac929ccf52269dfb0b2dbd2dd",
+      "bytes": 8766
+    },
+    {
+      "path": "app/server/isolated-routes.ts",
+      "sha256": "d25c63fc173b8b889a81c80218eaff05317a07b935c90a6b248a666505aa8d77",
+      "bytes": 4310
+    },
+    {
+      "path": "app/server/isolated-seed.ts",
+      "sha256": "94261fec1b51b7359f06ba895b023bfc498f870a31d2242bda3038f7bc03a18d",
+      "bytes": 3086
+    },
+    {
+      "path": "app/server/middleware.ts",
+      "sha256": "522e8ace599c77bbff8f649673fdb40471fe832462b827455dbe4fa0ede2f89e",
+      "bytes": 2699
+    },
+    {
+      "path": "app/server/mobile-auth.ts",
+      "sha256": "c2105c0723a32cd26a22d98e4fdcd31b6e46a07cec3961b110ecba70d2d4ea2e",
+      "bytes": 3448
+    },
+    {
+      "path": "app/server/production-entry.ts",
+      "sha256": "a40ccfd0994cd634efff80bd6acc7bc7981cd11e7943c64332ff2c7f99b97e44",
+      "bytes": 426
+    },
+    {
+      "path": "app/server/production/auth-replay.ts",
+      "sha256": "2bec24f8d6f2aea1bb910d79956999680263757f1f9f7156d0186fc298b2fd0f",
+      "bytes": 5405
+    },
+    {
+      "path": "app/server/production/legacy-identity-links.ts",
+      "sha256": "49879626ee9673e4c7a392db48b4f97cb1ed7b98eaa4d83717b3febfe7a90b33",
+      "bytes": 8876
+    },
+    {
+      "path": "app/server/production/legacy-profile.ts",
+      "sha256": "cdd1b91905ce2cf2ec1540a9fc8e7e7c63bd7541af5a75589f9c853dc19d618e",
+      "bytes": 16195
+    },
+    {
+      "path": "app/server/production/legacy-route-fence.ts",
+      "sha256": "14898198e6ac377a9fe844997aa772fdfeaf5a84c1fef7f9bfc30ed17f8b5b68",
+      "bytes": 1508
+    },
+    {
+      "path": "app/server/production/product-auth.ts",
+      "sha256": "6830d8cb80274b091fe905583be683f6554e2e512d817215fb3a7fe1811826a0",
+      "bytes": 912
+    },
+    {
+      "path": "app/server/production/product-identity.ts",
+      "sha256": "5e2499b9174f309458545424d0e7f32fe7e9f74af01eccb8887b629526bdf5bf",
+      "bytes": 286
+    },
+    {
+      "path": "app/server/production/product-routes.ts",
+      "sha256": "185c79b2696e1740dcee0b6941d04bcccfa9223f3c2915b4d3244713b9fe2990",
+      "bytes": 17588
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664",
+      "bytes": 15691
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "9b4f216b11a6b1fc96e963f05046958534efe9dbc0c87391a8347b2222936373",
+      "bytes": 32773
+    },
+    {
+      "path": "app/server/production/source-intake.ts",
+      "sha256": "b8d126db981e5114d493f22be7e383790f024ea7e0a94135890b31de9134551c",
+      "bytes": 21590
+    },
+    {
+      "path": "app/server/production/telegram-auth-flow.ts",
+      "sha256": "17d0771f8aca1e81404beda8823576aefb343d4c21e0af47cf3bf4e056329f40",
+      "bytes": 2764
+    },
+    {
+      "path": "app/server/production/telegram-auth-http.ts",
+      "sha256": "9bc006bce037cda2dbb41efeb5b3dfedb6a66c251615d46c92b9149aea9f72aa",
+      "bytes": 4298
+    },
+    {
+      "path": "app/server/production/telegram-identity.ts",
+      "sha256": "ee5211f7099cd7c8c5a32882bccf85f4315bf49f318e913c212586cdfceec4b1",
+      "bytes": 2053
+    },
+    {
+      "path": "app/server/production/telegram-inbox-http.ts",
+      "sha256": "f21bbf5006ebe3beef2e02ab50fd33924c01ad28fc7c7fbfa80793e3bec687f9",
+      "bytes": 2716
+    },
+    {
+      "path": "app/server/production/telegram-inbox.ts",
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d",
+      "bytes": 17345
+    },
+    {
+      "path": "app/server/production/telegram-transport.ts",
+      "sha256": "4b3469e5566feb73956f18987c75cc36baf206fd246bc6a02ab04cf4ce7e36b6",
+      "bytes": 30860
+    },
+    {
+      "path": "app/server/release/build-identity.ts",
+      "sha256": "6d710f3ba5076062d929bff236fe66472a7ad6c83495371760a492f9b00d5d0c",
+      "bytes": 309
+    },
+    {
+      "path": "app/server/release/update-campaign-pg.ts",
+      "sha256": "586b59af3f24d90cb77243c0d1fd8f12b773f10c162406c085d723eb8f60159c",
+      "bytes": 19250
+    },
+    {
+      "path": "app/server/release/update-campaign.ts",
+      "sha256": "61783b2d0bd1e1ed028a697034673ed2127aecff81e5cfb9ad9e83866068d968",
+      "bytes": 16915
+    },
+    {
+      "path": "app/server/replit_integrations/auth/index.ts",
+      "sha256": "ebf89f03cbca0c9f05f483b60b4d2ad15bf828b4bc3a8f5a66777932fe711689",
+      "bytes": 178
+    },
+    {
+      "path": "app/server/replit_integrations/auth/replitAuth.ts",
+      "sha256": "a0c28dc732da055950f920c8e1f811997c8b134d1f66b501872b6dbbfae06f10",
+      "bytes": 8711
+    },
+    {
+      "path": "app/server/replit_integrations/auth/routes.ts",
+      "sha256": "5e379a90e0661b3c1e2476e4de72c9b7be5821644606c2c812a538e101e601f1",
+      "bytes": 609
+    },
+    {
+      "path": "app/server/replit_integrations/auth/storage.ts",
+      "sha256": "8838a503f98a1576383cbc316ce82473abe674f7b97424423a283a101bd2a4a9",
+      "bytes": 943
+    },
+    {
+      "path": "app/server/routes-digest.ts",
+      "sha256": "c552e0e1e6f60dcec9839ed683f5061a5e040ecfe9c2fe804043ff516510f9ed",
+      "bytes": 3728
+    },
+    {
+      "path": "app/server/routes-locations.ts",
+      "sha256": "ac3181cb2e8bd513d3d97e2c44e21a8755122a98a9e586515182b98607224f1b",
+      "bytes": 10871
+    },
+    {
+      "path": "app/server/routes-reports.ts",
+      "sha256": "9d4725476e12689b43facdd55efdc9eb5714f648f786adff8980108a369279da",
+      "bytes": 5224
+    },
+    {
+      "path": "app/server/routes.ts",
+      "sha256": "7a4fb8722152e018979b6d42167a39c20aa9167aac2d3fb6a46a5772386c4c43",
+      "bytes": 106429
+    },
+    {
+      "path": "app/server/runtime-policy.ts",
+      "sha256": "39b08685270f0aa938e075e731a1c5fec2e34f322a14b0c925ac2cb4b9eaa07f",
+      "bytes": 7247
+    },
+    {
+      "path": "app/server/scraper-kharkiv.ts",
+      "sha256": "97b27ebfd0dbecb2530e52a3baa98fadac86728d09dd8a99d5594740fc1e96c2",
+      "bytes": 6171
+    },
+    {
+      "path": "app/server/scraper-kyiv.ts",
+      "sha256": "9a643c803f40689ec5711bc6737abc7e88c30dd06a731140dd5bc9740be6720f",
+      "bytes": 7734
+    },
+    {
+      "path": "app/server/scraper-odesa.ts",
+      "sha256": "7b05048caf67a4c933e16504a6903581afb977a86be9dc822f7f4c12b2656603",
+      "bytes": 6065
+    },
+    {
+      "path": "app/server/scraper-svitlo.ts",
+      "sha256": "92ed57a9bba21addbd7eb69f9d02f7015b4afbed587f107742f38a93de15cf88",
+      "bytes": 5531
+    },
+    {
+      "path": "app/server/scraper-voe.ts",
+      "sha256": "9aae6a7d5d31c3515010103ac2da61b0bb1f954dde3b18fda02800e3b47a3585",
+      "bytes": 7168
+    },
+    {
+      "path": "app/server/scraper.ts",
+      "sha256": "0ca23c16b7f337295de13479f68935c85f65a84137c10124514b4d86200527de",
+      "bytes": 6186
+    },
+    {
+      "path": "app/server/static.ts",
+      "sha256": "a972edb62cf8eaa4a55fd91a06cffd158836604ab96a61bb8e3d3d9695752758",
+      "bytes": 997
+    },
+    {
+      "path": "app/server/storage-digest.ts",
+      "sha256": "9e471d89691b6650eb54856ec8ccf4d5cc3e54f0772609e79b77a69c59f3f059",
+      "bytes": 1373
+    },
+    {
+      "path": "app/server/storage-locations.ts",
+      "sha256": "3096443ddb1fb517f026e56f3f510cbee65b65b4ffe48e45d443084d3c7a0eb4",
+      "bytes": 6666
+    },
+    {
+      "path": "app/server/storage-reports.ts",
+      "sha256": "8491316e1553c8a95d0c70b848b7cef98a9f5205fb0d822e1f33e7f41e3d70da",
+      "bytes": 8115
+    },
+    {
+      "path": "app/server/storage.ts",
+      "sha256": "6f8d19123a2d1f081a77e977044b4009aef3faa19fb71d3e86a2eabe3fc4d712",
+      "bytes": 4008
+    },
+    {
+      "path": "app/server/telegram-bot.ts",
+      "sha256": "f420a49b2a70bc4105862856582a31c0e9281b8a3983cadd6da128465dda5a59",
+      "bytes": 233435
+    },
+    {
+      "path": "app/server/telegram-init-data.ts",
+      "sha256": "693c6753f11277a5c8b4f23a41c3220d7629a822ac57ea46a2d1111ca8cca308",
+      "bytes": 4564
+    },
+    {
+      "path": "app/server/vite.ts",
+      "sha256": "b95341d19c1b83bb314467283568d9d6e72b02e21d6aff0037689c6b6be0528c",
+      "bytes": 1541
+    },
+    {
+      "path": "app/server/voe-lookup.ts",
+      "sha256": "2ea452592e8edca9272531c7e50c58bb1b42a5efe39c2f3e9e4ace3b1df24bb2",
+      "bytes": 1790
+    },
+    {
+      "path": "app/server/voe-status.ts",
+      "sha256": "4754aecec8a6d90faa339269ba5d15587750fd82d8401254070826a8ddcf8145",
+      "bytes": 3910
+    },
+    {
+      "path": "app/shared/address-index.ts",
+      "sha256": "b8958a343eec663d8c335bed2801e4f278bb01ef40e4c85f93287550ad67863f",
+      "bytes": 3385
+    },
+    {
+      "path": "app/shared/bot/copy.ts",
+      "sha256": "d46417084ba732b0cd0d92ebce74f2c785d4831424624fd7daf3a7e19d0b61d9",
+      "bytes": 28015
+    },
+    {
+      "path": "app/shared/bot/engine.ts",
+      "sha256": "0ba1ce97da310280b7a468f5eaa344296846ed60702bc8da314670c13bc8851f",
+      "bytes": 55457
+    },
+    {
+      "path": "app/shared/bot/fixtures.ts",
+      "sha256": "b7e5090a0150e0a312ca6d3892f559ad3172f15f0e7c7bba2ae1828ce1b5ec09",
+      "bytes": 2882
+    },
+    {
+      "path": "app/shared/bot/types.ts",
+      "sha256": "a25c5ef14fa3cf8c99a9f093a158a839094b1c127fdc7385bc19907533eb70af",
+      "bytes": 5091
+    },
+    {
+      "path": "app/shared/coverage-research.json",
+      "sha256": "57f9a806ac4b4eaf57ec6c8280cbb8cb2fb89ba6535a93d825b7576f4d21d4e3",
+      "bytes": 18350
+    },
+    {
+      "path": "app/shared/delivery-contract.ts",
+      "sha256": "346a0f56aafaa03fc23d49a4d62d8bca0d207698dd26f0eef8288b273baa156c",
+      "bytes": 1989
+    },
+    {
+      "path": "app/shared/isolated-schema.ts",
+      "sha256": "a33fecbef058f6ba2f9f54983f93a78a4bb20bf152553d1d706ca705d7340913",
+      "bytes": 2133
+    },
+    {
+      "path": "app/shared/legacy-migration-contract.ts",
+      "sha256": "064250b893005e8e2fa96dd6556a201ab422a43f550f0402cd79952ca310985e",
+      "bytes": 3395
+    },
+    {
+      "path": "app/shared/live-product.ts",
+      "sha256": "c47ff48741353f52ede9987f03220f907bc6048c0ba86cbab08c2363b0fe4655",
+      "bytes": 901
+    },
+    {
+      "path": "app/shared/models/auth.ts",
+      "sha256": "44c58b266f56a69217750f0b17022ae17d04758e272b09cb62c04c072f4868ef",
+      "bytes": 1010
+    },
+    {
+      "path": "app/shared/models/compare-shares.ts",
+      "sha256": "8ec2744c452114e7284cf45e95ff275e578780be14482caea5e0ef1abb97f7dd",
+      "bytes": 437
+    },
+    {
+      "path": "app/shared/models/linked-accounts.ts",
+      "sha256": "15dc39e073bd1de0312fbd13a0fbe606c0f5adce922019093620cc611467c48a",
+      "bytes": 839
+    },
+    {
+      "path": "app/shared/models/power-reports.ts",
+      "sha256": "cb6bcbe1ae58c91d9fa0b35cdb1a63b271eb19f55f1f91779a2836213b2e47c9",
+      "bytes": 878
+    },
+    {
+      "path": "app/shared/models/telegram-subscribers.ts",
+      "sha256": "bbb92b146767435d271ac64c371559f9eadd2d81ee8e3400c92d191fd0a1fbd6",
+      "bytes": 1877
+    },
+    {
+      "path": "app/shared/models/user-locations.ts",
+      "sha256": "b856d50d22b15c76ac6c2309cfa1a23fa76ae6a574c57f3183be4be9f4bc573c",
+      "bytes": 1742
+    },
+    {
+      "path": "app/shared/models/user-settings.ts",
+      "sha256": "02f65afcf9a4473179700f846a700fd774880ca289c8c1b27d76c82080085aee",
+      "bytes": 2158
+    },
+    {
+      "path": "app/shared/models/weekly-digest.ts",
+      "sha256": "d66c1a671956382e7c5c71bd7d39281b26cb96dfeec9da265511bfde81a22067",
+      "bytes": 1479
+    },
+    {
+      "path": "app/shared/notification-policy.ts",
+      "sha256": "bcbeb5aa3c59c5f16609f74ef8bd98bf63b962550b46b3735d10d1f88c223742",
+      "bytes": 10178
+    },
+    {
+      "path": "app/shared/product-contract.ts",
+      "sha256": "55f78d287cef3a2149af33288c582ef17eff953fba4b5b4c4e8e9bf34d4308c0",
+      "bytes": 5362
+    },
+    {
+      "path": "app/shared/profile-constraints.ts",
+      "sha256": "0b66c18332ea2caae61408d4c56d44939f7f4fdf89efa0835d6206ab96da9cea",
+      "bytes": 222
+    },
+    {
+      "path": "app/shared/profile-mutation.ts",
+      "sha256": "23e976a4237e96d85930533fc4095ee2a8dbd9de6c5bfcba2aebec40de04f89c",
+      "bytes": 1371
+    },
+    {
+      "path": "app/shared/review-fixtures.ts",
+      "sha256": "b2f458c1f1c63db0063ee29b1d1609706e5230ee9a9d59364bc016cc50227162",
+      "bytes": 1890
+    },
+    {
+      "path": "app/shared/review-tools.ts",
+      "sha256": "b9c6a9f6c3bc7fa7b8c45513bd76578eedf80eb1f45978376874922e6b58191f",
+      "bytes": 7250
+    },
+    {
+      "path": "app/shared/schedule-core.ts",
+      "sha256": "8db2ed9c8198cbd879149728809ecaf54b8da1105a7452bd9b7f0d050f76ae11",
+      "bytes": 10164
+    },
+    {
+      "path": "app/shared/schema.ts",
+      "sha256": "cf015395db6db461662df0efb5d8edb851660e822ba2a9e15a8a5e391ef27e8e",
+      "bytes": 322
+    },
+    {
+      "path": "app/tests/backend/current-source-mirror.test.ts",
+      "sha256": "3e91abc1ebf4647dec05931aa65ee3d61aada88bf12dd7302138e86709a631e7",
+      "bytes": 2905
+    },
+    {
+      "path": "app/tests/backend/isolated-guard.test.ts",
+      "sha256": "324c4433331da2957e74b5fef734238b8dc490172a64edbef996654423ae38b2",
+      "bytes": 6594
+    },
+    {
+      "path": "app/tests/backend/legacy-identity-links.test.ts",
+      "sha256": "f9e43b786dae9b9eacfdcccc77e093cd28e3144eba1e30f378a620f5206b8ffd",
+      "bytes": 15596
+    },
+    {
+      "path": "app/tests/backend/legacy-live-profile.test.ts",
+      "sha256": "75491b230764c9852400e31ba68e800bc5683f050d78d456e8e09ca42d620096",
+      "bytes": 13934
+    },
+    {
+      "path": "app/tests/backend/live-clock.test.ts",
+      "sha256": "394bdaa7d56ce410098b3c9ce326b1fa4c0de54764ac3be8212ef20ccdd76499",
+      "bytes": 1149
+    },
+    {
+      "path": "app/tests/backend/live-product-routes.test.ts",
+      "sha256": "3668132d7d0478f043e21be40e00a38eae2ce11a66c6ff5bdb7833770cc3867b",
+      "bytes": 17363
+    },
+    {
+      "path": "app/tests/backend/live-profile-reader.test.ts",
+      "sha256": "f72a314f31c76429679eada9ddd3b008a07e7c53190aa3fec4ed10a22204ed5e",
+      "bytes": 12397
+    },
+    {
+      "path": "app/tests/backend/live-profile-store.test.ts",
+      "sha256": "802da85f2068bf7ccb1bee3df279084855f6fb1084eb771cf2f5c2ee5074da1b",
+      "bytes": 38762
+    },
+    {
+      "path": "app/tests/backend/live-source-intake.test.ts",
+      "sha256": "587059f2af88afd804fd955dbd3f4ae14643a64854aa8a5083448da2e73b8578",
+      "bytes": 21218
+    },
+    {
+      "path": "app/tests/backend/live-telegram-inbox.test.ts",
+      "sha256": "a4817401a406c4b024e510186ba05cf8e89475d17944bfa42e653e62c5f9964b",
+      "bytes": 14197
+    },
+    {
+      "path": "app/tests/backend/live-telegram-transport.test.ts",
+      "sha256": "fd3ab2def5f3ed3deb987e66b4f602004f16f5ccb3d63034ac8b2ea88c3f09ea",
+      "bytes": 25327
+    },
+    {
+      "path": "app/tests/backend/product-auth.test.ts",
+      "sha256": "0d6115aad7dbe6478fc16aba5b41f49092801111619ad8a781b4abb8130b0301",
+      "bytes": 2141
+    },
+    {
+      "path": "app/tests/backend/production-auth-boundaries.test.ts",
+      "sha256": "cd1ff1efb8027025c3f52e10608f5a8a467ce928d948c9a96679f55d37a61cf2",
+      "bytes": 3790
+    },
+    {
+      "path": "app/tests/backend/review-tools.test.ts",
+      "sha256": "2010c266bbe590161a45f3ce1e4605bbed0c39c6aa89bfcb0db78f52939cd81e",
+      "bytes": 9225
+    },
+    {
+      "path": "app/tests/backend/runtime-policy.test.ts",
+      "sha256": "488a2f524b92a643d7d243eef9637671c1c2043e7514188285ea9d8bce1d59c0",
+      "bytes": 8150
+    },
+    {
+      "path": "app/tests/backend/telegram-init-data.test.ts",
+      "sha256": "650d5a4eb81f1c95f53e1ffde9a0eff3dfee62eb3a03416a8e257d856ee6b654",
+      "bytes": 3405
+    },
+    {
+      "path": "app/tests/backend/update-campaign.test.ts",
+      "sha256": "23944c4e5f5dc0efd71cf7e00151d789a8ef6b29fa40d7838623be1b79895803",
+      "bytes": 20315
+    },
+    {
+      "path": "app/tests/bot/engine.test.ts",
+      "sha256": "ab6eccc443f102031dcb3f158547dcf4a5deaf772a6b9f1c955ce6132307b338",
+      "bytes": 25778
+    },
+    {
+      "path": "app/tests/bot/generate-dialogues.ts",
+      "sha256": "b6a7fd63aa3df9ac48312b393a76d38ad99072d70a5366ecab54590f00e7473f",
+      "bytes": 11403
+    },
+    {
+      "path": "app/tests/bot/ux-a.test.ts",
+      "sha256": "779c77dbee8ba098ae19c2878bb8e9a25d6de9621c9fdec05ab313d02dd714ce",
+      "bytes": 13140
+    },
+    {
+      "path": "app/tests/domain/address-index.test.ts",
+      "sha256": "011713d6b9783dde2ae70c9282806d98f54e449eaefbe496a5fd9aba525d353a",
+      "bytes": 2714
+    },
+    {
+      "path": "app/tests/domain/captured-address-book.test.ts",
+      "sha256": "06b24aa3be61b3bd62c09de0832f2a1d4e2ddd8add0e8a8403e8f48623e3e74a",
+      "bytes": 2460
+    },
+    {
+      "path": "app/tests/domain/delivery-worker.test.ts",
+      "sha256": "3f8bdf42745d0ee49cc12691208821119faa1eb58f6cf963c3cdc2af23a14668",
+      "bytes": 14406
+    },
+    {
+      "path": "app/tests/domain/event-ledger.test.ts",
+      "sha256": "e8f6c13875e3643544210a2d1d445c2b4bb58f2f623974cf5907ea6307bd4e9d",
+      "bytes": 21433
+    },
+    {
+      "path": "app/tests/domain/legacy-migration.test.ts",
+      "sha256": "00912d281d75dd45cd2e2903a8cf6be91daa8c0388e96fc4abd9e8cf667e6697",
+      "bytes": 17845
+    },
+    {
+      "path": "app/tests/domain/notification-policy-events.test.ts",
+      "sha256": "9fad041ee134f3815c0f3ffa66cf1383af36dad6cda025159b45c55127aed266",
+      "bytes": 10204
+    },
+    {
+      "path": "app/tests/domain/notification-policy-integration.test.ts",
+      "sha256": "7a5f9f62781ba6b729b3eb210aa358d7041664a2925df3eb48c4c841cd379fdf",
+      "bytes": 10494
+    },
+    {
+      "path": "app/tests/domain/notification-policy.test.ts",
+      "sha256": "b86268ada29065eb99a7b4a888e2e7311d30a6937d751a1b0c62c4c046ba4a74",
+      "bytes": 20771
+    },
+    {
+      "path": "app/tests/domain/policy-root-review.test.ts",
+      "sha256": "82009b609ff7868af75644ba1cf776c060497c2fa973c2a2a6aa5efb81221264",
+      "bytes": 6060
+    },
+    {
+      "path": "app/tests/domain/profile-service.test.ts",
+      "sha256": "9d09a6ab04b59be125a3a2035090fd04ebc0940dae83aa5861b7cbdf461126fa",
+      "bytes": 10748
+    },
+    {
+      "path": "app/tests/domain/provider-adapters.test.ts",
+      "sha256": "69db0324b834080902ee3e3312f4980a9e74500d432a66e749b3c9e1bfe40deb",
+      "bytes": 13192
+    },
+    {
+      "path": "app/tests/domain/schedule-core.test.ts",
+      "sha256": "d29ddfc20a17779528e5e0ddd8b00ad747534fc40a71323d4d3803262672e964",
+      "bytes": 7929
+    },
+    {
+      "path": "app/tests/domain/yasno-address.test.ts",
+      "sha256": "3e337df6b8deeefcb3ed4df048f94676ab0f13f4da0dfcd833f4779c0c4bcd37",
+      "bytes": 11656
+    },
+    {
+      "path": "app/tests/probes/delivery-pg.ts",
+      "sha256": "65cf1574b5208d40e0729c7c9116590d33804aa60d33af5c5d9dd89474d3282e",
+      "bytes": 15572
+    },
+    {
+      "path": "app/tests/probes/policy-pg.ts",
+      "sha256": "ab2fc30a3b31a5bcfba5760a3c1df14b31d747f813289d136616b4d519fcb5d6",
+      "bytes": 9698
+    },
+    {
+      "path": "app/tsconfig.json",
+      "sha256": "8274bb525c05258a3de378a73f8d437ad6d0679db17b47ac4e3d13f9f5b008dd",
+      "bytes": 791
+    },
+    {
+      "path": "app/uv.lock",
+      "sha256": "25efee8294a4e9101f12689cd3232a75837c810c4e7a52e0b1fc9a7f6c739c6f",
+      "bytes": 94646
+    },
+    {
+      "path": "app/vite-plugin-isolated.ts",
+      "sha256": "1e08d47159c55f40f404a23dc97647f204fd3dff630e0d5c63eccbeb239108d0",
+      "bytes": 2020
+    },
+    {
+      "path": "app/vite-plugin-meta-images.ts",
+      "sha256": "a486d3e594b148ca2fd893d76475a0b9736c88f267cecac4e76f6b2d9579e694",
+      "bytes": 2333
+    },
+    {
+      "path": "app/vite.config.ts",
+      "sha256": "fcd64c0caa5eba171205a9b2134eef1b86b8cee8d5a5df1ef0e91d697499dcb4",
+      "bytes": 1421
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/FINDINGS_UA.md",
+      "sha256": "cce8dd23a614a5b603ff90870c84e08d2b61cd4f083faded07efa319900d323e",
+      "bytes": 7113
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/binding-candidates.json",
+      "sha256": "c076cc1d3f1b67cef291898eff7189ffa1640608cbe19b2fa0545889f6b8572d",
+      "bytes": 21703
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/derive_offline_cases.mjs",
+      "sha256": "6d9fadb53f32e50a8be99a0e96eb820f75a4d432fbb5d6540b5315a6bc62434b",
+      "bytes": 2131
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/inputs.json",
+      "sha256": "d8f65f79ef6a633a32842734c7725bf5f3262cc34779a26ded7bcab6c9f64698",
+      "bytes": 1445
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-12-group.json",
+      "sha256": "4c2678438defbb8433a19af41632bbc61fe38d6833832094eeb3835d4b3a1962",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-121a-group.json",
+      "sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa",
+      "bytes": 24
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-121b-group.json",
+      "sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa",
+      "bytes": 24
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-128slash2-group.json",
+      "sha256": "82ff088f97f7cf2eacb46f9dc8de57738c617426c9d8e05a3a987223790147e8",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-avenue-houses-12.json",
+      "sha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7",
+      "bytes": 305
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-beresteiskyi-street.json",
+      "sha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323",
+      "bytes": 121
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-old-peremohy-street.json",
+      "sha256": "c6a14b3236441fd753418d9d2e08d9923307ae925af6439ea916f628d8b8504f",
+      "bytes": 94
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-12a-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-12slash1-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-2h-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-2v-group.json",
+      "sha256": "5489ef03f406128dfa2ee4ddf42c2da49a87a35ea53849d1d6534d55b692643c",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-4a-group.json",
+      "sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-5slash7-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-6slash8-group.json",
+      "sha256": "1c9a86fb269b561141d926f6ca64037a73629dc9041614f9457a0a568c57eef7",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-all-houses.json",
+      "sha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b",
+      "bytes": 527
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-house1-group.json",
+      "sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes": 25
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-houses-12.json",
+      "sha256": "9c1a3a573303657d3fa5c229a93f9a97e1e8b42653756fbace4201244d77740d",
+      "bytes": 57
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/kyiv-revutskogo-street.json",
+      "sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b",
+      "bytes": 51
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/local-evidence-check.json",
+      "sha256": "578d98569eb69edc203a2a9b4cc3ab2c510c6754113f7a48b7d0f1efb2918196",
+      "bytes": 1512
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/manifest.json",
+      "sha256": "0e44e5bcdb7e66f19d2edb813ad718cf751e332ddeda9565b7b7b0565a7afe70",
+      "bytes": 4944
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/observations.json",
+      "sha256": "c4d4848e943416e35b81ec5bdba85159b3a416337a76d9fe4e8d2e16186f8982",
+      "bytes": 17346
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/offline-contract-cases.json",
+      "sha256": "70544b586df20d564386aa3d67b2e2e1da29db376d993f1b0f19fb3936bb4c98",
+      "bytes": 28485
+    },
+    {
+      "path": "docs/light-bot-app/p1/address-probes/receipt.json",
+      "sha256": "fab03811e0f1db56cb2c6e86cececad0378ac5643275e626add1ad81f98de60b",
+      "bytes": 9562
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/alerts-energy-plans.txt",
+      "sha256": "46c91a4fba01f73d49ae05d270b0bd3bb91a5e4cb903796f9fb9a6e61b237fdf",
+      "bytes": 169556
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/alerts-energy-terms.txt",
+      "sha256": "e86bb77c568c538e9c05d4abf79241f2bec3701990e77a926cb2ccea65e7e6ee",
+      "bytes": 162843
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/cherkasy-official-api.json",
+      "sha256": "65d6aa5f50adbbcb640b197d176b82ae0973e7c5d776a1bce9b5de0ec8d73569",
+      "bytes": 10003
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/chernihiv-official-channel.txt",
+      "sha256": "09b6c71ebfe5c46b1f94c914b1cdb58a191753e8d836196064b34b0c65c86059",
+      "bytes": 144185
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/chernivtsi-official.txt",
+      "sha256": "2b5e32becdd835359889674062f002e779aa3fc39a787571dfe65f4c76bcb073",
+      "bytes": 25304
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/dtek-kem-official.txt",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes": 212
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/dtek-krem-official.txt",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes": 212
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/dtek-oem-official.txt",
+      "sha256": "a47e042acc1926189793fe7aa755dab2e0a85568706c66592fdb82c7b2537b7a",
+      "bytes": 924672
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kharkiv-official-address-post.txt",
+      "sha256": "43953756e520a56a78676342a182e3c353c77b8e45cb30518512086012783bcc",
+      "bytes": 37335
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kharkiv-official-channel.txt",
+      "sha256": "0555545196d3e972d3e49d5b4917b51ab832bbfe6d1c2e3f0837fc23ebd8bea6",
+      "bytes": 121001
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kharkiv-official-rss.txt",
+      "sha256": "89673cbe60ca87f88cfa03069d8d90b05b85079b220fb7125ec5d2019c76db91",
+      "bytes": 49386
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kharkiv-public-address-post.txt",
+      "sha256": "8bd54e775b53e76327ac85707156095cbd7703c314921b5afa38104b5135ee41",
+      "bytes": 125095
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/khmelnytskyi-official.txt",
+      "sha256": "21a6ee83b2c187087319caf8743797eb7280a9a2e1f9f96643a42c114fc35e55",
+      "bytes": 48877
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kirovohrad-public-channel.txt",
+      "sha256": "deab625e145298fac0e514a51f89ba09d3edf2f5e57995755aef34044b091140",
+      "bytes": 141616
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kolysvitlo-plans-api.txt",
+      "sha256": "146a09d7c8e19ab961394d13b58cf33645b10281a3c9e516bec684888dbe709b",
+      "bytes": 93292
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kyiv-address-dataset-metadata.txt",
+      "sha256": "10f1e29d7621a1b896590feedc99eec375adeb2006c6f5b8b54bc2107d0e1088",
+      "bytes": 104222
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kyiv-address-schema.json",
+      "sha256": "574c53724894bea4fce3e59d35da1d6bcb05dee2613fe7b7f2c81f77d8cb84f6",
+      "bytes": 15436
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/kyiv-municipal-datastore-schema.json",
+      "sha256": "91d8b7d046754a9d3ee03942c33073f212e22d1430c296554aff1d9fbc980460",
+      "bytes": 623
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/lviv-official-api.json",
+      "sha256": "c5b345e2b671d7368f84eea84c609874ea66e55c32c7d589ffc9fb99807f0d4b",
+      "bytes": 1990150
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mirror-kyiv-region.json",
+      "sha256": "07f981b46830a1333648c93cee401b5230e332d639cbd13dff52fbbf6cd20704",
+      "bytes": 61603
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mirror-kyiv.json",
+      "sha256": "7588235d3480f2fc7059cc8df8e111656e8f3fe745992c339b5a127648365656",
+      "bytes": 307030
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mirror-library-license.txt",
+      "sha256": "f6a45d8648e643b2c952e021f9733f90372a653011eb92fabb56ab629bd019e3",
+      "bytes": 1524
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mirror-odesa.json",
+      "sha256": "0d4d9aa7f44e300d5f1da38edb4fe176edc91bda0a9435e7db8100346e3160a1",
+      "bytes": 61679
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mirror-outage-readme.txt",
+      "sha256": "88058d4a5301895a2c5200adfe28aa8368a2c65ade484e759d63f0805a621e23",
+      "bytes": 4119
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/monitor-library-license.txt",
+      "sha256": "b82609eddc997611acfda56bf7a5bb0a423c0f06e1c269e0e3f497e46cb1372e",
+      "bytes": 1071
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/monitor-readme.txt",
+      "sha256": "9662e3d7faa62be8358b0c1b51c70816678ec97b170fb27f3bb82b64d43a75f8",
+      "bytes": 26304
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/monitor-source-documentation.txt",
+      "sha256": "88615c61f38eedd575ce78fcac4511375bcc6c8ab1ee32e36be994b12d2dbf03",
+      "bytes": 42751
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/monitor-status-summary.json",
+      "sha256": "0ee0e8e495e968551d88076f60a9730f1f92754f3fac1998514d9b9a97e67759",
+      "bytes": 9651
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mykolaiv-official-api.json",
+      "sha256": "6e31a619d1ceaaf7925a96819573225a55529020cc199032c0b918962832cae5",
+      "bytes": 45603
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mykolaiv-public-district-catalog.json",
+      "sha256": "b4f3c72c7c3f855f86cc30f0f0db66591c45678268b7423bcb89940f5ced3ea8",
+      "bytes": 2905
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mykolaiv-queue-catalog.json",
+      "sha256": "790f3620c744a07bb9b9774cb71b8b43d5debf0824bec3188b6e515b68afd0c9",
+      "bytes": 1441
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/mykolaiv-time-series.json",
+      "sha256": "8848b29d5617b17ff96156cc161078d93bd7ca716927a4576e8bcf1882e933d6",
+      "bytes": 3928
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/oem-robots.txt",
+      "sha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "bytes": 257
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/operator-catalog.txt",
+      "sha256": "a82acd1f6f263de288502f089c65ff98c22656bc0af887f140c48bfff2445dbd",
+      "bytes": 217953
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/poltava-official.txt",
+      "sha256": "ab323d5486eec4fc74c7e032946eed7e7b13b2345f95c87077496c515ea34954",
+      "bytes": 58033
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/prykarpattia-public-queue-plan.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/rivne-official.txt",
+      "sha256": "97f85929ff3fd98bde0fd594ad18f8450b94327e93effd9f0a4b781e1e05c7fb",
+      "bytes": 181542
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/sumy-official-news.txt",
+      "sha256": "f51729972efa982c2b5ffee64e597130cfb4b0652be6e0d56df6fe7e32d3f46f",
+      "bytes": 70143
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/svitlo-app-terms.txt",
+      "sha256": "01cf8b2117bd368a18e446e9cfbba0b63a065356a337b51ce9a78f6a7d6429f2",
+      "bytes": 4634
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/ternopil-public-city-catalog.json",
+      "sha256": "98a1e08cb44791fb9ff060d1881707c46254e46b56703a2add19f95e3f1acd4f",
+      "bytes": 186
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/voe-mirror-olnet93.json",
+      "sha256": "60c641528efd8c2ca924288b66917c721fe5673280f511131137ac188342130d",
+      "bytes": 15015
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/voe-mirror-vn-progr.json",
+      "sha256": "f7fa56944c2074c905833da3d7e93fe83dcb22b6d5f21251914cedc623dc9df4",
+      "bytes": 14929
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/volyn-official-image-metadata.json",
+      "sha256": "0cf3b03e03edf988b9de0c9e73c24324fd0de871c0c3d5167b5f32973588ae12",
+      "bytes": 1011
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-cek.json",
+      "sha256": "dd3398e36f60c982e6bb84facd6e37bc269d634621a5bc0afd7d09ea9453b0db",
+      "bytes": 5897
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-dnem.json",
+      "sha256": "7d9564329f29bae8bed30db6a58aee575d7e618174991f038249472d3540c25a",
+      "bytes": 5913
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-kem.json",
+      "sha256": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+      "bytes": 27556
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-public-street-search.json",
+      "sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b",
+      "bytes": 51
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-robots.txt",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes": 212
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/zakarpattia-official-image-metadata.json",
+      "sha256": "2d66dfa81eb677d0e025e9afbebe1b9c7f759a4cba5d3790f9be7d628267904c",
+      "bytes": 293
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/zaporizhzhia-official.txt",
+      "sha256": "9fd7242d72447ddabc92c1602acceed093503afe079c6a82b44dcb583b309ccd",
+      "bytes": 135880
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/zhytomyr-official.txt",
+      "sha256": "bfbf005a6f9d73db0a939e03744b604e31ddc5f47af5cea3de50be5957d777c2",
+      "bytes": 242063
+    },
+    {
+      "path": "docs/light-bot-app/p1/kharkiv-plan-evidence.json",
+      "sha256": "eef2955732b5ceb72ca6ea034c8e12b6341e5fe446daae3e54dc76c31e2f1d87",
+      "bytes": 3358
+    },
+    {
+      "path": "docs/light-bot-app/p1/odesa-structured-evidence.json",
+      "sha256": "5e3d20d48e2f346652617536512ce06f8b1a70a6eb5713e647bae1bff2541f16",
+      "bytes": 61506
+    },
+    {
+      "path": "docs/light-bot-app/p1/source-registry.json",
+      "sha256": "8622191e7cf29df84a21369fe11e79454622fd4284114fb58b4664ac177d7e6d",
+      "bytes": 50365
+    },
+    {
+      "path": "docs/light-bot-app/p2/address-adapter/candidates.json",
+      "sha256": "bfa5e98e7b4560ed08ec6e5266c0f98c735572f8615c7c118003351488b05c36",
+      "bytes": 53203
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/PROFILE_STORE_UA.md",
+      "sha256": "30ea4c73f3eca3dc7c5691495d50c50a4dd447c95af37fadeb9188153ab69753",
+      "bytes": 22230
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/TELEGRAM_TRANSPORT_UA.md",
+      "sha256": "53f79f7b3cad72549e73d2f0160c4a53a5753870d7135d9000a08e69e36a9151",
+      "bytes": 15094
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/TRANSFER_UA.md",
+      "sha256": "dfc8a01a1e8bcd07a0f46bc46f05c89342c08fe23f5d58fe6d60bd508822a7c7",
+      "bytes": 2305
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/kharkiv-robots.txt",
+      "sha256": "2a787f20489a257692bad5f16ae5ceb28876cd38d8d9cde9c84a2d3835e30bab",
+      "bytes": 1706
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/kharkiv-rss.txt",
+      "sha256": "86fa99e05ed01496ddcfdfd31dfeb7b9c7a7c445263c661a6ed62b2375a951b1",
+      "bytes": 51249
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/observations.json",
+      "sha256": "08227f8a8da8f0d6299b31e694e4507b378f24522ad7b508279ac55f08a7f953",
+      "bytes": 5456
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/odesa-mirror-license.json",
+      "sha256": "417fe096dfef0e150c5a96d23e8b1dd18a92ccaea11304a6bfccabba27b13433",
+      "bytes": 3029
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/odesa-mirror.txt",
+      "sha256": "78b66a32be1eed1c97f99c7b0549784ad07436472f8e0aa076dadf0145c46314",
+      "bytes": 61709
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/odesa-robots.txt",
+      "sha256": "76c4269f170650b9c17b7abce80368d1331edc3434f5958edf9f7a53fe6dd991",
+      "bytes": 257
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/voe-mirror-vn-progr.txt",
+      "sha256": "a35c40c1d091e474ab62d79ecbe33830e9459a3c290fceae896eaef86fc819e8",
+      "bytes": 14974
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/yasno-kem.json",
+      "sha256": "1edabe64f243b1b4be983846a9d2277af22411da9e90d49d43497ae0d8b469ec",
+      "bytes": 26792
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/data-current-2026-11-08/yasno-robots.txt",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes": 212
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/APP_WRITER_UA.md",
+      "sha256": "9618724b05af42a5a36bed8c70d7b9c213371fdd1b8d0f3e56c03206ed389b86",
+      "bytes": 10395
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/AUTH_INTEGRATION_UA.md",
+      "sha256": "fa9c7945b8ad95c6d223f699f358a1c6d04f77ff9a0ed3ff1d486a5ab76e01ca",
+      "bytes": 5610
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/LEGACY_IDENTITY_LINKS_UA.md",
+      "sha256": "23249cfd8a90c283f4108ce37fe76029c7551d2506c43de2358470348391eab2",
+      "bytes": 8438
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_APP_WRITER_UA.md",
+      "sha256": "227ed0cf9c92a17d44c3f0b20c094319bf5c92352f37108dcaecb5cc7b18946d",
+      "bytes": 10644
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_AUTH_HTTP_UA.md",
+      "sha256": "173a3b2534231fd34b9e5f03b126e4de7f92ccc0f3cb829289586fc3a44e370a",
+      "bytes": 13710
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_AUTH_REPLAY_UA.md",
+      "sha256": "97b46724367bdf0b761c01cef4705cef0dbf12bd9d6c8459d2385348386e54d5",
+      "bytes": 11480
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_LEGACY_LINKS_UA.md",
+      "sha256": "947531a0b0221c7a1c25cb9958017f6ec9bf0cfd7021c9ef1e46f060a54a5f6c",
+      "bytes": 8355
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_PROFILE_STORE_UA.md",
+      "sha256": "70b358eedc457e29c37e1ce524013b7f13e8bc8c513a87970ceb0958908be314",
+      "bytes": 10023
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_TELEGRAM_INBOX_HTTP_UA.md",
+      "sha256": "889dc2d5f1c4c194ab526d8794a5d7b062b89cbeb9af3ba8b267bcae6d4a888d",
+      "bytes": 7935
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_TELEGRAM_INBOX_UA.md",
+      "sha256": "5c1a5e27dd2023a0fc10432d875939f8249452efd56e4f0b010a4c1c20c30f6b",
+      "bytes": 9809
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/QA_TELEGRAM_TRANSPORT_UA.md",
+      "sha256": "e21a8a18fd61fb8fa4c82b1baf61109e933f53a8c3d6745ee151de8da0259569",
+      "bytes": 7655
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/TELEGRAM_INBOX_UA.md",
+      "sha256": "7014f36b4efea503d755044e64e8bc32a5f27b9838826708b1dc9d4735cec5b6",
+      "bytes": 12463
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/app-writer-http-pg.json",
+      "sha256": "ab2440b912ec2c2617115d1d2e2138ede18852a11fb66d43970477cc1feb929a",
+      "bytes": 2746
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/auth-http-pg.json",
+      "sha256": "f96ea6af7e802f0e4822d1d2f5a36a55ff378b2e5a747a734d4f0ed1836a8342",
+      "bytes": 2545
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/auth-replay-pg.json",
+      "sha256": "abcf7aa6af0d996e59c2c141fd2df81cbd83077200bcc88ed87fb6cc95d2e77b",
+      "bytes": 1888
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/build-proof.json",
+      "sha256": "2c981841c4ce563a5c96b265c8d9e951bac98fccf069ef4f9b7d56cba3beb67b",
+      "bytes": 1132
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/profile-store-pg.json",
+      "sha256": "992cace852eab0154e4bd8d22d73557edca8fb6fbcded069691bbd1c072d3540",
+      "bytes": 4583
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/telegram-inbox-http-pg.json",
+      "sha256": "a8629d9ed5d9c29c1cdd34a077096fb504400a9b529aea710cbeff89c8322900",
+      "bytes": 4697
+    },
+    {
+      "path": "docs/light-bot-app/release-v8/phase2/telegram-inbox-pg.json",
+      "sha256": "cfaf9851a9074a69fc4599d54b84dd78e56a1aa268af5befa862aa053f94eb33",
+      "bytes": 3514
+    }
+  ],
+  "private_values_exported": false,
+  "production_deploy_permitted_by_this_manifest": false,
+  "limits": [
+    "Legacy routes fenced pending canonical replacements",
+    "Production activation and sender still disabled",
+    "No live DB binding/backup/restore proof",
+    "No full68/device/source-admission acceptance"
+  ]
+}

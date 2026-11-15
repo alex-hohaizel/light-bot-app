@@ -1,0 +1,15 @@
+{
+  "schema_version": "lba-checkpoint/1",
+  "project_id": "replace-project-id",
+  "task_id": "replace-task-id",
+  "phase": "P0",
+  "status": "blocked",
+  "repository": {
+    "url": "https://example.invalid/repository.git",
+    "branch": "replace-confirmed-branch",
+    "sha": "replace-full-observed-commit-hash"
+  },
+  "next_step": "Verify the current project and repository identity from an authorized local checkout.",
+  "authorities": [],
+  "actions": []
+}

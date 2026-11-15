@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>АТ &quot;Чернігівобленерго&quot; – Telegram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible"
+     content="IE=edge" />
+    <meta name="MobileOptimized" content="176" />
+    <meta name="HandheldFriendly" content="True" />
+    
+<meta property="og:title" content="АТ &quot;Чернігівобленерго&quot;">
+<meta property="og:image" content="https://cdn4.telesco.pe/file/s9WvtF3HT3pS_BnU3tFbUlEG5emp6y5c-9o-gXKAafZ7zUGqY90c5rcOJJj0SumFL0bMMjQwM9c8ijQeXBg8clp9Kc1Vgtlvy1cBx9PaSpeIgoSkl5tAHKr1DT81eCDJV92GgS1JWE7HCOgbBcfuiUS81L4Xakh2Tdyl2yfbttNpmNDUqE3Is80HUonxEX52m8mwTyAhB5YK_L7cBlBwKRmuGoPyU3_5K7gOVOeilfEM3eOYHBkwKbyWU5xXRKag4T_sYPlXqdoOUsm3ymp-TQJINj5b1qtBtX8FkbUIJ9cQSWQ_ALo1qfcY6sF0LfFcM4mxlzBe7bMLB5TFZKh_mA.jpg">
+<meta property="og:site_name" content="Telegram">
+<meta property="og:description" content="Інформаційний канал АТ &quot;Чернігівобленерго&quot;. Передати покази електролічильників ви можете за посиланням tg://resolve?domain=ChernigivOEbot.">
+
+<meta property="twitter:title" content="АТ &quot;Чернігівобленерго&quot;">
+<meta property="twitter:image" content="https://cdn4.telesco.pe/file/s9WvtF3HT3pS_BnU3tFbUlEG5emp6y5c-9o-gXKAafZ7zUGqY90c5rcOJJj0SumFL0bMMjQwM9c8ijQeXBg8clp9Kc1Vgtlvy1cBx9PaSpeIgoSkl5tAHKr1DT81eCDJV92GgS1JWE7HCOgbBcfuiUS81L4Xakh2Tdyl2yfbttNpmNDUqE3Is80HUonxEX52m8mwTyAhB5YK_L7cBlBwKRmuGoPyU3_5K7gOVOeilfEM3eOYHBkwKbyWU5xXRKag4T_sYPlXqdoOUsm3ymp-TQJINj5b1qtBtX8FkbUIJ9cQSWQ_ALo1qfcY6sF0LfFcM4mxlzBe7bMLB5TFZKh_mA.jpg">
+<meta property="twitter:site" content="@Telegram">
+
+<meta property="al:ios:app_store_id" content="686449807">
+<meta property="al:ios:app_name" content="Telegram Messenger">
+<meta property="al:ios:url" content="tg://resolve?domain=chernigivoblenergo">
+
+<meta property="al:android:url" content="tg://resolve?domain=chernigivoblenergo">
+<meta property="al:android:app_name" content="Telegram">
+<meta property="al:android:package" content="org.telegram.messenger">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Telegram">
+<meta name="twitter:description" content="Інформаційний канал АТ &quot;Чернігівобленерго&quot;. Передати покази електролічильників ви можете за посиланням tg://resolve?domain=ChernigivOEbot.
+">
+
+    <link rel="prev" href="/s/chernigivoblenergo?before=5649">
+<link rel="canonical" href="/s/chernigivoblenergo?before=5670">
+
+    <script>window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement&&document.documentElement.classList&&document.documentElement.classList.add('theme_dark');</script>
+    <link rel="icon" type="image/svg+xml" href="//telegram.org/img/website_icon.svg?4">
+<link rel="apple-touch-icon" sizes="180x180" href="//telegram.org/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//telegram.org/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="//telegram.org/img/favicon-16x16.png">
+<link rel="alternate icon" href="//telegram.org/img/favicon.ico" type="image/x-icon" />
+    <link href="//telegram.org/css/font-roboto.css?1" rel="stylesheet" type="text/css">
+    <link href="//telegram.org/css/widget-frame.css?75" rel="stylesheet" media="screen">
+    <link href="//telegram.org/css/telegram-web.css?39" rel="stylesheet" media="screen">
+    <script>TBaseUrl='/';</script>
+    <style>        .user-color-12 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3391d4 0px, #3391d4 5px, #7dd3f0 5px, #7dd3f0 10px);
+          --user-accent-color: #3391d4;
+          --user-background: #3391d41f;
+        }        .user-color-10 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #27a910 0px, #27a910 5px, #a7dc57 5px, #a7dc57 10px);
+          --user-accent-color: #27a910;
+          --user-background: #27a9101f;
+        }        .user-color-8 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #e0802b 0px, #e0802b 5px, #fac534 5px, #fac534 10px);
+          --user-accent-color: #e0802b;
+          --user-background: #e0802b1f;
+        }        .user-color-7 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #e15052 0px, #e15052 5px, #f9ae63 5px, #f9ae63 10px);
+          --user-accent-color: #e15052;
+          --user-background: #e150521f;
+        }        .user-color-9 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #a05ff3 0px, #a05ff3 5px, #f48fff 5px, #f48fff 10px);
+          --user-accent-color: #a05ff3;
+          --user-background: #a05ff31f;
+        }        .user-color-11 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #27acce 0px, #27acce 5px, #82e8d6 5px, #82e8d6 10px);
+          --user-accent-color: #27acce;
+          --user-background: #27acce1f;
+        }        .user-color-13 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #dd4371 0px, #dd4371 5px, #ffbe9f 5px, #ffbe9f 10px);
+          --user-accent-color: #dd4371;
+          --user-background: #dd43711f;
+        }        .user-color-14 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #247bed 0px, #247bed 5px, #f04856 5px, #f04856 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #247bed;
+          --user-background: #247bed1f;
+        }        .user-color-15 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #d67722 0px, #d67722 5px, #1ea011 5px, #1ea011 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #d67722;
+          --user-background: #d677221f;
+        }        .user-color-16 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #179e42 0px, #179e42 5px, #e84a3f 5px, #e84a3f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #179e42;
+          --user-background: #179e421f;
+        }        .user-color-17 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #2894af 0px, #2894af 5px, #6fc456 5px, #6fc456 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #2894af;
+          --user-background: #2894af1f;
+        }        .user-color-18 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #0c9ab3 0px, #0c9ab3 5px, #ffad95 5px, #ffad95 10px, #ffe6b5 10px, #ffe6b5 15px);
+          --user-accent-color: #0c9ab3;
+          --user-background: #0c9ab31f;
+        }        .user-color-19 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #7757d6 0px, #7757d6 5px, #f79610 5px, #f79610 10px, #ffde8e 10px, #ffde8e 15px);
+          --user-accent-color: #7757d6;
+          --user-background: #7757d61f;
+        }        .user-color-20 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #1585cf 0px, #1585cf 5px, #f2ab1d 5px, #f2ab1d 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #1585cf;
+          --user-background: #1585cf1f;
+        }        body.dark .user-color-12, html.theme_dark .user-color-12 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #52bfff 0px, #52bfff 5px, #0b5494 5px, #0b5494 10px);
+          --user-accent-color: #52bfff;
+          --user-background: #52bfff1f;
+        }        body.dark .user-color-10, html.theme_dark .user-color-10 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #a7eb6e 0px, #a7eb6e 5px, #167e2d 5px, #167e2d 10px);
+          --user-accent-color: #a7eb6e;
+          --user-background: #a7eb6e1f;
+        }        body.dark .user-color-8, html.theme_dark .user-color-8 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ecb04e 0px, #ecb04e 5px, #c35714 5px, #c35714 10px);
+          --user-accent-color: #ecb04e;
+          --user-background: #ecb04e1f;
+        }        body.dark .user-color-7, html.theme_dark .user-color-7 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff9380 0px, #ff9380 5px, #992f37 5px, #992f37 10px);
+          --user-accent-color: #ff9380;
+          --user-background: #ff93801f;
+        }        body.dark .user-color-9, html.theme_dark .user-color-9 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #c697ff 0px, #c697ff 5px, #5e31c8 5px, #5e31c8 10px);
+          --user-accent-color: #c697ff;
+          --user-background: #c697ff1f;
+        }        body.dark .user-color-11, html.theme_dark .user-color-11 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #40d8d0 0px, #40d8d0 5px, #045c7f 5px, #045c7f 10px);
+          --user-accent-color: #40d8d0;
+          --user-background: #40d8d01f;
+        }        body.dark .user-color-13, html.theme_dark .user-color-13 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff86a6 0px, #ff86a6 5px, #8e366e 5px, #8e366e 10px);
+          --user-accent-color: #ff86a6;
+          --user-background: #ff86a61f;
+        }        body.dark .user-color-14, html.theme_dark .user-color-14 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3fa2fe 0px, #3fa2fe 5px, #e5424f 5px, #e5424f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #3fa2fe;
+          --user-background: #3fa2fe1f;
+        }        body.dark .user-color-15, html.theme_dark .user-color-15 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #ff905e 0px, #ff905e 5px, #32a527 5px, #32a527 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #ff905e;
+          --user-background: #ff905e1f;
+        }        body.dark .user-color-16, html.theme_dark .user-color-16 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #66d364 0px, #66d364 5px, #d5444f 5px, #d5444f 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #66d364;
+          --user-background: #66d3641f;
+        }        body.dark .user-color-17, html.theme_dark .user-color-17 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #22bce2 0px, #22bce2 5px, #3da240 5px, #3da240 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #22bce2;
+          --user-background: #22bce21f;
+        }        body.dark .user-color-18, html.theme_dark .user-color-18 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #22bce2 0px, #22bce2 5px, #ff9778 5px, #ff9778 10px, #ffda6b 10px, #ffda6b 15px);
+          --user-accent-color: #22bce2;
+          --user-background: #22bce21f;
+        }        body.dark .user-color-19, html.theme_dark .user-color-19 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #9791ff 0px, #9791ff 5px, #f2731d 5px, #f2731d 10px, #ffdb59 10px, #ffdb59 15px);
+          --user-accent-color: #9791ff;
+          --user-background: #9791ff1f;
+        }        body.dark .user-color-20, html.theme_dark .user-color-20 {
+          --user-line-gradient: repeating-linear-gradient(-45deg, #3da6eb 0px, #3da6eb 5px, #eea51d 5px, #eea51d 10px, #ffffff 10px, #ffffff 15px);
+          --user-accent-color: #3da6eb;
+          --user-background: #3da6eb1f;
+        }.user-color-6, .user-color-4, .user-color-2, .user-color-0, .user-color-1, .user-color-3, .user-color-5,   .user-color-default {
+    --user-accent-color: var(--accent-color);
+    --user-accent-background: var(--accent-background);
+    --user-line-gradient: linear-gradient(45deg, var(--accent-color), var(--accent-color));
+  }</style>
+  </head>
+  <body class="widget_frame_base tgme_webpreview emoji_image thin_box_shadow tme_mode no_transitions">
+    <div class="tgme_background_wrap">
+      <canvas id="tgme_background" class="tgme_background" width="50" height="50" data-colors="dbddbb,6ba587,d5d88d,88b884"></canvas>
+      <div class="tgme_background_pattern"></div>
+    </div>
+    <header class="tgme_header search_collapsed">
+  <div class="tgme_container">
+    <div class="tgme_header_search">
+      <form class="tgme_header_search_form" action="/s/chernigivoblenergo">
+        <svg class="tgme_header_search_form_icon" width="20" height="20" viewBox="0 0 20 20"><g fill="none" stroke="#7D7F81" stroke-width="1.4"><circle cx="9" cy="9" r="6"></circle><path d="M13.5,13.5 L17,17" stroke-linecap="round"></path></g></svg>
+        <input class="tgme_header_search_form_input js-header_search" placeholder="Search" name="q" autocomplete="off" value="" />
+        <a href="/s/chernigivoblenergo" class="tgme_header_search_form_clear"><svg class="tgme_action_button_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><g class="icon_body" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-width="1.5"><path d="M6 14l8-8m0 8L6 6" stroke-dasharray="0,11.314" stroke-dashoffset="5.657"/><path d="M26 14l8-8m0 8l-8-8" stroke-dasharray="0.371,10.943" stroke-dashoffset="5.842"/><path d="M46 14l8-8m0 8l-8-8" stroke-dasharray="1.982,9.332" stroke-dashoffset="6.647756"/><path d="M66 14l8-8m0 8l-8-8" stroke-dasharray="5.173,6.14" stroke-dashoffset="8.243"/><path d="M86 14l8-8m0 8l-8-8" stroke-dasharray="7.866,3.448" stroke-dashoffset="9.59"/><path d="M106 14l8-8m0 8l-8-8" stroke-dasharray="9.471,1.843" stroke-dashoffset="10.392"/><path d="M126 14l8-8m0 8l-8-8" stroke-dasharray="10.417,0.896" stroke-dashoffset="10.866"/><path d="M146 14l8-8m0 8l-8-8" stroke-dasharray="10.961,0.353" stroke-dashoffset="11.137"/><path d="M166 14l8-8m0 8l-8-8" stroke-dasharray="11.234,0.08" stroke-dashoffset="11.274"/><path d="M186 14l8-8m0 8l-8-8"/></g></svg></a>
+      </form>
+    </div>
+    <div class="tgme_header_right_column">
+      <section class="tgme_right_column">
+        <div class="tgme_channel_info">
+          <div class="tgme_channel_info_header">
+            <i class="tgme_page_photo_image bgcolor4" data-content="АЧ"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i>
+            <div class="tgme_channel_info_header_title_wrap">
+              <div class="tgme_channel_info_header_title"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></div>
+              <div class="tgme_channel_info_header_labels"></div>
+            </div>
+            <div class="tgme_channel_info_header_username"><a href="https://t.me/chernigivoblenergo">@chernigivoblenergo</a></div>
+          </div>
+          <div class="tgme_channel_info_counters"><div class="tgme_channel_info_counter"><span class="counter_value">42.7K</span> <span class="counter_type">subscribers</span></div><div class="tgme_channel_info_counter"><span class="counter_value">4.17K</span> <span class="counter_type">photos</span></div><div class="tgme_channel_info_counter"><span class="counter_value">48</span> <span class="counter_type">videos</span></div><div class="tgme_channel_info_counter"><span class="counter_value">7</span> <span class="counter_type">files</span></div><div class="tgme_channel_info_counter"><span class="counter_value">1.45K</span> <span class="counter_type">links</span></div></div>
+          <div class="tgme_channel_info_description">Інформаційний канал АТ &quot;Чернігівобленерго&quot;. Передати покази електролічильників ви можете за посиланням <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+          <a class="tgme_channel_download_telegram" href="//telegram.org/dl?tme=c8bf2c414e36a76f3e_11366354692876878913">
+            <svg class="tgme_channel_download_telegram_icon" width="21px" height="18px" viewBox="0 0 21 18"><g fill="none"><path fill="#ffffff" d="M0.554,7.092 L19.117,0.078 C19.737,-0.156 20.429,0.156 20.663,0.776 C20.745,0.994 20.763,1.23 20.713,1.457 L17.513,16.059 C17.351,16.799 16.62,17.268 15.88,17.105 C15.696,17.065 15.523,16.987 15.37,16.877 L8.997,12.271 C8.614,11.994 8.527,11.458 8.805,11.074 C8.835,11.033 8.869,10.994 8.905,10.958 L15.458,4.661 C15.594,4.53 15.598,4.313 15.467,4.176 C15.354,4.059 15.174,4.037 15.036,4.125 L6.104,9.795 C5.575,10.131 4.922,10.207 4.329,10.002 L0.577,8.704 C0.13,8.55 -0.107,8.061 0.047,7.614 C0.131,7.374 0.316,7.182 0.554,7.092 Z"></path></g></svg>Download Telegram
+          </a>
+          <div class="tgme_footer">
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/faq">About</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/blog">Blog</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//telegram.org/apps">Apps</a></h5>
+            </div>
+            <div class="tgme_footer_column">
+              <h5><a href="//core.telegram.org/">Platform</a></h5>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="tgme_header_info">
+      <a class="tgme_channel_join_telegram" href="//telegram.org/dl?tme=c8bf2c414e36a76f3e_11366354692876878913">
+        <svg class="tgme_channel_join_telegram_icon" width="19px" height="16px" viewBox="0 0 19 16"><g fill="none"><path fill="#ffffff" d="M0.465,6.638 L17.511,0.073 C18.078,-0.145 18.714,0.137 18.932,0.704 C19.009,0.903 19.026,1.121 18.981,1.33 L16.042,15.001 C15.896,15.679 15.228,16.111 14.549,15.965 C14.375,15.928 14.211,15.854 14.068,15.748 L8.223,11.443 C7.874,11.185 7.799,10.694 8.057,10.345 C8.082,10.311 8.109,10.279 8.139,10.249 L14.191,4.322 C14.315,4.201 14.317,4.002 14.195,3.878 C14.091,3.771 13.926,3.753 13.8,3.834 L5.602,9.138 C5.112,9.456 4.502,9.528 3.952,9.333 L0.486,8.112 C0.077,7.967 -0.138,7.519 0.007,7.11 C0.083,6.893 0.25,6.721 0.465,6.638 Z"></path></g></svg>Join
+      </a>
+      <a class="tgme_header_link" href="https://t.me/chernigivoblenergo">
+        <i class="tgme_page_photo_image bgcolor4" data-content="АЧ"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i>
+        <div class="tgme_header_title_wrap">
+          <div class="tgme_header_title"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></div>
+          <div class="tgme_header_labels"></div>
+        </div>
+        <div class="tgme_header_counter">42.7K subscribers</div>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="tgme_main" data-url="/chernigivoblenergo">
+  <div class="tgme_container">
+    <section class="tgme_channel_history js-message_history">
+      <div class="tgme_widget_message_centered js-messages_more_wrap"><a href="/s/chernigivoblenergo?before=5649" class="tme_messages_more js-messages_more" data-before="5649"></a></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5649" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY0OSwidCI6MTc5NDA1NjAwNCwiaCI6ImM4NjczN2Y5NWExZDE1ZDFiNCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5649" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/DBmA2HTW3BqAvoWmP0pr5Angqv-_p32EvCugFUku6A-_hqIGKO4N3hoFQWcCQXy6WjFTpA1uzSOqXYB_VWOz-zy0sb31w6CnolI67AM00-MBf6yXH9oLQx70XEml62lhPiH9qDKKnxVq-lNslebj71i3HlRAGr6m9v589pYV2Bq5Chr3Y02KiaTqEZgoj9zpDElMz5y55fH06aoie5z9vibpg_KdW_09Ovwizv4vIOYsQN2TIQccmCW4caFoazEZ8NFz-Whm5-tC0niFWiWNOcEf18fUU5zSltuXEuLljRnhSOdOdMSVkQ0wsGfp3k572RBZjpRhw1StDH2lJzPNSA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,&nbsp; у Чернігівській області застосовано 10 черг Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>136</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>26</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>22</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>9</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">45.1K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5649"><time datetime="2026-11-03T17:09:57+00:00" class="time">17:09</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5650" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1MCwidCI6MTc5NDA1NjAwNCwiaCI6IjQwMTc0ZTYxZWM2NjNlYjkwNiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap blured 5427126070164529745 1263601256_460005969" href="https://t.me/chernigivoblenergo/5650" style="width:471px;background-image:url('https://cdn4.telesco.pe/file/JebO4iqHumnJsweJiPGNX6vIGSmNAMDDhKvJ6MsY_noAFmp0k1-uU4_fxzFwNwMKJWmXy-f-V9KijDq8XBSDeAvUFfKdHQ-LC_h9tf1tVquPjpb99dc-UAx9VwQrhVaYWTxAMjQEFUSKphPmsODAZbm__W-OgygXgjLeHEBe1gTS-b6p-Ek5ku36obHw2Kb_VV1ifgKzWTELq2umr2XI0QMOg1oWDSSfhPwcl5Zr9RwWfWpGS263h4MGrL62piJnHLqiwjGbxCvEq5Y2UQCZxKhRabzPyg5vqE4EefburqLH9NUf62VMejKjwk2gNmVqutJelkKmRrqp1rGgigH85w.jpg')">
+  <div class="tgme_widget_message_photo" style="width:78.5%;padding-top:133.33333333333%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">За вказівкою НЕК &quot;Укренерго&quot;, 4 листопада в області діятиме Графік погодинних відключень (ГПВ) <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на офіційному сайті компанії – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>310</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>68</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>54</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>33</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>12</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">41.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5650"><time datetime="2026-11-03T18:34:08+00:00" class="time">18:34</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5651" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1MSwidCI6MTc5NDA1NjAwNCwiaCI6ImFiY2U5OTYxM2U2N2I1MzI0NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427126070164529836 1263601256_460006060" href="https://t.me/chernigivoblenergo/5651" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/n2bo277COsEo1YPGFTNkQPF9YMWrQhio5NV9iEKcCLqKo7hTWkIGvS5EebuJnRjD9uujm51L_vdb21WPhSKAV9PN7SrTeYzXrPuztgduQLZ2cgx4cBw-msjsAn0qepsw9N0X8-Dxou5-EU91DFvH5qc2Suppr6BLKddBpx5oVz3YYtshD_qU7Fy41NkrTgVCYSQsUnEADN0IYxKEJL8Ks3P92hbvwzJULv7yvF4ta1lM3Iu1e9jrOgELf3Gd4wk9jVIA9WYOu4Jm8MPMJ3QmTo9AwYl7_6N9_BGPKThDAK-dq37I6ZUVNneF06m7x0YVxhjqYLAPDRBKtiAe8-gfQw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:52.5%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938A.png')"><b>📊</b></i> За вказівкою НЕК &quot;Укренерго&quot;, маємо зміни у Графіку погодинних відключень (ГПВ) на 3 листопада <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9597.png')"><b>🕗</b></i> До 23:30 продовжується відключення для черги 3/1. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –  <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –  <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>97</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>39</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>22</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>12</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>6</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">39.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5651"><time datetime="2026-11-03T19:29:40+00:00" class="time">19:29</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5652" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1MiwidCI6MTc5NDA1NjAwNCwiaCI6IjEwY2U4YzI4ODE2ZGMyZTY2NiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5427126070164529836 1263601256_460006060" href="https://t.me/chernigivoblenergo/5652" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/p1OxYLs_gcx37RBOVXLrY1coZ4v3eos1k3a4LvVThmaqA6CANDwZhBlfN0pP9e4o94lRgkXkTsYCq69Nd226_LrVwsxct9TAqpaxHm3_6KGOsKL-YOW_zXxLr3PuhCCAmpL3h_OJwz0JxwmOXwRwR_O44YPUrso_7nQDRd3jZ6rEAH0vYC-NZtKrC9aA1sPwJb_o-kU8wQF8rB2GV79vQ6mfECS21EJCG1fNMZDDwf-O3uj9R8lHJFY2zDqs2ThJzG1YOf-8j4TBCmNdV2FEhoXi8spHlcOX_TBF329HjQ9GDS-rQvvLximE-h2Kpbyvng6aVYGs27RdZLf5dwVMwA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:52.5%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938A.png')"><b>📊</b></i> За вказівкою НЕК &quot;Укренерго&quot;, маємо зміни у Графіку погодинних відключень (ГПВ) на 3 та 4 листопада <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9597.png')"><b>🕗</b></i> З 23:30 починається відключення для черги 6/1.<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9597.png')"><b>🕗</b></i> До 3:00 продовжується, відключення для, черг 5/1 та 5/2.<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9597.png')"><b>🕗</b></i> До 6:00 продовжується відключення для черг 2/1, 2/2 та 6/2.<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9597.png')"><b>🕗</b></i> З 6:00 починається відключення для черги 4/1. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –  <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –  <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>256</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>53</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>44</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>30</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>10</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">42.4K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5652"><time datetime="2026-11-03T21:05:03+00:00" class="time">21:05</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5653" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1MywidCI6MTc5NDA1NjAwNCwiaCI6ImQxYWI0YThkMGY0ZDFlZTc4ZCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5429377869978212848 1264125544_460003824" href="https://t.me/chernigivoblenergo/5653" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/sU0N73VKUaBxECJHCgB3YKZwQz_bJd1IEsn4Z0An1i5mvQACrilT6WfpjeVOai-hDF1ztilyESEFPcOj2YjPslx9NHXRCHGRc6qMTObxpITnNFVHdbozYvRJ2KclpTXaHDQ9fjDFcLPIVq2Xu0DqElpYU86v7zmccyCJFwpZfXGW2Zl6vtK2BHUvRnLDwWTs0ZI5XrnuKaMH3GFdm7y6z_gjH8srg2dAZOi-2b1VdDX33jQFvHo-DSXZZykJM13DE_EeClTp86wX5QX7g35Jrr0i8gg2BbLp0eu4vz9CgkPuYYjjdUklpcs468KmfG1wq2fUhKUD2XE763Lm7Dg7qg.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:77.25%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">В Україні День залізничника <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9A89.png')"><b>🚉</b></i>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>267</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>37</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>11</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">26K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5653"><time datetime="2026-11-04T06:11:24+00:00" class="time">06:11</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5654" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1NCwidCI6MTc5NDA1NjAwNCwiaCI6ImYyZWZkZjJmZjMxMDVmYTU4NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5654" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/MjITbn91oCfAfWSyI-K5pX6YJCqF6QbMazEJgUZDXnTSmmVa-lgTySujBnd-PN5LQpekHu-_hferVT-se7uKT5Gzt83esAoqVNVw2BY6eO9a1mFATXPfs-UgjHYeLb5qQHekxgPQ3BRmPoHq9ZJor23Qfqc0aKNOn4J965UUmd26hhWNWq8C9KrtmvV_bf-B50ClIAPnY6KQJ6iXN-ruIXH9ZMd5qRMTv_WQTiqgfnKjnU_qSv1wgRcpfm6vUkJxyFDFE1fiOsGhGn5r4ily8adLqrjYL2hWOYXddMCnmBS0jsuZbQEF5gdQEBwcLGk0FO5Cqs5E_VxIUunS0LBctg.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,  у Чернігівській області застосовано 5 черг Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –  <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –  <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>121</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>42</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>17</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>9</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">37K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5654"><time datetime="2026-11-04T08:54:10+00:00" class="time">08:54</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5655" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1NSwidCI6MTc5NDA1NjAwNCwiaCI6ImZkNGU3YjVjZTQ0MDQyMDIyYyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap blured 5431629669791898531 1264649832_460004259" href="https://t.me/chernigivoblenergo/5655" style="width:471px;background-image:url('https://cdn4.telesco.pe/file/W7oOTvHGH4mtyHn-QDPjIeOKQxxuFeLwU_O-GzfbStQz-dQNREE3rOBWXzR31jq8pjwKJzhqWHyAoo7mwJQG-7LG_sYXUhnIx773NOZ5ZOriJSFiJdfwIbDIRQMgLP1QfE62g1c0mK0k6GVx8HES4SSvrVnn4Ea0UQNwKmk6JxKlnT671FV0Qcl7sHttGraH2Rn5HAINFyoddAee87FDokktXnQim3SaZhFv7FTGgJwKq74jOz92n8yq_3ODmkL2StruC0JGai_0IwhDOhvhgnHL6KpuC-sGawn35HvB19ZozxKiM9hsO3RKAfb8TKK0JY_AcbRoXIpdXhRiXgtevw.jpg')">
+  <div class="tgme_widget_message_photo" style="width:78.5%;padding-top:133.33333333333%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">За вказівкою НЕК &quot;Укренерго&quot;, 5 листопада в області діятиме Графік погодинних відключень (ГПВ) <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на офіційному сайті компанії – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>320</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>69</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>47</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>33</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>8</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">40.6K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5655"><time datetime="2026-11-04T18:42:03+00:00" class="time">18:42</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5657" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1NywidCI6MTc5NDA1NjAwNCwiaCI6IjJmNGQ3OTI1YWVlZGEyY2JkOSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578843148917741 1264637998_460004333" href="https://t.me/chernigivoblenergo/5657" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/KKIf8GYxlnm5H2kZT0EYLY9l4YAhrta9u6_zlqkB4gZ9pd9Wp4mECpLUfjQc_3UctmRvjdaJPmbBO0TOzPyPb39MoMQfqdXPecLK4NkV8PRyhvbH7H9qO_kVuZeep_8QtKE1-g3LHkyu2RHSaTgoVa5g2sx_9jpBsA9a8et8jfOdRKJG-ZWWjgiw0D5WIZF6V6gEYEF7-pjrExlH-GrC7h9V3TKhnunt95CnKTmTOogrYasT8mLKPPN7-P0c1m_w7c4e0fKWTD9P2oNQXJO5OLwmND-9K7ZT9aTqoXSgXn0fKkqU1MkEDZLRv3XAS8tzqBuQxkcsZFHzkMckukA-MA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:77.25%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Вночі ворог поцілив <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F92A3.png')"><b>💣</b></i> в один з важливих об&#39;єктів електропостачання і залишив без світла 35 тисяч наших споживачів. Працюємо <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F92AA.png')"><b>💪</b></i>&#33;</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>208</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>121</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>32</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>3</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">28.2K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5657"><time datetime="2026-11-05T06:29:04+00:00" class="time">06:29</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5658" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1OCwidCI6MTc5NDA1NjAwNCwiaCI6IjE4MjVlOTg1NDIxNGVlOWM4NiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5658" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/DY-Ryj-5qyEw74TtoZTgf3ApRKRoXuuQbonU6IQ-8GcLgUZ9gPg_h4pA8A2Rwro9aLyNAN2uy1q5M51rdLvOJOfCDPTIfzBfbpAMgK7IXuKhZkH2jHBb0Z5mYaRZSZFOtE_B_x8cGAlbAqF-Pt3C-x7WcUbku5hqeo6JV5yxYS9UX89tP94B8p1dtYUPCaBhxnK7l0ScKlrVr1Cg-5MV96da8fyYT4MEdh2QB6XDYwsW6e9ua8ySs-2xuylHG-a6pjHapJNQnASCg83ea7nmc4TTrFGnQtWJnTGmh4snz-rzQF5y_LgRlTjmlxt3MYcxb4g4TyIt1AWc_o6nJsVj9A.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,&nbsp; у Чернігівській області застосовано 5 черг Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>102</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>31</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>25</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>13</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>7</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">48.9K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5658"><time datetime="2026-11-05T08:26:37+00:00" class="time">08:26</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5659" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY1OSwidCI6MTc5NDA1NjAwNCwiaCI6IjY0ZjNmMzcwMDJhMTU1MzFiZCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578843148918346 1264637998_460004938" href="https://t.me/chernigivoblenergo/5659" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/vh5YaZ_biW4ZTV1buxvJJRpVC26r3eliuIY-keA-LrIOCPZYMeq_IZDqXcyXDj1LgjtV46aSITecn3_d6oB3Cnbm2yNMJpqqgE9vUcUBt0fzuYgXHud3NgZxRSu0TUx_PK4BK43EOxBudld0Wul7aODTgEN8HKa8ets-KIbwrEDTqrdTGRP3QqDy1dgTFqYv7KJhmEioVjZNvNUqlZmJ028wOiElYgkLtNXulAuQoVN9PgBWsVMl2xg9kDJw6INIK6vrBq8nGfdRfvlbI9Vq6zAB4Pr0T5UzCivu2EWC9wIh6rH6DnFoDgpHXAOWLVsbEj-3fEiQ-QOTHAcuDjuH_g.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:75%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Останніми днями в нашій області одночасно застосовувалися кілька видів графіків обмеження електропостачання. На прохання споживачів іще раз пояснюємо,<a href="https://chernihivoblenergo.com.ua/news/1768" target="_blank" rel="noopener" onclick="return confirm('Open this link?\n\n'+this.href);"> які різновиди графіків існують і чим вони відрізняються</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>123</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>35</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>27</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>19</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">27.3K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5659"><time datetime="2026-11-05T12:30:48+00:00" class="time">12:30</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5660" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2MCwidCI6MTc5NDA1NjAwNCwiaCI6IjhiZmNjNTA0MjAwOGJhOWQ1OSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5431578843148918488 1264637998_460005080" href="https://t.me/chernigivoblenergo/5660" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/tOU1Tbnbf7Ow4YAO_0-VFmOc2BKEvPYR_-oiutrRwkrdpjVHDbO-VOSIZFQ1JqxOxOMadanCYSKHWT8KSdmszPw00ghlq-9ttb_Q7EzR78OQSiCt6QuskrkigWKULrWbur3z-_Fy_5RDxJY0qahr39MjE6hAANLG7LEVJGurQpfreJ0k0AlES-SshuXrksKWfG1U2tOGfF0bWcOk6WhK0WnmZTqjWKLkOuCsqY_7rhlGQfvmTkk7hHWyOrzfEXF_1Rvvqjx0SqUKJGkdOcEaM_i73EbfnPAHuPy1XKszW4wnRff3a8ocyT2Jgc9ecFBKq0X5A8Z2-O0m6hyw-6YWrA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Шановні споживачі&#33;<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F92A1.png')"><b>💡</b></i> Через аварію на кабельній лінії знеструмлено 2,3 тисячі абонентів у Чернігові.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9BA0.png')"><b>🛠</b></i> Енергетики працюють над відновленням електропостачання.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>117</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>83</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>32</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>14</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>5</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">26.8K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5660"><time datetime="2026-11-05T13:53:34+00:00" class="time">13:53</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5661" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2MSwidCI6MTc5NDA1NjAwNCwiaCI6ImE2NDg1NWQ3NzZhODJjYmE3MiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap blured 5433830642962602514 1265162286_460003858" href="https://t.me/chernigivoblenergo/5661" style="width:471px;background-image:url('https://cdn4.telesco.pe/file/LHJ1fozooMJixc0pgMoVrKIdia5ugfYRtr_eU_-Bv9E1qO7_n7Ra2iY91mKFnSEXY1xT8a3A5lUEKY9vmgi3peBnsqZ3ZHR3AmfIHL5DDxID1KbfjKifZxGaLHdTzzQQp0-FX4MnaWyrGbR-eCuD_1dYYY5uu-O65fq2jZ1s9bVYcqYGNEqKB_SJ4Gr_2Ru0Lo63cfJJxDX5BvlClUMT4rhC3PeoB-kWi2Jek3DZMMQkI8Jmpp5igQig8N4FmYdVefZ2CpNd5wAq7_LINDTm0E0Z2-c1VMtkDAFsvsZIWNsxO7eV-1RJ8cySeFna84MhYeOfdivaeCMtqpaJvuFGDg.jpg')">
+  <div class="tgme_widget_message_photo" style="width:78.5%;padding-top:133.33333333333%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">За вказівкою НЕК &quot;Укренерго&quot;, 6 листопада в області діятиме Графік погодинних відключень (ГПВ) <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на офіційному сайті компанії – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>290</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>78</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>46</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>31</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>9</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">40K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5661"><time datetime="2026-11-05T18:22:59+00:00" class="time">18:22</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5662" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2MiwidCI6MTc5NDA1NjAwNCwiaCI6IjExZjUzNGQ2NmY3YTdlMjc1MyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5422426650093229794 1262507087_460003042" href="https://t.me/chernigivoblenergo/5662" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/F_QeheZbFWFJmqgqKNJGPhV-Lv85udHpleLUKR8XXQ2ZvicNwfYaaKop5eHgKiOGFxVHjoq14SjTYu2a3uV0qQZ23c2jH-lfGh0o_Ta1mkL3Nv4NfYBu52tPzRdTrt9og8-3TupMXcnDC2rmErq9OpMYtwy3-Aj-V7z458RRR-qsCrigRr3d5zNCJm6hZQae0yFCFGsbyXX_tFmdyk9MHJhgjbs8M42YmYZ5gTD7UdFtNKWkPr9j67V4THb4yE8pcRfyQUtF-BcmH_Ckwu7230-UsAph12eqOKt-SS9aUu0UGITWlInbkdWHDJm9HTNYeyp88DV0ve1Q0XvjWLqGKg.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:77.25%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">День визволення Києва <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F87BAF09F87A6.png')"><b>🇺🇦</b></i>. Зі святом, столице <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA5B3.png')"><b>🥳</b></i> &#33;</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>321</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>28</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>23</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>4</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>3</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">23.2K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5662"><time datetime="2026-11-06T06:11:41+00:00" class="time">06:11</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5663" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2MywidCI6MTc5NDA1NjAwNCwiaCI6IjBmM2M4OThjOTcxOWI2MmM0ZSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5663" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/RPRXbSJLDRVDiN27LGnlaQJccx3ZUJQ-HkRoY5CPmpQF8oELgWUE3G1HQvckz8a6w5WARPIE954Q12jIXNPvqOGkvF74QwaTnnpUcSpdKq7H8Mx3npDPK_oqdS5wDw6i3Hpobd_8Lu9jU_5wLJB5J1FfJczcUsVmIT6rQYrEoXtRBaKZkYK0trA6tXvUJ67-Vl6Qr9px8zpbZslYMa0NG4IxLS_1rbEfFQJEyUOtrDHnf8BM_mDiWvVPl_uF1N-gKj_G16-gATXA_khIHF6tYa5ws6DEXjcFE2hj88IhHeSvB64GshP9w_zACMeOckLWOEJjCfPikWiFkS7XY65lOQ.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,&nbsp; у Чернігівській області застосовано 5 черг Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>108</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>21</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>19</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>15</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>5</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">32K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5663"><time datetime="2026-11-06T08:24:09+00:00" class="time">08:24</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5664" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2NCwidCI6MTc5NDA1NjAwNCwiaCI6IjJlYWRjYWNhNDZkYjVkMTZiNiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5664" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/MviEeOGWX3eaRxgW7aPALoJXKmwsDu8JGvxIDBHAcj8RV8cqpUGo_zpAzcDcin9W7d-yetYO7a1GA1-Kk1DJCvgQ11YPB64ffJZyjh98ajYW15DYVtk1gk65XTWO_qk0k3DcZ3RX5jE5dtzY9XuD10StWW_owoFq4_uRKy3x3mYxEeEghymTk9qGAOcs3zjyVw5_I0eGyGq5nIvfcyLjA36yg4xv56P1XbH5gw9iLXG_nMgPJ2rgfq9TN49JGgEnPslvp4ECSdQWERKGXTJEcYDgUrQmYHAqz_0CtHMSuWiBYa7aEqwuNi7uYKn9_vkFvlWCFgyHWOA5k9LJPSIFIg.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,&nbsp; у Чернігівській області застосовано 5 черг Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>97</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>20</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>17</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>17</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>4</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">35.4K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5664"><time datetime="2026-11-06T11:39:13+00:00" class="time">11:39</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5665" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2NSwidCI6MTc5NDA1NjAwNCwiaCI6IjA3MGM2MzdmMWUwNzU3Njg1NSJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5435959224459534225 1265657885_460005265" href="https://t.me/chernigivoblenergo/5665" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/HDRuhIyB2F0QEoOedgA14-qOC--G9JqMZ_0KvK3Hk0oZWQk0v_hDCMeP5qGhSb6DwWVoUy_FQVlBXWm0wQ6upNzVmBXeCmqJC8MuDSNzOKrPGBHE21dkEJYOQf9vEAqqtWntmTj7l1ZduIchE0BtyGCASFDwEP2TSMYpUGpzwI57erTPb-iWSWO5ci1v8lcn80EvYSU2scFHaOxdaxMx7jaEUwidT7_279T_lMJIJezuy6j6lXlZFPNlW_rTQcjk9UVSEH4R2TyrAm52JWILRLVwkFzFrBW1YTbU7DWgBkE97rxuI71P_9Y-LgUI6jKYsep7ZC9qKV1wAzPSyU7w0A.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:65.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9386.png')"><b>📆</b></i> 2 листопада-6 листопада. Новини української енергетики:<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938C.png')"><b>📌</b></i> протягом останніх трьох діб росіяни завдали 78 масованих ударів по українській енергетичній інфраструктурі. Під прицілом ворога опинилися як електростанції, так і мережа передачі. Для порівняння: у 2022 році росіяни здійснили 11 масованих атак, які спрямовували переважно на електростанції;<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938C.png')"><b>📌</b></i> АЕС України вимушено знизили потужність через російські атаки. Потужності на них відновлюватимуть поступово;<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938C.png')"><b>📌</b></i> Німеччина планує надати Україні додаткові 100 млн євро. Кошти підуть на відновлення пошкодженої російським обстрілами водної, енергетичної і транспортної інфраструктури;<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F938C.png')"><b>📌</b></i> НЕК «Укренерго» та словацький оператор системи передачі «SEPS» працюють над відновленням договору про аварійну взаємодопомогу.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>75</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>44</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>15</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>13</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">22.4K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5665"><time datetime="2026-11-06T14:18:43+00:00" class="time">14:18</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5666" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2NiwidCI6MTc5NDA1NjAwNCwiaCI6ImE1NWRhNWM4OWY3YzYyNGJhNiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5435959224459534266 1265657885_460005306" href="https://t.me/chernigivoblenergo/5666" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/NrKF3OWDdFHrP2AE8MqVf_vFBGnxOvk-JAaVXUqcQ3THW030QBrhZP_2TFPm7s_Y-uCeJRIvWe9Zgyt0twUqlM9ulWs7Rz-r8gsTmJeRZxhfNWA7kguuWG-Io9jodiIAZ793ukbXpAgqZlfY2N9_oLgnFyDh2eKwucZ6K7tgBQCSadUypAutg9n2ptXq3MIQ_-Bz8JLJ4EmfHIrZZ63RCzcGizPLB_sYcf7lISwJBTFmVU_VwprvQqY6sYvEJcmycZWTk0TkzmM8KpCFc8_FBgDkc-7uYQ2K4b4EiO1f3nyVIZM_UqyFFK27wvOuabEbHrxyDqZuidINoqT2iOKTdw.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:59.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">Останніми днями на адресу нашого підприємства надходить чимала кількість звернень щодо невідповідності рівня напруги в мережі вимогам ДСТУ – у той час, коли значення стандартної номінальної напруги для мереж низької напруги загального призначення в Україні складає 230 В, а встановлені межі допустимого відхилення відповідно – від 207 В до 253 В, у розетках споживачів <a href="https://chernihivoblenergo.com.ua/news/1769" target="_blank" rel="noopener" onclick="return confirm('Open this link?\n\n'+this.href);">напруга часто виходить за рамки гранично допустимих значень</a>, що створює загрозу для стабільної роботи і збереження побутової техніки та електроприладів. Чому так відбувається і що з цим робити? <br/>Переходьте за активним посиланням <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> і читайте.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>152</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>61</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>37</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>20</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>11</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">25.5K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5666"><time datetime="2026-11-06T15:03:56+00:00" class="time">15:03</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5667" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2NywidCI6MTc5NDA1NjAwNCwiaCI6Ijk3NzBhNmRiNmEwOTQ0MzVkMCJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap blured 5435959224459534529 1265657885_460005569" href="https://t.me/chernigivoblenergo/5667" style="width:471px;background-image:url('https://cdn4.telesco.pe/file/upXK9sa52lu5vn6sfY5UtLy9dTe2U9j7FEtd_lO5yeKfW4w7p20V3O2XDrtv6MEqaZa0VGoOd6ZCef7Wd0gfh8wA8WaB3nWKlDmEEV4J9inP2zLioejV6Ds5nSV_WotyJIt1CgppH0D4I65k75dzoWyyhY4wh2nJTzDG62_NaPBiv2QLWbLjT_LGgMNY8CKNIdWRAKz1BqAUdmnDN6v86bOzhmCovtIGMCeFzxDt5vNzj3B-Yscfz6nVIS6XvzjfouxzCHSpV3ekGB9fShnRerMiEgfja0W5HlvGsgtrignrnQTIJIPuAX8Lo_pFhQ1ck7ygMGDqLkgez-80nCY7Nw.jpg')">
+  <div class="tgme_widget_message_photo" style="width:78.5%;padding-top:133.33333333333%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto">За вказівкою НЕК &quot;Укренерго&quot;, 7 листопада в області діятиме Графік погодинних відключень (ГПВ) <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Якщо ситуація в енергосистемі змінюватиметься, графік коригуватиметься, тож просимо слідкувати <i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> за нашими офіційними ресурсами. <br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Нагадуємо, що перевірити інформацію щодо черг відключень ГПВ та свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на офіційному сайті компанії – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F998F.png')"><b>🙏</b></i> Як і раніше, дуже просимо усіх бути максимально ощадливими&#33; Особливо це стосується тих споживачів, які приєднані до ліній з критичною інфраструктурою.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>255</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>60</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>34</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>29</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>8</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">33.5K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5667"><time datetime="2026-11-06T18:52:42+00:00" class="time">18:52</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5668" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2OCwidCI6MTc5NDA1NjAwNCwiaCI6IjMwYjMxNGVmY2FlZmEzMjg2YyJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5465256124098485765 1272479101_460004869" href="https://t.me/chernigivoblenergo/5668" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/lVFxA2nvzLG8auATaaFK_kf8EDER8HbYF7qjij6VWoOF3NUqQge-UnYiYrzpZi632OPDsfafbU1gBZFjg-7Vx8jS8si2XoxgR0_elJ0JtQ06l5l3NhnR8fBYvP-L0sraNKKePX0-zHM1pvGbyBU92AJNCGk0D3F2HZflFgzFyoqSgDNU7kFs87TKtfgeHC8Wy8V3jJX48GHCOyyI6wKAlgb6PYv37sYm_Bm2OJbahqcY4h3cLU6dFExVpWxkhkTliaNO9BsmaUPCyq-VTdjOpmDV7pDuii6A92L-EiEU63E2UkDaF_W8JJ1U4xyd9D4l_R_KTCtwSacxFp4E9hcrvA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> Шановні споживачі&#33;<br/><br/>Внаслідок аварії на об&#39;єкті електропостачання було знеструмлено близько 150 тисяч абонентів у Корюківському і Чернігівському районах, а також у містах Чернігів і Славутич.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F9BA0.png')"><b>🛠</b></i> Енергетики частково заживили абонентів, роботи з відновлення електропостачання тривають.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>171</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>85</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>38</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>9</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>2</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">25K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta">edited &nbsp;<a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5668"><time datetime="2026-11-07T06:03:19+00:00" class="time">06:03</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div><div class="tgme_widget_message_wrap js-widget_message_wrap"><div class="tgme_widget_message text_not_supported_wrap js-widget_message" data-post="chernigivoblenergo/5669" data-view="eyJjIjotMTI2ODM3NjA5MiwicCI6NTY2OSwidCI6MTc5NDA1NjAwNCwiaCI6IjBjZTllZGJjM2NiZGVhZDI4NiJ9">
+  <div class="tgme_widget_message_user"><a href="https://t.me/chernigivoblenergo"><i class="tgme_widget_message_user_photo bgcolor4" data-content="А"><img src="https://cdn4.telesco.pe/file/TIyg66vResoGR0iTZT8SnLQnaaOVhVEnu4V4905MnV02g-D_ME-Elj7TNg6hPoLG0Og1AmtXas2azFBDeTaVfpwSk-wboutdkjXxFUeQlgTpQTS26Xnk6wT7CCxIk1a44ZRyZ16Pllo_CEgyYIxLgbhsSmv4B9TuexCgsQBTISYqsV4-ZXw3tpkPC3_TUKxtcXs9IHNeyzr_tPhMNACnMtmAEUo4iAjg7FhnVTfjPYJd2Kdyd0Jml0iIs3hEcU1va6rSpbt_Ib45HYNcG6UYWgQNpwtWK4MqHY73Uo3miMAgu0sh9hKmPtlhMNWTplNscQ6vd0KYn0BDrxfRjEWWcw.jpg"></i></a></div>
+  <div class="tgme_widget_message_bubble">
+    
+        <i class="tgme_widget_message_bubble_tail">
+      <svg class="bubble_icon" width="9px" height="20px" viewBox="0 0 9 20">
+        <g fill="none">
+          <path class="background" fill="#ffffff" d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"></path>
+          <path class="border_1x" fill="#d7e3ec" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0 L9,0 L9,20 L7,20 L7,20 L7.002,18.068 C6.816,15.333 6.156,12.504 5.018,9.58 C4.172,7.406 2.72,5.371 0.649,3.475 C-0.165,2.729 -0.221,1.464 0.525,0.649 C0.904,0.236 1.439,0 2,0 Z"></path>
+          <path class="border_2x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.5 L9,0.5 L9,20 L7.5,20 L7.5,20 L7.501,18.034 C7.312,15.247 6.64,12.369 5.484,9.399 C4.609,7.15 3.112,5.052 0.987,3.106 C0.376,2.547 0.334,1.598 0.894,0.987 C1.178,0.677 1.579,0.5 2,0.5 Z"></path>
+          <path class="border_3x" d="M9,1 L2,1 C1.72,1 1.452,1.118 1.263,1.325 C0.89,1.732 0.917,2.365 1.325,2.738 C3.504,4.733 5.046,6.893 5.95,9.218 C7.124,12.233 7.807,15.161 8,18 L8,20 L9,20 L9,1 Z M2,0.667 L9,0.667 L9,20 L7.667,20 L7.667,20 L7.668,18.023 C7.477,15.218 6.802,12.324 5.64,9.338 C4.755,7.064 3.243,4.946 1.1,2.983 C0.557,2.486 0.52,1.643 1.017,1.1 C1.269,0.824 1.626,0.667 2,0.667 Z"></path>
+        </g>
+      </svg>
+    </i>
+    <div class="tgme_widget_message_author accent_color"><a class="tgme_widget_message_owner_name" href="https://t.me/chernigivoblenergo"><span dir="auto">АТ &quot;Чернігівобленерго&quot;</span></a></div>
+
+
+<a class="tgme_widget_message_photo_wrap 5346115380574889824 1244739485_460007264" href="https://t.me/chernigivoblenergo/5669" style="width:800px;background-image:url('https://cdn4.telesco.pe/file/NO5SsDaebDHrvXvFJvm7lsYoITZpDnszDezvDtZBNxljY2wxWhIbktnH2S7qcrMpp-mM22c6Cg0a5jUylN6barf_7_ONpHXJNOL8i3wMqKNF3THdhcHxxqcj5aZ53BGggqIZxMPwPac2GeQUiq9LeFhESruE-I2rvAP95vWQjrVU8Gap42QNkm8Lkcd7pilUJaefZBw2lRV5qC09fLovmwSXzjY2dtMdC-AZLrTBQKDGod5VWYL0evsIJE-20pajE38jCFCefYdPqV6_ZH8v6lawzBQxRH4a2bDDXefa9WfZo1uW0oPXq7tJteCHnNGXFB60vXZ8N9io2IL81V9AeA.jpg')">
+  <div class="tgme_widget_message_photo" style="padding-top:66.625%"></div>
+</a><div class="tgme_widget_message_text js-message_text" dir="auto"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29AA0.png')"><b>⚠️</b></i> За вказівкою НЕК &quot;Укренерго&quot;,&nbsp; у Чернігівській області застосовано 4 черги Графіка аварійних відключень (ГАВ).<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E2989D.png')"><b>☝️</b></i> Нагадаємо: ГАВ діє до окремого розпорядження НЕК &quot;Укренерго&quot;.<br/><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA494.png')"><b>🤔</b></i> Перевірити свій особистий графік за номером особового рахунку можна:<br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> на нашому сайті – <a href="https://chernihivoblenergo.com.ua/blackouts" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/blackouts</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Viber-боті –&nbsp; <a href="https://chernihivoblenergo.com.ua/in_viber" target="_blank" rel="noopener">https://chernihivoblenergo.com.ua/in_viber</a><br/><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F94B8.png')"><b>🔸</b></i> у Telegram-боті –&nbsp; <a href="tg://resolve?domain=ChernigivOEbot" target="_blank" rel="noopener">tg://resolve?domain=ChernigivOEbot</a>.</div>
+<div class="tgme_widget_message_reactions js-message_reactions"><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09FA4AC.png')"><b>🤬</b></i>45</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/E29DA4.png')"><b>❤</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F98A2.png')"><b>😢</b></i>6</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918D.png')"><b>👍</b></i>5</span><span class="tgme_reaction"><i class="emoji" style="background-image:url('//telegram.org/img/emoji/40/F09F918E.png')"><b>👎</b></i>5</span></div><div class="tgme_widget_message_footer compact js-message_footer">
+  
+  <div class="tgme_widget_message_info short js-message_info">
+    <span class="tgme_widget_message_views">12.2K</span><span class="copyonly"> views</span><span class="tgme_widget_message_meta"><a class="tgme_widget_message_date" href="https://t.me/chernigivoblenergo/5669"><time datetime="2026-11-07T11:44:20+00:00" class="time">11:44</time></a></span>
+  </div>
+</div>
+  </div>
+  
+</div></div>
+    </section>
+  </div>
+</main>
+    <script src="//telegram.org/js/jquery.min.js"></script>
+    <script src="//telegram.org/js/jquery-ui.min.js"></script>
+    <script src="//telegram.org/js/tgwallpaper.min.js?3"></script>
+<script src="//telegram.org/js/tgsticker.js?32"></script>
+
+    <script src="//telegram.org/js/widget-frame.js?68"></script>
+    <script src="//telegram.org/js/telegram-web.js?14"></script>
+    <script>TWeb.init();
+</script>
+    
+  </body>
+</html>
+<!-- page generated in 62.13ms -->

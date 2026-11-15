@@ -1,0 +1,78 @@
+{
+  "actor": "/root",
+  "syntheticOnly": true,
+  "actualHttp": true,
+  "actualPostgreSQL": true,
+  "target": {
+    "database": "lba_test_app_writer",
+    "port": 55440,
+    "listen": "127.0.0.1"
+  },
+  "source": [
+    {
+      "path": "app/server/production/product-routes.ts",
+      "sha256": "185c79b2696e1740dcee0b6941d04bcccfa9223f3c2915b4d3244713b9fe2990"
+    },
+    {
+      "path": "app/server/production/profile-store.ts",
+      "sha256": "9b4f216b11a6b1fc96e963f05046958534efe9dbc0c87391a8347b2222936373"
+    },
+    {
+      "path": "app/server/production/profile-reader.ts",
+      "sha256": "bdcdcbba56733ad661b777cfdbc13572e38b76978a828779066725441210e664"
+    },
+    {
+      "path": "app/server/production/legacy-identity-links.ts",
+      "sha256": "49879626ee9673e4c7a392db48b4f97cb1ed7b98eaa4d83717b3febfe7a90b33"
+    },
+    {
+      "path": "app/server/production/product-auth.ts",
+      "sha256": "6830d8cb80274b091fe905583be683f6554e2e512d817215fb3a7fe1811826a0"
+    },
+    {
+      "path": "app/shared/live-product.ts",
+      "sha256": "c47ff48741353f52ede9987f03220f907bc6048c0ba86cbab08c2363b0fe4655"
+    }
+  ],
+  "tests": [
+    {
+      "name": "actual HTTP/JWT/PG active GET bootstraps exact owner once and returns live DTO without private origins",
+      "status": "pass"
+    },
+    {
+      "name": "actual POST commits shared profile; repeat same ID returns same receipt and Bot sees same rename",
+      "status": "pass"
+    },
+    {
+      "name": "verified owner isolation and closed body/query beat request owner hints and forged Bearer",
+      "status": "pass"
+    },
+    {
+      "name": "actual two HTTP CAS writers have one winner; stale update cannot overwrite",
+      "status": "pass"
+    },
+    {
+      "name": "HTTP ambiguous saved commit is recovered by exact request without repeating write; changed request cannot recover it",
+      "status": "pass"
+    },
+    {
+      "name": "read-only shadow cannot write and active control disable prevents further canonical mutations",
+      "status": "pass"
+    },
+    {
+      "name": "actual legacy mapping rejects foreign owner and creates no subscription from convention-ID or unmatched link",
+      "status": "pass"
+    },
+    {
+      "name": "same RR client holds identity links and subscriber policy through concurrent unlink; fresh read sees changed source",
+      "status": "pass"
+    },
+    {
+      "name": "all actual HTTP/App/Bot canonical writes leave every legacy row unchanged and source pins stable",
+      "status": "pass"
+    }
+  ],
+  "productionWrites": 0,
+  "realProviderRequests": 0,
+  "scope": "New canonical App API + actual store/PG/JWT and shared Bot state. Runtime policy still rejects active production; not release/device/real account acceptance."
+}

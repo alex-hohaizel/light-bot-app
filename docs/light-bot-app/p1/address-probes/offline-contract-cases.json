@@ -1,0 +1,693 @@
+{
+  "actor": "/root/public_address_probe",
+  "result": "pass",
+  "executed_at_utc": "2026-11-07T14:07:39.256Z",
+  "adapter": "normalizeYasnoRaw",
+  "count": 12,
+  "limits": [
+    "Existing captured plan plus later public binding candidate, same upstream; no simultaneous revision guarantee, independentOSR or final address admission."
+  ],
+  "cases": [
+    {
+      "case_id": "kyiv-revutskogo-12a-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:85ac8f88dd084c36682bed676ab118fcaed7d593f2da20c11ee408d9ac56e32b",
+        "addressId": "yasno:25/902:street:736:house:30823",
+        "addressLabel": "Публічний зразок · 12А",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T01:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "03:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T03:30:00.000Z",
+            "endsAt": "2026-11-07T12:30:00.000Z",
+            "startLocal": "05:30",
+            "endLocal": "14:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T14:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "16:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-12slash1-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:85ac8f88dd084c36682bed676ab118fcaed7d593f2da20c11ee408d9ac56e32b",
+        "addressId": "yasno:25/902:street:736:house:30822",
+        "addressLabel": "Публічний зразок · 12/1",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T01:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "03:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T03:30:00.000Z",
+            "endsAt": "2026-11-07T12:30:00.000Z",
+            "startLocal": "05:30",
+            "endLocal": "14:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T14:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "16:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-house1-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:419edee745287b33f3ce6d1193cb18be2e791cc22474195082dc5be9c7e80934",
+        "addressId": "yasno:25/902:street:736:house:30816",
+        "addressLabel": "Публічний зразок · 1",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T03:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "05:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T05:30:00.000Z",
+            "endsAt": "2026-11-07T14:30:00.000Z",
+            "startLocal": "07:30",
+            "endLocal": "16:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T16:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "18:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-2v-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:c9fa6be4613f556909e8ac02d2d32f3ac153eacef5be94d148471b6e1bba1ad5",
+        "addressId": "yasno:25/902:street:736:house:30856",
+        "addressLabel": "Публічний зразок · 2В",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "57.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T01:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "03:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T03:30:00.000Z",
+            "endsAt": "2026-11-07T12:30:00.000Z",
+            "startLocal": "05:30",
+            "endLocal": "14:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T14:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "16:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-2h-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:419edee745287b33f3ce6d1193cb18be2e791cc22474195082dc5be9c7e80934",
+        "addressId": "yasno:25/902:street:736:house:30857",
+        "addressLabel": "Публічний зразок · 2Г",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T03:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "05:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T05:30:00.000Z",
+            "endsAt": "2026-11-07T14:30:00.000Z",
+            "startLocal": "07:30",
+            "endLocal": "16:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T16:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "18:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-4a-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:85ac8f88dd084c36682bed676ab118fcaed7d593f2da20c11ee408d9ac56e32b",
+        "addressId": "yasno:25/902:street:736:house:30887",
+        "addressLabel": "Публічний зразок · 4А",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "45.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T01:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "03:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T03:30:00.000Z",
+            "endsAt": "2026-11-07T12:30:00.000Z",
+            "startLocal": "05:30",
+            "endLocal": "14:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T14:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "16:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-5slash7-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:419edee745287b33f3ce6d1193cb18be2e791cc22474195082dc5be9c7e80934",
+        "addressId": "yasno:25/902:street:736:house:30889",
+        "addressLabel": "Публічний зразок · 5/7",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "47.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T03:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "05:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T05:30:00.000Z",
+            "endsAt": "2026-11-07T14:30:00.000Z",
+            "startLocal": "07:30",
+            "endLocal": "16:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T16:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "18:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-revutskogo-6slash8-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:9d35324266551c04a3739baee5b3692ea39cd1203403e0300aa5d1b5cbde959a",
+        "addressId": "yasno:25/902:street:736:house:30901",
+        "addressLabel": "Публічний зразок · 6/8",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "46.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T02:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "04:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T05:00:00.000Z",
+            "endsAt": "2026-11-07T13:00:00.000Z",
+            "startLocal": "07:00",
+            "endLocal": "15:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T15:00:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "17:00",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-12-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:0b61071fd60543e3e6563b7888c29bbf8b7de9630739b671e0b3d41d1b3c3123",
+        "addressId": "yasno:25/902:street:1211:house:48783",
+        "addressLabel": "Публічний зразок · 12",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "20.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-07T00:30:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "02:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T03:00:00.000Z",
+            "endsAt": "2026-11-07T11:30:00.000Z",
+            "startLocal": "05:00",
+            "endLocal": "13:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T13:00:00.000Z",
+            "endsAt": "2026-11-07T21:30:00.000Z",
+            "startLocal": "15:00",
+            "endLocal": "23:30",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-121a-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:5d5edde7caf9d75488240a7c3c20a457259131484295a7b67e3af569dada2e60",
+        "addressId": "yasno:25/902:street:1211:house:48785",
+        "addressLabel": "Публічний зразок · 121А",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "6.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-06T23:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "01:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T01:00:00.000Z",
+            "endsAt": "2026-11-07T09:30:00.000Z",
+            "startLocal": "03:00",
+            "endLocal": "11:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T11:30:00.000Z",
+            "endsAt": "2026-11-07T20:00:00.000Z",
+            "startLocal": "13:30",
+            "endLocal": "22:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T21:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "23:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-121b-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:5d5edde7caf9d75488240a7c3c20a457259131484295a7b67e3af569dada2e60",
+        "addressId": "yasno:25/902:street:1211:house:48784",
+        "addressLabel": "Публічний зразок · 121Б",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "6.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-06T23:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "01:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T01:00:00.000Z",
+            "endsAt": "2026-11-07T09:30:00.000Z",
+            "startLocal": "03:00",
+            "endLocal": "11:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T11:30:00.000Z",
+            "endsAt": "2026-11-07T20:00:00.000Z",
+            "startLocal": "13:30",
+            "endLocal": "22:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T21:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "23:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    },
+    {
+      "case_id": "kyiv-beresteiskyi-128slash2-group",
+      "binding_verdict": "source_reported_binding_candidate",
+      "view": {
+        "contractVersion": "lba-product/1",
+        "revisionId": "yasno:359d448e24c4e3695bba87e02f948a96a4061f75d399dd509f3045db2ac16cf2",
+        "addressId": "yasno:25/902:street:1211:house:48792",
+        "addressLabel": "Публічний зразок · 128/2",
+        "localityLabel": "Київ · точковий source-reported candidate",
+        "operatorId": "dtek-kem",
+        "namespace": "yasno:25/902",
+        "targetId": "18.1",
+        "serviceDate": "2026-11-07",
+        "timezone": "Europe/Kyiv",
+        "status": "published",
+        "dayCoverage": "complete",
+        "intervals": [
+          {
+            "startsAt": "2026-11-06T22:00:00.000Z",
+            "endsAt": "2026-11-06T23:00:00.000Z",
+            "startLocal": "00:00",
+            "endLocal": "01:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T01:00:00.000Z",
+            "endsAt": "2026-11-07T09:30:00.000Z",
+            "startLocal": "03:00",
+            "endLocal": "11:30",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T11:30:00.000Z",
+            "endsAt": "2026-11-07T20:00:00.000Z",
+            "startLocal": "13:30",
+            "endLocal": "22:00",
+            "kind": "planned_outage"
+          },
+          {
+            "startsAt": "2026-11-07T21:30:00.000Z",
+            "endsAt": "2026-11-07T22:00:00.000Z",
+            "startLocal": "23:30",
+            "endLocal": "24:00",
+            "kind": "planned_outage"
+          }
+        ],
+        "source": {
+          "id": "yasno-kem",
+          "name": "YASNO · зафіксована публічна відповідь",
+          "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/regions/25/dsos/902/planned-outages",
+          "revision": "d48b1049d06000f6ae5e1632349e33e92cf6d8d25c95b1b314ecb0cc896ba18e",
+          "accessCost": 0,
+          "verifiedLevel": "catalog"
+        },
+        "publishedAt": "2026-11-07T11:45:01+00:00",
+        "observedAt": "2026-11-07T12:49:33.806503+00:00",
+        "freshness": "current",
+        "synthetic": false,
+        "deliveryEligible": false,
+        "notice": "Технічний ключ джерела; адресна прив’язка й допуск персональних сповіщень перевіряються окремо."
+      }
+    }
+  ]
+}

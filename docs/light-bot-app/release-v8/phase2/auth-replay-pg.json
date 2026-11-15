@@ -1,0 +1,57 @@
+{
+  "actor": "/root",
+  "actualPostgreSQL": true,
+  "syntheticOnly": true,
+  "target": {
+    "database": "lba_test_auth_replay",
+    "port": 55436,
+    "listen": "127.0.0.1"
+  },
+  "source": [
+    {
+      "path": "app/server/production/auth-replay.ts",
+      "sha256": "2bec24f8d6f2aea1bb910d79956999680263757f1f9f7156d0186fc298b2fd0f"
+    },
+    {
+      "path": "app/server/production/telegram-auth-flow.ts",
+      "sha256": "17d0771f8aca1e81404beda8823576aefb343d4c21e0af47cf3bf4e056329f40"
+    },
+    {
+      "path": "app/server/telegram-init-data.ts",
+      "sha256": "693c6753f11277a5c8b4f23a41c3220d7629a822ac57ea46a2d1111ca8cca308"
+    }
+  ],
+  "tests": [
+    {
+      "name": "first verified proof commits a single identity/session and durable bound reservation",
+      "status": "pass"
+    },
+    {
+      "name": "fresh same authenticated session can recover without another identity/session write; another browser cannot replay",
+      "status": "pass"
+    },
+    {
+      "name": "concurrent replay has one reservation winner and one set of downstream writes",
+      "status": "pass"
+    },
+    {
+      "name": "widget/mobile exchange share the same proof use; no cross-session alternative route",
+      "status": "pass"
+    },
+    {
+      "name": "invalid/expired signatures are refused before replay/identity/session writes",
+      "status": "pass"
+    },
+    {
+      "name": "failed login leaves proof claimed; another browser cannot convert uncertainty to another identity write",
+      "status": "pass"
+    },
+    {
+      "name": "SQL stores only keyed proof/session bindings, never raw signature, session cookie or initData",
+      "status": "pass"
+    }
+  ],
+  "realTelegramRequests": 0,
+  "productionWrites": 0,
+  "scope": "Actual proof ledger transactions and authentication flow with synthetic signed credentials; not actual browser/device/production identity proof"
+}

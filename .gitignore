@@ -1,0 +1,5 @@
+/.local/
+/app/node_modules/
+/app/dist/
+/app/dist-production/
+/app/.env*

@@ -1,0 +1,86 @@
+{
+  "recorded_at": "2026-11-07T08:32:21.734622+00:00",
+  "report_sha256": "b1ec15a0f422dad60ea1189059e2d6b408a9c0c02cf0412acb68dfbda5446873",
+  "checks": [
+    {
+      "check": "accepted_input_bytes",
+      "file": "LIGHT_BOT_APP_AGENT_PASSPORT_v1.0_UA.md",
+      "sha256": "3c8fdf19c232fc361f1b4f15e494f8b8fbeaec7f70efd82f3eaf825c2e274de1",
+      "result": "pass"
+    },
+    {
+      "check": "accepted_input_bytes",
+      "file": "LIGHT_BOT_APP_BRIEF_v0.1_UA.md",
+      "sha256": "a24f33323c8e9144d37f9a9797dd0d61ba8c3f6a47189e29a28fa12fac9d9b7c",
+      "result": "pass"
+    },
+    {
+      "check": "accepted_input_bytes",
+      "file": "LIGHT_BOT_APP_BLUEPRINT_v1.0.json",
+      "sha256": "feb30b91c83e311aa1fb65dd6a3e1f676735ee88ca7e4ebdeb51821b4dc66b08",
+      "result": "pass"
+    },
+    {
+      "check": "accepted_input_bytes",
+      "file": "LIGHT_BOT_APP_DEPTH_v1.0.json",
+      "sha256": "08db6a4edc868dcb85efec2b9113de12beb955e8e15a7e63424483f073a58db9",
+      "result": "pass"
+    },
+    {
+      "check": "blueprint_canonical_hash",
+      "sha256": "493a4a454ccc9784297d3448e73263177c0d61d8ccf32e58b53f34add13adcd5",
+      "result": "pass"
+    },
+    {
+      "check": "remote_manifest_text_digest",
+      "records": 142,
+      "result": "pass",
+      "limit": "source-file bytes not independently obtained; excluded files remain excluded"
+    },
+    {
+      "check": "checkpoint_consistency",
+      "command": [
+        "python3",
+        "-B",
+        "/root/.codex/skills/remote-skills/skill-6aeedb9dae4c8191b3fc2ebf65a3652c/scripts/lba_audit.py",
+        "--root",
+        "/workspace/scratch/2771b6819b60/audit_work",
+        "--checkpoint",
+        "docs/light-bot-app/checkpoint.json",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "output": {
+        "record_validation": "passed",
+        "external_verification": "not_performed",
+        "errors": [],
+        "checkpoint": {
+          "task_id": "LBA-P0-001",
+          "phase": "P0",
+          "status": "blocked",
+          "recorded_resume_ready": false
+        }
+      },
+      "limit": "consistency only, external facts and authorization assessed separately"
+    },
+    {
+      "check": "targeted_secret_pattern_scan",
+      "matches": 0,
+      "result": "pass",
+      "limit": "best effort, complemented by independent review; no arbitrary secret detector claim"
+    },
+    {
+      "check": "independent_review",
+      "actor": "/root/p0_acceptance",
+      "result": "pass_after_two_minor_wording_fixes",
+      "evidence": "evidence/independent-review.md",
+      "limit": "audit review only, not product QA"
+    }
+  ],
+  "product_build_tests": "not_performed",
+  "owner_acceptance": "pending",
+  "p0_gate": "blocked",
+  "replit_initial_read_outcome": "recovered_successfully",
+  "unresolved_effects": []
+}

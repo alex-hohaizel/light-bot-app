@@ -1,0 +1,176 @@
+{
+  "schema_version": "lba-checkpoint/1",
+  "project_id": "g-p-6aee37634784819189b085127be2946b",
+  "task_id": "LBA-P0-001",
+  "phase": "P0",
+  "status": "blocked",
+  "repository": {
+    "url": "https://github.com/alex-hohaizel/light-bot-app.git",
+    "branch": "agent/light-bot-app-recovery-v1",
+    "sha": "f19cf19c2dad177cc059157b9ded4443637ebefc"
+  },
+  "repository_observation": "remote ref/tree only; no product checkout present",
+  "next_step": "P0-R: establish serving provenance and live-process→DB binding; obtain sanitized source bytes, then prepare isolated startup. P1 plan prepared, not executed.",
+  "authorities": [],
+  "actions": [
+    {
+      "id": "read-github",
+      "kind": "read",
+      "target": "alex-hohaizel/light-bot-app:main+agent/light-bot-app-recovery-v1",
+      "outcome": "success",
+      "authority_id": null
+    },
+    {
+      "id": "read-replit-p0",
+      "kind": "read",
+      "target": "replit:6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+      "outcome": "success",
+      "authority_id": null,
+      "transport": "initial timeout; recovered existing result; phase paused"
+    },
+    {
+      "id": "reconcile-replit-p0",
+      "kind": "reconcile",
+      "target": "replit:6cdd42ed-6051-42d1-bea6-d73e9f98682d:read-p0-result",
+      "outcome": "success",
+      "authority_id": null
+    },
+    {
+      "id": "read-build-provenance",
+      "kind": "read",
+      "target": "replit-build:9f7e9359-5129-4dea-a595-25f6b1db9d1e",
+      "outcome": "success",
+      "authority_id": null,
+      "result": "build.logs=[]; no provenance/binding established"
+    }
+  ],
+  "permission_source": {
+    "actor": "user",
+    "quote": "ВІДНОВИ LIGHT BOT APP за погодженим паспортом v1.0. Виконай P0-аудит у режимі читання та підготуй наступний етап.",
+    "allowed": [
+      "read-only source/config metadata",
+      "read-only schema and aggregate inventory",
+      "read-only bot metadata",
+      "audit artifacts and next-stage preparation"
+    ],
+    "excluded": [
+      "product code changes",
+      "production export/import",
+      "deployment",
+      "webhook changes",
+      "polling",
+      "user messages"
+    ]
+  },
+  "source": {
+    "provider": "Replit Agent static inspection",
+    "repl_id": "6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+    "branch": "main",
+    "sha": "45d77e22e68816e5695aa4b7d2a62bfc57e8176d",
+    "porcelain": "empty; normal untracked mode; ignored files excluded",
+    "subset_manifest_count": 142,
+    "subset_manifest_sha256": "0fcef7b6d415ee61ba4f4c89074ca9b0f54e4759e7511a7c9b3677bd573db704",
+    "source_bytes_available_here": false,
+    "manifest_text_digest_verified_here": true
+  },
+  "deployment": {
+    "api_resource_id": "e214ddd5-f6c3-4834-a5d8-2fd29d64a979",
+    "domain": "power-ukraine.net",
+    "status": "success",
+    "latest_observed_build_id": "9f7e9359-5129-4dea-a595-25f6b1db9d1e",
+    "serving_revision": null,
+    "deployed_git_sha": null,
+    "live_db_binding": "unknown",
+    "latest_build_is_serving": "not proven"
+  },
+  "bot": {
+    "id": 8577497098,
+    "username": "PowerUkraineBot",
+    "proof": "remote read-only getMe",
+    "webhook_host": "power-ukraine.net",
+    "webhook_path": "/api/telegram-webhook",
+    "allowed_updates": [
+      "message",
+      "callback_query"
+    ],
+    "pending_updates": 0,
+    "token_equals_production_secret": "not verified",
+    "delivery": "not tested"
+  },
+  "legacy": {
+    "managed_prod_locations": {
+      "Vinnytsia": 7,
+      "Kyiv": 2,
+      "Odesa": 3,
+      "Kharkiv": 3
+    },
+    "operator_column": false,
+    "complete_historical_scope": "unverified",
+    "address_schedule_correctness": "unverified"
+  },
+  "blockers": [
+    {
+      "id": "B-01",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-08"
+      ],
+      "gap": "serving/source provenance",
+      "owner": "director + Replit deployment operator",
+      "next_probe": "Existing authoritative release metadata; build logs already empty; no same log retry without new evidence"
+    },
+    {
+      "id": "B-02",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-04"
+      ],
+      "gap": "live-process→managed production DB mapping",
+      "owner": "Replit deployment operator",
+      "next_probe": "Existing Publishing/Database resource mapping, values redacted; if absent prepare scoped runtime diagnostics"
+    },
+    {
+      "id": "B-03",
+      "requirement_ids": [
+        "LBA-01",
+        "LBA-05",
+        "LBA-08"
+      ],
+      "gap": "sanitized full source bytes and isolated reproducibility",
+      "owner": "director + trusted build environment",
+      "next_probe": "Prepare source-only copy including redacted telegram-bot.ts, new manifest; no product startup until side effects isolated"
+    },
+    {
+      "id": "B-04",
+      "requirement_ids": [
+        "LBA-10"
+      ],
+      "gap": "complete historical coverage and address/operator mapping",
+      "owner": "data lead",
+      "next_probe": "Allowed history/native/docs inventory; address/operator verification separately"
+    },
+    {
+      "id": "B-05",
+      "requirement_ids": [
+        "LBA-04",
+        "LBA-06"
+      ],
+      "gap": "classification of data integrity exceptions",
+      "owner": "data lead",
+      "next_probe": "Define permitted per-account review scope before classification; no automatic merge"
+    }
+  ],
+  "unresolved_effects": [],
+  "pause": false,
+  "p1": {
+    "status": "prepared_not_started",
+    "depends_on": [
+      "P0"
+    ],
+    "api_budget": 0,
+    "address_acceptance": "20 representative addresses/operator or exhaustive smaller narrow scope; >=48h observed parallel validation",
+    "notifications_enabled": false
+  },
+  "owner_acceptance": "pending",
+  "return_to": "LIGHT BOT APP [WORK]"
+}

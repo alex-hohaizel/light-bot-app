@@ -1,0 +1,93 @@
+{
+  "schema_version": "lba-checkpoint/1",
+  "project_id": "g-p-6aee37634784819189b085127be2946b",
+  "task_id": "LBA-CODEX-CONTINUATION-001",
+  "phase": "P0",
+  "status": "blocked",
+  "repository": {
+    "url": "https://github.com/alex-hohaizel/light-bot-app.git",
+    "branch": "agent/light-bot-app-recovery-v1",
+    "sha": "f19cf19c2dad177cc059157b9ded4443637ebefc"
+  },
+  "repository_revision_role": "confirmed installation baseline; receiving Codex records fetched handoff SHA at intake",
+  "next_step": "Receive this handoff in existing Codex, preserve 5 local reports, accept Work P0 evidence and exact read-only grant; obtain sanitized source bytes and resolve remaining P0 prerequisites; all design/language/graphics must remain planned.",
+  "authorities": [],
+  "actions": [
+    {
+      "id": "previous-work-p0-read",
+      "kind": "read",
+      "target": "replit:6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+      "outcome": "success",
+      "authority_id": null
+    },
+    {
+      "id": "recovered-work-read-result",
+      "kind": "reconcile",
+      "target": "replit:6cdd42ed-6051-42d1-bea6-d73e9f98682d:read-result",
+      "outcome": "success",
+      "authority_id": null
+    }
+  ],
+  "primary_execution_environment": "existing local Codex project",
+  "codex": {
+    "path": "/Users/admin/Projects/LIGHT BOT APP [CODEX]",
+    "installation": "completed_as_reported_by_owner",
+    "skill_version": "1.0.0",
+    "app_atelier_version": "2.3.0",
+    "chatbot_atelier_version": "2.3.0",
+    "product_startup": "not_performed",
+    "local_untracked_reports": 5,
+    "pyyaml": "missing_as_reported",
+    "historical_tests_29": "not_repeated_sources_absent"
+  },
+  "source": {
+    "replit_id": "6cdd42ed-6051-42d1-bea6-d73e9f98682d",
+    "url": "https://replit.com/@ghostssaus/Power-Outage-Tracker",
+    "branch": "main",
+    "sha": "45d77e22e68816e5695aa4b7d2a62bfc57e8176d",
+    "subset_manifest_sha256": "0fcef7b6d415ee61ba4f4c89074ca9b0f54e4759e7511a7c9b3677bd573db704",
+    "subset_manifest_count": 142,
+    "source_bytes_in_handoff": false,
+    "secret_bearing_bot_file_excluded": true
+  },
+  "bot": {
+    "id": 8577497098,
+    "username": "PowerUkraineBot",
+    "evidence": "Work Replit read-only getMe",
+    "production_token_binding": "not verified"
+  },
+  "deployment": {
+    "metadata_id": "e214ddd5-f6c3-4834-a5d8-2fd29d64a979",
+    "domain": "power-ukraine.net",
+    "latest_observed_build": "9f7e9359-5129-4dea-a595-25f6b1db9d1e",
+    "build_logs_count": 0,
+    "serving_revision": "unknown",
+    "live_process_db_binding": "unknown"
+  },
+  "product_implementation": "not_started_in_Work; no product run reported by Codex",
+  "requirements": {
+    "path": "docs/light-bot-app/continuation/requirements.json",
+    "count": 68,
+    "all_must": true,
+    "all_six_user_blocks_present": true,
+    "late_stage_must_remain_visible": true,
+    "original_verbatim_completeness": "open mandatory D-ORIGINAL-TEXT"
+  },
+  "requirements_due_decisions": [
+    "D-ORIGINAL-TEXT",
+    "D-VISUAL",
+    "D-LANGUAGE",
+    "D-NOTIFICATIONS",
+    "D-LEGACY-FEATURES",
+    "D-OPERATIONS"
+  ],
+  "unresolved_effects": [],
+  "pause": false,
+  "owner_acceptance_of_outputs": "not_recorded",
+  "permission_sources": [
+    "SRC-OWNER-P0",
+    "SRC-OWNER-COMPLETENESS"
+  ],
+  "scope_notes": "Documentation handoff and existing read-only P0 only. Future phase listing is not fabricated authorization for production writes/export/deploy/webhook/send.",
+  "return_policy": "Keep next work, decisions and receipts in this Codex project; no mandatory return to Work."
+}

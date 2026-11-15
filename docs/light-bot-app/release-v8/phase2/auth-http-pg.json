@@ -1,0 +1,75 @@
+{
+  "actor": "/root",
+  "actualPostgreSQL": true,
+  "actualHttp": true,
+  "actualPassport": true,
+  "syntheticOnly": true,
+  "target": {
+    "database": "lba_test_auth_http",
+    "port": 55437,
+    "listen": "127.0.0.1"
+  },
+  "source": [
+    {
+      "path": "app/server/production/auth-replay.ts",
+      "sha256": "2bec24f8d6f2aea1bb910d79956999680263757f1f9f7156d0186fc298b2fd0f"
+    },
+    {
+      "path": "app/server/production/telegram-auth-flow.ts",
+      "sha256": "17d0771f8aca1e81404beda8823576aefb343d4c21e0af47cf3bf4e056329f40"
+    },
+    {
+      "path": "app/server/production/telegram-auth-http.ts",
+      "sha256": "9bc006bce037cda2dbb41efeb5b3dfedb6a66c251615d46c92b9149aea9f72aa"
+    },
+    {
+      "path": "app/server/production/telegram-identity.ts",
+      "sha256": "ee5211f7099cd7c8c5a32882bccf85f4315bf49f318e913c212586cdfceec4b1"
+    },
+    {
+      "path": "app/server/telegram-init-data.ts",
+      "sha256": "693c6753f11277a5c8b4f23a41c3220d7629a822ac57ea46a2d1111ca8cca308"
+    }
+  ],
+  "tests": [
+    {
+      "name": "real Passport/PG session: Mini App resolves exact existing link, preserves preferences and rotates then binds cookie",
+      "status": "pass"
+    },
+    {
+      "name": "same cookie proof retry succeeds without new identity; another browser cannot reuse it",
+      "status": "pass"
+    },
+    {
+      "name": "widget and mobile routes share ledger: same authenticated browser exchange only; no alternate-route replay",
+      "status": "pass"
+    },
+    {
+      "name": "forged and expired payloads cause no identity/mobile writes",
+      "status": "pass"
+    },
+    {
+      "name": "new signed identity creates only UUID account/link; an unlinked legacy convention account is held, never overwritten",
+      "status": "pass"
+    },
+    {
+      "name": "concurrent HTTP proof reuse has one durable identity and one successful session",
+      "status": "pass"
+    },
+    {
+      "name": "failed durable proof binding destroys actual newly persisted Passport session and suppresses cookie",
+      "status": "pass"
+    },
+    {
+      "name": "actual PostgreSQL timestamptz Date rejects binding after proof expiry",
+      "status": "pass"
+    },
+    {
+      "name": "session-only mobile exchange rejects expired session and invented body sessionToken",
+      "status": "pass"
+    }
+  ],
+  "realTelegramRequests": 0,
+  "productionWrites": 0,
+  "scope": "Own fresh loopback HTTP/PG, real Passport/express-session/connect-pg-simple and synthetic signed proofs. Not device/live production identity evidence."
+}

@@ -1,0 +1,256 @@
+{
+  "dataset": {
+    "dataset_id": "9cc30442-b063-4893-80fb-f5c8c9f949e5",
+    "dataset_title": "Адресний реєстр",
+    "dataset_description": "Набір містить адресний реєстр міста Києва. Зокрема, відомості про присвоєні адреси, уповноважений орган, ухвалені рішення, статус та інше.",
+    "collection_basis": "Закон України «Про регулювання містобудівної діяльності», постанова Кабінету Міністрів України від 07.07. 2021 № 690 «Про затвердження Порядку присвоєння адрес об’єктам будівництва, об’єктам нерухомого майна»",
+    "language": "Українська",
+    "dataset_created": "2026-04-01T08:47:43",
+    "dataset_modified": "2026-11-05T15:17:21",
+    "data_period": "-",
+    "update_frequency": "Кожного півріччя",
+    "keywords": [
+      "адреса",
+      "вулиця",
+      "містобудування",
+      "район",
+      "реєстр"
+    ],
+    "dataset_url": "https://data.kyivcity.gov.ua/dataset/adresnyi-reiestr-aparat",
+    "structure_url": "https://data.kyivcity.gov.ua/dataset/adresnyi-reiestr-aparat/structure/download",
+    "organization_title": "Апарат виконавчого органу Київської міської ради (Київської міської державної адміністрації)",
+    "organization_edrpou": "37853361",
+    "organization_katottg": "UA80000000000093317",
+    "organization_email": "data@kyivcity.gov.ua",
+    "organization_phone": "+380442027454",
+    "responsible_person": "Відділ оприлюднення інформації",
+    "responsible_person_email": "data@kyivcity.gov.ua",
+    "creator_email": "olena.pastushenko@kyivcity.gov.ua",
+    "license": "Безкоштовно назавжди для особистого або комерційного використання відповідно до ліцензії Open Data Licence",
+    "resources_count": 2
+  },
+  "resources": [
+    {
+      "resource_id": "1d95e4d8-7405-4e7b-a9d8-6c242246db58",
+      "resource_name": "register.csv",
+      "resource_description": "Таблиця містить реєстраційний номер адреси, ідентифікаційні дані уповноваженого органу, кадастровий номер земельної ділянки, реквізити рішення про присвоєння адреси (назва, номер, дата, посилання), реквізити присвоєних адрес (країна, регіон, район, населений пункт, назва об’єкта, вулиця або аналог, номер об’єкта, номер корпусу), статус та підставу для його зміни (за наявності). Одним записом в таблиці є одна адреса. ",
+      "format": "CSV",
+      "resource_code": "register",
+      "resource_created": "2026-04-01T09:26:25",
+      "resource_modified": "2026-11-05T15:17:21",
+      "data_period": "? — 2026-10-12",
+      "source": "-",
+      "data_owners": [
+        "-"
+      ],
+      "administrator_org": "Департамент містобудування та архітектури",
+      "resource_current_url": "https://data.kyivcity.gov.ua/dataset/9cc30442-b063-4893-80fb-f5c8c9f949e5/resource/1d95e4d8-7405-4e7b-a9d8-6c242246db58/download/register.csv",
+      "resource_versions": [],
+      "api_available": false,
+      "schema": [
+        {
+          "name": "uid2",
+          "title": "Ідентифікатор",
+          "description": "Реєстраційний номер або будь-який інший ідентифікатор адреси. Наприклад: 2019-345/п",
+          "datatype": "string",
+          "required": true
+        },
+        {
+          "name": "authorityName",
+          "title": "Назва органу",
+          "description": "Назва уповноваженого органу. Наприклад: Управління державного архітектурно-будівельного контролю Дніпровської міської ради",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "authoritytId",
+          "title": "Ідентифікатор органу",
+          "description": "Код ЄДРПОУ уповноваженого органу. Наприклад: 01234567",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "applicantName",
+          "title": "Ім'я або назва заявника",
+          "description": "На час воєнного стану дані не оприлюднюються.У колонці буде зазначено null. Прізвище, ім’я, по батькові або назва юридичної особи заявника. Наприклад: Супрун Олександр Іванович",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "applicantId",
+          "title": "Ідентифікатор заявника",
+          "description": "На час воєнного стану дані не оприлюднюються.У колонці буде зазначено null. Код ЄДРПОУ заявника. Наприклад: 01234567. Дані реєстраційного номера облікової картки платника податків фізичної особи -підприємця знеособлюються",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "decisionTitle",
+          "title": "Назва рішення",
+          "description": "Повна назва рішення про присвоєння адреси. Наприклад: Про присвоєння адрес",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "decisionNumber",
+          "title": "Номер рішення",
+          "description": "Номер рішення про присвоєння адреси (без знака №). Наприклад: 410",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "decisionIssuedDate",
+          "title": "Дата рішення",
+          "description": "Дата рішення у форматі ISO 8601 (рррр-мм-дд). Наприклад: 2014-05-30",
+          "datatype": "date",
+          "required": false
+        },
+        {
+          "name": "text",
+          "title": "Текст",
+          "description": "Вказується назва файлу із текстовим вмістом",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "decisionUrl",
+          "title": "Посилання",
+          "description": "Посилання на рішення, оприлюднене в мережі Інтернет. Посилання має починатися з http:// або https:/.",
+          "datatype": "anyURL",
+          "required": false
+        },
+        {
+          "name": "cadastralNumber",
+          "title": "Кадастровий номер",
+          "description": "На час воєнного стану дані не оприлюднюються. У колонці буде зазначено null. Кадастровий номер земельної ділянки, на якій розміщується об’єкт будівництва. Наприклад: 01234567890:01:012:0123",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "CATUTTC",
+          "title": "Код КАТОТТГ",
+          "description": "Код КАТОТТГ адміністративної одиниці. Наприклад: UA32140050010021659",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressPostCode",
+          "title": "Поштовий індекс",
+          "description": "Поштовий індекс адреси об'єкта будівництва. Наприклад: 01234. У разі відсутності даних – null.",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressAdminUnitL1",
+          "title": "Країна",
+          "description": "Назва держави. У колонці має бути зазначено Україна",
+          "datatype": "string",
+          "required": true
+        },
+        {
+          "name": "addressAdminUnitL2",
+          "title": "Регіон",
+          "description": "Назва регіону (назва адміністративно-територіальної одиниці найвищого рівня). Наприклад: місто Київ",
+          "datatype": "string",
+          "required": true
+        },
+        {
+          "name": "addressAdminUnitL3",
+          "title": "Район",
+          "description": "Назва району в області. Для Києва значення – null.",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressAdminUnitL4",
+          "title": "Територіальна громада",
+          "description": "Назва територіальної громади. Наприклад: Згурівська. Для Києва значення - null",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "district",
+          "title": "Район у місті Києві",
+          "description": "Назва району в місті. Наприклад: Дарницький район. У разі відсутності вказати: null",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressPostName",
+          "title": "Населений пункт",
+          "description": "Назва населеного пункту або назва селищної чи сільської ради, де розміщене насадження. У колонці потрібно зазначати лише назву (без слова «місто», «селищна рада» та їх скорочень «м.» та «с. р.»). Наприклад: Балта",
+          "datatype": "string",
+          "required": true
+        },
+        {
+          "name": "addressObjectName",
+          "title": "Назва об’єкта",
+          "description": "На час воєнного стану дані не оприлюднюються. У колонці буде зазначено null. Назва гідрографічного, соціально-економічного, природно-заповідного або іншого подібного об’єкта (за наявності). Наприклад: урочище Вільшане. У разі відсутності вказати: null",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressThoroughfareType",
+          "title": "Тип адреси",
+          "description": "Тип: вулиця, площа, майдан, шосе, проспект, бульвар, алея, провулок, узвіз тощо.",
+          "datatype": "string",
+          "required": true
+        },
+        {
+          "name": "addressThoroughfare",
+          "title": "Вулиця або аналог",
+          "description": "Назва площі, майдану, шосе, проспекту, бульвару, алеї, провулку, узвозу тощо. Наприклад: вул. Харківська",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressLocatorDesignator",
+          "title": "Номер об’єкта",
+          "description": "Номер об’єкта (групи будівель і споруд підприємства (як єдиного майнового комплексу), будівлі, споруди). Номер може включати числа та букви. Наприклад: 15-А",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "addressLocatorBuilding",
+          "title": "Номер корпусу",
+          "description": "Номер корпусу зазначається числом для об’єктів, які складаються з декількох корпусів. Наприклад: 3. У разі відсутності вказати: null",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "statusType",
+          "title": "Статус",
+          "description": "Статус адреси: Чинна, Чинна зі змінами, Скасована, Чинність відновлено. Наприклад: Чинна",
+          "datatype": "string",
+          "required": false
+        },
+        {
+          "name": "statusDescription",
+          "title": "Підстава зміни статусу",
+          "description": "Інформація про підставу для зміни статусу адреси. Наприклад: наказ Департаменту містобудування та архітектури Дніпровської міської ради від 12 березня 2019 року № 234. Якщо зміни відсутні, вказати: null",
+          "datatype": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "resource_id": "dfebf9f2-7548-4f21-b8fe-52fe01b3c2c5",
+      "resource_name": "register_API",
+      "resource_description": "Кінцева точка API (посилання) для отримання даних про реєстраційний номер адреси, кадастровий номер земельної ділянки, реквізити присвоєних адрес (країна, регіон, район, населений пункт, назва об’єкта, вулиця або аналог, номер об’єкта, номер корпусу).",
+      "format": "JSON",
+      "resource_code": "OTHER",
+      "resource_created": "2026-04-09T06:33:18",
+      "resource_modified": "2026-04-09T06:33:20",
+      "data_period": "-",
+      "source": "ІАС «Майно»",
+      "data_owners": [
+        "-"
+      ],
+      "administrator_org": "Департамент містобудування та архітектури",
+      "resource_current_url": "https://gisserver-stage.kyivcity.gov.ua/mayno/rest/services/KYIV_API/regaddress/FeatureServer/0/query?where=district=%27Святошинський%27&outFields=*&returnGeometry=true&outSR=4326&f=pjson",
+      "resource_versions": [],
+      "api_available": true,
+      "schema": "-"
+    }
+  ],
+  "generated_at": "07.11.2026 15:01"
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "lba-public-address-probe-inputs/1",
+  "actor": "/root/public_address_probe",
+  "recorded_at": "2026-11-07T13:59:39.726912+00:00",
+  "requirements": [
+    "DATA-02",
+    "DATA-05",
+    "DATA-07",
+    "DATA-08",
+    "DATA-09",
+    "ADDR-01",
+    "ADDR-03",
+    "ADDR-04",
+    "ADDR-05",
+    "ADDR-06"
+  ],
+  "scope": "At most20 public unauthenticated boundedGET, one persecond, noprotectedPOST/challengebypass/productionwrites; exactKyivbuildingcapabilityonly",
+  "inputs": [
+    {
+      "path": ".agents/skills/light-bot-app-recovery/SKILL.md",
+      "sha256": "cd4770ecaa9ec06b236f59c0a4cc45a4b7e4a993adc03abf64912d03d0fbc3b0"
+    },
+    {
+      "path": "app/server/scraper-kyiv.ts",
+      "sha256": "9a643c803f40689ec5711bc6737abc7e88c30dd06a731140dd5bc9740be6720f"
+    },
+    {
+      "path": "docs/light-bot-app/p1/source-registry.json",
+      "sha256": "8622191e7cf29df84a21369fe11e79454622fd4284114fb58b4664ac177d7e6d"
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-public-street-search.json",
+      "sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b"
+    },
+    {
+      "path": "docs/light-bot-app/p1/fixtures/yasno-robots.txt",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+    },
+    {
+      "path": "docs/light-bot-app/p1/golden-address-plan.json",
+      "sha256": "ff2d89584866e21b65a26de46d8471b70260a0ec41f37da6a9253dd3663939dd"
+    }
+  ]
+}

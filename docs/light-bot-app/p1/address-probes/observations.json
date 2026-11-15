@@ -1,0 +1,470 @@
+{
+  "actor": "/root/public_address_probe",
+  "external_web_open_attempts": 1,
+  "max_combined_attempts": 20,
+  "requests": [
+    {
+      "name": "robots-policy",
+      "url": "https://app.yasno.ua/robots.txt",
+      "observed_at_utc": "2026-11-07T14:00:48.209164+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "text/html",
+        "Cache-Control": "no-cache, no-store"
+      },
+      "response_sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "bytes_read": 212,
+      "oversized": false,
+      "challenge": true,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0
+    },
+    {
+      "name": "kyiv-revutskogo-street",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%A0%D0%B5%D0%B2%D1%83%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE",
+      "observed_at_utc": "2026-11-07T14:01:02.762811+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:01:02 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "c27356397abeed726c361b612352da8f2e1934ede5630b32c14adf7b4fc83d1b",
+      "bytes_read": 51,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-revutskogo-street.json"
+    },
+    {
+      "name": "kyiv-revutskogo-houses-12",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=12",
+      "observed_at_utc": "2026-11-07T14:01:13.699045+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:01:13 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "9c1a3a573303657d3fa5c229a93f9a97e1e8b42653756fbace4201244d77740d",
+      "bytes_read": 57,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-revutskogo-houses-12.json"
+    },
+    {
+      "name": "kyiv-revutskogo-12a-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30823",
+      "observed_at_utc": "2026-11-07T14:01:29.230701+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:01:29 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-12a-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-12slash1-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30822",
+      "observed_at_utc": "2026-11-07T14:02:49.803584+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:02:49 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-12slash1-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-all-houses",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=736&query=",
+      "observed_at_utc": "2026-11-07T14:02:53.674106+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:02:53 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "08317bbb2f57161956c1319c55303c0eb5c04ffffe215c72430a751c960f5b0b",
+      "bytes_read": 527,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-revutskogo-all-houses.json"
+    },
+    {
+      "name": "kyiv-old-peremohy-street",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%B3%D0%B8",
+      "observed_at_utc": "2026-11-07T14:03:17.495510+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:03:17 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "c6a14b3236441fd753418d9d2e08d9923307ae925af6439ea916f628d8b8504f",
+      "bytes_read": 94,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-old-peremohy-street.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-street",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/streets?regionId=25&dsoId=902&query=%D0%91%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B5%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9",
+      "observed_at_utc": "2026-11-07T14:03:20.104053+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:03:20 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "ea0b808966a8dc89fb30951c3974ba946daf1158f1d555ef9f68bd1ac7f79323",
+      "bytes_read": 121,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-beresteiskyi-street.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-avenue-houses-12",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/houses?regionId=25&dsoId=902&streetId=1211&query=12",
+      "observed_at_utc": "2026-11-07T14:03:36.981240+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:03:36 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "d998f6907161d5b4cf405ba0ef8f089125ad41d588f1e6be449e188feaf025b7",
+      "bytes_read": 305,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "schema": "public id/value array",
+      "body_file": "kyiv-beresteiskyi-avenue-houses-12.json"
+    },
+    {
+      "name": "kyiv-revutskogo-house1-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30816",
+      "observed_at_utc": "2026-11-07T14:03:39.770782+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:03:39 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-house1-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-2v-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30856",
+      "observed_at_utc": "2026-11-07T14:04:18.432489+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:18 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "5489ef03f406128dfa2ee4ddf42c2da49a87a35ea53849d1d6534d55b692643c",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-2v-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-2h-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30857",
+      "observed_at_utc": "2026-11-07T14:04:21.613783+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:21 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-2h-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-4a-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30887",
+      "observed_at_utc": "2026-11-07T14:04:24.770151+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:24 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "ba01c3873bb218c91e53860903f8c690848786a77b7224a177bf753a0155026a",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-4a-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-5slash7-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30889",
+      "observed_at_utc": "2026-11-07T14:04:28.039795+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:28 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "74e8a680fbfec656db0ca4f7e31ecf4db0c92ddceceb3d1208eabf0842422716",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-5slash7-group.json"
+    },
+    {
+      "name": "kyiv-revutskogo-6slash8-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=736&houseId=30901",
+      "observed_at_utc": "2026-11-07T14:04:31.572453+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:31 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "1c9a86fb269b561141d926f6ca64037a73629dc9041614f9457a0a568c57eef7",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-revutskogo-6slash8-group.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-12-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48783",
+      "observed_at_utc": "2026-11-07T14:04:36.196234+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:36 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "4c2678438defbb8433a19af41632bbc61fe38d6833832094eeb3835d4b3a1962",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-beresteiskyi-12-group.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-121a-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48785",
+      "observed_at_utc": "2026-11-07T14:04:39.590962+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:39 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa",
+      "bytes_read": 24,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-beresteiskyi-121a-group.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-121b-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48784",
+      "observed_at_utc": "2026-11-07T14:04:42.710533+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:42 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "a6c7b6aa67d8a37be42016789904ff6c0f408eaa78ca36642f3168f9aae386aa",
+      "bytes_read": 24,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-beresteiskyi-121b-group.json"
+    },
+    {
+      "name": "kyiv-beresteiskyi-128slash2-group",
+      "url": "https://app.yasno.ua/api/blackout-service/public/shutdowns/addresses/v2/group?regionId=25&dsoId=902&streetId=1211&houseId=48792",
+      "observed_at_utc": "2026-11-07T14:04:46.279501+00:00",
+      "http_status": 200,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 07 Nov 2026 14:04:46 GMT",
+        "Cache-Control": "private,max-age=120"
+      },
+      "response_sha256": "82ff088f97f7cf2eacb46f9dc8de57738c617426c9d8e05a3a987223790147e8",
+      "bytes_read": 25,
+      "oversized": false,
+      "challenge": false,
+      "error": null,
+      "authentication_sent": false,
+      "cookies_sent": false,
+      "method": "GET",
+      "access_fee": 0,
+      "object_keys": [
+        "group",
+        "subgroup"
+      ],
+      "schema": "public group/subgroup object",
+      "body_file": "kyiv-beresteiskyi-128slash2-group.json"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xml:base="https://oblenergo.kharkiv.ua/uk">
+  <channel>
+    <title>Акціонерне товариство "Харківобленерго"</title>
+    <link>https://oblenergo.kharkiv.ua/uk</link>
+    <description/>
+    <language>uk</language>
+    
+    <item>
+  <title>АТ “Харківобленерго”  оголошує конкурс дитячих малюнків до Дня Незалежності України</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13882628</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;АТ “Харківобленерго”  оголошує конкурс дитячих малюнків до Дня Незалежності України&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2025-06-12T12:00:00Z" class="datetime"&gt;12.06.2025 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;чт, 06/12/2025 - 09:20&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/Ukraine_konkurs.png?itok=F2ikq812" width="220" height="156" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;&lt;strong&gt;“Енергія світла: майбутнє України у моїх кольорах” – таку тему пропонують енергетики дітям для реалізації свого творчого задуму.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;“Під час війни не можна забувати, що вона не назавжди. Мрії про мирне майбутнє заспокоюють, дають сили та надію. І на наш погляд, саме діти з їхніми чистими, світлими і часто нестандартними думками зможуть якнайкраще втілити ці мрії на папері. Дуже хочеться, щоб у цій країні дитячих мрій знайшлося місце й енергетикам – людям, які разом з усіма творять історію Української незалежності”, – зазначили у товаристві.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Запрошуємо до участі у конкурсі дітей, які проживають у Харкові та Харківській області, віком від 6 до 17 років. Роботи приймаються до 1 серпня 2025 року включно.&lt;/p&gt;
+&lt;p&gt;Малюнки оцінюватимуться у трьох вікових категоріях: від 6 до 10 років, від 11 до 14 років та від 15 до 17 років.&lt;/p&gt;
+&lt;p&gt;Вимоги до конкурсної роботи: &lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;малюнок може бути намальований учасником у будь-якій техніці (масло, акварель, туш, кольорові олівці тощо);&lt;/li&gt;
+&lt;li&gt;робота має бути належним чином упакована для транспортування (поштою чи іншим способом), адже за підсумками конкурсу планується проведення виставки;&lt;/li&gt;
+&lt;li&gt;колективні малюнки не приймаються;&lt;/li&gt;
+&lt;li&gt;заборонено подавати раніше оприлюднені малюнки, які брали участь у будь-якому іншому конкурсі, а також такі, що порушують права третіх осіб;&lt;/li&gt;
+&lt;li&gt;малюнки учасників мають відповідати темі конкурсу.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;До малюнка на окремому аркуші потрібно додати пояснювальну записку з наступними даними: прізвище, ім'я та вік автора роботи, назва малюнка, місце проживання, контактний телефон та, за бажанням, коментар від автора.&lt;/p&gt;
+&lt;p&gt;Конкурсні роботи оцінюватимуться журі за такими критеріями: змістовність, оригінальність ідеї, творчий підхід, композиційне і кольорове рішення.&lt;/p&gt;
+&lt;p&gt;Переможці будуть визначені напередодні Дня Незалежності України. &lt;/p&gt;
+&lt;p&gt;Автори найкращих малюнків отримають дипломи та подарунки!&lt;/p&gt;
+&lt;p&gt;Звертаємо увагу учасників, що надані на конкурс роботи поверненню не підлягають!&lt;/p&gt;
+&lt;p&gt;Надсилаючи конкурсну роботу дитини, один із батьків (законний представник), який діє в інтересах дитини, підтверджує повну згоду з умовами конкурсу, а також дає згоду на публікацію малюнка (конкурсної роботи) без будь-яких претензій щодо авторського права у подальшому.&lt;/p&gt;
+&lt;p&gt;Способи надання малюнків до АТ “Харківобленерго”: особисто або поштою (з поміткою “Дитячий конкурс”).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Наша адреса:&lt;/strong&gt; вул. Георгія Тарасенка, буд. 149, кім. 122, м. Харків, 61037.&lt;/p&gt;
+&lt;p&gt;За детальною інформацією звертатися за телефонами: (057) 342-30-71, 342-31-07.&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Thu, 12 Jun 2025 06:20:12 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13882628 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У Харківській області 7 листопада діятимуть графіки погодинних відключень</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883458</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У Харківській області 7 листопада діятимуть графіки погодинних відключень&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-06T12:00:00Z" class="datetime"&gt;06.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;пт, 11/06/2026 - 20:00&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/zytr6e---c1200x630x50px50p-up--995e8190884c73942a3c939758d22de0_1.jpg?itok=ow3W19Nt" width="220" height="116" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;За вказівкою НЕК "Укренерго" у зв'язку зі складною ситуацією в Об’єднаній енергосистемі, яка склалася через ворожі обстріли, у суботу, 7 листопада, з 00:00 до 24:00 у Харківській області будуть діяти графіки погодинних відключень (ГПВ). &lt;/p&gt;
+&lt;p&gt;Години відсутності електропостачання по чергам/підчергам з урахуванням часу на перемикання (орієнтовно):&lt;/p&gt;
+&lt;p&gt;1.1 03:30-06:00; 07:00-10:30; 14:00-21:00&lt;br /&gt;1.2 07:00-10:30; 14:00-21:00&lt;br /&gt;2.1 06:00-10:30; 14:00-21:00&lt;br /&gt;2.2 06:00-10:30; 14:00-21:00&lt;br /&gt;3.1 00:00-03:30; 07:00-14:00; 17:30-24:00&lt;br /&gt;3.2 00:00-03:30; 07:00-14:00; 17:30-24:00&lt;br /&gt;4.1 00:00-03:30; 17:30-24:00&lt;br /&gt;4.2 00:00-03:30; 17:30-24:00&lt;br /&gt;5.1 00:00-07:00; 10:30-17:30; 21:00-22:00&lt;br /&gt;5.2 03:30-07:00; 10:30-17:30; 21:00-22:00&lt;br /&gt;6.1 03:30-07:00; 10:30-17:30; 21:00-24:00&lt;br /&gt;6.2 03:30-07:00; 10:30-17:30; 21:00-24:00&lt;/p&gt;
+&lt;p&gt;Перелік адрес за чергами - &lt;a href="https://oblenergo.kharkiv.ua/sites/default/files/pdf/%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%B8%20%D1%82%D0%B0%20%D1%87%D0%B5%D1%80%D0%B3%D0%B8%2026-27.pdf"&gt;тут&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ДЛЯ ПРОМИСЛОВОСТІ ТА БІЗНЕСУ з 00:00 до 24:00 діятимуть графіки обмеження потужності (ГОП).&lt;/p&gt;
+&lt;p&gt;Ситуація в енергосистемі постійно змінюється, тож слідкуйте за оновленнями на офіційних ресурсах "Харківобленерго".&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Fri, 06 Nov 2026 18:00:03 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883458 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У Харкові триває оновлення електромереж для покращення якості електропостачання</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883457</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У Харкові триває оновлення електромереж для покращення якості електропостачання&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-06T12:00:00Z" class="datetime"&gt;06.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;пт, 11/06/2026 - 13:32&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/WhatsApp%20Image%202026-11-06%20at%2011.52.011.jpeg?itok=71yfiz-j" width="220" height="147" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;У приватному секторі Немишлянського району проводиться реконструкція двох повітряних ліній електропередачі загальною протяжністю 7,5 кілометрів, які забезпечують електроенергією понад 500 побутових споживачів міста. &lt;/p&gt;
+&lt;p&gt;Роботи виконуються у рамках реалізації інвестиційної програми АТ "Харківобленерго" на 2026 рік.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/yFKRVSQ5"&gt;&lt;img src="https://i.ibb.co/pjNPnyLZ/Whats-App-Image-2026-11-06-at-11-52-01.jpg" alt="Whats-App-Image-2026-11-06-at-11-52-01" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Реконструкція включає встановлення двох розвантажувальних трансформаторних підстанцій (КТП), нових електроопор та заміну старого проводу на сучасний самонесучий ізольований провід (СІП) із більшою пропускною здатністю. Ці заходи дозволять рівномірніше розподілити навантаження, зменшити технологічні втрати та покращити параметри напруги в мережі.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/jkC26rX6"&gt;&lt;img src="https://i.ibb.co/yFz1fQjf/Whats-App-Image-2026-11-06-at-11-52-013.jpg" alt="Whats-App-Image-2026-11-06-at-11-52-013" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;"Ці лінії були побудовані багато років тому і на той час відповідали потребам споживачів. Але сьогодні ситуація змінилася: у кожній оселі значно зросла кількість електроприладів, відповідно збільшилося і навантаження на мережі. Тепер мешканці цього приватного сектору отримають більш надійне та якісне електропостачання", – зазначив начальник Східного району електричних мереж Максим Різниченко.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/yFSDC0dZ"&gt;&lt;img src="https://i.ibb.co/Mk6bHnZt/Whats-App-Image-2026-11-06-at-11-52-051.jpg" alt="Whats-App-Image-2026-11-06-at-11-52-051" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Нагадаємо, реалізація інвестиційної програми АТ "Харківобленерго" спрямована на оновлення електричних мереж, підвищення їхньої стійкості та створення надійної інфраструктури для споживачів Харкова та Харківської області.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/7dkL42Jg"&gt;&lt;img src="https://i.ibb.co/67XLBgRv/Whats-App-Image-2026-11-06-at-11-52-012.jpg" alt="Whats-App-Image-2026-11-06-at-11-52-012" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/Z6T4b5qd"&gt;&lt;img src="https://i.ibb.co/1f2y41FZ/Whats-App-Image-2026-11-06-at-11-52-401.jpg" alt="Whats-App-Image-2026-11-06-at-11-52-401" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Fri, 06 Nov 2026 11:32:08 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883457 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>Ремонтні роботи: у суботу частково буде знеструмлено Київський район Харкова</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883456</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;Ремонтні роботи: у суботу частково буде знеструмлено Київський район Харкова&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-06T12:00:00Z" class="datetime"&gt;06.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;пт, 11/06/2026 - 11:31&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/161963872_1110417202717420_8472099568215573118_n_0.jpg?itok=o4DI4aTY" width="220" height="147" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;У зв'язку з необхідністю виконання ремонтних робіт у суботу, 7 листопада, з 09:00 до 18:00 буде тимчасово припинено електропостачання частини споживачів Київського району м. Харкова за наступними адресами:&lt;/p&gt;
+&lt;p&gt;вул. Абрикосова&lt;br /&gt;вул. Академіка Вальтера&lt;br /&gt;просп. Академіка Курчатова&lt;br /&gt;вул. Академіка Проскури&lt;br /&gt;вул. Академіка Синельникова&lt;br /&gt;вул. Апостольська&lt;br /&gt;вул. Академіка Волкова&lt;br /&gt;вул. Астрономічна&lt;br /&gt;в’їзд Астрономічний&lt;br /&gt;вул. Архипа Люльки&lt;br /&gt;вул. Атлетична&lt;br /&gt;вул. Басейна&lt;br /&gt;пров. 1-й Басейний&lt;br /&gt;пров. 2-й Басейний&lt;br /&gt;вул. Білецького&lt;br /&gt;пров. Бузковий&lt;br /&gt;бульв. Миру&lt;br /&gt;вул. Вадима Манька&lt;br /&gt;вул. Васильєва&lt;br /&gt;вул. Весняна&lt;br /&gt;пров. Весняний&lt;br /&gt;вул. Вінниченка&lt;br /&gt;пров. Вільного Козацтва&lt;br /&gt;вул. Віражна&lt;br /&gt;пров. Володі Дубініна&lt;br /&gt;вул. Гаркуші&lt;br /&gt;вул. Гацева&lt;br /&gt;вул. Генерала Удовіченка&lt;br /&gt;Георгіївський майдан&lt;br /&gt;пров. 1-й Георгіївський&lt;br /&gt;пров. Горлівський&lt;br /&gt;вул. Горна&lt;br /&gt;в’їзд Горний&lt;br /&gt;вул. Гризодубової&lt;br /&gt;вул. Грінченка&lt;br /&gt;Данилівський спуск&lt;br /&gt;проїзд 1-й Данилівський&lt;br /&gt;проїзд 2-й Данилівський&lt;br /&gt;вул. Дружна&lt;br /&gt;пров. 1-й Дружний&lt;br /&gt;пров. 2-й Дружний&lt;br /&gt;вул. Енергодарська&lt;br /&gt;проїзд Євпаторійський&lt;br /&gt;просп. Жуковського&lt;br /&gt;вул. Запорожців&lt;br /&gt;вул. Зоряна&lt;br /&gt;пров. Зоряний&lt;br /&gt;вул. Івана Піддубного&lt;br /&gt;пров. Івченка&lt;br /&gt;пров. Квітковий&lt;br /&gt;вул. Квітуча&lt;br /&gt;пров. Кишинівський&lt;br /&gt;вул. Кільцева&lt;br /&gt;пров. 1-й Кільцевий&lt;br /&gt;пров. 2-й Кільцевий&lt;br /&gt;пров. Климовського&lt;br /&gt;в’їзд 1-й Климовського&lt;br /&gt;вул. Копиленка&lt;br /&gt;пров. Карнакова&lt;br /&gt;пров. 1-й Котляри&lt;br /&gt;пров. 2-й Котляри&lt;br /&gt;пров. Краківський&lt;br /&gt;вул. Кролевецька&lt;br /&gt;вул. Куліша&lt;br /&gt;вул. Крючонкіна&lt;br /&gt;пров. Крючонкіна&lt;br /&gt;вул. Ландау&lt;br /&gt;пров. Ландау&lt;br /&gt;вул. Лаптенківська&lt;br /&gt;вул. Лейпунського&lt;br /&gt;пров. Лейпунського&lt;br /&gt;вул. Лісопарківська&lt;br /&gt;пров. 1-й Лісопарківський&lt;br /&gt;пров. 2-й Лісопарківський&lt;br /&gt;вул. Липцівська&lt;br /&gt;вул. Ловцова&lt;br /&gt;вул. Лубенська&lt;br /&gt;вул. Лугова&lt;br /&gt;пров. Луговий&lt;br /&gt;вул. Максима Рильського&lt;br /&gt;вул. Мищенківська&lt;br /&gt;вул. Млотковського&lt;br /&gt;вул. Москаленка&lt;br /&gt;вул. Народовладдя&lt;br /&gt;пров. Івана Неходи&lt;br /&gt;пров. Олександра Бабкіна&lt;br /&gt;вул. Олешківська&lt;br /&gt;вул. Осикова&lt;br /&gt;вул. Острівна&lt;br /&gt;вул. Острогозька&lt;br /&gt;вул. Письменницька&lt;br /&gt;вул. Підйомна&lt;br /&gt;пров. Піщаний&lt;br /&gt;в’їзд 1-й Піщаний&lt;br /&gt;в’їзд 2-й Піщаний&lt;br /&gt;вул. Поздовжня&lt;br /&gt;вул. Померки&lt;br /&gt;вул. Порічкова&lt;br /&gt;в’їзд Порічковий&lt;br /&gt;вул. Правіка&lt;br /&gt;пров. Привітний&lt;br /&gt;вул. Прип’ятська&lt;br /&gt;вул. Проліскова&lt;br /&gt;пров. Променистий&lt;br /&gt;пров. Прохолодний&lt;br /&gt;вул. Прудна&lt;br /&gt;в’їзд Прудний&lt;br /&gt;пров. 1-й Прудний&lt;br /&gt;пров. 2-й Прудний&lt;br /&gt;вул. Рибальська&lt;br /&gt;вул. Річна&lt;br /&gt;вул. Яни Червоної&lt;br /&gt;вул. Рудика&lt;br /&gt;бульв. Садовий&lt;br /&gt;пров. Садовий&lt;br /&gt;вул. Самокіша&lt;br /&gt;вул. Серебрякової&lt;br /&gt;вул. Середівська&lt;br /&gt;в’їзд Сільський&lt;br /&gt;пров. Сільський&lt;br /&gt;вул. Січових Стрільців&lt;br /&gt;в’їзд Спартанський&lt;br /&gt;вул. Стара Озерянка&lt;br /&gt;в’їзд Старовський&lt;br /&gt;вул. Старошишківська&lt;br /&gt;в’їзд Старошишківський&lt;br /&gt;в’їзд Творчий&lt;br /&gt;вул. Тренерська&lt;br /&gt;вул. Трудова&lt;br /&gt;пров. Трудовий&lt;br /&gt;пров. Углічевський&lt;br /&gt;вул. Фестивальна&lt;br /&gt;пров. Фестивальний&lt;br /&gt;вул. Фізкультурна&lt;br /&gt;в’їзд Фізкультурний&lt;br /&gt;пров. Фізкультурний&lt;br /&gt;Харківське шосе&lt;br /&gt;вул. Хвильового&lt;br /&gt;пров. Хазарський&lt;br /&gt;пров. Центральний&lt;br /&gt;вул. Цетинська&lt;br /&gt;пров. Чехова&lt;br /&gt;пров. 1-й Чуйківський&lt;br /&gt;вул. Шишківська&lt;br /&gt;вул. Юрія Кнорозова&lt;br /&gt;вул. Ялинова&lt;/p&gt;
+&lt;p&gt;Дякуємо за розуміння!&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Fri, 06 Nov 2026 09:31:55 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883456 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>"Чому у сусіда світло є, а у мене немає?" – відповідаємо на актуальне питання</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883455</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;"Чому у сусіда світло є, а у мене немає?" – відповідаємо на актуальне питання&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-06T12:00:00Z" class="datetime"&gt;06.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;пт, 11/06/2026 - 10:46&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%B0%D1%81%D1%82%20%D1%81%D0%B2%D1%96%D1%82%D0%BB%D0%B0%20%D1%83%20%D1%81%D1%83%D1%82%D1%96%D0%BD%D0%BA%D0%BE%D0%B2%D0%BE%D0%BC%D1%83%20%D0%BC%D1%96%D1%81%D1%82%D1%96.png?itok=AeRnpkKV" width="220" height="137" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;Електромережа Харківської області працює в екстремальних умовах. Постійні обстріли з боку російських військ у різних частинах країни призводять до нових пошкоджень енергомережі, через що енергетики вимушені застосовувати мережеві обмеження та відключати певні лінії, щоб провести відповідні аварійно-відновлювальні роботи.&lt;/p&gt;
+&lt;p&gt;Якщо у вас немає світла, а у вашого сусіда є, це не означає, що про вас "забули". Це означає, що ви з сусідом підключені до різних ліній, і відключення можуть відбуватися у різний час. Окрім того, відновлене після бойових дій енергетичне обладнання може не витримувати постійні перемикання. Як результат – ще масштабніші аварії та більш тривалі знеструмлення. Тому, на жаль, є випадки, коли відсутня технічна можливість вимикати частину споживачів.&lt;/p&gt;
+&lt;p&gt;Щодо дотримання графіків відключення електроенергії. На жаль, щоденні пошкодження електричних мереж внаслідок бойових дій та додаткові обмеження на постачання електроенергії до Харківського регіону, які застосовує НЕК "Укренерго", змушують здійснювати відключення споживачів Харкова та області в обсягах, що перевищують прогнозовані погодинні графіки.&lt;/p&gt;
+&lt;p&gt;Ми, енергетики, такі ж харків'яни, як і ви. І так само з нашими родинами годинами чекаємо на світло.&lt;/p&gt;
+&lt;p&gt;Просимо вас з повагою та розумінням ставитися до праці енергетиків та не сумніватися: про вас не забули, і прямо зараз іде кропітка робота тисяч людей щодо заживлення кожного домоволодіння. Вірте нам, і ми вас не підведемо!&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Fri, 06 Nov 2026 08:46:14 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883455 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У Харківській області 6 листопада діятимуть графіки погодинних відключень</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883454</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У Харківській області 6 листопада діятимуть графіки погодинних відключень&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-05T12:00:00Z" class="datetime"&gt;05.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;чт, 11/05/2026 - 20:27&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/%D0%98%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20WhatsApp%202025-06-30%20%D0%B2%2010.49.41_95d1f7f3_0.jpg?itok=Iperv9de" width="220" height="145" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;За вказівкою НЕК "Укренерго" у зв'язку зі складною ситуацією в Об’єднаній енергосистемі, яка склалася через ворожі обстріли, у п'ятницю, 6 листопада, з 00:00 до 24:00 у Харківській області будуть діяти графіки погодинних відключень (ГПВ). &lt;/p&gt;
+&lt;p&gt;Години відсутності електропостачання по чергам/підчергам з урахуванням часу на перемикання (орієнтовно):&lt;/p&gt;
+&lt;p&gt;1.1 00:00-03:00; 08:00-13:30; 17:00-24:00&lt;br /&gt;1.2 00:00-03:00; 08:00-13:30; 17:00-24:00&lt;br /&gt;2.1 00:00-03:00; 06:30-13:30; 17:00-24:00&lt;br /&gt;2.2 00:00-03:00; 06:30-13:30; 17:00-24:00&lt;br /&gt;3.1 03:00-06:00; 10:00-17:00; 20:30-22:00&lt;br /&gt;3.2 03:00-06:00; 10:00-17:00; 20:30-22:00&lt;br /&gt;4.1 00:00-06:00; 10:00-17:00; 20:30-24:00&lt;br /&gt;4.2 03:00-06:00; 10:00-17:00; 20:30-24:00&lt;br /&gt;5.1 06:30-10:00; 13:30-20:30&lt;br /&gt;5.2 06:30-10:00; 13:30-20:30&lt;br /&gt;6.1 03:00-10:00; 13:30-20:30&lt;br /&gt;6.2 06:30-10:00; 13:30-20:30&lt;/p&gt;
+&lt;p&gt;Перелік адрес за чергами - &lt;a href="https://oblenergo.kharkiv.ua/sites/default/files/pdf/%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%B8%20%D1%82%D0%B0%20%D1%87%D0%B5%D1%80%D0%B3%D0%B8%2026-27.pdf"&gt;тут&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ДЛЯ ПРОМИСЛОВОСТІ ТА БІЗНЕСУ з 00:00 до 24:00 діятимуть графіки обмеження потужності (ГОП).&lt;/p&gt;
+&lt;p&gt;Ситуація в енергосистемі постійно змінюється, тож слідкуйте за оновленнями на офіційних ресурсах "Харківобленерго".&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Thu, 05 Nov 2026 18:27:22 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883454 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>616</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883453</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;616&lt;/span&gt;
+
+  &lt;div class="field field--name-field-num-power-supplier field--type-integer field--label-above"&gt;
+    &lt;div class="field__label"&gt;Номер з/п електропостачальника&lt;/div&gt;
+              &lt;div class="field__item"&gt;616&lt;/div&gt;
+          &lt;/div&gt;
+&lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t10745&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;чт, 11/05/2026 - 15:38&lt;/span&gt;
+
+  &lt;div class="field field--name-field-edrpou-power-supplier field--type-string field--label-above"&gt;
+    &lt;div class="field__label"&gt;Код ЄДРПОУ електропостачальника&lt;/div&gt;
+              &lt;div class="field__item"&gt;25412361&lt;/div&gt;
+          &lt;/div&gt;
+
+  &lt;div class="field field--name-field-name-of-power-supplier field--type-string field--label-above"&gt;
+    &lt;div class="field__label"&gt;Найменування електропостачальника&lt;/div&gt;
+              &lt;div class="field__item"&gt;ПРИВАТНЕ АКЦІОНЕРНЕ ТОВАРИСТВО "МХП"&lt;/div&gt;
+          &lt;/div&gt;
+
+  &lt;div class="field field--name-field-address-of-power-supplier field--type-string-long field--label-above"&gt;
+    &lt;div class="field__label"&gt;Місцезнаходження електропостачальника&lt;/div&gt;
+              &lt;div class="field__item"&gt;01609, Київська обл., Обухівський р-н, м. Миронівка, вул.Елеваторна, буд.1&lt;br /&gt;&lt;/div&gt;
+          &lt;/div&gt;
+</description>
+  <pubDate>Thu, 05 Nov 2026 13:38:34 +0000</pubDate>
+    <dc:creator>t10745</dc:creator>
+    <guid isPermaLink="false">13883453 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У Харківській області 5 листопада діятимуть погодинні відключення</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883452</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У Харківській області 5 листопада діятимуть погодинні відключення&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-04T12:00:00Z" class="datetime"&gt;04.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;ср, 11/04/2026 - 21:13&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/05-oblenergo_7.jpg?itok=5UGeo8to" width="220" height="124" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;За вказівкою НЕК "Укренерго" у зв'язку зі складною ситуацією в Об’єднаній енергосистемі, яка склалася через ворожі обстріли, у четвер, 5 листопада, з 00:00 до 24:00 у Харківській області будуть діяти графіки погодинних відключень (ГПВ).&lt;/p&gt;
+&lt;p&gt;Години відсутності електропостачання по чергам/підчергам з урахуванням часу на перемикання (орієнтовно):&lt;/p&gt;
+&lt;p&gt;1.1 02:30-06:00; 09:30-16:30; 20:00-24:00&lt;br /&gt;1.2 00:00-06:00; 09:30-16:30; 20:00-24:00&lt;br /&gt;2.1 02:30-06:00; 09:30-16:30; 20:00-22:00&lt;br /&gt;2.2 02:30-06:00; 09:30-16:30; 20:00-22:00&lt;br /&gt;3.1 02:30-09:30; 13:00-20:00&lt;br /&gt;3.2 06:00-09:30; 13:00-20:00&lt;br /&gt;4.1 06:00-09:30; 13:00-20:00&lt;br /&gt;4.2 06:00-09:30; 13:00-20:00&lt;br /&gt;5.1 00:00-02:30; 08:00-13:00; 16:30-23:30&lt;br /&gt;5.2 00:00-02:30; 08:00-13:00; 16:30-23:30&lt;br /&gt;6.1 00:00-02:30; 06:00-13:00; 16:30-23:30&lt;br /&gt;6.2 00:00-02:30; 06:00-13:00; 16:30-23:30&lt;/p&gt;
+&lt;p&gt;Перелік адрес за чергами - &lt;a href="https://oblenergo.kharkiv.ua/sites/default/files/pdf/%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%B8%20%D1%82%D0%B0%20%D1%87%D0%B5%D1%80%D0%B3%D0%B8%2026-27.pdf"&gt;тут&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ДЛЯ ПРОМИСЛОВОСТІ ТА БІЗНЕСУ з 00:00 до 24:00 діятимуть графіки обмеження потужності (ГОП). &lt;/p&gt;
+&lt;p&gt;Ситуація в енергосистемі постійно змінюється, тож слідкуйте за оновленнями на офіційних ресурсах "Харківобленерго".&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Wed, 04 Nov 2026 19:13:07 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883452 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У рідному Краснокутську відкрили меморіальну дошку захиснику Сергію Линнику</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883451</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У рідному Краснокутську відкрили меморіальну дошку захиснику Сергію Линнику&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-04T12:00:00Z" class="datetime"&gt;04.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;ср, 11/04/2026 - 15:37&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/WhatsApp%20Image%202026-11-04%20at%2013.46.361.jpeg?itok=sPvz3o9j" width="220" height="165" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;У Краснокутську відбулося відкриття меморіальної дошки на честь працівника АТ "Харківобленерго", захисника України Сергія Линника, який загинув на Донеччині.&lt;/p&gt;
+&lt;p&gt;У пам'ятному заході взяли участь колеги та друзі Героя з Краснокутського району електричних мереж, представники адміністрації та профспілкової організації АТ "Харківобленерго". Присутні вшанували пам'ять Сергія хвилиною мовчання та поклали квіти до меморіальної дошки.&lt;/p&gt;
+&lt;p&gt;Сергій Линник народився 20 грудня 1985 року в селищі Краснокутськ. Навчався у місцевому аграрному ліцеї, згодом здобув освіту в Харківському індустріально-педагогічному технікумі. У 2018 році він приєднався до колективу АТ "Харківобленерго", де працював електромонтером Краснокутського РЕМ.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/FbBW7ffr"&gt;&lt;img src="https://i.ibb.co/wNKL6bbk/Whats-App-Image-2026-11-04-at-13-46-137.jpg" alt="Whats-App-Image-2026-11-04-at-13-46-137" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Колеги та земляки пам'ятають Сергія як добру, щиру й чуйну людину, яка завжди була готова підтримати, допомогти й ніколи не залишалася осторонь чужої біди.&lt;/p&gt;
+&lt;p&gt;З початком повномасштабної війни Сергій став на захист України. Він служив гранатометником механізованого відділення. З липня 2024 року понад місяць вважався зниклим безвісти. Та, на жаль, згодом з'ясувалося, що солдат Сергій Линник загинув в бою поблизу Часового Яру на Донеччині.&lt;/p&gt;
+&lt;p&gt;За мужність і самовіддану службу був нагороджений медаллю "За оборону України" та Комбатантським хрестом.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/v4cm5Ymf"&gt;&lt;img src="https://i.ibb.co/zVmbcJbC/Whats-App-Image-2026-11-04-at-13-46-35.jpg" alt="Whats-App-Image-2026-11-04-at-13-46-35" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Голова профспілкової організації АТ "Харківобленерго" Ірина Шевчук наголосила, що кожна така меморіальна дошка – це не лише знак пошани, а й нагадування про високу ціну нашої свободи.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;"Війна забирає таких молодих, добрих і працьовитих людей, які ще вчора були поруч із нами. Наш обов'язок – берегти пам'ять про кожного, адже вони назавжди залишаються частиною великої родини "Харківобленерго", – зазначила Ірина Шевчук.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/d4K7Wy3P"&gt;&lt;img src="https://i.ibb.co/YBjbRGKc/Whats-App-Image-2026-11-04-at-13-46-37.jpg" alt="Whats-App-Image-2026-11-04-at-13-46-37" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Головний інженер по розподільних електричних мережах АТ "Харківобленерго" Геннадій Білоконь зауважив, що Сергій був не лише сумлінним працівником, а й справжнім патріотом, який без вагань став на захист своєї країни.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;"Він чесно виконував свою роботу, а коли країна потребувала захисту, став до її оборони. Для нашого підприємства це велика втрата. Ми пам'ятатимемо Сергія та всіх наших колег, які віддали життя за Україну, і зробимо все, щоб їхні імена назавжди залишилися в історії товариства", – підкреслив Геннадій Білоконь.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/Rk8xPfPG"&gt;&lt;img src="https://i.ibb.co/rR9CMYMK/Whats-App-Image-2026-11-04-at-13-46-36.jpg" alt="Whats-App-Image-2026-11-04-at-13-46-36" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Меморіальна дошка у Краснокутську відтепер нагадуватиме нинішнім і майбутнім поколінням енергетиків про мужність, відданість і самопожертву Сергія Линника. Його ім'я назавжди залишиться в серцях усіх, хто мав честь працювати поруч із ним.&lt;/p&gt;
+&lt;p&gt;Світла пам'ять Герою.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ibb.co/CKP5hhmg"&gt;&lt;img src="https://i.ibb.co/3mRyBB42/Whats-App-Image-2026-11-04-at-13-46-356.jpg" alt="Whats-App-Image-2026-11-04-at-13-46-356" border="0" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Wed, 04 Nov 2026 13:37:20 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883451 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+<item>
+  <title>У Харківській області 4 листопада діятимуть графіки погодинних відключень</title>
+  <link>https://oblenergo.kharkiv.ua/uk/node/13883450</link>
+  <description>&lt;span class="field field--name-title field--type-string field--label-hidden"&gt;У Харківській області 4 листопада діятимуть графіки погодинних відключень&lt;/span&gt;
+
+            &lt;div class="field field--name-field-datanews field--type-datetime field--label-hidden field__item"&gt;&lt;time datetime="2026-11-03T12:00:00Z" class="datetime"&gt;03.11.2026 - 12:00&lt;/time&gt;&lt;/div&gt;
+      &lt;span class="field field--name-uid field--type-entity-reference field--label-hidden"&gt;&lt;span&gt;t11684&lt;/span&gt;&lt;/span&gt;
+&lt;span class="field field--name-created field--type-created field--label-hidden"&gt;ср, 11/04/2026 - 00:50&lt;/span&gt;
+
+            &lt;div class="field field--name-field-photo field--type-image field--label-hidden field__item"&gt;  &lt;img loading="lazy" src="https://oblenergo.kharkiv.ua/sites/default/files/styles/medium/public/pdf/news/15_7.jpg?itok=8OKafO4O" width="220" height="138" alt="" class="image-style-medium" /&gt;&lt;/div&gt;
+      
+            &lt;div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;За вказівкою НЕК "Укренерго" у зв'язку зі складною ситуацією в Об’єднаній енергосистемі, яка склалася через ворожі обстріли, у середу, 4 листопада, з 00:00 до 24:00 у Харківській області будуть діяти графіки погодинних відключень (ГПВ).&lt;/p&gt;
+&lt;p&gt;Години відсутності електропостачання по чергам/підчергам з урахуванням часу на перемикання (орієнтовно):&lt;/p&gt;
+&lt;p&gt;1.1 06:00-09:00; 12:30-19:30; 23:00-24:00&lt;br /&gt;1.2 06:00-09:00; 12:30-19:30; 22:00-24:00&lt;br /&gt;2.1 06:00-09:00; 12:30-19:30; 22:00-24:00&lt;br /&gt;2.2 02:00-09:00; 12:30-19:30; 22:00-23:00&lt;br /&gt;3.1 00:00-02:00; 08:00-12:30; 16:00-23:00&lt;br /&gt;3.2 00:00-02:00; 08:00-12:30; 16:00-23:00&lt;br /&gt;4.1 00:00-02:00; 08:00-12:30; 16:00-23:00&lt;br /&gt;4.2 00:00-02:00; 08:00-12:30; 16:00-23:00&lt;br /&gt;5.1 02:00-06:00; 09:00-16:00; 19:30-22:00; 23:00-24:00&lt;br /&gt;5.2 02:00-08:00; 09:00-16:00; 19:30-22:00; 23:00-24:00&lt;br /&gt;6.1 02:00-08:00; 09:00-16:00; 19:30-22:00; 23:00-24:00&lt;br /&gt;6.2 00:00-08:00; 09:00-16:00; 19:30-22:00; 23:00-24:00&lt;/p&gt;
+&lt;p&gt;Перелік адрес за чергами - &lt;a href="https://oblenergo.kharkiv.ua/sites/default/files/pdf/%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%B8%20%D1%82%D0%B0%20%D1%87%D0%B5%D1%80%D0%B3%D0%B8%2026-27.pdf"&gt;тут&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ДЛЯ ПРОМИСЛОВОСТІ ТА БІЗНЕСУ з 00:00 до 24:00 діятимуть графіки обмеження потужності (ГОП).&lt;/p&gt;
+&lt;p&gt;Ситуація в енергосистемі постійно змінюється, тож слідкуйте за оновленнями на офіційних ресурсах "Харківобленерго".&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Tue, 03 Nov 2026 22:50:16 +0000</pubDate>
+    <dc:creator>t11684</dc:creator>
+    <guid isPermaLink="false">13883450 at https://oblenergo.kharkiv.ua</guid>
+    </item>
+
+  </channel>
+</rss>

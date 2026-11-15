@@ -1,0 +1,155 @@
+{
+  "actor": "/root/ux_a_independent_qa",
+  "independent": true,
+  "actualHttp": true,
+  "actualPostgreSQL": true,
+  "syntheticOnly": true,
+  "target": {
+    "database": "lba_test_inbox_http",
+    "port": 55441,
+    "listen": "127.0.0.1"
+  },
+  "tests": [
+    {
+      "name": "bad secret and duplicate raw JSON keys are rejected over HTTP before DB connection",
+      "status": "pass",
+      "evidence": {
+        "http": [
+          403,
+          400
+        ],
+        "ingressConnections": 0,
+        "sqlRows": 0
+      }
+    },
+    {
+      "name": "actual HTTP ACK waits for actual COMMIT; another PG connection cannot see pending insert",
+      "status": "pass",
+      "evidence": {
+        "whileHeld": {
+          "httpSettled": false,
+          "sqlVisibleRows": 0,
+          "commits": 0
+        },
+        "afterCommit": {
+          "http": 200,
+          "sqlRows": 1,
+          "commits": 1
+        }
+      }
+    },
+    {
+      "name": "two HTTP duplicate requests plus restarted inbox factory yield one SQL row",
+      "status": "pass",
+      "evidence": {
+        "concurrentHttp": [
+          200,
+          200
+        ],
+        "afterFactoryRestart": 200,
+        "sqlRows": 1,
+        "domainInputId": "tg:8577497098:1201",
+        "identityIsNotAppOwner": true
+      }
+    },
+    {
+      "name": "saved unknown COMMIT returns503; same provider retry verifies existing durable record and ACKs once",
+      "status": "pass",
+      "evidence": {
+        "firstHttp": 503,
+        "savedRowsBeforeRetry": 1,
+        "retryHttp": 200,
+        "changedPayloadHttp": 503,
+        "sqlRows": 1
+      }
+    },
+    {
+      "name": "disabled route/inbox and missing/disabled/legacy/wrong-epoch control do not insert",
+      "status": "pass",
+      "evidence": {
+        "http": [
+          503,
+          503,
+          503,
+          503,
+          503,
+          503
+        ],
+        "additionalSqlRows": 0,
+        "disabledRouteFactoryCalls": 0
+      }
+    },
+    {
+      "name": "native callback wrong actor/wrong bot fail before DB; valid callback and ignored update ACK durably without PII",
+      "status": "pass",
+      "evidence": {
+        "rejectedHttp": [
+          400,
+          400
+        ],
+        "rejectedDatabaseConnections": 0,
+        "validCallbackHttp": 200,
+        "ignoredHttp": 200,
+        "publicTables": [
+          "lba_production_control",
+          "lba_production_telegram_inbox"
+        ]
+      }
+    }
+  ],
+  "driverSha256": "5e3e598bc67fbb4ed0e63223883fd62f5464a1037784c42d2a8df95fd5d05408",
+  "controlSchemaSha256": "d9d3cb7069eb59a548ee7a4c40f2951a5909a2a40032393525148c0e26e116f7",
+  "sourceBefore": [
+    {
+      "file": "app/server/production/telegram-inbox.ts",
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d"
+    },
+    {
+      "file": "app/server/production/telegram-inbox-http.ts",
+      "sha256": "f21bbf5006ebe3beef2e02ab50fd33924c01ad28fc7c7fbfa80793e3bec687f9"
+    },
+    {
+      "file": "app/server/production/product-identity.ts",
+      "sha256": "5e2499b9174f309458545424d0e7f32fe7e9f74af01eccb8887b629526bdf5bf"
+    },
+    {
+      "file": "app/server/routes.ts",
+      "sha256": "7a4fb8722152e018979b6d42167a39c20aa9167aac2d3fb6a46a5772386c4c43"
+    },
+    {
+      "file": "tools/local-runtime/disposable-proof-db.mjs",
+      "sha256": "8785a5b6e84f27b2c6ed47e7bf635d60addf37a9916ed89d522d30d43da1cc56"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "file": "app/server/production/telegram-inbox.ts",
+      "sha256": "bef089341282b676a3c76236249fd5b85cd63bfedad93a179a34f4d2af09cc5d"
+    },
+    {
+      "file": "app/server/production/telegram-inbox-http.ts",
+      "sha256": "f21bbf5006ebe3beef2e02ab50fd33924c01ad28fc7c7fbfa80793e3bec687f9"
+    },
+    {
+      "file": "app/server/production/product-identity.ts",
+      "sha256": "5e2499b9174f309458545424d0e7f32fe7e9f74af01eccb8887b629526bdf5bf"
+    },
+    {
+      "file": "app/server/routes.ts",
+      "sha256": "7a4fb8722152e018979b6d42167a39c20aa9167aac2d3fb6a46a5772386c4c43"
+    },
+    {
+      "file": "tools/local-runtime/disposable-proof-db.mjs",
+      "sha256": "8785a5b6e84f27b2c6ed47e7bf635d60addf37a9916ed89d522d30d43da1cc56"
+    }
+  ],
+  "realProviderRequests": 0,
+  "productionWrites": 0,
+  "secretReads": 0,
+  "publicWebhookChanged": false,
+  "consumerActivated": false,
+  "factoryCalls": 18,
+  "scope": "Own loopback Express+express.json raw bytes and fresh disposable PG only. Tests prove durable ingress ACK and dedup, not identity mapping/profile processing/outbox dispatch/native device/production cutover. Restart is a new inbox factory in the same process, not OS restart.",
+  "sourceDrift": false,
+  "clusterStopped": true
+}
